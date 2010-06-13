@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Run" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
+	
+	<PropertyGroup>
+		<Configuration Condition="'$(Configuration)'==''">Release</Configuration>
+		<Version>1.0.0</Version>
+		<Revision>0</Revision>
+		<Build>0</Build>
+		<SubversionDirectory>C:\Program Files (x86)\CollabNet Subversion Client</SubversionDirectory>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<xUnitDirectory>$(MSBuildProjectDirectory)\lib\trove\Framework\v2.0</xUnitDirectory>
+	</PropertyGroup>
+	<UsingTask TaskName="Xunit.Runner.MSBuild.xunit" AssemblyFile="$(xUnitDirectory)\xunit.runner.msbuild.dll" />
+	<UsingTask TaskName="Xunit.Runner.MSBuild.CombineXunitXml" AssemblyFile="$(xUnitDirectory)\xunit.runner.msbuild.dll" />
+	
+	<Target Name="Run">
+		<CallTarget Targets="Clean" />
+		<CallTarget Targets="Build" />
+		<CallTarget Targets="Test" />
+		<CallTarget Targets="Zip" />
+	</Target>
+	
+	<Target Name="Clean">
+		<MSBuild
+			Projects="$(MSBuildProjectDirectory)\src\Cavity.sln"
+			Targets="Clean"
+			Properties="Configuration=$(Configuration)"
+			/>
+	</Target>
+	
+	<Target Name="Versioning">
+		<SvnVersion LocalPath=".">
+			<Output TaskParameter="Revision" PropertyName="Revision" />
+		</SvnVersion>
+		<Math.Add Numbers="$(Revision);1">
+			<Output TaskParameter="Result" PropertyName="Build" />
+		</Math.Add>
+		<AssemblyInfo
+			CodeLanguage="CS"
+			OutputFile="$(MSBuildProjectDirectory)\src\Build.cs"
+			AssemblyVersion="$(Version).$(Build)"
+			AssemblyFileVersion="$(Version).$(Build)"
+			AssemblyInformationalVersion="$(Version).$(Build)"
+			/>
+	</Target>
+	
+	<Target Name="Build" DependsOnTargets="Versioning">
+		<MSBuild
+			Projects="$(MSBuildProjectDirectory)\src\Cavity.sln"
+			Targets="Rebuild"
+			Properties="Configuration=$(Configuration)">
+			<Output
+				TaskParameter="TargetOutputs"
+				ItemName="CodeAssemblies"
+				/>
+		</MSBuild>
+	</Target>
+	
+	<PropertyGroup>
+		<TestResultsDirectory>$(MSBuildProjectDirectory)\TestResults</TestResultsDirectory>
+		<ClassLibrariesPath>$(MSBuildProjectDirectory)\src\ClassLibraries</ClassLibrariesPath>
+	</PropertyGroup>
+	
+	<Target Name="Test">
+		<RemoveDir
+			Directories="$(TestResultsDirectory)"
+			Condition="Exists('$(TestResultsDirectory)')"
+			/>
+		<MakeDir
+			Directories="$(TestResultsDirectory)"
+			Condition="!Exists('$(TestResultsDirectory)')"
+			/>
+		<xunit
+			ContinueOnError="false"
+			Assembly="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(Configuration)\Cavity.Testing.Unit.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(Configuration)"
+			Xml="$(TestResultsDirectory)\testing_unit_facts_xunit.xml"
+			/>
+		<!-- merging test files -->
+		<CreateItem Include="$(TestResultsDirectory)\*_xunit.xml">
+			<Output TaskParameter="Include" ItemName="XmlTestFiles" />
+		</CreateItem>
+		<CombineXunitXml
+			InputFiles="@(XmlTestFiles)"
+			OutputFile="$(TestResultsDirectory)\Combined.xml"
+			/>
+		<Delete Files="@(XmlTestFiles)" />
+		<!-- deleting the combined xml file as it isn't being used -->
+		<RemoveDir
+			Directories="$(TestResultsDirectory)"
+			Condition="Exists('$(TestResultsDirectory)')"
+			/>
+	</Target>
+	
+	<PropertyGroup>
+		<ZipDirectory>$(MSBuildProjectDirectory)\zip</ZipDirectory>
+		<PublishDirectory>$(MSBuildProjectDirectory)\Publish</PublishDirectory>
+	</PropertyGroup>
+	
+	<Target Name="Zip">
+		<CallTarget Targets="Create Zip Folder" />
+		<CallTarget Targets="Zip Class Libraries" />
+		<CallTarget Targets="Zip Source" />
+	</Target>
+	
+	<Target Name="Create Zip Folder">
+		<RemoveDir
+			Directories="$(ZipDirectory)"
+			Condition="Exists('$(ZipDirectory)')"
+			/>
+		<MakeDir
+			Directories="$(ZipDirectory)"
+			Condition="!Exists('$(ZipDirectory)')"
+			/>
+	</Target>
+	
+	<Target Name="Zip Class Libraries">
+		<RemoveDir
+			Directories="$(PublishDirectory)"
+			Condition="Exists('$(PublishDirectory)')"
+			/>
+		<MakeDir
+			Directories="$(PublishDirectory)"
+			Condition="!Exists('$(PublishDirectory)')"
+			/>
+		<RoboCopy
+			SourceFolder="$(ClassLibrariesPath)\Testing.Unit\bin\$(Configuration)"
+			DestinationFolder="$(PublishDirectory)"
+			Mirror="true"
+			ExcludeFolders=".svn;_svn;obj"
+			ExcludeFiles="*.pdb;*.xml;*.stylecop;*CodeAnalysis*"
+			NoJobHeader="true"
+			/>
+		<Exec
+			Command="DEL /Q /F &quot;$(ZipDirectory)\Cavity $(Configuration) $(Version).$(Build).zip&quot;"
+			WorkingDirectory="$(ZipDirectory)"
+			/>
+		<ItemGroup>
+			<ZipClassLibFiles Include="$(PublishDirectory)\**\*.*" />
+		</ItemGroup>
+		<Zip
+			Files="@(ZipClassLibFiles)"
+			WorkingDirectory="$(PublishDirectory)"
+			ZipFileName="$(ZipDirectory)\Cavity $(Configuration) $(Version).$(Build).zip"
+			ZipLevel="9"
+			/>
+		<RemoveDir
+			Directories="$(PublishDirectory)"
+			Condition="Exists('$(PublishDirectory)')"
+			/>
+	</Target>
+	
+	<Target Name="Zip Source">
+		<MakeDir
+			Directories="$(PublishDirectory)"
+			Condition="!Exists('$(PublishDirectory)')"
+			/>
+		<RoboCopy
+			SourceFolder="$(MSBuildProjectDirectory)\src"
+			DestinationFolder="$(PublishDirectory)"
+			Mirror="true"
+			ExcludeFolders=".svn;_svn;obj;bin;PrecompiledWeb"
+			ExcludeFiles="*.suo;*.csproj.user;StyleCop.Cache"
+			NoJobHeader="true"
+			/>
+		<Exec
+			Command="DEL /Q /F &quot;$(ZipDirectory)\Cavity $(Configuration) $(Version).$(Build) Source.zip&quot;"
+			WorkingDirectory="$(ZipDirectory)"
+			/>
+		<ItemGroup>
+			<ZipSourceFiles Include="$(PublishDirectory)\**\*.*" />
+		</ItemGroup>
+		<Zip
+			Files="@(ZipSourceFiles)"
+			WorkingDirectory="$(PublishDirectory)"
+			ZipFileName="$(ZipDirectory)\Cavity $(Configuration) $(Version).$(Build) Source.zip"
+			ZipLevel="9"
+			/>
+		<RemoveDir
+			Directories="$(PublishDirectory)"
+			Condition="Exists('$(PublishDirectory)')"
+			/>
+	</Target>
+
+</Project>
