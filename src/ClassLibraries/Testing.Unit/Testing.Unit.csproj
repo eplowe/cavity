@@ -80,23 +80,25 @@
     <Compile Include="Tests\AbstractBaseClassTest[T].cs" />
     <Compile Include="Tests\BaseClassTest[T].cs" />
     <Compile Include="Tests\ConcreteClassTest[T].cs" />
-    <Compile Include="Tests\AttributePropertyTest.cs" />
+    <Compile Include="Tests\ValueTypeTest[T].cs" />
+    <Compile Include="Tests\InterfaceTest[T].cs" />
+    <Compile Include="Tests\MemberTest.cs" />
     <Compile Include="Tests\PropertySetterTest.cs" />
     <Compile Include="Tests\PropertyTest.cs" />
-    <Compile Include="Tests\DecorationTest.cs" />
+    <Compile Include="Tests\AttributeMemberTest.cs" />
     <Compile Include="Tests\DefaultConstructorTest[T].cs" />
     <Compile Include="Tests\ImplementationTest[T].cs" />
     <Compile Include="Tests\PropertyDefaultIsNotNullTest.cs" />
     <Compile Include="Tests\PropertyGetterTest.cs" />
     <Compile Include="Tests\PropertyGetterTest[T].cs" />
     <Compile Include="Tests\SealedClassTest[T].cs" />
-    <Compile Include="Tests\XmlArrayDecorationTest.cs" />
-    <Compile Include="Tests\XmlAttributeDecorationTest.cs" />
-    <Compile Include="Tests\XmlElementDecorationTest.cs" />
-    <Compile Include="Tests\XmlIgnoreDecorationTest.cs" />
-    <Compile Include="Tests\XmlNamespaceDeclarationsDecorationTest.cs" />
-    <Compile Include="Tests\XmlRootDecorationTest[T].cs" />
-    <Compile Include="Tests\XmlTextDecorationTest.cs" />
+    <Compile Include="Tests\XmlArrayTest.cs" />
+    <Compile Include="Tests\XmlAttributeTest.cs" />
+    <Compile Include="Tests\XmlElementTest.cs" />
+    <Compile Include="Tests\XmlIgnoreTest.cs" />
+    <Compile Include="Tests\XmlNamespaceDeclarationsTest.cs" />
+    <Compile Include="Tests\XmlRootTest[T].cs" />
+    <Compile Include="Tests\XmlTextTest.cs" />
     <Compile Include="Type.ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>

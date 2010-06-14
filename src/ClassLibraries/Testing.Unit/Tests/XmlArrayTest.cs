@@ -6,9 +6,9 @@ namespace Cavity.Tests
     using System.Xml.Serialization;
     using Cavity.Properties;
 
-    public sealed class XmlArrayDecorationTest : AttributePropertyTest
+    public sealed class XmlArrayTest : MemberTest
     {
-        public XmlArrayDecorationTest(MemberInfo info)
+        public XmlArrayTest(MemberInfo info)
             : base(info)
         {
         }
@@ -35,14 +35,14 @@ namespace Cavity.Tests
 
         private void CheckArray()
         {
-            XmlArrayAttribute attribute = Attribute.GetCustomAttribute(this.MemberInfo, typeof(XmlArrayAttribute), false) as XmlArrayAttribute;
+            XmlArrayAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlArrayAttribute), false) as XmlArrayAttribute;
             string message = null;
             if (null == attribute)
             {
                 message = string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message1,
-                    this.MemberInfo.Name);
+                    this.Member.Name);
                 throw new TestException(message);
             }
             else if (this.Name != attribute.ElementName)
@@ -50,7 +50,7 @@ namespace Cavity.Tests
                 message = string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message2,
-                    this.MemberInfo.Name,
+                    this.Member.Name,
                     this.Name);
                 throw new TestException(message);
             }
@@ -58,14 +58,14 @@ namespace Cavity.Tests
 
         private void CheckArrayItems()
         {
-            XmlArrayItemAttribute attribute = Attribute.GetCustomAttribute(this.MemberInfo, typeof(XmlArrayItemAttribute), false) as XmlArrayItemAttribute;
+            XmlArrayItemAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlArrayItemAttribute), false) as XmlArrayItemAttribute;
             string message = null;
             if (null == attribute)
             {
                 message = string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message3,
-                    this.MemberInfo.Name);
+                    this.Member.Name);
                 throw new TestException(message);
             }
             else if (this.Items != attribute.ElementName)
@@ -73,7 +73,7 @@ namespace Cavity.Tests
                 message = string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message4,
-                    this.MemberInfo.Name,
+                    this.Member.Name,
                     this.Items);
                 throw new TestException(message);
             }

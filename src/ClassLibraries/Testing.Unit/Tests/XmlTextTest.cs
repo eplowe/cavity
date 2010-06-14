@@ -6,24 +6,23 @@ namespace Cavity.Tests
     using System.Xml.Serialization;
     using Cavity.Properties;
 
-    public sealed class XmlNamespaceDeclarationsDecorationTest : AttributePropertyTest
+    public sealed class XmlTextTest : MemberTest
     {
-        public XmlNamespaceDeclarationsDecorationTest(MemberInfo info)
+        public XmlTextTest(MemberInfo info)
             : base(info)
         {
-            this.MemberInfo = info;
         }
 
         public override bool Check()
         {
-            XmlNamespaceDeclarationsAttribute attribute = Attribute.GetCustomAttribute(this.MemberInfo, typeof(XmlNamespaceDeclarationsAttribute), false) as XmlNamespaceDeclarationsAttribute;
+            XmlTextAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlTextAttribute), false) as XmlTextAttribute;
 
             if (null == attribute)
             {
                 string message = string.Format(
                     CultureInfo.InvariantCulture,
-                    Resources.XmlNamespaceDeclarationsDecorationTestException_Message,
-                    this.MemberInfo.Name);
+                    Resources.XmlTextDecorationTestException_Message,
+                    this.Member.Name);
                 throw new TestException(message);
             }
 

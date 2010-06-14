@@ -1,0 +1,36 @@
+﻿namespace Cavity.Tests
+{
+    using Cavity.Types;
+    using Xunit;
+
+    public class XmlIgnoreTestFacts
+    {
+        [Fact]
+        public void is_AttributePropertyTest()
+        {
+            Assert.IsAssignableFrom<MemberTest>(new XmlIgnoreTest(typeof(XmlSerializableClass1).GetProperty("Ignore")));
+        }
+
+        [Fact]
+        public void ctor()
+        {
+            Assert.NotNull(new XmlIgnoreTest(typeof(XmlSerializableClass1).GetProperty("Ignore")));
+        }
+
+        [Fact]
+        public void op_Check_whenTrue()
+        {
+            var obj = new XmlIgnoreTest(typeof(XmlSerializableClass1).GetProperty("Ignore"));
+
+            Assert.True(obj.Check());
+        }
+
+        [Fact]
+        public void op_Check_whenXmlIgnoreMissing()
+        {
+            var obj = new XmlIgnoreTest(typeof(PropertiedClass1).GetProperty("AutoBoolean"));
+
+            Assert.Throws<TestException>(() => obj.Check());
+        }
+    }
+}

@@ -39,6 +39,12 @@
         }
 
         [Fact]
+        public void op_Check_whenUnexpectedInterface()
+        {
+            Assert.Throws<TestException>(() => new ImplementationTest<InterfacedClass1>(null as Type).Check());
+        }
+
+        [Fact]
         public void op_Check_whenTrue()
         {
             Assert.True(new ImplementationTest<InterfacedClass1>(typeof(Interface1)).Check());

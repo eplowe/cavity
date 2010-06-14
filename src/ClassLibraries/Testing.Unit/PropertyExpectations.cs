@@ -156,61 +156,61 @@
                 throw new TestException(Resources.PropertyExpectations_IsDecoratedWithXmlNamespaceDeclarations);
             }
 
-            this.Items.Add(new DecorationTest(this.Property, typeof(TAttribute)));
+            this.Items.Add(new AttributeMemberTest(this.Property, typeof(TAttribute)));
             return this;
         }
 
         public PropertyExpectations XmlArray(string name, string items)
         {
-            this.Items.Add(new XmlArrayDecorationTest(this.Property) { Name = name, Items = items });
+            this.Items.Add(new XmlArrayTest(this.Property) { Name = name, Items = items });
             return this;
         }
 
         public PropertyExpectations XmlAttribute(string name)
         {
-            this.Items.Add(new XmlAttributeDecorationTest(this.Property) { Name = name });
+            this.Items.Add(new XmlAttributeTest(this.Property) { Name = name });
             return this;
         }
 
         public PropertyExpectations XmlAttribute(string name, string @namespace)
         {
-            this.Items.Add(new XmlAttributeDecorationTest(this.Property) { Name = name, Namespace = @namespace });
+            this.Items.Add(new XmlAttributeTest(this.Property) { Name = name, Namespace = @namespace });
             return this;
         }
 
         public PropertyExpectations XmlElement(string name)
         {
-            this.Items.Add(new XmlElementDecorationTest(this.Property) { Name = name });
+            this.Items.Add(new XmlElementTest(this.Property) { Name = name });
             return this;
         }
 
         public PropertyExpectations XmlElement(string name, string @namespace)
         {
-            this.Items.Add(new XmlElementDecorationTest(this.Property) { Name = name, Namespace = @namespace });
+            this.Items.Add(new XmlElementTest(this.Property) { Name = name, Namespace = @namespace });
             return this;
         }
 
         public PropertyExpectations XmlIgnore()
         {
-            this.Items.Add(new XmlIgnoreDecorationTest(this.Property));
+            this.Items.Add(new XmlIgnoreTest(this.Property));
             return this;
         }
 
         public PropertyExpectations XmlNamespaceDeclarations()
         {
-            this.Items.Add(new XmlNamespaceDeclarationsDecorationTest(this.Property));
+            this.Items.Add(new XmlNamespaceDeclarationsTest(this.Property));
             return this;
         }
 
         public PropertyExpectations XmlText()
         {
-            this.Items.Add(new XmlTextDecorationTest(this.Property));
+            this.Items.Add(new XmlTextTest(this.Property));
             return this;
         }
 
         public PropertyExpectations IsNotDecorated()
         {
-            this.Items.Add(new DecorationTest(this.Property, null as Type));
+            this.Items.Add(new AttributeMemberTest(this.Property, null as Type));
             return this;
         }
     }

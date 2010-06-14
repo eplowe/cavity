@@ -1,22 +1,16 @@
-﻿namespace Cavity.Tests
+namespace Cavity.Tests
 {
     using System;
     using System.Globalization;
+    using System.Reflection;
     using System.Xml.Serialization;
-    using Cavity.Fluent;
     using Cavity.Properties;
 
-    public class XmlRootDecorationTest<T> : ITestExpectation
+    public sealed class XmlElementTest : MemberTest
     {
-        public XmlRootDecorationTest(string name)
-            : this(name, null as string)
+        public XmlElementTest(MemberInfo info)
+            : base(info)
         {
-        }
-
-        public XmlRootDecorationTest(string name, string @namespace)
-        {
-            this.Name = name;
-            this.Namespace = @namespace;
         }
 
         public string Name
@@ -31,24 +25,24 @@
             set;
         }
 
-        public bool Check()
+        public override bool Check()
         {
-            XmlRootAttribute attribute = Attribute.GetCustomAttribute(typeof(T), typeof(XmlRootAttribute), false) as XmlRootAttribute;
+            XmlElementAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlElementAttribute), false) as XmlElementAttribute;
             string message = null;
             if (null == attribute)
             {
                 message = string.Format(
                     CultureInfo.InvariantCulture,
-                    Resources.XmlRootDecorationTestException_UndecoratedMessage,
-                    typeof(T).Name);
+                    Resources.XmlElementDecorationTestException_Message1,
+                    this.Member.Name);
                 throw new TestException(message);
             }
             else if (this.Name != attribute.ElementName)
             {
                 message = string.Format(
                     CultureInfo.InvariantCulture,
-                    Resources.XmlRootDecorationTestException_NameMessage,
-                    typeof(T).Name,
+                    Resources.XmlElementDecorationTestException_Message2,
+                    this.Member.Name,
                     this.Name);
                 throw new TestException(message);
             }
@@ -56,8 +50,8 @@
             {
                 message = string.Format(
                     CultureInfo.InvariantCulture,
-                    Resources.XmlRootDecorationTestException_NamespaceMessage,
-                    typeof(T).Name,
+                    Resources.XmlElementDecorationTestException_Message3,
+                    this.Member.Name,
                     this.Name,
                     this.Namespace);
                 throw new TestException(message);
