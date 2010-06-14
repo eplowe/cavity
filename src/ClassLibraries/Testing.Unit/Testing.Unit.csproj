@@ -58,6 +58,10 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Fluent\ITestObjectConstruction.Dummy.cs" />
+    <Compile Include="Fluent\ITestObjectConstruction.cs" />
+    <Compile Include="Fluent\ITestObjectSealed.Dummy.cs" />
+    <Compile Include="Fluent\ITestObjectSealed.cs" />
     <Compile Include="Fluent\ITestObjectStyle.Dummy.cs" />
     <Compile Include="Fluent\ITestExpectation.Dummy.cs" />
     <Compile Include="Fluent\ITestExpectation.cs" />
@@ -74,6 +78,9 @@
     <Compile Include="TestException.cs" />
     <Compile Include="Tests\AbstractBaseClassTest[T].cs" />
     <Compile Include="Tests\BaseClassTest[T].cs" />
+    <Compile Include="Tests\ConcreteClassTest[T].cs" />
+    <Compile Include="Tests\DefaultConstructorTest[T].cs" />
+    <Compile Include="Tests\SealedClassTest[T].cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\..\Cavity.dictionary">

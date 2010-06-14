@@ -77,5 +77,41 @@ namespace Cavity.Properties {
                 return ResourceManager.GetString("BaseClassTestException_Message", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not a concrete class..
+        /// </summary>
+        internal static string ConcreteClassTestException_Message {
+            get {
+                return ResourceManager.GetString("ConcreteClassTestException_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} does not have a default constructor..
+        /// </summary>
+        internal static string DefaultConstructorTestException_Message {
+            get {
+                return ResourceManager.GetString("DefaultConstructorTestException_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} unexpectedly is a sealed class..
+        /// </summary>
+        internal static string SealedClassTestException_SealedMessage {
+            get {
+                return ResourceManager.GetString("SealedClassTestException_SealedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not a sealed class..
+        /// </summary>
+        internal static string SealedClassTestException_UnsealedMessage {
+            get {
+                return ResourceManager.GetString("SealedClassTestException_UnsealedMessage", resourceCulture);
+            }
+        }
     }
 }

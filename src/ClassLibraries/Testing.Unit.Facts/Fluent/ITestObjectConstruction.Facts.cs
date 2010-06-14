@@ -3,20 +3,20 @@
     using System;
     using Xunit;
 
-    public class ITestObjectStyleFacts
+    public class ITestObjectConstructionFacts
     {
         [Fact]
         public void typedef()
         {
-            Assert.True(typeof(ITestObjectStyle).IsInterface);
+            Assert.True(typeof(ITestObjectConstruction).IsInterface);
         }
 
         [Fact]
-        public void ITestObjectStyle_IsAbstractBaseClass()
+        public void ITestObjectConstruction_HasDefaultConstructor()
         {
             try
             {
-                ITestObject value = (new ITestObjectStyleDummy() as ITestObjectStyle).IsAbstractBaseClass();
+                ITestObject value = (new ITestObjectConstructionDummy() as ITestObjectConstruction).HasDefaultConstructor();
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -25,11 +25,11 @@
         }
 
         [Fact]
-        public void ITestObjectStyle_IsConcreteClass()
+        public void ITestObjectConstruction_NoDefaultConstructor()
         {
             try
             {
-                ITestObjectSealed value = (new ITestObjectStyleDummy() as ITestObjectStyle).IsConcreteClass();
+                ITestObject value = (new ITestObjectConstructionDummy() as ITestObjectConstruction).NoDefaultConstructor();
                 Assert.True(false);
             }
             catch (NotSupportedException)
