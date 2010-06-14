@@ -88,6 +88,24 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with {1}..
+        /// </summary>
+        internal static string DecorationTestException_MissingMessage {
+            get {
+                return ResourceManager.GetString("DecorationTestException_MissingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is unexpectedly decorated with at least one attribute..
+        /// </summary>
+        internal static string DecorationTestException_UnexpectedMessage {
+            get {
+                return ResourceManager.GetString("DecorationTestException_UnexpectedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} does not have a default constructor..
         /// </summary>
         internal static string DefaultConstructorTestException_Message {
@@ -115,6 +133,24 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please use the Serializable() method instead of this generic method..
+        /// </summary>
+        internal static string ObjectExpectations_IsDecoratedWithSerializable {
+            get {
+                return ResourceManager.GetString("ObjectExpectations_IsDecoratedWithSerializable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please use the XmlRoot(...) method instead of this generic method..
+        /// </summary>
+        internal static string ObjectExpectations_IsDecoratedWithXmlRoot {
+            get {
+                return ResourceManager.GetString("ObjectExpectations_IsDecoratedWithXmlRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An interface type must be specified..
         /// </summary>
         internal static string ObjectExpectationsException_InterfaceMessage {
@@ -138,6 +174,33 @@ namespace Cavity.Properties {
         internal static string SealedClassTestException_UnsealedMessage {
             get {
                 return ResourceManager.GetString("SealedClassTestException_UnsealedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlRoot(\&quot;{1}\&quot;)]..
+        /// </summary>
+        internal static string XmlRootDecorationTestException_NameMessage {
+            get {
+                return ResourceManager.GetString("XmlRootDecorationTestException_NameMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlRoot(\&quot;{1}\&quot;, \&quot;{2}\&quot;)]..
+        /// </summary>
+        internal static string XmlRootDecorationTestException_NamespaceMessage {
+            get {
+                return ResourceManager.GetString("XmlRootDecorationTestException_NamespaceMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlRoot]..
+        /// </summary>
+        internal static string XmlRootDecorationTestException_UndecoratedMessage {
+            get {
+                return ResourceManager.GetString("XmlRootDecorationTestException_UndecoratedMessage", resourceCulture);
             }
         }
     }

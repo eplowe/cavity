@@ -37,5 +37,70 @@
             {
             }
         }
+
+        [Fact]
+        public void ITestObject_IsDecoratedWithOfT()
+        {
+            try
+            {
+                ITestObject value = (new ITestObjectDummy() as ITestObject).IsDecoratedWith<Attribute1>();
+                Assert.True(false);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
+
+        [Fact]
+        public void ITestObject_Serializable()
+        {
+            try
+            {
+                ITestObject value = (new ITestObjectDummy() as ITestObject).Serializable();
+                Assert.True(false);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
+
+        [Fact]
+        public void ITestObject_XmlRoot_string()
+        {
+            try
+            {
+                ITestObject value = (new ITestObjectDummy() as ITestObject).XmlRoot("name");
+                Assert.True(false);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
+
+        [Fact]
+        public void ITestObject_XmlRoot_string_string()
+        {
+            try
+            {
+                ITestObject value = (new ITestObjectDummy() as ITestObject).XmlRoot("name", "namespace");
+                Assert.True(false);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
+
+        [Fact]
+        public void ITestObject_IsNotDecorated()
+        {
+            try
+            {
+                ITestObject value = (new ITestObjectDummy() as ITestObject).IsNotDecorated();
+                Assert.True(false);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
     }
 }

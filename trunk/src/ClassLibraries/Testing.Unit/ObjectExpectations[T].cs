@@ -1,8 +1,11 @@
 ﻿namespace Cavity
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Runtime.Serialization;
+    using System.Xml.Serialization;
     using Cavity.Fluent;
     using Cavity.Properties;
     using Cavity.Tests;
@@ -79,6 +82,47 @@
             }
 
             this.Items.Add(new ImplementationTest<T>(typeof(TInterface)));
+            return this;
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
+        ITestObject ITestObject.IsDecoratedWith<TAttribute>()
+        {
+            if (typeof(SerializableAttribute).IsAssignableFrom(typeof(TAttribute)))
+            {
+                throw new TestException(Resources.ObjectExpectations_IsDecoratedWithSerializable);
+            }
+            else if (typeof(XmlRootAttribute).IsAssignableFrom(typeof(TAttribute)))
+            {
+                throw new TestException(Resources.ObjectExpectations_IsDecoratedWithXmlRoot);
+            }
+
+            this.Items.Add(new DecorationTest(typeof(T), typeof(TAttribute)));
+            return this;
+        }
+
+        ITestObject ITestObject.Serializable()
+        {
+            this.Items.Add(new DecorationTest(typeof(T), typeof(SerializableAttribute)));
+            this.Items.Add(new ImplementationTest<T>(typeof(ISerializable)));
+            return this;
+        }
+
+        ITestObject ITestObject.XmlRoot(string name)
+        {
+            this.Items.Add(new XmlRootDecorationTest<T>(name));
+            return this;
+        }
+
+        ITestObject ITestObject.XmlRoot(string name, string @namespace)
+        {
+            this.Items.Add(new XmlRootDecorationTest<T>(name, @namespace));
+            return this;
+        }
+
+        ITestObject ITestObject.IsNotDecorated()
+        {
+            this.Items.Add(new DecorationTest(typeof(T), null as Type));
             return this;
         }
     }
