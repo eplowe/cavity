@@ -43,5 +43,17 @@
                 .HasDefaultConstructor()
                 .Result);
         }
+
+        [Fact]
+        public void prop_Result_whenInterfaceClass()
+        {
+            Assert.True(new ObjectExpectations<InterfaceClass1>()
+                .DerivesFrom<object>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor()
+                .Implements<Interface1>()
+                .Result);
+        }
     }
 }

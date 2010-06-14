@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Fluent
 {
     using System;
+    using Cavity.Types;
     using Xunit;
 
     public class ITestObjectFacts
@@ -17,6 +18,19 @@
             try
             {
                 bool value = (new ITestObjectDummy() as ITestObject).Result;
+                Assert.True(false);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
+
+        [Fact]
+        public void ITestObject_ImplementsOfT()
+        {
+            try
+            {
+                ITestObject value = (new ITestObjectDummy() as ITestObject).Implements<Interface1>();
                 Assert.True(false);
             }
             catch (NotSupportedException)

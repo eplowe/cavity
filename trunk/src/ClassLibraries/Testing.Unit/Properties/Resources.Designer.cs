@@ -97,6 +97,33 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} does not implement {1}..
+        /// </summary>
+        internal static string ImplementationTestException_NoneMessage {
+            get {
+                return ResourceManager.GetString("ImplementationTestException_NoneMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} unexpectedly implements at least one interface..
+        /// </summary>
+        internal static string ImplementationTestException_UnexpectedMessage {
+            get {
+                return ResourceManager.GetString("ImplementationTestException_UnexpectedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An interface type must be specified..
+        /// </summary>
+        internal static string ObjectExpectationsException_InterfaceMessage {
+            get {
+                return ResourceManager.GetString("ObjectExpectationsException_InterfaceMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} unexpectedly is a sealed class..
         /// </summary>
         internal static string SealedClassTestException_SealedMessage {
