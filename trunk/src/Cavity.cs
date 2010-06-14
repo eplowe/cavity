@@ -2,7 +2,6 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
-
 #region General information
 [assembly: AssemblyCompany("Cavity")]
 [assembly: AssemblyProduct("http://code.google.com/p/cavity/")]
