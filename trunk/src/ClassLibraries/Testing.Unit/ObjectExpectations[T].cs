@@ -6,7 +6,7 @@
     using Cavity.Fluent;
     using Cavity.Tests;
 
-    public sealed class ObjectExpectations<T> : ITestObjectStyle, ITestObject
+    public sealed class ObjectExpectations<T> : ITestObjectStyle, ITestObjectSealed, ITestObjectConstruction, ITestObject
     {
         public ObjectExpectations()
         {
@@ -37,6 +37,35 @@
         ITestObject ITestObjectStyle.IsAbstractBaseClass()
         {
             this.Items.Add(new AbstractBaseClassTest<T>());
+            return this;
+        }
+
+        ITestObjectSealed ITestObjectStyle.IsConcreteClass()
+        {
+            this.Items.Add(new ConcreteClassTest<T>());
+            return this;
+        }
+
+        ITestObjectConstruction ITestObjectSealed.IsSealed()
+        {
+            this.Items.Add(new SealedClassTest<T>(true));
+            return this;
+        }
+
+        ITestObjectConstruction ITestObjectSealed.IsUnsealed()
+        {
+            this.Items.Add(new SealedClassTest<T>(false));
+            return this;
+        }
+
+        ITestObject ITestObjectConstruction.HasDefaultConstructor()
+        {
+            this.Items.Add(new DefaultConstructorTest<T>());
+            return this;
+        }
+
+        ITestObject ITestObjectConstruction.NoDefaultConstructor()
+        {
             return this;
         }
     }

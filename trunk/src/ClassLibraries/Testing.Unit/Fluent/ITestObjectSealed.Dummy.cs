@@ -2,14 +2,14 @@
 {
     using System;
 
-    public class ITestObjectStyleDummy : ITestObjectStyle
+    public class ITestObjectSealedDummy : ITestObjectSealed
     {
-        public ITestObject IsAbstractBaseClass()
+        public ITestObjectConstruction IsSealed()
         {
             throw new NotSupportedException();
         }
 
-        public ITestObjectSealed IsConcreteClass()
+        public ITestObjectConstruction IsUnsealed()
         {
             throw new NotSupportedException();
         }

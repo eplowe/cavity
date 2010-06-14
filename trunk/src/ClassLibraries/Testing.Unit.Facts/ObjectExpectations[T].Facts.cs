@@ -25,11 +25,22 @@
         }
 
         [Fact]
-        public void prop_Result()
+        public void prop_Result_whenAbstractBaseClass()
         {
             Assert.True(new ObjectExpectations<AbstractBaseClass1>()
                 .DerivesFrom<object>()
                 .IsAbstractBaseClass()
+                .Result);
+        }
+
+        [Fact]
+        public void prop_Result_whenUnsealedClass()
+        {
+            Assert.True(new ObjectExpectations<DerivedClass1>()
+                .DerivesFrom<Class1>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor()
                 .Result);
         }
     }
