@@ -4,6 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Cavity.Fluent;
+    using Cavity.Properties;
     using Cavity.Tests;
 
     public sealed class ObjectExpectations<T> : ITestObjectStyle, ITestObjectSealed, ITestObjectConstruction, ITestObject
@@ -66,6 +67,18 @@
 
         ITestObject ITestObjectConstruction.NoDefaultConstructor()
         {
+            return this;
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
+        ITestObject ITestObject.Implements<TInterface>()
+        {
+            if (!typeof(TInterface).IsInterface)
+            {
+                throw new TestException(Resources.ObjectExpectationsException_InterfaceMessage);
+            }
+
+            this.Items.Add(new ImplementationTest<T>(typeof(TInterface)));
             return this;
         }
     }

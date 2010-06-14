@@ -69,10 +69,14 @@
     <Compile Include="Tests\BaseClassTest[T].Facts.cs" />
     <Compile Include="Tests\ConcreteClassTest[T].Facts.cs" />
     <Compile Include="Tests\DefaultConstructorTest[T]Facts.cs" />
+    <Compile Include="Tests\ImplementationTest[T].Facts.cs" />
     <Compile Include="Tests\SealedClassTest[T].Facts.cs" />
+    <Compile Include="Type.ExtensionMethods.Facts.cs" />
     <Compile Include="Types\AbstractBaseClass1.cs" />
     <Compile Include="Types\Class1.cs" />
     <Compile Include="Types\DerivedClass1.cs" />
+    <Compile Include="Types\Interface1.cs" />
+    <Compile Include="Types\InterfaceClass1.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\..\Cavity.dictionary">
