@@ -126,6 +126,12 @@
   <data name="ConcreteClassTestException_Message" xml:space="preserve">
     <value>{0} is not a concrete class.</value>
   </data>
+  <data name="DecorationTestException_MissingMessage" xml:space="preserve">
+    <value>{0} is not decorated with {1}.</value>
+  </data>
+  <data name="DecorationTestException_UnexpectedMessage" xml:space="preserve">
+    <value>{0} is unexpectedly decorated with at least one attribute.</value>
+  </data>
   <data name="DefaultConstructorTestException_Message" xml:space="preserve">
     <value>{0} does not have a default constructor.</value>
   </data>
@@ -138,10 +144,25 @@
   <data name="ObjectExpectationsException_InterfaceMessage" xml:space="preserve">
     <value>An interface type must be specified.</value>
   </data>
+  <data name="ObjectExpectations_IsDecoratedWithSerializable" xml:space="preserve">
+    <value>Please use the Serializable() method instead of this generic method.</value>
+  </data>
+  <data name="ObjectExpectations_IsDecoratedWithXmlRoot" xml:space="preserve">
+    <value>Please use the XmlRoot(...) method instead of this generic method.</value>
+  </data>
   <data name="SealedClassTestException_SealedMessage" xml:space="preserve">
     <value>{0} unexpectedly is a sealed class.</value>
   </data>
   <data name="SealedClassTestException_UnsealedMessage" xml:space="preserve">
     <value>{0} is not a sealed class.</value>
+  </data>
+  <data name="XmlRootDecorationTestException_NameMessage" xml:space="preserve">
+    <value>{0} is not decorated with [XmlRoot(\"{1}\")].</value>
+  </data>
+  <data name="XmlRootDecorationTestException_NamespaceMessage" xml:space="preserve">
+    <value>{0} is not decorated with [XmlRoot(\"{1}\", \"{2}\")].</value>
+  </data>
+  <data name="XmlRootDecorationTestException_UndecoratedMessage" xml:space="preserve">
+    <value>{0} is not decorated with [XmlRoot].</value>
   </data>
 </root>

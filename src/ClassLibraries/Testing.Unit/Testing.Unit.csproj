@@ -79,9 +79,11 @@
     <Compile Include="Tests\AbstractBaseClassTest[T].cs" />
     <Compile Include="Tests\BaseClassTest[T].cs" />
     <Compile Include="Tests\ConcreteClassTest[T].cs" />
+    <Compile Include="Tests\DecorationTest.cs" />
     <Compile Include="Tests\DefaultConstructorTest[T].cs" />
     <Compile Include="Tests\ImplementationTest[T].cs" />
     <Compile Include="Tests\SealedClassTest[T].cs" />
+    <Compile Include="Tests\XmlRootDecorationTest[T].cs" />
     <Compile Include="Type.ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,7 @@
 ﻿namespace Cavity
 {
+    using System;
+    using System.Xml.Serialization;
     using Cavity.Fluent;
     using Cavity.Types;
     using Xunit;
@@ -41,6 +43,7 @@
                 .IsConcreteClass()
                 .IsUnsealed()
                 .HasDefaultConstructor()
+                .IsNotDecorated()
                 .Result);
         }
 
@@ -53,6 +56,66 @@
                 .IsUnsealed()
                 .HasDefaultConstructor()
                 .Implements<Interface1>()
+                .Result);
+        }
+
+        [Fact]
+        public void prop_Result_whenAttributedClass()
+        {
+            Assert.True(new ObjectExpectations<AttributedClass1>()
+                .DerivesFrom<object>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor()
+                .IsDecoratedWith<Attribute1>()
+                .Result);
+        }
+
+        [Fact]
+        public void prop_Result_whenIsDecoratedWithSerializableAttribute()
+        {
+            Assert.Throws<TestException>(() => new ObjectExpectations<TestException>()
+                .DerivesFrom<object>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor()
+                .IsDecoratedWith<SerializableAttribute>()
+                .Result);
+        }
+
+        [Fact]
+        public void prop_Result_whenIsDecoratedWithXmlRootAttribute()
+        {
+            Assert.Throws<TestException>(() => new ObjectExpectations<XmlSerializableClass1>()
+                .DerivesFrom<object>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor()
+                .IsDecoratedWith<XmlRootAttribute>()
+                .Result);
+        }
+
+        [Fact]
+        public void prop_Result_whenSerializable()
+        {
+            Assert.True(new ObjectExpectations<TestException>()
+                .DerivesFrom<object>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor()
+                .Serializable()
+                .Result);
+        }
+
+        [Fact]
+        public void prop_Result_whenXmlRoot()
+        {
+            Assert.True(new ObjectExpectations<XmlSerializableClass1>()
+                .DerivesFrom<object>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor()
+                .XmlRoot("root", "urn:example.net")
                 .Result);
         }
     }
