@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using Cavity.Fluent;
+    using Cavity.Types;
     using Xunit;
 
     public class SealedClassTestOfTFacts
@@ -34,6 +35,12 @@
         public void op_Check_whenFalse()
         {
             Assert.Throws<TestException>(() => new SealedClassTest<string>(false).Check());
+        }
+
+        [Fact]
+        public void op_Check_whenUnexpected()
+        {
+            Assert.Throws<TestException>(() => new SealedClassTest<Class1>(true).Check());
         }
 
         [Fact]

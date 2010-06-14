@@ -141,6 +141,9 @@
   <data name="ImplementationTestException_UnexpectedMessage" xml:space="preserve">
     <value>{0} unexpectedly implements at least one interface.</value>
   </data>
+  <data name="InterfaceTestException_Message" xml:space="preserve">
+    <value>{0} is not an interface.</value>
+  </data>
   <data name="ObjectExpectationsException_InterfaceMessage" xml:space="preserve">
     <value>An interface type must be specified.</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="SealedClassTestException_UnsealedMessage" xml:space="preserve">
     <value>{0} is not a sealed class.</value>
+  </data>
+  <data name="ValueTypeTestException_Message" xml:space="preserve">
+    <value>{0} is not a value type.</value>
   </data>
   <data name="XmlArrayDecorationTestException_Message1" xml:space="preserve">
     <value>{0} is not decorated with [XmlArray].</value>

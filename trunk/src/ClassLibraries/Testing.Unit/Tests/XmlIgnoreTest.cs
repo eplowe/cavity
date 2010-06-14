@@ -6,23 +6,23 @@ namespace Cavity.Tests
     using System.Xml.Serialization;
     using Cavity.Properties;
 
-    public sealed class XmlTextDecorationTest : AttributePropertyTest
+    public sealed class XmlIgnoreTest : MemberTest
     {
-        public XmlTextDecorationTest(MemberInfo info)
+        public XmlIgnoreTest(MemberInfo info)
             : base(info)
         {
         }
 
         public override bool Check()
         {
-            XmlTextAttribute attribute = Attribute.GetCustomAttribute(this.MemberInfo, typeof(XmlTextAttribute), false) as XmlTextAttribute;
+            XmlIgnoreAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlIgnoreAttribute), false) as XmlIgnoreAttribute;
 
             if (null == attribute)
             {
                 string message = string.Format(
                     CultureInfo.InvariantCulture,
-                    Resources.XmlTextDecorationTestException_Message,
-                    this.MemberInfo.Name);
+                    Resources.XmlIgnoreDecorationTestException_Message,
+                    this.Member.Name);
                 throw new TestException(message);
             }
 

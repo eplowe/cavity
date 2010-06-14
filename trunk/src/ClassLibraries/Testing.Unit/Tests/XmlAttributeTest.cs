@@ -6,9 +6,9 @@ namespace Cavity.Tests
     using System.Xml.Serialization;
     using Cavity.Properties;
 
-    public sealed class XmlElementDecorationTest : AttributePropertyTest
+    public sealed class XmlAttributeTest : MemberTest
     {
-        public XmlElementDecorationTest(MemberInfo info)
+        public XmlAttributeTest(MemberInfo info)
             : base(info)
         {
         }
@@ -27,22 +27,22 @@ namespace Cavity.Tests
 
         public override bool Check()
         {
-            XmlElementAttribute attribute = Attribute.GetCustomAttribute(this.MemberInfo, typeof(XmlElementAttribute), false) as XmlElementAttribute;
+            XmlAttributeAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlAttributeAttribute), false) as XmlAttributeAttribute;
             string message = null;
             if (null == attribute)
             {
                 message = string.Format(
                     CultureInfo.InvariantCulture,
-                    Resources.XmlElementDecorationTestException_Message1,
-                    this.MemberInfo.Name);
+                    Resources.XmlAttributeDecorationTestException_Message1,
+                    this.Member.Name);
                 throw new TestException(message);
             }
-            else if (this.Name != attribute.ElementName)
+            else if (this.Name != attribute.AttributeName)
             {
                 message = string.Format(
                     CultureInfo.InvariantCulture,
-                    Resources.XmlElementDecorationTestException_Message2,
-                    this.MemberInfo.Name,
+                    Resources.XmlAttributeDecorationTestException_Message2,
+                    this.Member.Name,
                     this.Name);
                 throw new TestException(message);
             }
@@ -50,8 +50,8 @@ namespace Cavity.Tests
             {
                 message = string.Format(
                     CultureInfo.InvariantCulture,
-                    Resources.XmlElementDecorationTestException_Message3,
-                    this.MemberInfo.Name,
+                    Resources.XmlAttributeDecorationTestException_Message3,
+                    this.Member.Name,
                     this.Name,
                     this.Namespace);
                 throw new TestException(message);

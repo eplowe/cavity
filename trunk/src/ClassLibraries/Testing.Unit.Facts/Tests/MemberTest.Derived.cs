@@ -3,9 +3,9 @@
     using System;
     using System.Reflection;
 
-    public class DerivedPropertyTest : PropertyTest
+    public class DerivedMemberTest : MemberTest
     {
-        public DerivedPropertyTest(PropertyInfo property)
+        public DerivedMemberTest(MemberInfo property)
             : base(property)
         {
         }

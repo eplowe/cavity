@@ -4,20 +4,20 @@ namespace Cavity.Tests
     using System.Reflection;
     using Cavity.Fluent;
 
-    public abstract class AttributePropertyTest : ITestExpectation
+    public abstract class MemberTest : ITestExpectation
     {
-        private MemberInfo _info;
+        private MemberInfo _member;
 
-        protected AttributePropertyTest(MemberInfo info)
+        protected MemberTest(MemberInfo member)
         {
-            this.MemberInfo = info;
+            this.Member = member;
         }
 
-        public MemberInfo MemberInfo
+        public MemberInfo Member
         {
             get
             {
-                return this._info;
+                return this._member;
             }
 
             set
@@ -27,7 +27,7 @@ namespace Cavity.Tests
                     throw new ArgumentNullException("value");
                 }
 
-                this._info = value;
+                this._member = value;
             }
         }
 

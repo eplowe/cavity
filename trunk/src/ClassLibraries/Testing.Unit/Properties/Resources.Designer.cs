@@ -133,6 +133,15 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is not an interface..
+        /// </summary>
+        internal static string InterfaceTestException_Message {
+            get {
+                return ResourceManager.GetString("InterfaceTestException_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please use the Serializable() method instead of this generic method..
         /// </summary>
         internal static string ObjectExpectations_IsDecoratedWithSerializable {
@@ -246,6 +255,15 @@ namespace Cavity.Properties {
         internal static string SealedClassTestException_UnsealedMessage {
             get {
                 return ResourceManager.GetString("SealedClassTestException_UnsealedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not a value type..
+        /// </summary>
+        internal static string ValueTypeTestException_Message {
+            get {
+                return ResourceManager.GetString("ValueTypeTestException_Message", resourceCulture);
             }
         }
         

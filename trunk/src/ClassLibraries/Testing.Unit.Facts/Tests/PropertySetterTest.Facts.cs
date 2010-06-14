@@ -50,6 +50,18 @@
         }
 
         [Fact]
+        public void op_Check_whenAbstract()
+        {
+            Assert.Throws<MissingMethodException>(() => new PropertySetterTest(typeof(AbstractBaseClass1).GetProperty("AutoAbstract"), false).Check());
+        }
+
+        [Fact]
+        public void op_Check_whenException()
+        {
+            Assert.Throws<TargetInvocationException>(() => new PropertySetterTest(typeof(PropertiedClass1).GetProperty("ArgumentOutOfRangeExceptionValue"), string.Empty).Check());
+        }
+
+        [Fact]
         public void op_Check_whenTrue()
         {
             Assert.True(new PropertySetterTest(typeof(PropertiedClass1).GetProperty("AutoBoolean"), false).Check());

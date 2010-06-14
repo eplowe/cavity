@@ -31,6 +31,18 @@
             set;
         }
 
+        public ITestObject IsInterface()
+        {
+            this.Items.Add(new InterfaceTest<T>());
+            return this;
+        }
+
+        public ITestObject IsValueType()
+        {
+            this.Items.Add(new ValueTypeTest<T>());
+            return this;
+        }
+
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
         public ITestObjectStyle DerivesFrom<TBase>()
         {
@@ -97,32 +109,32 @@
                 throw new TestException(Resources.ObjectExpectations_IsDecoratedWithXmlRoot);
             }
 
-            this.Items.Add(new DecorationTest(typeof(T), typeof(TAttribute)));
+            this.Items.Add(new AttributeMemberTest(typeof(T), typeof(TAttribute)));
             return this;
         }
 
         ITestObject ITestObject.Serializable()
         {
-            this.Items.Add(new DecorationTest(typeof(T), typeof(SerializableAttribute)));
+            this.Items.Add(new AttributeMemberTest(typeof(T), typeof(SerializableAttribute)));
             this.Items.Add(new ImplementationTest<T>(typeof(ISerializable)));
             return this;
         }
 
         ITestObject ITestObject.XmlRoot(string name)
         {
-            this.Items.Add(new XmlRootDecorationTest<T>(name));
+            this.Items.Add(new XmlRootTest<T>(name));
             return this;
         }
 
         ITestObject ITestObject.XmlRoot(string name, string @namespace)
         {
-            this.Items.Add(new XmlRootDecorationTest<T>(name, @namespace));
+            this.Items.Add(new XmlRootTest<T>(name, @namespace));
             return this;
         }
 
         ITestObject ITestObject.IsNotDecorated()
         {
-            this.Items.Add(new DecorationTest(typeof(T), null as Type));
+            this.Items.Add(new AttributeMemberTest(typeof(T), null as Type));
             return this;
         }
     }

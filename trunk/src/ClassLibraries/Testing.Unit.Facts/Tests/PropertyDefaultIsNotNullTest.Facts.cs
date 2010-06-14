@@ -1,6 +1,5 @@
 ﻿namespace Cavity.Tests
 {
-    using System.Reflection;
     using Cavity.Types;
     using Xunit;
 
