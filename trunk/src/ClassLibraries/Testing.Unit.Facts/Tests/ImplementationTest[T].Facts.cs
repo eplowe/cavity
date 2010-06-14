@@ -41,7 +41,7 @@
         [Fact]
         public void op_Check_whenTrue()
         {
-            Assert.True(new ImplementationTest<InterfaceClass1>(typeof(Interface1)).Check());
+            Assert.True(new ImplementationTest<InterfacedClass1>(typeof(Interface1)).Check());
         }
     }
 }

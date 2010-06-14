@@ -160,6 +160,78 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please use the XmlArray(...) method instead of this generic method..
+        /// </summary>
+        internal static string PropertyExpectations_IsDecoratedWithXmlArray {
+            get {
+                return ResourceManager.GetString("PropertyExpectations_IsDecoratedWithXmlArray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please use the XmlAttribute(...) method instead of this generic method..
+        /// </summary>
+        internal static string PropertyExpectations_IsDecoratedWithXmlAttribute {
+            get {
+                return ResourceManager.GetString("PropertyExpectations_IsDecoratedWithXmlAttribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please use the XmlElement(...) method instead of this generic method..
+        /// </summary>
+        internal static string PropertyExpectations_IsDecoratedWithXmlElement {
+            get {
+                return ResourceManager.GetString("PropertyExpectations_IsDecoratedWithXmlElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please use the XmlIgnore() method instead of this generic method..
+        /// </summary>
+        internal static string PropertyExpectations_IsDecoratedWithXmlIgnore {
+            get {
+                return ResourceManager.GetString("PropertyExpectations_IsDecoratedWithXmlIgnore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please use the XmlNamespaceDeclarationsAttribute() method instead of this generic method..
+        /// </summary>
+        internal static string PropertyExpectations_IsDecoratedWithXmlNamespaceDeclarations {
+            get {
+                return ResourceManager.GetString("PropertyExpectations_IsDecoratedWithXmlNamespaceDeclarations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please use the XmlText() method instead of this generic method..
+        /// </summary>
+        internal static string PropertyExpectations_IsDecoratedWithXmlText {
+            get {
+                return ResourceManager.GetString("PropertyExpectations_IsDecoratedWithXmlText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}.{1} did not equal the expected value..
+        /// </summary>
+        internal static string PropertyGetterTestException_Message {
+            get {
+                return ResourceManager.GetString("PropertyGetterTestException_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}.{1} did not equal the expected value..
+        /// </summary>
+        internal static string PropertyGetterTestOfTException_Message {
+            get {
+                return ResourceManager.GetString("PropertyGetterTestOfTException_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} unexpectedly is a sealed class..
         /// </summary>
         internal static string SealedClassTestException_SealedMessage {
@@ -174,6 +246,114 @@ namespace Cavity.Properties {
         internal static string SealedClassTestException_UnsealedMessage {
             get {
                 return ResourceManager.GetString("SealedClassTestException_UnsealedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlArray]..
+        /// </summary>
+        internal static string XmlArrayDecorationTestException_Message1 {
+            get {
+                return ResourceManager.GetString("XmlArrayDecorationTestException_Message1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlArray(\&quot;{1}\&quot;)]..
+        /// </summary>
+        internal static string XmlArrayDecorationTestException_Message2 {
+            get {
+                return ResourceManager.GetString("XmlArrayDecorationTestException_Message2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlArrayItem]..
+        /// </summary>
+        internal static string XmlArrayDecorationTestException_Message3 {
+            get {
+                return ResourceManager.GetString("XmlArrayDecorationTestException_Message3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlArrayItem(\&quot;{1}\&quot;)]..
+        /// </summary>
+        internal static string XmlArrayDecorationTestException_Message4 {
+            get {
+                return ResourceManager.GetString("XmlArrayDecorationTestException_Message4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlAttribute]..
+        /// </summary>
+        internal static string XmlAttributeDecorationTestException_Message1 {
+            get {
+                return ResourceManager.GetString("XmlAttributeDecorationTestException_Message1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlAttribute(\&quot;{1}\&quot;)]..
+        /// </summary>
+        internal static string XmlAttributeDecorationTestException_Message2 {
+            get {
+                return ResourceManager.GetString("XmlAttributeDecorationTestException_Message2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlAttribute(\&quot;{1}\&quot;, \&quot;{2}\&quot;)]..
+        /// </summary>
+        internal static string XmlAttributeDecorationTestException_Message3 {
+            get {
+                return ResourceManager.GetString("XmlAttributeDecorationTestException_Message3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlElement]..
+        /// </summary>
+        internal static string XmlElementDecorationTestException_Message1 {
+            get {
+                return ResourceManager.GetString("XmlElementDecorationTestException_Message1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlElement(\&quot;{1}\&quot;)]..
+        /// </summary>
+        internal static string XmlElementDecorationTestException_Message2 {
+            get {
+                return ResourceManager.GetString("XmlElementDecorationTestException_Message2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlElement(\&quot;{1}\&quot;, \&quot;{2}\&quot;)]..
+        /// </summary>
+        internal static string XmlElementDecorationTestException_Message3 {
+            get {
+                return ResourceManager.GetString("XmlElementDecorationTestException_Message3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlIgnore]..
+        /// </summary>
+        internal static string XmlIgnoreDecorationTestException_Message {
+            get {
+                return ResourceManager.GetString("XmlIgnoreDecorationTestException_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlNamespaceDeclarations]..
+        /// </summary>
+        internal static string XmlNamespaceDeclarationsDecorationTestException_Message {
+            get {
+                return ResourceManager.GetString("XmlNamespaceDeclarationsDecorationTestException_Message", resourceCulture);
             }
         }
         
@@ -201,6 +381,15 @@ namespace Cavity.Properties {
         internal static string XmlRootDecorationTestException_UndecoratedMessage {
             get {
                 return ResourceManager.GetString("XmlRootDecorationTestException_UndecoratedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not decorated with [XmlText]..
+        /// </summary>
+        internal static string XmlTextDecorationTestException_Message {
+            get {
+                return ResourceManager.GetString("XmlTextDecorationTestException_Message", resourceCulture);
             }
         }
     }
