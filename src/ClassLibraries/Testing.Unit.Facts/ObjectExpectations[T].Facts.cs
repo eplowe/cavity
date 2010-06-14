@@ -50,7 +50,7 @@
         [Fact]
         public void prop_Result_whenInterfaceClass()
         {
-            Assert.True(new ObjectExpectations<InterfaceClass1>()
+            Assert.True(new ObjectExpectations<InterfacedClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()

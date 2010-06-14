@@ -27,7 +27,7 @@
         [Fact]
         public void op_Implements_Type_Type_whenTrue()
         {
-            Assert.True(typeof(InterfaceClass1).Implements(typeof(Interface1)));
+            Assert.True(typeof(InterfacedClass1).Implements(typeof(Interface1)));
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class InterfaceClass1 : Interface1
+    public class InterfacedClass1 : Interface1
     {
         public void Method1()
         {

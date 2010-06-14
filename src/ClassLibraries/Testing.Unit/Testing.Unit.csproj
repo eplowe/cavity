@@ -75,15 +75,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="PropertyExpectations.cs" />
     <Compile Include="TestException.cs" />
     <Compile Include="Tests\AbstractBaseClassTest[T].cs" />
     <Compile Include="Tests\BaseClassTest[T].cs" />
     <Compile Include="Tests\ConcreteClassTest[T].cs" />
+    <Compile Include="Tests\AttributePropertyTest.cs" />
+    <Compile Include="Tests\PropertySetterTest.cs" />
+    <Compile Include="Tests\PropertyTest.cs" />
     <Compile Include="Tests\DecorationTest.cs" />
     <Compile Include="Tests\DefaultConstructorTest[T].cs" />
     <Compile Include="Tests\ImplementationTest[T].cs" />
+    <Compile Include="Tests\PropertyDefaultIsNotNullTest.cs" />
+    <Compile Include="Tests\PropertyGetterTest.cs" />
+    <Compile Include="Tests\PropertyGetterTest[T].cs" />
     <Compile Include="Tests\SealedClassTest[T].cs" />
+    <Compile Include="Tests\XmlArrayDecorationTest.cs" />
+    <Compile Include="Tests\XmlAttributeDecorationTest.cs" />
+    <Compile Include="Tests\XmlElementDecorationTest.cs" />
+    <Compile Include="Tests\XmlIgnoreDecorationTest.cs" />
+    <Compile Include="Tests\XmlNamespaceDeclarationsDecorationTest.cs" />
     <Compile Include="Tests\XmlRootDecorationTest[T].cs" />
+    <Compile Include="Tests\XmlTextDecorationTest.cs" />
     <Compile Include="Type.ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>

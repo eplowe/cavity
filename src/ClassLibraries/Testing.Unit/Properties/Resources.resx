@@ -150,11 +150,71 @@
   <data name="ObjectExpectations_IsDecoratedWithXmlRoot" xml:space="preserve">
     <value>Please use the XmlRoot(...) method instead of this generic method.</value>
   </data>
+  <data name="PropertyExpectations_IsDecoratedWithXmlArray" xml:space="preserve">
+    <value>Please use the XmlArray(...) method instead of this generic method.</value>
+  </data>
+  <data name="PropertyExpectations_IsDecoratedWithXmlAttribute" xml:space="preserve">
+    <value>Please use the XmlAttribute(...) method instead of this generic method.</value>
+  </data>
+  <data name="PropertyExpectations_IsDecoratedWithXmlElement" xml:space="preserve">
+    <value>Please use the XmlElement(...) method instead of this generic method.</value>
+  </data>
+  <data name="PropertyExpectations_IsDecoratedWithXmlIgnore" xml:space="preserve">
+    <value>Please use the XmlIgnore() method instead of this generic method.</value>
+  </data>
+  <data name="PropertyExpectations_IsDecoratedWithXmlNamespaceDeclarations" xml:space="preserve">
+    <value>Please use the XmlNamespaceDeclarationsAttribute() method instead of this generic method.</value>
+  </data>
+  <data name="PropertyExpectations_IsDecoratedWithXmlText" xml:space="preserve">
+    <value>Please use the XmlText() method instead of this generic method.</value>
+  </data>
+  <data name="PropertyGetterTestException_Message" xml:space="preserve">
+    <value>{0}.{1} did not equal the expected value.</value>
+  </data>
+  <data name="PropertyGetterTestOfTException_Message" xml:space="preserve">
+    <value>{0}.{1} did not equal the expected value.</value>
+  </data>
   <data name="SealedClassTestException_SealedMessage" xml:space="preserve">
     <value>{0} unexpectedly is a sealed class.</value>
   </data>
   <data name="SealedClassTestException_UnsealedMessage" xml:space="preserve">
     <value>{0} is not a sealed class.</value>
+  </data>
+  <data name="XmlArrayDecorationTestException_Message1" xml:space="preserve">
+    <value>{0} is not decorated with [XmlArray].</value>
+  </data>
+  <data name="XmlArrayDecorationTestException_Message2" xml:space="preserve">
+    <value>{0} is not decorated with [XmlArray(\"{1}\")].</value>
+  </data>
+  <data name="XmlArrayDecorationTestException_Message3" xml:space="preserve">
+    <value>{0} is not decorated with [XmlArrayItem].</value>
+  </data>
+  <data name="XmlArrayDecorationTestException_Message4" xml:space="preserve">
+    <value>{0} is not decorated with [XmlArrayItem(\"{1}\")].</value>
+  </data>
+  <data name="XmlAttributeDecorationTestException_Message1" xml:space="preserve">
+    <value>{0} is not decorated with [XmlAttribute].</value>
+  </data>
+  <data name="XmlAttributeDecorationTestException_Message2" xml:space="preserve">
+    <value>{0} is not decorated with [XmlAttribute(\"{1}\")].</value>
+  </data>
+  <data name="XmlAttributeDecorationTestException_Message3" xml:space="preserve">
+    <value>{0} is not decorated with [XmlAttribute(\"{1}\", \"{2}\")].</value>
+  </data>
+  <data name="XmlElementDecorationTestException_Message1" xml:space="preserve">
+    <value>{0} is not decorated with [XmlElement].</value>
+  </data>
+  <data name="XmlElementDecorationTestException_Message2" xml:space="preserve">
+    <value>{0} is not decorated with [XmlElement(\"{1}\")].</value>
+  </data>
+  <data name="XmlElementDecorationTestException_Message3" xml:space="preserve">
+    <value>{0} is not decorated with [XmlElement(\"{1}\", \"{2}\")].</value>
+  </data>
+  <data name="XmlIgnoreDecorationTestException_Message" xml:space="preserve">
+    <value>{0} is not decorated with [XmlIgnore].</value>
+  </data>
+  <data name="XmlNamespaceDeclarationsDecorationTestException_Message" xml:space="preserve">
+    <value>{0} is not decorated with [XmlNamespaceDeclarations].</value>
   </data>
   <data name="XmlRootDecorationTestException_NameMessage" xml:space="preserve">
     <value>{0} is not decorated with [XmlRoot(\"{1}\")].</value>
@@ -164,5 +224,8 @@
   </data>
   <data name="XmlRootDecorationTestException_UndecoratedMessage" xml:space="preserve">
     <value>{0} is not decorated with [XmlRoot].</value>
+  </data>
+  <data name="XmlTextDecorationTestException_Message" xml:space="preserve">
+    <value>{0} is not decorated with [XmlText].</value>
   </data>
 </root>
