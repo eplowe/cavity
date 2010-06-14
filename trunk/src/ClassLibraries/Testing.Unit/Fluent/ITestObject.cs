@@ -7,6 +7,8 @@
     {
         bool Result { get; }
 
+        ITestObject Add(ITestExpectation expectation);
+
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Implements", Justification = "This naming is intentional.")]
         ITestObject Implements<TInterface>();

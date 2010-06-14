@@ -13,6 +13,11 @@
             }
         }
 
+        public ITestObject Add(ITestExpectation expectation)
+        {
+            throw new NotSupportedException();
+        }
+
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
         public ITestObject Implements<TInterface>()
         {

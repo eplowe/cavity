@@ -26,6 +26,19 @@
         }
 
         [Fact]
+        public void ITestObject_Add_ITestExpectation()
+        {
+            try
+            {
+                ITestObject value = (new ITestObjectDummy() as ITestObject).Add(new ITestExpectationDummy());
+                Assert.True(false);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
+
+        [Fact]
         public void ITestObject_ImplementsOfT()
         {
             try

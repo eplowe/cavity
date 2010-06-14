@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cavity</RootNamespace>
     <AssemblyName>Cavity.Testing.Unit.Facts</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,9 +43,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="xunit">
       <HintPath>..\..\..\lib\trove\Framework\v2.0\xunit.dll</HintPath>
@@ -69,6 +67,7 @@
     <Compile Include="Tests\AbstractBaseClassTest[T].Facts.cs" />
     <Compile Include="Tests\BaseClassTest[T].Facts.cs" />
     <Compile Include="Tests\ConcreteClassTest[T].Facts.cs" />
+    <Compile Include="Tests\TestExpectation.cs" />
     <Compile Include="Tests\ValueTypeTest[T].Facts.cs" />
     <Compile Include="Tests\InterfaceTest[T].Facts.cs" />
     <Compile Include="Tests\MemberTest.Derived.cs" />

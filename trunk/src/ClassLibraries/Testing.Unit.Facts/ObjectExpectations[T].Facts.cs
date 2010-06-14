@@ -3,6 +3,7 @@
     using System;
     using System.Xml.Serialization;
     using Cavity.Fluent;
+    using Cavity.Tests;
     using Cavity.Types;
     using Xunit;
 
@@ -180,6 +181,29 @@
                 .IsUnsealed()
                 .HasDefaultConstructor()
                 .Implements<string>());
+        }
+
+        [Fact]
+        public void op_Add_ITestExpectation()
+        {
+            Assert.Throws<NotImplementedException>(() => new ObjectExpectations<Class1>()
+                .DerivesFrom<object>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor()
+                .Add(new TestExpectation())
+                .Result);
+        }
+
+        [Fact]
+        public void op_Add_ITestExpectationNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ObjectExpectations<Class1>()
+                .DerivesFrom<object>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor()
+                .Add(null as ITestExpectation));
         }
     }
 }
