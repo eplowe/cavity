@@ -1,7 +1,7 @@
 #summary Guide to asserting expectations about types.
 #labels Featured
 
-== Asserting an interface ==
+* Asserting an interface *
 
 {{{
         [Fact]
@@ -13,7 +13,7 @@
         }
 }}}
 
-== Asserting a value type ==
+* Asserting a value type *
 
 {{{
         [Fact]
@@ -27,7 +27,7 @@
         }
 }}}
 
-== Asserting a concrete class ==
+* Asserting a concrete class *
 
 {{{
         [Fact]
