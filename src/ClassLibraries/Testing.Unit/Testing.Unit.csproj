@@ -73,7 +73,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="PropertyExpectations.cs" />
+    <Compile Include="PropertyExpectations[T].cs" />
     <Compile Include="TestException.cs" />
     <Compile Include="Tests\AbstractBaseClassTest[T].cs" />
     <Compile Include="Tests\BaseClassTest[T].cs" />

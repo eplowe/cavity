@@ -13,22 +13,23 @@
     /// <summary>
     /// Provides functionality to assert expectations about a property.
     /// </summary>
+    /// <typeparam name="T">The type under test.</typeparam>
     /// <remarks>
     /// This is an internal DSL which employs method chaining to build a set of expectations.
     /// When <see cref="P:Cavity.PropertyExpectations.Result"/> is invoked, all the expectations are verified;
     /// if any expectations are not met, a <see cref="T:Cavity.TestExpectation"/> is thrown.
     /// </remarks>
     /// <seealso href="http://code.google.com/p/cavity/wiki/PropertyExpectations">Guide to asserting expectations about properties.</seealso>
-    public class PropertyExpectations
+    public class PropertyExpectations<T>
     {
         /// <summary>
         /// Initializes a new instance of <see cref="T:Cavity.PropertyExpectations"/> class
-        /// with the specified <paramref name="property"/>.
+        /// with the specified property <paramref name="name"/>.
         /// </summary>
-        /// <param name="property">The property under test.</param>
-        public PropertyExpectations(PropertyInfo property)
+        /// <param name="name">The name of the property under test.</param>
+        public PropertyExpectations(string name)
         {
-            this.Property = property;
+            this.Property = typeof(T).GetProperty(name);
             this.Items = new Collection<ITestExpectation>();
         }
 
@@ -59,12 +60,12 @@
         /// <summary>
         /// Adds an expectation that the property is of the specified type.
         /// </summary>
-        /// <typeparam name="T">The expected type of the property.</typeparam>
+        /// <typeparam name="TProperty">The expected type of the property.</typeparam>
         /// <returns>The current instance.</returns>
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
-        public PropertyExpectations TypeIs<T>()
+        public PropertyExpectations<T> TypeIs<TProperty>()
         {
-            this.Items.Add(new PropertyGetterTest<T>(this.Property));
+            this.Items.Add(new PropertyGetterTest<TProperty>(this.Property));
             return this;
         }
 
@@ -72,7 +73,7 @@
         /// Adds an expectation that the property default value is <see langword="null"/>.
         /// </summary>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations DefaultValueIsNull()
+        public PropertyExpectations<T> DefaultValueIsNull()
         {
             this.Items.Add(new PropertyGetterTest(this.Property, null));
             return this;
@@ -83,7 +84,7 @@
         /// </summary>
         /// <param name="value">The expected property value.</param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations DefaultValueIs(object value)
+        public PropertyExpectations<T> DefaultValueIs(object value)
         {
             this.Items.Add(new PropertyGetterTest(this.Property, value));
             return this;
@@ -93,7 +94,7 @@
         /// Adds an expectation that the property default value is not <see langword="null"/>.
         /// </summary>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations DefaultValueIsNotNull()
+        public PropertyExpectations<T> DefaultValueIsNotNull()
         {
             this.Items.Add(new PropertyDefaultIsNotNullTest(this.Property));
             return this;
@@ -102,12 +103,12 @@
         /// <summary>
         /// Adds an expectation that the property can be set to the default value of the specified type.
         /// </summary>
-        /// <typeparam name="T">The type whose default value will be set.</typeparam>
+        /// <typeparam name="TValue">The type whose default value will be set.</typeparam>
         /// <returns>The current instance.</returns>
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
-        public PropertyExpectations Set<T>()
+        public PropertyExpectations<T> Set<TValue>()
         {
-            return this.Set(default(T));
+            return this.Set(default(TValue));
         }
 
         /// <summary>
@@ -115,7 +116,7 @@
         /// </summary>
         /// <param name="value">The value to be set.</param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations Set(object value)
+        public PropertyExpectations<T> Set(object value)
         {
             this.Items.Add(new PropertySetterTest(this.Property, value));
             return this;
@@ -126,7 +127,7 @@
         /// will be thrown when the property is set to <see langword="null"/>.
         /// </summary>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations ArgumentNullException()
+        public PropertyExpectations<T> ArgumentNullException()
         {
             this.Exception(null, typeof(ArgumentNullException));
             return this;
@@ -138,7 +139,7 @@
         /// </summary>
         /// <param name="value">The value to be set.</param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations ArgumentOutOfRangeException(object value)
+        public PropertyExpectations<T> ArgumentOutOfRangeException(object value)
         {
             this.Exception(value, typeof(ArgumentOutOfRangeException));
             return this;
@@ -150,7 +151,7 @@
         /// </summary>
         /// <param name="value">The value to be set.</param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations FormatException(object value)
+        public PropertyExpectations<T> FormatException(object value)
         {
             this.Exception(value, typeof(FormatException));
             return this;
@@ -170,7 +171,7 @@
         /// Thrown when the specified <paramref name="expectedException"/> type
         /// does not derive from <see cref="T:System.Exception"/>.
         /// </exception>
-        public PropertyExpectations Exception(object value, Type expectedException)
+        public PropertyExpectations<T> Exception(object value, Type expectedException)
         {
             if (null == expectedException)
             {
@@ -188,33 +189,33 @@
         /// <summary>
         /// Adds an expectation that the property is auto-implemented of the specified type.
         /// </summary>
-        /// <typeparam name="T">The expected type of the property.</typeparam>
+        /// <typeparam name="TProperty">The expected type of the property.</typeparam>
         /// <returns>The current instance.</returns>
         /// <seealso href="http://msdn.microsoft.com/library/bb384054">
         /// Auto-Implemented Properties (C# Programming Guide)
         /// </seealso>
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
-        public PropertyExpectations IsAutoProperty<T>()
+        public PropertyExpectations<T> IsAutoProperty<TProperty>()
         {
-            return this.IsAutoProperty<T>(default(T));
+            return this.IsAutoProperty<TProperty>(default(TProperty));
         }
 
         /// <summary>
         /// Adds an expectation that the property is auto-implemented of the specified type
         /// with the specified default value.
         /// </summary>
-        /// <typeparam name="T">The expected type of the property.</typeparam>
+        /// <typeparam name="TProperty">The expected type of the property.</typeparam>
         /// <param name="defaultValue">The expected default value.</param>
         /// <returns>The current instance.</returns>
         /// <seealso href="http://msdn.microsoft.com/library/bb384054">
         /// Auto-Implemented Properties (C# Programming Guide)
         /// </seealso>
-        public PropertyExpectations IsAutoProperty<T>(T defaultValue)
+        public PropertyExpectations<T> IsAutoProperty<TProperty>(TProperty defaultValue)
         {
             this.DefaultValueIs(defaultValue);
-            this.Set(default(T));
+            this.Set(default(TProperty));
             this.Set(defaultValue);
-            if (typeof(string).Equals(typeof(T)))
+            if (typeof(string).Equals(typeof(TProperty)))
             {
                 this.Set(string.Empty);
             }
@@ -231,7 +232,7 @@
         /// Thrown when the specified attribute type has a more specific expectation method.
         /// </exception>
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
-        public PropertyExpectations IsDecoratedWith<TAttribute>()
+        public PropertyExpectations<T> IsDecoratedWith<TAttribute>()
             where TAttribute : Attribute
         {
             if (typeof(XmlArrayAttribute).IsAssignableFrom(typeof(TAttribute)))
@@ -267,7 +268,7 @@
         /// Adds an expectation that the property is not decorated with any attributes.
         /// </summary>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations IsNotDecorated()
+        public PropertyExpectations<T> IsNotDecorated()
         {
             this.Items.Add(new AttributeMemberTest(this.Property, null as Type));
             return this;
@@ -286,7 +287,7 @@
         /// The expected <see cref="P:System.Xml.Serialization.XmlArrayItemAttribute.ElementName"/> value.
         /// </param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations XmlArray(string arrayElementName, string arrayItemElementName)
+        public PropertyExpectations<T> XmlArray(string arrayElementName, string arrayItemElementName)
         {
             this.Items.Add(new XmlArrayTest(this.Property) { ArrayElementName = arrayElementName, ArrayItemElementName = arrayItemElementName });
             return this;
@@ -301,7 +302,7 @@
         /// The expected <see cref="P:System.Xml.Serialization.XmlAttributeAttribute.AttributeName"/> value.
         /// </param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations XmlAttribute(string attributeName)
+        public PropertyExpectations<T> XmlAttribute(string attributeName)
         {
             this.Items.Add(new XmlAttributeTest(this.Property) { AttributeName = attributeName });
             return this;
@@ -319,7 +320,7 @@
         /// The expected <see cref="P:System.Xml.Serialization.XmlAttributeAttribute.Namespace"/> value.
         /// </param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations XmlAttribute(string attributeName, string @namespace)
+        public PropertyExpectations<T> XmlAttribute(string attributeName, string @namespace)
         {
             this.Items.Add(new XmlAttributeTest(this.Property) { AttributeName = attributeName, Namespace = @namespace });
             return this;
@@ -334,7 +335,7 @@
         /// The expected <see cref="P:System.Xml.Serialization.XmlElementAttribute.ElementName"/> value.
         /// </param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations XmlElement(string elementName)
+        public PropertyExpectations<T> XmlElement(string elementName)
         {
             this.Items.Add(new XmlElementTest(this.Property) { ElementName = elementName });
             return this;
@@ -352,7 +353,7 @@
         /// The expected <see cref="P:System.Xml.Serialization.XmlElementAttribute.Namespace"/> value.
         /// </param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations XmlElement(string elementName, string @namespace)
+        public PropertyExpectations<T> XmlElement(string elementName, string @namespace)
         {
             this.Items.Add(new XmlElementTest(this.Property) { ElementName = elementName, Namespace = @namespace });
             return this;
@@ -363,7 +364,7 @@
         /// <see cref="T:System.Xml.Serialization.XmlIgnoreAttribute"/>.
         /// </summary>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations XmlIgnore()
+        public PropertyExpectations<T> XmlIgnore()
         {
             this.Items.Add(new XmlIgnoreTest(this.Property));
             return this;
@@ -374,7 +375,7 @@
         /// <see cref="T:System.Xml.Serialization.XmlNamespaceDeclarationsAttribute"/>.
         /// </summary>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations XmlNamespaceDeclarations()
+        public PropertyExpectations<T> XmlNamespaceDeclarations()
         {
             this.Items.Add(new XmlNamespaceDeclarationsTest(this.Property));
             return this;
@@ -385,7 +386,7 @@
         /// <see cref="T:System.Xml.Serialization.XmlTextAttribute"/>.
         /// </summary>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations XmlText()
+        public PropertyExpectations<T> XmlText()
         {
             this.Items.Add(new XmlTextTest(this.Property));
             return this;
