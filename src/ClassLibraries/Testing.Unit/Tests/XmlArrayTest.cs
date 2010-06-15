@@ -13,13 +13,13 @@ namespace Cavity.Tests
         {
         }
 
-        public string Name
+        public string ArrayElementName
         {
             get;
             set;
         }
 
-        public string Items
+        public string ArrayItemElementName
         {
             get;
             set;
@@ -45,13 +45,13 @@ namespace Cavity.Tests
                     this.Member.Name);
                 throw new TestException(message);
             }
-            else if (this.Name != attribute.ElementName)
+            else if (this.ArrayElementName != attribute.ElementName)
             {
                 message = string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message2,
                     this.Member.Name,
-                    this.Name);
+                    this.ArrayElementName);
                 throw new TestException(message);
             }
         }
@@ -68,13 +68,13 @@ namespace Cavity.Tests
                     this.Member.Name);
                 throw new TestException(message);
             }
-            else if (this.Items != attribute.ElementName)
+            else if (this.ArrayItemElementName != attribute.ElementName)
             {
                 message = string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message4,
                     this.Member.Name,
-                    this.Items);
+                    this.ArrayItemElementName);
                 throw new TestException(message);
             }
         }

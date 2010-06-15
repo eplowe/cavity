@@ -55,12 +55,12 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
-    <Compile Include="Fluent\ITestObjectConstruction.Facts.cs" />
-    <Compile Include="Fluent\ITestObjectSealed.Facts.cs" />
-    <Compile Include="Fluent\ITestObjectStyle.Facts.cs" />
+    <Compile Include="Fluent\ITestClassConstruction.Facts.cs" />
+    <Compile Include="Fluent\ITestClassSealed.Facts.cs" />
+    <Compile Include="Fluent\ITestClassStyle.Facts.cs" />
     <Compile Include="Fluent\ITestExpectation.Facts.cs" />
-    <Compile Include="Fluent\ITestObject.Facts.cs" />
-    <Compile Include="ObjectExpectations[T].Facts.cs" />
+    <Compile Include="Fluent\ITestType.Facts.cs" />
+    <Compile Include="TypeExpectations[T].Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyExpectations.Facts.cs" />
     <Compile Include="TestException.Facts.cs" />

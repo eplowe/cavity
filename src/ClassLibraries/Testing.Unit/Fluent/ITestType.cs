@@ -3,27 +3,27 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
 
-    public interface ITestObject
+    public interface ITestType
     {
         bool Result { get; }
 
-        ITestObject Add(ITestExpectation expectation);
+        ITestType Add(ITestExpectation expectation);
 
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Implements", Justification = "This naming is intentional.")]
-        ITestObject Implements<TInterface>();
+        ITestType Implements<TInterface>();
 
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
-        ITestObject IsDecoratedWith<TAttribute>()
+        ITestType IsDecoratedWith<TAttribute>()
             where TAttribute : Attribute;
 
-        ITestObject Serializable();
+        ITestType IsNotDecorated();
 
-        ITestObject XmlRoot(string elementName);
+        ITestType Serializable();
+
+        ITestType XmlRoot(string elementName);
 
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "namespace", Justification = "This naming is intentional.")]
-        ITestObject XmlRoot(string elementName, string @namespace);
-
-        ITestObject IsNotDecorated();
+        ITestType XmlRoot(string elementName, string @namespace);
     }
 }

@@ -61,13 +61,13 @@
         }
 
         [Fact]
-        public void prop_Name()
+        public void prop_ElementName()
         {
             var obj = new XmlRootTest<object>("foo");
 
             string expected = "bar";
-            obj.Name = expected;
-            string actual = obj.Name;
+            obj.ElementName = expected;
+            string actual = obj.ElementName;
 
             Assert.Equal<string>(expected, actual);
         }

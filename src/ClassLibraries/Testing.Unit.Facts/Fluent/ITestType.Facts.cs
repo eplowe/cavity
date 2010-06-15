@@ -4,20 +4,20 @@
     using Cavity.Types;
     using Xunit;
 
-    public class ITestObjectFacts
+    public class ITestTypeFacts
     {
         [Fact]
         public void typedef()
         {
-            Assert.True(typeof(ITestObject).IsInterface);
+            Assert.True(typeof(ITestType).IsInterface);
         }
 
         [Fact]
-        public void ITestObject_Result_get()
+        public void ITestType_Result_get()
         {
             try
             {
-                bool value = (new ITestObjectDummy() as ITestObject).Result;
+                bool value = (new ITestTypeDummy() as ITestType).Result;
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -26,11 +26,11 @@
         }
 
         [Fact]
-        public void ITestObject_Add_ITestExpectation()
+        public void ITestType_Add_ITestExpectation()
         {
             try
             {
-                ITestObject value = (new ITestObjectDummy() as ITestObject).Add(new ITestExpectationDummy());
+                ITestType value = (new ITestTypeDummy() as ITestType).Add(new ITestExpectationDummy());
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -39,11 +39,11 @@
         }
 
         [Fact]
-        public void ITestObject_ImplementsOfT()
+        public void ITestType_ImplementsOfT()
         {
             try
             {
-                ITestObject value = (new ITestObjectDummy() as ITestObject).Implements<Interface1>();
+                ITestType value = (new ITestTypeDummy() as ITestType).Implements<Interface1>();
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -52,11 +52,11 @@
         }
 
         [Fact]
-        public void ITestObject_IsDecoratedWithOfT()
+        public void ITestType_IsDecoratedWithOfT()
         {
             try
             {
-                ITestObject value = (new ITestObjectDummy() as ITestObject).IsDecoratedWith<Attribute1>();
+                ITestType value = (new ITestTypeDummy() as ITestType).IsDecoratedWith<Attribute1>();
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -65,11 +65,11 @@
         }
 
         [Fact]
-        public void ITestObject_Serializable()
+        public void ITestType_IsNotDecorated()
         {
             try
             {
-                ITestObject value = (new ITestObjectDummy() as ITestObject).Serializable();
+                ITestType value = (new ITestTypeDummy() as ITestType).IsNotDecorated();
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -78,11 +78,11 @@
         }
 
         [Fact]
-        public void ITestObject_XmlRoot_string()
+        public void ITestType_Serializable()
         {
             try
             {
-                ITestObject value = (new ITestObjectDummy() as ITestObject).XmlRoot("name");
+                ITestType value = (new ITestTypeDummy() as ITestType).Serializable();
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -91,11 +91,11 @@
         }
 
         [Fact]
-        public void ITestObject_XmlRoot_string_string()
+        public void ITestType_XmlRoot_string()
         {
             try
             {
-                ITestObject value = (new ITestObjectDummy() as ITestObject).XmlRoot("name", "namespace");
+                ITestType value = (new ITestTypeDummy() as ITestType).XmlRoot("name");
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -104,11 +104,11 @@
         }
 
         [Fact]
-        public void ITestObject_IsNotDecorated()
+        public void ITestType_XmlRoot_string_string()
         {
             try
             {
-                ITestObject value = (new ITestObjectDummy() as ITestObject).IsNotDecorated();
+                ITestType value = (new ITestTypeDummy() as ITestType).XmlRoot("name", "namespace");
                 Assert.True(false);
             }
             catch (NotSupportedException)

@@ -2,14 +2,14 @@
 {
     using System;
 
-    public class ITestObjectStyleDummy : ITestObjectStyle
+    public class ITestClassStyleDummy : ITestClassStyle
     {
-        public ITestObject IsAbstractBaseClass()
+        public ITestType IsAbstractBaseClass()
         {
             throw new NotSupportedException();
         }
 
-        public ITestObjectSealed IsConcreteClass()
+        public ITestClassSealed IsConcreteClass()
         {
             throw new NotSupportedException();
         }

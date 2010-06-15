@@ -3,7 +3,7 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
 
-    public class ITestObjectDummy : ITestObject
+    public class ITestTypeDummy : ITestType
     {
         public bool Result
         {
@@ -13,40 +13,40 @@
             }
         }
 
-        public ITestObject Add(ITestExpectation expectation)
+        public ITestType Add(ITestExpectation expectation)
         {
             throw new NotSupportedException();
         }
 
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
-        public ITestObject Implements<TInterface>()
+        public ITestType Implements<TInterface>()
         {
             throw new NotSupportedException();
         }
 
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
-        public ITestObject IsDecoratedWith<TAttribute>()
+        public ITestType IsDecoratedWith<TAttribute>()
             where TAttribute : Attribute
         {
             throw new NotSupportedException();
         }
 
-        public ITestObject Serializable()
+        public ITestType IsNotDecorated()
         {
             throw new NotSupportedException();
         }
 
-        public ITestObject XmlRoot(string elementName)
+        public ITestType Serializable()
         {
             throw new NotSupportedException();
         }
 
-        public ITestObject XmlRoot(string elementName, string @namespace)
+        public ITestType XmlRoot(string elementName)
         {
             throw new NotSupportedException();
         }
 
-        public ITestObject IsNotDecorated()
+        public ITestType XmlRoot(string elementName, string @namespace)
         {
             throw new NotSupportedException();
         }

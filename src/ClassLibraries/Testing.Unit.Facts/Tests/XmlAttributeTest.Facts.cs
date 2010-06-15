@@ -18,13 +18,13 @@
         }
 
         [Fact]
-        public void prop_Name()
+        public void prop_AttributeName()
         {
             var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute"));
 
             string expected = "example";
-            obj.Name = expected;
-            string actual = obj.Name;
+            obj.AttributeName = expected;
+            string actual = obj.AttributeName;
 
             Assert.Same(expected, actual);
         }
@@ -46,7 +46,7 @@
         {
             var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("NamespacedAttribute"))
             {
-                Name = "attribute",
+                AttributeName = "attribute",
                 Namespace = "urn:example.org"
             };
 
@@ -66,7 +66,7 @@
         {
             var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute"))
             {
-                Name = "xxx"
+                AttributeName = "xxx"
             };
 
             Assert.Throws<TestException>(() => obj.Check());
@@ -77,7 +77,7 @@
         {
             var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute"))
             {
-                Name = "attribute",
+                AttributeName = "attribute",
                 Namespace = "xxx"
             };
 

@@ -142,33 +142,6 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please use the Serializable() method instead of this generic method..
-        /// </summary>
-        internal static string ObjectExpectations_IsDecoratedWithSerializable {
-            get {
-                return ResourceManager.GetString("ObjectExpectations_IsDecoratedWithSerializable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please use the XmlRoot(...) method instead of this generic method..
-        /// </summary>
-        internal static string ObjectExpectations_IsDecoratedWithXmlRoot {
-            get {
-                return ResourceManager.GetString("ObjectExpectations_IsDecoratedWithXmlRoot", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An interface type must be specified..
-        /// </summary>
-        internal static string ObjectExpectationsException_InterfaceMessage {
-            get {
-                return ResourceManager.GetString("ObjectExpectationsException_InterfaceMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please use the XmlArray(...) method instead of this generic method..
         /// </summary>
         internal static string PropertyExpectations_IsDecoratedWithXmlArray {
@@ -255,6 +228,33 @@ namespace Cavity.Properties {
         internal static string SealedClassTestException_UnsealedMessage {
             get {
                 return ResourceManager.GetString("SealedClassTestException_UnsealedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please use the Serializable() method instead of this generic method..
+        /// </summary>
+        internal static string TypeExpectations_IsDecoratedWithSerializable {
+            get {
+                return ResourceManager.GetString("TypeExpectations_IsDecoratedWithSerializable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please use the XmlRoot(...) method instead of this generic method..
+        /// </summary>
+        internal static string TypeExpectations_IsDecoratedWithXmlRoot {
+            get {
+                return ResourceManager.GetString("TypeExpectations_IsDecoratedWithXmlRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An interface type must be specified..
+        /// </summary>
+        internal static string TypeExpectationsException_InterfaceMessage {
+            get {
+                return ResourceManager.GetString("TypeExpectationsException_InterfaceMessage", resourceCulture);
             }
         }
         

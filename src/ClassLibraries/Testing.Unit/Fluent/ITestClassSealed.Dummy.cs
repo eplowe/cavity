@@ -2,14 +2,14 @@
 {
     using System;
 
-    public class ITestObjectConstructionDummy : ITestObjectConstruction
+    public class ITestClassSealedDummy : ITestClassSealed
     {
-        public ITestObject HasDefaultConstructor()
+        public ITestClassConstruction IsSealed()
         {
             throw new NotSupportedException();
         }
 
-        public ITestObject NoDefaultConstructor()
+        public ITestClassConstruction IsUnsealed()
         {
             throw new NotSupportedException();
         }
