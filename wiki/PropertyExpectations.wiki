@@ -7,9 +7,7 @@
         [Fact]
         public void value_definition()
         {
-            var property = typeof(Class1).GetProperty("Value");
-
-            Assert.True(new PropertyExpectations(property)
+            Assert.True(new PropertyExpectations<Class1>("Value")
                 .IsAutoProperty<string>()
                 .Result);
         }
@@ -21,9 +19,7 @@
         [Fact]
         public void value_definition()
         {
-            var property = typeof(Class1).GetProperty("Value");
-
-            Assert.True(new PropertyExpectations(property)
+            Assert.True(new PropertyExpectations<Class1>("Value")
                 .IsAutoProperty<string>("default")
                 .Result);
         }
@@ -35,9 +31,7 @@
         [Fact]
         public void value_definition()
         {
-            var property = typeof(Class1).GetProperty("Value");
-
-            Assert.True(new PropertyExpectations(property)
+            Assert.True(new PropertyExpectations<Class1>("Value")
                 .IsAutoProperty<string>()
                 .XmlAttribute("attribute")
                 .Result);
@@ -50,9 +44,7 @@
         [Fact]
         public void value_definition()
         {
-            var property = typeof(Class1).GetProperty("Value");
-
-            Assert.True(new PropertyExpectations(property)
+            Assert.True(new PropertyExpectations<Class1>("Value")
                 .TypeIs<string>()
                 .DefaultValueIs("default")
                 .Set("example")
