@@ -8,13 +8,13 @@
         [Fact]
         public void is_ITestExpectation()
         {
-            Assert.IsAssignableFrom<ITestExpectation>(new InterfaceTest<ITestObject>());
+            Assert.IsAssignableFrom<ITestExpectation>(new InterfaceTest<ITestType>());
         }
 
         [Fact]
         public void ctor_Type()
         {
-            Assert.NotNull(new InterfaceTest<ITestObject>());
+            Assert.NotNull(new InterfaceTest<ITestType>());
         }
 
         [Fact]
@@ -26,7 +26,7 @@
         [Fact]
         public void op_Check_whenTrue()
         {
-            Assert.True(new InterfaceTest<ITestObject>().Check());
+            Assert.True(new InterfaceTest<ITestType>().Check());
         }
     }
 }

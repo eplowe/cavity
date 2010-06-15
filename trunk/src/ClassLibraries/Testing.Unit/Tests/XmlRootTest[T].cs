@@ -8,18 +8,18 @@
 
     public class XmlRootTest<T> : ITestExpectation
     {
-        public XmlRootTest(string name)
-            : this(name, null as string)
+        public XmlRootTest(string elementName)
+            : this(elementName, null as string)
         {
         }
 
-        public XmlRootTest(string name, string @namespace)
+        public XmlRootTest(string elementName, string @namespace)
         {
-            this.Name = name;
+            this.ElementName = elementName;
             this.Namespace = @namespace;
         }
 
-        public string Name
+        public string ElementName
         {
             get;
             set;
@@ -43,13 +43,13 @@
                     typeof(T).Name);
                 throw new TestException(message);
             }
-            else if (this.Name != attribute.ElementName)
+            else if (this.ElementName != attribute.ElementName)
             {
                 message = string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlRootDecorationTestException_NameMessage,
                     typeof(T).Name,
-                    this.Name);
+                    this.ElementName);
                 throw new TestException(message);
             }
             else if (this.Namespace != attribute.Namespace)
@@ -58,7 +58,7 @@
                     CultureInfo.InvariantCulture,
                     Resources.XmlRootDecorationTestException_NamespaceMessage,
                     typeof(T).Name,
-                    this.Name,
+                    this.ElementName,
                     this.Namespace);
                 throw new TestException(message);
             }

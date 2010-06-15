@@ -18,25 +18,25 @@
         }
 
         [Fact]
-        public void prop_Name()
+        public void prop_ArrayElementName()
         {
             var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"));
 
             string expected = "example";
-            obj.Name = expected;
-            string actual = obj.Name;
+            obj.ArrayElementName = expected;
+            string actual = obj.ArrayElementName;
 
             Assert.Same(expected, actual);
         }
 
         [Fact]
-        public void prop_Items()
+        public void prop_ArrayItemElementName()
         {
             var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"));
 
             string expected = "example";
-            obj.Items = expected;
-            string actual = obj.Items;
+            obj.ArrayItemElementName = expected;
+            string actual = obj.ArrayItemElementName;
 
             Assert.Same(expected, actual);
         }
@@ -46,8 +46,8 @@
         {
             var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"))
             {
-                Name = "array1",
-                Items = "item1"
+                ArrayElementName = "array1",
+                ArrayItemElementName = "item1"
             };
 
             Assert.True(obj.Check());
@@ -66,8 +66,8 @@
         {
             var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array2"))
             {
-                Name = "array2",
-                Items = "item2"
+                ArrayElementName = "array2",
+                ArrayItemElementName = "item2"
             };
 
             Assert.Throws<TestException>(() => obj.Check());
@@ -78,7 +78,7 @@
         {
             var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"))
             {
-                Name = "xxx"
+                ArrayElementName = "xxx"
             };
 
             Assert.Throws<TestException>(() => obj.Check());
@@ -89,8 +89,8 @@
         {
             var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"))
             {
-                Name = "array1",
-                Items = "xxx"
+                ArrayElementName = "array1",
+                ArrayItemElementName = "xxx"
             };
 
             Assert.Throws<TestException>(() => obj.Check());

@@ -56,17 +56,17 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
-    <Compile Include="Fluent\ITestObjectConstruction.Dummy.cs" />
-    <Compile Include="Fluent\ITestObjectConstruction.cs" />
-    <Compile Include="Fluent\ITestObjectSealed.Dummy.cs" />
-    <Compile Include="Fluent\ITestObjectSealed.cs" />
-    <Compile Include="Fluent\ITestObjectStyle.Dummy.cs" />
+    <Compile Include="Fluent\ITestClassConstruction.Dummy.cs" />
+    <Compile Include="Fluent\ITestClassConstruction.cs" />
+    <Compile Include="Fluent\ITestClassSealed.Dummy.cs" />
+    <Compile Include="Fluent\ITestClassSealed.cs" />
+    <Compile Include="Fluent\ITestClassStyle.Dummy.cs" />
     <Compile Include="Fluent\ITestExpectation.Dummy.cs" />
     <Compile Include="Fluent\ITestExpectation.cs" />
-    <Compile Include="Fluent\ITestObject.cs" />
-    <Compile Include="Fluent\ITestObject.Dummy.cs" />
-    <Compile Include="Fluent\ITestObjectStyle.cs" />
-    <Compile Include="ObjectExpectations[T].cs" />
+    <Compile Include="Fluent\ITestType.cs" />
+    <Compile Include="Fluent\ITestType.Dummy.cs" />
+    <Compile Include="Fluent\ITestClassStyle.cs" />
+    <Compile Include="TypeExpectations[T].cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -111,6 +111,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

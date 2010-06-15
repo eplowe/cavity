@@ -7,30 +7,42 @@
     using Cavity.Types;
     using Xunit;
 
-    public class ObjectExpectationsOfTFacts
+    public class TypeExpectationsOfTFacts
     {
         [Fact]
-        public void is_ITestObjectStyle()
+        public void is_ITestClassStyle()
         {
-            Assert.IsAssignableFrom<ITestObjectStyle>(new ObjectExpectations<object>());
+            Assert.IsAssignableFrom<ITestClassStyle>(new TypeExpectations<object>());
         }
 
         [Fact]
-        public void is_ITestObject()
+        public void is_ITestClassSealed()
         {
-            Assert.IsAssignableFrom<ITestObject>(new ObjectExpectations<object>());
+            Assert.IsAssignableFrom<ITestClassSealed>(new TypeExpectations<object>());
+        }
+
+        [Fact]
+        public void is_ITestClassConstruction()
+        {
+            Assert.IsAssignableFrom<ITestClassConstruction>(new TypeExpectations<object>());
+        }
+
+        [Fact]
+        public void is_ITestType()
+        {
+            Assert.IsAssignableFrom<ITestType>(new TypeExpectations<object>());
         }
 
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new ObjectExpectations<object>());
+            Assert.NotNull(new TypeExpectations<object>());
         }
 
         [Fact]
         public void prop_Result_whenInterface()
         {
-            Assert.True(new ObjectExpectations<ITestExpectation>()
+            Assert.True(new TypeExpectations<ITestExpectation>()
                 .IsInterface()
                 .Result);
         }
@@ -38,7 +50,7 @@
         [Fact]
         public void prop_Result_whenValueType()
         {
-            Assert.True(new ObjectExpectations<DateTime>()
+            Assert.True(new TypeExpectations<DateTime>()
                 .IsValueType()
                 .Result);
         }
@@ -46,7 +58,7 @@
         [Fact]
         public void prop_Result_whenAbstractBaseClass()
         {
-            Assert.True(new ObjectExpectations<AbstractBaseClass1>()
+            Assert.True(new TypeExpectations<AbstractBaseClass1>()
                 .DerivesFrom<object>()
                 .IsAbstractBaseClass()
                 .Result);
@@ -55,7 +67,7 @@
         [Fact]
         public void prop_Result_whenConstructorClass()
         {
-            Assert.True(new ObjectExpectations<ConstructorClass1>()
+            Assert.True(new TypeExpectations<ConstructorClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()
@@ -67,7 +79,7 @@
         [Fact]
         public void prop_Result_whenSealedClass()
         {
-            Assert.True(new ObjectExpectations<SealedClass1>()
+            Assert.True(new TypeExpectations<SealedClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsSealed()
@@ -79,7 +91,7 @@
         [Fact]
         public void prop_Result_whenUnsealedClass()
         {
-            Assert.True(new ObjectExpectations<DerivedClass1>()
+            Assert.True(new TypeExpectations<DerivedClass1>()
                 .DerivesFrom<Class1>()
                 .IsConcreteClass()
                 .IsUnsealed()
@@ -91,7 +103,7 @@
         [Fact]
         public void prop_Result_whenInterfaceClass()
         {
-            Assert.True(new ObjectExpectations<InterfacedClass1>()
+            Assert.True(new TypeExpectations<InterfacedClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()
@@ -103,7 +115,7 @@
         [Fact]
         public void prop_Result_whenAttributedClass()
         {
-            Assert.True(new ObjectExpectations<AttributedClass1>()
+            Assert.True(new TypeExpectations<AttributedClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()
@@ -115,7 +127,7 @@
         [Fact]
         public void prop_Result_whenIsDecoratedWithSerializableAttribute()
         {
-            Assert.Throws<TestException>(() => new ObjectExpectations<TestException>()
+            Assert.Throws<ArgumentOutOfRangeException>(() => new TypeExpectations<TestException>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()
@@ -127,7 +139,7 @@
         [Fact]
         public void prop_Result_whenIsDecoratedWithXmlRootAttribute()
         {
-            Assert.Throws<TestException>(() => new ObjectExpectations<XmlSerializableClass1>()
+            Assert.Throws<ArgumentOutOfRangeException>(() => new TypeExpectations<XmlSerializableClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()
@@ -139,7 +151,7 @@
         [Fact]
         public void prop_Result_whenSerializable()
         {
-            Assert.True(new ObjectExpectations<TestException>()
+            Assert.True(new TypeExpectations<TestException>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()
@@ -151,7 +163,7 @@
         [Fact]
         public void prop_Result_whenXmlRoot()
         {
-            Assert.True(new ObjectExpectations<XmlRootClass1>()
+            Assert.True(new TypeExpectations<XmlRootClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()
@@ -163,7 +175,7 @@
         [Fact]
         public void prop_Result_whenXmlRootWithNamespace()
         {
-            Assert.True(new ObjectExpectations<XmlSerializableClass1>()
+            Assert.True(new TypeExpectations<XmlSerializableClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()
@@ -175,7 +187,7 @@
         [Fact]
         public void op_ImplementsOfT_whenNotInterface()
         {
-            Assert.Throws<TestException>(() => new ObjectExpectations<Class1>()
+            Assert.Throws<ArgumentOutOfRangeException>(() => new TypeExpectations<Class1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()
@@ -186,7 +198,7 @@
         [Fact]
         public void op_Add_ITestExpectation()
         {
-            Assert.Throws<NotImplementedException>(() => new ObjectExpectations<Class1>()
+            Assert.Throws<NotImplementedException>(() => new TypeExpectations<Class1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()
@@ -198,7 +210,7 @@
         [Fact]
         public void op_Add_ITestExpectationNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new ObjectExpectations<Class1>()
+            Assert.Throws<ArgumentNullException>(() => new TypeExpectations<Class1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()

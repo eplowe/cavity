@@ -13,7 +13,7 @@ namespace Cavity.Tests
         {
         }
 
-        public string Name
+        public string AttributeName
         {
             get;
             set;
@@ -37,13 +37,13 @@ namespace Cavity.Tests
                     this.Member.Name);
                 throw new TestException(message);
             }
-            else if (this.Name != attribute.AttributeName)
+            else if (this.AttributeName != attribute.AttributeName)
             {
                 message = string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlAttributeDecorationTestException_Message2,
                     this.Member.Name,
-                    this.Name);
+                    this.AttributeName);
                 throw new TestException(message);
             }
             else if (this.Namespace != attribute.Namespace)
@@ -52,7 +52,7 @@ namespace Cavity.Tests
                     CultureInfo.InvariantCulture,
                     Resources.XmlAttributeDecorationTestException_Message3,
                     this.Member.Name,
-                    this.Name,
+                    this.AttributeName,
                     this.Namespace);
                 throw new TestException(message);
             }

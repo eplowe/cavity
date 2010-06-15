@@ -3,20 +3,20 @@
     using System;
     using Xunit;
 
-    public class ITestObjectStyleFacts
+    public class ITestClassStyleFacts
     {
         [Fact]
         public void typedef()
         {
-            Assert.True(typeof(ITestObjectStyle).IsInterface);
+            Assert.True(typeof(ITestClassStyle).IsInterface);
         }
 
         [Fact]
-        public void ITestObjectStyle_IsAbstractBaseClass()
+        public void ITestClassStyle_IsAbstractBaseClass()
         {
             try
             {
-                ITestObject value = (new ITestObjectStyleDummy() as ITestObjectStyle).IsAbstractBaseClass();
+                ITestType value = (new ITestClassStyleDummy() as ITestClassStyle).IsAbstractBaseClass();
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -25,11 +25,11 @@
         }
 
         [Fact]
-        public void ITestObjectStyle_IsConcreteClass()
+        public void ITestClassStyle_IsConcreteClass()
         {
             try
             {
-                ITestObjectSealed value = (new ITestObjectStyleDummy() as ITestObjectStyle).IsConcreteClass();
+                ITestClassSealed value = (new ITestClassStyleDummy() as ITestClassStyle).IsConcreteClass();
                 Assert.True(false);
             }
             catch (NotSupportedException)
