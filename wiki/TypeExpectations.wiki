@@ -1,0 +1,45 @@
+#summary Guide to asserting expectations about types.
+#labels Featured
+
+== Asserting an interface ==
+
+{{{
+        [Fact]
+        public void type_definition()
+        {
+            Assert.True(new TypeExpectations<Interface1>()
+                .IsInterface()
+                .Result);
+        }
+}}}
+
+== Asserting a value type ==
+
+{{{
+        [Fact]
+        public void type_definition()
+        {
+            Assert.True(new TypeExpectations<Interface1>()
+                .IsValueType()
+                .Implements<IFoo>()
+                .IsDecoratedWith<CustomAttribute>()
+                .Result);
+        }
+}}}
+
+== Asserting a concrete class ==
+
+{{{
+        [Fact]
+        public void type_definition()
+        {
+            Assert.True(new TypeExpectations<Class1>()
+                .DerivesFrom<object>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor()
+                .Implements<IFoo>()
+                .IsDecoratedWith<CustomAttribute>()
+                .Result);
+        }
+}}}
