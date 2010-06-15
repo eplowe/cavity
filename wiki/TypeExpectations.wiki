@@ -19,8 +19,23 @@
         [Fact]
         public void type_definition()
         {
-            Assert.True(new TypeExpectations<Interface1>()
+            Assert.True(new TypeExpectations<Struct1>()
                 .IsValueType()
+                .Implements<IFoo>()
+                .IsDecoratedWith<CustomAttribute>()
+                .Result);
+        }
+}}}
+
+* Asserting an abstract class *
+
+{{{
+        [Fact]
+        public void type_definition()
+        {
+            Assert.True(new TypeExpectations<Class1>()
+                .DerivesFrom<object>()
+                .IsAbstractBaseClass()
                 .Implements<IFoo>()
                 .IsDecoratedWith<CustomAttribute>()
                 .Result);
@@ -40,6 +55,39 @@
                 .HasDefaultConstructor()
                 .Implements<IFoo>()
                 .IsDecoratedWith<CustomAttribute>()
+                .Result);
+        }
+}}}
+
+* Asserting a serializable class *
+
+{{{
+        [Fact]
+        public void type_definition()
+        {
+            Assert.True(new TypeExpectations<Class1>()
+                .DerivesFrom<object>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor()
+                .Serializable()
+                .Result);
+        }
+}}}
+
+* Asserting a class with custom XML serialization *
+
+{{{
+        [Fact]
+        public void type_definition()
+        {
+            Assert.True(new TypeExpectations<Class1>()
+                .DerivesFrom<object>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor()
+                .XmlRoot("root")
+                .Implements<IXmlSerializable>()
                 .Result);
         }
 }}}
