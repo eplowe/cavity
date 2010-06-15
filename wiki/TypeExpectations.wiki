@@ -1,5 +1,5 @@
 #summary Guide to asserting expectations about types.
-#labels Featured
+#labels Featured,Phase-Implementation
 
 * Asserting an interface *
 
