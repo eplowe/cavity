@@ -18,7 +18,7 @@
             set;
         }
 
-        public bool Check()
+        public virtual bool Check()
         {
             string message = null;
             if (null == this.Interface)

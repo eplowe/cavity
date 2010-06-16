@@ -6,7 +6,7 @@
 
     public class ValueTypeTest<T> : ITestExpectation
     {
-        public bool Check()
+        public virtual bool Check()
         {
             if (!typeof(T).IsValueType)
             {

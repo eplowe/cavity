@@ -17,7 +17,7 @@
             set;
         }
 
-        public bool Check()
+        public virtual bool Check()
         {
             if (this.Value != typeof(T).IsSealed)
             {

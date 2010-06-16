@@ -18,7 +18,7 @@
             set;
         }
 
-        public bool Check()
+        public virtual bool Check()
         {
             if (!typeof(T).IsSubclassOf(this.Is))
             {

@@ -6,7 +6,7 @@
 
     public class AbstractBaseClassTest<T> : ITestExpectation
     {
-        public bool Check()
+        public virtual bool Check()
         {
             if (!typeof(T).IsAbstract || typeof(T).IsSealed)
             {
