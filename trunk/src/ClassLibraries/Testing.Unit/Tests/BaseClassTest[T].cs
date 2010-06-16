@@ -5,7 +5,7 @@
     using Cavity.Fluent;
     using Cavity.Properties;
 
-    public class BaseClassTest<T> : ITestExpectation
+    public sealed class BaseClassTest<T> : ITestExpectation
     {
         public BaseClassTest(Type @is)
         {
@@ -18,16 +18,15 @@
             set;
         }
 
-        public virtual bool Check()
+        public bool Check()
         {
             if (!typeof(T).IsSubclassOf(this.Is))
             {
-                string message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.CurrentUICulture,
                     Resources.BaseClassTestException_Message,
                     typeof(T).Name,
-                    this.Is.Name);
-                throw new TestException(message);
+                    this.Is.Name));
             }
 
             return true;

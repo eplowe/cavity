@@ -154,7 +154,7 @@
             Assert.True(new TypeExpectations<TestException>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
-                .IsUnsealed()
+                .IsSealed()
                 .HasDefaultConstructor()
                 .Serializable()
                 .Result);

@@ -5,17 +5,16 @@
     using Cavity.Fluent;
     using Cavity.Properties;
 
-    public class DefaultConstructorTest<T> : ITestExpectation
+    public sealed class DefaultConstructorTest<T> : ITestExpectation
     {
-        public virtual bool Check()
+        public bool Check()
         {
             if (null == typeof(T).GetConstructor(Type.EmptyTypes))
             {
-                string message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.CurrentUICulture,
                     Resources.DefaultConstructorTestException_Message,
-                    typeof(T).Name);
-                throw new TestException(message);
+                    typeof(T).Name));
             }
 
             return true;

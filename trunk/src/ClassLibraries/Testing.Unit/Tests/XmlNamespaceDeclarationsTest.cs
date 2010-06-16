@@ -20,11 +20,10 @@ namespace Cavity.Tests
 
             if (null == attribute)
             {
-                string message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlNamespaceDeclarationsDecorationTestException_Message,
-                    this.Member.Name);
-                throw new TestException(message);
+                    this.Member.Name));
             }
 
             return true;
