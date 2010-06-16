@@ -1,6 +1,6 @@
 ﻿namespace Cavity.Types
 {
-    public class ConstructorClass1
+    public sealed class ConstructorClass1
     {
         public ConstructorClass1(string value)
         {

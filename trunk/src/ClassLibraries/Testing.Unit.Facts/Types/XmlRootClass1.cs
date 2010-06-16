@@ -3,7 +3,7 @@
     using System.Xml.Serialization;
 
     [XmlRoot("root")]
-    public class XmlRootClass1
+    public sealed class XmlRootClass1
     {
     }
 }
