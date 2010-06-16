@@ -6,7 +6,7 @@
     using Cavity.Fluent;
     using Cavity.Properties;
 
-    public class XmlRootTest<T> : ITestExpectation
+    public sealed class XmlRootTest<T> : ITestExpectation
     {
         public XmlRootTest(string elementName)
             : this(elementName, null as string)
@@ -31,36 +31,32 @@
             set;
         }
 
-        public virtual bool Check()
+        public bool Check()
         {
             XmlRootAttribute attribute = Attribute.GetCustomAttribute(typeof(T), typeof(XmlRootAttribute), false) as XmlRootAttribute;
-            string message = null;
             if (null == attribute)
             {
-                message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlRootDecorationTestException_UndecoratedMessage,
-                    typeof(T).Name);
-                throw new TestException(message);
+                    typeof(T).Name));
             }
             else if (this.ElementName != attribute.ElementName)
             {
-                message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlRootDecorationTestException_NameMessage,
                     typeof(T).Name,
-                    this.ElementName);
-                throw new TestException(message);
+                    this.ElementName));
             }
             else if (this.Namespace != attribute.Namespace)
             {
-                message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlRootDecorationTestException_NamespaceMessage,
                     typeof(T).Name,
                     this.ElementName,
-                    this.Namespace);
-                throw new TestException(message);
+                    this.Namespace));
             }
 
             return true;

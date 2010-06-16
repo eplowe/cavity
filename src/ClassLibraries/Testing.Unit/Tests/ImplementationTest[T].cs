@@ -5,7 +5,7 @@
     using Cavity.Fluent;
     using Cavity.Properties;
 
-    public class ImplementationTest<T> : ITestExpectation
+    public sealed class ImplementationTest<T> : ITestExpectation
     {
         public ImplementationTest(Type @interface)
         {
@@ -18,30 +18,27 @@
             set;
         }
 
-        public virtual bool Check()
+        public bool Check()
         {
-            string message = null;
             if (null == this.Interface)
             {
                 if (0 != typeof(T).GetInterfaces().Length)
                 {
-                    message = string.Format(
+                    throw new TestException(string.Format(
                         CultureInfo.CurrentUICulture,
                         Resources.ImplementationTestException_UnexpectedMessage,
-                        typeof(T).Name);
-                    throw new TestException(message);
+                        typeof(T).Name));
                 }
             }
             else
             {
                 if (!typeof(T).Implements(this.Interface))
                 {
-                    message = string.Format(
+                    throw new TestException(string.Format(
                         CultureInfo.CurrentUICulture,
                         Resources.ImplementationTestException_NoneMessage,
                         typeof(T).Name,
-                        this.Interface.Name);
-                    throw new TestException(message);
+                        this.Interface.Name));
                 }
             }
 

@@ -5,7 +5,7 @@
     using System.Reflection;
     using Cavity.Properties;
 
-    public class AttributeMemberTest : MemberTestBase
+    public sealed class AttributeMemberTest : MemberTestBase
     {
         public AttributeMemberTest(MemberInfo member, Type attribute)
             : base(member)
@@ -21,28 +21,25 @@
 
         public override bool Check()
         {
-            string message = null;
             if (null == this.Attribute)
             {
                 if (0 != this.Member.GetCustomAttributes(false).Length)
                 {
-                    message = string.Format(
+                    throw new TestException(string.Format(
                         CultureInfo.CurrentUICulture,
                         Resources.DecorationTestException_UnexpectedMessage,
-                        this.Member.Name);
-                    throw new TestException(message);
+                        this.Member.Name));
                 }
             }
             else
             {
                 if (null == System.Attribute.GetCustomAttribute(this.Member, this.Attribute, false))
                 {
-                    message = string.Format(
+                    throw new TestException(string.Format(
                         CultureInfo.InvariantCulture,
                         Resources.DecorationTestException_MissingMessage,
                         this.Member.Name,
-                        this.Attribute.Name);
-                    throw new TestException(message);
+                        this.Attribute.Name));
                 }
             }
 

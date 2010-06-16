@@ -4,7 +4,7 @@
     using System.Runtime.Serialization;
 
     [Serializable]
-    public class TestException : Exception
+    public sealed class TestException : Exception
     {
         public TestException()
         {
@@ -20,7 +20,7 @@
         {
         }
 
-        protected TestException(SerializationInfo info, StreamingContext context)
+        private TestException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

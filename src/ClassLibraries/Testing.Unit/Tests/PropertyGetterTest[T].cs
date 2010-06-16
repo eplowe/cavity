@@ -4,7 +4,7 @@
     using System.Reflection;
     using Cavity.Properties;
 
-    public class PropertyGetterTest<T> : PropertyTestBase
+    public sealed class PropertyGetterTest<T> : PropertyTestBase
     {
         public PropertyGetterTest(PropertyInfo property)
             : base(property)
@@ -21,12 +21,11 @@
         {
             if (!object.Equals(typeof(T), this.Property.PropertyType))
             {
-                string message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.PropertyGetterTestOfTException_Message,
                     this.Property.PropertyType,
-                    typeof(T));
-                throw new TestException(message);
+                    typeof(T)));
             }
 
             return true;

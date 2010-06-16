@@ -4,17 +4,16 @@
     using Cavity.Fluent;
     using Cavity.Properties;
 
-    public class ValueTypeTest<T> : ITestExpectation
+    public sealed class ValueTypeTest<T> : ITestExpectation
     {
-        public virtual bool Check()
+        public bool Check()
         {
             if (!typeof(T).IsValueType)
             {
-                string message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.CurrentUICulture,
                     Resources.ValueTypeTestException_Message,
-                    typeof(T).Name);
-                throw new TestException(message);
+                    typeof(T).Name));
             }
 
             return true;

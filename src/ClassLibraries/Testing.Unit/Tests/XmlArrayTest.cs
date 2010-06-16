@@ -36,46 +36,40 @@ namespace Cavity.Tests
         private void CheckArray()
         {
             XmlArrayAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlArrayAttribute), false) as XmlArrayAttribute;
-            string message = null;
             if (null == attribute)
             {
-                message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message1,
-                    this.Member.Name);
-                throw new TestException(message);
+                    this.Member.Name));
             }
             else if (this.ArrayElementName != attribute.ElementName)
             {
-                message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message2,
                     this.Member.Name,
-                    this.ArrayElementName);
-                throw new TestException(message);
+                    this.ArrayElementName));
             }
         }
 
         private void CheckArrayItems()
         {
             XmlArrayItemAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlArrayItemAttribute), false) as XmlArrayItemAttribute;
-            string message = null;
             if (null == attribute)
             {
-                message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message3,
-                    this.Member.Name);
-                throw new TestException(message);
+                    this.Member.Name));
             }
             else if (this.ArrayItemElementName != attribute.ElementName)
             {
-                message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message4,
                     this.Member.Name,
-                    this.ArrayItemElementName);
-                throw new TestException(message);
+                    this.ArrayItemElementName));
             }
         }
     }

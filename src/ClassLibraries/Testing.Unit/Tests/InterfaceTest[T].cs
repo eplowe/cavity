@@ -4,17 +4,16 @@
     using Cavity.Fluent;
     using Cavity.Properties;
 
-    public class InterfaceTest<T> : ITestExpectation
+    public sealed class InterfaceTest<T> : ITestExpectation
     {
-        public virtual bool Check()
+        public bool Check()
         {
             if (!typeof(T).IsInterface)
             {
-                string message = string.Format(
+                throw new TestException(string.Format(
                     CultureInfo.CurrentUICulture,
                     Resources.InterfaceTestException_Message,
-                    typeof(T).Name);
-                throw new TestException(message);
+                    typeof(T).Name));
             }
 
             return true;

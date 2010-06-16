@@ -20,7 +20,7 @@
     /// if any expectations are not met, a <see cref="T:Cavity.TestExpectation"/> is thrown.
     /// </remarks>
     /// <seealso href="http://code.google.com/p/cavity/wiki/PropertyExpectations">Guide to asserting expectations about properties.</seealso>
-    public class PropertyExpectations<T>
+    public sealed class PropertyExpectations<T>
     {
         /// <summary>
         /// Initializes a new instance of <see cref="T:Cavity.PropertyExpectations"/> class
