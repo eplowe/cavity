@@ -31,7 +31,7 @@
             set;
         }
 
-        public bool Check()
+        public virtual bool Check()
         {
             XmlRootAttribute attribute = Attribute.GetCustomAttribute(typeof(T), typeof(XmlRootAttribute), false) as XmlRootAttribute;
             string message = null;

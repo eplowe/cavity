@@ -7,7 +7,7 @@
 
     public class DefaultConstructorTest<T> : ITestExpectation
     {
-        public bool Check()
+        public virtual bool Check()
         {
             if (null == typeof(T).GetConstructor(Type.EmptyTypes))
             {
