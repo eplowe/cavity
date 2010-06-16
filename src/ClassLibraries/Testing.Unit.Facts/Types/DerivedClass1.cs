@@ -1,6 +1,6 @@
 ﻿namespace Cavity.Types
 {
-    public class DerivedClass1 : Class1
+    public sealed class DerivedClass1 : Class1
     {
     }
 }

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class PropertiedClass1
+    public sealed class PropertiedClass1
     {
         public bool AutoBoolean
         {

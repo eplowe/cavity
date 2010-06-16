@@ -3,7 +3,7 @@
     using System.Xml.Serialization;
 
     [XmlRoot("root", Namespace = "urn:example.net")]
-    public class XmlSerializableClass1
+    public sealed class XmlSerializableClass1
     {
         [XmlArray("array1")]
         [XmlArrayItem("item1")]

@@ -70,7 +70,7 @@
             Assert.True(new TypeExpectations<ConstructorClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
-                .IsUnsealed()
+                .IsSealed()
                 .NoDefaultConstructor()
                 .IsNotDecorated()
                 .Result);
@@ -91,8 +91,8 @@
         [Fact]
         public void prop_Result_whenUnsealedClass()
         {
-            Assert.True(new TypeExpectations<DerivedClass1>()
-                .DerivesFrom<Class1>()
+            Assert.True(new TypeExpectations<Class1>()
+                .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsUnsealed()
                 .HasDefaultConstructor()
@@ -106,7 +106,7 @@
             Assert.True(new TypeExpectations<InterfacedClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
-                .IsUnsealed()
+                .IsSealed()
                 .HasDefaultConstructor()
                 .Implements<Interface1>()
                 .Result);
@@ -118,7 +118,7 @@
             Assert.True(new TypeExpectations<AttributedClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
-                .IsUnsealed()
+                .IsSealed()
                 .HasDefaultConstructor()
                 .IsDecoratedWith<Attribute1>()
                 .Result);
@@ -166,7 +166,7 @@
             Assert.True(new TypeExpectations<XmlRootClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
-                .IsUnsealed()
+                .IsSealed()
                 .HasDefaultConstructor()
                 .XmlRoot("root")
                 .Result);
@@ -178,7 +178,7 @@
             Assert.True(new TypeExpectations<XmlSerializableClass1>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
-                .IsUnsealed()
+                .IsSealed()
                 .HasDefaultConstructor()
                 .XmlRoot("root", "urn:example.net")
                 .Result);

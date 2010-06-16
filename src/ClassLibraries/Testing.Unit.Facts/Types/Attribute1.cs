@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Attribute1 : Attribute
+    public sealed class Attribute1 : Attribute
     {
     }
 }

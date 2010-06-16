@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class InterfacedClass1 : Interface1
+    public sealed class InterfacedClass1 : Interface1
     {
         public void Method1()
         {
