@@ -3,7 +3,7 @@
     using System;
     using Xunit;
 
-    public class ITestClassStyleFacts
+    public sealed class ITestClassStyleFacts
     {
         [Fact]
         public void typedef()

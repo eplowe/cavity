@@ -4,7 +4,7 @@
     using Cavity.Types;
     using Xunit;
 
-    public class ITestTypeFacts
+    public sealed class ITestTypeFacts
     {
         [Fact]
         public void typedef()

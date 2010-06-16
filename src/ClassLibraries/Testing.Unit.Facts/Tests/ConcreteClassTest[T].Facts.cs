@@ -4,7 +4,7 @@
     using Cavity.Types;
     using Xunit;
 
-    public class ConcreteClassTestOfTFacts
+    public sealed class ConcreteClassTestOfTFacts
     {
         [Fact]
         public void is_ITestExpectation()

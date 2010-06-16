@@ -5,12 +5,12 @@
     using Cavity.Types;
     using Xunit;
 
-    public class AttributeMemberTestFacts
+    public sealed class AttributeMemberTestFacts
     {
         [Fact]
         public void is_AttributePropertyTest()
         {
-            Assert.IsAssignableFrom<MemberTest>(new AttributeMemberTest(typeof(object), typeof(Attribute1)));
+            Assert.IsAssignableFrom<MemberTestBase>(new AttributeMemberTest(typeof(object), typeof(Attribute1)));
         }
 
         [Fact]

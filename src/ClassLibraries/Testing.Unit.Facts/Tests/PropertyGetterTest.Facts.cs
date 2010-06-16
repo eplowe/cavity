@@ -4,12 +4,12 @@
     using Cavity.Types;
     using Xunit;
 
-    public class PropertyGetterTestFacts
+    public sealed class PropertyGetterTestFacts
     {
         [Fact]
         public void is_PropertyTest()
         {
-            Assert.IsAssignableFrom<PropertyTest>(new PropertyGetterTest(typeof(PropertiedClass1).GetProperty("AutoBoolean"), true));
+            Assert.IsAssignableFrom<PropertyTestBase>(new PropertyGetterTest(typeof(PropertiedClass1).GetProperty("AutoBoolean"), true));
         }
 
         [Fact]

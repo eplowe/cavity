@@ -3,7 +3,7 @@
     using System;
     using Cavity.Fluent;
 
-    public class TestExpectation : ITestExpectation
+    public sealed class TestExpectation : ITestExpectation
     {
         public bool Check()
         {

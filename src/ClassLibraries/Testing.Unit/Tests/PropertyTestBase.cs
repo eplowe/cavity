@@ -3,9 +3,9 @@
     using System.Reflection;
     using Cavity.Fluent;
 
-    public abstract class PropertyTest : ITestExpectation
+    public abstract class PropertyTestBase : ITestExpectation
     {
-        protected PropertyTest(PropertyInfo property)
+        protected PropertyTestBase(PropertyInfo property)
         {
             this.Property = property;
         }

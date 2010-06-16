@@ -3,12 +3,12 @@
     using Cavity.Types;
     using Xunit;
 
-    public class XmlElementTestFacts
+    public sealed class XmlElementTestFacts
     {
         [Fact]
         public void is_AttributePropertyTest()
         {
-            Assert.IsAssignableFrom<MemberTest>(new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element")));
+            Assert.IsAssignableFrom<MemberTestBase>(new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element")));
         }
 
         [Fact]

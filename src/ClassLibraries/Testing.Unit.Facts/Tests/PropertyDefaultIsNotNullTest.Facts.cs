@@ -3,12 +3,12 @@
     using Cavity.Types;
     using Xunit;
 
-    public class PropertyDefaultIsNotNullTestFacts
+    public sealed class PropertyDefaultIsNotNullTestFacts
     {
         [Fact]
         public void is_PropertyTest()
         {
-            Assert.IsAssignableFrom<PropertyTest>(new PropertyDefaultIsNotNullTest(typeof(PropertiedClass1).GetProperty("AutoString")));
+            Assert.IsAssignableFrom<PropertyTestBase>(new PropertyDefaultIsNotNullTest(typeof(PropertiedClass1).GetProperty("AutoString")));
         }
 
         [Fact]

@@ -3,7 +3,7 @@
     using System;
     using System.Reflection;
 
-    public class DerivedMemberTest : MemberTest
+    public sealed class DerivedMemberTest : MemberTestBase
     {
         public DerivedMemberTest(MemberInfo property)
             : base(property)

@@ -7,7 +7,7 @@
     using Cavity.Types;
     using Xunit;
 
-    public class TypeExpectationsOfTFacts
+    public sealed class TypeExpectationsOfTFacts
     {
         [Fact]
         public void is_ITestClassStyle()

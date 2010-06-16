@@ -4,11 +4,11 @@ namespace Cavity.Tests
     using System.Reflection;
     using Cavity.Fluent;
 
-    public abstract class MemberTest : ITestExpectation
+    public abstract class MemberTestBase : ITestExpectation
     {
         private MemberInfo _member;
 
-        protected MemberTest(MemberInfo member)
+        protected MemberTestBase(MemberInfo member)
         {
             this.Member = member;
         }

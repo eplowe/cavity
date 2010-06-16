@@ -3,7 +3,7 @@
     using System;
     using Xunit;
 
-    public class ITestClassSealedFacts
+    public sealed class ITestClassSealedFacts
     {
         [Fact]
         public void typedef()
