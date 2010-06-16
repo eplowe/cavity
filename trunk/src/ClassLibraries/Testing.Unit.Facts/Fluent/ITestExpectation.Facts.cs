@@ -3,7 +3,7 @@
     using System;
     using Xunit;
 
-    public class ITestExpectationFacts
+    public sealed class ITestExpectationFacts
     {
         [Fact]
         public void typedef()

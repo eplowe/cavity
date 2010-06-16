@@ -5,7 +5,7 @@
     using System.Reflection;
     using Cavity.Properties;
 
-    public class PropertyGetterTest : PropertyTest
+    public class PropertyGetterTest : PropertyTestBase
     {
         public PropertyGetterTest(PropertyInfo property, object expected)
             : base(property)

@@ -5,7 +5,7 @@
     using System.Runtime.Serialization.Formatters.Binary;
     using Xunit;
 
-    public class TestExceptionFacts
+    public sealed class TestExceptionFacts
     {
         [Fact]
         public void is_Exception()

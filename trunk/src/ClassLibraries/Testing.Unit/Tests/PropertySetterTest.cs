@@ -3,7 +3,7 @@
     using System;
     using System.Reflection;
 
-    public sealed class PropertySetterTest : PropertyTest
+    public sealed class PropertySetterTest : PropertyTestBase
     {
         public PropertySetterTest(PropertyInfo property, object value)
             : base(property)

@@ -6,7 +6,7 @@
     using Cavity.Types;
     using Xunit;
 
-    public class PropertyExpectationsOfTFacts
+    public sealed class PropertyExpectationsOfTFacts
     {
         [Fact]
         public void ctor_string()

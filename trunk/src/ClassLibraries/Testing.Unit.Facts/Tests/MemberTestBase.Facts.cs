@@ -5,7 +5,7 @@
     using Cavity.Types;
     using Xunit;
 
-    public class MemberTestFacts
+    public sealed class MemberTestBaseFacts
     {
         [Fact]
         public void ctor_MemberInfo()

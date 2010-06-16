@@ -3,7 +3,7 @@
     using Cavity.Fluent;
     using Xunit;
 
-    public class InterfaceTestOfTFacts
+    public sealed class InterfaceTestOfTFacts
     {
         [Fact]
         public void is_ITestExpectation()

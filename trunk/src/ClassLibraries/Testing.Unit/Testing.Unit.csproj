@@ -80,9 +80,9 @@
     <Compile Include="Tests\ConcreteClassTest[T].cs" />
     <Compile Include="Tests\ValueTypeTest[T].cs" />
     <Compile Include="Tests\InterfaceTest[T].cs" />
-    <Compile Include="Tests\MemberTest.cs" />
+    <Compile Include="Tests\MemberTestBase.cs" />
     <Compile Include="Tests\PropertySetterTest.cs" />
-    <Compile Include="Tests\PropertyTest.cs" />
+    <Compile Include="Tests\PropertyTestBase.cs" />
     <Compile Include="Tests\AttributeMemberTest.cs" />
     <Compile Include="Tests\DefaultConstructorTest[T].cs" />
     <Compile Include="Tests\ImplementationTest[T].cs" />

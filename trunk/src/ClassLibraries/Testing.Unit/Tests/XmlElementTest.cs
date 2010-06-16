@@ -6,7 +6,7 @@ namespace Cavity.Tests
     using System.Xml.Serialization;
     using Cavity.Properties;
 
-    public sealed class XmlElementTest : MemberTest
+    public sealed class XmlElementTest : MemberTestBase
     {
         public XmlElementTest(MemberInfo info)
             : base(info)

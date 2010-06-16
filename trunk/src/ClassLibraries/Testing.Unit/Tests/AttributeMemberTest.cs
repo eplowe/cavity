@@ -5,7 +5,7 @@
     using System.Reflection;
     using Cavity.Properties;
 
-    public class AttributeMemberTest : MemberTest
+    public class AttributeMemberTest : MemberTestBase
     {
         public AttributeMemberTest(MemberInfo member, Type attribute)
             : base(member)

@@ -5,7 +5,7 @@
     using Cavity.Types;
     using Xunit;
 
-    public class PropertyTestFacts
+    public sealed class PropertyTestBaseFacts
     {
         [Fact]
         public void ctor_PropertyInfo_object()

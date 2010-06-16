@@ -4,7 +4,7 @@
     using Cavity.Types;
     using Xunit;
 
-    public class XmlRootTestOfTFacts
+    public sealed class XmlRootTestOfTFacts
     {
         [Fact]
         public void is_ITestExpectation()

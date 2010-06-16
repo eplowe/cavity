@@ -4,7 +4,7 @@
     using System.Globalization;
     using System.Reflection;
 
-    public class PropertyDefaultIsNotNullTest : PropertyTest
+    public class PropertyDefaultIsNotNullTest : PropertyTestBase
     {
         public PropertyDefaultIsNotNullTest(PropertyInfo property)
             : base(property)

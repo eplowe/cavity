@@ -3,12 +3,12 @@
     using Cavity.Types;
     using Xunit;
 
-    public class XmlIgnoreTestFacts
+    public sealed class XmlIgnoreTestFacts
     {
         [Fact]
         public void is_AttributePropertyTest()
         {
-            Assert.IsAssignableFrom<MemberTest>(new XmlIgnoreTest(typeof(XmlSerializableClass1).GetProperty("Ignore")));
+            Assert.IsAssignableFrom<MemberTestBase>(new XmlIgnoreTest(typeof(XmlSerializableClass1).GetProperty("Ignore")));
         }
 
         [Fact]

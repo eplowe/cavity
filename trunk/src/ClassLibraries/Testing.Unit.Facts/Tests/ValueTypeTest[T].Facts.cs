@@ -4,7 +4,7 @@
     using Cavity.Fluent;
     using Xunit;
 
-    public class ValueTypeTestOfTFacts
+    public sealed class ValueTypeTestOfTFacts
     {
         [Fact]
         public void is_ITestExpectation()

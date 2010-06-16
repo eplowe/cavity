@@ -71,14 +71,14 @@
     <Compile Include="Tests\ValueTypeTest[T].Facts.cs" />
     <Compile Include="Tests\InterfaceTest[T].Facts.cs" />
     <Compile Include="Tests\MemberTest.Derived.cs" />
-    <Compile Include="Tests\MemberTest.Facts.cs" />
+    <Compile Include="Tests\MemberTestBase.Facts.cs" />
     <Compile Include="Tests\XmlTextTest.Facts.cs" />
     <Compile Include="Tests\XmlNamespaceDeclarationsTest.Facts.cs" />
     <Compile Include="Tests\XmlIgnoreTest.Facts.cs" />
     <Compile Include="Tests\XmlElementTest.Facts.cs" />
     <Compile Include="Tests\XmlAttributeTest.Facts.cs" />
     <Compile Include="Tests\PropertySetterTest.Facts.cs" />
-    <Compile Include="Tests\PropertyTest.Facts.cs" />
+    <Compile Include="Tests\PropertyTestBase.Facts.cs" />
     <Compile Include="Tests\AttributeMemberTest.Facts.cs" />
     <Compile Include="Tests\DefaultConstructorTest[T].Facts.cs" />
     <Compile Include="Tests\ImplementationTest[T].Facts.cs" />

@@ -6,7 +6,7 @@ namespace Cavity.Tests
     using System.Xml.Serialization;
     using Cavity.Properties;
 
-    public sealed class XmlIgnoreTest : MemberTest
+    public sealed class XmlIgnoreTest : MemberTestBase
     {
         public XmlIgnoreTest(MemberInfo info)
             : base(info)

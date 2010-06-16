@@ -4,7 +4,7 @@
     using Cavity.Types;
     using Xunit;
 
-    public class TypeExtensionMethodsFacts
+    public sealed class TypeExtensionMethodsFacts
     {
         [Fact]
         public void op_Implements_TypeNull_Type()
