@@ -75,6 +75,18 @@
 			/>
 		<xunit
 			ContinueOnError="false"
+			Assembly="$(ClassLibrariesPath)\Core.Facts\bin\$(Configuration)\Cavity.Core.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Core.Facts\bin\$(Configuration)"
+			Xml="$(TestResultsDirectory)\core_facts_xunit.xml"
+			/>
+		<xunit
+			ContinueOnError="false"
+			Assembly="$(ClassLibrariesPath)\Http.Facts\bin\$(Configuration)\Cavity.Http.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Http.Facts\bin\$(Configuration)"
+			Xml="$(TestResultsDirectory)\http_facts_xunit.xml"
+			/>
+		<xunit
+			ContinueOnError="false"
 			Assembly="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(Configuration)\Cavity.Testing.Unit.Facts.dll"
 			WorkingFolder="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(Configuration)"
 			Xml="$(TestResultsDirectory)\testing_unit_facts_xunit.xml"

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DEE68EFC-926D-4FBF-9ACB-E5539E2313E6}</ProjectGuid>
+    <ProjectGuid>{0A237283-3525-405E-B571-79D40170C763}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cavity</RootNamespace>
-    <AssemblyName>Cavity.Testing.Unit.Facts</AssemblyName>
+    <AssemblyName>Cavity.Http.Facts</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -23,6 +23,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +34,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -42,6 +46,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="xunit">
@@ -55,60 +60,9 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
-    <Compile Include="Fluent\ITestClassConstruction.Dummy.cs" />
-    <Compile Include="Fluent\ITestClassConstruction.Facts.cs" />
-    <Compile Include="Fluent\ITestClassSealed.Dummy.cs" />
-    <Compile Include="Fluent\ITestClassSealed.Facts.cs" />
-    <Compile Include="Fluent\ITestClassStyle.Dummy.cs" />
-    <Compile Include="Fluent\ITestClassStyle.Facts.cs" />
-    <Compile Include="Fluent\ITestExpectation.Dummy.cs" />
-    <Compile Include="Fluent\ITestExpectation.Facts.cs" />
-    <Compile Include="Fluent\ITestType.Dummy.cs" />
-    <Compile Include="Fluent\ITestType.Facts.cs" />
-    <Compile Include="TypeExpectations[T].Facts.cs" />
+    <Compile Include="Net\HttpClient.Facts.cs" />
+    <Compile Include="Net\HttpClientSettings.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyExpectations[T].Facts.cs" />
-    <Compile Include="TestException.Facts.cs" />
-    <Compile Include="Tests\AbstractBaseClassTest[T].Facts.cs" />
-    <Compile Include="Tests\BaseClassTest[T].Facts.cs" />
-    <Compile Include="Tests\ConcreteClassTest[T].Facts.cs" />
-    <Compile Include="Tests\TestExpectation.cs" />
-    <Compile Include="Tests\ValueTypeTest[T].Facts.cs" />
-    <Compile Include="Tests\InterfaceTest[T].Facts.cs" />
-    <Compile Include="Tests\MemberTest.Derived.cs" />
-    <Compile Include="Tests\MemberTestBase.Facts.cs" />
-    <Compile Include="Tests\XmlTextTest.Facts.cs" />
-    <Compile Include="Tests\XmlNamespaceDeclarationsTest.Facts.cs" />
-    <Compile Include="Tests\XmlIgnoreTest.Facts.cs" />
-    <Compile Include="Tests\XmlElementTest.Facts.cs" />
-    <Compile Include="Tests\XmlAttributeTest.Facts.cs" />
-    <Compile Include="Tests\PropertySetterTest.Facts.cs" />
-    <Compile Include="Tests\PropertyTestBase.Facts.cs" />
-    <Compile Include="Tests\AttributeMemberTest.Facts.cs" />
-    <Compile Include="Tests\DefaultConstructorTest[T].Facts.cs" />
-    <Compile Include="Tests\ImplementationTest[T].Facts.cs" />
-    <Compile Include="Tests\PropertyDefaultIsNotNullTest.Facts.cs" />
-    <Compile Include="Tests\PropertyTest.Derived.cs" />
-    <Compile Include="Tests\PropertyGetterTest.Facts.cs" />
-    <Compile Include="Tests\PropertyGetterTest[T].Facts.cs" />
-    <Compile Include="Tests\SealedClassTest[T].Facts.cs" />
-    <Compile Include="Tests\XmlArrayTest.Facts.cs" />
-    <Compile Include="Tests\XmlRootTest[T].Facts.cs" />
-    <Compile Include="Type.ExtensionMethods.Facts.cs" />
-    <Compile Include="Types\AbstractBaseClass1.cs" />
-    <Compile Include="Types\Attribute1.cs" />
-    <Compile Include="Types\AttributedClass1.cs" />
-    <Compile Include="Types\Class1.cs" />
-    <Compile Include="Types\ConstructorClass1.cs" />
-    <Compile Include="Types\Attribute2.cs" />
-    <Compile Include="Types\StaticClass1.cs" />
-    <Compile Include="Types\XmlRootClass1.cs" />
-    <Compile Include="Types\SealedClass1.cs" />
-    <Compile Include="Types\DerivedClass1.cs" />
-    <Compile Include="Types\Interface1.cs" />
-    <Compile Include="Types\InterfacedClass1.cs" />
-    <Compile Include="Types\PropertiedClass1.cs" />
-    <Compile Include="Types\XmlSerializableClass1.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\..\Cavity.dictionary">
@@ -119,11 +73,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Http\Http.csproj">
+      <Project>{C0BA6034-C107-4295-B494-BA6163C8B6E4}</Project>
+      <Name>Http</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
       <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
       <Name>Testing.Unit</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

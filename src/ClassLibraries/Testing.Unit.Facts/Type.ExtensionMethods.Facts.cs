@@ -29,5 +29,23 @@
         {
             Assert.True(typeof(InterfacedClass1).Implements(typeof(Interface1)));
         }
+
+        [Fact]
+        public void op_IsStatic_TypeNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as Type).IsStatic());
+        }
+
+        [Fact]
+        public void op_IsStatic_Type_whenFalse()
+        {
+            Assert.False(typeof(object).IsStatic());
+        }
+
+        [Fact]
+        public void op_IsStatic_Type_whenTrue()
+        {
+            Assert.True(typeof(StaticClass1).IsStatic());
+        }
     }
 }
