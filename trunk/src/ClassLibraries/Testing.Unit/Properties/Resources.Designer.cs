@@ -232,6 +232,15 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is not a static class..
+        /// </summary>
+        internal static string StaticClassTestException_Message {
+            get {
+                return ResourceManager.GetString("StaticClassTestException_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please use the Serializable() method instead of this generic method..
         /// </summary>
         internal static string TypeExpectations_IsDecoratedWithSerializable {

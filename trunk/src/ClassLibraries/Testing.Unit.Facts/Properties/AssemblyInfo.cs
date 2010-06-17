@@ -10,6 +10,4 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Unit Testing Facts Library (Release)")]
 #endif
 
-#region CLS
 [assembly: CLSCompliant(true)]
-#endregion
