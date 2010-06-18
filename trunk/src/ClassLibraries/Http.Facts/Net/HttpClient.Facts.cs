@@ -1,7 +1,8 @@
 ﻿namespace Cavity.Net
 {
-    using System;
     using Cavity;
+    using Microsoft.Practices.ServiceLocation;
+    using Moq;
     using Xunit;
 
     public sealed class HttpClientFacts
@@ -21,18 +22,44 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new HttpClient());
+            try
+            {
+                var mock = new Mock<IServiceLocator>();
+                mock.Setup(e => e.GetInstance<IUserAgent>()).Returns(new UserAgent()).Verifiable();
+                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => mock.Object));
+
+                Assert.NotNull(new HttpClient());
+
+                mock.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
+            }
         }
 
         [Fact]
         public void prop_Settings()
         {
-            Assert.NotNull(new PropertyExpectations<HttpClient>("Settings")
-                .TypeIs<HttpClientSettings>()
-                .DefaultValueIsNotNull()
-                .ArgumentNullException()
-                .IsNotDecorated()
-                .Result);
+            try
+            {
+                var mock = new Mock<IServiceLocator>();
+                mock.Setup(e => e.GetInstance<IUserAgent>()).Returns(new UserAgent()).Verifiable();
+                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => mock.Object));
+
+                Assert.NotNull(new PropertyExpectations<HttpClient>("Settings")
+                    .TypeIs<HttpClientSettings>()
+                    .DefaultValueIsNotNull()
+                    .ArgumentNullException()
+                    .IsNotDecorated()
+                    .Result);
+
+                mock.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
+            }
         }
     }
 }

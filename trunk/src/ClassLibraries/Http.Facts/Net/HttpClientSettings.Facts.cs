@@ -1,7 +1,8 @@
 ﻿namespace Cavity.Net
 {
-    using System.Xml.XPath;
     using Cavity;
+    using Microsoft.Practices.ServiceLocation;
+    using Moq;
     using Xunit;
 
     public sealed class HttpClientSettingsFacts
@@ -14,52 +15,78 @@
                 .IsConcreteClass()
                 .IsSealed()
                 .HasDefaultConstructor()
-                .XmlRoot("httpClient")
+                .IsNotDecorated()
                 .Result);
-        }
-
-        [Fact]
-        public void deserialize()
-        {
-            var actual = "<httpClient keepAlive='true' />".XmlDeserialize<HttpClientSettings>();
-
-            Assert.True(actual.KeepAlive);
-        }
-
-        [Fact]
-        public void deserializeEmpty()
-        {
-            var actual = "<httpClient />".XmlDeserialize<HttpClientSettings>();
-
-            Assert.False(actual.KeepAlive);
-        }
-
-        [Fact]
-        public void serialize()
-        {
-            var obj = new HttpClientSettings
-            {
-                KeepAlive = true
-            };
-
-            XPathNavigator navigator = obj.XmlSerialize().CreateNavigator();
-
-            Assert.True((bool)navigator.Evaluate("1=count(/httpClient[@keepAlive='true'])"));
         }
 
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new HttpClientSettings());
+            try
+            {
+                var mock = new Mock<IServiceLocator>();
+                mock.Setup(e => e.GetInstance<IUserAgent>()).Returns(new UserAgent()).Verifiable();
+                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => mock.Object));
+
+                Assert.NotNull(new HttpClientSettings());
+
+                mock.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
+            }
         }
 
         [Fact]
         public void prop_KeepAlive()
         {
-            Assert.True(new PropertyExpectations<HttpClientSettings>("KeepAlive")
-                .IsAutoProperty<bool>()
-                .XmlAttribute("keepAlive")
-                .Result);
+            try
+            {
+                var value = new UserAgent();
+
+                var mock = new Mock<IServiceLocator>();
+                mock.Setup(e => e.GetInstance<IUserAgent>()).Returns(value).Verifiable();
+                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => mock.Object));
+
+                Assert.True(new PropertyExpectations<HttpClientSettings>("KeepAlive")
+                    .IsAutoProperty<bool>()
+                    .IsNotDecorated()
+                    .Result);
+
+                mock.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
+            }
+        }
+
+        [Fact]
+        public void prop_UserAgent()
+        {
+            try
+            {
+                var value = new UserAgent();
+
+                var mock = new Mock<IServiceLocator>();
+                mock.Setup(e => e.GetInstance<IUserAgent>()).Returns(value).Verifiable();
+                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => mock.Object));
+
+                Assert.True(new PropertyExpectations<HttpClientSettings>("UserAgent")
+                    .TypeIs<IUserAgent>()
+                    .DefaultValueIs(value)
+                    .ArgumentNullException()
+                    .Set(new UserAgent())
+                    .IsNotDecorated()
+                    .Result);
+
+                mock.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
+            }
         }
     }
 }
