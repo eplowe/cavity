@@ -44,7 +44,7 @@
     <AssemblyOriginatorKeyFile>..\..\Cavity.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.ServiceLocation" />
     <Reference Include="Moq">
       <HintPath>..\..\..\lib\trove\Framework\v3.5\Moq.dll</HintPath>
     </Reference>
