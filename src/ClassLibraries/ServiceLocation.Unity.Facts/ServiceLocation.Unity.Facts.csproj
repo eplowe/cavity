@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C0BA6034-C107-4295-B494-BA6163C8B6E4}</ProjectGuid>
+    <ProjectGuid>{F5C5643E-5457-4996-B0FB-7ADA360107B5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cavity</RootNamespace>
-    <AssemblyName>Cavity.Http</AssemblyName>
+    <AssemblyName>Cavity.ServiceLocation.Unity.Facts</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -23,8 +23,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,22 +32,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\..\Cavity.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.ServiceLocation" />
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="xunit">
+      <HintPath>..\..\..\lib\trove\Framework\v2.0\xunit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Build.cs">
@@ -58,36 +52,40 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
-    <Compile Include="Net\HttpClient.cs" />
-    <Compile Include="Net\HttpClientSettings.cs" />
-    <Compile Include="Net\IUserAgent.cs" />
-    <Compile Include="Net\UserAgent.cs" />
+    <Compile Include="Configuration\XmlServiceLocatorProvider.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\..\Cavity.dictionary">
       <Link>Properties\Cavity.dictionary</Link>
     </CodeAnalysisDictionary>
-    <None Include="..\..\Cavity.snk">
-      <Link>Properties\Cavity.snk</Link>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-      <Name>Core</Name>
+    <ProjectReference Include="..\Example\Example.csproj">
+      <Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
+      <Name>Example</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceLocation.Unity\ServiceLocation.Unity.csproj">
+      <Project>{4E862695-27DA-49EB-B567-586767F731BA}</Project>
+      <Name>ServiceLocation.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceLocation\ServiceLocation.csproj">
+      <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
+      <Name>ServiceLocation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
+      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
+      <Name>Testing.Unit</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="unity.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets" />

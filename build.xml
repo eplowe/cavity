@@ -62,6 +62,7 @@
 	<PropertyGroup>
 		<TestResultsDirectory>$(MSBuildProjectDirectory)\TestResults</TestResultsDirectory>
 		<ClassLibrariesPath>$(MSBuildProjectDirectory)\src\ClassLibraries</ClassLibrariesPath>
+		<ConsoleApplicationsPath>$(MSBuildProjectDirectory)\src\ConsoleApplications</ConsoleApplicationsPath>
 	</PropertyGroup>
 	
 	<Target Name="Test">
@@ -87,9 +88,55 @@
 			/>
 		<xunit
 			ContinueOnError="false"
+			Assembly="$(ClassLibrariesPath)\ServiceLocation.Facts\bin\$(Configuration)\Cavity.ServiceLocation.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.Facts\bin\$(Configuration)"
+			Xml="$(TestResultsDirectory)\service_location_facts_xunit.xml"
+			/>
+		<xunit
+			ContinueOnError="false"
+			Assembly="$(ClassLibrariesPath)\ServiceLocation.Autofac.Facts\bin\$(Configuration)\Cavity.ServiceLocation.Autofac.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.Autofac.Facts\bin\$(Configuration)"
+			Xml="$(TestResultsDirectory)\service_location_autofac_facts_xunit.xml"
+			/>
+		<xunit
+			ContinueOnError="false"
+			Assembly="$(ClassLibrariesPath)\ServiceLocation.CastleWindsor.Facts\bin\$(Configuration)\Cavity.ServiceLocation.CastleWindsor.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.CastleWindsor.Facts\bin\$(Configuration)"
+			Xml="$(TestResultsDirectory)\service_location_castle_windsor_facts_xunit.xml"
+			/>
+		<xunit
+			ContinueOnError="false"
+			Assembly="$(ClassLibrariesPath)\ServiceLocation.StructureMap.Facts\bin\$(Configuration)\Cavity.ServiceLocation.StructureMap.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.StructureMap.Facts\bin\$(Configuration)"
+			Xml="$(TestResultsDirectory)\service_location_structuremap_facts_xunit.xml"
+			/>
+		<xunit
+			ContinueOnError="false"
+			Assembly="$(ClassLibrariesPath)\ServiceLocation.Unity.Facts\bin\$(Configuration)\Cavity.ServiceLocation.Unity.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.Unity.Facts\bin\$(Configuration)"
+			Xml="$(TestResultsDirectory)\service_location_unity_facts_xunit.xml"
+			/>
+		<xunit
+			ContinueOnError="false"
 			Assembly="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(Configuration)\Cavity.Testing.Unit.Facts.dll"
 			WorkingFolder="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(Configuration)"
 			Xml="$(TestResultsDirectory)\testing_unit_facts_xunit.xml"
+			/>
+		<Exec
+			Command="Example.Autofac.Console.exe"
+			WorkingDirectory="$(ConsoleApplicationsPath)\Example.Autofac.Console\bin\$(Configuration)"
+			/>
+		<Exec
+			Command="Example.CastleWindsor.Console.exe"
+			WorkingDirectory="$(ConsoleApplicationsPath)\Example.CastleWindsor.Console\bin\$(Configuration)"
+			/>
+		<Exec
+			Command="Example.StructureMap.Console.exe"
+			WorkingDirectory="$(ConsoleApplicationsPath)\Example.StructureMap.Console\bin\$(Configuration)"
+			/>
+		<Exec
+			Command="Example.Unity.Console.exe"
+			WorkingDirectory="$(ConsoleApplicationsPath)\Example.Unity.Console\bin\$(Configuration)"
 			/>
 		<!-- merging test files -->
 		<CreateItem Include="$(TestResultsDirectory)\*_xunit.xml">
@@ -114,8 +161,13 @@
 	
 	<Target Name="Zip">
 		<CallTarget Targets="Create Zip Folder" />
-		<CallTarget Targets="Zip Class Libraries" />
 		<CallTarget Targets="Zip Source" />
+		<CallTarget Targets="Zip Unit Testing" />
+		<CallTarget Targets="Zip Autofac Package" />
+		<CallTarget Targets="Zip Castle Windsor Package" />
+		<CallTarget Targets="Zip StructureMap Package" />
+		<CallTarget Targets="Zip Unity Package" />
+		<CallTarget Targets="Delete Publish Folder" />
 	</Target>
 	
 	<Target Name="Create Zip Folder">
@@ -129,72 +181,267 @@
 			/>
 	</Target>
 	
-	<Target Name="Zip Class Libraries">
+	<Target Name="Zip Source">
+		<MakeDir
+			Directories="$(PublishDirectory)\Source"
+			Condition="!Exists('$(PublishDirectory)\Source')"
+			/>
+		<RoboCopy
+			SourceFolder="$(MSBuildProjectDirectory)\src"
+			DestinationFolder="$(PublishDirectory)\Source"
+			Mirror="true"
+			ExcludeFolders=".svn;_svn;obj;bin;PrecompiledWeb"
+			ExcludeFiles="*.suo;*.csproj.user;*.vs10x;StyleCop.Cache"
+			NoJobHeader="true"
+			/>
+		<Exec
+			Command="DEL /Q /F &quot;$(ZipDirectory)\Cavity Source [$(Configuration) $(Version).$(Build)].zip&quot;"
+			WorkingDirectory="$(ZipDirectory)"
+			/>
+		<ItemGroup>
+			<ZipSourceFiles Include="$(PublishDirectory)\Source\**\*.*" />
+		</ItemGroup>
+		<Zip
+			Files="@(ZipSourceFiles)"
+			WorkingDirectory="$(PublishDirectory)\Source"
+			ZipFileName="$(ZipDirectory)\Cavity Source [$(Configuration) $(Version).$(Build)].zip"
+			ZipLevel="9"
+			/>
 		<RemoveDir
-			Directories="$(PublishDirectory)"
-			Condition="Exists('$(PublishDirectory)')"
+			Directories="$(PublishDirectory)\Source"
+			Condition="Exists('$(PublishDirectory)\Source')"
+			/>
+	</Target>
+	
+	<Target Name="Zip Unit Testing">
+		<RemoveDir
+			Directories="$(PublishDirectory)\UnitTesting"
+			Condition="Exists('$(PublishDirectory)\UnitTesting')"
 			/>
 		<MakeDir
-			Directories="$(PublishDirectory)"
-			Condition="!Exists('$(PublishDirectory)')"
+			Directories="$(PublishDirectory)\UnitTesting"
+			Condition="!Exists('$(PublishDirectory)\UnitTesting')"
 			/>
 		<RoboCopy
 			SourceFolder="$(ClassLibrariesPath)\Testing.Unit\bin\$(Configuration)"
-			DestinationFolder="$(PublishDirectory)"
+			DestinationFolder="$(PublishDirectory)\UnitTesting"
 			Mirror="true"
 			ExcludeFolders=".svn;_svn;obj"
 			ExcludeFiles="*.pdb;*.xml;*.stylecop;*CodeAnalysis*"
 			NoJobHeader="true"
 			/>
 		<Exec
-			Command="DEL /Q /F &quot;$(ZipDirectory)\Cavity $(Configuration) $(Version).$(Build).zip&quot;"
+			Command="DEL /Q /F &quot;$(ZipDirectory)\Cavity Unit Testing [$(Configuration) $(Version).$(Build)].zip&quot;"
 			WorkingDirectory="$(ZipDirectory)"
 			/>
 		<ItemGroup>
-			<ZipClassLibFiles Include="$(PublishDirectory)\**\*.*" />
+			<ZipUnitTestingFiles Include="$(PublishDirectory)\UnitTesting\**\*.*" />
 		</ItemGroup>
 		<Zip
-			Files="@(ZipClassLibFiles)"
-			WorkingDirectory="$(PublishDirectory)"
-			ZipFileName="$(ZipDirectory)\Cavity $(Configuration) $(Version).$(Build).zip"
+			Files="@(ZipUnitTestingFiles)"
+			WorkingDirectory="$(PublishDirectory)\UnitTesting"
+			ZipFileName="$(ZipDirectory)\Cavity Unit Testing [$(Configuration) $(Version).$(Build)].zip"
 			ZipLevel="9"
 			/>
+		<RemoveDir
+			Directories="$(PublishDirectory)\UnitTesting"
+			Condition="Exists('$(PublishDirectory)\UnitTesting')"
+			/>
+	</Target>
+	
+	<Target Name="Zip Autofac Package">
+		<MakeDir
+			Directories="$(PublishDirectory)\Autofac"
+			Condition="!Exists('$(PublishDirectory)\Autofac')"
+			/>
+		<RoboCopy
+			SourceFolder="$(ConsoleApplicationsPath)\Example.Autofac.Console\bin\$(Configuration)"
+			DestinationFolder="$(PublishDirectory)\Autofac"
+			Mirror="true"
+			ExcludeFolders=""
+			ExcludeFiles="*.pdb;*.exe;*.xml;*.lastcodeanalysissucceeded;Example.dll"
+			NoJobHeader="true"
+			/>
+		<Exec
+			Command="RENAME Example.Autofac.Console.exe.config app.config"
+			WorkingDirectory="$(PublishDirectory)\Autofac"
+			/>
+		<XmlUpdate
+			XmlFileName="$(PublishDirectory)\Autofac\app.config"
+			XPath="/configuration/startup"
+			Delete="true"/>
+		<XmlUpdate
+			XmlFileName="$(PublishDirectory)\Autofac\autofac.config"
+			XPath="/autofac/@defaultAssembly"
+			Value=""/>
+		<XmlUpdate
+			XmlFileName="$(PublishDirectory)\Autofac\autofac.config"
+			XPath="/autofac/components/component"
+			Delete="true"/>
+		<Exec
+			Command="DEL /Q /F &quot;$(ZipDirectory)\Cavity Service Location (Autofac) [$(Configuration) $(Version).$(Build)].zip&quot;"
+			WorkingDirectory="$(ZipDirectory)"
+			/>
+		<ItemGroup>
+			<ZipAutofacFiles Include="$(PublishDirectory)\Autofac\**\*.*" />
+		</ItemGroup>
+		<Zip
+			Files="@(ZipAutofacFiles)"
+			WorkingDirectory="$(PublishDirectory)\Autofac"
+			ZipFileName="$(ZipDirectory)\Cavity Service Location (Autofac) [$(Configuration) $(Version).$(Build)].zip"
+			ZipLevel="9"
+			/>
+		<RemoveDir
+			Directories="$(PublishDirectory)\Autofac"
+			Condition="Exists('$(PublishDirectory)\Autofac')"
+			/>
+	</Target>
+
+	<Target Name="Zip Castle Windsor Package">
+		<MakeDir
+			Directories="$(PublishDirectory)\CastleWindsor"
+			Condition="!Exists('$(PublishDirectory)\CastleWindsor')"
+			/>
+		<RoboCopy
+			SourceFolder="$(ConsoleApplicationsPath)\Example.CastleWindsor.Console\bin\$(Configuration)"
+			DestinationFolder="$(PublishDirectory)\CastleWindsor"
+			Mirror="true"
+			ExcludeFolders=""
+			ExcludeFiles="*.pdb;*.exe;*.xml;*.lastcodeanalysissucceeded;Example.dll"
+			NoJobHeader="true"
+			/>
+		<Exec
+			Command="RENAME Example.CastleWindsor.Console.exe.config app.config"
+			WorkingDirectory="$(PublishDirectory)\CastleWindsor"
+			/>
+		<XmlUpdate
+			XmlFileName="$(PublishDirectory)\CastleWindsor\app.config"
+			XPath="/configuration/startup"
+			Delete="true"/>
+		<XmlUpdate
+			XmlFileName="$(PublishDirectory)\CastleWindsor\castle.config"
+			XPath="/castle/components/component"
+			Delete="true"/>
+		<Exec
+			Command="DEL /Q /F &quot;$(ZipDirectory)\Cavity Service Location (Castle Windsor) [$(Configuration) $(Version).$(Build)].zip&quot;"
+			WorkingDirectory="$(ZipDirectory)"
+			/>
+		<ItemGroup>
+			<ZipCastleWindsorFiles Include="$(PublishDirectory)\CastleWindsor\**\*.*" />
+		</ItemGroup>
+		<Zip
+			Files="@(ZipCastleWindsorFiles)"
+			WorkingDirectory="$(PublishDirectory)\CastleWindsor"
+			ZipFileName="$(ZipDirectory)\Cavity Service Location (Castle Windsor) [$(Configuration) $(Version).$(Build)].zip"
+			ZipLevel="9"
+			/>
+		<RemoveDir
+			Directories="$(PublishDirectory)\CastleWindsor"
+			Condition="Exists('$(PublishDirectory)\CastleWindsor')"
+			/>
+	</Target>
+
+	<Target Name="Zip StructureMap Package">
+		<MakeDir
+			Directories="$(PublishDirectory)\StructureMap"
+			Condition="!Exists('$(PublishDirectory)\StructureMap')"
+			/>
+		<RoboCopy
+			SourceFolder="$(ConsoleApplicationsPath)\Example.StructureMap.Console\bin\$(Configuration)"
+			DestinationFolder="$(PublishDirectory)\StructureMap"
+			Mirror="true"
+			ExcludeFolders=""
+			ExcludeFiles="*.pdb;*.exe;*.xml;*.lastcodeanalysissucceeded;Example.dll"
+			NoJobHeader="true"
+			/>
+		<Exec
+			Command="RENAME Example.StructureMap.Console.exe.config app.config"
+			WorkingDirectory="$(PublishDirectory)\StructureMap"
+			/>
+		<XmlUpdate
+			XmlFileName="$(PublishDirectory)\StructureMap\app.config"
+			XPath="/configuration/startup"
+			Delete="true"/>
+		<XmlUpdate
+			XmlFileName="$(PublishDirectory)\StructureMap\StructureMap.config"
+			XPath="/StructureMap/DefaultInstance"
+			Delete="true"/>
+		<Exec
+			Command="DEL /Q /F &quot;$(ZipDirectory)\Cavity Service Location (StructureMap) [$(Configuration) $(Version).$(Build)].zip&quot;"
+			WorkingDirectory="$(ZipDirectory)"
+			/>
+		<ItemGroup>
+			<ZipStructureMapFiles Include="$(PublishDirectory)\StructureMap\**\*.*" />
+		</ItemGroup>
+		<Zip
+			Files="@(ZipStructureMapFiles)"
+			WorkingDirectory="$(PublishDirectory)\StructureMap"
+			ZipFileName="$(ZipDirectory)\Cavity Service Location (StructureMap) [$(Configuration) $(Version).$(Build)].zip"
+			ZipLevel="9"
+			/>
+		<RemoveDir
+			Directories="$(PublishDirectory)\StructureMap"
+			Condition="Exists('$(PublishDirectory)\StructureMap')"
+			/>
+	</Target>
+
+	<Target Name="Zip Unity Package">
+		<MakeDir
+			Directories="$(PublishDirectory)\Unity"
+			Condition="!Exists('$(PublishDirectory)\Unity')"
+			/>
+		<RoboCopy
+			SourceFolder="$(ConsoleApplicationsPath)\Example.Unity.Console\bin\$(Configuration)"
+			DestinationFolder="$(PublishDirectory)\Unity"
+			Mirror="true"
+			ExcludeFolders=""
+			ExcludeFiles="*.pdb;*.exe;*.xml;*.lastcodeanalysissucceeded;Example.dll"
+			NoJobHeader="true"
+			/>
+		<Exec
+			Command="RENAME Example.Unity.Console.exe.config app.config"
+			WorkingDirectory="$(PublishDirectory)\Unity"
+			/>
+		<XmlUpdate
+			XmlFileName="$(PublishDirectory)\Unity\app.config"
+			XPath="/configuration/startup"
+			Delete="true"/>
+		<XmlUpdate
+			XmlFileName="$(PublishDirectory)\Unity\unity.config"
+			XPath="/unity/typeAliases/typeAlias[@alias='ITest']"
+			Delete="true"/>
+		<XmlUpdate
+			XmlFileName="$(PublishDirectory)\Unity\unity.config"
+			XPath="/unity/typeAliases/typeAlias[@alias='Tester']"
+			Delete="true"/>
+		<XmlUpdate
+			XmlFileName="$(PublishDirectory)\Unity\unity.config"
+			XPath="/unity/containers/container"
+			Delete="true"/>
+		<Exec
+			Command="DEL /Q /F &quot;$(ZipDirectory)\Cavity Service Location (Unity) [$(Configuration) $(Version).$(Build)].zip&quot;"
+			WorkingDirectory="$(ZipDirectory)"
+			/>
+		<ItemGroup>
+			<ZipUnityFiles Include="$(PublishDirectory)\Unity\**\*.*" />
+		</ItemGroup>
+		<Zip
+			Files="@(ZipUnityFiles)"
+			WorkingDirectory="$(PublishDirectory)\Unity"
+			ZipFileName="$(ZipDirectory)\Cavity Service Location (Unity) [$(Configuration) $(Version).$(Build)].zip"
+			ZipLevel="9"
+			/>
+		<RemoveDir
+			Directories="$(PublishDirectory)\Unity"
+			Condition="Exists('$(PublishDirectory)\Unity')"
+			/>
+	</Target>
+
+	<Target Name="Delete Publish Folder">
 		<RemoveDir
 			Directories="$(PublishDirectory)"
 			Condition="Exists('$(PublishDirectory)')"
 			/>
 	</Target>
 	
-	<Target Name="Zip Source">
-		<MakeDir
-			Directories="$(PublishDirectory)"
-			Condition="!Exists('$(PublishDirectory)')"
-			/>
-		<RoboCopy
-			SourceFolder="$(MSBuildProjectDirectory)\src"
-			DestinationFolder="$(PublishDirectory)"
-			Mirror="true"
-			ExcludeFolders=".svn;_svn;obj;bin;PrecompiledWeb"
-			ExcludeFiles="*.suo;*.csproj.user;StyleCop.Cache"
-			NoJobHeader="true"
-			/>
-		<Exec
-			Command="DEL /Q /F &quot;$(ZipDirectory)\Cavity $(Configuration) $(Version).$(Build) Source.zip&quot;"
-			WorkingDirectory="$(ZipDirectory)"
-			/>
-		<ItemGroup>
-			<ZipSourceFiles Include="$(PublishDirectory)\**\*.*" />
-		</ItemGroup>
-		<Zip
-			Files="@(ZipSourceFiles)"
-			WorkingDirectory="$(PublishDirectory)"
-			ZipFileName="$(ZipDirectory)\Cavity $(Configuration) $(Version).$(Build) Source.zip"
-			ZipLevel="9"
-			/>
-		<RemoveDir
-			Directories="$(PublishDirectory)"
-			Condition="Exists('$(PublishDirectory)')"
-			/>
-	</Target>
-
 </Project>
