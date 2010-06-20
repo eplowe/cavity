@@ -23,7 +23,7 @@
         {
             if (!object.Equals(
                 this.Expected,
-                this.Property.GetGetMethod(true).Invoke(Activator.CreateInstance(this.Property.ReflectedType), null)))
+                this.Property.GetGetMethod(true).Invoke(Activator.CreateInstance(this.Property.ReflectedType, true), null)))
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,

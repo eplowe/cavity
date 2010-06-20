@@ -168,6 +168,9 @@
   <data name="PropertyGetterTestOfTException_Message" xml:space="preserve">
     <value>{0}.{1} did not equal the expected value.</value>
   </data>
+  <data name="PropertySetterTestException_Message" xml:space="preserve">
+    <value>{0}.{1} did not throw the expected {2}.</value>
+  </data>
   <data name="SealedClassTestException_SealedMessage" xml:space="preserve">
     <value>{0} unexpectedly is a sealed class.</value>
   </data>

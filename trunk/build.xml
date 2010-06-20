@@ -162,6 +162,7 @@
 	<Target Name="Zip">
 		<CallTarget Targets="Create Zip Folder" />
 		<CallTarget Targets="Zip Source" />
+		<CallTarget Targets="Zip HTTP Client" />
 		<CallTarget Targets="Zip Unit Testing" />
 		<CallTarget Targets="Zip Autofac Package" />
 		<CallTarget Targets="Zip Castle Windsor Package" />
@@ -213,13 +214,49 @@
 			/>
 	</Target>
 	
-	<Target Name="Zip Unit Testing">
+	<Target Name="Zip HTTP Client">
 		<RemoveDir
-			Directories="$(PublishDirectory)\UnitTesting"
-			Condition="Exists('$(PublishDirectory)\UnitTesting')"
+			Directories="$(PublishDirectory)\Http.Client"
+			Condition="Exists('$(PublishDirectory)\Http.Client')"
 			/>
 		<MakeDir
-			Directories="$(PublishDirectory)\UnitTesting"
+			Directories="$(PublishDirectory)\Http.Client"
+			Condition="!Exists('$(PublishDirectory)\Http.Client')"
+			/>
+		<RoboCopy
+			SourceFolder="$(ClassLibrariesPath)\Http\bin\$(Configuration)"
+			DestinationFolder="$(PublishDirectory)\Http.Client"
+			Mirror="true"
+			ExcludeFolders=".svn;_svn;obj"
+			ExcludeFiles="*.pdb;*.xml;*.stylecop;*CodeAnalysis*"
+			NoJobHeader="true"
+			/>
+		<Exec
+			Command="DEL /Q /F &quot;$(ZipDirectory)\Cavity HTTP Client [$(Configuration) $(Version).$(Build)].zip&quot;"
+			WorkingDirectory="$(ZipDirectory)"
+			/>
+		<ItemGroup>
+			<ZipHttpClientFiles Include="$(PublishDirectory)\Http.Client\**\*.*" />
+		</ItemGroup>
+		<Zip
+			Files="@(ZipHttpClientFiles)"
+			WorkingDirectory="$(PublishDirectory)\Http.Clientt"
+			ZipFileName="$(ZipDirectory)\Cavity HTTP Client [$(Configuration) $(Version).$(Build)].zip"
+			ZipLevel="9"
+			/>
+		<RemoveDir
+			Directories="$(PublishDirectory)\Http.Client"
+			Condition="Exists('$(PublishDirectory)\Http.Client')"
+			/>
+	</Target>
+	
+	<Target Name="Zip Unit Testing">
+		<RemoveDir
+			Directories="$(PublishDirectory)\Testing.Unit"
+			Condition="Exists('$(PublishDirectory)\Testing.Unit')"
+			/>
+		<MakeDir
+			Directories="$(PublishDirectory)\Testing.Unit"
 			Condition="!Exists('$(PublishDirectory)\UnitTesting')"
 			/>
 		<RoboCopy
@@ -235,17 +272,17 @@
 			WorkingDirectory="$(ZipDirectory)"
 			/>
 		<ItemGroup>
-			<ZipUnitTestingFiles Include="$(PublishDirectory)\UnitTesting\**\*.*" />
+			<ZipUnitTestingFiles Include="$(PublishDirectory)\Testing.Unit\**\*.*" />
 		</ItemGroup>
 		<Zip
 			Files="@(ZipUnitTestingFiles)"
-			WorkingDirectory="$(PublishDirectory)\UnitTesting"
+			WorkingDirectory="$(PublishDirectory)\Testing.Unit"
 			ZipFileName="$(ZipDirectory)\Cavity Unit Testing [$(Configuration) $(Version).$(Build)].zip"
 			ZipLevel="9"
 			/>
 		<RemoveDir
-			Directories="$(PublishDirectory)\UnitTesting"
-			Condition="Exists('$(PublishDirectory)\UnitTesting')"
+			Directories="$(PublishDirectory)\Testing.Unit"
+			Condition="Exists('$(PublishDirectory)\Testing.Unit')"
 			/>
 	</Target>
 	

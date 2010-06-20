@@ -64,11 +64,21 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Net\HttpMethod.Facts.cs" />
+    <Compile Include="Net\HttpRequest.Facts.cs" />
+    <Compile Include="Net\HttpVersion.Facts.cs" />
+    <Compile Include="Net\RequestLine.Facts.cs" />
+    <Compile Include="Net\StatusLine.Facts.cs" />
+    <Compile Include="Net\UserAgent.Facts.cs" />
+    <Compile Include="Net\IHttpClient.Facts.cs" />
+    <Compile Include="Net\IHttpClient.Dummy.cs" />
+    <Compile Include="Net\IHttpResponse.Facts.cs" />
+    <Compile Include="Net\IHttpResponse.Dummy.cs" />
+    <Compile Include="Net\IHttpRequest.Facts.cs" />
+    <Compile Include="Net\IHttpRequest.Dummy.cs" />
     <Compile Include="Net\HttpClient.Facts.cs" />
-    <Compile Include="Net\HttpClientSettings.Facts.cs" />
     <Compile Include="Net\IUserAgent.Facts.cs" />
     <Compile Include="Net\IUserAgent.Dummy.cs" />
-    <Compile Include="Net\UserAgent.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

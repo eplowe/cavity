@@ -58,10 +58,17 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
-    <Compile Include="Net\HttpClient.cs" />
-    <Compile Include="Net\HttpClientSettings.cs" />
-    <Compile Include="Net\IUserAgent.cs" />
+    <Compile Include="Net\HttpMethod.cs" />
+    <Compile Include="Net\HttpRequest.cs" />
+    <Compile Include="Net\HttpVersion.cs" />
+    <Compile Include="Net\RequestLine.cs" />
+    <Compile Include="Net\StatusLine.cs" />
     <Compile Include="Net\UserAgent.cs" />
+    <Compile Include="Net\IHttpClient.cs" />
+    <Compile Include="Net\IHttpResponse.cs" />
+    <Compile Include="Net\HttpClient.cs" />
+    <Compile Include="Net\IHttpRequest.cs" />
+    <Compile Include="Net\IUserAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
