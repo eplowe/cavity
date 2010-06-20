@@ -16,30 +16,18 @@
                 .IsSealed()
                 .HasDefaultConstructor()
                 .IsNotDecorated()
+                .Implements<IHttpClient>()
                 .Result);
         }
 
         [Fact]
         public void ctor()
         {
-            try
-            {
-                var mock = new Mock<IServiceLocator>();
-                mock.Setup(e => e.GetInstance<IUserAgent>()).Returns(new UserAgent()).Verifiable();
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => mock.Object));
-
-                Assert.NotNull(new HttpClient());
-
-                mock.VerifyAll();
-            }
-            finally
-            {
-                ServiceLocator.SetLocatorProvider(null);
-            }
+            Assert.NotNull(new HttpClient());
         }
 
         [Fact]
-        public void prop_Settings()
+        public void prop_UserAgent()
         {
             try
             {
@@ -47,10 +35,9 @@
                 mock.Setup(e => e.GetInstance<IUserAgent>()).Returns(new UserAgent()).Verifiable();
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => mock.Object));
 
-                Assert.NotNull(new PropertyExpectations<HttpClient>("Settings")
-                    .TypeIs<HttpClientSettings>()
-                    .DefaultValueIsNotNull()
-                    .ArgumentNullException()
+                Assert.NotNull(new PropertyExpectations<HttpClient>("UserAgent")
+                    .TypeIs<string>()
+                    .DefaultValueIs(UserAgent.Format(1, 0))
                     .IsNotDecorated()
                     .Result);
 

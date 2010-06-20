@@ -214,6 +214,15 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}.{1} did not throw the expected {2}..
+        /// </summary>
+        internal static string PropertySetterTestException_Message {
+            get {
+                return ResourceManager.GetString("PropertySetterTestException_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} unexpectedly is a sealed class..
         /// </summary>
         internal static string SealedClassTestException_SealedMessage {

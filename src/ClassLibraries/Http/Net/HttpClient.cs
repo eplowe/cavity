@@ -1,16 +1,15 @@
 ﻿namespace Cavity.Net
 {
-    public sealed class HttpClient
-    {
-        public HttpClient()
-        {
-            this.Settings = new HttpClientSettings();
-        }
+    using Microsoft.Practices.ServiceLocation;
 
-        public HttpClientSettings Settings
+    public sealed class HttpClient : IHttpClient
+    {
+        public string UserAgent
         {
-            get;
-            set;
+            get
+            {
+                return ServiceLocator.Current.GetInstance<IUserAgent>().Value;
+            }
         }
     }
 }
