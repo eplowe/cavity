@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Facts", "ClassLibrarie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "ClassLibraries\Example\Example.csproj", "{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http", "ClassLibraries\Http\Http.csproj", "{C0BA6034-C107-4295-B494-BA6163C8B6E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Client", "ClassLibraries\Http.Client\Http.Client.csproj", "{C0BA6034-C107-4295-B494-BA6163C8B6E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Facts", "ClassLibraries\Http.Facts\Http.Facts.csproj", "{0A237283-3525-405E-B571-79D40170C763}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Client.Facts", "ClassLibraries\Http.Client.Facts\Http.Client.Facts.csproj", "{0A237283-3525-405E-B571-79D40170C763}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation", "ClassLibraries\ServiceLocation\ServiceLocation.csproj", "{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}"
 EndProject
