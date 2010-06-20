@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cavity</RootNamespace>
-    <AssemblyName>Cavity.Http.Facts</AssemblyName>
+    <AssemblyName>Cavity.Http.Client.Facts</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -94,7 +94,7 @@
       <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Http\Http.csproj">
+    <ProjectReference Include="..\Http.Client\Http.Client.csproj">
       <Project>{C0BA6034-C107-4295-B494-BA6163C8B6E4}</Project>
       <Name>Http</Name>
     </ProjectReference>

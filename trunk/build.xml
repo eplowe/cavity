@@ -82,9 +82,9 @@
 			/>
 		<xunit
 			ContinueOnError="false"
-			Assembly="$(ClassLibrariesPath)\Http.Facts\bin\$(Configuration)\Cavity.Http.Facts.dll"
-			WorkingFolder="$(ClassLibrariesPath)\Http.Facts\bin\$(Configuration)"
-			Xml="$(TestResultsDirectory)\http_facts_xunit.xml"
+			Assembly="$(ClassLibrariesPath)\Http.Client.Facts\bin\$(Configuration)\Cavity.Http.Client.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Http.Client.Facts\bin\$(Configuration)"
+			Xml="$(TestResultsDirectory)\http_client_facts_xunit.xml"
 			/>
 		<xunit
 			ContinueOnError="false"
@@ -224,7 +224,7 @@
 			Condition="!Exists('$(PublishDirectory)\Http.Client')"
 			/>
 		<RoboCopy
-			SourceFolder="$(ClassLibrariesPath)\Http\bin\$(Configuration)"
+			SourceFolder="$(ClassLibrariesPath)\Http.Client\bin\$(Configuration)"
 			DestinationFolder="$(PublishDirectory)\Http.Client"
 			Mirror="true"
 			ExcludeFolders=".svn;_svn;obj"
@@ -240,7 +240,7 @@
 		</ItemGroup>
 		<Zip
 			Files="@(ZipHttpClientFiles)"
-			WorkingDirectory="$(PublishDirectory)\Http.Clientt"
+			WorkingDirectory="$(PublishDirectory)\Http.Client"
 			ZipFileName="$(ZipDirectory)\Cavity HTTP Client [$(Configuration) $(Version).$(Build)].zip"
 			ZipLevel="9"
 			/>
