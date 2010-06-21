@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Net\HttpMethod.Facts.cs" />
     <Compile Include="Net\HttpRequest.Facts.cs" />
+    <Compile Include="Net\HttpResponse.Facts.cs" />
     <Compile Include="Net\HttpVersion.Facts.cs" />
     <Compile Include="Net\RequestLine.Facts.cs" />
     <Compile Include="Net\StatusLine.Facts.cs" />

@@ -3,13 +3,14 @@
     using System;
     using System.Globalization;
 
-    public sealed class StatusLine : IComparable
+    public sealed class StatusLine : ValueObject<StatusLine>
     {
         private int _code;
         private string _reason;
         private HttpVersion _version;
 
         public StatusLine(HttpVersion version, int code, string reason)
+            : this()
         {
             this.Version = version;
             this.Code = code;
@@ -18,6 +19,9 @@
 
         private StatusLine()
         {
+            this.RegisterProperty(x => x.Version);
+            this.RegisterProperty(x => x.Code);
+            this.RegisterProperty(x => x.Reason);
         }
 
         public int Code
@@ -82,44 +86,9 @@
             }
         }
 
-        public static implicit operator string(StatusLine value)
-        {
-            return object.ReferenceEquals(null, value) ? null as string : value.ToString();
-        }
-
         public static implicit operator StatusLine(string value)
         {
             return object.ReferenceEquals(null, value) ? null as StatusLine : StatusLine.Parse(value);
-        }
-
-        public static bool operator ==(StatusLine operand1, StatusLine operand2)
-        {
-            return 0 == StatusLine.Compare(operand1, operand2);
-        }
-
-        public static bool operator !=(StatusLine operand1, StatusLine operand2)
-        {
-            return 0 != StatusLine.Compare(operand1, operand2);
-        }
-
-        public static bool operator <(StatusLine operand1, StatusLine operand2)
-        {
-            return StatusLine.Compare(operand1, operand2) < 0;
-        }
-
-        public static bool operator >(StatusLine operand1, StatusLine operand2)
-        {
-            return StatusLine.Compare(operand1, operand2) > 0;
-        }
-
-        public static int Compare(StatusLine comparand1, StatusLine comparand2)
-        {
-            return object.ReferenceEquals(comparand1, comparand2)
-                ? 0
-                : string.Compare(
-                    object.ReferenceEquals(null, comparand1) ? null as string : comparand1.ToString(),
-                    object.ReferenceEquals(null, comparand2) ? null as string : comparand2.ToString(),
-                    StringComparison.OrdinalIgnoreCase);
         }
 
         public static StatusLine Parse(string value)
@@ -157,54 +126,6 @@
                 parts[0],
                 int.Parse(parts[1], CultureInfo.InvariantCulture),
                 reason);
-        }
-
-        public int CompareTo(object obj)
-        {
-            int comparison = 1;
-
-            if (!object.ReferenceEquals(null, obj))
-            {
-                StatusLine value = obj as StatusLine;
-
-                if (object.ReferenceEquals(null, value))
-                {
-                    throw new ArgumentOutOfRangeException("obj");
-                }
-
-                comparison = StatusLine.Compare(this, value);
-            }
-
-            return comparison;
-        }
-
-        public override bool Equals(object obj)
-        {
-            bool result = false;
-
-            if (!object.ReferenceEquals(null, obj))
-            {
-                if (object.ReferenceEquals(this, obj))
-                {
-                    result = true;
-                }
-                else
-                {
-                    StatusLine cast = obj as StatusLine;
-
-                    if (!object.ReferenceEquals(null, cast))
-                    {
-                        result = 0 == StatusLine.Compare(this, cast);
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        public override int GetHashCode()
-        {
-            return this.ToString().GetHashCode();
         }
 
         public override string ToString()
