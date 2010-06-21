@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using System.IO;
     using Cavity;
     using Xunit;
 
@@ -29,6 +30,45 @@
         public void ctor_RequestLine()
         {
             Assert.NotNull(new HttpRequest(new RequestLine("GET", "/", "HTTP/1.1")));
+        }
+
+        [Fact]
+        public void prop_AbsoluteUri()
+        {
+            Assert.NotNull(new PropertyExpectations<HttpRequest>("AbsoluteUri")
+                .TypeIs<Uri>()
+                .IsNotDecorated()
+                .Result);
+        }
+
+        [Fact]
+        public void prop_Headers()
+        {
+            Assert.NotNull(new PropertyExpectations<HttpRequest>("Headers")
+                .IsAutoProperty<IHttpHeaderCollection>()
+                .IsNotDecorated()
+                .Result);
+        }
+
+        [Fact]
+        public void prop_Body()
+        {
+            Assert.NotNull(new PropertyExpectations<HttpRequest>("Body")
+                .IsAutoProperty<IHttpBody>()
+                .IsNotDecorated()
+                .Result);
+        }
+
+        [Fact]
+        public void prop_AbsoluteUri_get()
+        {
+            Uri expected = new Uri("http://www.example.com/");
+
+            var requestLine = new RequestLine("GET", expected.AbsoluteUri, "HTTP/1.1");
+
+            Uri actual = new HttpRequest(requestLine).AbsoluteUri;
+
+            Assert.Equal<Uri>(expected, actual);
         }
 
         [Fact]
@@ -89,19 +129,11 @@
         }
 
         [Fact]
-        public void op_ToResponse_IHttpClient()
+        public void op_Write_StreamWriterNull()
         {
             var obj = new HttpRequest("GET / HTTP/1.1");
 
-            Assert.Throws<NotSupportedException>(() => obj.ToResponse(new HttpClient()));
-        }
-
-        [Fact]
-        public void op_ToResponse_IHttpClientNull()
-        {
-            var obj = new HttpRequest("GET / HTTP/1.1");
-
-            Assert.Throws<ArgumentNullException>(() => obj.ToResponse(null as IHttpClient));
+            Assert.Throws<ArgumentNullException>(() => obj.Write(null as StreamWriter));
         }
 
         [Fact]

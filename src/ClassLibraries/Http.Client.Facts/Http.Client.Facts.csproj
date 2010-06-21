@@ -64,12 +64,28 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Net\IMediaType.Facts.cs" />
+    <Compile Include="Net\IMediaType.Dummy.cs" />
+    <Compile Include="Net\IHttpHeaderCollection.Facts.cs" />
+    <Compile Include="Net\IHttpHeaderCollection.Dummy.cs" />
+    <Compile Include="Net\IHttpMessage.Facts.cs" />
+    <Compile Include="Net\IHttpMessage.Dummy.cs" />
+    <Compile Include="Net\IHttpBody.Facts.cs" />
+    <Compile Include="Net\IHttpBody.Dummy.cs" />
+    <Compile Include="Net\IHttpHeader.Facts.cs" />
+    <Compile Include="Net\IHttpHeader.Dummy.cs" />
+    <Compile Include="Net\Http.Facts.cs" />
+    <Compile Include="Net\HttpHeader.Facts.cs" />
+    <Compile Include="Net\HttpHeaderCollection.Facts.cs" />
+    <Compile Include="Net\IHttp.Facts.cs" />
+    <Compile Include="Net\IHttp.Dummy.cs" />
     <Compile Include="Net\HttpMethod.Facts.cs" />
     <Compile Include="Net\HttpRequest.Facts.cs" />
     <Compile Include="Net\HttpResponse.Facts.cs" />
     <Compile Include="Net\HttpVersion.Facts.cs" />
     <Compile Include="Net\RequestLine.Facts.cs" />
     <Compile Include="Net\StatusLine.Facts.cs" />
+    <Compile Include="Net\Token.Facts.cs" />
     <Compile Include="Net\UserAgent.Facts.cs" />
     <Compile Include="Net\IHttpClient.Facts.cs" />
     <Compile Include="Net\IHttpClient.Dummy.cs" />

@@ -1,7 +1,12 @@
 ﻿namespace Cavity.Net
 {
-    public interface IHttpRequest
+    using System;
+    using System.IO;
+
+    public interface IHttpRequest : IHttpMessage
     {
-        IHttpResponse ToResponse(IHttpClient client);
+        Uri AbsoluteUri { get; }
+
+        void Write(StreamWriter writer);
     }
 }

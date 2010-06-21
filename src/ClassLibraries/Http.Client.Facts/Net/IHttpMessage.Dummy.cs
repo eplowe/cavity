@@ -1,37 +1,33 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using System.IO;
 
-    public class IHttpRequestDummy : IHttpRequest
+    public class IHttpMessageDummy : IHttpMessage
     {
-        public Uri AbsoluteUri
+        public IHttpBody Body
         {
             get
             {
                 throw new NotSupportedException();
             }
-        }
 
-        IHttpBody IHttpMessage.Body
-        {
-            get
+            set
             {
                 throw new NotSupportedException();
             }
         }
 
-        IHttpHeaderCollection IHttpMessage.Headers
+        public IHttpHeaderCollection Headers
         {
             get
             {
                 throw new NotSupportedException();
             }
-        }
-
-        public void Write(StreamWriter writer)
-        {
-            throw new NotSupportedException();
+            
+            set
+            {
+                throw new NotSupportedException();
+            }
         }
     }
 }
