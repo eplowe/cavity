@@ -11,7 +11,7 @@
         public void type_definition()
         {
             Assert.True(new TypeExpectations<HttpClient>()
-                .DerivesFrom<object>()
+                .DerivesFrom<ValueObject<HttpClient>>()
                 .IsConcreteClass()
                 .IsSealed()
                 .HasDefaultConstructor()

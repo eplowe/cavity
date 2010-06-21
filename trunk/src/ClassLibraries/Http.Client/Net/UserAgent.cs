@@ -5,7 +5,7 @@
     using System.Reflection;
     using Cavity.Properties;
 
-    public sealed class UserAgent : IComparable, IUserAgent
+    public sealed class UserAgent : ValueObject<UserAgent>, IUserAgent
     {
         private string _value;
 
@@ -17,6 +17,8 @@
         public UserAgent(string value)
         {
             this.Value = value;
+
+            this.RegisterProperty(x => x.Value);
         }
 
         public string Value
@@ -37,44 +39,9 @@
             }
         }
 
-        public static implicit operator string(UserAgent value)
-        {
-            return object.ReferenceEquals(null, value) ? null as string : value.ToString();
-        }
-
         public static implicit operator UserAgent(string value)
         {
             return object.ReferenceEquals(null, value) ? null as UserAgent : UserAgent.Parse(value);
-        }
-
-        public static bool operator ==(UserAgent operand1, UserAgent operand2)
-        {
-            return 0 == UserAgent.Compare(operand1, operand2);
-        }
-
-        public static bool operator !=(UserAgent operand1, UserAgent operand2)
-        {
-            return 0 != UserAgent.Compare(operand1, operand2);
-        }
-
-        public static bool operator <(UserAgent operand1, UserAgent operand2)
-        {
-            return UserAgent.Compare(operand1, operand2) < 0;
-        }
-
-        public static bool operator >(UserAgent operand1, UserAgent operand2)
-        {
-            return UserAgent.Compare(operand1, operand2) > 0;
-        }
-
-        public static int Compare(UserAgent comparand1, UserAgent comparand2)
-        {
-            return object.ReferenceEquals(comparand1, comparand2)
-                ? 0
-                : string.Compare(
-                    object.ReferenceEquals(null, comparand1) ? null as string : comparand1.Value,
-                    object.ReferenceEquals(null, comparand2) ? null as string : comparand2.Value,
-                    StringComparison.OrdinalIgnoreCase);
         }
 
         public static string Format()
@@ -97,54 +64,6 @@
             }
 
             return new UserAgent(value);
-        }
-
-        public int CompareTo(object obj)
-        {
-            int comparison = 1;
-
-            if (!object.ReferenceEquals(null, obj))
-            {
-                UserAgent value = obj as UserAgent;
-
-                if (object.ReferenceEquals(null, value))
-                {
-                    throw new ArgumentOutOfRangeException("obj");
-                }
-
-                comparison = UserAgent.Compare(this, value);
-            }
-
-            return comparison;
-        }
-
-        public override bool Equals(object obj)
-        {
-            bool result = false;
-
-            if (!object.ReferenceEquals(null, obj))
-            {
-                if (object.ReferenceEquals(this, obj))
-                {
-                    result = true;
-                }
-                else
-                {
-                    UserAgent cast = obj as UserAgent;
-
-                    if (!object.ReferenceEquals(null, cast))
-                    {
-                        result = 0 == UserAgent.Compare(this, cast);
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        public override int GetHashCode()
-        {
-            return this.ToString().GetHashCode();
         }
 
         public override string ToString()

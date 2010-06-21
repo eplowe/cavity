@@ -3,7 +3,7 @@
     using System;
     using System.Globalization;
 
-    public sealed class HttpVersion : IComparable
+    public sealed class HttpVersion : ValueObject<HttpVersion>
     {
         private int _major;
         private int _minor;
@@ -17,6 +17,8 @@
     
         private HttpVersion()
         {
+            this.RegisterProperty(x => x.Major);
+            this.RegisterProperty(x => x.Minor);
         }
         
         public int Major
@@ -55,44 +57,9 @@
             }
         }
 
-        public static implicit operator string(HttpVersion value)
-        {
-            return object.ReferenceEquals(null, value) ? null as string : value.ToString();
-        }
-
         public static implicit operator HttpVersion(string value)
         {
             return object.ReferenceEquals(null, value) ? null as HttpVersion : HttpVersion.Parse(value);
-        }
-
-        public static bool operator ==(HttpVersion operand1, HttpVersion operand2)
-        {
-            return 0 == HttpVersion.Compare(operand1, operand2);
-        }
-
-        public static bool operator !=(HttpVersion operand1, HttpVersion operand2)
-        {
-            return 0 != HttpVersion.Compare(operand1, operand2);
-        }
-
-        public static bool operator <(HttpVersion operand1, HttpVersion operand2)
-        {
-            return HttpVersion.Compare(operand1, operand2) < 0;
-        }
-
-        public static bool operator >(HttpVersion operand1, HttpVersion operand2)
-        {
-            return HttpVersion.Compare(operand1, operand2) > 0;
-        }
-
-        public static int Compare(HttpVersion comparand1, HttpVersion comparand2)
-        {
-            return object.ReferenceEquals(comparand1, comparand2)
-                ? 0
-                : string.Compare(
-                    object.ReferenceEquals(null, comparand1) ? null as string : comparand1.ToString(),
-                    object.ReferenceEquals(null, comparand2) ? null as string : comparand2.ToString(),
-                    StringComparison.OrdinalIgnoreCase);
         }
 
         public static HttpVersion Parse(string value)
@@ -117,54 +84,6 @@
                 int.Parse(parts[1], CultureInfo.InvariantCulture));
         }
         
-        public int CompareTo(object obj)
-        {
-            int comparison = 1;
-
-            if (!object.ReferenceEquals(null, obj))
-            {
-                HttpVersion value = obj as HttpVersion;
-
-                if (object.ReferenceEquals(null, value))
-                {
-                    throw new ArgumentOutOfRangeException("obj");
-                }
-
-                comparison = HttpVersion.Compare(this, value);
-            }
-
-            return comparison;
-        }
-
-        public override bool Equals(object obj)
-        {
-            bool result = false;
-
-            if (!object.ReferenceEquals(null, obj))
-            {
-                if (object.ReferenceEquals(this, obj))
-                {
-                    result = true;
-                }
-                else
-                {
-                    HttpVersion cast = obj as HttpVersion;
-
-                    if (!object.ReferenceEquals(null, cast))
-                    {
-                        result = 0 == HttpVersion.Compare(this, cast);
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        public override int GetHashCode()
-        {
-            return this.ToString().GetHashCode();
-        }
-
         public override string ToString()
         {
             return string.Format(CultureInfo.InvariantCulture, "HTTP/{0}.{1}", this.Major, this.Minor);
