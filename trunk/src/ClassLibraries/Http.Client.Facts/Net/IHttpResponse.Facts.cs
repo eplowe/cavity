@@ -23,5 +23,31 @@
             {
             }
         }
+
+        [Fact]
+        public void IHttpMessage_Body_get()
+        {
+            try
+            {
+                IHttpBody value = (new IHttpResponseDummy() as IHttpMessage).Body;
+                Assert.True(false);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
+
+        [Fact]
+        public void IHttpMessage_Headers_get()
+        {
+            try
+            {
+                IHttpHeaderCollection value = (new IHttpResponseDummy() as IHttpMessage).Headers;
+                Assert.True(false);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
     }
 }

@@ -35,7 +35,7 @@
                 {
                     throw new ArgumentOutOfRangeException("value");
                 }
-                else if (0 != value.ToUpperInvariant().ToArray().Where(x => 'A' > x || 'Z' < x).Count())
+                else if (0 != value.ToUpperInvariant().ToArray().Where(index => 'A' > index || 'Z' < index).Count())
                 {
                     throw new FormatException("value");
                 }

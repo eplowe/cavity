@@ -61,6 +61,15 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A token is restricted to any char except control keys or separators..
+        /// </summary>
+        internal static string Token_FormatException_Message {
+            get {
+                return ResourceManager.GetString("Token_FormatException_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CavityHttpClient/{0}.{1} (+http://code.google.com/p/cavity/).
         /// </summary>
         internal static string UserAgent_ValueFormat {

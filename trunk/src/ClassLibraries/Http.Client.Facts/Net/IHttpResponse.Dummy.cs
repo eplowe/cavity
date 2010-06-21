@@ -10,6 +10,27 @@
             {
                 throw new NotSupportedException();
             }
+            
+            set
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        IHttpBody IHttpMessage.Body
+        {
+            get
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        IHttpHeaderCollection IHttpMessage.Headers
+        {
+            get
+            {
+                throw new NotSupportedException();
+            }
         }
     }
 }

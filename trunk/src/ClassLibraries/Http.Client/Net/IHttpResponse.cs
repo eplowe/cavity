@@ -1,6 +1,6 @@
 ﻿namespace Cavity.Net
 {
-    public interface IHttpResponse
+    public interface IHttpResponse : IHttpMessage
     {
         StatusLine StatusLine { get; }
     }
