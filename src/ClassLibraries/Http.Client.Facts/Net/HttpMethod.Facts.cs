@@ -10,7 +10,7 @@
         public void type_definition()
         {
             Assert.True(new TypeExpectations<HttpMethod>()
-                .DerivesFrom<ValueObject<HttpMethod>>()
+                .DerivesFrom<ComparableObject>()
                 .IsConcreteClass()
                 .IsSealed()
                 .NoDefaultConstructor()

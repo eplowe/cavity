@@ -12,7 +12,7 @@
         public void type_definition()
         {
             Assert.True(new TypeExpectations<UserAgent>()
-                .DerivesFrom<ValueObject<UserAgent>>()
+                .DerivesFrom<ComparableObject>()
                 .IsConcreteClass()
                 .IsSealed()
                 .HasDefaultConstructor()

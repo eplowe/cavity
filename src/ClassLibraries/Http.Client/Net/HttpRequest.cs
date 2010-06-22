@@ -4,7 +4,7 @@
     using System.IO;
     using Cavity.Net.Mime;
 
-    public sealed class HttpRequest : ValueObject<HttpRequest>, IHttpRequest
+    public sealed class HttpRequest : ComparableObject, IHttpRequest
     {
         private RequestLine _requestLine;
 
@@ -16,7 +16,6 @@
 
         private HttpRequest()
         {
-            this.RegisterProperty(x => x.RequestLine);
         }
 
         public Uri AbsoluteUri

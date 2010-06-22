@@ -4,7 +4,7 @@
     using System.Text;
     using Cavity.Net.Mime;
 
-    public sealed class HttpResponse : ValueObject<HttpResponse>, IHttpResponse
+    public sealed class HttpResponse : ComparableObject, IHttpResponse
     {
         private IContent _body;
         private IHttpHeaderCollection _headers;
@@ -27,9 +27,6 @@
 
         private HttpResponse()
         {
-            this.RegisterProperty(x => x.StatusLine);
-            this.RegisterProperty(x => x.Headers);
-            this.RegisterProperty(x => x.Body);
         }
 
         public IContent Body
