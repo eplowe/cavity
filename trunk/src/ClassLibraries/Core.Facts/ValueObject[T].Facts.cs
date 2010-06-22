@@ -4,7 +4,7 @@ namespace Cavity
     using System.Xml;
     using Xunit;
 
-    public sealed class ValueObjectFacts
+    public sealed class ValueObjectOfTFacts
     {
         [Fact]
         public void type_definition()

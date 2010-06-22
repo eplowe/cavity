@@ -5,7 +5,7 @@
     using System.Reflection;
     using Cavity.Properties;
 
-    public sealed class UserAgent : ValueObject<UserAgent>, IUserAgent
+    public sealed class UserAgent : ComparableObject, IUserAgent
     {
         private string _value;
 
@@ -17,8 +17,6 @@
         public UserAgent(string value)
         {
             this.Value = value;
-
-            this.RegisterProperty(x => x.Value);
         }
 
         public string Value

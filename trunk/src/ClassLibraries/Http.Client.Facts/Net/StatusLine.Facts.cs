@@ -10,7 +10,7 @@
         public void type_definition()
         {
             Assert.True(new TypeExpectations<StatusLine>()
-                .DerivesFrom<ValueObject<StatusLine>>()
+                .DerivesFrom<ComparableObject>()
                 .IsConcreteClass()
                 .IsSealed()
                 .NoDefaultConstructor()

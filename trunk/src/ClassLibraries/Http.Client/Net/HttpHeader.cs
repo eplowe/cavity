@@ -3,7 +3,7 @@
     using System;
     using System.Globalization;
 
-    public sealed class HttpHeader : ValueObject<HttpHeader>, IHttpHeader
+    public sealed class HttpHeader : ComparableObject, IHttpHeader
     {
         private Token _name;
         private string _value;
@@ -17,8 +17,6 @@
 
         private HttpHeader()
         {
-            this.RegisterProperty(x => x.Name);
-            this.RegisterProperty(x => x.Value);
         }
 
         public Token Name

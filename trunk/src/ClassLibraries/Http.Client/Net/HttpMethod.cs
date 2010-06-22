@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
 
-    public sealed class HttpMethod : ValueObject<HttpMethod>
+    public sealed class HttpMethod : ComparableObject
     {
         private string _value;
 
@@ -15,7 +15,6 @@
 
         private HttpMethod()
         {
-            this.RegisterProperty(x => x.Value);
         }
 
         public string Value

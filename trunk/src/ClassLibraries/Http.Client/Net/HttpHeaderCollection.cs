@@ -8,7 +8,7 @@
     using System.Net.Mime;
     using System.Text;
 
-    public sealed class HttpHeaderCollection : IComparable, IHttpHeaderCollection
+    public sealed class HttpHeaderCollection : ComparableObject, IHttpHeaderCollection
     {
         private Collection<IHttpHeader> _collection;
         
@@ -70,44 +70,9 @@
             }
         }
 
-        public static implicit operator string(HttpHeaderCollection value)
-        {
-            return object.ReferenceEquals(null, value) ? null as string : value.ToString();
-        }
-
         public static implicit operator HttpHeaderCollection(string value)
         {
             return object.ReferenceEquals(null, value) ? null as HttpHeaderCollection : HttpHeaderCollection.Parse(value);
-        }
-
-        public static bool operator ==(HttpHeaderCollection operand1, HttpHeaderCollection operand2)
-        {
-            return 0 == HttpHeaderCollection.Compare(operand1, operand2);
-        }
-
-        public static bool operator !=(HttpHeaderCollection operand1, HttpHeaderCollection operand2)
-        {
-            return 0 != HttpHeaderCollection.Compare(operand1, operand2);
-        }
-
-        public static bool operator <(HttpHeaderCollection operand1, HttpHeaderCollection operand2)
-        {
-            return HttpHeaderCollection.Compare(operand1, operand2) < 0;
-        }
-
-        public static bool operator >(HttpHeaderCollection operand1, HttpHeaderCollection operand2)
-        {
-            return HttpHeaderCollection.Compare(operand1, operand2) > 0;
-        }
-
-        public static int Compare(HttpHeaderCollection comparand1, HttpHeaderCollection comparand2)
-        {
-            return object.ReferenceEquals(comparand1, comparand2)
-                ? 0
-                : string.Compare(
-                    object.ReferenceEquals(null, comparand1) ? null as string : comparand1.ToDictionaryString(),
-                    object.ReferenceEquals(null, comparand2) ? null as string : comparand2.ToDictionaryString(),
-                    StringComparison.OrdinalIgnoreCase);
         }
 
         public static HttpHeaderCollection Parse(string value)
@@ -147,25 +112,6 @@
             this._collection.Clear();
         }
 
-        public int CompareTo(object obj)
-        {
-            int comparison = 1;
-
-            if (!object.ReferenceEquals(null, obj))
-            {
-                HttpHeaderCollection value = obj as HttpHeaderCollection;
-
-                if (object.ReferenceEquals(null, value))
-                {
-                    throw new ArgumentOutOfRangeException("obj");
-                }
-
-                comparison = HttpHeaderCollection.Compare(this, value);
-            }
-
-            return comparison;
-        }
-
         public bool Contains(IHttpHeader item)
         {
             return this._collection.Contains(item);
@@ -176,38 +122,9 @@
             this._collection.CopyTo(array, arrayIndex);
         }
 
-        public override bool Equals(object obj)
-        {
-            bool result = false;
-
-            if (!object.ReferenceEquals(null, obj))
-            {
-                if (object.ReferenceEquals(this, obj))
-                {
-                    result = true;
-                }
-                else
-                {
-                    HttpHeaderCollection cast = obj as HttpHeaderCollection;
-
-                    if (!object.ReferenceEquals(null, cast))
-                    {
-                        result = 0 == HttpHeaderCollection.Compare(this, cast);
-                    }
-                }
-            }
-
-            return result;
-        }
-
         public IEnumerator<IHttpHeader> GetEnumerator()
         {
             return this._collection.GetEnumerator();
-        }
-
-        public override int GetHashCode()
-        {
-            return this.ToString().GetHashCode();
         }
 
         public bool Remove(IHttpHeader item)
@@ -215,7 +132,24 @@
             return this._collection.Remove(item);
         }
 
-        public IDictionary<string, string> ToDictionary()
+        public override string ToString()
+        {
+            StringBuilder buffer = new StringBuilder();
+
+            foreach (var item in this.ToDictionary())
+            {
+                buffer.AppendLine(string.Concat(item.Key, ": ", item.Value));
+            }
+
+            return buffer.ToString();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return (this._collection as IEnumerable).GetEnumerator();
+        }
+
+        private IDictionary<string, string> ToDictionary()
         {
             var result = new Dictionary<string, string>();
 
@@ -232,34 +166,6 @@
             }
             
             return result;
-        }
-
-        public override string ToString()
-        {
-            StringBuilder buffer = new StringBuilder();
-
-            foreach (var item in this._collection)
-            {
-                buffer.AppendLine(item.ToString());
-            }
-
-            return buffer.ToString();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return (this._collection as IEnumerable).GetEnumerator();
-        }
-
-        private string ToDictionaryString()
-        {
-            StringBuilder buffer = new StringBuilder();
-            foreach (var item in this.ToDictionary())
-            {
-                buffer.AppendLine(string.Concat(item.Key, ": ", item.Value));
-            }
-
-            return buffer.ToString();
         }
     }
 }

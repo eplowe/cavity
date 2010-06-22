@@ -10,7 +10,7 @@
         public void type_definition()
         {
             Assert.True(new TypeExpectations<Token>()
-                .DerivesFrom<ValueObject<Token>>()
+                .DerivesFrom<ComparableObject>()
                 .IsConcreteClass()
                 .IsSealed()
                 .NoDefaultConstructor()

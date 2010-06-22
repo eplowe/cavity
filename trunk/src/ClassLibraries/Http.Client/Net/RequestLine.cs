@@ -4,7 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
 
-    public sealed class RequestLine : ValueObject<RequestLine>
+    public sealed class RequestLine : ComparableObject
     {
         private string _method;
         private string _requestUri;
@@ -21,9 +21,6 @@
 
         private RequestLine()
         {
-            this.RegisterProperty(x => x.Method);
-            this.RegisterProperty(x => x.RequestUri);
-            this.RegisterProperty(x => x.Version);
         }
 
         public string Method

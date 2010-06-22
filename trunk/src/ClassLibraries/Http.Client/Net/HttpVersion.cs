@@ -3,7 +3,7 @@
     using System;
     using System.Globalization;
 
-    public sealed class HttpVersion : ValueObject<HttpVersion>
+    public sealed class HttpVersion : ComparableObject
     {
         private int _major;
         private int _minor;
@@ -17,8 +17,6 @@
     
         private HttpVersion()
         {
-            this.RegisterProperty(x => x.Major);
-            this.RegisterProperty(x => x.Minor);
         }
         
         public int Major

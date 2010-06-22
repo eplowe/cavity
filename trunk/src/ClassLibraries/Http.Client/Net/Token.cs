@@ -4,18 +4,18 @@
     using System.Linq;
     using Cavity.Properties;
 
-    public sealed class Token : ValueObject<Token>
+    public sealed class Token : ComparableObject
     {
         private string _value;
 
         public Token(string value)
+            : this()
         {
             this.Value = value;
         }
 
         private Token()
         {
-            this.RegisterProperty(x => x.Value);
         }
 
         public string Value

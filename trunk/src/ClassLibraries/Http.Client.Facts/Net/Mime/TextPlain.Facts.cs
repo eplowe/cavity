@@ -12,7 +12,7 @@
         public void type_definition()
         {
             Assert.True(new TypeExpectations<TextPlain>()
-                .DerivesFrom<ValueObject<TextPlain>>()
+                .DerivesFrom<ComparableObject>()
                 .IsConcreteClass()
                 .IsSealed()
                 .HasDefaultConstructor()

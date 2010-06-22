@@ -4,7 +4,7 @@
     using System.IO;
     using System.Net.Mime;
 
-    public sealed class TextPlain : ValueObject<TextPlain>, IMediaType, IContent
+    public sealed class TextPlain : ComparableObject, IMediaType, IContent
     {
         private string _value;
 
@@ -16,8 +16,6 @@
         public TextPlain(string value)
         {
             this.Value = value;
-
-            this.RegisterProperty(x => x.Value);
         }
 
         public ContentType ContentType

@@ -3,7 +3,7 @@
     using System;
     using System.Globalization;
 
-    public sealed class StatusLine : ValueObject<StatusLine>
+    public sealed class StatusLine : ComparableObject
     {
         private int _code;
         private string _reason;
@@ -19,9 +19,6 @@
 
         private StatusLine()
         {
-            this.RegisterProperty(x => x.Version);
-            this.RegisterProperty(x => x.Code);
-            this.RegisterProperty(x => x.Reason);
         }
 
         public int Code

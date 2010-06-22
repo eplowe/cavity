@@ -56,6 +56,8 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="ComparableObject.Derived.cs" />
+    <Compile Include="ComparableObject.Facts.cs" />
     <Compile Include="IO\EncodedStringWriter.Facts.cs" />
     <Compile Include="Net\Sockets\Uri.ExtensionMethods.Facts.cs" />
     <Compile Include="Object.ExtensionMethods.Facts.cs" />
