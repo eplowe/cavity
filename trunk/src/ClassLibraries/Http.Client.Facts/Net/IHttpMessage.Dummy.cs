@@ -1,10 +1,11 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using Cavity.Net.Mime;
 
     public class IHttpMessageDummy : IHttpMessage
     {
-        public IHttpBody Body
+        public IContent Body
         {
             get
             {

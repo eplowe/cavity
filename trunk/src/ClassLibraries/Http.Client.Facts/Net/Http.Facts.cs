@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using Cavity;
+    using Cavity.Net.Mime;
     using Microsoft.Practices.ServiceLocation;
     using Moq;
     using Xunit;
@@ -49,7 +50,7 @@
                 var media = new Mock<IMediaType>();
                 media
                     .Setup(x => x.ToBody(It.IsAny<StreamReader>()))
-                    .Returns(new Mock<IHttpBody>().Object)
+                    .Returns(new Mock<IContent>().Object)
                     .Verifiable();
 
                 var locator = new Mock<IServiceLocator>();

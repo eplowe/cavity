@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using Cavity;
+    using Cavity.Net.Mime;
     using Xunit;
 
     public sealed class HttpRequestFacts
@@ -54,7 +55,7 @@
         public void prop_Body()
         {
             Assert.NotNull(new PropertyExpectations<HttpRequest>("Body")
-                .IsAutoProperty<IHttpBody>()
+                .IsAutoProperty<IContent>()
                 .IsNotDecorated()
                 .Result);
         }

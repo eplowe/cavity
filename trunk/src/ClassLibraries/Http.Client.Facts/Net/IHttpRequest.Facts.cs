@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using Cavity.Net.Mime;
     using Xunit;
 
     public sealed class IHttpRequestFacts
@@ -36,7 +37,7 @@
         {
             try
             {
-                IHttpBody value = (new IHttpRequestDummy() as IHttpMessage).Body;
+                IContent value = (new IHttpRequestDummy() as IHttpMessage).Body;
                 Assert.True(false);
             }
             catch (NotSupportedException)

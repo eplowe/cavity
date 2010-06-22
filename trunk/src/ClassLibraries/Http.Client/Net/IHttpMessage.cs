@@ -1,8 +1,10 @@
 ﻿namespace Cavity.Net
 {
+    using Cavity.Net.Mime;
+
     public interface IHttpMessage
     {
-        IHttpBody Body { get; }
+        IContent Body { get; }
 
         IHttpHeaderCollection Headers { get; }
     }

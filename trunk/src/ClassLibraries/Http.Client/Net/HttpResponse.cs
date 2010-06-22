@@ -2,10 +2,11 @@
 {
     using System;
     using System.Text;
+    using Cavity.Net.Mime;
 
     public sealed class HttpResponse : ValueObject<HttpResponse>, IHttpResponse
     {
-        private IHttpBody _body;
+        private IContent _body;
         private IHttpHeaderCollection _headers;
         private StatusLine _statusLine;
 
@@ -16,7 +17,7 @@
             this.Headers = headers;
         }
 
-        public HttpResponse(StatusLine statusLine, IHttpHeaderCollection headers, IHttpBody body)
+        public HttpResponse(StatusLine statusLine, IHttpHeaderCollection headers, IContent body)
             : this()
         {
             this.StatusLine = statusLine;
@@ -31,7 +32,7 @@
             this.RegisterProperty(x => x.Body);
         }
 
-        public IHttpBody Body
+        public IContent Body
         {
             get
             {

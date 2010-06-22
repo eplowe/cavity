@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using Cavity.Net.Mime;
 
     public class IHttpResponseDummy : IHttpResponse
     {
@@ -17,7 +18,7 @@
             }
         }
 
-        IHttpBody IHttpMessage.Body
+        IContent IHttpMessage.Body
         {
             get
             {

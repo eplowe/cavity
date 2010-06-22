@@ -1,22 +1,22 @@
-﻿namespace Cavity.Net
+﻿namespace Cavity.Net.Mime
 {
     using System;
+    using System.IO;
     using System.Net.Mime;
-    using Cavity.Net.Mime;
     using Xunit;
 
-    public sealed class IHttpHeaderCollectionFacts
+    public sealed class IContentFacts
     {
         [Fact]
         public void type_definition()
         {
-            Assert.True(typeof(IHttpHeaderCollection).IsInterface);
+            Assert.True(typeof(IContent).IsInterface);
         }
 
         [Fact]
         public void is_IContentType()
         {
-            Assert.True(typeof(IContentType).IsAssignableFrom(typeof(IHttpHeaderCollection)));
+            Assert.True(typeof(IContentType).IsAssignableFrom(typeof(IContent)));
         }
 
         [Fact]
@@ -24,7 +24,7 @@
         {
             try
             {
-                ContentType value = (new IHttpHeaderCollectionDummy() as IContentType).ContentType;
+                ContentType value = (new IContentDummy() as IContentType).ContentType;
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -33,11 +33,11 @@
         }
 
         [Fact]
-        public void IHttpHeaderCollection_opIndexer_string_get()
+        public void IContent_Write_StreamWriter()
         {
             try
             {
-                string value = (new IHttpHeaderCollectionDummy() as IHttpHeaderCollection)["name"];
+                (new IContentDummy() as IContent).Write(null as StreamWriter);
                 Assert.True(false);
             }
             catch (NotSupportedException)

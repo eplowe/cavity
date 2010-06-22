@@ -1,23 +1,23 @@
-﻿namespace Cavity.Net
+﻿namespace Cavity.Net.Mime
 {
     using System;
-    using System.IO;
+    using System.Net.Mime;
     using Xunit;
 
-    public sealed class IHttpBodyFacts
+    public sealed class IContentTypeFacts
     {
         [Fact]
         public void type_definition()
         {
-            Assert.True(typeof(IHttpBody).IsInterface);
+            Assert.True(typeof(IContentType).IsInterface);
         }
 
         [Fact]
-        public void IHttpBody_Read_StreamReader()
+        public void IContentType_ContentType_get()
         {
             try
             {
-                (new IHttpBodyDummy() as IHttpBody).Read(null as StreamReader);
+                ContentType value = (new IContentTypeDummy() as IContentType).ContentType;
                 Assert.True(false);
             }
             catch (NotSupportedException)
