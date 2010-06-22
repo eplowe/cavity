@@ -1,11 +1,11 @@
-﻿namespace Cavity.Net
+﻿namespace Cavity.Net.Mime
 {
     using System;
     using System.IO;
 
-    public class IHttpBodyDummy : IHttpBody
+    public class IMediaTypeDummy : IMediaType
     {
-        public IHttpBody Read(StreamReader reader)
+        public IContent ToBody(StreamReader reader)
         {
             throw new NotSupportedException();
         }

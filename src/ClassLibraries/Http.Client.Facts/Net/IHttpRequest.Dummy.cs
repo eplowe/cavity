@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using Cavity.Net.Mime;
 
     public class IHttpRequestDummy : IHttpRequest
     {
@@ -13,7 +14,7 @@
             }
         }
 
-        IHttpBody IHttpMessage.Body
+        IContent IHttpMessage.Body
         {
             get
             {

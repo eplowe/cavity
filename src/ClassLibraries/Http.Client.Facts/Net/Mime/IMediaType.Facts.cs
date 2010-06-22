@@ -1,4 +1,4 @@
-﻿namespace Cavity.Net
+﻿namespace Cavity.Net.Mime
 {
     using System;
     using System.IO;
@@ -13,11 +13,11 @@
         }
 
         [Fact]
-        public void IHttpBody_ToBody_StreamReader()
+        public void IContent_ToBody_StreamReader()
         {
             try
             {
-                IHttpBody value = (new IMediaTypeDummy() as IMediaType).ToBody(null as StreamReader);
+                IContent value = (new IMediaTypeDummy() as IMediaType).ToBody(null as StreamReader);
                 Assert.True(false);
             }
             catch (NotSupportedException)

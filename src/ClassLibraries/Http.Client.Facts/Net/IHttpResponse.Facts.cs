@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using Cavity.Net.Mime;
     using Xunit;
 
     public sealed class IHttpResponseFacts
@@ -29,7 +30,7 @@
         {
             try
             {
-                IHttpBody value = (new IHttpResponseDummy() as IHttpMessage).Body;
+                IContent value = (new IHttpResponseDummy() as IHttpMessage).Body;
                 Assert.True(false);
             }
             catch (NotSupportedException)

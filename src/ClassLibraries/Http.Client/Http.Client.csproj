@@ -58,10 +58,11 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
-    <Compile Include="Net\IMediaType.cs" />
+    <Compile Include="Net\Mime\IContentType.cs" />
+    <Compile Include="Net\Mime\IMediaType.cs" />
     <Compile Include="Net\IHttpHeaderCollection.cs" />
     <Compile Include="Net\IHttpMessage.cs" />
-    <Compile Include="Net\IHttpBody.cs" />
+    <Compile Include="Net\Mime\IContent.cs" />
     <Compile Include="Net\IHttpHeader.cs" />
     <Compile Include="Net\Http.cs" />
     <Compile Include="Net\HttpHeader.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Net\HttpResponse.cs" />
     <Compile Include="Net\HttpVersion.cs" />
     <Compile Include="Net\IHttp.cs" />
+    <Compile Include="Net\Mime\TextPlain.cs" />
     <Compile Include="Net\RequestLine.cs" />
     <Compile Include="Net\StatusLine.cs" />
     <Compile Include="Net\Token.cs" />

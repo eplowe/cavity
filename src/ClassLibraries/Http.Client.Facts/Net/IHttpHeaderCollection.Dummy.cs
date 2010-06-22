@@ -3,10 +3,11 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Net.Mime;
+    using Cavity.Net.Mime;
 
     public class IHttpHeaderCollectionDummy : Collection<IHttpHeader>, IHttpHeaderCollection
     {
-        public ContentType ContentType
+        ContentType IContentType.ContentType
         {
             get
             {

@@ -2,11 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Net.Mime;
+    using Cavity.Net.Mime;
 
-    public interface IHttpHeaderCollection : ICollection<IHttpHeader>
+    public interface IHttpHeaderCollection : ICollection<IHttpHeader>, IContentType
     {
-        ContentType ContentType { get; }
-
         string this[string name]
         {
             get;

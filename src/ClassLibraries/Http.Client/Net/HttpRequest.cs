@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using Cavity.Net.Mime;
 
     public sealed class HttpRequest : ValueObject<HttpRequest>, IHttpRequest
     {
@@ -26,7 +27,7 @@
             }
         }
 
-        public IHttpBody Body
+        public IContent Body
         {
             get;
             private set;
