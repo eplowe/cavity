@@ -4,10 +4,8 @@
     using System.Text;
     using Cavity.Net.Mime;
 
-    public sealed class HttpResponse : ComparableObject, IHttpResponse
+    public sealed class HttpResponse : HttpMessage, IHttpResponse
     {
-        private IContent _body;
-        private IHttpHeaderCollection _headers;
         private StatusLine _statusLine;
 
         public HttpResponse(StatusLine statusLine, IHttpHeaderCollection headers)
@@ -18,51 +16,14 @@
         }
 
         public HttpResponse(StatusLine statusLine, IHttpHeaderCollection headers, IContent body)
-            : this()
+            : base(headers, body)
         {
             this.StatusLine = statusLine;
-            this.Headers = headers;
-            this.Body = body;
         }
 
         private HttpResponse()
+            : base()
         {
-        }
-
-        public IContent Body
-        {
-            get
-            {
-                return this._body;
-            }
-
-            private set
-            {
-                if (null == value)
-                {
-                    throw new ArgumentNullException("value");
-                }
-
-                this._body = value;
-            }
-        }
-
-        public IHttpHeaderCollection Headers
-        {
-            get
-            {
-                return this._headers;
-            }
-
-            private set
-            {
-                if (null == value)
-                {
-                    throw new ArgumentNullException("value");
-                }
-
-                this._headers = value;
-            }
         }
 
         public StatusLine StatusLine

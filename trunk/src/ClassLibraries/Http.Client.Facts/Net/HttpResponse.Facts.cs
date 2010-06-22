@@ -11,7 +11,7 @@
         public void type_definition()
         {
             Assert.True(new TypeExpectations<HttpResponse>()
-                .DerivesFrom<ComparableObject>()
+                .DerivesFrom<HttpMessage>()
                 .IsConcreteClass()
                 .IsSealed()
                 .NoDefaultConstructor()
@@ -36,26 +36,6 @@
         public void ctor_StatusLine_IHttpHeaderCollection()
         {
             Assert.NotNull(new HttpResponse(new StatusLine("HTTP/1.1", 200, "OK"), new IHttpHeaderCollectionDummy()));
-        }
-
-        [Fact]
-        public void prop_Body()
-        {
-            Assert.NotNull(new PropertyExpectations<HttpResponse>("Body")
-                .TypeIs<IContent>()
-                .ArgumentNullException()
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_Headers()
-        {
-            Assert.NotNull(new PropertyExpectations<HttpResponse>("Headers")
-                .TypeIs<IHttpHeaderCollection>()
-                .ArgumentNullException()
-                .IsNotDecorated()
-                .Result);
         }
 
         [Fact]
