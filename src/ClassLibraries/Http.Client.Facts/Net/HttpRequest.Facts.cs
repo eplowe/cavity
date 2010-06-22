@@ -12,7 +12,7 @@
         public void type_definition()
         {
             Assert.True(new TypeExpectations<HttpRequest>()
-                .DerivesFrom<ComparableObject>()
+                .DerivesFrom<HttpMessage>()
                 .IsConcreteClass()
                 .IsSealed()
                 .NoDefaultConstructor()
@@ -38,24 +38,6 @@
         {
             Assert.NotNull(new PropertyExpectations<HttpRequest>("AbsoluteUri")
                 .TypeIs<Uri>()
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_Headers()
-        {
-            Assert.NotNull(new PropertyExpectations<HttpRequest>("Headers")
-                .IsAutoProperty<IHttpHeaderCollection>()
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_Body()
-        {
-            Assert.NotNull(new PropertyExpectations<HttpRequest>("Body")
-                .IsAutoProperty<IContent>()
                 .IsNotDecorated()
                 .Result);
         }

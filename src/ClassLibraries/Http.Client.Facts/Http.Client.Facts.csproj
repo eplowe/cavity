@@ -64,6 +64,8 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Net\HttpMessage.Derived.cs" />
+    <Compile Include="Net\HttpMessage.Facts.cs" />
     <Compile Include="Net\Mime\IContentType.Facts.cs" />
     <Compile Include="Net\Mime\IContentType.Dummy.cs" />
     <Compile Include="Net\Mime\IMediaType.Facts.cs" />

@@ -4,7 +4,7 @@
     using System.IO;
     using Cavity.Net.Mime;
 
-    public sealed class HttpRequest : ComparableObject, IHttpRequest
+    public sealed class HttpRequest : HttpMessage, IHttpRequest
     {
         private RequestLine _requestLine;
 
@@ -15,6 +15,7 @@
         }
 
         private HttpRequest()
+            : base()
         {
         }
 
@@ -24,18 +25,6 @@
             {
                 return new Uri(this.RequestLine.RequestUri, UriKind.RelativeOrAbsolute);
             }
-        }
-
-        public IContent Body
-        {
-            get;
-            private set;
-        }
-
-        public IHttpHeaderCollection Headers
-        {
-            get;
-            private set;
         }
 
         public RequestLine RequestLine
