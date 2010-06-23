@@ -32,7 +32,7 @@
             object result = null;
             using (var stream = new MemoryStream())
             {
-                using (StreamWriter writer = new StreamWriter(stream))
+                using (var writer = new StreamWriter(stream))
                 {
                     writer.Write(xml);
                     writer.Flush();

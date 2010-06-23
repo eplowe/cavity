@@ -43,13 +43,13 @@
                 var request = new Mock<IHttpRequest>();
                 request.SetupGet<Uri>(x => x.AbsoluteUri).Returns(new Uri("http://www.example.com/")).Verifiable();
                 request
-                    .Setup(x => x.Write(It.IsAny<StreamWriter>()))
-                    .Callback((StreamWriter writer) => this.WriteGet(writer, "www.example.com"))
+                    .Setup(x => x.Write(It.IsAny<TextWriter>()))
+                    .Callback((TextWriter writer) => this.WriteGet(writer, "www.example.com"))
                     .Verifiable();
 
                 var media = new Mock<IMediaType>();
                 media
-                    .Setup(x => x.ToBody(It.IsAny<StreamReader>()))
+                    .Setup(x => x.ToContent(It.IsAny<TextReader>()))
                     .Returns(new Mock<IContent>().Object)
                     .Verifiable();
 
@@ -72,7 +72,7 @@
             }
         }
 
-        private void WriteGet(StreamWriter writer, string host)
+        private void WriteGet(TextWriter writer, string host)
         {
             writer.WriteLine("GET / HTTP/1.1");
             writer.WriteLine("Host: " + host);

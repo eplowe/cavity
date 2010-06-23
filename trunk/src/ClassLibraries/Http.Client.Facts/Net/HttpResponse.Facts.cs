@@ -138,7 +138,7 @@
         }
 
         [Fact]
-        public void op_Read_StreamReader_when201()
+        public void op_Read_TextReader_when201()
         {
             var response = new HttpResponse();
             StatusLine statusLine = "HTTP/1.1 201 Created";
@@ -186,7 +186,7 @@
         }
 
         [Fact]
-        public void op_Read_StreamReader_when404()
+        public void op_Read_TextReader_when404()
         {
             var response = new HttpResponse();
             StatusLine statusLine = "HTTP/1.1 404 Not Found";
@@ -234,7 +234,7 @@
         }
 
         [Fact]
-        public void op_Read_StreamReaderEmpty()
+        public void op_Read_TextReaderEmpty()
         {
             using (var stream = new MemoryStream())
             {
@@ -251,13 +251,94 @@
         }
 
         [Fact]
-        public void op_Read_StreamReaderNull()
+        public void op_Read_TextReaderNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpResponse().Read(null as StreamReader));
+            Assert.Throws<ArgumentNullException>(() => new HttpResponse().Read(null as TextReader));
         }
 
         [Fact]
-        public void op_ToString()
+        public void op_Write_TextWriter_when201()
+        {
+            StringBuilder expected = new StringBuilder();
+            expected.AppendLine("HTTP/1.1 201 Created");
+
+            HttpResponse obj = HttpResponse.Parse(expected.ToString());
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    obj.Write(writer);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        Assert.Equal<string>(expected.ToString(), reader.ReadToEnd());
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_Write_TextWriter_when404()
+        {
+            StringBuilder expected = new StringBuilder();
+            expected.AppendLine("HTTP/1.1 404 Not Found");
+            expected.AppendLine("Content-Length: 4");
+            expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
+            expected.AppendLine(string.Empty);
+            expected.Append("text");
+
+            HttpResponse obj = null;
+            try
+            {
+                var locator = new Mock<IServiceLocator>();
+                locator.Setup(e => e.GetInstance<IMediaType>("text/plain")).Returns(new TextPlain()).Verifiable();
+                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+
+                obj = HttpResponse.Parse(expected.ToString());
+
+                locator.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
+            }
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    obj.Write(writer);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        Assert.Equal<string>(expected.ToString(), reader.ReadToEnd());
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_Write_TextWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HttpResponse().Write(null as TextWriter));
+        }
+
+        [Fact]
+        public void op_ToString_when201()
+        {
+            StringBuilder expected = new StringBuilder();
+            expected.AppendLine("HTTP/1.1 201 Created");
+
+            string actual = HttpResponse.Parse(expected.ToString()).ToString();
+
+            Assert.Equal<string>(expected.ToString(), actual);
+        }
+
+        [Fact]
+        public void op_ToString_when404()
         {
             StringBuilder expected = new StringBuilder();
             expected.AppendLine("HTTP/1.1 404 Not Found");

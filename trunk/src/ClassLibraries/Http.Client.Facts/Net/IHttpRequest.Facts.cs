@@ -1,8 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using System.IO;
-    using Cavity.Net.Mime;
     using Xunit;
 
     public sealed class IHttpRequestFacts
@@ -33,37 +31,11 @@
         }
 
         [Fact]
-        public void IHttpMessage_Body_get()
+        public void IHttpRequest_RequestLine_get()
         {
             try
             {
-                IContent value = (new IHttpRequestDummy() as IHttpMessage).Body;
-                Assert.True(false);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IHttpMessage_Headers_get()
-        {
-            try
-            {
-                HttpHeaderCollection value = (new IHttpRequestDummy() as IHttpMessage).Headers;
-                Assert.True(false);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IHttpRequest_Write_StreamWriter()
-        {
-            try
-            {
-                (new IHttpRequestDummy() as IHttpRequest).Write(null as StreamWriter);
+                RequestLine value = (new IHttpRequestDummy() as IHttpRequest).RequestLine;
                 Assert.True(false);
             }
             catch (NotSupportedException)

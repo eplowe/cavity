@@ -2,7 +2,9 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.IO;
+    using System.Text;
     using Cavity.Net.Mime;
     using Microsoft.Practices.ServiceLocation;
 
@@ -54,7 +56,7 @@
             }
         }
 
-        public virtual void Read(StreamReader reader)
+        public virtual void Read(TextReader reader)
         {
             if (null == reader)
             {
@@ -68,20 +70,36 @@
             var contentType = headers.ContentType;
             if (null != contentType)
             {
-                this.Body = ServiceLocator.Current.GetInstance<IMediaType>(contentType.MediaType).ToBody(reader);
+                this.Body = ServiceLocator.Current.GetInstance<IMediaType>(contentType.MediaType).ToContent(reader);
+            }
+        }
+
+        public virtual void Write(TextWriter writer)
+        {
+            if (null == writer)
+            {
+                throw new ArgumentNullException("writer");
+            }
+
+            this.Headers.Write(writer);
+            if (null != this.Body)
+            {
+                writer.WriteLine(string.Empty);
+                this.Body.Write(writer);
             }
         }
 
         public override string ToString()
         {
-            string result = this.Headers;
+            StringBuilder buffer = new StringBuilder();
 
-            if (null != this.Body)
+            using (var writer = new StringWriter(buffer, CultureInfo.InvariantCulture))
             {
-                result += string.Concat(Environment.NewLine + this.Body.ToString());
+                this.Write(writer);
+                writer.Flush();
             }
 
-            return result;
+            return buffer.ToString();
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Globalization;
+    using System.IO;
 
     public sealed class HttpHeader : ComparableObject, IHttpHeader
     {

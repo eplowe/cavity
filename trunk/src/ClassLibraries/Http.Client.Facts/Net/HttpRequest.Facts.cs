@@ -166,7 +166,7 @@
         }
 
         [Fact]
-        public void op_Read_StreamReader_whenGet()
+        public void op_Read_TextReader_whenGet()
         {
             var request = new HttpRequest();
             RequestLine requestLine = "GET / HTTP/1.1";
@@ -201,7 +201,7 @@
         }
 
         [Fact]
-        public void op_Read_StreamReader_whenPost()
+        public void op_Read_TextReader_whenPost()
         {
             var request = new HttpRequest();
             RequestLine requestLine = "POST / HTTP/1.1";
@@ -255,7 +255,7 @@
         }
 
         [Fact]
-        public void op_Read_StreamReaderEmpty()
+        public void op_Read_TextReaderEmpty()
         {
             using (var stream = new MemoryStream())
             {
@@ -272,19 +272,100 @@
         }
 
         [Fact]
-        public void op_Read_StreamReaderNull()
+        public void op_Read_TextReaderNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Read(null as StreamReader));
+            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Read(null as TextReader));
         }
 
         [Fact]
-        public void op_Write_StreamWriterNull()
+        public void op_Write_TextWriter_whenGet()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Write(null as StreamWriter));
+            StringBuilder expected = new StringBuilder();
+            expected.AppendLine("GET / HTTP/1.1");
+            expected.AppendLine("Host: www.example.com");
+            expected.AppendLine("Connection: close");
+
+            HttpRequest obj = HttpRequest.Parse(expected.ToString());
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    obj.Write(writer);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        Assert.Equal<string>(expected.ToString(), reader.ReadToEnd());
+                    }
+                }
+            }
         }
 
         [Fact]
-        public void op_ToString()
+        public void op_Write_TextWriter_whenPost()
+        {
+            StringBuilder expected = new StringBuilder();
+            expected.AppendLine("POST / HTTP/1.1");
+            expected.AppendLine("Content-Length: 4");
+            expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
+            expected.AppendLine("Host: www.example.com");
+            expected.AppendLine("Connection: keep-alive");
+            expected.AppendLine(string.Empty);
+            expected.Append("text");
+
+            HttpRequest obj = null;
+            try
+            {
+                var locator = new Mock<IServiceLocator>();
+                locator.Setup(e => e.GetInstance<IMediaType>("text/plain")).Returns(new TextPlain()).Verifiable();
+                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+
+                obj = HttpRequest.Parse(expected.ToString());
+
+                locator.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
+            }
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    obj.Write(writer);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        Assert.Equal<string>(expected.ToString(), reader.ReadToEnd());
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_Write_TextWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Write(null as TextWriter));
+        }
+
+        [Fact]
+        public void op_ToString_whenGet()
+        {
+            StringBuilder expected = new StringBuilder();
+            expected.AppendLine("GET / HTTP/1.1");
+            expected.AppendLine("Host: www.example.com");
+            expected.AppendLine("Connection: close");
+
+            string actual = HttpRequest.Parse(expected.ToString()).ToString();
+
+            Assert.Equal<string>(expected.ToString(), actual);
+        }
+
+        [Fact]
+        public void op_ToString_whenPost()
         {
             StringBuilder expected = new StringBuilder();
             expected.AppendLine("POST / HTTP/1.1");

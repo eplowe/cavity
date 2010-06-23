@@ -2,19 +2,10 @@
 {
     using System;
     using System.IO;
-    using System.Net.Mime;
 
-    public class IContentDummy : IContent
+    public class IContentDummy : IContentTypeDummy, IContent
     {
-        ContentType IContentType.ContentType
-        {
-            get
-            {
-                throw new NotSupportedException();
-            }
-        }
-
-        public void Write(StreamWriter writer)
+        public void Write(TextWriter writer)
         {
             throw new NotSupportedException();
         }

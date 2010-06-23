@@ -96,7 +96,7 @@
         }
 
         [Fact]
-        public void op_ToBody_StreamReader()
+        public void op_ToContent_TextReader()
         {
             IContent body = null;
 
@@ -109,7 +109,7 @@
                     stream.Position = 0;
                     using (var reader = new StreamReader(stream))
                     {
-                        body = new TextPlain().ToBody(reader);
+                        body = new TextPlain().ToContent(reader);
                     }
                 }
             }
@@ -118,7 +118,7 @@
         }
 
         [Fact]
-        public void op_ToBody_StreamReader_whenStringEmpty()
+        public void op_ToContent_TextReader_whenStringEmpty()
         {
             IContent body = null;
 
@@ -131,16 +131,16 @@
                     stream.Position = 0;
                     using (var reader = new StreamReader(stream))
                     {
-                        body = new TextPlain().ToBody(reader);
+                        body = new TextPlain().ToContent(reader);
                     }
                 }
             }
 
-            Assert.Null((body as TextPlain).Value);
+            Assert.Equal<string>(string.Empty, (body as TextPlain).Value);
         }
 
         [Fact]
-        public void op_ToBody_StreamReaderEmpty()
+        public void op_ToContent_TextReaderEmpty()
         {
             IContent body = null;
 
@@ -152,24 +152,42 @@
                     stream.Position = 0;
                     using (var reader = new StreamReader(stream))
                     {
-                        body = new TextPlain().ToBody(reader);
+                        body = new TextPlain().ToContent(reader);
                     }
                 }
             }
 
-            Assert.Null((body as TextPlain).Value);
+            Assert.Equal<string>(string.Empty, (body as TextPlain).Value);
         }
 
         [Fact]
-        public void op_ToBody_StreamReaderNull()
+        public void op_ToContent_TextReaderNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new TextPlain().ToBody(null as StreamReader));
+            Assert.Throws<ArgumentNullException>(() => new TextPlain().ToContent(null as TextReader));
         }
 
         [Fact]
-        public void op_Write_StreamWriterNull()
+        public void op_Write_TextWriter_whenPost()
         {
-            Assert.Throws<ArgumentNullException>(() => new TextPlain().Write(null as StreamWriter));
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    new TextPlain("value").Write(writer);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        Assert.Equal<string>("value", reader.ReadToEnd());
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_Write_TextWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new TextPlain().Write(null as TextWriter));
         }
     }
 }

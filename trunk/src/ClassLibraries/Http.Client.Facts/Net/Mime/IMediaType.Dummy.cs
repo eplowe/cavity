@@ -5,7 +5,7 @@
 
     public class IMediaTypeDummy : IMediaType
     {
-        public IContent ToBody(StreamReader reader)
+        public IContent ToContent(TextReader reader)
         {
             throw new NotSupportedException();
         }

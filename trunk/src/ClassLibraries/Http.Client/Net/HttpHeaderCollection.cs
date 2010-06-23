@@ -154,13 +154,21 @@
 
             while (true)
             {
+                int peek = reader.Peek();
                 string line = reader.ReadLine();
-                if (null == line || 0 == line.Length)
+                if (-1 == peek || 13 == peek)
                 {
-                    break;
+                    break; // EOF or CR
                 }
+                else
+                {
+                    while (9 == reader.Peek() || 32 == reader.Peek())
+                    {
+                        line += Environment.NewLine + reader.ReadLine(); // HT or SPACE
+                    }
 
-                this.Add(HttpHeader.Parse(line));
+                    this.Add(HttpHeader.Parse(line));
+                }
             }
         }
 
@@ -179,6 +187,19 @@
             }
 
             return buffer.ToString();
+        }
+
+        public void Write(TextWriter writer)
+        {
+            if (null == writer)
+            {
+                throw new ArgumentNullException("writer");
+            }
+
+            foreach (var item in this.ToDictionary())
+            {
+                writer.WriteLine(string.Concat(item.Key, ": ", item.Value));
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()

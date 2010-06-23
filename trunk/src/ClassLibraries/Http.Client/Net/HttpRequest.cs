@@ -70,7 +70,7 @@
             return result;
         }
 
-        public override void Read(StreamReader reader)
+        public override void Read(TextReader reader)
         {
             if (null == reader)
             {
@@ -81,19 +81,15 @@
             base.Read(reader);
         }
 
-        public void Write(StreamWriter writer)
+        public override void Write(TextWriter writer)
         {
             if (null == writer)
             {
                 throw new ArgumentNullException("writer");
             }
 
-            throw new NotSupportedException();
-        }
-
-        public override string ToString()
-        {
-            return string.Concat(this.RequestLine, Environment.NewLine, base.ToString());
+            writer.WriteLine(this.RequestLine);
+            base.Write(writer);
         }
     }
 }

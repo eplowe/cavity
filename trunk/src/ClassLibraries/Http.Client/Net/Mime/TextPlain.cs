@@ -31,24 +31,24 @@
             return new TextPlain(value);
         }
 
-        public IContent ToBody(StreamReader reader)
+        public IContent ToContent(TextReader reader)
         {
             if (null == reader)
             {
                 throw new ArgumentNullException("reader");
             }
 
-            return new TextPlain(reader.EndOfStream ? null as string : reader.ReadToEnd());
+            return new TextPlain(reader.ReadToEnd());
         }
 
-        public void Write(StreamWriter writer)
+        public void Write(TextWriter writer)
         {
             if (null == writer)
             {
                 throw new ArgumentNullException("writer");
             }
 
-            throw new NotSupportedException();
+            writer.Write(this.Value);
         }
     }
 }
