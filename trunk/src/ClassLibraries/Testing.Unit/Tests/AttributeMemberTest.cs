@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Tests
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
+    using System.Linq;
     using System.Reflection;
     using Cavity.Properties;
 
@@ -23,7 +25,7 @@
         {
             if (null == this.Attribute)
             {
-                if (0 != this.Member.GetCustomAttributes(false).Length)
+                if (0 != this.Member.GetCustomAttributes(false).Where(x => !(x is SuppressMessageAttribute)).Count())
                 {
                     throw new TestException(string.Format(
                         CultureInfo.CurrentUICulture,

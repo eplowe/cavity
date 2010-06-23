@@ -4,44 +4,16 @@
     using System.IO;
     using System.Net.Mime;
 
-    public sealed class TextPlain : ComparableObject, IMediaType, IContent
+    public sealed class TextPlain : Text, IContent, IMediaType
     {
-        private string _value;
-
         public TextPlain()
             : this(string.Empty)
         {
         }
 
         public TextPlain(string value)
+            : base(new ContentType("text/plain"), value)
         {
-            this.Value = value;
-        }
-
-        public ContentType ContentType
-        {
-            get
-            {
-                return new ContentType("text/plain");
-            }
-        }
-
-        public string Value
-        {
-            get
-            {
-                return this._value;
-            }
-
-            private set
-            {
-                if (null == value)
-                {
-                    throw new ArgumentNullException("value");
-                }
-
-                this._value = value;
-            }
         }
 
         public static implicit operator TextPlain(string value)
@@ -67,11 +39,6 @@
             }
 
             throw new NotSupportedException();
-        }
-
-        public override string ToString()
-        {
-            return this.Value;
         }
 
         public void Write(StreamWriter writer)

@@ -2,7 +2,6 @@
 {
     using System;
     using System.IO;
-    using Cavity.Net.Mime;
 
     public sealed class HttpRequest : HttpMessage, IHttpRequest
     {

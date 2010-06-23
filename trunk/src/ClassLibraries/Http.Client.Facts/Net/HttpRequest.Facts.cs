@@ -3,7 +3,6 @@
     using System;
     using System.IO;
     using Cavity;
-    using Cavity.Net.Mime;
     using Xunit;
 
     public sealed class HttpRequestFacts

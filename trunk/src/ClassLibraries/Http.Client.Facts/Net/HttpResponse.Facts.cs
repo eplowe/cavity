@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity;
-    using Cavity.Net.Mime;
     using Xunit;
 
     public sealed class HttpResponseFacts

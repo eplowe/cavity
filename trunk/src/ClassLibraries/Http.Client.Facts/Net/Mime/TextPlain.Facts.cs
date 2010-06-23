@@ -2,7 +2,6 @@
 {
     using System;
     using System.IO;
-    using System.Net.Mime;
     using Cavity;
     using Xunit;
 
@@ -12,12 +11,13 @@
         public void type_definition()
         {
             Assert.True(new TypeExpectations<TextPlain>()
-                .DerivesFrom<ComparableObject>()
+                .DerivesFrom<Text>()
                 .IsConcreteClass()
                 .IsSealed()
                 .HasDefaultConstructor()
                 .IsNotDecorated()
                 .Implements<IContent>()
+                .Implements<IMediaType>()
                 .Result);
         }
 
@@ -43,29 +43,6 @@
         public void ctor_string()
         {
             Assert.NotNull(new TextPlain("value"));
-        }
-
-        [Fact]
-        public void prop_ContentType()
-        {
-            Assert.NotNull(new PropertyExpectations<TextPlain>("ContentType")
-                .TypeIs<ContentType>()
-                .DefaultValueIs(new ContentType("text/plain"))
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_Value()
-        {
-            Assert.NotNull(new PropertyExpectations<TextPlain>("Value")
-                .TypeIs<string>()
-                .DefaultValueIs(string.Empty)
-                .ArgumentNullException()
-                .Set(string.Empty)
-                .Set("value")
-                .IsNotDecorated()
-                .Result);
         }
 
         [Fact]
@@ -122,15 +99,6 @@
         public void op_ToBody_StreamReaderNull()
         {
             Assert.Throws<ArgumentNullException>(() => new TextPlain().ToBody(null as StreamReader));
-        }
-
-        [Fact]
-        public void op_ToString()
-        {
-            string expected = "value";
-            string actual = new TextPlain(expected).ToString();
-
-            Assert.Equal<string>(expected, actual);
         }
 
         [Fact]
