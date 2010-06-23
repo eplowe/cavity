@@ -165,6 +165,35 @@
         }
 
         [Fact]
+        public void op_Parse_string_withLeadingWhitespace()
+        {
+            HttpHeaderCollection expected = new HttpHeaderCollection
+            {
+                { new HttpHeader("name", "value") }
+            };
+            HttpHeaderCollection actual = HttpHeaderCollection.Parse("name:         value");
+
+            Assert.Equal<HttpHeaderCollection>(expected, actual);
+        }
+
+        [Fact]
+        public void op_Parse_string_whenMultipleLines()
+        {
+            string value = 
+                "a" + Environment.NewLine +
+                ' ' + "b" + Environment.NewLine +
+                '\t' + "c";
+
+            HttpHeaderCollection expected = new HttpHeaderCollection
+            {
+                { new HttpHeader("name", value) }
+            };
+            HttpHeaderCollection actual = HttpHeaderCollection.Parse("name: " + value);
+
+            Assert.Equal<HttpHeaderCollection>(expected, actual);
+        }
+
+        [Fact]
         public void op_Add_IHttpHeader()
         {
             var obj = new HttpHeaderCollection();
@@ -359,7 +388,7 @@
         }
 
         [Fact]
-        public void op_Read_StreamReader()
+        public void op_Read_TextReader()
         {
             HttpMessage message = new DerivedHttpMessage();
             HttpHeader connection = "Connection: close";
@@ -385,7 +414,7 @@
         }
 
         [Fact]
-        public void op_Read_StreamReaderEmpty()
+        public void op_Read_TextReaderEmpty()
         {
             var obj = new HttpHeaderCollection();
 
@@ -406,9 +435,9 @@
         }
 
         [Fact]
-        public void op_Read_StreamReaderNull()
+        public void op_Read_TextReaderNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpHeaderCollection().Read(null as StreamReader));
+            Assert.Throws<ArgumentNullException>(() => new HttpHeaderCollection().Read(null as TextReader));
         }
 
         [Fact]
@@ -460,13 +489,13 @@
         }
 
         [Fact]
-        public void op_ToDictionary_whenEmpty()
+        public void op_ToString_whenEmpty()
         {
             Assert.Empty(new HttpHeaderCollection().ToString());
         }
 
         [Fact]
-        public void op_ToDictionary_whenMultiple()
+        public void op_ToString_whenMultiple()
         {
             StringBuilder expected = new StringBuilder();
             expected.AppendLine("name: foo, bar");
@@ -480,6 +509,53 @@
             string actual = obj.ToString();
 
             Assert.Equal<string>(expected.ToString(), actual);
+        }
+
+        [Fact]
+        public void op_Write_TextWriter()
+        {
+            var headers = new HttpHeaderCollection
+            {
+                { new HttpHeader("Connection", "close") }
+            };
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    headers.Write(writer);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        Assert.Equal<string>("Connection: close" + Environment.NewLine, reader.ReadToEnd());
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_Write_TextWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HttpHeaderCollection().Write(null as TextWriter));
+        }
+
+        [Fact]
+        public void op_Write_TextWriter_whenEmpty()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    new HttpHeaderCollection().Write(writer);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        Assert.Equal<string>(string.Empty, reader.ReadToEnd());
+                    }
+                }
+            }
         }
 
         [Fact]

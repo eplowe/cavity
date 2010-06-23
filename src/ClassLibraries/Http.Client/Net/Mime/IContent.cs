@@ -4,6 +4,6 @@
 
     public interface IContent : IContentType
     {
-        void Write(StreamWriter writer);
+        void Write(TextWriter writer);
     }
 }

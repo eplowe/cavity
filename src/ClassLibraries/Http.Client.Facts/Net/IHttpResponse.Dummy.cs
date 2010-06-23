@@ -1,9 +1,8 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using Cavity.Net.Mime;
 
-    public class IHttpResponseDummy : IHttpResponse
+    public class IHttpResponseDummy : IHttpMessageDummy, IHttpResponse
     {
         public StatusLine StatusLine
         {
@@ -13,22 +12,6 @@
             }
             
             set
-            {
-                throw new NotSupportedException();
-            }
-        }
-
-        IContent IHttpMessage.Body
-        {
-            get
-            {
-                throw new NotSupportedException();
-            }
-        }
-
-        HttpHeaderCollection IHttpMessage.Headers
-        {
-            get
             {
                 throw new NotSupportedException();
             }

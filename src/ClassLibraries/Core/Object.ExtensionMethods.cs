@@ -85,7 +85,7 @@ namespace Cavity
                 {
                     new SoapFormatter().Serialize(stream, value);
                     stream.Seek(0, SeekOrigin.Begin);
-                    using (StreamReader reader = new StreamReader(stream))
+                    using (var reader = new StreamReader(stream))
                     {
                         buffer.Append(reader.ReadToEnd());
                     }

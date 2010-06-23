@@ -49,7 +49,7 @@
         }
 
         [Fact]
-        public void op_Read_StreamReader()
+        public void op_Read_TextReader()
         {
             HttpMessage message = new DerivedHttpMessage();
             HttpHeader connection = "Connection: close";
@@ -75,7 +75,7 @@
         }
 
         [Fact]
-        public void op_Read_StreamReaderEmpty()
+        public void op_Read_TextReaderEmpty()
         {
             HttpMessage message = new DerivedHttpMessage();
 
@@ -96,9 +96,9 @@
         }
 
         [Fact]
-        public void op_Read_StreamReaderNull()
+        public void op_Read_TextReaderNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Read(null as StreamReader));
+            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Read(null as TextReader));
         }
 
         [Fact]

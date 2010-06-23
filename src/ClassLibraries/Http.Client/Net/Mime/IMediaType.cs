@@ -4,6 +4,6 @@
 
     public interface IMediaType
     {
-        IContent ToBody(StreamReader reader);
+        IContent ToContent(TextReader reader);
     }
 }

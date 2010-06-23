@@ -4,7 +4,7 @@
 
     public sealed class DerivedHttpMessage : HttpMessage
     {
-        public override void Read(StreamReader reader)
+        public override void Read(TextReader reader)
         {
             base.Read(reader);
         }

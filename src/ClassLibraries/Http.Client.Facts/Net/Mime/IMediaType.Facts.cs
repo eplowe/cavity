@@ -13,11 +13,11 @@
         }
 
         [Fact]
-        public void IContent_ToBody_StreamReader()
+        public void IContent_ToContent_TextReader()
         {
             try
             {
-                IContent value = (new IMediaTypeDummy() as IMediaType).ToBody(null as StreamReader);
+                IContent value = (new IMediaTypeDummy() as IMediaType).ToContent(null as TextReader);
                 Assert.True(false);
             }
             catch (NotSupportedException)
