@@ -1,31 +1,32 @@
-﻿namespace Cavity.Net
+﻿namespace Cavity.Net.Mime
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Cavity.Net.Mime;
+    using System.Net.Mime;
 
-    public abstract class HttpMessage : ComparableObject, IHttpMessage
+    [SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces", Justification = "This naming is intentional.")]
+    public abstract class Text : ComparableObject
     {
-        private IContent _body;
-        private IHttpHeaderCollection _headers;
+        private ContentType _contentType;
+        private string _value;
 
-        protected HttpMessage(IHttpHeaderCollection headers, IContent body)
+        protected Text(ContentType contentType, string value)
             : this()
         {
-            this.Headers = headers;
-            this.Body = body;
+            this.ContentType = contentType;
+            this.Value = value;
         }
 
-        protected HttpMessage()
+        protected Text()
         {
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly", Justification = "The setter is protected rather than private for testability.")]
-        public IContent Body
+        public ContentType ContentType
         {
             get
             {
-                return this._body;
+                return this._contentType;
             }
 
             protected set
@@ -35,16 +36,15 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._body = value;
+                this._contentType = value;
             }
         }
 
-        [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly", Justification = "The setter is protected rather than private for testability.")]
-        public IHttpHeaderCollection Headers
+        public string Value
         {
             get
             {
-                return this._headers;
+                return this._value;
             }
 
             protected set
@@ -54,8 +54,13 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._headers = value;
+                this._value = value;
             }
+        }
+
+        public override string ToString()
+        {
+            return this.Value;
         }
     }
 }

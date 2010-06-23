@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using Cavity;
     using Xunit;
 
@@ -60,7 +59,7 @@
                 .Set("*")
                 .Set("http://www.example.com/")
                 .Set("/")
-                .IsDecoratedWith<SuppressMessageAttribute>()
+                .IsNotDecorated()
                 .Result);
         }
 

@@ -58,6 +58,7 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Net\Mime\Text.cs" />
     <Compile Include="Net\HttpMessage.cs" />
     <Compile Include="Net\Mime\IContentType.cs" />
     <Compile Include="Net\Mime\IMediaType.cs" />
