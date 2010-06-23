@@ -23,21 +23,9 @@
         }
 
         [Fact]
-        public void ctor_HttpHeaderCollection_IContent()
+        public void ctor()
         {
-            Assert.NotNull(new DerivedHttpMessage(new HttpHeaderCollection(), new IContentDummy()) as HttpMessage);
-        }
-
-        [Fact]
-        public void ctor_HttpHeaderCollectionNull_IContent()
-        {
-            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage(null as HttpHeaderCollection, new IContentDummy()));
-        }
-
-        [Fact]
-        public void ctor_HttpHeaderCollection_IContentNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage(new HttpHeaderCollection(), null as IContent));
+            Assert.NotNull(new DerivedHttpMessage() as HttpMessage);
         }
 
         [Fact]

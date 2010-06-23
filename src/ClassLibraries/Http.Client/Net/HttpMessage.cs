@@ -11,13 +11,6 @@
         private IContent _body;
         private HttpHeaderCollection _headers;
 
-        protected HttpMessage(HttpHeaderCollection headers, IContent body)
-            : this()
-        {
-            this.Headers = headers;
-            this.Body = body;
-        }
-
         protected HttpMessage()
         {
             this.Headers = new HttpHeaderCollection();

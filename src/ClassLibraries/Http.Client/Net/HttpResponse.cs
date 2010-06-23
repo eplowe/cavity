@@ -3,29 +3,10 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using Cavity.Net.Mime;
 
     public sealed class HttpResponse : HttpMessage, IHttpResponse
     {
         private StatusLine _statusLine;
-
-        public HttpResponse()
-            : base()
-        {
-        }
-
-        public HttpResponse(StatusLine statusLine, HttpHeaderCollection headers)
-            : this()
-        {
-            this.StatusLine = statusLine;
-            this.Headers = headers;
-        }
-
-        public HttpResponse(StatusLine statusLine, HttpHeaderCollection headers, IContent body)
-            : base(headers, body)
-        {
-            this.StatusLine = statusLine;
-        }
 
         public StatusLine StatusLine
         {
@@ -34,7 +15,7 @@
                 return this._statusLine;
             }
 
-            private set
+            set
             {
                 if (null == value)
                 {

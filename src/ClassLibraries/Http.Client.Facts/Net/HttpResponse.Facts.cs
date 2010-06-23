@@ -25,21 +25,9 @@
         }
 
         [Fact]
-        public void ctor_StatusLineNull_IHttpHeaderCollection()
+        public void ctor()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpResponse(null as StatusLine, new HttpHeaderCollection()));
-        }
-
-        [Fact]
-        public void ctor_StatusLine_IHttpHeaderCollectionNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new HttpResponse(new StatusLine("HTTP/1.1", 200, "OK"), null as HttpHeaderCollection));
-        }
-
-        [Fact]
-        public void ctor_StatusLine_IHttpHeaderCollection()
-        {
-            Assert.NotNull(new HttpResponse(new StatusLine("HTTP/1.1", 200, "OK"), new HttpHeaderCollection()));
+            Assert.NotNull(new HttpResponse());
         }
 
         [Fact]
@@ -47,6 +35,7 @@
         {
             Assert.NotNull(new PropertyExpectations<HttpResponse>("StatusLine")
                 .TypeIs<StatusLine>()
+                .DefaultValueIsNull()
                 .ArgumentNullException()
                 .Set(new StatusLine("HTTP/1.1", 200, "OK"))
                 .IsNotDecorated()
@@ -73,7 +62,10 @@
         public void opImplicit_HttpResponse_string()
         {
             HttpResponse expected = "HTTP/1.1 200 OK";
-            HttpResponse actual = new HttpResponse(new StatusLine("HTTP/1.1", 200, "OK"), new HttpHeaderCollection());
+            HttpResponse actual = new HttpResponse
+            {
+                StatusLine = new StatusLine("HTTP/1.1", 200, "OK")
+            };
 
             Assert.Equal<HttpResponse>(expected, actual);
         }

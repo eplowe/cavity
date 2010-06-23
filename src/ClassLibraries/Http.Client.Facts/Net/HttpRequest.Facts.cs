@@ -25,15 +25,9 @@
         }
 
         [Fact]
-        public void ctor_RequestLineNull()
+        public void ctor()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpRequest(null as RequestLine));
-        }
-
-        [Fact]
-        public void ctor_RequestLine()
-        {
-            Assert.NotNull(new HttpRequest(new RequestLine("GET", "/", "HTTP/1.1")));
+            Assert.NotNull(new HttpRequest());
         }
 
         [Fact]
@@ -50,9 +44,12 @@
         {
             Uri expected = new Uri("http://www.example.com/");
 
-            var requestLine = new RequestLine("GET", expected.AbsoluteUri, "HTTP/1.1");
+            var obj = new HttpRequest
+            {
+                RequestLine = new RequestLine("GET", expected.AbsoluteUri, "HTTP/1.1")
+            };
 
-            Uri actual = new HttpRequest(requestLine).AbsoluteUri;
+            Uri actual = obj.AbsoluteUri;
 
             Assert.Equal<Uri>(expected, actual);
         }
@@ -62,6 +59,7 @@
         {
             Assert.NotNull(new PropertyExpectations<HttpRequest>("RequestLine")
                 .TypeIs<RequestLine>()
+                .DefaultValueIsNull()
                 .ArgumentNullException()
                 .Set(new RequestLine("GET", "/", "HTTP/1.1"))
                 .IsNotDecorated()
@@ -88,7 +86,7 @@
         public void opImplicit_HttpRequest_string()
         {
             HttpRequest expected = "GET / HTTP/1.1";
-            HttpRequest actual = new HttpRequest("GET / HTTP/1.1");
+            HttpRequest actual = new HttpRequest { RequestLine = "GET / HTTP/1.1" };
 
             Assert.Equal<HttpRequest>(expected, actual);
         }
@@ -282,9 +280,7 @@
         [Fact]
         public void op_Write_StreamWriterNull()
         {
-            var obj = new HttpRequest("GET / HTTP/1.1");
-
-            Assert.Throws<ArgumentNullException>(() => obj.Write(null as StreamWriter));
+            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Write(null as StreamWriter));
         }
 
         [Fact]

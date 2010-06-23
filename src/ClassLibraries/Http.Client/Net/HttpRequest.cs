@@ -8,24 +8,6 @@
     {
         private RequestLine _requestLine;
 
-        public HttpRequest()
-            : base()
-        {
-        }
-
-        public HttpRequest(RequestLine requestLine)
-            : this()
-        {
-            this.RequestLine = requestLine;
-        }
-
-        public HttpRequest(RequestLine requestLine, HttpHeaderCollection headers)
-            : this()
-        {
-            this.RequestLine = requestLine;
-            this.Headers = headers;
-        }
-
         public Uri AbsoluteUri
         {
             get
@@ -41,7 +23,7 @@
                 return this._requestLine;
             }
 
-            private set
+            set
             {
                 if (null == value)
                 {
