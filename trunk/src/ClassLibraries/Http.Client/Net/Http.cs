@@ -4,10 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Net.Sockets;
-    using System.Text;
-    using Cavity.Net.Mime;
     using Cavity.Net.Sockets;
-    using Microsoft.Practices.ServiceLocation;
 
     public sealed class Http : IHttp
     {
@@ -56,41 +53,14 @@
 
         private static IHttpResponse Read(Stream stream)
         {
-            HttpResponse response = null;
+            HttpResponse response = new HttpResponse();
 
             using (var reader = new StreamReader(stream))
             {
-                var status = Http.ReadStatusLine(reader);
-                var headers = Http.ReadHeaders(reader);
-                response = new HttpResponse(
-                    status,
-                    headers,
-                    ServiceLocator.Current.GetInstance<IMediaType>(headers.ContentType.MediaType).ToBody(reader));
+                response.Read(reader);
             }
 
             return response;
-        }
-
-        private static StatusLine ReadStatusLine(StreamReader reader)
-        {
-            return StatusLine.Parse(reader.ReadLine());
-        }
-
-        private static HttpHeaderCollection ReadHeaders(StreamReader reader)
-        {
-            StringBuilder buffer = new StringBuilder();
-            while (true)
-            {
-                string line = reader.ReadLine();
-                if (null == line || 0 == line.Length)
-                {
-                    break;
-                }
-
-                buffer.AppendLine(line);
-            }
-
-            return HttpHeaderCollection.Parse(buffer.ToString());
         }
     }
 }

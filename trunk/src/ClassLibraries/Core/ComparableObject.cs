@@ -106,5 +106,10 @@ namespace Cavity
 
             return null == value ? 0 : value.GetHashCode();
         }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }
