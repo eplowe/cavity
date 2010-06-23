@@ -81,7 +81,7 @@ namespace Cavity
             Exception exception = value as Exception;
             if (null != exception)
             {
-                using (MemoryStream stream = new MemoryStream())
+                using (var stream = new MemoryStream())
                 {
                     new SoapFormatter().Serialize(stream, value);
                     stream.Seek(0, SeekOrigin.Begin);

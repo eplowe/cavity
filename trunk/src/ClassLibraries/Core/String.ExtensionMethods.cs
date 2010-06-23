@@ -30,7 +30,7 @@
             }
 
             object result = null;
-            using (MemoryStream stream = new MemoryStream())
+            using (var stream = new MemoryStream())
             {
                 using (StreamWriter writer = new StreamWriter(stream))
                 {

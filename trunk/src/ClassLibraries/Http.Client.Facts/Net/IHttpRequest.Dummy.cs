@@ -22,7 +22,7 @@
             }
         }
 
-        IHttpHeaderCollection IHttpMessage.Headers
+        HttpHeaderCollection IHttpMessage.Headers
         {
             get
             {

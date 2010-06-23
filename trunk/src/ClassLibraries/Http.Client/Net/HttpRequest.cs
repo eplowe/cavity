@@ -1,11 +1,17 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
     public sealed class HttpRequest : HttpMessage, IHttpRequest
     {
         private RequestLine _requestLine;
+
+        public HttpRequest()
+            : base()
+        {
+        }
 
         public HttpRequest(RequestLine requestLine)
             : this()
@@ -13,9 +19,11 @@
             this.RequestLine = requestLine;
         }
 
-        private HttpRequest()
-            : base()
+        public HttpRequest(RequestLine requestLine, HttpHeaderCollection headers)
+            : this()
         {
+            this.RequestLine = requestLine;
+            this.Headers = headers;
         }
 
         public Uri AbsoluteUri
@@ -49,6 +57,7 @@
             return object.ReferenceEquals(null, value) ? null as HttpRequest : HttpRequest.Parse(value);
         }
 
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
         public static HttpRequest Parse(string value)
         {
             if (null == value)
@@ -56,7 +65,34 @@
                 throw new ArgumentNullException("value");
             }
 
-            return new HttpRequest(RequestLine.Parse(value));
+            var result = new HttpRequest();
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(value);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        result.Read(reader);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public override void Read(StreamReader reader)
+        {
+            if (null == reader)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
+            this.RequestLine = reader.ReadLine();
+            base.Read(reader);
         }
 
         public void Write(StreamWriter writer)
@@ -71,7 +107,7 @@
 
         public override string ToString()
         {
-            return this.RequestLine;
+            return string.Concat(this.RequestLine, Environment.NewLine, base.ToString());
         }
     }
 }

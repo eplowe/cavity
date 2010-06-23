@@ -67,7 +67,7 @@
             TestException expected = new TestException("test");
             TestException actual = null;
 
-            using (Stream stream = new MemoryStream())
+            using (var stream = new MemoryStream())
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(stream, new TestException("test"));

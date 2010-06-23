@@ -43,7 +43,7 @@
         {
             try
             {
-                IHttpHeaderCollection value = (new IHttpResponseDummy() as IHttpMessage).Headers;
+                HttpHeaderCollection value = (new IHttpResponseDummy() as IHttpMessage).Headers;
                 Assert.True(false);
             }
             catch (NotSupportedException)

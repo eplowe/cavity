@@ -18,7 +18,7 @@
             }
         }
 
-        public IHttpHeaderCollection Headers
+        public HttpHeaderCollection Headers
         {
             get
             {

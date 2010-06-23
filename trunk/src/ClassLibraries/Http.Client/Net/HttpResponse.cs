@@ -8,14 +8,14 @@
     {
         private StatusLine _statusLine;
 
-        public HttpResponse(StatusLine statusLine, IHttpHeaderCollection headers)
+        public HttpResponse(StatusLine statusLine, HttpHeaderCollection headers)
             : this()
         {
             this.StatusLine = statusLine;
             this.Headers = headers;
         }
 
-        public HttpResponse(StatusLine statusLine, IHttpHeaderCollection headers, IContent body)
+        public HttpResponse(StatusLine statusLine, HttpHeaderCollection headers, IContent body)
             : base(headers, body)
         {
             this.StatusLine = statusLine;

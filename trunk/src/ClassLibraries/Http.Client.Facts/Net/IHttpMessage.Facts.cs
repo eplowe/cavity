@@ -26,11 +26,11 @@
         }
 
         [Fact]
-        public void IHttpHeaderCollection_Headers_get()
+        public void HttpHeaderCollection_Headers_get()
         {
             try
             {
-                IHttpHeaderCollection value = (new IHttpMessageDummy() as IHttpMessage).Headers;
+                HttpHeaderCollection value = (new IHttpMessageDummy() as IHttpMessage).Headers;
                 Assert.True(false);
             }
             catch (NotSupportedException)

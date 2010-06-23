@@ -8,7 +8,6 @@
     public abstract class Text : ComparableObject
     {
         private ContentType _contentType;
-        private string _value;
 
         protected Text(ContentType contentType, string value)
             : this()
@@ -42,20 +41,8 @@
 
         public string Value
         {
-            get
-            {
-                return this._value;
-            }
-
-            protected set
-            {
-                if (null == value)
-                {
-                    throw new ArgumentNullException("value");
-                }
-
-                this._value = value;
-            }
+            get;
+            protected set;
         }
 
         public override string ToString()

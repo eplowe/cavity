@@ -3,9 +3,11 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.IO;
     using System.Net.Mime;
     using System.Text;
     using Cavity;
+    using Cavity.Net.Mime;
     using Xunit;
 
     public sealed class HttpHeaderCollectionFacts
@@ -19,7 +21,8 @@
                 .IsSealed()
                 .HasDefaultConstructor()
                 .Implements<IComparable>()
-                .Implements<IHttpHeaderCollection>()
+                .Implements<ICollection<IHttpHeader>>()
+                .Implements<IContentType>()
                 .Result);
         }
 
@@ -196,6 +199,40 @@
         }
 
         [Fact]
+        public void op_ContainsName_Token_whenTrue()
+        {
+            var item = new HttpHeader("name", "value");
+            var obj = new HttpHeaderCollection
+            {
+                { item }
+            };
+
+            Assert.True(obj.ContainsName("name"));
+        }
+
+        [Fact]
+        public void op_ContainsName_Token_whenFalse()
+        {
+            var obj = new HttpHeaderCollection
+            {
+                { new HttpHeader("foo", "value") }
+            };
+
+            Assert.False(obj.ContainsName("bar"));
+        }
+
+        [Fact]
+        public void op_ContainsName_TokenNull()
+        {
+            var obj = new HttpHeaderCollection
+            {
+                { new HttpHeader("name", "foo") }
+            };
+
+            Assert.Throws<ArgumentNullException>(() => obj.ContainsName(null as string));
+        }
+
+        [Fact]
         public void op_Contains_IHttpHeader_whenTrue()
         {
             var item = new HttpHeader("name", "value");
@@ -319,6 +356,59 @@
             int actual = obj.GetHashCode();
 
             Assert.Equal<int>(expected, actual);
+        }
+
+        [Fact]
+        public void op_Read_StreamReader()
+        {
+            HttpMessage message = new DerivedHttpMessage();
+            HttpHeader connection = "Connection: close";
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine(connection);
+                    writer.WriteLine(string.Empty);
+                    writer.WriteLine("body");
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        message.Read(reader);
+                    }
+                }
+            }
+
+            Assert.Equal<int>(1, message.Headers.Count);
+            Assert.True(message.Headers.Contains(connection));
+        }
+
+        [Fact]
+        public void op_Read_StreamReaderEmpty()
+        {
+            var obj = new HttpHeaderCollection();
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        obj.Read(reader);
+                    }
+                }
+            }
+
+            Assert.Empty(obj);
+        }
+
+        [Fact]
+        public void op_Read_StreamReaderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HttpHeaderCollection().Read(null as StreamReader));
         }
 
         [Fact]

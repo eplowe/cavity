@@ -50,7 +50,7 @@
         {
             try
             {
-                IHttpHeaderCollection value = (new IHttpRequestDummy() as IHttpMessage).Headers;
+                HttpHeaderCollection value = (new IHttpRequestDummy() as IHttpMessage).Headers;
                 Assert.True(false);
             }
             catch (NotSupportedException)

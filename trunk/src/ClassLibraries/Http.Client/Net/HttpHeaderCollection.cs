@@ -4,11 +4,14 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Linq;
     using System.Net.Mime;
     using System.Text;
+    using Cavity.Net.Mime;
 
-    public sealed class HttpHeaderCollection : ComparableObject, IHttpHeaderCollection
+    public sealed class HttpHeaderCollection : ComparableObject, ICollection<IHttpHeader>, IContentType
     {
         private Collection<IHttpHeader> _collection;
         
@@ -75,6 +78,7 @@
             return object.ReferenceEquals(null, value) ? null as HttpHeaderCollection : HttpHeaderCollection.Parse(value);
         }
 
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
         public static HttpHeaderCollection Parse(string value)
         {
             if (null == value)
@@ -84,14 +88,18 @@
 
             var result = new HttpHeaderCollection();
 
-            foreach (var line in value.Split(new string[] { Environment.NewLine }, StringSplitOptions.None))
+            using (var stream = new MemoryStream())
             {
-                if (0 == line.Length)
+                using (var writer = new StreamWriter(stream))
                 {
-                    break;
+                    writer.Write(value);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        result.Read(reader);
+                    }
                 }
-
-                result.Add(HttpHeader.Parse(line));
             }
 
             return result;
@@ -117,6 +125,16 @@
             return this._collection.Contains(item);
         }
 
+        public bool ContainsName(Token name)
+        {
+            if (null == name)
+            {
+                throw new ArgumentNullException("name");
+            }
+
+            return 0 != this._collection.Where(x => x.Name.Equals(name)).Count();
+        }
+
         public void CopyTo(IHttpHeader[] array, int arrayIndex)
         {
             this._collection.CopyTo(array, arrayIndex);
@@ -125,6 +143,25 @@
         public IEnumerator<IHttpHeader> GetEnumerator()
         {
             return this._collection.GetEnumerator();
+        }
+
+        public void Read(TextReader reader)
+        {
+            if (null == reader)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
+            while (true)
+            {
+                string line = reader.ReadLine();
+                if (null == line || 0 == line.Length)
+                {
+                    break;
+                }
+
+                this.Add(HttpHeader.Parse(line));
+            }
         }
 
         public bool Remove(IHttpHeader item)

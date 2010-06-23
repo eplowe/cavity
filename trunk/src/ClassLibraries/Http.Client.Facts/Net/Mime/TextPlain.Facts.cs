@@ -30,7 +30,7 @@
         [Fact]
         public void ctor_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new TextPlain(null as string));
+            Assert.NotNull(new TextPlain(null as string));
         }
 
         [Fact]
@@ -93,6 +93,71 @@
             TextPlain actual = TextPlain.Parse("value");
 
             Assert.Equal<TextPlain>(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToBody_StreamReader()
+        {
+            IContent body = null;
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write("text");
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        body = new TextPlain().ToBody(reader);
+                    }
+                }
+            }
+
+            Assert.Equal<string>("text", (body as TextPlain).Value);
+        }
+
+        [Fact]
+        public void op_ToBody_StreamReader_whenStringEmpty()
+        {
+            IContent body = null;
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(string.Empty);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        body = new TextPlain().ToBody(reader);
+                    }
+                }
+            }
+
+            Assert.Null((body as TextPlain).Value);
+        }
+
+        [Fact]
+        public void op_ToBody_StreamReaderEmpty()
+        {
+            IContent body = null;
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        body = new TextPlain().ToBody(reader);
+                    }
+                }
+            }
+
+            Assert.Null((body as TextPlain).Value);
         }
 
         [Fact]
