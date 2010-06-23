@@ -22,19 +22,19 @@
         [Fact]
         public void ctor_StatusLineNull_IHttpHeaderCollection()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpResponse(null as StatusLine, new IHttpHeaderCollectionDummy()));
+            Assert.Throws<ArgumentNullException>(() => new HttpResponse(null as StatusLine, new HttpHeaderCollection()));
         }
 
         [Fact]
         public void ctor_StatusLine_IHttpHeaderCollectionNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpResponse(new StatusLine("HTTP/1.1", 200, "OK"), null as IHttpHeaderCollection));
+            Assert.Throws<ArgumentNullException>(() => new HttpResponse(new StatusLine("HTTP/1.1", 200, "OK"), null as HttpHeaderCollection));
         }
 
         [Fact]
         public void ctor_StatusLine_IHttpHeaderCollection()
         {
-            Assert.NotNull(new HttpResponse(new StatusLine("HTTP/1.1", 200, "OK"), new IHttpHeaderCollectionDummy()));
+            Assert.NotNull(new HttpResponse(new StatusLine("HTTP/1.1", 200, "OK"), new HttpHeaderCollection()));
         }
 
         [Fact]

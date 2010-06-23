@@ -58,11 +58,11 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Net\HttpDate.cs" />
     <Compile Include="Net\Mime\Text.cs" />
     <Compile Include="Net\HttpMessage.cs" />
     <Compile Include="Net\Mime\IContentType.cs" />
     <Compile Include="Net\Mime\IMediaType.cs" />
-    <Compile Include="Net\IHttpHeaderCollection.cs" />
     <Compile Include="Net\IHttpMessage.cs" />
     <Compile Include="Net\Mime\IContent.cs" />
     <Compile Include="Net\IHttpHeader.cs" />

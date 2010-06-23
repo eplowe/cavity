@@ -6,6 +6,6 @@
     {
         IContent Body { get; }
 
-        IHttpHeaderCollection Headers { get; }
+        HttpHeaderCollection Headers { get; }
     }
 }

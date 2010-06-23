@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Net.Sockets;
     using System.Text;
@@ -35,6 +36,7 @@
             return response;
         }
 
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
         private static IHttpResponse Send(IHttpRequest request, TcpClient client)
         {
             IHttpResponse response = null;
@@ -60,7 +62,6 @@
             {
                 var status = Http.ReadStatusLine(reader);
                 var headers = Http.ReadHeaders(reader);
-
                 response = new HttpResponse(
                     status,
                     headers,

@@ -32,7 +32,7 @@
         [Fact]
         public void ctor_ContentType_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new DerivedText(new ContentType("text/plain"), null as string));
+            Assert.NotNull(new DerivedText(new ContentType("text/plain"), null as string));
         }
 
         [Fact]
@@ -56,9 +56,7 @@
         public void prop_Value()
         {
             Assert.NotNull(new PropertyExpectations<DerivedText>("Value")
-                .TypeIs<string>()
-                .ArgumentNullException()
-                .Set("value")
+                .IsAutoProperty<string>()
                 .IsNotDecorated()
                 .Result);
         }

@@ -64,6 +64,7 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Net\HttpDate.Facts.cs" />
     <Compile Include="Net\Mime\Text.Derived.cs" />
     <Compile Include="Net\Mime\Text.Facts.cs" />
     <Compile Include="Net\HttpMessage.Derived.cs" />
@@ -72,8 +73,6 @@
     <Compile Include="Net\Mime\IContentType.Dummy.cs" />
     <Compile Include="Net\Mime\IMediaType.Facts.cs" />
     <Compile Include="Net\Mime\IMediaType.Dummy.cs" />
-    <Compile Include="Net\IHttpHeaderCollection.Facts.cs" />
-    <Compile Include="Net\IHttpHeaderCollection.Dummy.cs" />
     <Compile Include="Net\IHttpMessage.Facts.cs" />
     <Compile Include="Net\IHttpMessage.Dummy.cs" />
     <Compile Include="Net\Mime\IContent.Facts.cs" />

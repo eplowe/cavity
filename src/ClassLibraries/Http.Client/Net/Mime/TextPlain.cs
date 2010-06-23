@@ -7,7 +7,7 @@
     public sealed class TextPlain : Text, IContent, IMediaType
     {
         public TextPlain()
-            : this(string.Empty)
+            : this(null as string)
         {
         }
 
@@ -38,7 +38,7 @@
                 throw new ArgumentNullException("reader");
             }
 
-            throw new NotSupportedException();
+            return new TextPlain(reader.EndOfStream ? null as string : reader.ReadToEnd());
         }
 
         public void Write(StreamWriter writer)
