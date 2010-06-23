@@ -1,12 +1,18 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using System.Text;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using Cavity.Net.Mime;
 
     public sealed class HttpResponse : HttpMessage, IHttpResponse
     {
         private StatusLine _statusLine;
+
+        public HttpResponse()
+            : base()
+        {
+        }
 
         public HttpResponse(StatusLine statusLine, HttpHeaderCollection headers)
             : this()
@@ -19,11 +25,6 @@
             : base(headers, body)
         {
             this.StatusLine = statusLine;
-        }
-
-        private HttpResponse()
-            : base()
-        {
         }
 
         public StatusLine StatusLine
@@ -49,6 +50,7 @@
             return object.ReferenceEquals(null, value) ? null as HttpResponse : HttpResponse.Parse(value);
         }
 
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
         public static HttpResponse Parse(string value)
         {
             if (null == value)
@@ -60,37 +62,39 @@
                 throw new ArgumentOutOfRangeException("value");
             }
 
-            string[] lines = value.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            var result = new HttpResponse();
 
-            StringBuilder headers = new StringBuilder();
-            StringBuilder body = null;
-            for (int i = 1; i < lines.Length; i++)
+            using (var stream = new MemoryStream())
             {
-                if (null == body)
+                using (var writer = new StreamWriter(stream))
                 {
-                    if (0 == lines[i].Length)
+                    writer.Write(value);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
                     {
-                        body = new StringBuilder();
+                        result.Read(reader);
                     }
-                    else
-                    {
-                        headers.AppendLine(lines[i]);
-                    }
-                }
-                else
-                {
-                    body.AppendLine(lines[i]);
                 }
             }
 
-            return new HttpResponse(
-                StatusLine.Parse(lines[0]),
-                HttpHeaderCollection.Parse(headers.ToString()));
+            return result;
+        }
+
+        public override void Read(StreamReader reader)
+        {
+            if (null == reader)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
+            this.StatusLine = reader.ReadLine();
+            base.Read(reader);
         }
 
         public override string ToString()
         {
-            return this.StatusLine;
+            return string.Concat(this.StatusLine, Environment.NewLine, base.ToString());
         }
     }
 }

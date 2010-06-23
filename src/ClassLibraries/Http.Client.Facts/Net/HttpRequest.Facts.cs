@@ -81,7 +81,7 @@
         {
             HttpRequest expected;
 
-            Assert.Throws<ArgumentNullException>(() => expected = string.Empty);
+            Assert.Throws<ArgumentOutOfRangeException>(() => expected = string.Empty);
         }
 
         [Fact]
@@ -102,7 +102,7 @@
         [Fact]
         public void op_Parse_stringEmpty()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpRequest.Parse(string.Empty));
+            Assert.Throws<ArgumentOutOfRangeException>(() => HttpRequest.Parse(string.Empty));
         }
 
         [Fact]
@@ -129,7 +129,7 @@
         public void op_Parse_string_whenPost()
         {
             RequestLine requestLine = "POST / HTTP/1.1";
-            HttpHeader contentLength = "Content-Length: 7";
+            HttpHeader contentLength = "Content-Length: 4";
             HttpHeader contentType = "Content-Type: text/plain; charset=UTF-8";
             HttpHeader host = "Host: www.example.com";
             HttpHeader connection = "Connection: keep-alive";
@@ -207,7 +207,7 @@
         {
             var request = new HttpRequest();
             RequestLine requestLine = "POST / HTTP/1.1";
-            HttpHeader contentLength = "Content-Length: 7";
+            HttpHeader contentLength = "Content-Length: 4";
             HttpHeader contentType = "Content-Type: text/plain; charset=UTF-8";
             HttpHeader host = "Host: www.example.com";
             HttpHeader connection = "Connection: keep-alive";
@@ -228,7 +228,7 @@
                         writer.WriteLine(host);
                         writer.WriteLine(connection);
                         writer.WriteLine(string.Empty);
-                        writer.WriteLine("body");
+                        writer.Write("text");
                         writer.Flush();
                         stream.Position = 0;
                         using (var reader = new StreamReader(stream))
@@ -253,7 +253,7 @@
             Assert.True(request.Headers.Contains(host));
             Assert.True(request.Headers.Contains(connection));
 
-            Assert.NotNull(request.Body);
+            Assert.Equal<string>("text", (request.Body as TextPlain).Value);
         }
 
         [Fact]

@@ -64,6 +64,10 @@
             {
                 throw new ArgumentNullException("value");
             }
+            else if (0 == value.Length)
+            {
+                throw new ArgumentOutOfRangeException("value");
+            }
 
             var result = new HttpRequest();
 
