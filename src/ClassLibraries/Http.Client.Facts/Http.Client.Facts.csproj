@@ -65,8 +65,6 @@
       <Link>Properties\Cavity.cs</Link>
     </Compile>
     <Compile Include="Net\HttpDate.Facts.cs" />
-    <Compile Include="Net\Mime\Text.Derived.cs" />
-    <Compile Include="Net\Mime\Text.Facts.cs" />
     <Compile Include="Net\HttpMessage.Derived.cs" />
     <Compile Include="Net\HttpMessage.Facts.cs" />
     <Compile Include="Net\Mime\IContentType.Facts.cs" />
@@ -88,7 +86,8 @@
     <Compile Include="Net\HttpRequest.Facts.cs" />
     <Compile Include="Net\HttpResponse.Facts.cs" />
     <Compile Include="Net\HttpVersion.Facts.cs" />
-    <Compile Include="Net\Mime\TextPlain.Facts.cs" />
+    <Compile Include="Xml\ApplicationXml.Facts.cs" />
+    <Compile Include="Text\TextPlain.Facts.cs" />
     <Compile Include="Net\RequestLine.Facts.cs" />
     <Compile Include="Net\StatusLine.Facts.cs" />
     <Compile Include="Net\Token.Facts.cs" />

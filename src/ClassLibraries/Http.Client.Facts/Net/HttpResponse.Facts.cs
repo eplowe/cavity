@@ -5,6 +5,7 @@
     using System.Text;
     using Cavity;
     using Cavity.Net.Mime;
+    using Cavity.Text;
     using Microsoft.Practices.ServiceLocation;
     using Moq;
     using Xunit;

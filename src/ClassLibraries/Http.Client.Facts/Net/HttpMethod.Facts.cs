@@ -37,6 +37,54 @@
         }
 
         [Fact]
+        public void prop_Connect()
+        {
+            Assert.Equal<HttpMethod>("CONNECT", HttpMethod.Connect);
+        }
+
+        [Fact]
+        public void prop_Delete()
+        {
+            Assert.Equal<HttpMethod>("DELETE", HttpMethod.Delete);
+        }
+
+        [Fact]
+        public void prop_Get()
+        {
+            Assert.Equal<HttpMethod>("GET", HttpMethod.Get);
+        }
+
+        [Fact]
+        public void prop_Head()
+        {
+            Assert.Equal<HttpMethod>("HEAD", HttpMethod.Head);
+        }
+
+        [Fact]
+        public void prop_Post()
+        {
+            Assert.Equal<HttpMethod>("POST", HttpMethod.Post);
+        }
+
+        [Fact]
+        public void prop_Put()
+        {
+            Assert.Equal<HttpMethod>("PUT", HttpMethod.Put);
+        }
+
+        [Fact]
+        public void prop_Options()
+        {
+            Assert.Equal<HttpMethod>("OPTIONS", HttpMethod.Options);
+        }
+
+        [Fact]
+        public void prop_Trace()
+        {
+            Assert.Equal<HttpMethod>("TRACE", HttpMethod.Trace);
+        }
+
+        [Fact]
         public void prop_Value()
         {
             Assert.True(new PropertyExpectations<HttpMethod>("Value")
