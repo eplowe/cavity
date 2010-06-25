@@ -1,8 +1,10 @@
-﻿namespace Cavity.Net.Mime
+﻿namespace Cavity.Text
 {
     using System;
     using System.IO;
+    using System.Net.Mime;
     using Cavity;
+    using Cavity.Net.Mime;
     using Xunit;
 
     public sealed class TextPlainFacts
@@ -11,7 +13,7 @@
         public void type_definition()
         {
             Assert.True(new TypeExpectations<TextPlain>()
-                .DerivesFrom<Text>()
+                .DerivesFrom<ComparableObject>()
                 .IsConcreteClass()
                 .IsSealed()
                 .HasDefaultConstructor()
@@ -43,6 +45,37 @@
         public void ctor_string()
         {
             Assert.NotNull(new TextPlain("value"));
+        }
+
+        [Fact]
+        public void prop_Content()
+        {
+            Assert.NotNull(new PropertyExpectations<TextPlain>("Content")
+                .IsAutoProperty<object>()
+                .ArgumentOutOfRangeException(1234)
+                .Set("value")
+                .IsNotDecorated()
+                .Result);
+        }
+
+        [Fact]
+        public void prop_ContentType()
+        {
+            Assert.NotNull(new PropertyExpectations<TextPlain>("ContentType")
+                .TypeIs<ContentType>()
+                .ArgumentNullException()
+                .Set(new ContentType("text/plain"))
+                .IsNotDecorated()
+                .Result);
+        }
+
+        [Fact]
+        public void prop_Value()
+        {
+            Assert.NotNull(new PropertyExpectations<TextPlain>("Value")
+                .IsAutoProperty<string>()
+                .IsNotDecorated()
+                .Result);
         }
 
         [Fact]
@@ -188,6 +221,21 @@
         public void op_Write_TextWriterNull()
         {
             Assert.Throws<ArgumentNullException>(() => new TextPlain().Write(null as TextWriter));
+        }
+
+        [Fact]
+        public void op_ToString()
+        {
+            Assert.Null(new TextPlain().ToString());
+        }
+
+        [Fact]
+        public void op_ToString_whenNotNull()
+        {
+            string expected = "value";
+            string actual = new TextPlain(expected).ToString();
+
+            Assert.Equal<string>(expected, actual);
         }
     }
 }
