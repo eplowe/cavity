@@ -4,10 +4,8 @@
 	
 	<PropertyGroup>
 		<Configuration Condition="'$(Configuration)'==''">Release</Configuration>
-		<Version>1.0.0</Version>
+		<Version Condition="'$(Version)'==''">1.0.0</Version>
 		<Revision>0</Revision>
-		<Build>0</Build>
-		<SubversionDirectory>C:\Program Files (x86)\CollabNet Subversion Client</SubversionDirectory>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -35,15 +33,12 @@
 		<SvnVersion LocalPath=".">
 			<Output TaskParameter="Revision" PropertyName="Revision" />
 		</SvnVersion>
-		<Math.Add Numbers="$(Revision);1">
-			<Output TaskParameter="Result" PropertyName="Build" />
-		</Math.Add>
 		<AssemblyInfo
 			CodeLanguage="CS"
 			OutputFile="$(MSBuildProjectDirectory)\src\Build.cs"
-			AssemblyVersion="$(Version).$(Build)"
-			AssemblyFileVersion="$(Version).$(Build)"
-			AssemblyInformationalVersion="$(Version).$(Build)"
+			AssemblyVersion="$(Version).$(Revision)"
+			AssemblyFileVersion="$(Version).$(Revision)"
+			AssemblyInformationalVersion="$(Version).$(Revision)"
 			/>
 	</Target>
 	
