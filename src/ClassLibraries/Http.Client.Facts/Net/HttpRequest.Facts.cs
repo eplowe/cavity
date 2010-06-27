@@ -165,7 +165,11 @@
             try
             {
                 var locator = new Mock<IServiceLocator>();
-                locator.Setup(e => e.GetInstance<IMediaType>("text/plain")).Returns(new TextPlain()).Verifiable();
+                locator
+                    .Setup(e => e.GetInstance<IMediaType>("text/plain"))
+                    .Returns(new TextPlain())
+                    .Verifiable();
+                
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
                 obj = HttpRequest.Parse(value.ToString());
@@ -233,7 +237,11 @@
             try
             {
                 var locator = new Mock<IServiceLocator>();
-                locator.Setup(e => e.GetInstance<IMediaType>("text/plain")).Returns(new TextPlain()).Verifiable();
+                locator
+                    .Setup(e => e.GetInstance<IMediaType>("text/plain"))
+                    .Returns(new TextPlain())
+                    .Verifiable();
+                
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
                 using (var stream = new MemoryStream())
@@ -339,7 +347,11 @@
             try
             {
                 var locator = new Mock<IServiceLocator>();
-                locator.Setup(e => e.GetInstance<IMediaType>("text/plain")).Returns(new TextPlain()).Verifiable();
+                locator
+                    .Setup(e => e.GetInstance<IMediaType>("text/plain"))
+                    .Returns(new TextPlain())
+                    .Verifiable();
+                
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
                 obj = HttpRequest.Parse(expected.ToString());
@@ -402,7 +414,11 @@
             try
             {
                 var locator = new Mock<IServiceLocator>();
-                locator.Setup(e => e.GetInstance<IMediaType>("text/plain")).Returns(new TextPlain()).Verifiable();
+                locator
+                    .Setup(e => e.GetInstance<IMediaType>("text/plain"))
+                    .Returns(new TextPlain())
+                    .Verifiable();
+                
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
                 actual = HttpRequest.Parse(expected.ToString()).ToString();

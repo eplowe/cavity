@@ -54,7 +54,7 @@
 
 	<PropertyGroup>
 		<WebApplicationName>cavity.example.net</WebApplicationName>
-		<WebApplicationPath>$(MSBuildProjectDirectory)\src\Web Applications\Http.Client.Server</WebApplicationPath>
+		<WebApplicationPath>$(MSBuildProjectDirectory)\src\WebApplications\Http.Client.Server</WebApplicationPath>
 	</PropertyGroup>
 
 	<Target Name="Deploy">

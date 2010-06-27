@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using System.Globalization;
     using System.IO;
     using System.Text;
     using Cavity;
@@ -76,6 +77,44 @@
         }
 
         [Fact]
+        public void op_Read_TextReader_whenUndefinedMediaType()
+        {
+            StringBuilder expected = new StringBuilder();
+            expected.AppendLine("Content-Length: 4");
+            expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
+            expected.AppendLine("Host: www.example.com");
+            expected.AppendLine("Connection: keep-alive");
+            expected.AppendLine(string.Empty);
+            expected.Append("text");
+
+            try
+            {
+                var locator = new Mock<IServiceLocator>();
+                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+
+                using (var stream = new MemoryStream())
+                {
+                    using (var writer = new StreamWriter(stream))
+                    {
+                        writer.WriteLine(expected);
+                        writer.Flush();
+                        stream.Position = 0;
+                        using (var reader = new StreamReader(stream))
+                        {
+                            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Read(reader));
+                        }
+                    }
+                }
+
+                locator.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
+            }
+        }
+
+        [Fact]
         public void op_Read_TextReaderEmpty()
         {
             HttpMessage message = new DerivedHttpMessage();
@@ -103,6 +142,67 @@
         }
 
         [Fact]
+        public void op_Write_TextWriter()
+        {
+            StringBuilder expected = new StringBuilder();
+            expected.AppendLine("Content-Length: 4");
+            expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
+            expected.AppendLine("Host: www.example.com");
+            expected.AppendLine("Connection: keep-alive");
+            expected.AppendLine(string.Empty);
+            expected.Append("text");
+
+            HttpMessage obj = new DerivedHttpMessage();
+
+            try
+            {
+                var locator = new Mock<IServiceLocator>();
+                locator
+                    .Setup(e => e.GetInstance<IMediaType>("text/plain"))
+                    .Returns(new TextPlain())
+                    .Verifiable();
+                
+                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+
+                using (var stream = new MemoryStream())
+                {
+                    using (var writer = new StreamWriter(stream))
+                    {
+                        writer.Write(expected);
+                        writer.Flush();
+                        stream.Position = 0;
+                        using (var reader = new StreamReader(stream))
+                        {
+                            obj.Read(reader);
+                        }
+                    }
+                }
+
+                locator.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
+            }
+
+            StringBuilder actual = new StringBuilder();
+
+            using (var writer = new StringWriter(actual, CultureInfo.InvariantCulture))
+            {
+                obj.Write(writer);
+                writer.Flush();
+            }
+
+            Assert.Equal<string>(expected.ToString(), actual.ToString());
+        }
+
+        [Fact]
+        public void op_Write_TextWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Write(null as TextWriter));
+        }
+
+        [Fact]
         public void op_ToString()
         {
             StringBuilder expected = new StringBuilder();
@@ -118,7 +218,11 @@
             try
             {
                 var locator = new Mock<IServiceLocator>();
-                locator.Setup(e => e.GetInstance<IMediaType>("text/plain")).Returns(new TextPlain()).Verifiable();
+                locator
+                    .Setup(e => e.GetInstance<IMediaType>("text/plain"))
+                    .Returns(new TextPlain())
+                    .Verifiable();
+                
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
                 using (var stream = new MemoryStream())

@@ -41,18 +41,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\..\lib\trove\Framework\v3.5\Castle.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\trove\Framework\v3.5\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\trove\Framework\v3.5\Castle.DynamicProxy2.dll</HintPath>
     </Reference>
     <Reference Include="Castle.MicroKernel">
-      <HintPath>..\..\lib\trove\Framework\v3.5\Castle.MicroKernel.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\trove\Framework\v3.5\Castle.MicroKernel.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\..\lib\trove\Framework\v3.5\Castle.Windsor.dll</HintPath>
-    </Reference>
-    <Reference Include="CommonServiceLocator.WindsorAdapter">
-      <HintPath>..\..\lib\trove\Framework\v3.5\CommonServiceLocator.WindsorAdapter.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\trove\Framework\v3.5\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation" />
+    <Reference Include="Moq">
+      <HintPath>..\..\..\lib\trove\Framework\v3.5\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
@@ -69,6 +76,7 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Net\HttpClient.Facts.cs" />
     <Compile Include="PlainTxt.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

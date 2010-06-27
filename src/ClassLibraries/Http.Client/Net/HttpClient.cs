@@ -21,7 +21,9 @@
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<IUserAgent>().Value;
+                var userAgent = ServiceLocator.Current.GetInstance<IUserAgent>();
+
+                return null == userAgent ? new UserAgent().Value : userAgent.Value;
             }
         }
 

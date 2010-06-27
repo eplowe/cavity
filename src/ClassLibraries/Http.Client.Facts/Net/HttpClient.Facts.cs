@@ -56,13 +56,42 @@
         {
             try
             {
+                var locator = new Mock<IServiceLocator>();
+                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+
+                Assert.NotNull(new PropertyExpectations<HttpClient>("UserAgent")
+                    .TypeIs<string>()
+                    .DefaultValueIs(UserAgent.Format())
+                    .IsNotDecorated()
+                    .Result);
+
+                locator.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
+            }
+        }
+
+        [Fact]
+        public void prop_UserAgent_whenInjected()
+        {
+            try
+            {
                 string value = "user agent";
 
                 var userAgent = new Mock<IUserAgent>();
-                userAgent.SetupGet<string>(x => x.Value).Returns(value).Verifiable();
+                userAgent
+                    .SetupGet<string>(x => x.Value)
+                    .Returns(value)
+                    .Verifiable();
 
                 var locator = new Mock<IServiceLocator>();
-                locator.Setup(e => e.GetInstance<IUserAgent>()).Returns(userAgent.Object).Verifiable();
+                locator
+                    .Setup(e => e.GetInstance<IUserAgent>())
+                    .Returns(userAgent.Object)
+                    .Verifiable();
+                
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
                 Assert.NotNull(new PropertyExpectations<HttpClient>("UserAgent")
@@ -92,7 +121,11 @@
                     .Verifiable();
 
                 var locator = new Mock<IServiceLocator>();
-                locator.Setup(e => e.GetInstance<IMediaType>("text/html")).Returns(media.Object).Verifiable();
+                locator
+                    .Setup(e => e.GetInstance<IMediaType>("text/html"))
+                    .Returns(media.Object)
+                    .Verifiable();
+                
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
                 HttpRequest request =
@@ -130,13 +163,20 @@
                 string expected = "user agent";
 
                 var userAgent = new Mock<IUserAgent>();
-                userAgent.SetupGet<string>(x => x.Value).Returns(expected).Verifiable();
+                userAgent
+                    .SetupGet<string>(x => x.Value)
+                    .Returns(expected)
+                    .Verifiable();
 
                 var locator = new Mock<IServiceLocator>();
-                locator.Setup(e => e.GetInstance<IUserAgent>()).Returns(userAgent.Object).Verifiable();
+                locator
+                    .Setup(e => e.GetInstance<IUserAgent>())
+                    .Returns(userAgent.Object)
+                    .Verifiable();
+                
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
-                string actual = new HttpClient().UserAgent;
+                string actual = new HttpClient().ToString();
 
                 Assert.Equal<string>(expected, actual);
 

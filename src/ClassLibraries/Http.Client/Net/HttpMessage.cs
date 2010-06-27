@@ -70,7 +70,9 @@
             var contentType = headers.ContentType;
             if (null != contentType)
             {
-                this.Body = ServiceLocator.Current.GetInstance<IMediaType>(contentType.MediaType).ToContent(reader);
+                this.Body = HttpMessage.ToContent(
+                    reader, 
+                    ServiceLocator.Current.GetInstance<IMediaType>(contentType.MediaType));
             }
         }
 
@@ -100,6 +102,16 @@
             }
 
             return buffer.ToString();
+        }
+
+        private static IContent ToContent(TextReader reader, IMediaType mediaType)
+        {
+            if (null == mediaType)
+            {
+                throw new ArgumentNullException("mediaType");
+            }
+
+            return mediaType.ToContent(reader);
         }
     }
 }
