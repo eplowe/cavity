@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net.Sockets
 {
     using System;
+    using System.Net;
     using System.Net.Sockets;
 
     public static class UriExtensionMethods
@@ -16,7 +17,13 @@
                 throw new ArgumentOutOfRangeException("absoluteUri");
             }
 
-            return new TcpClient(absoluteUri.DnsSafeHost, absoluteUri.Port);
+            Uri proxy = null;
+            using (var web = new WebClient())
+            {
+                proxy = web.Proxy.GetProxy(absoluteUri);
+            }
+
+            return new TcpClient(proxy.DnsSafeHost, proxy.Port);
         }
     }
 }

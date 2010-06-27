@@ -21,7 +21,9 @@
             try
             {
                 client = request.AbsoluteUri.ToTcpClient();
-                client.SendTimeout = 10000;
+                client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+                client.NoDelay = true;
+                
                 result = Http.Send(request, client);
             }
             finally
