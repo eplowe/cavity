@@ -20,6 +20,7 @@
             try
             {
                 client = request.AbsoluteUri.ToTcpClient();
+                client.SendTimeout = 10000;
                 response = Http.Send(request, client);
             }
             finally

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0A237283-3525-405E-B571-79D40170C763}</ProjectGuid>
+    <ProjectGuid>{513E2CF7-8C8E-4321-84BD-5663AE3F58C1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cavity</RootNamespace>
-    <AssemblyName>Cavity.Http.Client.Facts</AssemblyName>
+    <AssemblyName>Cavity.Http.Client.Server.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -23,8 +23,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,8 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -44,10 +40,19 @@
     <AssemblyOriginatorKeyFile>..\..\Cavity.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation" />
-    <Reference Include="Moq">
-      <HintPath>..\..\..\lib\trove\Framework\v3.5\Moq.dll</HintPath>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\lib\trove\Framework\v3.5\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.MicroKernel">
+      <HintPath>..\..\lib\trove\Framework\v3.5\Castle.MicroKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\lib\trove\Framework\v3.5\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator.WindsorAdapter">
+      <HintPath>..\..\lib\trove\Framework\v3.5\CommonServiceLocator.WindsorAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
@@ -64,44 +69,7 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
-    <Compile Include="Net\HttpDate.Facts.cs" />
-    <Compile Include="Net\HttpMessage.Derived.cs" />
-    <Compile Include="Net\HttpMessage.Facts.cs" />
-    <Compile Include="Net\Mime\IContentType.Facts.cs" />
-    <Compile Include="Net\Mime\IContentType.Dummy.cs" />
-    <Compile Include="Net\Mime\IMediaType.Facts.cs" />
-    <Compile Include="Net\Mime\IMediaType.Dummy.cs" />
-    <Compile Include="Net\IHttpMessage.Facts.cs" />
-    <Compile Include="Net\IHttpMessage.Dummy.cs" />
-    <Compile Include="Net\Mime\IContent.Facts.cs" />
-    <Compile Include="Net\Mime\IContent.Dummy.cs" />
-    <Compile Include="Net\IHttpHeader.Facts.cs" />
-    <Compile Include="Net\IHttpHeader.Dummy.cs" />
-    <Compile Include="Net\Http.Facts.cs" />
-    <Compile Include="Net\HttpHeader.Facts.cs" />
-    <Compile Include="Net\HttpHeaderCollection.Facts.cs" />
-    <Compile Include="Net\IHttp.Facts.cs" />
-    <Compile Include="Net\IHttp.Dummy.cs" />
-    <Compile Include="Net\HttpMethod.Facts.cs" />
-    <Compile Include="Net\HttpRequest.Facts.cs" />
-    <Compile Include="Net\HttpResponse.Facts.cs" />
-    <Compile Include="Net\HttpVersion.Facts.cs" />
-    <Compile Include="Net\Sockets\Uri.ExtensionMethods.Facts.cs" />
-    <Compile Include="Xml\ApplicationXml.Facts.cs" />
-    <Compile Include="Text\TextPlain.Facts.cs" />
-    <Compile Include="Net\RequestLine.Facts.cs" />
-    <Compile Include="Net\StatusLine.Facts.cs" />
-    <Compile Include="Net\Token.Facts.cs" />
-    <Compile Include="Net\UserAgent.Facts.cs" />
-    <Compile Include="Net\IHttpClient.Facts.cs" />
-    <Compile Include="Net\IHttpClient.Dummy.cs" />
-    <Compile Include="Net\IHttpResponse.Facts.cs" />
-    <Compile Include="Net\IHttpResponse.Dummy.cs" />
-    <Compile Include="Net\IHttpRequest.Facts.cs" />
-    <Compile Include="Net\IHttpRequest.Dummy.cs" />
-    <Compile Include="Net\HttpClient.Facts.cs" />
-    <Compile Include="Net\IUserAgent.Facts.cs" />
-    <Compile Include="Net\IUserAgent.Dummy.cs" />
+    <Compile Include="PlainTxt.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +78,10 @@
     </CodeAnalysisDictionary>
     <None Include="..\..\Cavity.snk">
       <Link>Properties\Cavity.snk</Link>
+    </None>
+    <None Include="app.config" />
+    <None Include="castle.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +93,13 @@
       <Project>{C0BA6034-C107-4295-B494-BA6163C8B6E4}</Project>
       <Name>Http.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
-      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
-      <Name>Testing.Unit</Name>
+    <ProjectReference Include="..\ServiceLocation.CastleWindsor\ServiceLocation.CastleWindsor.csproj">
+      <Project>{DAA78F38-1405-4971-AB8D-1D42FD41B848}</Project>
+      <Name>ServiceLocation.CastleWindsor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceLocation\ServiceLocation.csproj">
+      <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
+      <Name>ServiceLocation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

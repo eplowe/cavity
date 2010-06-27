@@ -99,7 +99,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets" />
   <PropertyGroup>
-    <PostBuildEvent>COPY "..\..\..\..\..\lib\trove\Framework\v3.5\StructureMap.dll" "$(TargetDir)"
+    <PostBuildEvent>
+COPY "..\..\..\..\..\lib\trove\Framework\v3.5\StructureMap.dll" "$(TargetDir)"
 COPY "..\..\..\..\..\lib\trove\Framework\v3.5\StructureMapAdapter.dll" "$(TargetDir)"
 COPY "..\..\..\..\..\src\ClassLibraries\ServiceLocation.StructureMap\bin\$(ConfigurationName)\Cavity.ServiceLocation.StructureMap.dll" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>

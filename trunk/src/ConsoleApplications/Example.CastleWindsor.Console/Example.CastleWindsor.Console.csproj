@@ -131,7 +131,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets" />
   <PropertyGroup>
-    <PostBuildEvent>COPY "..\..\..\..\..\lib\trove\Framework\v3.5\Castle.Core.dll" "$(TargetDir)"
+    <PostBuildEvent>
+COPY "..\..\..\..\..\lib\trove\Framework\v3.5\Castle.Core.dll" "$(TargetDir)"
 COPY "..\..\..\..\..\lib\trove\Framework\v3.5\Castle.DynamicProxy2.dll" "$(TargetDir)"
 COPY "..\..\..\..\..\lib\trove\Framework\v3.5\Castle.MicroKernel.dll" "$(TargetDir)"
 COPY "..\..\..\..\..\lib\trove\Framework\v3.5\Castle.Windsor.dll" "$(TargetDir)"

@@ -82,9 +82,9 @@
             }
 
             this.Headers.Write(writer);
+            writer.WriteLine(string.Empty);
             if (null != this.Body)
             {
-                writer.WriteLine(string.Empty);
                 this.Body.Write(writer);
             }
         }

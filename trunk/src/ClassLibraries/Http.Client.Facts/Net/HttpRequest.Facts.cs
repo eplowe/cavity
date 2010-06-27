@@ -43,11 +43,30 @@
         [Fact]
         public void prop_AbsoluteUri_get()
         {
-            Uri expected = new Uri("http://www.example.com/");
+            Uri expected = new Uri("http://www.example.com/path");
 
             var obj = new HttpRequest
             {
                 RequestLine = new RequestLine("GET", expected.AbsoluteUri, "HTTP/1.1")
+            };
+
+            Uri actual = obj.AbsoluteUri;
+
+            Assert.Equal<Uri>(expected, actual);
+        }
+
+        [Fact]
+        public void prop_AbsoluteUri_getFromRelative()
+        {
+            Uri expected = new Uri("http://www.example.com/path");
+
+            var obj = new HttpRequest
+            {
+                RequestLine = (RequestLine)"GET /path HTTP/1.1",
+                Headers =
+                {
+                    { (HttpHeader)"Host: www.example.com" }
+                }
             };
 
             Uri actual = obj.AbsoluteUri;
@@ -285,6 +304,7 @@
             expected.AppendLine("GET / HTTP/1.1");
             expected.AppendLine("Host: www.example.com");
             expected.AppendLine("Connection: close");
+            expected.AppendLine(string.Empty);
 
             HttpRequest obj = HttpRequest.Parse(expected.ToString());
 
@@ -359,6 +379,7 @@
             expected.AppendLine("GET / HTTP/1.1");
             expected.AppendLine("Host: www.example.com");
             expected.AppendLine("Connection: close");
+            expected.AppendLine(string.Empty);
 
             string actual = HttpRequest.Parse(expected.ToString()).ToString();
 

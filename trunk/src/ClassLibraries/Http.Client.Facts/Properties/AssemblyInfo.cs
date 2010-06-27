@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Reflection;
 
-[assembly: AssemblyDefaultAlias("Cavity.Http.Facts.dll")]
-[assembly: AssemblyTitle("Cavity.Http.Facts.dll")]
+[assembly: AssemblyDefaultAlias("Cavity.Http.Client.Facts.dll")]
+[assembly: AssemblyTitle("Cavity.Http.Client.Facts.dll")]
 
 #if (DEBUG)
-[assembly: AssemblyDescription("Cavity : HTTP Facts Library (Debug)")]
+[assembly: AssemblyDescription("Cavity : HTTP Client Facts Library (Debug)")]
 #else
-[assembly: AssemblyDescription("Cavity : HTTP Facts Library (Release)")]
+[assembly: AssemblyDescription("Cavity : HTTP Client Facts Library (Release)")]
 #endif
 
 [assembly: CLSCompliant(true)]

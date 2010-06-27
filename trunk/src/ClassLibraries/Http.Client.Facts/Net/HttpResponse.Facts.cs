@@ -262,6 +262,7 @@
         {
             StringBuilder expected = new StringBuilder();
             expected.AppendLine("HTTP/1.1 201 Created");
+            expected.AppendLine(string.Empty);
 
             HttpResponse obj = HttpResponse.Parse(expected.ToString());
 
@@ -332,6 +333,7 @@
         {
             StringBuilder expected = new StringBuilder();
             expected.AppendLine("HTTP/1.1 201 Created");
+            expected.AppendLine(string.Empty);
 
             string actual = HttpResponse.Parse(expected.ToString()).ToString();
 
