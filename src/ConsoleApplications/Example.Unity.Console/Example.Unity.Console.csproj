@@ -99,7 +99,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets" />
   <PropertyGroup>
-    <PostBuildEvent>COPY "..\..\..\..\..\lib\trove\Framework\v3.5\Microsoft.Practices.Unity.dll" "$(TargetDir)"
+    <PostBuildEvent>
+COPY "..\..\..\..\..\lib\trove\Framework\v3.5\Microsoft.Practices.Unity.dll" "$(TargetDir)"
 COPY "..\..\..\..\..\lib\trove\Framework\v3.5\Microsoft.Practices.Unity.Configuration.dll" "$(TargetDir)"
 COPY "..\..\..\..\..\src\ClassLibraries\ServiceLocation.Unity\bin\$(ConfigurationName)\Cavity.ServiceLocation.Unity.dll" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>

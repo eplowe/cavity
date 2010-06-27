@@ -73,6 +73,7 @@
     <Compile Include="Net\HttpResponse.cs" />
     <Compile Include="Net\HttpVersion.cs" />
     <Compile Include="Net\IHttp.cs" />
+    <Compile Include="Net\Sockets\Uri.ExtensionMethods.cs" />
     <Compile Include="Xml\ApplicationXml.cs" />
     <Compile Include="Text\TextPlain.cs" />
     <Compile Include="Net\RequestLine.cs" />

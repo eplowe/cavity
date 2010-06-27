@@ -12,7 +12,14 @@
         {
             get
             {
-                return new Uri(this.RequestLine.RequestUri, UriKind.RelativeOrAbsolute);
+                var value = new Uri(this.RequestLine.RequestUri, UriKind.RelativeOrAbsolute);
+
+                if (!value.IsAbsoluteUri)
+                {
+                    value = new Uri(new Uri("http://" + this.Headers["Host"], UriKind.Absolute), value);
+                }
+
+                return value;
             }
         }
 
