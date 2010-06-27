@@ -121,7 +121,7 @@
                 HttpRequest request =
                     "OPTIONS * HTTP/1.1" + Environment.NewLine +
                     "Host: www.example.com" + Environment.NewLine +
-                    "Connection: close" + Environment.NewLine +
+                    "Connection: keep-alive" + Environment.NewLine +
                     string.Empty;
 
                 HttpClient client = new HttpClient();
