@@ -106,25 +106,25 @@
         }
 
         [Fact]
-        public void op_Parse_stringNull()
+        public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => UserAgent.Parse(null as string));
+            Assert.Throws<ArgumentNullException>(() => UserAgent.FromString(null as string));
         }
 
         [Fact]
-        public void op_Parse_stringEmpty()
+        public void op_FromString_stringEmpty()
         {
             UserAgent expected = new UserAgent(string.Empty);
-            UserAgent actual = UserAgent.Parse(string.Empty);
+            UserAgent actual = UserAgent.FromString(string.Empty);
 
             Assert.Equal<UserAgent>(expected, actual);
         }
 
         [Fact]
-        public void op_Parse_string()
+        public void op_FromString_string()
         {
             UserAgent expected = new UserAgent("value");
-            UserAgent actual = UserAgent.Parse("value");
+            UserAgent actual = UserAgent.FromString("value");
 
             Assert.Equal<UserAgent>(expected, actual);
         }

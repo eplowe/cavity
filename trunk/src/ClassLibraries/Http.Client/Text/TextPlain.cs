@@ -68,10 +68,10 @@
 
         public static implicit operator TextPlain(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as TextPlain : TextPlain.Parse(value);
+            return object.ReferenceEquals(null, value) ? null as TextPlain : TextPlain.FromString(value);
         }
 
-        public static TextPlain Parse(string value)
+        public static TextPlain FromString(string value)
         {
             if (null == value)
             {

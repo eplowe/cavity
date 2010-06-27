@@ -73,7 +73,7 @@ namespace Cavity
 
         public virtual int CompareTo(object obj)
         {
-            int comparison = 1;
+            int result = 1;
 
             if (!object.ReferenceEquals(null, obj))
             {
@@ -84,10 +84,10 @@ namespace Cavity
                     throw new ArgumentOutOfRangeException("obj");
                 }
 
-                comparison = ValueObject<T>.Compare(this, value);
+                result = ValueObject<T>.Compare(this, value);
             }
 
-            return comparison;
+            return result;
         }
 
         public virtual bool Equals(T other)
@@ -139,7 +139,8 @@ namespace Cavity
         public override int GetHashCode()
         {
             int result = base.GetHashCode();
-            foreach (PropertyInfo property in this.Properties)
+
+            foreach (var property in this.Properties)
             {
                 object value = property.GetValue(this, null);
                 if (null != value)
@@ -154,7 +155,8 @@ namespace Cavity
         public override string ToString()
         {
             StringBuilder buffer = new StringBuilder();
-            foreach (PropertyInfo property in this.Properties)
+
+            foreach (var property in this.Properties)
             {
                 object value = property.GetValue(this, null);
                 if (null != value)

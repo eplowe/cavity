@@ -106,25 +106,25 @@
         }
 
         [Fact]
-        public void op_Parse_stringNull()
+        public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => TextPlain.Parse(null as string));
+            Assert.Throws<ArgumentNullException>(() => TextPlain.FromString(null as string));
         }
 
         [Fact]
-        public void op_Parse_stringEmpty()
+        public void op_FromString_stringEmpty()
         {
             TextPlain expected = new TextPlain(string.Empty);
-            TextPlain actual = TextPlain.Parse(string.Empty);
+            TextPlain actual = TextPlain.FromString(string.Empty);
 
             Assert.Equal<TextPlain>(expected, actual);
         }
 
         [Fact]
-        public void op_Parse_string()
+        public void op_FromString_string()
         {
             TextPlain expected = new TextPlain("value");
-            TextPlain actual = TextPlain.Parse("value");
+            TextPlain actual = TextPlain.FromString("value");
 
             Assert.Equal<TextPlain>(expected, actual);
         }

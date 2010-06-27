@@ -85,10 +85,10 @@
 
         public static implicit operator StatusLine(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as StatusLine : StatusLine.Parse(value);
+            return object.ReferenceEquals(null, value) ? null as StatusLine : StatusLine.FromString(value);
         }
 
-        public static StatusLine Parse(string value)
+        public static StatusLine FromString(string value)
         {
             if (null == value)
             {

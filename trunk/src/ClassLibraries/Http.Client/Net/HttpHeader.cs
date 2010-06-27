@@ -58,10 +58,10 @@
 
         public static implicit operator HttpHeader(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as HttpHeader : HttpHeader.Parse(value);
+            return object.ReferenceEquals(null, value) ? null as HttpHeader : HttpHeader.FromString(value);
         }
 
-        public static HttpHeader Parse(string value)
+        public static HttpHeader FromString(string value)
         {
             if (null == value)
             {
