@@ -28,11 +28,11 @@
 
         public static implicit operator HttpResponse(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as HttpResponse : HttpResponse.Parse(value);
+            return object.ReferenceEquals(null, value) ? null as HttpResponse : HttpResponse.FromString(value);
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
-        public static HttpResponse Parse(string value)
+        public static HttpResponse FromString(string value)
         {
             if (null == value)
             {

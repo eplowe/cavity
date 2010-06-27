@@ -112,19 +112,19 @@
         }
 
         [Fact]
-        public void op_Parse_stringNull()
+        public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpRequest.Parse(null as string));
+            Assert.Throws<ArgumentNullException>(() => HttpRequest.FromString(null as string));
         }
 
         [Fact]
-        public void op_Parse_stringEmpty()
+        public void op_FromString_stringEmpty()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => HttpRequest.Parse(string.Empty));
+            Assert.Throws<ArgumentOutOfRangeException>(() => HttpRequest.FromString(string.Empty));
         }
 
         [Fact]
-        public void op_Parse_string_whenGet()
+        public void op_FromString_string_whenGet()
         {
             RequestLine requestLine = "GET / HTTP/1.1";
             HttpHeader host = "Host: www.example.com";
@@ -135,7 +135,7 @@
             value.AppendLine(host);
             value.AppendLine(connection);
 
-            HttpRequest obj = HttpRequest.Parse(value.ToString());
+            HttpRequest obj = HttpRequest.FromString(value.ToString());
 
             Assert.Equal<string>(requestLine, obj.RequestLine);
 
@@ -144,7 +144,7 @@
         }
 
         [Fact]
-        public void op_Parse_string_whenPost()
+        public void op_FromString_string_whenPost()
         {
             RequestLine requestLine = "POST / HTTP/1.1";
             HttpHeader contentLength = "Content-Length: 4";
@@ -172,7 +172,7 @@
                 
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
-                obj = HttpRequest.Parse(value.ToString());
+                obj = HttpRequest.FromString(value.ToString());
 
                 locator.VerifyAll();
             }
@@ -314,7 +314,7 @@
             expected.AppendLine("Connection: close");
             expected.AppendLine(string.Empty);
 
-            HttpRequest obj = HttpRequest.Parse(expected.ToString());
+            HttpRequest obj = HttpRequest.FromString(expected.ToString());
 
             using (var stream = new MemoryStream())
             {
@@ -354,7 +354,7 @@
                 
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
-                obj = HttpRequest.Parse(expected.ToString());
+                obj = HttpRequest.FromString(expected.ToString());
 
                 locator.VerifyAll();
             }
@@ -393,7 +393,7 @@
             expected.AppendLine("Connection: close");
             expected.AppendLine(string.Empty);
 
-            string actual = HttpRequest.Parse(expected.ToString()).ToString();
+            string actual = HttpRequest.FromString(expected.ToString()).ToString();
 
             Assert.Equal<string>(expected.ToString(), actual);
         }
@@ -421,7 +421,7 @@
                 
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
-                actual = HttpRequest.Parse(expected.ToString()).ToString();
+                actual = HttpRequest.FromString(expected.ToString()).ToString();
 
                 locator.VerifyAll();
             }

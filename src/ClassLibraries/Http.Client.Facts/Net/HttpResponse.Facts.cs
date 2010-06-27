@@ -72,26 +72,26 @@
         }
 
         [Fact]
-        public void op_Parse_stringNull()
+        public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpResponse.Parse(null as string));
+            Assert.Throws<ArgumentNullException>(() => HttpResponse.FromString(null as string));
         }
 
         [Fact]
-        public void op_Parse_stringEmpty()
+        public void op_FromString_stringEmpty()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => HttpResponse.Parse(string.Empty));
+            Assert.Throws<ArgumentOutOfRangeException>(() => HttpResponse.FromString(string.Empty));
         }
 
         [Fact]
-        public void op_Parse_string_when201()
+        public void op_FromString_string_when201()
         {
             StatusLine statusLine = "HTTP/1.1 201 Created";
 
             StringBuilder expected = new StringBuilder();
             expected.AppendLine(statusLine);
 
-            HttpResponse obj = HttpResponse.Parse(expected.ToString());
+            HttpResponse obj = HttpResponse.FromString(expected.ToString());
 
             Assert.Equal<string>(statusLine, obj.StatusLine);
 
@@ -101,7 +101,7 @@
         }
 
         [Fact]
-        public void op_Parse_string_when404()
+        public void op_FromString_string_when404()
         {
             StatusLine statusLine = "HTTP/1.1 404 Not Found";
             HttpHeader contentLength = "Content-Length: 4";
@@ -125,7 +125,7 @@
                 
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
-                obj = HttpResponse.Parse(expected.ToString());
+                obj = HttpResponse.FromString(expected.ToString());
 
                 locator.VerifyAll();
             }
@@ -276,7 +276,7 @@
             expected.AppendLine("HTTP/1.1 201 Created");
             expected.AppendLine(string.Empty);
 
-            HttpResponse obj = HttpResponse.Parse(expected.ToString());
+            HttpResponse obj = HttpResponse.FromString(expected.ToString());
 
             using (var stream = new MemoryStream())
             {
@@ -314,7 +314,7 @@
                 
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
-                obj = HttpResponse.Parse(expected.ToString());
+                obj = HttpResponse.FromString(expected.ToString());
 
                 locator.VerifyAll();
             }
@@ -351,7 +351,7 @@
             expected.AppendLine("HTTP/1.1 201 Created");
             expected.AppendLine(string.Empty);
 
-            string actual = HttpResponse.Parse(expected.ToString()).ToString();
+            string actual = HttpResponse.FromString(expected.ToString()).ToString();
 
             Assert.Equal<string>(expected.ToString(), actual);
         }
@@ -377,7 +377,7 @@
                 
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
-                actual = HttpResponse.Parse(expected.ToString()).ToString();
+                actual = HttpResponse.FromString(expected.ToString()).ToString();
 
                 locator.VerifyAll();
             }
