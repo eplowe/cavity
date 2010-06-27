@@ -59,6 +59,7 @@
         {
             Assert.NotNull(new PropertyExpectations<ApplicationXml>("ContentType")
                 .TypeIs<ContentType>()
+                .DefaultValueIs(new ContentType("application/xml"))
                 .ArgumentNullException()
                 .Set(new ContentType("application/xml"))
                 .IsNotDecorated()

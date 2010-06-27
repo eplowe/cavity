@@ -41,7 +41,10 @@
             try
             {
                 var request = new Mock<IHttpRequest>();
-                request.SetupGet<Uri>(x => x.AbsoluteUri).Returns(new Uri("http://www.example.com/")).Verifiable();
+                request
+                    .SetupGet<Uri>(x => x.AbsoluteUri)
+                    .Returns(new Uri("http://www.example.com/"))
+                    .Verifiable();
                 request
                     .Setup(x => x.Write(It.IsAny<TextWriter>()))
                     .Callback((TextWriter writer) => this.WriteGet(writer, "www.example.com"))
@@ -54,7 +57,11 @@
                     .Verifiable();
 
                 var locator = new Mock<IServiceLocator>();
-                locator.Setup(e => e.GetInstance<IMediaType>("text/html")).Returns(media.Object).Verifiable();
+                locator
+                    .Setup(e => e.GetInstance<IMediaType>("text/html"))
+                    .Returns(media.Object)
+                    .Verifiable();
+                
                 ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
 
                 IHttpResponse response = new Http().Send(request.Object);

@@ -63,6 +63,7 @@
         {
             Assert.NotNull(new PropertyExpectations<TextPlain>("ContentType")
                 .TypeIs<ContentType>()
+                .DefaultValueIs(new ContentType("text/plain"))
                 .ArgumentNullException()
                 .Set(new ContentType("text/plain"))
                 .IsNotDecorated()
