@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 [assembly: AssemblyDefaultAlias("Cavity.Testing.Unit.dll")]
@@ -11,3 +12,5 @@ using System.Reflection;
 #endif
 
 [assembly: CLSCompliant(true)]
+
+[assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Cavity")]

@@ -76,6 +76,7 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Example.Facts.cs" />
     <Compile Include="Net\HttpClient.Facts.cs" />
     <Compile Include="PlainTxt.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
