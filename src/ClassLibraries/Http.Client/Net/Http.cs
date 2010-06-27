@@ -15,13 +15,14 @@
                 throw new ArgumentNullException("request");
             }
 
-            IHttpResponse response = null;
+            IHttpResponse result = null;
+
             TcpClient client = null;
             try
             {
                 client = request.AbsoluteUri.ToTcpClient();
                 client.SendTimeout = 10000;
-                response = Http.Send(request, client);
+                result = Http.Send(request, client);
             }
             finally
             {
@@ -31,13 +32,13 @@
                 }
             }
 
-            return response;
+            return result;
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
         private static IHttpResponse Send(IHttpRequest request, TcpClient client)
         {
-            IHttpResponse response = null;
+            IHttpResponse result = null;
 
             using (var stream = client.GetStream())
             {
@@ -45,23 +46,23 @@
                 {
                     request.Write(writer);
                     writer.Flush();
-                    response = Http.Read(stream);
+                    result = Http.Read(stream);
                 }
             }
 
-            return response;
+            return result;
         }
 
         private static IHttpResponse Read(Stream stream)
         {
-            HttpResponse response = new HttpResponse();
+            HttpResponse result = new HttpResponse();
 
             using (var reader = new StreamReader(stream))
             {
-                response.Read(reader);
+                result.Read(reader);
             }
 
-            return response;
+            return result;
         }
     }
 }

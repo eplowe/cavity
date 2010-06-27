@@ -92,30 +92,30 @@
         }
 
         [Fact]
-        public void op_Parse_string()
+        public void op_FromString_string()
         {
             HttpVersion expected = new HttpVersion(1, 0);
-            HttpVersion actual = HttpVersion.Parse("HTTP/1.0");
+            HttpVersion actual = HttpVersion.FromString("HTTP/1.0");
 
             Assert.Equal<HttpVersion>(expected, actual);
         }
 
         [Fact]
-        public void op_Parse_stringNull()
+        public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpVersion.Parse(null as string));
+            Assert.Throws<ArgumentNullException>(() => HttpVersion.FromString(null as string));
         }
 
         [Fact]
-        public void op_Parse_stringEmpty()
+        public void op_FromString_stringEmpty()
         {
-            Assert.Throws<FormatException>(() => HttpVersion.Parse(string.Empty));
+            Assert.Throws<FormatException>(() => HttpVersion.FromString(string.Empty));
         }
 
         [Fact]
-        public void op_Parse_string_Invalid()
+        public void op_FromString_string_Invalid()
         {
-            Assert.Throws<FormatException>(() => HttpVersion.Parse("1.0"));
+            Assert.Throws<FormatException>(() => HttpVersion.FromString("1.0"));
         }
 
         [Fact]

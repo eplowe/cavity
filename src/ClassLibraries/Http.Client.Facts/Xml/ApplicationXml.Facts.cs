@@ -107,25 +107,25 @@
         }
 
         [Fact]
-        public void op_Parse_stringNull()
+        public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => ApplicationXml.Parse(null as string));
+            Assert.Throws<ArgumentNullException>(() => ApplicationXml.FromString(null as string));
         }
 
         [Fact]
-        public void op_Parse_stringEmpty()
+        public void op_FromString_stringEmpty()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => ApplicationXml.Parse(string.Empty));
+            Assert.Throws<ArgumentOutOfRangeException>(() => ApplicationXml.FromString(string.Empty));
         }
 
         [Fact]
-        public void op_Parse_string()
+        public void op_FromString_string()
         {
             var xml = new XmlDocument();
             xml.LoadXml("<root />");
 
             ApplicationXml expected = new ApplicationXml(xml);
-            ApplicationXml actual = ApplicationXml.Parse("<root />");
+            ApplicationXml actual = ApplicationXml.FromString("<root />");
 
             Assert.Equal<ApplicationXml>(expected, actual);
         }
@@ -208,7 +208,7 @@
             {
                 using (var writer = new StreamWriter(stream))
                 {
-                    ApplicationXml.Parse("<root />").Write(writer);
+                    ApplicationXml.FromString("<root />").Write(writer);
                     writer.Flush();
                     stream.Position = 0;
                     using (var reader = new StreamReader(stream))
@@ -229,7 +229,7 @@
         public void op_ToString()
         {
             string expected = "<root />";
-            string actual = ApplicationXml.Parse(expected).ToString();
+            string actual = ApplicationXml.FromString(expected).ToString();
 
             Assert.Equal<string>(expected, actual);
         }

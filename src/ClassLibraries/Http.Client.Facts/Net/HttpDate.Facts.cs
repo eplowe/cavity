@@ -29,16 +29,6 @@
         }
 
         [Fact]
-        public void prop_Value()
-        {
-            Assert.True(new PropertyExpectations<HttpDate>("Value")
-                .IsAutoProperty<DateTime>()
-                .DefaultValueIs(new DateTime())
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
         public void opImplicit_DateTime_HttpDate()
         {
             DateTime expected = new DateTime(1994, 11, 15, 8, 12, 31);
@@ -235,30 +225,30 @@
         }
 
         [Fact]
-        public void op_Parse_string()
+        public void op_FromString_string()
         {
             HttpDate expected = new HttpDate(new DateTime(1994, 11, 15, 8, 12, 31));
-            HttpDate actual = HttpDate.Parse("Tue, 15 Nov 1994 08:12:31 GMT");
+            HttpDate actual = HttpDate.FromString("Tue, 15 Nov 1994 08:12:31 GMT");
 
             Assert.Equal<HttpDate>(expected, actual);
         }
 
         [Fact]
-        public void op_Parse_stringNull()
+        public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpDate.Parse(null as string));
+            Assert.Throws<ArgumentNullException>(() => HttpDate.FromString(null as string));
         }
 
         [Fact]
-        public void op_Parse_stringEmpty()
+        public void op_FromString_stringEmpty()
         {
-            Assert.Throws<FormatException>(() => HttpDate.Parse(string.Empty));
+            Assert.Throws<FormatException>(() => HttpDate.FromString(string.Empty));
         }
 
         [Fact]
-        public void op_Parse_stringInvalid()
+        public void op_FromString_stringInvalid()
         {
-            Assert.Throws<FormatException>(() => HttpDate.Parse("not a date"));
+            Assert.Throws<FormatException>(() => HttpDate.FromString("not a date"));
         }
 
         [Fact]
@@ -345,6 +335,15 @@
             int actual = value.GetHashCode();
 
             Assert.Equal<int>(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToDateTime()
+        {
+            DateTime expected = new DateTime(1994, 11, 15, 8, 12, 31);
+            DateTime actual = new HttpDate(expected).ToDateTime();
+
+            Assert.Equal<DateTime>(expected, actual);
         }
 
         [Fact]

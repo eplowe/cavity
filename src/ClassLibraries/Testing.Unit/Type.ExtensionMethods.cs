@@ -28,6 +28,7 @@
             }
 
             bool result = false;
+
             foreach (var item in type.GetInterfaces())
             {
                 if (item.FullName.Equals(@interface.FullName))

@@ -57,10 +57,10 @@
 
         public static implicit operator HttpVersion(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as HttpVersion : HttpVersion.Parse(value);
+            return object.ReferenceEquals(null, value) ? null as HttpVersion : HttpVersion.FromString(value);
         }
 
-        public static HttpVersion Parse(string value)
+        public static HttpVersion FromString(string value)
         {
             if (null == value)
             {

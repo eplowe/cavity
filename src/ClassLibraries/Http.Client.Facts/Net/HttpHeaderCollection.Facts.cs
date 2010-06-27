@@ -138,46 +138,46 @@
         }
 
         [Fact]
-        public void op_Parse_stringNull()
+        public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpHeaderCollection.Parse(null as string));
+            Assert.Throws<ArgumentNullException>(() => HttpHeaderCollection.FromString(null as string));
         }
 
         [Fact]
-        public void op_Parse_stringEmpty()
+        public void op_FromString_stringEmpty()
         {
             HttpHeaderCollection expected = new HttpHeaderCollection();
-            HttpHeaderCollection actual = HttpHeaderCollection.Parse(string.Empty);
+            HttpHeaderCollection actual = HttpHeaderCollection.FromString(string.Empty);
 
             Assert.Equal<HttpHeaderCollection>(expected, actual);
         }
 
         [Fact]
-        public void op_Parse_string()
+        public void op_FromString_string()
         {
             HttpHeaderCollection expected = new HttpHeaderCollection
             {
                 { new HttpHeader("name", "value") }
             };
-            HttpHeaderCollection actual = HttpHeaderCollection.Parse("name: value");
+            HttpHeaderCollection actual = HttpHeaderCollection.FromString("name: value");
 
             Assert.Equal<HttpHeaderCollection>(expected, actual);
         }
 
         [Fact]
-        public void op_Parse_string_withLeadingWhitespace()
+        public void op_FromString_string_withLeadingWhitespace()
         {
             HttpHeaderCollection expected = new HttpHeaderCollection
             {
                 { new HttpHeader("name", "value") }
             };
-            HttpHeaderCollection actual = HttpHeaderCollection.Parse("name:         value");
+            HttpHeaderCollection actual = HttpHeaderCollection.FromString("name:         value");
 
             Assert.Equal<HttpHeaderCollection>(expected, actual);
         }
 
         [Fact]
-        public void op_Parse_string_whenMultipleLines()
+        public void op_FromString_string_whenMultipleLines()
         {
             string value = 
                 "a" + Environment.NewLine +
@@ -188,7 +188,7 @@
             {
                 { new HttpHeader("name", value) }
             };
-            HttpHeaderCollection actual = HttpHeaderCollection.Parse("name: " + value);
+            HttpHeaderCollection actual = HttpHeaderCollection.FromString("name: " + value);
 
             Assert.Equal<HttpHeaderCollection>(expected, actual);
         }
@@ -319,7 +319,7 @@
                 { new HttpHeader("name", "value") }
             };
 
-            Assert.True(HttpHeaderCollection.Parse("name: value").Equals(obj));
+            Assert.True(HttpHeaderCollection.FromString("name: value").Equals(obj));
         }
 
         [Fact]
@@ -331,7 +331,7 @@
                 { new HttpHeader("name", "bar") }
             };
 
-            Assert.True(HttpHeaderCollection.Parse("name: foo, bar").Equals(obj));
+            Assert.True(HttpHeaderCollection.FromString("name: foo, bar").Equals(obj));
         }
 
         [Fact]
@@ -354,7 +354,7 @@
         [Fact]
         public void op_Equals_objectString()
         {
-            Assert.False(HttpHeaderCollection.Parse("name: value").Equals("name: value"));
+            Assert.False(HttpHeaderCollection.FromString("name: value").Equals("name: value"));
         }
 
         [Fact]

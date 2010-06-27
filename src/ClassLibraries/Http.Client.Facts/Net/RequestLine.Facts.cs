@@ -101,54 +101,54 @@
         }
 
         [Fact]
-        public void op_Parse_string_whenGetRelative()
+        public void op_FromString_string_whenGetRelative()
         {
             RequestLine expected = new RequestLine("GET", "/", "HTTP/1.1");
-            RequestLine actual = RequestLine.Parse("GET / HTTP/1.1");
+            RequestLine actual = RequestLine.FromString("GET / HTTP/1.1");
 
             Assert.Equal<RequestLine>(expected, actual);
         }
 
         [Fact]
-        public void op_Parse_stringNull()
+        public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => RequestLine.Parse(null as string));
+            Assert.Throws<ArgumentNullException>(() => RequestLine.FromString(null as string));
         }
 
         [Fact]
-        public void op_Parse_stringEmpty()
+        public void op_FromString_stringEmpty()
         {
-            Assert.Throws<FormatException>(() => RequestLine.Parse(string.Empty));
+            Assert.Throws<FormatException>(() => RequestLine.FromString(string.Empty));
         }
 
         [Fact]
-        public void op_Parse_string_whenMissingHttpVersion()
+        public void op_FromString_string_whenMissingHttpVersion()
         {
-            Assert.Throws<FormatException>(() => RequestLine.Parse("GET /"));
+            Assert.Throws<FormatException>(() => RequestLine.FromString("GET /"));
         }
 
         [Fact]
-        public void op_Parse_string_whenMissingHttpMethod()
+        public void op_FromString_string_whenMissingHttpMethod()
         {
-            Assert.Throws<FormatException>(() => RequestLine.Parse("/ HTTP/1.1"));
+            Assert.Throws<FormatException>(() => RequestLine.FromString("/ HTTP/1.1"));
         }
 
         [Fact]
-        public void op_Parse_string_whenMissingRequestUri()
+        public void op_FromString_string_whenMissingRequestUri()
         {
-            Assert.Throws<FormatException>(() => RequestLine.Parse("GET HTTP/1.1"));
+            Assert.Throws<FormatException>(() => RequestLine.FromString("GET HTTP/1.1"));
         }
 
         [Fact]
-        public void op_Parse_string_whenCR()
+        public void op_FromString_string_whenCR()
         {
-            Assert.Throws<FormatException>(() => RequestLine.Parse("999 Foo \r Bar"));
+            Assert.Throws<FormatException>(() => RequestLine.FromString("999 Foo \r Bar"));
         }
 
         [Fact]
-        public void op_Parse_string_whenLR()
+        public void op_FromString_string_whenLR()
         {
-            Assert.Throws<FormatException>(() => RequestLine.Parse("999 Foo \n Bar"));
+            Assert.Throws<FormatException>(() => RequestLine.FromString("999 Foo \n Bar"));
         }
 
         [Fact]

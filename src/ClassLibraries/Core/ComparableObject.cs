@@ -59,7 +59,7 @@ namespace Cavity
 
         public virtual int CompareTo(object obj)
         {
-            int comparison = 1;
+            int result = 1;
 
             if (!object.ReferenceEquals(null, obj))
             {
@@ -70,10 +70,10 @@ namespace Cavity
                     throw new ArgumentOutOfRangeException("obj");
                 }
 
-                comparison = ComparableObject.Compare(this, value);
+                result = ComparableObject.Compare(this, value);
             }
 
-            return comparison;
+            return result;
         }
 
         public override bool Equals(object obj)

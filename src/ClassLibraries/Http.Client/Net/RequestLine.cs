@@ -88,10 +88,10 @@
 
         public static implicit operator RequestLine(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as RequestLine : RequestLine.Parse(value);
+            return object.ReferenceEquals(null, value) ? null as RequestLine : RequestLine.FromString(value);
         }
 
-        public static RequestLine Parse(string value)
+        public static RequestLine FromString(string value)
         {
             if (null == value)
             {

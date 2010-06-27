@@ -75,11 +75,11 @@
 
         public static implicit operator HttpHeaderCollection(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as HttpHeaderCollection : HttpHeaderCollection.Parse(value);
+            return object.ReferenceEquals(null, value) ? null as HttpHeaderCollection : HttpHeaderCollection.FromString(value);
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
-        public static HttpHeaderCollection Parse(string value)
+        public static HttpHeaderCollection FromString(string value)
         {
             if (null == value)
             {
@@ -167,7 +167,7 @@
                         line += Environment.NewLine + reader.ReadLine(); // HT or SPACE
                     }
 
-                    this.Add(HttpHeader.Parse(line));
+                    this.Add(HttpHeader.FromString(line));
                 }
             }
         }

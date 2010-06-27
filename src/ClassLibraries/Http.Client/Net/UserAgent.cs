@@ -39,7 +39,7 @@
 
         public static implicit operator UserAgent(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as UserAgent : UserAgent.Parse(value);
+            return object.ReferenceEquals(null, value) ? null as UserAgent : UserAgent.FromString(value);
         }
 
         public static string Format()
@@ -54,7 +54,7 @@
             return string.Format(CultureInfo.CurrentUICulture, Resources.UserAgent_ValueFormat, major, minor);
         }
 
-        public static UserAgent Parse(string value)
+        public static UserAgent FromString(string value)
         {
             if (null == value)
             {

@@ -92,43 +92,43 @@
         }
 
         [Fact]
-        public void op_Parse_stringNull()
+        public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpHeader.Parse(null as string));
+            Assert.Throws<ArgumentNullException>(() => HttpHeader.FromString(null as string));
         }
 
         [Fact]
-        public void op_Parse_stringEmpty()
+        public void op_FromString_stringEmpty()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => HttpHeader.Parse(string.Empty));
+            Assert.Throws<ArgumentOutOfRangeException>(() => HttpHeader.FromString(string.Empty));
         }
 
         [Fact]
-        public void op_Parse_string()
+        public void op_FromString_string()
         {
             HttpHeader expected = new HttpHeader("name", "value");
-            HttpHeader actual = HttpHeader.Parse("name: value");
+            HttpHeader actual = HttpHeader.FromString("name: value");
 
             Assert.Equal<HttpHeader>(expected, actual);
         }
 
         [Fact]
-        public void op_Parse_string_whenMissingColon()
+        public void op_FromString_string_whenMissingColon()
         {
-            Assert.Throws<FormatException>(() => HttpHeader.Parse("name value"));
+            Assert.Throws<FormatException>(() => HttpHeader.FromString("name value"));
         }
 
         [Fact]
-        public void op_Parse_string_whenStartsWithColon()
+        public void op_FromString_string_whenStartsWithColon()
         {
-            Assert.Throws<FormatException>(() => HttpHeader.Parse(": value"));
+            Assert.Throws<FormatException>(() => HttpHeader.FromString(": value"));
         }
 
         [Fact]
-        public void op_Parse_string_whenEndsWithColon()
+        public void op_FromString_string_whenEndsWithColon()
         {
             HttpHeader expected = new HttpHeader("name", string.Empty);
-            HttpHeader actual = HttpHeader.Parse("name:");
+            HttpHeader actual = HttpHeader.FromString("name:");
 
             Assert.Equal<HttpHeader>(expected, actual);
         }

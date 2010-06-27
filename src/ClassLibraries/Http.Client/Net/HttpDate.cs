@@ -5,21 +5,17 @@
 
     public struct HttpDate : IComparable
     {
+        private DateTime _value;
+
         public HttpDate(DateTime value)
             : this()
         {
-            this.Value = value;
-        }
-
-        public DateTime Value
-        {
-            get;
-            private set;
+            this._value = value;
         }
 
         public static implicit operator DateTime(HttpDate value)
         {
-            return value.Value;
+            return value.ToDateTime();
         }
 
         public static implicit operator HttpDate(DateTime value)
@@ -34,7 +30,7 @@
 
         public static implicit operator HttpDate(string value)
         {
-            return HttpDate.Parse(value);
+            return HttpDate.FromString(value);
         }
 
         public static bool operator ==(HttpDate operand1, HttpDate operand2)
@@ -61,10 +57,10 @@
         {
             return object.ReferenceEquals(comparand1, comparand2)
                 ? 0
-                : DateTime.Compare(comparand1.Value, comparand2.Value);
+                : DateTime.Compare(comparand1.ToDateTime(), comparand2.ToDateTime());
         }
 
-        public static HttpDate Parse(string value)
+        public static HttpDate FromString(string value)
         {
             if (null == value)
             {
@@ -80,13 +76,13 @@
 
         public int CompareTo(object obj)
         {
-            int comparison = 1;
+            int result = 1;
 
             if (!object.ReferenceEquals(null, obj))
             {
                 if (obj is HttpDate)
                 {
-                    comparison = HttpDate.Compare(this, (HttpDate)obj);
+                    result = HttpDate.Compare(this, (HttpDate)obj);
                 }
                 else
                 {
@@ -94,7 +90,7 @@
                 }
             }
 
-            return comparison;
+            return result;
         }
 
         public override bool Equals(object obj)
@@ -114,9 +110,14 @@
             return this.ToString().GetHashCode();
         }
 
+        public DateTime ToDateTime()
+        {
+            return this._value;
+        }
+
         public override string ToString()
         {
-            return this.Value.ToString("R", CultureInfo.InvariantCulture);
+            return this.ToDateTime().ToString("R", CultureInfo.InvariantCulture);
         }
     }
 }

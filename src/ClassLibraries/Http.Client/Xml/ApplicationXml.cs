@@ -70,10 +70,10 @@
 
         public static implicit operator ApplicationXml(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as ApplicationXml : ApplicationXml.Parse(value);
+            return object.ReferenceEquals(null, value) ? null as ApplicationXml : ApplicationXml.FromString(value);
         }
 
-        public static ApplicationXml Parse(string value)
+        public static ApplicationXml FromString(string value)
         {
             if (null == value)
             {
@@ -97,7 +97,7 @@
                 throw new ArgumentNullException("reader");
             }
 
-            return -1 == reader.Peek() ? new ApplicationXml() : ApplicationXml.Parse(reader.ReadToEnd());
+            return -1 == reader.Peek() ? new ApplicationXml() : ApplicationXml.FromString(reader.ReadToEnd());
         }
 
         public void Write(TextWriter writer)
