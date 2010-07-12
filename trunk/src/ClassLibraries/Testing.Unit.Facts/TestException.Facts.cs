@@ -71,7 +71,7 @@
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(stream, new TestException("test"));
-                stream.Position = 0; /// Reset stream position
+                stream.Position = 0;
                 actual = (TestException)formatter.Deserialize(stream);
             }
 

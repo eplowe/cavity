@@ -23,7 +23,7 @@
     public sealed class PropertyExpectations<T>
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="T:Cavity.PropertyExpectations"/> class
+        /// Initializes a new instance of the <see cref="T:Cavity.PropertyExpectations`1"/> class
         /// with the specified property <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The name of the property under test.</param>
@@ -34,8 +34,11 @@
         }
 
         /// <summary>
-        /// Returns <see langword="true"/> if all the expectations have been met.
+        /// Gets a value indicating whether all the expectations have been met.
         /// </summary>
+        /// <value>
+        /// Returns <see langword="true" /> if all the expectations were met.
+        /// </value>
         /// <exception cref="T:Cavity.TestException">Thrown when an expectation is not met.</exception>
         public bool Result
         {

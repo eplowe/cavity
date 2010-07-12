@@ -23,7 +23,7 @@
     public sealed class TypeExpectations<T> : ITestClassStyle, ITestClassSealed, ITestClassConstruction, ITestType
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="T:Cavity.TypeExpectations`1"/> class.
+        /// Initializes a new instance of the <see cref="T:Cavity.TypeExpectations`1"/> class.
         /// </summary>
         public TypeExpectations()
         {
@@ -31,8 +31,11 @@
         }
 
         /// <summary>
-        /// Returns <see langword="true"/> if all the expectations have been met.
+        /// Gets a value indicating whether all the expectations have been met.
         /// </summary>
+        /// <value>
+        /// Returns <see langword="true" /> if all the expectations were met.
+        /// </value>
         /// <exception cref="T:Cavity.TestException">Thrown when an expectation is not met.</exception>
         bool ITestType.Result
         {
