@@ -7,12 +7,16 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © 2010 Alan Dean")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: NeutralResourcesLanguageAttribute("en-GB")]
+[assembly: NeutralResourcesLanguage("en-GB")]
 
 #if (DEBUG)
+
 [assembly: AssemblyConfiguration("Debug Build")]
+
 #else
+
 [assembly: AssemblyConfiguration("Release Build")]
+
 #endif
 
 [assembly: ComVisible(false)]

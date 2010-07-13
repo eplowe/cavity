@@ -5,9 +5,13 @@ using System.Reflection;
 [assembly: AssemblyTitle("Example.Unity.Console.exe")]
 
 #if (DEBUG)
+
 [assembly: AssemblyDescription("Example Unity Console Application (Debug)")]
+
 #else
+
 [assembly: AssemblyDescription("Example Unity Console Application (Release)")]
+
 #endif
 
 [assembly: CLSCompliant(true)]
