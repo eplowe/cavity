@@ -5,9 +5,13 @@ using System.Reflection;
 [assembly: AssemblyTitle("Cavity.ServiceLocation.CastleWindsor.Facts.dll")]
 
 #if (DEBUG)
+
 [assembly: AssemblyDescription("Cavity : Castle Windsor Service Location Facts Library (Debug)")]
+
 #else
+
 [assembly: AssemblyDescription("Cavity : Castle Windsor Service Location Facts Library (Release)")]
+
 #endif
 
 [assembly: CLSCompliant(true)]

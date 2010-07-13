@@ -6,9 +6,13 @@ using System.Reflection;
 [assembly: AssemblyTitle("Cavity.ServiceLocation.StructureMap.dll")]
 
 #if (DEBUG)
+
 [assembly: AssemblyDescription("Cavity : StructureMap Service Location Library (Debug)")]
+
 #else
+
 [assembly: AssemblyDescription("Cavity : StructureMap Service Location Library (Release)")]
+
 #endif
 
 [assembly: CLSCompliant(true)]
