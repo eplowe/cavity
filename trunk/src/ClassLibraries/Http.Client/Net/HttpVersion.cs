@@ -11,8 +11,8 @@
         public HttpVersion(int major, int minor)
             : this()
         {
-            this.Major = major;
-            this.Minor = minor;
+            Major = major;
+            Minor = minor;
         }
     
         private HttpVersion()
@@ -23,7 +23,7 @@
         {
             get
             {
-                return this._major;
+                return _major;
             }
 
             private set
@@ -33,7 +33,7 @@
                     throw new ArgumentOutOfRangeException("value");
                 }
 
-                this._major = value;
+                _major = value;
             }
         }
 
@@ -41,7 +41,7 @@
         {
             get
             {
-                return this._minor;
+                return _minor;
             }
 
             private set
@@ -51,13 +51,15 @@
                     throw new ArgumentOutOfRangeException("value");
                 }
 
-                this._minor = value;
+                _minor = value;
             }
         }
 
         public static implicit operator HttpVersion(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as HttpVersion : HttpVersion.FromString(value);
+            return ReferenceEquals(null, value)
+                ? null
+                : FromString(value);
         }
 
         public static HttpVersion FromString(string value)
@@ -75,7 +77,7 @@
                 throw new FormatException("value");
             }
 
-            string[] parts = value.Substring("HTTP/".Length).Split(new char[] { '.' });
+            var parts = value.Substring("HTTP/".Length).Split(new[] { '.' });
 
             return new HttpVersion(
                 int.Parse(parts[0], CultureInfo.InvariantCulture),
@@ -84,7 +86,7 @@
         
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "HTTP/{0}.{1}", this.Major, this.Minor);
+            return string.Format(CultureInfo.InvariantCulture, "HTTP/{0}.{1}", Major, Minor);
         }
     }
 }

@@ -19,7 +19,7 @@
         public HttpMethod(string value)
             : this()
         {
-            this.Value = value;
+            Value = value;
         }
 
         private HttpMethod()
@@ -94,7 +94,7 @@
         {
             get
             {
-                return this._value;
+                return _value;
             }
 
             private set
@@ -112,18 +112,20 @@
                     throw new FormatException("value");
                 }
 
-                this._value = value;
+                _value = value;
             }
         }
 
         public static implicit operator HttpMethod(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as HttpMethod : new HttpMethod(value);
+            return ReferenceEquals(null, value)
+                ? null
+                : new HttpMethod(value);
         }
 
         public override string ToString()
         {
-            return this.Value;
+            return Value;
         }
     }
 }

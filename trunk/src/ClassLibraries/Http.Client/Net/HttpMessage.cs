@@ -15,7 +15,7 @@
 
         protected HttpMessage()
         {
-            this.Headers = new HttpHeaderCollection();
+            Headers = new HttpHeaderCollection();
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly", Justification = "The setter is protected rather than private for testability.")]
@@ -23,7 +23,7 @@
         {
             get
             {
-                return this._body;
+                return _body;
             }
 
             protected set
@@ -33,7 +33,7 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._body = value;
+                _body = value;
             }
         }
 
@@ -42,7 +42,7 @@
         {
             get
             {
-                return this._headers;
+                return _headers;
             }
 
             protected set
@@ -52,7 +52,7 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._headers = value;
+                _headers = value;
             }
         }
 
@@ -65,12 +65,12 @@
 
             var headers = new HttpHeaderCollection();
             headers.Read(reader);
-            this.Headers = headers;
+            Headers = headers;
 
             var contentType = headers.ContentType;
             if (null != contentType)
             {
-                this.Body = HttpMessage.ToContent(
+                Body = ToContent(
                     reader, 
                     ServiceLocator.Current.GetInstance<IMediaType>(contentType.MediaType));
             }
@@ -83,21 +83,21 @@
                 throw new ArgumentNullException("writer");
             }
 
-            this.Headers.Write(writer);
+            Headers.Write(writer);
             writer.WriteLine(string.Empty);
-            if (null != this.Body)
+            if (null != Body)
             {
-                this.Body.Write(writer);
+                Body.Write(writer);
             }
         }
 
         public override string ToString()
         {
-            StringBuilder buffer = new StringBuilder();
+            var buffer = new StringBuilder();
 
             using (var writer = new StringWriter(buffer, CultureInfo.InvariantCulture))
             {
-                this.Write(writer);
+                Write(writer);
                 writer.Flush();
             }
 

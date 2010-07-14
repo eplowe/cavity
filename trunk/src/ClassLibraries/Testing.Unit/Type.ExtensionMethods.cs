@@ -1,6 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
+    using System.Linq;
 
     public static class TypeExtensionMethods
     {
@@ -27,18 +28,9 @@
                 throw new ArgumentNullException("interface");
             }
 
-            bool result = false;
-
-            foreach (var item in type.GetInterfaces())
-            {
-                if (item.FullName.Equals(@interface.FullName))
-                {
-                    result = true;
-                    break;
-                }
-            }
-
-            return result;
+            return type
+                .GetInterfaces()
+                .Any(item => item.FullName.Equals(@interface.FullName));
         }
 
         /// <summary>

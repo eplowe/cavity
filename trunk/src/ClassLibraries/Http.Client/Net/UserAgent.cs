@@ -10,20 +10,20 @@
         private string _value;
 
         public UserAgent()
-            : this(UserAgent.Format())
+            : this(Format())
         {
         }
 
         public UserAgent(string value)
         {
-            this.Value = value;
+            Value = value;
         }
 
         public string Value
         {
             get
             {
-                return this._value;
+                return _value;
             }
 
             private set
@@ -33,20 +33,22 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._value = value;
+                _value = value;
             }
         }
 
         public static implicit operator UserAgent(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as UserAgent : UserAgent.FromString(value);
+            return ReferenceEquals(null, value)
+                ? null
+                : FromString(value);
         }
 
         public static string Format()
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version;
 
-            return UserAgent.Format(version.Major, version.Minor);
+            return Format(version.Major, version.Minor);
         }
 
         public static string Format(int major, int minor)
@@ -66,7 +68,7 @@
 
         public override string ToString()
         {
-            return this.Value;
+            return Value;
         }
     }
 }

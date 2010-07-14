@@ -11,7 +11,7 @@
         public Token(string value)
             : this()
         {
-            this.Value = value;
+            Value = value;
         }
 
         private Token()
@@ -22,7 +22,7 @@
         {
             get
             {
-                return this._value;
+                return _value;
             }
 
             private set
@@ -64,18 +64,20 @@
                     throw new FormatException(Resources.Token_FormatException_Message);
                 }
 
-                this._value = value;
+                _value = value;
             }
         }
 
         public static implicit operator Token(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as Token : new Token(value);
+            return ReferenceEquals(null, value)
+                ? null
+                : new Token(value);
         }
 
         public override string ToString()
         {
-            return this.Value;
+            return Value;
         }
     }
 }

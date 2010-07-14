@@ -6,7 +6,7 @@
     {
         public Tester(string expected)
         {
-            this.Expected = expected;
+            Expected = expected;
         }
 
         public string Expected
@@ -17,7 +17,7 @@
 
         public bool Test(string actual)
         {
-            return string.Equals(this.Expected, actual, StringComparison.Ordinal);
+            return string.Equals(Expected, actual, StringComparison.Ordinal);
         }
     }
 }

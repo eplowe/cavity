@@ -9,7 +9,7 @@
     {
         public BaseClassTest(Type @is)
         {
-            this.Is = @is;
+            Is = @is;
         }
 
         public Type Is
@@ -20,13 +20,13 @@
 
         public bool Check()
         {
-            if (!typeof(T).IsSubclassOf(this.Is))
+            if (!typeof(T).IsSubclassOf(Is))
             {
                 throw new TestException(string.Format(
                     CultureInfo.CurrentUICulture,
                     Resources.BaseClassTestException_Message,
                     typeof(T).Name,
-                    this.Is.Name));
+                    Is.Name));
             }
 
             return true;

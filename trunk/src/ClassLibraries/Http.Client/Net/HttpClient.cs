@@ -14,7 +14,7 @@
 
         public HttpClient(IHttp http)
         {
-            this.Http = http;
+            Http = http;
         }
 
         public string UserAgent
@@ -37,7 +37,7 @@
         {
             get
             {
-                return this._http;
+                return _http;
             }
 
             set
@@ -47,7 +47,7 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._http = value;
+                _http = value;
             }
         }
 
@@ -58,12 +58,12 @@
                 throw new ArgumentNullException("request");
             }
 
-            this.Response = this.Http.Send(request);
+            Response = Http.Send(request);
         }
 
         public override string ToString()
         {
-            return this.UserAgent;
+            return UserAgent;
         }
     }
 }

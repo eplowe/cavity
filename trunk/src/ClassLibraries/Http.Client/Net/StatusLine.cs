@@ -12,9 +12,9 @@
         public StatusLine(HttpVersion version, int code, string reason)
             : this()
         {
-            this.Version = version;
-            this.Code = code;
-            this.Reason = reason;
+            Version = version;
+            Code = code;
+            Reason = reason;
         }
 
         private StatusLine()
@@ -25,7 +25,7 @@
         {
             get
             {
-                return this._code;
+                return _code;
             }
 
             private set
@@ -35,7 +35,7 @@
                     throw new ArgumentOutOfRangeException("value");
                 }
 
-                this._code = value;
+                _code = value;
             }
         }
 
@@ -43,7 +43,7 @@
         {
             get
             {
-                return this._reason;
+                return _reason;
             }
 
             private set
@@ -61,7 +61,7 @@
                     throw new FormatException("value");
                 }
 
-                this._reason = value;
+                _reason = value;
             }
         }
 
@@ -69,7 +69,7 @@
         {
             get
             {
-                return this._version;
+                return _version;
             }
 
             private set
@@ -79,13 +79,15 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._version = value;
+                _version = value;
             }
         }
 
         public static implicit operator StatusLine(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as StatusLine : StatusLine.FromString(value);
+            return ReferenceEquals(null, value)
+                ? null
+                : FromString(value);
         }
 
         public static StatusLine FromString(string value)
@@ -99,7 +101,7 @@
                 throw new FormatException("value");
             }
 
-            string[] parts = value.Split(new char[] { ' ' });
+            var parts = value.Split(new[] { ' ' });
 
             if (3 > parts.Length)
             {
@@ -107,7 +109,7 @@
             }
 
             string reason = null;
-            for (int i = 2; i < parts.Length; i++)
+            for (var i = 2; i < parts.Length; i++)
             {
                 if (null == reason)
                 {
@@ -127,7 +129,7 @@
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", this.Version, this.Code, this.Reason);
+            return string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", Version, Code, Reason);
         }
     }
 }

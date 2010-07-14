@@ -19,12 +19,12 @@
 
         public override bool Check()
         {
-            if (!object.Equals(typeof(T), this.Property.PropertyType))
+            if (!Equals(typeof(T), Property.PropertyType))
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.PropertyGetterTestOfTException_Message,
-                    this.Property.PropertyType,
+                    Property.PropertyType,
                     typeof(T)));
             }
 

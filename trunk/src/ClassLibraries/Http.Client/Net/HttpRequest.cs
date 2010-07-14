@@ -12,11 +12,11 @@
         {
             get
             {
-                var value = new Uri(this.RequestLine.RequestUri, UriKind.RelativeOrAbsolute);
+                var value = new Uri(RequestLine.RequestUri, UriKind.RelativeOrAbsolute);
 
                 if (!value.IsAbsoluteUri)
                 {
-                    value = new Uri(new Uri("http://" + this.Headers["Host"], UriKind.Absolute), value);
+                    value = new Uri(new Uri("http://" + Headers["Host"], UriKind.Absolute), value);
                 }
 
                 return value;
@@ -27,7 +27,7 @@
         {
             get
             {
-                return this._requestLine;
+                return _requestLine;
             }
 
             set
@@ -37,13 +37,15 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._requestLine = value;
+                _requestLine = value;
             }
         }
 
         public static implicit operator HttpRequest(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as HttpRequest : HttpRequest.FromString(value);
+            return ReferenceEquals(null, value)
+                ? null
+                : FromString(value);
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
@@ -84,7 +86,7 @@
                 throw new ArgumentNullException("reader");
             }
 
-            this.RequestLine = reader.ReadLine();
+            RequestLine = reader.ReadLine();
             base.Read(reader);
         }
 
@@ -95,7 +97,7 @@
                 throw new ArgumentNullException("writer");
             }
 
-            writer.WriteLine(this.RequestLine);
+            writer.WriteLine(RequestLine);
             base.Write(writer);
         }
     }

@@ -7,7 +7,7 @@
     {
         protected PropertyTestBase(PropertyInfo property)
         {
-            this.Property = property;
+            Property = property;
         }
 
         public PropertyInfo Property

@@ -8,7 +8,7 @@
     {
         public SealedClassTest(bool value)
         {
-            this.Value = value;
+            Value = value;
         }
 
         public bool Value
@@ -19,9 +19,9 @@
 
         public bool Check()
         {
-            if (this.Value != typeof(T).IsSealed)
+            if (Value != typeof(T).IsSealed)
             {
-                if (this.Value)
+                if (Value)
                 {
                     throw new TestException(string.Format(
                         CultureInfo.CurrentUICulture,

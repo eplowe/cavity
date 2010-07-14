@@ -9,7 +9,7 @@ namespace Cavity
 
         public ComparableObjectDerived(string value)
         {
-            this.Value = value;
+            Value = value;
         }
 
         public string Value
@@ -20,7 +20,7 @@ namespace Cavity
 
         public override string ToString()
         {
-            return this.Value;
+            return Value;
         }
     }
 }

@@ -29,7 +29,8 @@
                 throw new ArgumentNullException("type");
             }
 
-            object result = null;
+            object result;
+
             using (var stream = new MemoryStream())
             {
                 using (var writer = new StreamWriter(stream))
@@ -37,14 +38,9 @@
                     writer.Write(xml);
                     writer.Flush();
                     stream.Position = 0;
-                    if (typeof(Exception).IsAssignableFrom(type))
-                    {
-                        result = new SoapFormatter().Deserialize(stream);
-                    }
-                    else
-                    {
-                        result = new XmlSerializer(type).Deserialize(stream);
-                    }
+                    result = typeof(Exception).IsAssignableFrom(type)
+                        ? new SoapFormatter().Deserialize(stream)
+                        : new XmlSerializer(type).Deserialize(stream);
                 }
             }
 

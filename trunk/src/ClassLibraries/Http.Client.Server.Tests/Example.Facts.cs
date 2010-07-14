@@ -110,8 +110,8 @@
                 ServiceLocator.SetLocatorProvider(null);
             }
         }
-        
-        [Fact]
+
+        [Fact(Skip = "Need to check what example.com is doing now.")]
         public void options_any()
         {
             try

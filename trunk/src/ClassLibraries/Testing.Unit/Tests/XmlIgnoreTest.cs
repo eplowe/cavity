@@ -15,14 +15,14 @@ namespace Cavity.Tests
 
         public override bool Check()
         {
-            XmlIgnoreAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlIgnoreAttribute), false) as XmlIgnoreAttribute;
+            var attribute = Attribute.GetCustomAttribute(Member, typeof(XmlIgnoreAttribute), false) as XmlIgnoreAttribute;
 
             if (null == attribute)
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlIgnoreDecorationTestException_Message,
-                    this.Member.Name));
+                    Member.Name));
             }
 
             return true;

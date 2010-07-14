@@ -27,30 +27,30 @@ namespace Cavity.Tests
 
         public override bool Check()
         {
-            XmlAttributeAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlAttributeAttribute), false) as XmlAttributeAttribute;
+            var attribute = Attribute.GetCustomAttribute(Member, typeof(XmlAttributeAttribute), false) as XmlAttributeAttribute;
             if (null == attribute)
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlAttributeDecorationTestException_Message1,
-                    this.Member.Name));
+                    Member.Name));
             }
-            else if (this.AttributeName != attribute.AttributeName)
+            else if (AttributeName != attribute.AttributeName)
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlAttributeDecorationTestException_Message2,
-                    this.Member.Name,
-                    this.AttributeName));
+                    Member.Name,
+                    AttributeName));
             }
-            else if (this.Namespace != attribute.Namespace)
+            else if (Namespace != attribute.Namespace)
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlAttributeDecorationTestException_Message3,
-                    this.Member.Name,
-                    this.AttributeName,
-                    this.Namespace));
+                    Member.Name,
+                    AttributeName,
+                    Namespace));
             }
 
             return true;

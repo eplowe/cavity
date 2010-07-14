@@ -15,7 +15,7 @@
                 throw new ArgumentNullException("request");
             }
 
-            IHttpResponse result = null;
+            IHttpResponse result;
 
             TcpClient client = null;
             try
@@ -24,7 +24,7 @@
                 client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
                 client.NoDelay = true;
                 
-                result = Http.Send(request, client);
+                result = Send(request, client);
             }
             finally
             {
@@ -40,7 +40,7 @@
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
         private static IHttpResponse Send(IHttpRequest request, TcpClient client)
         {
-            IHttpResponse result = null;
+            IHttpResponse result;
 
             using (var stream = client.GetStream())
             {
@@ -48,7 +48,7 @@
                 {
                     request.Write(writer);
                     writer.Flush();
-                    result = Http.Read(stream);
+                    result = Read(stream);
                 }
             }
 
@@ -57,7 +57,7 @@
 
         private static IHttpResponse Read(Stream stream)
         {
-            HttpResponse result = new HttpResponse();
+            var result = new HttpResponse();
 
             using (var reader = new StreamReader(stream))
             {

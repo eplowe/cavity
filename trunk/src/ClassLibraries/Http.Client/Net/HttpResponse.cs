@@ -12,7 +12,7 @@
         {
             get
             {
-                return this._statusLine;
+                return _statusLine;
             }
 
             set
@@ -22,13 +22,15 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._statusLine = value;
+                _statusLine = value;
             }
         }
 
         public static implicit operator HttpResponse(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as HttpResponse : HttpResponse.FromString(value);
+            return ReferenceEquals(null, value)
+                ? null
+                : FromString(value);
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
@@ -69,7 +71,7 @@
                 throw new ArgumentNullException("reader");
             }
 
-            this.StatusLine = reader.ReadLine();
+            StatusLine = reader.ReadLine();
             base.Read(reader);
         }
 
@@ -80,7 +82,7 @@
                 throw new ArgumentNullException("writer");
             }
 
-            writer.WriteLine(this.StatusLine);
+            writer.WriteLine(StatusLine);
             base.Write(writer);
         }
     }

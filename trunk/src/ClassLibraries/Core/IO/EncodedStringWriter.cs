@@ -6,19 +6,19 @@ namespace Cavity.IO
 
     public sealed class EncodedStringWriter : StringWriter
     {
-        private Encoding _encoding;
+        private readonly Encoding _encoding;
 
         public EncodedStringWriter(StringBuilder builder, IFormatProvider formatProvider, Encoding encoding)
             : base(builder, formatProvider)
         {
-            this._encoding = encoding;
+            _encoding = encoding;
         }
 
         public override Encoding Encoding
         {
             get
             {
-                return this._encoding;
+                return _encoding;
             }
         }
     }

@@ -7,9 +7,9 @@ namespace Cavity
     {
         public ValueObjectDerived()
         {
-            this.RegisterProperty(x => x.DateTimeProperty);
-            this.RegisterProperty(x => x.Int32Property);
-            this.RegisterProperty(x => x.StringProperty);
+            RegisterProperty(x => x.DateTimeProperty);
+            RegisterProperty(x => x.Int32Property);
+            RegisterProperty(x => x.StringProperty);
         }
 
         public DateTime DateTimeProperty
@@ -32,7 +32,7 @@ namespace Cavity
 
         public void RegisterNullProperty()
         {
-            this.RegisterProperty(null);
+            RegisterProperty(null);
         }
     }
 }

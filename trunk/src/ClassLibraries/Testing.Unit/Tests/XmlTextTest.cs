@@ -15,14 +15,14 @@ namespace Cavity.Tests
 
         public override bool Check()
         {
-            XmlTextAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlTextAttribute), false) as XmlTextAttribute;
+            var attribute = Attribute.GetCustomAttribute(Member, typeof(XmlTextAttribute), false) as XmlTextAttribute;
 
             if (null == attribute)
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlTextDecorationTestException_Message,
-                    this.Member.Name));
+                    Member.Name));
             }
 
             return true;

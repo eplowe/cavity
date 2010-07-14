@@ -9,14 +9,14 @@
     public sealed class XmlRootTest<T> : ITestExpectation
     {
         public XmlRootTest(string elementName)
-            : this(elementName, null as string)
+            : this(elementName, null)
         {
         }
 
         public XmlRootTest(string elementName, string @namespace)
         {
-            this.ElementName = elementName;
-            this.Namespace = @namespace;
+            ElementName = elementName;
+            Namespace = @namespace;
         }
 
         public string ElementName
@@ -33,7 +33,7 @@
 
         public bool Check()
         {
-            XmlRootAttribute attribute = Attribute.GetCustomAttribute(typeof(T), typeof(XmlRootAttribute), false) as XmlRootAttribute;
+            var attribute = Attribute.GetCustomAttribute(typeof(T), typeof(XmlRootAttribute), false) as XmlRootAttribute;
             if (null == attribute)
             {
                 throw new TestException(string.Format(
@@ -41,22 +41,22 @@
                     Resources.XmlRootDecorationTestException_UndecoratedMessage,
                     typeof(T).Name));
             }
-            else if (this.ElementName != attribute.ElementName)
+            else if (ElementName != attribute.ElementName)
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlRootDecorationTestException_NameMessage,
                     typeof(T).Name,
-                    this.ElementName));
+                    ElementName));
             }
-            else if (this.Namespace != attribute.Namespace)
+            else if (Namespace != attribute.Namespace)
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlRootDecorationTestException_NamespaceMessage,
                     typeof(T).Name,
-                    this.ElementName,
-                    this.Namespace));
+                    ElementName,
+                    Namespace));
             }
 
             return true;

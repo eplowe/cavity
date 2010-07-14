@@ -16,8 +16,8 @@
     /// <typeparam name="T">The type under test.</typeparam>
     /// <remarks>
     /// This is an internal DSL which employs method chaining to build a set of expectations.
-    /// When <see cref="P:Cavity.PropertyExpectations.Result"/> is invoked, all the expectations are verified;
-    /// if any expectations are not met, a <see cref="T:Cavity.TestExpectation"/> is thrown.
+    /// When <see cref="P:Cavity.PropertyExpectations`1.Result"/> is invoked, all the expectations are verified;
+    /// if any expectations are not met, a <see cref="T:Cavity.TestException"/> is thrown.
     /// </remarks>
     /// <seealso href="http://code.google.com/p/cavity/wiki/PropertyExpectations">Guide to asserting expectations about properties.</seealso>
     public sealed class PropertyExpectations<T>
@@ -29,8 +29,8 @@
         /// <param name="name">The name of the property under test.</param>
         public PropertyExpectations(string name)
         {
-            this.Property = typeof(T).GetProperty(name);
-            this.Items = new Collection<ITestExpectation>();
+            Property = typeof(T).GetProperty(name);
+            Items = new Collection<ITestExpectation>();
         }
 
         /// <summary>
@@ -44,7 +44,7 @@
         {
             get
             {
-                return 0 == this.Items.Where(x => !x.Check()).Count();
+                return 0 == Items.Where(x => !x.Check()).Count();
             }
         }
 
@@ -68,7 +68,7 @@
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
         public PropertyExpectations<T> TypeIs<TProperty>()
         {
-            this.Items.Add(new PropertyGetterTest<TProperty>(this.Property));
+            Items.Add(new PropertyGetterTest<TProperty>(Property));
             return this;
         }
 
@@ -78,7 +78,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> DefaultValueIsNull()
         {
-            this.Items.Add(new PropertyGetterTest(this.Property, null));
+            Items.Add(new PropertyGetterTest(Property, null));
             return this;
         }
 
@@ -89,7 +89,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> DefaultValueIs(object value)
         {
-            this.Items.Add(new PropertyGetterTest(this.Property, value));
+            Items.Add(new PropertyGetterTest(Property, value));
             return this;
         }
 
@@ -99,7 +99,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> DefaultValueIsNotNull()
         {
-            this.Items.Add(new PropertyDefaultIsNotNullTest(this.Property));
+            Items.Add(new PropertyDefaultIsNotNullTest(Property));
             return this;
         }
 
@@ -111,7 +111,7 @@
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
         public PropertyExpectations<T> Set<TValue>()
         {
-            return this.Set(default(TValue));
+            return Set(default(TValue));
         }
 
         /// <summary>
@@ -121,7 +121,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> Set(object value)
         {
-            this.Items.Add(new PropertySetterTest(this.Property, value));
+            Items.Add(new PropertySetterTest(Property, value));
             return this;
         }
 
@@ -132,7 +132,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> ArgumentNullException()
         {
-            this.Exception(null, typeof(ArgumentNullException));
+            Exception(null, typeof(ArgumentNullException));
             return this;
         }
 
@@ -144,7 +144,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> ArgumentOutOfRangeException(object value)
         {
-            this.Exception(value, typeof(ArgumentOutOfRangeException));
+            Exception(value, typeof(ArgumentOutOfRangeException));
             return this;
         }
 
@@ -156,7 +156,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> FormatException(object value)
         {
-            this.Exception(value, typeof(FormatException));
+            Exception(value, typeof(FormatException));
             return this;
         }
 
@@ -185,7 +185,7 @@
                 throw new ArgumentOutOfRangeException("expectedException");
             }
 
-            this.Items.Add(new PropertySetterTest(this.Property, value) { ExpectedException = expectedException });
+            Items.Add(new PropertySetterTest(Property, value) { ExpectedException = expectedException });
             return this;
         }
 
@@ -200,7 +200,7 @@
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
         public PropertyExpectations<T> IsAutoProperty<TProperty>()
         {
-            return this.IsAutoProperty<TProperty>(default(TProperty));
+            return IsAutoProperty<TProperty>(default(TProperty));
         }
 
         /// <summary>
@@ -215,12 +215,12 @@
         /// </seealso>
         public PropertyExpectations<T> IsAutoProperty<TProperty>(TProperty defaultValue)
         {
-            this.DefaultValueIs(defaultValue);
-            this.Set(default(TProperty));
-            this.Set(defaultValue);
+            DefaultValueIs(defaultValue);
+            Set(default(TProperty));
+            Set(defaultValue);
             if (typeof(string).Equals(typeof(TProperty)))
             {
-                this.Set(string.Empty);
+                Set(string.Empty);
             }
 
             return this;
@@ -263,7 +263,7 @@
                 throw new ArgumentOutOfRangeException(Resources.PropertyExpectations_IsDecoratedWithXmlNamespaceDeclarations);
             }
 
-            this.Items.Add(new AttributeMemberTest(this.Property, typeof(TAttribute)));
+            Items.Add(new AttributeMemberTest(Property, typeof(TAttribute)));
             return this;
         }
 
@@ -273,7 +273,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> IsNotDecorated()
         {
-            this.Items.Add(new AttributeMemberTest(this.Property, null as Type));
+            Items.Add(new AttributeMemberTest(Property, null));
             return this;
         }
 
@@ -292,7 +292,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlArray(string arrayElementName, string arrayItemElementName)
         {
-            this.Items.Add(new XmlArrayTest(this.Property) { ArrayElementName = arrayElementName, ArrayItemElementName = arrayItemElementName });
+            Items.Add(new XmlArrayTest(Property) { ArrayElementName = arrayElementName, ArrayItemElementName = arrayItemElementName });
             return this;
         }
 
@@ -307,7 +307,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlAttribute(string attributeName)
         {
-            this.Items.Add(new XmlAttributeTest(this.Property) { AttributeName = attributeName });
+            Items.Add(new XmlAttributeTest(Property) { AttributeName = attributeName });
             return this;
         }
 
@@ -325,7 +325,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlAttribute(string attributeName, string @namespace)
         {
-            this.Items.Add(new XmlAttributeTest(this.Property) { AttributeName = attributeName, Namespace = @namespace });
+            Items.Add(new XmlAttributeTest(Property) { AttributeName = attributeName, Namespace = @namespace });
             return this;
         }
 
@@ -340,7 +340,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlElement(string elementName)
         {
-            this.Items.Add(new XmlElementTest(this.Property) { ElementName = elementName });
+            Items.Add(new XmlElementTest(Property) { ElementName = elementName });
             return this;
         }
 
@@ -358,7 +358,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlElement(string elementName, string @namespace)
         {
-            this.Items.Add(new XmlElementTest(this.Property) { ElementName = elementName, Namespace = @namespace });
+            Items.Add(new XmlElementTest(Property) { ElementName = elementName, Namespace = @namespace });
             return this;
         }
 
@@ -369,7 +369,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlIgnore()
         {
-            this.Items.Add(new XmlIgnoreTest(this.Property));
+            Items.Add(new XmlIgnoreTest(Property));
             return this;
         }
 
@@ -380,7 +380,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlNamespaceDeclarations()
         {
-            this.Items.Add(new XmlNamespaceDeclarationsTest(this.Property));
+            Items.Add(new XmlNamespaceDeclarationsTest(Property));
             return this;
         }
 
@@ -391,7 +391,7 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlText()
         {
-            this.Items.Add(new XmlTextTest(this.Property));
+            Items.Add(new XmlTextTest(Property));
             return this;
         }
     }

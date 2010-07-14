@@ -12,7 +12,7 @@
         public AttributeMemberTest(MemberInfo member, Type attribute)
             : base(member)
         {
-            this.Attribute = attribute;
+            Attribute = attribute;
         }
 
         public Type Attribute
@@ -23,25 +23,25 @@
 
         public override bool Check()
         {
-            if (null == this.Attribute)
+            if (null == Attribute)
             {
-                if (0 != this.Member.GetCustomAttributes(false).Where(x => !(x is SuppressMessageAttribute)).Count())
+                if (0 != Member.GetCustomAttributes(false).Where(x => !(x is SuppressMessageAttribute)).Count())
                 {
                     throw new TestException(string.Format(
                         CultureInfo.CurrentUICulture,
                         Resources.DecorationTestException_UnexpectedMessage,
-                        this.Member.Name));
+                        Member.Name));
                 }
             }
             else
             {
-                if (null == System.Attribute.GetCustomAttribute(this.Member, this.Attribute, false))
+                if (null == System.Attribute.GetCustomAttribute(Member, Attribute, false))
                 {
                     throw new TestException(string.Format(
                         CultureInfo.InvariantCulture,
                         Resources.DecorationTestException_MissingMessage,
-                        this.Member.Name,
-                        this.Attribute.Name));
+                        Member.Name,
+                        Attribute.Name));
                 }
             }
 
