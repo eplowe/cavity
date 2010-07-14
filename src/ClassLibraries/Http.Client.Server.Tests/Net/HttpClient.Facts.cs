@@ -1,7 +1,6 @@
-﻿namespace Cavity
+﻿namespace Cavity.Net
 {
     using Cavity.Configuration;
-    using Cavity.Net;
     using Xunit;
 
     public sealed class HttpClientFacts
@@ -13,7 +12,7 @@
 
             var client = new HttpClient();
 
-            Assert.Equal<string>(new UserAgent().Value, client.UserAgent);
+            Assert.Equal(new UserAgent().Value, client.UserAgent);
         }
     }
 }

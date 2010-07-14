@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net.Sockets
 {
     using System;
-    using Cavity;
     using Xunit;
 
     public sealed class UriExtensionMethodsFacts

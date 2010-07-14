@@ -16,8 +16,8 @@
         {
             try
             {
-                ITestType value = (new ITestClassConstructionDummy() as ITestClassConstruction).HasDefaultConstructor();
-                Assert.True(false);
+                var value = (new ITestClassConstructionDummy() as ITestClassConstruction).HasDefaultConstructor();
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -29,8 +29,8 @@
         {
             try
             {
-                ITestType value = (new ITestClassConstructionDummy() as ITestClassConstruction).NoDefaultConstructor();
-                Assert.True(false);
+                var value = (new ITestClassConstructionDummy() as ITestClassConstruction).NoDefaultConstructor();
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {

@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using System.IO;
     using Xunit;
 
     public sealed class IHttpHeaderFacts
@@ -17,8 +16,8 @@
         {
             try
             {
-                Token value = (new IHttpHeaderDummy() as IHttpHeader).Name;
-                Assert.True(false);
+                var value = (new IHttpHeaderDummy() as IHttpHeader).Name;
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -30,8 +29,8 @@
         {
             try
             {
-                string value = (new IHttpHeaderDummy() as IHttpHeader).Value;
-                Assert.True(false);
+                var value = (new IHttpHeaderDummy() as IHttpHeader).Value;
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {

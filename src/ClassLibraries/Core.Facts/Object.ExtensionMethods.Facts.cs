@@ -22,108 +22,118 @@ namespace Cavity
         [Fact]
         public void op_ToXmlString_object_whenBoolean()
         {
-            Assert.Equal<string>("true", true.ToXmlString());
+            Assert.Equal("true", true.ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenByte()
         {
-            Assert.Equal<string>("1", ((byte)1).ToXmlString());
+            const short value = 1;
+
+            Assert.Equal("1", value.ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenChar()
         {
-            Assert.Equal<string>("a", 'a'.ToXmlString());
+            Assert.Equal("a", 'a'.ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenCultureInfo()
         {
-            Assert.Equal<string>("en", new CultureInfo("en").ToXmlString());
+            Assert.Equal("en", new CultureInfo("en").ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenDateTime()
         {
-            DateTime value = DateTime.UtcNow;
+            var value = new DateTime(1999, 12, 31);
 
-            Assert.Equal<string>(XmlConvert.ToString(value, XmlDateTimeSerializationMode.Utc), value.ToXmlString());
+            Assert.Equal(XmlConvert.ToString(value, XmlDateTimeSerializationMode.Utc), value.ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenDateTimeOffset()
         {
-            DateTimeOffset value = new DateTimeOffset(DateTime.Today);
+            var value = new DateTimeOffset(new DateTime(1999, 12, 31));
 
-            Assert.Equal<string>(XmlConvert.ToString(value), value.ToXmlString());
+            Assert.Equal(XmlConvert.ToString(value), value.ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenDecimal()
         {
-            Assert.Equal<string>("123.45", ((decimal)123.45).ToXmlString());
+            Assert.Equal("123.45", ((decimal)123.45).ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenDouble()
         {
-            Assert.Equal<string>("123.45", ((double)123.45).ToXmlString());
+            const double value = 123.45;
+
+            Assert.Equal("123.45", value.ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenGuid()
         {
-            Guid value = Guid.NewGuid();
+            var value = Guid.NewGuid();
 
-            Assert.Equal<string>(XmlConvert.ToString(value), value.ToXmlString());
+            Assert.Equal(XmlConvert.ToString(value), value.ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenInt16()
         {
-            Assert.Equal<string>("123", ((short)123).ToXmlString());
+            const short value = 123;
+
+            Assert.Equal("123", value.ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenInt32()
         {
-            Assert.Equal<string>("123", 123.ToXmlString());
+            Assert.Equal("123", 123.ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenInt64()
         {
-            Assert.Equal<string>("123", ((long)123).ToXmlString());
+            const long value = 123;
+
+            Assert.Equal("123", value.ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenSingle()
         {
-            Assert.Equal<string>("123.45", ((float)123.45).ToXmlString());
+            const float value = 123.45f;
+
+            Assert.Equal("123.45", value.ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenString()
         {
-            Assert.Equal<string>("value", "value".ToXmlString());
+            Assert.Equal("value", "value".ToXmlString());
         }
 
         [Fact]
         public void op_ToXmlString_object_whenTimeSpan()
         {
-            TimeSpan value = new TimeSpan(1, 2, 3);
+            var value = new TimeSpan(1, 2, 3);
 
-            Assert.Equal<string>(XmlConvert.ToString(value), value.ToXmlString());
+            Assert.Equal(XmlConvert.ToString(value), value.ToXmlString());
         }
 
         [Fact]
         public void op_XmlSerialize_object()
         {
-            string expected = "2009-04-25T00:00:00";
-            string actual = new DateTime(2009, 04, 25).XmlSerialize().CreateNavigator().SelectSingleNode("//dateTime").Value;
+            const string expected = "2009-04-25T00:00:00";
+            var actual = new DateTime(2009, 04, 25).XmlSerialize().CreateNavigator().SelectSingleNode("//dateTime").Value;
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -135,7 +145,7 @@ namespace Cavity
         [Fact]
         public void op_XmlSerialize_objectException()
         {
-            string xml = new ArgumentOutOfRangeException("parameter").XmlSerialize().CreateNavigator().OuterXml;
+            var xml = new ArgumentOutOfRangeException().XmlSerialize().CreateNavigator().OuterXml;
 
             Assert.True(xml.StartsWith("<SOAP-ENV:Envelope SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\""));
         }

@@ -72,14 +72,14 @@
                 }
             }
 
-            Assert.Equal<int>(1, message.Headers.Count);
+            Assert.Equal(1, message.Headers.Count);
             Assert.True(message.Headers.Contains(connection));
         }
 
         [Fact]
         public void op_Read_TextReader_whenUndefinedMediaType()
         {
-            StringBuilder expected = new StringBuilder();
+            var expected = new StringBuilder();
             expected.AppendLine("Content-Length: 4");
             expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
             expected.AppendLine("Host: www.example.com");
@@ -90,7 +90,7 @@
             try
             {
                 var locator = new Mock<IServiceLocator>();
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 using (var stream = new MemoryStream())
                 {
@@ -138,13 +138,13 @@
         [Fact]
         public void op_Read_TextReaderNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Read(null as TextReader));
+            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Read(null));
         }
 
         [Fact]
         public void op_Write_TextWriter()
         {
-            StringBuilder expected = new StringBuilder();
+            var expected = new StringBuilder();
             expected.AppendLine("Content-Length: 4");
             expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
             expected.AppendLine("Host: www.example.com");
@@ -162,7 +162,7 @@
                     .Returns(new TextPlain())
                     .Verifiable();
                 
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 using (var stream = new MemoryStream())
                 {
@@ -185,7 +185,7 @@
                 ServiceLocator.SetLocatorProvider(null);
             }
 
-            StringBuilder actual = new StringBuilder();
+            var actual = new StringBuilder();
 
             using (var writer = new StringWriter(actual, CultureInfo.InvariantCulture))
             {
@@ -193,19 +193,19 @@
                 writer.Flush();
             }
 
-            Assert.Equal<string>(expected.ToString(), actual.ToString());
+            Assert.Equal(expected.ToString(), actual.ToString());
         }
 
         [Fact]
         public void op_Write_TextWriterNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Write(null as TextWriter));
+            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Write(null));
         }
 
         [Fact]
         public void op_ToString()
         {
-            StringBuilder expected = new StringBuilder();
+            var expected = new StringBuilder();
             expected.AppendLine("Content-Length: 4");
             expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
             expected.AppendLine("Host: www.example.com");
@@ -223,7 +223,7 @@
                     .Returns(new TextPlain())
                     .Verifiable();
                 
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 using (var stream = new MemoryStream())
                 {
@@ -246,9 +246,9 @@
                 ServiceLocator.SetLocatorProvider(null);
             }
 
-            string actual = obj.ToString();
+            var actual = obj.ToString();
 
-            Assert.Equal<string>(expected.ToString(), actual);
+            Assert.Equal(expected.ToString(), actual);
         }
     }
 }

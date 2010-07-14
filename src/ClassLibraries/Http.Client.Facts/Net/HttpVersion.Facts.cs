@@ -85,25 +85,25 @@
         [Fact]
         public void opImplicit_HttpVersion_string()
         {
-            HttpVersion expected = "HTTP/1.0";
-            HttpVersion actual = new HttpVersion(1, 0);
+            var expected = new HttpVersion(1, 0);
+            HttpVersion actual = "HTTP/1.0";
 
-            Assert.Equal<HttpVersion>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_string()
         {
-            HttpVersion expected = new HttpVersion(1, 0);
-            HttpVersion actual = HttpVersion.FromString("HTTP/1.0");
+            var expected = new HttpVersion(1, 0);
+            var actual = HttpVersion.FromString("HTTP/1.0");
 
-            Assert.Equal<HttpVersion>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpVersion.FromString(null as string));
+            Assert.Throws<ArgumentNullException>(() => HttpVersion.FromString(null));
         }
 
         [Fact]
@@ -121,10 +121,10 @@
         [Fact]
         public void op_ToString()
         {
-            string expected = "HTTP/1.0";
-            string actual = new HttpVersion(1, 0).ToString();
+            const string expected = "HTTP/1.0";
+            var actual = new HttpVersion(1, 0).ToString();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
     }
 }

@@ -22,23 +22,29 @@
         [Fact]
         public void prop_Expected()
         {
-            var obj = new PropertySetterTest(null as PropertyInfo, false);
+            const bool expected = true;
 
-            object expected = true;
-            obj.Value = expected;
-            object actual = obj.Value;
+            var obj = new PropertySetterTest(null, false)
+            {
+                Value = expected
+            };
 
-            Assert.Same(expected, actual);
+            var actual = obj.Value;
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void prop_ExpectedException()
         {
-            var obj = new PropertySetterTest(null as PropertyInfo, false);
+            var expected = typeof(ArgumentException);
 
-            Type expected = typeof(ArgumentException);
-            obj.ExpectedException = expected;
-            Type actual = obj.ExpectedException;
+            var obj = new PropertySetterTest(null, false)
+            {
+                ExpectedException = expected
+            };
+
+            var actual = obj.ExpectedException;
 
             Assert.Same(expected, actual);
         }

@@ -21,7 +21,7 @@
         [Fact]
         public void ctor_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpMethod(null as string));
+            Assert.Throws<ArgumentNullException>(() => new HttpMethod(null));
         }
 
         [Fact]
@@ -123,19 +123,19 @@
         [Fact]
         public void opImplicit_HttpMethod_string()
         {
-            HttpMethod expected = "GET";
-            HttpMethod actual = new HttpMethod("GET");
+            var expected = new HttpMethod("GET");
+            HttpMethod actual = "GET";
 
-            Assert.Equal<HttpMethod>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_ToString()
         {
-            string expected = "GET";
-            string actual = new HttpMethod(expected).ToString();
+            const string expected = "GET";
+            var actual = new HttpMethod(expected).ToString();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
     }
 }

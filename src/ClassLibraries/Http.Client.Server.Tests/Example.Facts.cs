@@ -21,7 +21,7 @@
                     "Connection: close" + Environment.NewLine +
                     string.Empty;
 
-                HttpClient client = new HttpClient();
+                var client = new HttpClient();
                 client.Navigate(request);
 
                 Assert.Equal<string>("HTTP/1.1 200 OK", client.Response.StatusLine);
@@ -31,9 +31,9 @@
                 Assert.True(client.Response.Headers.ContainsName("Last-Modified"));
                 Assert.True(client.Response.Headers.ContainsName("ETag"));
                 Assert.True(client.Response.Headers.ContainsName("Accept-Ranges"));
-                Assert.Equal<string>("574", client.Response.Headers["Content-Length"]);
-                Assert.Equal<string>("close", client.Response.Headers["Connection"]);
-                Assert.Equal<string>("text/html; charset=UTF-8", client.Response.Headers["Content-Type"]);
+                Assert.Equal("574", client.Response.Headers["Content-Length"]);
+                Assert.Equal("close", client.Response.Headers["Connection"]);
+                Assert.Equal("text/html; charset=UTF-8", client.Response.Headers["Content-Type"]);
 
                 Assert.NotNull(client.Response.Body.Content);
             }
@@ -56,7 +56,7 @@
                     "Connection: close" + Environment.NewLine +
                     string.Empty;
 
-                HttpClient client = new HttpClient();
+                var client = new HttpClient();
                 client.Navigate(request);
 
                 Assert.Equal<string>("HTTP/1.1 200 OK", client.Response.StatusLine);
@@ -66,11 +66,11 @@
                 Assert.True(client.Response.Headers.ContainsName("Last-Modified"));
                 Assert.True(client.Response.Headers.ContainsName("ETag"));
                 Assert.True(client.Response.Headers.ContainsName("Accept-Ranges"));
-                Assert.Equal<string>("574", client.Response.Headers["Content-Length"]);
-                Assert.Equal<string>("close", client.Response.Headers["Connection"]);
-                Assert.Equal<string>("text/html; charset=UTF-8", client.Response.Headers["Content-Type"]);
+                Assert.Equal("574", client.Response.Headers["Content-Length"]);
+                Assert.Equal("close", client.Response.Headers["Connection"]);
+                Assert.Equal("text/html; charset=UTF-8", client.Response.Headers["Content-Type"]);
 
-                Assert.Equal<string>(string.Empty, (string)client.Response.Body.Content);
+                Assert.Equal(string.Empty, (string)client.Response.Body.Content);
             }
             finally
             {
@@ -91,19 +91,19 @@
                     "Connection: close" + Environment.NewLine +
                     string.Empty;
 
-                HttpClient client = new HttpClient();
+                var client = new HttpClient();
                 client.Navigate(request);
 
                 Assert.Equal<string>("HTTP/1.1 200 OK", client.Response.StatusLine);
 
                 Assert.True(client.Response.Headers.ContainsName("Date"));
                 Assert.True(client.Response.Headers.ContainsName("Server"));
-                Assert.Equal<string>("GET,HEAD,POST,OPTIONS,TRACE", client.Response.Headers["Allow"]);
-                Assert.Equal<string>("0", client.Response.Headers["Content-Length"]);
-                Assert.Equal<string>("close", client.Response.Headers["Connection"]);
-                Assert.Equal<string>("text/html; charset=UTF-8", client.Response.Headers["Content-Type"]);
+                Assert.Equal("GET,HEAD,POST,OPTIONS,TRACE", client.Response.Headers["Allow"]);
+                Assert.Equal("0", client.Response.Headers["Content-Length"]);
+                Assert.Equal("close", client.Response.Headers["Connection"]);
+                Assert.Equal("text/html; charset=UTF-8", client.Response.Headers["Content-Type"]);
 
-                Assert.Equal<string>(string.Empty, (string)client.Response.Body.Content);
+                Assert.Equal(string.Empty, (string)client.Response.Body.Content);
             }
             finally
             {
@@ -124,7 +124,7 @@
                     "Connection: keep-alive" + Environment.NewLine +
                     string.Empty;
 
-                HttpClient client = new HttpClient();
+                var client = new HttpClient();
                 client.Navigate(request);
 
                 Assert.Equal<string>("HTTP/1.1 200 OK", client.Response.StatusLine);
@@ -149,16 +149,16 @@
                     "Connection: close" + Environment.NewLine +
                     string.Empty;
 
-                HttpClient client = new HttpClient();
+                var client = new HttpClient();
                 client.Navigate(request);
 
                 Assert.Equal<string>("HTTP/1.1 200 OK", client.Response.StatusLine);
 
                 Assert.True(client.Response.Headers.ContainsName("Date"));
-                Assert.Equal<string>("message/http", client.Response.Headers.ContentType.MediaType);
-                Assert.Equal<string>("close", client.Response.Headers["Connection"]);
+                Assert.Equal("message/http", client.Response.Headers.ContentType.MediaType);
+                Assert.Equal("close", client.Response.Headers["Connection"]);
 
-                Assert.True((client.Response.Body.Content as string).Contains("TRACE / HTTP/1.1"));
+                Assert.True(((string)client.Response.Body.Content).Contains("TRACE / HTTP/1.1"));
             }
             finally
             {

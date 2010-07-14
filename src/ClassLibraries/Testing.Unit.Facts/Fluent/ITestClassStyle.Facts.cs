@@ -16,8 +16,8 @@
         {
             try
             {
-                ITestType value = (new ITestClassStyleDummy() as ITestClassStyle).IsAbstractBaseClass();
-                Assert.True(false);
+                var value = (new ITestClassStyleDummy() as ITestClassStyle).IsAbstractBaseClass();
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -29,8 +29,8 @@
         {
             try
             {
-                ITestClassSealed value = (new ITestClassStyleDummy() as ITestClassStyle).IsConcreteClass();
-                Assert.True(false);
+                var value = (new ITestClassStyleDummy() as ITestClassStyle).IsConcreteClass();
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {

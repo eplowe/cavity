@@ -17,8 +17,8 @@
         {
             try
             {
-                bool value = (new ITestTypeDummy() as ITestType).Result;
-                Assert.True(false);
+                var value = (new ITestTypeDummy() as ITestType).Result;
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -30,8 +30,8 @@
         {
             try
             {
-                ITestType value = (new ITestTypeDummy() as ITestType).Add(new ITestExpectationDummy());
-                Assert.True(false);
+                var value = (new ITestTypeDummy() as ITestType).Add(new ITestExpectationDummy());
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -43,8 +43,8 @@
         {
             try
             {
-                ITestType value = (new ITestTypeDummy() as ITestType).Implements<Interface1>();
-                Assert.True(false);
+                var value = (new ITestTypeDummy() as ITestType).Implements<IInterface1>();
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -56,8 +56,8 @@
         {
             try
             {
-                ITestType value = (new ITestTypeDummy() as ITestType).IsDecoratedWith<Attribute1>();
-                Assert.True(false);
+                var value = (new ITestTypeDummy() as ITestType).IsDecoratedWith<Attribute1>();
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -69,8 +69,8 @@
         {
             try
             {
-                ITestType value = (new ITestTypeDummy() as ITestType).IsNotDecorated();
-                Assert.True(false);
+                var value = (new ITestTypeDummy() as ITestType).IsNotDecorated();
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -82,8 +82,8 @@
         {
             try
             {
-                ITestType value = (new ITestTypeDummy() as ITestType).Serializable();
-                Assert.True(false);
+                var value = (new ITestTypeDummy() as ITestType).Serializable();
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -95,8 +95,8 @@
         {
             try
             {
-                ITestType value = (new ITestTypeDummy() as ITestType).XmlRoot("name");
-                Assert.True(false);
+                var value = (new ITestTypeDummy() as ITestType).XmlRoot("name");
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -108,8 +108,8 @@
         {
             try
             {
-                ITestType value = (new ITestTypeDummy() as ITestType).XmlRoot("name", "namespace");
-                Assert.True(false);
+                var value = (new ITestTypeDummy() as ITestType).XmlRoot("name", "namespace");
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {

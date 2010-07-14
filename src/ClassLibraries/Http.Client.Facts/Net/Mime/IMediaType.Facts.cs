@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net.Mime
 {
     using System;
-    using System.IO;
     using Xunit;
 
     public sealed class IMediaTypeFacts
@@ -17,8 +16,8 @@
         {
             try
             {
-                IContent value = (new IMediaTypeDummy() as IMediaType).ToContent(null as TextReader);
-                Assert.True(false);
+                var value = (new IMediaTypeDummy() as IMediaType).ToContent(null);
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {

@@ -22,12 +22,14 @@
         [Fact]
         public void prop_Is()
         {
-            Type expected = typeof(string);
+            var expected = typeof(string);
 
-            var obj = new BaseClassTest<object>(typeof(int));
+            var obj = new BaseClassTest<object>(typeof(int))
+            {
+                Is = expected
+            };
 
-            obj.Is = expected;
-            Type actual = obj.Is;
+            var actual = obj.Is;
 
             Assert.Same(expected, actual);
         }
@@ -35,11 +37,11 @@
         [Fact]
         public void prop_Is_get()
         {
-            Type expected = typeof(int);
+            var expected = typeof(int);
 
             var obj = new BaseClassTest<object>(expected);
 
-            Type actual = obj.Is;
+            var actual = obj.Is;
 
             Assert.Same(expected, actual);
         }
@@ -53,7 +55,7 @@
         [Fact]
         public void op_Check_whenIsNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new BaseClassTest<object>(null as Type).Check());
+            Assert.Throws<ArgumentNullException>(() => new BaseClassTest<object>(null).Check());
         }
 
         [Fact]

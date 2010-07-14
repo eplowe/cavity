@@ -32,7 +32,7 @@
         [Fact]
         public void ctor_stringNull()
         {
-            Assert.NotNull(new TextPlain(null as string));
+            Assert.NotNull(new TextPlain(null));
         }
 
         [Fact]
@@ -90,49 +90,49 @@
         [Fact]
         public void opImplicit_TextPlain_stringEmpty()
         {
-            TextPlain expected = string.Empty;
-            TextPlain actual = new TextPlain(string.Empty);
+            var expected = new TextPlain(string.Empty);
+            TextPlain actual = string.Empty;
 
-            Assert.Equal<TextPlain>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void opImplicit_TextPlain_string()
         {
-            TextPlain expected = "value";
-            TextPlain actual = new TextPlain("value");
+            var expected = new TextPlain("value");
+            TextPlain actual = "value";
 
-            Assert.Equal<TextPlain>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => TextPlain.FromString(null as string));
+            Assert.Throws<ArgumentNullException>(() => TextPlain.FromString(null));
         }
 
         [Fact]
         public void op_FromString_stringEmpty()
         {
-            TextPlain expected = new TextPlain(string.Empty);
-            TextPlain actual = TextPlain.FromString(string.Empty);
+            var expected = new TextPlain(string.Empty);
+            var actual = TextPlain.FromString(string.Empty);
 
-            Assert.Equal<TextPlain>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_string()
         {
-            TextPlain expected = new TextPlain("value");
-            TextPlain actual = TextPlain.FromString("value");
+            var expected = new TextPlain("value");
+            var actual = TextPlain.FromString("value");
 
-            Assert.Equal<TextPlain>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_ToContent_TextReader()
         {
-            IContent body = null;
+            IContent body;
 
             using (var stream = new MemoryStream())
             {
@@ -148,13 +148,13 @@
                 }
             }
 
-            Assert.Equal<string>("text", (body as TextPlain).Value);
+            Assert.Equal("text", ((TextPlain)body).Value);
         }
 
         [Fact]
         public void op_ToContent_TextReader_whenStringEmpty()
         {
-            IContent body = null;
+            IContent body;
 
             using (var stream = new MemoryStream())
             {
@@ -170,13 +170,13 @@
                 }
             }
 
-            Assert.Equal<string>(string.Empty, (body as TextPlain).Value);
+            Assert.Equal(string.Empty, ((TextPlain)body).Value);
         }
 
         [Fact]
         public void op_ToContent_TextReaderEmpty()
         {
-            IContent body = null;
+            IContent body;
 
             using (var stream = new MemoryStream())
             {
@@ -191,13 +191,13 @@
                 }
             }
 
-            Assert.Equal<string>(string.Empty, (body as TextPlain).Value);
+            Assert.Equal(string.Empty, ((TextPlain)body).Value);
         }
 
         [Fact]
         public void op_ToContent_TextReaderNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new TextPlain().ToContent(null as TextReader));
+            Assert.Throws<ArgumentNullException>(() => new TextPlain().ToContent(null));
         }
 
         [Fact]
@@ -212,7 +212,7 @@
                     stream.Position = 0;
                     using (var reader = new StreamReader(stream))
                     {
-                        Assert.Equal<string>("value", reader.ReadToEnd());
+                        Assert.Equal("value", reader.ReadToEnd());
                     }
                 }
             }
@@ -221,7 +221,7 @@
         [Fact]
         public void op_Write_TextWriterNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new TextPlain().Write(null as TextWriter));
+            Assert.Throws<ArgumentNullException>(() => new TextPlain().Write(null));
         }
 
         [Fact]
@@ -233,10 +233,10 @@
         [Fact]
         public void op_ToString_whenNotNull()
         {
-            string expected = "value";
-            string actual = new TextPlain(expected).ToString();
+            const string expected = "value";
+            var actual = new TextPlain(expected).ToString();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
     }
 }

@@ -30,7 +30,7 @@
         [Fact]
         public void ctor_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new UserAgent(null as string));
+            Assert.Throws<ArgumentNullException>(() => new UserAgent(null));
         }
 
         [Fact]
@@ -68,74 +68,74 @@
         [Fact]
         public void opImplicit_UserAgent_stringEmpty()
         {
-            UserAgent expected = string.Empty;
-            UserAgent actual = new UserAgent(string.Empty);
+            var expected = new UserAgent(string.Empty);
+            UserAgent actual = string.Empty;
 
-            Assert.Equal<UserAgent>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void opImplicit_UserAgent_string()
         {
-            UserAgent expected = "value";
-            UserAgent actual = new UserAgent("value");
+            var expected = new UserAgent("value");
+            UserAgent actual = "value";
 
-            Assert.Equal<UserAgent>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_Format()
         {
-            string expected = string.Format(
+            var expected = string.Format(
                 CultureInfo.CurrentUICulture,
                 "CavityHttpClient/{0}.{1} (+http://code.google.com/p/cavity/)",
                 Assembly.GetExecutingAssembly().GetName().Version.Major,
                 Assembly.GetExecutingAssembly().GetName().Version.Minor);
-            string actual = UserAgent.Format();
+            var actual = UserAgent.Format();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_Format_int_int()
         {
-            string expected = "CavityHttpClient/1.0 (+http://code.google.com/p/cavity/)";
-            string actual = UserAgent.Format(1, 0);
+            const string expected = "CavityHttpClient/1.0 (+http://code.google.com/p/cavity/)";
+            var actual = UserAgent.Format(1, 0);
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => UserAgent.FromString(null as string));
+            Assert.Throws<ArgumentNullException>(() => UserAgent.FromString(null));
         }
 
         [Fact]
         public void op_FromString_stringEmpty()
         {
-            UserAgent expected = new UserAgent(string.Empty);
-            UserAgent actual = UserAgent.FromString(string.Empty);
+            var expected = new UserAgent(string.Empty);
+            var actual = UserAgent.FromString(string.Empty);
 
-            Assert.Equal<UserAgent>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_string()
         {
-            UserAgent expected = new UserAgent("value");
-            UserAgent actual = UserAgent.FromString("value");
+            var expected = new UserAgent("value");
+            var actual = UserAgent.FromString("value");
 
-            Assert.Equal<UserAgent>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_ToString()
         {
-            string expected = "value";
-            string actual = new UserAgent(expected).ToString();
+            const string expected = "value";
+            var actual = new UserAgent(expected).ToString();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
     }
 }

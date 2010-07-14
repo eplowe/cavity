@@ -1,6 +1,5 @@
 ﻿namespace Cavity.Tests
 {
-    using System.Reflection;
     using Cavity.Types;
     using Xunit;
 
@@ -21,11 +20,14 @@
         [Fact]
         public void prop_Expected()
         {
-            var obj = new PropertyGetterTest(null as PropertyInfo, false);
-
             object expected = true;
-            obj.Expected = expected;
-            object actual = obj.Expected;
+
+            var obj = new PropertyGetterTest(null, false)
+            {
+                Expected = expected
+            };
+
+            var actual = obj.Expected;
 
             Assert.Same(expected, actual);
         }

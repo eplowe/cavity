@@ -94,25 +94,25 @@
         [Fact]
         public void opImplicit_RequestLine_string()
         {
-            RequestLine expected = "GET / HTTP/1.1";
-            RequestLine actual = new RequestLine("GET", "/", "HTTP/1.1");
+            var expected = new RequestLine("GET", "/", "HTTP/1.1");
+            RequestLine actual = "GET / HTTP/1.1";
 
-            Assert.Equal<RequestLine>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_string_whenGetRelative()
         {
-            RequestLine expected = new RequestLine("GET", "/", "HTTP/1.1");
-            RequestLine actual = RequestLine.FromString("GET / HTTP/1.1");
+            var expected = new RequestLine("GET", "/", "HTTP/1.1");
+            var actual = RequestLine.FromString("GET / HTTP/1.1");
 
-            Assert.Equal<RequestLine>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => RequestLine.FromString(null as string));
+            Assert.Throws<ArgumentNullException>(() => RequestLine.FromString(null));
         }
 
         [Fact]
@@ -154,10 +154,10 @@
         [Fact]
         public void op_ToString()
         {
-            string expected = "HEAD / HTTP/1.1";
-            string actual = new RequestLine("HEAD", "/", "HTTP/1.1").ToString();
+            const string expected = "HEAD / HTTP/1.1";
+            var actual = new RequestLine("HEAD", "/", "HTTP/1.1").ToString();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
     }
 }

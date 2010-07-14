@@ -105,7 +105,7 @@
     <Compile Include="Types\XmlRootClass1.cs" />
     <Compile Include="Types\SealedClass1.cs" />
     <Compile Include="Types\DerivedClass1.cs" />
-    <Compile Include="Types\Interface1.cs" />
+    <Compile Include="Types\IInterface1.cs" />
     <Compile Include="Types\InterfacedClass1.cs" />
     <Compile Include="Types\PropertiedClass1.cs" />
     <Compile Include="Types\XmlSerializableClass1.cs" />

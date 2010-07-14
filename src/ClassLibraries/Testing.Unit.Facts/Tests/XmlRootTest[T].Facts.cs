@@ -27,7 +27,7 @@
         [Fact]
         public void ctor_stringNull()
         {
-            Assert.NotNull(new XmlRootTest<object>(null as string));
+            Assert.NotNull(new XmlRootTest<object>(null));
         }
 
         [Fact]
@@ -45,7 +45,7 @@
         [Fact]
         public void ctor_stringNull_string()
         {
-            Assert.NotNull(new XmlRootTest<object>(null as string, "namespace"));
+            Assert.NotNull(new XmlRootTest<object>(null, "namespace"));
         }
 
         [Fact]
@@ -57,31 +57,37 @@
         [Fact]
         public void ctor_string_stringNull()
         {
-            Assert.NotNull(new XmlRootTest<object>("name", null as string));
+            Assert.NotNull(new XmlRootTest<object>("name", null));
         }
 
         [Fact]
         public void prop_ElementName()
         {
-            var obj = new XmlRootTest<object>("foo");
+            const string expected = "bar";
 
-            string expected = "bar";
-            obj.ElementName = expected;
-            string actual = obj.ElementName;
+            var obj = new XmlRootTest<object>("foo")
+            {
+                ElementName = expected
+            };
 
-            Assert.Equal<string>(expected, actual);
+            var actual = obj.ElementName;
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void prop_Namespace()
         {
-            var obj = new XmlRootTest<object>("name");
+            const string expected = "namespace";
 
-            string expected = "namespace";
-            obj.Namespace = expected;
-            string actual = obj.Namespace;
+            var obj = new XmlRootTest<object>("name")
+            {
+                Namespace = expected
+            };
 
-            Assert.Equal<string>(expected, actual);
+            var actual = obj.Namespace;
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

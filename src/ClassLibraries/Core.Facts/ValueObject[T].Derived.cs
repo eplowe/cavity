@@ -1,7 +1,6 @@
 namespace Cavity
 {
     using System;
-    using System.Globalization;
 
     public sealed class ValueObjectDerived : ValueObject<ValueObjectDerived>
     {

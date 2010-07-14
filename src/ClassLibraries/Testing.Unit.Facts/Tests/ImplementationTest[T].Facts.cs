@@ -1,6 +1,5 @@
 ﻿namespace Cavity.Tests
 {
-    using System;
     using Cavity.Fluent;
     using Cavity.Types;
     using Xunit;
@@ -10,24 +9,26 @@
         [Fact]
         public void is_ITestExpectation()
         {
-            Assert.IsAssignableFrom<ITestExpectation>(new ImplementationTest<int>(typeof(Interface1)));
+            Assert.IsAssignableFrom<ITestExpectation>(new ImplementationTest<int>(typeof(IInterface1)));
         }
 
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new ImplementationTest<object>(typeof(Interface1)));
+            Assert.NotNull(new ImplementationTest<object>(typeof(IInterface1)));
         }
 
         [Fact]
         public void prop_Interface()
         {
-            Type expected = typeof(Interface1);
+            var expected = typeof(IInterface1);
 
-            var obj = new ImplementationTest<object>(expected);
+            var obj = new ImplementationTest<object>(expected)
+            {
+                Interface = expected
+            };
 
-            obj.Interface = expected;
-            Type actual = obj.Interface;
+            var actual = obj.Interface;
 
             Assert.Same(expected, actual);
         }
@@ -35,19 +36,19 @@
         [Fact]
         public void op_Check_whenFalse()
         {
-            Assert.Throws<TestException>(() => new ImplementationTest<object>(typeof(Interface1)).Check());
+            Assert.Throws<TestException>(() => new ImplementationTest<object>(typeof(IInterface1)).Check());
         }
 
         [Fact]
         public void op_Check_whenUnexpectedInterface()
         {
-            Assert.Throws<TestException>(() => new ImplementationTest<InterfacedClass1>(null as Type).Check());
+            Assert.Throws<TestException>(() => new ImplementationTest<InterfacedClass1>(null).Check());
         }
 
         [Fact]
         public void op_Check_whenTrue()
         {
-            Assert.True(new ImplementationTest<InterfacedClass1>(typeof(Interface1)).Check());
+            Assert.True(new ImplementationTest<InterfacedClass1>(typeof(IInterface1)).Check());
         }
     }
 }

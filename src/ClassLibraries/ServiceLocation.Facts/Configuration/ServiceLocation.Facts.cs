@@ -41,7 +41,7 @@
         [Fact]
         public void op_Create_object_object_XmlNode()
         {
-            XmlDocument xml = new XmlDocument();
+            var xml = new XmlDocument();
             xml.LoadXml("<serviceLocation type='Cavity.Configuration.ISetLocatorProviderDummy, Cavity.ServiceLocation.Facts' />");
 
             var actual = new ServiceLocation().Create(null, null, xml.DocumentElement) as ISetLocatorProvider;
@@ -52,7 +52,7 @@
         [Fact]
         public void op_Create_object_object_XmlNode_whenAlternativeElementName()
         {
-            XmlDocument xml = new XmlDocument();
+            var xml = new XmlDocument();
             xml.LoadXml("<foo type='Cavity.Configuration.ISetLocatorProviderDummy, Cavity.ServiceLocation.Facts' />");
 
             var actual = new ServiceLocation().Create(null, null, xml.DocumentElement) as ISetLocatorProvider;
@@ -63,13 +63,13 @@
         [Fact]
         public void op_Create_object_object_XmlNodeNull()
         {
-            Assert.Throws<ConfigurationErrorsException>(() => new ServiceLocation().Create(null, null, null as XmlNode));
+            Assert.Throws<ConfigurationErrorsException>(() => new ServiceLocation().Create(null, null, null));
         }
 
         [Fact]
         public void op_Create_object_object_XmlNodeEmpty()
         {
-            XmlDocument xml = new XmlDocument();
+            var xml = new XmlDocument();
             xml.LoadXml("<serviceLocation />");
 
             Assert.Throws<ConfigurationErrorsException>(() => new ServiceLocation().Create(null, null, xml.DocumentElement));
@@ -78,7 +78,7 @@
         [Fact]
         public void op_Create_object_object_XmlNode_whenTypeAttributeEmpty()
         {
-            XmlDocument xml = new XmlDocument();
+            var xml = new XmlDocument();
             xml.LoadXml("<serviceLocation type='' />");
 
             Assert.Throws<ConfigurationErrorsException>(() => new ServiceLocation().Create(null, null, xml.DocumentElement));
@@ -87,7 +87,7 @@
         [Fact]
         public void op_Create_object_object_XmlNode_whenTypeAttributeInvalid()
         {
-            XmlDocument xml = new XmlDocument();
+            var xml = new XmlDocument();
             xml.LoadXml("<serviceLocation type='System.DateTime' />");
 
             Assert.Throws<ConfigurationErrorsException>(() => new ServiceLocation().Create(null, null, xml.DocumentElement));

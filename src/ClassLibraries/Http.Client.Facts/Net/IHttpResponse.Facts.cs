@@ -22,8 +22,8 @@
         {
             try
             {
-                StatusLine value = (new IHttpResponseDummy() as IHttpResponse).StatusLine;
-                Assert.True(false);
+                var value = (new IHttpResponseDummy() as IHttpResponse).StatusLine;
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {

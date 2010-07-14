@@ -1,7 +1,6 @@
 namespace Cavity.Xml
 {
     using System;
-    using System.Xml.Serialization;
     using Xunit;
 
     public sealed class IXmlSerializerNamespacesFacts
@@ -17,8 +16,8 @@ namespace Cavity.Xml
         {
             try
             {
-                XmlSerializerNamespaces value = (new IXmlSerializerNamespacesDummy() as IXmlSerializerNamespaces).XmlNamespaceDeclarations;
-                Assert.True(false);
+                var value = (new IXmlSerializerNamespacesDummy() as IXmlSerializerNamespaces).XmlNamespaceDeclarations;
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {

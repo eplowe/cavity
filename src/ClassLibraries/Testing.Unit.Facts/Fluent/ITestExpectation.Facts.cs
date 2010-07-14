@@ -16,8 +16,8 @@
         {
             try
             {
-                bool value = (new ITestExpectationDummy() as ITestExpectation).Check();
-                Assert.True(false);
+                var value = (new ITestExpectationDummy() as ITestExpectation).Check();
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
