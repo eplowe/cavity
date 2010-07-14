@@ -389,6 +389,13 @@
         <TagAttributesFormat>OnDifferentLines</TagAttributesFormat>
       </FormatSettings>
     </XML>
+    <GeneratedFileMasks IsNull="False">
+      <Item>*.Designer.cs</Item>
+      <Item>*.Designer.vb</Item>
+      <Item>*.Generated.cs</Item>
+      <Item>*.Generated.vb</Item>
+      <Item>*.Build.cs</Item>
+    </GeneratedFileMasks>
     <FileHeader><![CDATA[//-----------------------------------------------------------------------
 // <copyright>© Thomson Reuters. All rights reserved.</copyright>
 //-----------------------------------------------------------------------]]></FileHeader>
