@@ -22,7 +22,7 @@ namespace Cavity.IO
         [Fact]
         public void ctor_StringBuilder_IFormatProvider_Encoding()
         {
-            using (EncodedStringWriter obj = new EncodedStringWriter(new StringBuilder(), CultureInfo.InvariantCulture, Encoding.UTF8))
+            using (var obj = new EncodedStringWriter(new StringBuilder(), CultureInfo.InvariantCulture, Encoding.UTF8))
             {
                 Assert.NotNull(obj);
             }
@@ -31,15 +31,15 @@ namespace Cavity.IO
         [Fact]
         public void prop_Encoding_get()
         {
-            Encoding expected = Encoding.UTF8;
-            Encoding actual = null;
+            var expected = Encoding.UTF8;
+            Encoding actual;
 
-            using (EncodedStringWriter obj = new EncodedStringWriter(new StringBuilder(), CultureInfo.InvariantCulture, expected))
+            using (var obj = new EncodedStringWriter(new StringBuilder(), CultureInfo.InvariantCulture, expected))
             {
                 actual = obj.Encoding;
             }
 
-            Assert.Equal<Encoding>(expected, actual);
+            Assert.Equal(expected, actual);
         }
     }
 }

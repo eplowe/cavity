@@ -108,7 +108,7 @@
                 .IsConcreteClass()
                 .IsSealed()
                 .HasDefaultConstructor()
-                .Implements<Interface1>()
+                .Implements<IInterface1>()
                 .Result);
         }
 
@@ -215,7 +215,7 @@
                 .IsConcreteClass()
                 .IsUnsealed()
                 .HasDefaultConstructor()
-                .Add(null as ITestExpectation));
+                .Add(null));
         }
     }
 }

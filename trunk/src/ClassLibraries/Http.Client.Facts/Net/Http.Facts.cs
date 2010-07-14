@@ -33,7 +33,7 @@
         [Fact]
         public void op_Send_IHttpRequestNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new Http().Send(null as IHttpRequest));
+            Assert.Throws<ArgumentNullException>(() => new Http().Send(null));
         }
 
         [Fact]
@@ -43,7 +43,7 @@
             {
                 var request = new Mock<IHttpRequest>();
                 request
-                    .SetupGet<Uri>(x => x.AbsoluteUri)
+                    .SetupGet(x => x.AbsoluteUri)
                     .Returns(new Uri("http://www.example.com/"))
                     .Verifiable();
                 request
@@ -63,12 +63,12 @@
                     .Returns(media.Object)
                     .Verifiable();
                 
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
-                IHttpResponse response = new Http().Send(request.Object);
+                var response = new Http().Send(request.Object);
 
                 Assert.Equal<string>("HTTP/1.1 200 OK", response.StatusLine);
-                Assert.NotEqual<int>(0, response.Headers.Count);
+                Assert.NotEqual(0, response.Headers.Count);
 
                 request.VerifyAll();
                 media.VerifyAll();
@@ -87,7 +87,7 @@
             {
                 var request = new Mock<IHttpRequest>();
                 request
-                    .SetupGet<Uri>(x => x.AbsoluteUri)
+                    .SetupGet(x => x.AbsoluteUri)
                     .Returns(new Uri("http://www.example.com/"))
                     .Verifiable();
                 request
@@ -107,9 +107,9 @@
                     .Returns(media.Object)
                     .Verifiable();
 
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
-                IHttpResponse response = new Http().Send(request.Object);
+                var response = new Http().Send(request.Object);
 
                 Assert.Equal<string>("HTTP/1.1 200 OK", response.StatusLine);
                 Assert.True(response.Headers.ContainsName("Allow"));
@@ -124,7 +124,7 @@
             }
         }
 
-        private void WriteGet(TextWriter writer, string method, string requestUri, string host)
+        private static void WriteGet(TextWriter writer, string method, string requestUri, string host)
         {
             writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} {1} HTTP/1.1", method, requestUri));
             writer.WriteLine("Host: " + host);

@@ -34,7 +34,7 @@
         [Fact]
         public void ctor_stringNull()
         {
-            Assert.NotNull(new TestException(null as string));
+            Assert.NotNull(new TestException(null));
         }
 
         [Fact]
@@ -46,36 +46,36 @@
         [Fact]
         public void ctor_string_ExceptionNull()
         {
-            Assert.NotNull(new TestException("message", null as Exception));
+            Assert.NotNull(new TestException("message", null));
         }
 
         [Fact]
         public void ctor_stringEmpty_ExceptionNull()
         {
-            Assert.NotNull(new TestException(string.Empty, null as Exception));
+            Assert.NotNull(new TestException(string.Empty, null));
         }
 
         [Fact]
         public void ctor_stringNull_ExceptionNull()
         {
-            Assert.NotNull(new TestException(null as string, null as Exception));
+            Assert.NotNull(new TestException(null, null));
         }
 
         [Fact]
         public void ctor_SerializationInfo_StreamingContext()
         {
-            TestException expected = new TestException("test");
-            TestException actual = null;
+            var expected = new TestException("test");
+            TestException actual;
 
             using (var stream = new MemoryStream())
             {
-                BinaryFormatter formatter = new BinaryFormatter();
+                var formatter = new BinaryFormatter();
                 formatter.Serialize(stream, new TestException("test"));
                 stream.Position = 0;
                 actual = (TestException)formatter.Deserialize(stream);
             }
 
-            Assert.Equal<string>(expected.Message, actual.Message);
+            Assert.Equal(expected.Message, actual.Message);
         }
     }
 }

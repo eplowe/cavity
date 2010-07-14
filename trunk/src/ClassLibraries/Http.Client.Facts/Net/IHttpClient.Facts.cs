@@ -16,8 +16,8 @@
         {
             try
             {
-                string value = (new IHttpClientDummy() as IHttpClient).UserAgent;
-                Assert.True(false);
+                var value = (new IHttpClientDummy() as IHttpClient).UserAgent;
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {

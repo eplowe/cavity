@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net.Mime
 {
     using System;
-    using System.IO;
     using Xunit;
 
     public sealed class IContentFacts
@@ -23,7 +22,7 @@
         {
             try
             {
-                (new IContentDummy() as IContent).Write(null as TextWriter);
+                (new IContentDummy() as IContent).Write(null);
                 Assert.True(false);
             }
             catch (NotSupportedException)

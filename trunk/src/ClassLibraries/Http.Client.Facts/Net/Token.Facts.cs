@@ -21,7 +21,7 @@
         [Fact]
         public void ctor_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new Token(null as string));
+            Assert.Throws<ArgumentNullException>(() => new Token(null));
         }
 
         [Fact]
@@ -102,19 +102,19 @@
         [Fact]
         public void opImplicit_Token_string()
         {
-            Token expected = "value";
-            Token actual = new Token("value");
+            var expected = new Token("value");
+            Token actual = "value";
 
-            Assert.Equal<Token>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_ToString()
         {
-            string expected = "value";
-            string actual = new Token(expected).ToString();
+            const string expected = "value";
+            var actual = new Token(expected).ToString();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
     }
 }

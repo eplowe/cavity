@@ -21,14 +21,16 @@
         [Fact]
         public void prop_Value()
         {
-            bool expected = true;
+            const bool expected = true;
 
-            var obj = new SealedClassTest<object>(false);
+            var obj = new SealedClassTest<object>(false)
+            {
+                Value = expected
+            };
 
-            obj.Value = expected;
-            bool actual = obj.Value;
+            var actual = obj.Value;
 
-            Assert.Equal<bool>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

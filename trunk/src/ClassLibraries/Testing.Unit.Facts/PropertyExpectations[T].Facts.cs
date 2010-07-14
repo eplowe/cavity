@@ -1,7 +1,6 @@
 ﻿namespace Cavity
 {
     using System;
-    using System.Reflection;
     using System.Xml.Serialization;
     using Cavity.Types;
     using Xunit;
@@ -17,7 +16,7 @@
         [Fact]
         public void ctor_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new PropertyExpectations<Class1>(null as string));
+            Assert.Throws<ArgumentNullException>(() => new PropertyExpectations<Class1>(null));
         }
 
         [Fact]
@@ -230,7 +229,7 @@
         public void op_Exception_object_TypeNull()
         {
             Assert.Throws<ArgumentNullException>(() => new PropertyExpectations<PropertiedClass1>("AutoBoolean")
-                .Exception(string.Empty, null as Type));
+                .Exception(string.Empty, null));
         }
 
         [Fact]

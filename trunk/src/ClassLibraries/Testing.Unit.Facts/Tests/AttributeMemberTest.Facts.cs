@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Tests
 {
     using System;
-    using System.Reflection;
     using Cavity.Types;
     using Xunit;
 
@@ -22,23 +21,26 @@
         [Fact]
         public void ctor_MemberInfoNull_Type()
         {
-            Assert.Throws<ArgumentNullException>(() => new AttributeMemberTest(null as MethodInfo, typeof(Attribute1)));
+            Assert.Throws<ArgumentNullException>(() => new AttributeMemberTest(null, typeof(Attribute1)));
         }
 
         [Fact]
         public void ctor_MemberInfo_TypeNull()
         {
-            Assert.NotNull(new AttributeMemberTest(typeof(object), null as Type));
+            Assert.NotNull(new AttributeMemberTest(typeof(object), null));
         }
 
         [Fact]
         public void prop_Attribute()
         {
-            var obj = new AttributeMemberTest(typeof(object), null as Type);
+            var expected = typeof(Attribute1);
 
-            Type expected = typeof(Attribute1);
-            obj.Attribute = expected;
-            Type actual = obj.Attribute;
+            var obj = new AttributeMemberTest(typeof(object), null)
+            {
+                Attribute = expected
+            };
+
+            var actual = obj.Attribute;
 
             Assert.Same(expected, actual);
         }
@@ -52,7 +54,7 @@
         [Fact]
         public void op_Check_whenUnexpectedAttribute()
         {
-            Assert.Throws<TestException>(() => new AttributeMemberTest(typeof(AttributedClass1), null as Type).Check());
+            Assert.Throws<TestException>(() => new AttributeMemberTest(typeof(AttributedClass1), null).Check());
         }
 
         [Fact]

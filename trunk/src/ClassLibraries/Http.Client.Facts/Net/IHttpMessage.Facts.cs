@@ -1,8 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using System.IO;
-    using Cavity.Net.Mime;
     using Xunit;
 
     public sealed class IHttpMessageFacts
@@ -18,8 +16,8 @@
         {
             try
             {
-                IContent value = (new IHttpMessageDummy() as IHttpMessage).Body;
-                Assert.True(false);
+                var value = (new IHttpMessageDummy() as IHttpMessage).Body;
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -31,8 +29,8 @@
         {
             try
             {
-                HttpHeaderCollection value = (new IHttpMessageDummy() as IHttpMessage).Headers;
-                Assert.True(false);
+                var value = (new IHttpMessageDummy() as IHttpMessage).Headers;
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -44,7 +42,7 @@
         {
             try
             {
-                (new IHttpMessageDummy() as IHttpMessage).Read(null as TextReader);
+                (new IHttpMessageDummy() as IHttpMessage).Read(null);
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -57,7 +55,7 @@
         {
             try
             {
-                (new IHttpMessageDummy() as IHttpMessage).Write(null as TextWriter);
+                (new IHttpMessageDummy() as IHttpMessage).Write(null);
                 Assert.True(false);
             }
             catch (NotSupportedException)

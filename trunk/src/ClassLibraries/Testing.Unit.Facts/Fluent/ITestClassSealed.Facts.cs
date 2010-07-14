@@ -16,8 +16,8 @@
         {
             try
             {
-                ITestClassConstruction value = (new ITestClassSealedDummy() as ITestClassSealed).IsSealed();
-                Assert.True(false);
+                var value = (new ITestClassSealedDummy() as ITestClassSealed).IsSealed();
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -29,8 +29,8 @@
         {
             try
             {
-                ITestClassConstruction value = (new ITestClassSealedDummy() as ITestClassSealed).IsUnsealed();
-                Assert.True(false);
+                var value = (new ITestClassSealedDummy() as ITestClassSealed).IsUnsealed();
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {

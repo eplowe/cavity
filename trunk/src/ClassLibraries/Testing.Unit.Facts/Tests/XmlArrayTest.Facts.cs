@@ -20,11 +20,14 @@
         [Fact]
         public void prop_ArrayElementName()
         {
-            var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"));
+            const string expected = "example";
 
-            string expected = "example";
-            obj.ArrayElementName = expected;
-            string actual = obj.ArrayElementName;
+            var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"))
+            {
+                ArrayElementName = expected
+            };
+
+            var actual = obj.ArrayElementName;
 
             Assert.Same(expected, actual);
         }
@@ -32,11 +35,14 @@
         [Fact]
         public void prop_ArrayItemElementName()
         {
-            var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"));
+            const string expected = "example";
 
-            string expected = "example";
-            obj.ArrayItemElementName = expected;
-            string actual = obj.ArrayItemElementName;
+            var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"))
+            {
+                ArrayItemElementName = expected
+            };
+
+            var actual = obj.ArrayItemElementName;
 
             Assert.Same(expected, actual);
         }

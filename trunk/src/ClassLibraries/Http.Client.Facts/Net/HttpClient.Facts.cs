@@ -38,7 +38,7 @@
         [Fact]
         public void ctor_IHttpNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpClient(null as IHttp));
+            Assert.Throws<ArgumentNullException>(() => new HttpClient(null));
         }
 
         [Fact]
@@ -57,7 +57,7 @@
             try
             {
                 var locator = new Mock<IServiceLocator>();
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 Assert.NotNull(new PropertyExpectations<HttpClient>("UserAgent")
                     .TypeIs<string>()
@@ -78,11 +78,11 @@
         {
             try
             {
-                string value = "user agent";
+                const string value = "user agent";
 
                 var userAgent = new Mock<IUserAgent>();
                 userAgent
-                    .SetupGet<string>(x => x.Value)
+                    .SetupGet(x => x.Value)
                     .Returns(value)
                     .Verifiable();
 
@@ -92,7 +92,7 @@
                     .Returns(userAgent.Object)
                     .Verifiable();
                 
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 Assert.NotNull(new PropertyExpectations<HttpClient>("UserAgent")
                     .TypeIs<string>()
@@ -126,7 +126,7 @@
                     .Returns(media.Object)
                     .Verifiable();
                 
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 HttpRequest request =
                     "GET http://www.example.com/ HTTP/1.1" + Environment.NewLine +
@@ -134,11 +134,11 @@
                     "Connection: close" + Environment.NewLine +
                     string.Empty;
 
-                HttpClient client = new HttpClient();
+                var client = new HttpClient();
                 client.Navigate(request);
 
                 Assert.Equal<string>("HTTP/1.1 200 OK", client.Response.StatusLine);
-                Assert.NotEqual<int>(0, client.Response.Headers.Count);
+                Assert.NotEqual(0, client.Response.Headers.Count);
 
                 media.VerifyAll();
                 locator.VerifyAll();
@@ -152,7 +152,7 @@
         [Fact]
         public void op_Navigate_IHttpRequestNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpClient().Navigate(null as IHttpRequest));
+            Assert.Throws<ArgumentNullException>(() => new HttpClient().Navigate(null));
         }
 
         [Fact]
@@ -160,11 +160,11 @@
         {
             try
             {
-                string expected = "user agent";
+                const string expected = "user agent";
 
                 var userAgent = new Mock<IUserAgent>();
                 userAgent
-                    .SetupGet<string>(x => x.Value)
+                    .SetupGet(x => x.Value)
                     .Returns(expected)
                     .Verifiable();
 
@@ -174,11 +174,11 @@
                     .Returns(userAgent.Object)
                     .Verifiable();
                 
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
-                string actual = new HttpClient().ToString();
+                var actual = new HttpClient().ToString();
 
-                Assert.Equal<string>(expected, actual);
+                Assert.Equal(expected, actual);
 
                 userAgent.VerifyAll();
                 locator.VerifyAll();

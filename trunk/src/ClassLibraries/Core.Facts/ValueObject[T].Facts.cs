@@ -30,30 +30,30 @@ namespace Cavity
             string expected = null;
             string actual = null as ValueObjectDerived;
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void opImplicit_string_ValueObjectOfT()
         {
-            string expected = "31/12/1999 00:00:00" + Environment.NewLine + "123";
-            string actual = new ValueObjectDerived
+            var expected = "31/12/1999 00:00:00" + Environment.NewLine + "123";
+            var actual = new ValueObjectDerived
             {
                 DateTimeProperty = new DateTime(1999, 12, 31),
                 Int32Property = 123
             };
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void opEquality_ValueObjectOfT_ValueObjectOfT_whenTrue()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived operand2 = new ValueObjectDerived
+            var operand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -64,11 +64,11 @@ namespace Cavity
         [Fact]
         public void opEquality_ValueObjectOfT_ValueObjectOfT_whenFalse()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 456
             };
-            ValueObjectDerived operand2 = new ValueObjectDerived
+            var operand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -79,47 +79,23 @@ namespace Cavity
         [Fact]
         public void opEquality_ValueObjectOfT_ValueObjectOfT_whenSame()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived operand2 = operand1;
+            var operand2 = operand1;
 
             Assert.True(operand1 == operand2);
         }
 
         [Fact]
-        public void opEquality_ValueObjectOfTNull_ValueObjectOfT()
-        {
-            ValueObjectDerived operand1 = null;
-            ValueObjectDerived operand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
-
-            Assert.False(operand1 == operand2);
-        }
-
-        [Fact]
-        public void opEquality_ValueObjectOfT_ValueObjectOfTNull()
-        {
-            ValueObjectDerived operand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
-            ValueObjectDerived operand2 = null;
-
-            Assert.False(operand1 == operand2);
-        }
-
-        [Fact]
         public void opInequality_ValueObjectOfT_ValueObjectOfT_whenTrue()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 456
             };
-            ValueObjectDerived operand2 = new ValueObjectDerived
+            var operand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -130,11 +106,11 @@ namespace Cavity
         [Fact]
         public void opInequality_ValueObjectOfT_ValueObjectOfT_whenFalse()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived operand2 = new ValueObjectDerived
+            var operand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -145,47 +121,23 @@ namespace Cavity
         [Fact]
         public void opInequality_ValueObjectOfT_ValueObjectOfT_whenSame()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived operand2 = operand1;
+            var operand2 = operand1;
 
             Assert.False(operand1 != operand2);
         }
 
         [Fact]
-        public void opInequality_ValueObjectOfTNull_ValueObjectOfT()
-        {
-            ValueObjectDerived operand1 = null;
-            ValueObjectDerived operand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
-
-            Assert.True(operand1 != operand2);
-        }
-
-        [Fact]
-        public void opInequality_ValueObjectOfT_ValueObjectOfTNull()
-        {
-            ValueObjectDerived operand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
-            ValueObjectDerived operand2 = null;
-
-            Assert.True(operand1 != operand2);
-        }
-
-        [Fact]
         public void opLesser_ValueObjectOfT_ValueObjectOfT_whenSame()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived operand2 = operand1;
+            var operand2 = operand1;
 
             Assert.False(operand1 < operand2);
         }
@@ -193,11 +145,11 @@ namespace Cavity
         [Fact]
         public void opLesser_ValueObjectOfT_ValueObjectOfT_whenTrue()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived operand2 = new ValueObjectDerived
+            var operand2 = new ValueObjectDerived
             {
                 Int32Property = 456
             };
@@ -208,11 +160,11 @@ namespace Cavity
         [Fact]
         public void opLesser_ValueObjectOfT_ValueObjectOfT_whenFalse()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 456
             };
-            ValueObjectDerived operand2 = new ValueObjectDerived
+            var operand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -224,7 +176,7 @@ namespace Cavity
         public void opLesser_ValueObjectOfTNull_ValueObjectOfT()
         {
             ValueObjectDerived operand1 = null;
-            ValueObjectDerived operand2 = new ValueObjectDerived
+            var operand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -235,7 +187,7 @@ namespace Cavity
         [Fact]
         public void opLesser_ValueObjectOfT_ValueObjectOfTNull()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -247,11 +199,11 @@ namespace Cavity
         [Fact]
         public void opGreater_ValueObjectOfT_ValueObjectOfT_whenSame()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived operand2 = operand1;
+            var operand2 = operand1;
 
             Assert.False(operand1 > operand2);
         }
@@ -259,11 +211,11 @@ namespace Cavity
         [Fact]
         public void opGreater_ValueObjectOfT_ValueObjectOfT_whenTrue()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 456
             };
-            ValueObjectDerived operand2 = new ValueObjectDerived
+            var operand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -274,11 +226,11 @@ namespace Cavity
         [Fact]
         public void opGreater_ValueObjectOfT_ValueObjectOfT_whenFalse()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived operand2 = new ValueObjectDerived
+            var operand2 = new ValueObjectDerived
             {
                 Int32Property = 456
             };
@@ -290,7 +242,7 @@ namespace Cavity
         public void opGreater_ValueObjectOfTNull_ValueObjectOfT()
         {
             ValueObjectDerived operand1 = null;
-            ValueObjectDerived operand2 = new ValueObjectDerived
+            var operand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -301,7 +253,7 @@ namespace Cavity
         [Fact]
         public void opGreater_ValueObjectOfT_ValueObjectOfTNull()
         {
-            ValueObjectDerived operand1 = new ValueObjectDerived
+            var operand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -313,35 +265,35 @@ namespace Cavity
         [Fact]
         public void op_Compare_ValueObjectOfT_ValueObjectOfT_whenEqual()
         {
-            ValueObjectDerived comparand1 = new ValueObjectDerived
+            var comparand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived comparand2 = new ValueObjectDerived
+            var comparand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
 
-            Assert.Equal<int>(0, ValueObjectDerived.Compare(comparand1, comparand2));
+            Assert.Equal(0, ValueObjectDerived.Compare(comparand1, comparand2));
         }
 
         [Fact]
         public void op_Compare_ValueObjectOfT_ValueObjectOfT_whenSame()
         {
-            ValueObjectDerived comparand1 = new ValueObjectDerived
+            var comparand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived comparand2 = comparand1;
+            var comparand2 = comparand1;
 
-            Assert.Equal<int>(0, ValueObjectDerived.Compare(comparand1, comparand2));
+            Assert.Equal(0, ValueObjectDerived.Compare(comparand1, comparand2));
         }
 
         [Fact]
         public void op_Compare_ValueObjectOfTNull_ValueObjectOfT()
         {
             ValueObjectDerived comparand1 = null;
-            ValueObjectDerived comparand2 = new ValueObjectDerived
+            var comparand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -352,7 +304,7 @@ namespace Cavity
         [Fact]
         public void op_Compare_ValueObjectOfT_ValueObjectOfTNull()
         {
-            ValueObjectDerived comparand1 = new ValueObjectDerived
+            var comparand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -364,11 +316,11 @@ namespace Cavity
         [Fact]
         public void op_Compare_ValueObjectOfTGreater_ValueObjectOfT()
         {
-            ValueObjectDerived comparand1 = new ValueObjectDerived
+            var comparand1 = new ValueObjectDerived
             {
                 Int32Property = 456
             };
-            ValueObjectDerived comparand2 = new ValueObjectDerived
+            var comparand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -379,11 +331,11 @@ namespace Cavity
         [Fact]
         public void op_Compare_ValueObjectOfTLesser_ValueObjectOfT()
         {
-            ValueObjectDerived comparand1 = new ValueObjectDerived
+            var comparand1 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived comparand2 = new ValueObjectDerived
+            var comparand2 = new ValueObjectDerived
             {
                 Int32Property = 456
             };
@@ -394,7 +346,7 @@ namespace Cavity
         [Fact]
         public void op_CompareTo_objectNull()
         {
-            ValueObjectDerived obj = new ValueObjectDerived
+            var obj = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -405,37 +357,37 @@ namespace Cavity
         [Fact]
         public void op_CompareTo_objectSame()
         {
-            ValueObjectDerived obj = new ValueObjectDerived
+            var obj = new ValueObjectDerived
             {
                 Int32Property = 123
             };
 
-            Assert.Equal<int>(0, obj.CompareTo(obj));
+            Assert.Equal(0, obj.CompareTo(obj));
         }
 
         [Fact]
         public void op_CompareTo_object()
         {
-            ValueObjectDerived left = new ValueObjectDerived
+            var left = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived right = new ValueObjectDerived
+            var right = new ValueObjectDerived
             {
                 Int32Property = 123
             };
 
-            Assert.Equal<int>(0, left.CompareTo(right));
+            Assert.Equal(0, left.CompareTo(right));
         }
 
         [Fact]
         public void op_CompareTo_objectLesser()
         {
-            ValueObjectDerived left = new ValueObjectDerived
+            var left = new ValueObjectDerived
             {
                 Int32Property = 123
             };
-            ValueObjectDerived right = new ValueObjectDerived
+            var right = new ValueObjectDerived
             {
                 Int32Property = 456
             };
@@ -446,11 +398,11 @@ namespace Cavity
         [Fact]
         public void op_CompareTo_objectGreater()
         {
-            ValueObjectDerived left = new ValueObjectDerived
+            var left = new ValueObjectDerived
             {
                 Int32Property = 456
             };
-            ValueObjectDerived right = new ValueObjectDerived
+            var right = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -467,13 +419,13 @@ namespace Cavity
         [Fact]
         public void op_Equals_T()
         {
-            ValueObjectDerived obj = new ValueObjectDerived
+            var obj = new ValueObjectDerived
             {
-                DateTimeProperty = DateTime.UtcNow,
+                DateTimeProperty = new DateTime(1999, 12, 31),
                 Int32Property = 123
             };
 
-            ValueObjectDerived comparand = new ValueObjectDerived
+            var comparand = new ValueObjectDerived
             {
                 DateTimeProperty = XmlConvert.ToDateTime(obj.DateTimeProperty.ToXmlString(), XmlDateTimeSerializationMode.Utc),
                 Int32Property = 123
@@ -485,9 +437,9 @@ namespace Cavity
         [Fact]
         public void op_Equals_TDiffers()
         {
-            ValueObjectDerived obj = new ValueObjectDerived();
+            var obj = new ValueObjectDerived();
 
-            ValueObjectDerived comparand = new ValueObjectDerived
+            var comparand = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -504,7 +456,7 @@ namespace Cavity
         [Fact]
         public void op_Equals_TSame()
         {
-            ValueObjectDerived obj = new ValueObjectDerived();
+            var obj = new ValueObjectDerived();
 
             Assert.True((obj as IEquatable<ValueObjectDerived>).Equals(obj));
         }
@@ -512,12 +464,12 @@ namespace Cavity
         [Fact]
         public void op_Equals_object()
         {
-            ValueObjectDerived obj = new ValueObjectDerived
+            var obj = new ValueObjectDerived
             {
                 Int32Property = 123
             };
 
-            ValueObjectDerived comparand = new ValueObjectDerived
+            var comparand = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -528,9 +480,9 @@ namespace Cavity
         [Fact]
         public void op_Equals_objectDiffers()
         {
-            ValueObjectDerived obj = new ValueObjectDerived();
+            var obj = new ValueObjectDerived();
 
-            ValueObjectDerived comparand = new ValueObjectDerived
+            var comparand = new ValueObjectDerived
             {
                 Int32Property = 123
             };
@@ -547,7 +499,7 @@ namespace Cavity
         [Fact]
         public void op_Equals_objectSame()
         {
-            ValueObjectDerived obj = new ValueObjectDerived();
+            var obj = new ValueObjectDerived();
 
             Assert.True(obj.Equals(obj as object));
         }
@@ -555,12 +507,12 @@ namespace Cavity
         [Fact]
         public void op_Equals_objectString()
         {
-            ValueObjectDerived obj = new ValueObjectDerived
+            var obj = new ValueObjectDerived
             {
                 StringProperty = "foo"
             };
 
-            Assert.False(obj.Equals("foo" as object));
+            Assert.False(obj.Equals("foo"));
         }
 
         [Fact]
@@ -572,23 +524,23 @@ namespace Cavity
         [Fact]
         public void op_GetHashCode()
         {
-            Assert.NotEqual<int>(0, new ValueObjectDerived().GetHashCode());
+            Assert.NotEqual(0, new ValueObjectDerived().GetHashCode());
         }
 
         [Fact]
         public void op_ToString()
         {
-            ValueObjectDerived obj = new ValueObjectDerived
+            var obj = new ValueObjectDerived
             {
-                DateTimeProperty = DateTime.Today,
+                DateTimeProperty = new DateTime(1999, 12, 31),
                 Int32Property = 123,
                 StringProperty = "test"
             };
 
-            string expected = string.Concat(DateTime.Today.ToString(), Environment.NewLine, "123", Environment.NewLine, "test");
-            string actual = obj.ToString();
+            var expected = string.Concat(new DateTime(1999, 12, 31).ToString(), Environment.NewLine, "123", Environment.NewLine, "test");
+            var actual = obj.ToString();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
     }
 }

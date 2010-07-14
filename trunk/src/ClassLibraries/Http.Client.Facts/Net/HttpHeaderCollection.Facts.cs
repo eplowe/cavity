@@ -57,10 +57,10 @@
         {
             var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("Content-Type", "text/plain") }
+                new HttpHeader("Content-Type", "text/plain")
             };
 
-            Assert.Equal<string>("text/plain", obj.ContentType.MediaType);
+            Assert.Equal("text/plain", obj.ContentType.MediaType);
         }
 
         [Fact]
@@ -84,10 +84,10 @@
         {
             var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "value") }
+                new HttpHeader("name", "value")
             };
 
-            Assert.Equal<string>("value", obj["name"]);
+            Assert.Equal("value", obj["name"]);
         }
 
         [Fact]
@@ -101,11 +101,11 @@
         {
             var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "foo") },
-                { new HttpHeader("name", "bar") }
+                new HttpHeader("name", "foo"),
+                new HttpHeader("name", "bar")
             };
 
-            Assert.Equal<string>("foo, bar", obj["name"]);
+            Assert.Equal("foo, bar", obj["name"]);
         }
 
         [Fact]
@@ -119,78 +119,78 @@
         [Fact]
         public void opImplicit_HttpHeaderCollection_stringEmpty()
         {
-            HttpHeaderCollection expected = string.Empty;
-            HttpHeaderCollection actual = new HttpHeaderCollection();
+            var expected = new HttpHeaderCollection();
+            HttpHeaderCollection actual = string.Empty;
 
-            Assert.Equal<HttpHeaderCollection>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void opImplicit_HttpHeaderCollection_string()
         {
-            HttpHeaderCollection expected = "name: value";
-            HttpHeaderCollection actual = new HttpHeaderCollection
+            var expected = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "value") }
+                new HttpHeader("name", "value")
             };
+            HttpHeaderCollection actual = "name: value";
 
-            Assert.Equal<HttpHeaderCollection>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpHeaderCollection.FromString(null as string));
+            Assert.Throws<ArgumentNullException>(() => HttpHeaderCollection.FromString(null));
         }
 
         [Fact]
         public void op_FromString_stringEmpty()
         {
-            HttpHeaderCollection expected = new HttpHeaderCollection();
-            HttpHeaderCollection actual = HttpHeaderCollection.FromString(string.Empty);
+            var expected = new HttpHeaderCollection();
+            var actual = HttpHeaderCollection.FromString(string.Empty);
 
-            Assert.Equal<HttpHeaderCollection>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_string()
         {
-            HttpHeaderCollection expected = new HttpHeaderCollection
+            var expected = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "value") }
+                new HttpHeader("name", "value")
             };
-            HttpHeaderCollection actual = HttpHeaderCollection.FromString("name: value");
+            var actual = HttpHeaderCollection.FromString("name: value");
 
-            Assert.Equal<HttpHeaderCollection>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_string_withLeadingWhitespace()
         {
-            HttpHeaderCollection expected = new HttpHeaderCollection
+            var expected = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "value") }
+                new HttpHeader("name", "value")
             };
-            HttpHeaderCollection actual = HttpHeaderCollection.FromString("name:         value");
+            var actual = HttpHeaderCollection.FromString("name:         value");
 
-            Assert.Equal<HttpHeaderCollection>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_string_whenMultipleLines()
         {
-            string value = 
+            var value = 
                 "a" + Environment.NewLine +
                 ' ' + "b" + Environment.NewLine +
                 '\t' + "c";
 
-            HttpHeaderCollection expected = new HttpHeaderCollection
+            var expected = new HttpHeaderCollection
             {
-                { new HttpHeader("name", value) }
+                new HttpHeader("name", value)
             };
-            HttpHeaderCollection actual = HttpHeaderCollection.FromString("name: " + value);
+            var actual = HttpHeaderCollection.FromString("name: " + value);
 
-            Assert.Equal<HttpHeaderCollection>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -199,17 +199,17 @@
             var obj = new HttpHeaderCollection();
             var item = new HttpHeader("name", "value");
 
-            Assert.Equal<int>(0, obj.Count);
+            Assert.Equal(0, obj.Count);
 
             obj.Add(item);
 
-            Assert.Equal<int>(1, obj.Count);
+            Assert.Equal(1, obj.Count);
         }
 
         [Fact]
         public void op_Add_IHttpHeaderNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpHeaderCollection().Add(null as IHttpHeader));
+            Assert.Throws<ArgumentNullException>(() => new HttpHeaderCollection().Add(null));
         }
 
         [Fact]
@@ -217,14 +217,14 @@
         {
             var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "value") }
+                new HttpHeader("name", "value")
             };
 
-            Assert.Equal<int>(1, obj.Count);
+            Assert.Equal(1, obj.Count);
 
             obj.Clear();
 
-            Assert.Equal<int>(0, obj.Count);
+            Assert.Equal(0, obj.Count);
         }
 
         [Fact]
@@ -233,7 +233,7 @@
             var item = new HttpHeader("name", "value");
             var obj = new HttpHeaderCollection
             {
-                { item }
+                item
             };
 
             Assert.True(obj.ContainsName("name"));
@@ -244,7 +244,7 @@
         {
             var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("foo", "value") }
+                new HttpHeader("foo", "value")
             };
 
             Assert.False(obj.ContainsName("bar"));
@@ -255,7 +255,7 @@
         {
             var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "foo") }
+                new HttpHeader("name", "foo")
             };
 
             Assert.Throws<ArgumentNullException>(() => obj.ContainsName(null as string));
@@ -267,7 +267,7 @@
             var item = new HttpHeader("name", "value");
             var obj = new HttpHeaderCollection
             {
-                { item }
+                item
             };
 
             Assert.True(obj.Contains(item));
@@ -278,7 +278,7 @@
         {
             var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "foo") }
+                new HttpHeader("name", "foo")
             };
 
             Assert.False(obj.Contains(new HttpHeader("name", "bar")));
@@ -289,10 +289,10 @@
         {
             var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "value") }
+                new HttpHeader("name", "value")
             };
 
-            Assert.False(obj.Contains(null as IHttpHeader));
+            Assert.False(obj.Contains(null));
         }
 
         [Fact]
@@ -301,22 +301,22 @@
             var item = new HttpHeader("name", "value");
             var obj = new HttpHeaderCollection
             {
-                { item }
+                item
             };
 
-            IHttpHeader[] array = new IHttpHeader[1];
+            var array = new IHttpHeader[1];
 
             obj.CopyTo(array, 0);
 
-            Assert.Equal<HttpHeader>(item, (HttpHeader)array[0]);
+            Assert.Equal(item, (HttpHeader)array[0]);
         }
 
         [Fact]
         public void op_Equals_object()
         {
-            HttpHeaderCollection obj = new HttpHeaderCollection
+            var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "value") }
+                new HttpHeader("name", "value")
             };
 
             Assert.True(HttpHeaderCollection.FromString("name: value").Equals(obj));
@@ -325,10 +325,10 @@
         [Fact]
         public void op_Equals_object_whenMutiple()
         {
-            HttpHeaderCollection obj = new HttpHeaderCollection
+            var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "foo") },
-                { new HttpHeader("name", "bar") }
+                new HttpHeader("name", "foo"),
+                new HttpHeader("name", "bar")
             };
 
             Assert.True(HttpHeaderCollection.FromString("name: foo, bar").Equals(obj));
@@ -337,9 +337,9 @@
         [Fact]
         public void op_Equals_object_this()
         {
-            HttpHeaderCollection obj = new HttpHeaderCollection
+            var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "value") }
+                new HttpHeader("name", "value")
             };
 
             Assert.True(obj.Equals(obj));
@@ -363,10 +363,10 @@
             var item = new HttpHeader("name", "value");
             var obj = new HttpHeaderCollection
             {
-                { item }
+                item
             };
 
-            using (IEnumerator<IHttpHeader> enumerator = obj.GetEnumerator())
+            using (var enumerator = obj.GetEnumerator())
             {
                 enumerator.MoveNext();
                 Assert.Same(item, enumerator.Current);
@@ -376,15 +376,15 @@
         [Fact]
         public void op_GetHashCode()
         {
-            HttpHeaderCollection obj = new HttpHeaderCollection
+            var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "value") }
+                new HttpHeader("name", "value")
             };
 
-            int expected = obj.ToString().GetHashCode();
-            int actual = obj.GetHashCode();
+            var expected = obj.ToString().GetHashCode();
+            var actual = obj.GetHashCode();
 
-            Assert.Equal<int>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -409,7 +409,7 @@
                 }
             }
 
-            Assert.Equal<int>(1, message.Headers.Count);
+            Assert.Equal(1, message.Headers.Count);
             Assert.True(message.Headers.Contains(connection));
         }
 
@@ -437,7 +437,7 @@
         [Fact]
         public void op_Read_TextReaderNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpHeaderCollection().Read(null as TextReader));
+            Assert.Throws<ArgumentNullException>(() => new HttpHeaderCollection().Read(null));
         }
 
         [Fact]
@@ -446,46 +446,46 @@
             var item = new HttpHeader("name", "value");
             var obj = new HttpHeaderCollection
             {
-                { item }
+                item
             };
 
             obj.Remove(item);
 
-            Assert.Equal<int>(0, obj.Count);
+            Assert.Equal(0, obj.Count);
         }
 
         [Fact]
         public void op_ToString()
         {
-            StringBuilder expected = new StringBuilder();
+            var expected = new StringBuilder();
             expected.AppendLine("name: value");
 
             var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "value") }
+                new HttpHeader("name", "value")
             };
 
-            string actual = obj.ToString();
+            var actual = obj.ToString();
 
-            Assert.Equal<string>(expected.ToString(), actual);
+            Assert.Equal(expected.ToString(), actual);
         }
 
         [Fact]
         public void op_ToString_whenCaseSensitive()
         {
-            StringBuilder expected = new StringBuilder();
+            var expected = new StringBuilder();
             expected.AppendLine("name: foo");
             expected.AppendLine("Name: bar");
 
             var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "foo") },
-                { new HttpHeader("Name", "bar") }
+                new HttpHeader("name", "foo"),
+                new HttpHeader("Name", "bar")
             };
 
-            string actual = obj.ToString();
+            var actual = obj.ToString();
 
-            Assert.Equal<string>(expected.ToString(), actual);
+            Assert.Equal(expected.ToString(), actual);
         }
 
         [Fact]
@@ -497,18 +497,18 @@
         [Fact]
         public void op_ToString_whenMultiple()
         {
-            StringBuilder expected = new StringBuilder();
+            var expected = new StringBuilder();
             expected.AppendLine("name: foo, bar");
 
             var obj = new HttpHeaderCollection
             {
-                { new HttpHeader("name", "foo") },
-                { new HttpHeader("name", "bar") }
+                new HttpHeader("name", "foo"),
+                new HttpHeader("name", "bar")
             };
 
-            string actual = obj.ToString();
+            var actual = obj.ToString();
 
-            Assert.Equal<string>(expected.ToString(), actual);
+            Assert.Equal(expected.ToString(), actual);
         }
 
         [Fact]
@@ -516,7 +516,7 @@
         {
             var headers = new HttpHeaderCollection
             {
-                { new HttpHeader("Connection", "close") }
+                new HttpHeader("Connection", "close")
             };
 
             using (var stream = new MemoryStream())
@@ -528,7 +528,7 @@
                     stream.Position = 0;
                     using (var reader = new StreamReader(stream))
                     {
-                        Assert.Equal<string>("Connection: close" + Environment.NewLine, reader.ReadToEnd());
+                        Assert.Equal("Connection: close" + Environment.NewLine, reader.ReadToEnd());
                     }
                 }
             }
@@ -537,7 +537,7 @@
         [Fact]
         public void op_Write_TextWriterNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpHeaderCollection().Write(null as TextWriter));
+            Assert.Throws<ArgumentNullException>(() => new HttpHeaderCollection().Write(null));
         }
 
         [Fact]
@@ -552,7 +552,7 @@
                     stream.Position = 0;
                     using (var reader = new StreamReader(stream))
                     {
-                        Assert.Equal<string>(string.Empty, reader.ReadToEnd());
+                        Assert.Equal(string.Empty, reader.ReadToEnd());
                     }
                 }
             }
@@ -564,10 +564,10 @@
             var item = new HttpHeader("name", "value");
             var obj = new HttpHeaderCollection
             {
-                { item }
+                item
             };
 
-            IEnumerator enumerator = (obj as IEnumerable).GetEnumerator();
+            var enumerator = (obj as IEnumerable).GetEnumerator();
             enumerator.MoveNext();
             Assert.Same(item, enumerator.Current);
         }

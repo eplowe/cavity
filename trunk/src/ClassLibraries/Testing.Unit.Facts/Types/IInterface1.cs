@@ -1,6 +1,6 @@
 ﻿namespace Cavity.Types
 {
-    public interface Interface1
+    public interface IInterface1
     {
         void Method1();
     }

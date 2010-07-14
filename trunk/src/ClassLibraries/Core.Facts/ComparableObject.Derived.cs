@@ -3,7 +3,7 @@ namespace Cavity
     public sealed class ComparableObjectDerived : ComparableObject
     {
         public ComparableObjectDerived()
-            : this(null as string)
+            : this(null)
         {
         }
 
@@ -20,7 +20,7 @@ namespace Cavity
 
         public override string ToString()
         {
-            return Value;
+            return base.ToString() + Value;
         }
     }
 }

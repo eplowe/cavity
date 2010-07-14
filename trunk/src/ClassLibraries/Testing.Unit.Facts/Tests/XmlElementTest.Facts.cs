@@ -20,11 +20,14 @@
         [Fact]
         public void prop_ElementName()
         {
-            var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element"));
+            const string expected = "example";
 
-            string expected = "example";
-            obj.ElementName = expected;
-            string actual = obj.ElementName;
+            var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element"))
+            {
+                ElementName = expected
+            };
+
+            var actual = obj.ElementName;
 
             Assert.Same(expected, actual);
         }
@@ -32,11 +35,14 @@
         [Fact]
         public void prop_Namespace()
         {
-            var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element"));
+            const string expected = "example";
 
-            string expected = "example";
-            obj.Namespace = expected;
-            string actual = obj.Namespace;
+            var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element"))
+            {
+                Namespace = expected
+            };
+
+            var actual = obj.Namespace;
 
             Assert.Same(expected, actual);
         }

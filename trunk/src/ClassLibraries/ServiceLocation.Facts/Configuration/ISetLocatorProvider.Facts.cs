@@ -16,7 +16,7 @@
         {
             try
             {
-                (new ISetLocatorProviderDummy() as ISetLocatorProvider).Configure();
+                new ISetLocatorProviderDummy().Configure();
                 Assert.True(false);
             }
             catch (NotSupportedException)

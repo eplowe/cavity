@@ -43,35 +43,35 @@
         [Fact]
         public void prop_AbsoluteUri_get()
         {
-            Uri expected = new Uri("http://www.example.com/path");
+            var expected = new Uri("http://www.example.com/path");
 
             var obj = new HttpRequest
             {
                 RequestLine = new RequestLine("GET", expected.AbsoluteUri, "HTTP/1.1")
             };
 
-            Uri actual = obj.AbsoluteUri;
+            var actual = obj.AbsoluteUri;
 
-            Assert.Equal<Uri>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void prop_AbsoluteUri_getFromRelative()
         {
-            Uri expected = new Uri("http://www.example.com/path");
+            var expected = new Uri("http://www.example.com/path");
 
             var obj = new HttpRequest
             {
-                RequestLine = (RequestLine)"GET /path HTTP/1.1",
+                RequestLine = "GET /path HTTP/1.1",
                 Headers =
                 {
-                    { (HttpHeader)"Host: www.example.com" }
+                    (HttpHeader)"Host: www.example.com"
                 }
             };
 
-            Uri actual = obj.AbsoluteUri;
+            var actual = obj.AbsoluteUri;
 
-            Assert.Equal<Uri>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -105,16 +105,16 @@
         [Fact]
         public void opImplicit_HttpRequest_string()
         {
-            HttpRequest expected = "GET / HTTP/1.1";
-            HttpRequest actual = new HttpRequest { RequestLine = "GET / HTTP/1.1" };
+            var expected = new HttpRequest { RequestLine = "GET / HTTP/1.1" };
+            HttpRequest actual = "GET / HTTP/1.1";
 
-            Assert.Equal<HttpRequest>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpRequest.FromString(null as string));
+            Assert.Throws<ArgumentNullException>(() => HttpRequest.FromString(null));
         }
 
         [Fact]
@@ -130,12 +130,12 @@
             HttpHeader host = "Host: www.example.com";
             HttpHeader connection = "Connection: close";
 
-            StringBuilder value = new StringBuilder();
+            var value = new StringBuilder();
             value.AppendLine(requestLine);
             value.AppendLine(host);
             value.AppendLine(connection);
 
-            HttpRequest obj = HttpRequest.FromString(value.ToString());
+            var obj = HttpRequest.FromString(value.ToString());
 
             Assert.Equal<string>(requestLine, obj.RequestLine);
 
@@ -152,7 +152,7 @@
             HttpHeader host = "Host: www.example.com";
             HttpHeader connection = "Connection: keep-alive";
 
-            StringBuilder value = new StringBuilder();
+            var value = new StringBuilder();
             value.AppendLine(requestLine);
             value.AppendLine(contentLength);
             value.AppendLine(contentType);
@@ -161,7 +161,7 @@
             value.AppendLine(string.Empty);
             value.Append("text");
 
-            HttpRequest obj = null;
+            HttpRequest obj;
             try
             {
                 var locator = new Mock<IServiceLocator>();
@@ -170,7 +170,7 @@
                     .Returns(new TextPlain())
                     .Verifiable();
                 
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 obj = HttpRequest.FromString(value.ToString());
 
@@ -215,9 +215,9 @@
                 }
             }
 
-            Assert.Equal<RequestLine>(requestLine, request.RequestLine);
+            Assert.Equal(requestLine, request.RequestLine);
 
-            Assert.Equal<int>(2, request.Headers.Count);
+            Assert.Equal(2, request.Headers.Count);
             Assert.True(request.Headers.Contains(host));
             Assert.True(request.Headers.Contains(connection));
 
@@ -242,7 +242,7 @@
                     .Returns(new TextPlain())
                     .Verifiable();
                 
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 using (var stream = new MemoryStream())
                 {
@@ -271,15 +271,15 @@
                 ServiceLocator.SetLocatorProvider(null);
             }
 
-            Assert.Equal<RequestLine>(requestLine, request.RequestLine);
+            Assert.Equal(requestLine, request.RequestLine);
 
-            Assert.Equal<int>(4, request.Headers.Count);
+            Assert.Equal(4, request.Headers.Count);
             Assert.True(request.Headers.Contains(contentLength));
             Assert.True(request.Headers.Contains(contentType));
             Assert.True(request.Headers.Contains(host));
             Assert.True(request.Headers.Contains(connection));
 
-            Assert.Equal<string>("text", (request.Body as TextPlain).Value);
+            Assert.Equal("text", ((TextPlain)request.Body).Value);
         }
 
         [Fact]
@@ -302,19 +302,19 @@
         [Fact]
         public void op_Read_TextReaderNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Read(null as TextReader));
+            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Read(null));
         }
 
         [Fact]
         public void op_Write_TextWriter_whenGet()
         {
-            StringBuilder expected = new StringBuilder();
+            var expected = new StringBuilder();
             expected.AppendLine("GET / HTTP/1.1");
             expected.AppendLine("Host: www.example.com");
             expected.AppendLine("Connection: close");
             expected.AppendLine(string.Empty);
 
-            HttpRequest obj = HttpRequest.FromString(expected.ToString());
+            var obj = HttpRequest.FromString(expected.ToString());
 
             using (var stream = new MemoryStream())
             {
@@ -325,7 +325,7 @@
                     stream.Position = 0;
                     using (var reader = new StreamReader(stream))
                     {
-                        Assert.Equal<string>(expected.ToString(), reader.ReadToEnd());
+                        Assert.Equal(expected.ToString(), reader.ReadToEnd());
                     }
                 }
             }
@@ -334,7 +334,7 @@
         [Fact]
         public void op_Write_TextWriter_whenPost()
         {
-            StringBuilder expected = new StringBuilder();
+            var expected = new StringBuilder();
             expected.AppendLine("POST / HTTP/1.1");
             expected.AppendLine("Content-Length: 4");
             expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
@@ -343,7 +343,7 @@
             expected.AppendLine(string.Empty);
             expected.Append("text");
 
-            HttpRequest obj = null;
+            HttpRequest obj;
             try
             {
                 var locator = new Mock<IServiceLocator>();
@@ -352,7 +352,7 @@
                     .Returns(new TextPlain())
                     .Verifiable();
                 
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 obj = HttpRequest.FromString(expected.ToString());
 
@@ -372,7 +372,7 @@
                     stream.Position = 0;
                     using (var reader = new StreamReader(stream))
                     {
-                        Assert.Equal<string>(expected.ToString(), reader.ReadToEnd());
+                        Assert.Equal(expected.ToString(), reader.ReadToEnd());
                     }
                 }
             }
@@ -381,27 +381,27 @@
         [Fact]
         public void op_Write_TextWriterNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Write(null as TextWriter));
+            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Write(null));
         }
 
         [Fact]
         public void op_ToString_whenGet()
         {
-            StringBuilder expected = new StringBuilder();
+            var expected = new StringBuilder();
             expected.AppendLine("GET / HTTP/1.1");
             expected.AppendLine("Host: www.example.com");
             expected.AppendLine("Connection: close");
             expected.AppendLine(string.Empty);
 
-            string actual = HttpRequest.FromString(expected.ToString()).ToString();
+            var actual = HttpRequest.FromString(expected.ToString()).ToString();
 
-            Assert.Equal<string>(expected.ToString(), actual);
+            Assert.Equal(expected.ToString(), actual);
         }
 
         [Fact]
         public void op_ToString_whenPost()
         {
-            StringBuilder expected = new StringBuilder();
+            var expected = new StringBuilder();
             expected.AppendLine("POST / HTTP/1.1");
             expected.AppendLine("Content-Length: 4");
             expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
@@ -410,7 +410,7 @@
             expected.AppendLine(string.Empty);
             expected.Append("text");
 
-            string actual = null;
+            string actual;
             try
             {
                 var locator = new Mock<IServiceLocator>();
@@ -419,7 +419,7 @@
                     .Returns(new TextPlain())
                     .Verifiable();
                 
-                ServiceLocator.SetLocatorProvider(new ServiceLocatorProvider(() => locator.Object));
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 actual = HttpRequest.FromString(expected.ToString()).ToString();
 
@@ -430,7 +430,7 @@
                 ServiceLocator.SetLocatorProvider(null);
             }
 
-            Assert.Equal<string>(expected.ToString(), actual);
+            Assert.Equal(expected.ToString(), actual);
         }
     }
 }

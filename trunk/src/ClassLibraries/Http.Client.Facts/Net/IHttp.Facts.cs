@@ -16,8 +16,8 @@
         {
             try
             {
-                IHttpResponse value = (new IHttpDummy() as IHttp).Send(null as IHttpRequest);
-                Assert.True(false);
+                var value = (new IHttpDummy() as IHttp).Send(null);
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {

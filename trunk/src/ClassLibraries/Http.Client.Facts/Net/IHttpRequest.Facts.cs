@@ -22,8 +22,8 @@
         {
             try
             {
-                Uri value = (new IHttpRequestDummy() as IHttpRequest).AbsoluteUri;
-                Assert.True(false);
+                var value = (new IHttpRequestDummy() as IHttpRequest).AbsoluteUri;
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
@@ -35,8 +35,8 @@
         {
             try
             {
-                RequestLine value = (new IHttpRequestDummy() as IHttpRequest).RequestLine;
-                Assert.True(false);
+                var value = (new IHttpRequestDummy() as IHttpRequest).RequestLine;
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {

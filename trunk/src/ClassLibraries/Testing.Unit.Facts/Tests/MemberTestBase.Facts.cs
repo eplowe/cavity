@@ -16,17 +16,17 @@
         [Fact]
         public void ctor_MemberInfoNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new DerivedMemberTest(null as MemberInfo));
+            Assert.Throws<ArgumentNullException>(() => new DerivedMemberTest(null));
         }
 
         [Fact]
         public void prop_Member_get()
         {
-            MemberInfo expected = typeof(PropertiedClass1).GetProperty("AutoBoolean");
+            var expected = typeof(PropertiedClass1).GetProperty("AutoBoolean");
 
             var obj = new DerivedMemberTest(expected);
 
-            MemberInfo actual = obj.Member;
+            var actual = obj.Member;
 
             Assert.Same(expected, actual);
         }
@@ -34,11 +34,14 @@
         [Fact]
         public void prop_Member_set()
         {
-            var obj = new DerivedMemberTest(typeof(PropertiedClass1).GetProperty("AutoString"));
+            var expected = typeof(PropertiedClass1).GetProperty("AutoBoolean");
 
-            MemberInfo expected = typeof(PropertiedClass1).GetProperty("AutoBoolean");
-            obj.Member = expected;
-            MemberInfo actual = obj.Member;
+            var obj = new DerivedMemberTest(typeof(PropertiedClass1).GetProperty("AutoString"))
+            {
+                Member = expected
+            };
+
+            var actual = obj.Member;
 
             Assert.Same(expected, actual);
         }

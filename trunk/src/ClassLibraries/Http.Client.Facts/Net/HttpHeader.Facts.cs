@@ -28,7 +28,7 @@
         [Fact]
         public void ctor_Token_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpHeader(new Token("name"), null as string));
+            Assert.Throws<ArgumentNullException>(() => new HttpHeader(new Token("name"), null));
         }
 
         [Fact]
@@ -40,7 +40,7 @@
         [Fact]
         public void ctor_TokenNull_string()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpHeader(null as Token, "value"));
+            Assert.Throws<ArgumentNullException>(() => new HttpHeader(null, "value"));
         }
 
         [Fact]
@@ -85,16 +85,16 @@
         [Fact]
         public void opImplicit_HttpHeader_string()
         {
-            HttpHeader expected = "name: value";
-            HttpHeader actual = new HttpHeader("name", "value");
+            var expected = new HttpHeader("name", "value");
+            HttpHeader actual = "name: value";
 
-            Assert.Equal<HttpHeader>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_FromString_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpHeader.FromString(null as string));
+            Assert.Throws<ArgumentNullException>(() => HttpHeader.FromString(null));
         }
 
         [Fact]
@@ -106,10 +106,10 @@
         [Fact]
         public void op_FromString_string()
         {
-            HttpHeader expected = new HttpHeader("name", "value");
-            HttpHeader actual = HttpHeader.FromString("name: value");
+            var expected = new HttpHeader("name", "value");
+            var actual = HttpHeader.FromString("name: value");
 
-            Assert.Equal<HttpHeader>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -127,19 +127,19 @@
         [Fact]
         public void op_FromString_string_whenEndsWithColon()
         {
-            HttpHeader expected = new HttpHeader("name", string.Empty);
-            HttpHeader actual = HttpHeader.FromString("name:");
+            var expected = new HttpHeader("name", string.Empty);
+            var actual = HttpHeader.FromString("name:");
 
-            Assert.Equal<HttpHeader>(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_ToString()
         {
-            string expected = "name: value";
-            string actual = new HttpHeader("name", "value").ToString();
+            const string expected = "name: value";
+            var actual = new HttpHeader("name", "value").ToString();
 
-            Assert.Equal<string>(expected, actual);
+            Assert.Equal(expected, actual);
         }
     }
 }

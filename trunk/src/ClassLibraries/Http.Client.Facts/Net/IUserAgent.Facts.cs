@@ -16,8 +16,8 @@
         {
             try
             {
-                string value = (new IUserAgentDummy() as IUserAgent).Value;
-                Assert.True(false);
+                var value = (new IUserAgentDummy() as IUserAgent).Value;
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
