@@ -11,7 +11,7 @@
         {
             var builder = new ContainerBuilder();
             builder.RegisterModule(new ConfigurationSettingsReader());
-            var locator = new AutofacServiceLocator((IComponentContext)builder.Build());
+            var locator = new AutofacServiceLocator(builder.Build());
 
             ServiceLocator.SetLocatorProvider(() => locator);
         }
