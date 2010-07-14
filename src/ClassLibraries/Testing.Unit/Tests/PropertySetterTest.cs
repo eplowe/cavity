@@ -10,7 +10,7 @@
         public PropertySetterTest(PropertyInfo property, object value)
             : base(property)
         {
-            this.Value = value;
+            Value = value;
         }
 
         public object Value
@@ -29,30 +29,30 @@
         {
             try
             {
-                Type type = this.Property.DeclaringType;
+                var type = Property.DeclaringType;
                 if (type.IsAbstract)
                 {
-                    type = this.Property.ReflectedType;
+                    type = Property.ReflectedType;
                 }
 
-                this.Property.GetSetMethod(true).Invoke(
+                Property.GetSetMethod(true).Invoke(
                     Activator.CreateInstance(type, true),
-                    new object[] { this.Value });
+                    new[] { Value });
 
-                if (null != this.ExpectedException)
+                if (null != ExpectedException)
                 {
                     throw new TestException(string.Format(
                         CultureInfo.InvariantCulture,
                         Resources.PropertySetterTestException_Message,
-                        this.Property.ReflectedType.Name,
-                        this.Property.Name,
-                        this.ExpectedException.Name));
+                        Property.ReflectedType.Name,
+                        Property.Name,
+                        ExpectedException.Name));
                 }
             }
             catch (TargetInvocationException exception)
             {
-                if (null != this.ExpectedException
-                    && !this.ExpectedException.GetType().Equals(exception.InnerException.GetType()))
+                if (null != ExpectedException
+                    && !ExpectedException.GetType().Equals(exception.InnerException.GetType()))
                 {
                 }
                 else

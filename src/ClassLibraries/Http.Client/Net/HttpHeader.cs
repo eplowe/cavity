@@ -2,7 +2,6 @@
 {
     using System;
     using System.Globalization;
-    using System.IO;
 
     public sealed class HttpHeader : ComparableObject, IHttpHeader
     {
@@ -12,8 +11,8 @@
         public HttpHeader(Token name, string value)
             : this()
         {
-            this.Name = name;
-            this.Value = value;
+            Name = name;
+            Value = value;
         }
 
         private HttpHeader()
@@ -24,7 +23,7 @@
         {
             get
             {
-                return this._name;
+                return _name;
             }
 
             private set
@@ -34,7 +33,7 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._name = value;
+                _name = value;
             }
         }
 
@@ -42,7 +41,7 @@
         {
             get
             {
-                return this._value;
+                return _value;
             }
 
             private set
@@ -52,13 +51,15 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._value = value;
+                _value = value;
             }
         }
 
         public static implicit operator HttpHeader(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as HttpHeader : HttpHeader.FromString(value);
+            return ReferenceEquals(null, value)
+                ? null
+                : FromString(value);
         }
 
         public static HttpHeader FromString(string value)
@@ -72,7 +73,7 @@
                 throw new ArgumentOutOfRangeException("value");
             }
 
-            int index = value.IndexOf(':');
+            var index = value.IndexOf(':');
             if (1 > index)
             {
                 throw new FormatException("value");
@@ -83,7 +84,7 @@
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "{0}: {1}", this.Name, this.Value);
+            return string.Format(CultureInfo.InvariantCulture, "{0}: {1}", Name, Value);
         }
     }
 }

@@ -12,13 +12,13 @@
 
         public TextPlain()
         {
-            this.ContentType = new ContentType("text/plain");
+            ContentType = new ContentType("text/plain");
         }
 
         public TextPlain(string content)
             : this()
         {
-            this.Content = content;
+            Content = content;
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily", Justification = "Caching 'as' result prevents differentiating null from unexpected type.")]
@@ -26,14 +26,14 @@
         {
             get
             {
-                return this.Value;
+                return Value;
             }
 
             set
             {
                 if (null == value || value is string)
                 {
-                    this.Value = value as string;
+                    Value = value as string;
                 }
                 else
                 {
@@ -46,7 +46,7 @@
         {
             get
             {
-                return this._contentType;
+                return _contentType;
             }
 
             private set
@@ -56,7 +56,7 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._contentType = value;
+                _contentType = value;
             }
         }
 
@@ -68,7 +68,9 @@
 
         public static implicit operator TextPlain(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as TextPlain : TextPlain.FromString(value);
+            return ReferenceEquals(null, value)
+                ? null
+                : FromString(value);
         }
 
         public static TextPlain FromString(string value)
@@ -98,12 +100,12 @@
                 throw new ArgumentNullException("writer");
             }
 
-            writer.Write(this.Content as string);
+            writer.Write(Content as string);
         }
 
         public override string ToString()
         {
-            return this.Content as string;
+            return Content as string;
         }
     }
 }

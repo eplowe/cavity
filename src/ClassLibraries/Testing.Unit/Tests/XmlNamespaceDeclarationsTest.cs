@@ -11,19 +11,19 @@ namespace Cavity.Tests
         public XmlNamespaceDeclarationsTest(MemberInfo info)
             : base(info)
         {
-            this.Member = info;
+            Member = info;
         }
 
         public override bool Check()
         {
-            XmlNamespaceDeclarationsAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlNamespaceDeclarationsAttribute), false) as XmlNamespaceDeclarationsAttribute;
+            var attribute = Attribute.GetCustomAttribute(Member, typeof(XmlNamespaceDeclarationsAttribute), false) as XmlNamespaceDeclarationsAttribute;
 
             if (null == attribute)
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlNamespaceDeclarationsDecorationTestException_Message,
-                    this.Member.Name));
+                    Member.Name));
             }
 
             return true;

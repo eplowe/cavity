@@ -16,8 +16,8 @@
     /// <typeparam name="T">The type under test.</typeparam>
     /// <remarks>
     /// This is an internal DSL which employs method chaining to build a set of expectations.
-    /// When <see cref="P:Cavity.TypeExpectations`1.Result"/> is invoked, all the expectations are verified;
-    /// if any expectations are not met, a <see cref="T:Cavity.TestExpectation"/> is thrown.
+    /// When <see cref="P:Cavity.Fluent.ITestType.Result"/> is invoked, all the expectations are verified;
+    /// if any expectations are not met, a <see cref="T:Cavity.TestException"/> is thrown.
     /// </remarks>
     /// <seealso href="http://code.google.com/p/cavity/wiki/TypeExpectations">Guide to asserting expectations about types.</seealso>
     public sealed class TypeExpectations<T> : ITestClassStyle, ITestClassSealed, ITestClassConstruction, ITestType
@@ -27,7 +27,7 @@
         /// </summary>
         public TypeExpectations()
         {
-            this.Items = new Collection<ITestExpectation>();
+            Items = new Collection<ITestExpectation>();
         }
 
         /// <summary>
@@ -41,7 +41,7 @@
         {
             get
             {
-                return 0 == this.Items.Where(x => !x.Check()).Count();
+                return 0 == Items.Where(x => !x.Check()).Count();
             }
         }
 
@@ -166,7 +166,7 @@
                 throw new ArgumentNullException("expectation");
             }
 
-            this.Items.Add(expectation);
+            Items.Add(expectation);
             return this;
         }
 
@@ -221,7 +221,7 @@
         /// <returns>The current instance.</returns>
         ITestType ITestType.IsNotDecorated()
         {
-            (this as ITestType).Add(new AttributeMemberTest(typeof(T), null as Type));
+            (this as ITestType).Add(new AttributeMemberTest(typeof(T), null));
             return this;
         }
 

@@ -14,13 +14,13 @@
 
         public ApplicationXml()
         {
-            this.ContentType = new ContentType("application/xml");
+            ContentType = new ContentType("application/xml");
         }
 
         public ApplicationXml(IXPathNavigable xml)
             : this()
         {
-            this.Xml = xml;
+            Xml = xml;
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily", Justification = "Caching 'as' result prevents differentiating null from unexpected type.")]
@@ -28,14 +28,14 @@
         {
             get
             {
-                return this.Xml;
+                return Xml;
             }
 
             set
             {
                 if (null == value || value is IXPathNavigable)
                 {
-                    this.Xml = value as IXPathNavigable;
+                    Xml = value as IXPathNavigable;
                 }
                 else
                 {
@@ -48,7 +48,7 @@
         {
             get
             {
-                return this._contentType;
+                return _contentType;
             }
 
             private set
@@ -58,7 +58,7 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._contentType = value;
+                _contentType = value;
             }
         }
 
@@ -70,7 +70,9 @@
 
         public static implicit operator ApplicationXml(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as ApplicationXml : ApplicationXml.FromString(value);
+            return ReferenceEquals(null, value)
+                ? null
+                : FromString(value);
         }
 
         public static ApplicationXml FromString(string value)
@@ -84,7 +86,7 @@
                 throw new ArgumentOutOfRangeException("value");
             }
 
-            XmlDocument xml = new XmlDocument();
+            var xml = new XmlDocument();
             xml.LoadXml(value);
 
             return new ApplicationXml(xml);
@@ -97,7 +99,9 @@
                 throw new ArgumentNullException("reader");
             }
 
-            return -1 == reader.Peek() ? new ApplicationXml() : ApplicationXml.FromString(reader.ReadToEnd());
+            return -1 == reader.Peek()
+                ? new ApplicationXml()
+                : FromString(reader.ReadToEnd());
         }
 
         public void Write(TextWriter writer)
@@ -107,12 +111,14 @@
                 throw new ArgumentNullException("writer");
             }
 
-            writer.Write(this.ToString());
+            writer.Write(ToString());
         }
 
         public override string ToString()
         {
-            return null == this.Xml ? null as string : this.Xml.CreateNavigator().OuterXml;
+            return null == Xml
+                ? null
+                : Xml.CreateNavigator().OuterXml;
         }
     }
 }

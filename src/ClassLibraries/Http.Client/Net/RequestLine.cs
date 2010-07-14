@@ -14,9 +14,9 @@
         public RequestLine(string method, string requestUri, HttpVersion version)
             : this()
         {
-            this.Method = method;
-            this.RequestUri = requestUri;
-            this.Version = version;
+            Method = method;
+            RequestUri = requestUri;
+            Version = version;
         }
 
         private RequestLine()
@@ -27,7 +27,7 @@
         {
             get
             {
-                return this._method;
+                return _method;
             }
 
             private set
@@ -41,7 +41,7 @@
                     throw new ArgumentOutOfRangeException("value");
                 }
 
-                this._method = value;
+                _method = value;
             }
         }
 
@@ -50,7 +50,7 @@
         {
             get
             {
-                return this._requestUri;
+                return _requestUri;
             }
 
             private set
@@ -64,7 +64,7 @@
                     throw new ArgumentOutOfRangeException("value");
                 }
 
-                this._requestUri = value;
+                _requestUri = value;
             }
         }
 
@@ -72,7 +72,7 @@
         {
             get
             {
-                return this._version;
+                return _version;
             }
 
             private set
@@ -82,13 +82,15 @@
                     throw new ArgumentNullException("value");
                 }
 
-                this._version = value;
+                _version = value;
             }
         }
 
         public static implicit operator RequestLine(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as RequestLine : RequestLine.FromString(value);
+            return ReferenceEquals(null, value)
+                ? null
+                : FromString(value);
         }
 
         public static RequestLine FromString(string value)
@@ -102,7 +104,7 @@
                 throw new FormatException("value");
             }
 
-            string[] parts = value.Split(new char[] { ' ' });
+            var parts = value.Split(new[] { ' ' });
 
             if (3 > parts.Length)
             {
@@ -117,7 +119,7 @@
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", this.Method, this.RequestUri, this.Version);
+            return string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", Method, RequestUri, Version);
         }
     }
 }

@@ -13,20 +13,22 @@
 
     public sealed class HttpHeaderCollection : ComparableObject, ICollection<IHttpHeader>, IContentType
     {
-        private Collection<IHttpHeader> _collection;
+        private readonly Collection<IHttpHeader> _collection;
         
         public HttpHeaderCollection()
         {
-            this._collection = new Collection<IHttpHeader>();
+            _collection = new Collection<IHttpHeader>();
         }
 
         public ContentType ContentType
         {
             get
             {
-                string value = this["Content-Type"];
+                var value = this["Content-Type"];
 
-                return null == value ? null as ContentType : new ContentType(value);
+                return null == value
+                    ? null
+                    : new ContentType(value);
             }
         }
 
@@ -34,7 +36,7 @@
         {
             get
             {
-                return this._collection.Count;
+                return _collection.Count;
             }
         }
 
@@ -57,7 +59,8 @@
 
                 string value = null;
 
-                foreach (var item in this._collection.Where(x => string.Equals(x.Name, name, StringComparison.Ordinal)))
+                foreach (var item in _collection
+                    .Where(x => string.Equals(x.Name, name, StringComparison.Ordinal)))
                 {
                     if (null == value)
                     {
@@ -75,7 +78,9 @@
 
         public static implicit operator HttpHeaderCollection(string value)
         {
-            return object.ReferenceEquals(null, value) ? null as HttpHeaderCollection : HttpHeaderCollection.FromString(value);
+            return ReferenceEquals(null, value)
+                ? null
+                : FromString(value);
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
@@ -112,17 +117,17 @@
                 throw new ArgumentNullException("item");
             }
 
-            this._collection.Add(item);
+            _collection.Add(item);
         }
 
         public void Clear()
         {
-            this._collection.Clear();
+            _collection.Clear();
         }
 
         public bool Contains(IHttpHeader item)
         {
-            return this._collection.Contains(item);
+            return _collection.Contains(item);
         }
 
         public bool ContainsName(Token name)
@@ -132,17 +137,17 @@
                 throw new ArgumentNullException("name");
             }
 
-            return 0 != this._collection.Where(x => x.Name.Equals(name)).Count();
+            return 0 != _collection.Where(x => x.Name.Equals(name)).Count();
         }
 
         public void CopyTo(IHttpHeader[] array, int arrayIndex)
         {
-            this._collection.CopyTo(array, arrayIndex);
+            _collection.CopyTo(array, arrayIndex);
         }
 
         public IEnumerator<IHttpHeader> GetEnumerator()
         {
-            return this._collection.GetEnumerator();
+            return _collection.GetEnumerator();
         }
 
         public void Read(TextReader reader)
@@ -154,8 +159,8 @@
 
             while (true)
             {
-                int peek = reader.Peek();
-                string line = reader.ReadLine();
+                var peek = reader.Peek();
+                var line = reader.ReadLine();
                 if (-1 == peek || 13 == peek)
                 {
                     break; // EOF or CR
@@ -167,21 +172,21 @@
                         line += Environment.NewLine + reader.ReadLine(); // HT or SPACE
                     }
 
-                    this.Add(HttpHeader.FromString(line));
+                    Add(HttpHeader.FromString(line));
                 }
             }
         }
 
         public bool Remove(IHttpHeader item)
         {
-            return this._collection.Remove(item);
+            return _collection.Remove(item);
         }
 
         public override string ToString()
         {
-            StringBuilder buffer = new StringBuilder();
+            var buffer = new StringBuilder();
 
-            foreach (var item in this.ToDictionary())
+            foreach (var item in ToDictionary())
             {
                 buffer.AppendLine(string.Concat(item.Key, ": ", item.Value));
             }
@@ -196,7 +201,7 @@
                 throw new ArgumentNullException("writer");
             }
 
-            foreach (var item in this.ToDictionary())
+            foreach (var item in ToDictionary())
             {
                 writer.WriteLine(string.Concat(item.Key, ": ", item.Value));
             }
@@ -204,14 +209,14 @@
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (this._collection as IEnumerable).GetEnumerator();
+            return (_collection as IEnumerable).GetEnumerator();
         }
 
         private IDictionary<string, string> ToDictionary()
         {
             var result = new Dictionary<string, string>();
 
-            foreach (var item in this._collection)
+            foreach (var item in _collection)
             {
                 if (result.ContainsKey(item.Name))
                 {

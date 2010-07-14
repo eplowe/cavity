@@ -9,7 +9,7 @@
     {
         public static ISetLocatorProvider Settings()
         {
-            return ServiceLocation.Settings("serviceLocation");
+            return Settings("serviceLocation");
         }
 
         public static ISetLocatorProvider Settings(string sectionName)
@@ -19,7 +19,7 @@
 
         public object Create(object parent, object configContext, XmlNode section)
         {
-            ISetLocatorProvider result = null;
+            ISetLocatorProvider result;
 
             try
             {
@@ -28,13 +28,13 @@
                     throw new XmlException(Resources.ServiceLocation_NullSectionMessage);
                 }
 
-                XmlAttribute attribute = section.Attributes["type"];
+                var attribute = section.Attributes["type"];
                 if (null == attribute)
                 {
                     throw new XmlException(Resources.ServiceLocation_TypeAttributeRequiredMessage);
                 }
 
-                Type type = Type.GetType(attribute.Value);
+                var type = Type.GetType(attribute.Value);
                 if (null == type)
                 {
                     throw new XmlException(Resources.ServiceLocation_TypeAttributeRequiredMessage);

@@ -4,7 +4,7 @@
     {
         public ConstructorClass1(string value)
         {
-            this.Value = value;
+            Value = value;
         }
 
         public string Value

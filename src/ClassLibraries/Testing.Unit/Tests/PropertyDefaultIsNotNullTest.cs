@@ -13,11 +13,11 @@
 
         public override bool Check()
         {
-            if (object.Equals(
+            if (Equals(
                 null,
-                this.Property.GetGetMethod(true).Invoke(Activator.CreateInstance(this.Property.ReflectedType), null)))
+                Property.GetGetMethod(true).Invoke(Activator.CreateInstance(Property.ReflectedType), null)))
             {
-                throw new TestException(string.Format(CultureInfo.InvariantCulture, "{0}.{1} was unexpectedly null.", this.Property.ReflectedType.Name, this.Property.Name));
+                throw new TestException(string.Format(CultureInfo.InvariantCulture, "{0}.{1} was unexpectedly null.", Property.ReflectedType.Name, Property.Name));
             }
 
             return true;

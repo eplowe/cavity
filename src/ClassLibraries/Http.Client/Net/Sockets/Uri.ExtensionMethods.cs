@@ -17,7 +17,7 @@
                 throw new ArgumentOutOfRangeException("absoluteUri");
             }
 
-            Uri proxy = null;
+            Uri proxy;
             using (var web = new WebClient())
             {
                 proxy = web.Proxy.GetProxy(absoluteUri);

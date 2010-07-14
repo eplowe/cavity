@@ -10,14 +10,14 @@ namespace Cavity.Tests
 
         protected MemberTestBase(MemberInfo member)
         {
-            this.Member = member;
+            Member = member;
         }
 
         public MemberInfo Member
         {
             get
             {
-                return this._member;
+                return _member;
             }
 
             set
@@ -27,7 +27,7 @@ namespace Cavity.Tests
                     throw new ArgumentNullException("value");
                 }
 
-                this._member = value;
+                _member = value;
             }
         }
 

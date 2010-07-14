@@ -9,7 +9,7 @@
     {
         public ImplementationTest(Type @interface)
         {
-            this.Interface = @interface;
+            Interface = @interface;
         }
 
         public Type Interface
@@ -20,7 +20,7 @@
 
         public bool Check()
         {
-            if (null == this.Interface)
+            if (null == Interface)
             {
                 if (0 != typeof(T).GetInterfaces().Length)
                 {
@@ -32,13 +32,13 @@
             }
             else
             {
-                if (!typeof(T).Implements(this.Interface))
+                if (!typeof(T).Implements(Interface))
                 {
                     throw new TestException(string.Format(
                         CultureInfo.CurrentUICulture,
                         Resources.ImplementationTestException_NoneMessage,
                         typeof(T).Name,
-                        this.Interface.Name));
+                        Interface.Name));
                 }
             }
 

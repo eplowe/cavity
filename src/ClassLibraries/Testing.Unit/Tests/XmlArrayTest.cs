@@ -27,49 +27,49 @@ namespace Cavity.Tests
 
         public override bool Check()
         {
-            this.CheckArray();
-            this.CheckArrayItems();
+            CheckArray();
+            CheckArrayItems();
 
             return true;
         }
 
         private void CheckArray()
         {
-            XmlArrayAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlArrayAttribute), false) as XmlArrayAttribute;
+            var attribute = Attribute.GetCustomAttribute(Member, typeof(XmlArrayAttribute), false) as XmlArrayAttribute;
             if (null == attribute)
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message1,
-                    this.Member.Name));
+                    Member.Name));
             }
-            else if (this.ArrayElementName != attribute.ElementName)
+            else if (ArrayElementName != attribute.ElementName)
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message2,
-                    this.Member.Name,
-                    this.ArrayElementName));
+                    Member.Name,
+                    ArrayElementName));
             }
         }
 
         private void CheckArrayItems()
         {
-            XmlArrayItemAttribute attribute = Attribute.GetCustomAttribute(this.Member, typeof(XmlArrayItemAttribute), false) as XmlArrayItemAttribute;
+            var attribute = Attribute.GetCustomAttribute(Member, typeof(XmlArrayItemAttribute), false) as XmlArrayItemAttribute;
             if (null == attribute)
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message3,
-                    this.Member.Name));
+                    Member.Name));
             }
-            else if (this.ArrayItemElementName != attribute.ElementName)
+            else if (ArrayItemElementName != attribute.ElementName)
             {
                 throw new TestException(string.Format(
                     CultureInfo.InvariantCulture,
                     Resources.XmlArrayDecorationTestException_Message4,
-                    this.Member.Name,
-                    this.ArrayItemElementName));
+                    Member.Name,
+                    ArrayItemElementName));
             }
         }
     }

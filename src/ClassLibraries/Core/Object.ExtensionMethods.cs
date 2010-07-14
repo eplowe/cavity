@@ -20,7 +20,7 @@ namespace Cavity
 
             if (null != value)
             {
-                string s = value as string;
+                var s = value as string;
                 if (null != s)
                 {
                     result = s;
@@ -74,11 +74,11 @@ namespace Cavity
                 throw new ArgumentNullException("value");
             }
 
-            XmlDocument result = new XmlDocument();
+            var result = new XmlDocument();
 
-            StringBuilder buffer = new StringBuilder();
+            var buffer = new StringBuilder();
 
-            Exception exception = value as Exception;
+            var exception = value as Exception;
             if (null != exception)
             {
                 using (var stream = new MemoryStream())
@@ -95,8 +95,8 @@ namespace Cavity
             {
                 using (TextWriter writer = new EncodedStringWriter(buffer, CultureInfo.InvariantCulture, Encoding.UTF8))
                 {
-                    XmlSerializerNamespaces namespaces = null;
-                    IXmlSerializerNamespaces obj = value as IXmlSerializerNamespaces;
+                    XmlSerializerNamespaces namespaces;
+                    var obj = value as IXmlSerializerNamespaces;
                     if (null == obj)
                     {
                         namespaces = new XmlSerializerNamespaces();
