@@ -12,9 +12,9 @@
         public void Configure()
         {
             IUnityContainer container = new UnityContainer();
-            (ConfigurationManager.GetSection("unity") as UnityConfigurationSection).Configure(container, "container");
+            ((UnityConfigurationSection)ConfigurationManager.GetSection("unity")).Configure(container, "container");
 
-            UnityServiceLocator locator = new UnityServiceLocator(container);
+            var locator = new UnityServiceLocator(container);
             ServiceLocator.SetLocatorProvider(() => locator);
         }
     }

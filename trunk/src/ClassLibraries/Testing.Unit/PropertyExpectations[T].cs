@@ -200,7 +200,7 @@
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
         public PropertyExpectations<T> IsAutoProperty<TProperty>()
         {
-            return IsAutoProperty<TProperty>(default(TProperty));
+            return IsAutoProperty(default(TProperty));
         }
 
         /// <summary>
