@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
+[assembly: CLSCompliant(true)]
 [assembly: AssemblyDefaultAlias("Cavity.Http.Client.dll")]
 [assembly: AssemblyTitle("Cavity.Http.Client.dll")]
 
@@ -14,8 +15,6 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : HTTP Client Library (Release)")]
 
 #endif
-
-[assembly: CLSCompliant(true)]
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Cavity.Net.Mime")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Cavity.Net.Sockets")]

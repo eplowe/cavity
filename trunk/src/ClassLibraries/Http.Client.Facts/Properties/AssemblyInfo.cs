@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
+[assembly: CLSCompliant(true)]
 [assembly: AssemblyDefaultAlias("Cavity.Http.Client.Facts.dll")]
 [assembly: AssemblyTitle("Cavity.Http.Client.Facts.dll")]
 
@@ -13,5 +14,3 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : HTTP Client Facts Library (Release)")]
 
 #endif
-
-[assembly: CLSCompliant(true)]

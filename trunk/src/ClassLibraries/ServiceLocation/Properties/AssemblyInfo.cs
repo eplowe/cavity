@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
+[assembly: CLSCompliant(true)]
 [assembly: AssemblyDefaultAlias("Cavity.ServiceLocation.dll")]
 [assembly: AssemblyTitle("Cavity.ServiceLocation.dll")]
 
@@ -13,5 +14,3 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Service Location Library (Release)")]
 
 #endif
-
-[assembly: CLSCompliant(true)]

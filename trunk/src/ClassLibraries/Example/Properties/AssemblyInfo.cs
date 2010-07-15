@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
+[assembly: CLSCompliant(true)]
 [assembly: AssemblyDefaultAlias("Example.dll")]
 [assembly: AssemblyTitle("Example.dll")]
 
@@ -13,5 +14,3 @@ using System.Reflection;
 [assembly: AssemblyDescription("Example Library (Release)")]
 
 #endif
-
-[assembly: CLSCompliant(true)]

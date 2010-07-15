@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
+[assembly: CLSCompliant(true)]
 [assembly: AssemblyDefaultAlias("Example.Unity.Console.exe")]
 [assembly: AssemblyTitle("Example.Unity.Console.exe")]
 
@@ -13,5 +14,3 @@ using System.Reflection;
 [assembly: AssemblyDescription("Example Unity Console Application (Release)")]
 
 #endif
-
-[assembly: CLSCompliant(true)]

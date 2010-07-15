@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
+[assembly: CLSCompliant(true)]
 [assembly: AssemblyDefaultAlias("Cavity.ServiceLocation.CastleWindsor.Facts.dll")]
 [assembly: AssemblyTitle("Cavity.ServiceLocation.CastleWindsor.Facts.dll")]
 
@@ -13,5 +14,3 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Castle Windsor Service Location Facts Library (Release)")]
 
 #endif
-
-[assembly: CLSCompliant(true)]
