@@ -56,6 +56,19 @@
             }
         }
 
+        public override string ToString()
+        {
+            var buffer = new StringBuilder();
+
+            using (var writer = new StringWriter(buffer, CultureInfo.InvariantCulture))
+            {
+                Write(writer);
+                writer.Flush();
+            }
+
+            return buffer.ToString();
+        }
+
         public virtual void Read(TextReader reader)
         {
             if (null == reader)
@@ -71,7 +84,7 @@
             if (null != contentType)
             {
                 Body = ToContent(
-                    reader, 
+                    reader,
                     ServiceLocator.Current.GetInstance<IMediaType>(contentType.MediaType));
             }
         }
@@ -89,19 +102,6 @@
             {
                 Body.Write(writer);
             }
-        }
-
-        public override string ToString()
-        {
-            var buffer = new StringBuilder();
-
-            using (var writer = new StringWriter(buffer, CultureInfo.InvariantCulture))
-            {
-                Write(writer);
-                writer.Flush();
-            }
-
-            return buffer.ToString();
         }
 
         private static IContent ToContent(TextReader reader, IMediaType mediaType)

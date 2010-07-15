@@ -33,7 +33,8 @@
 
             set
             {
-                if (null == value || value is IXPathNavigable)
+                if (null == value ||
+                    value is IXPathNavigable)
                 {
                     Xml = value as IXPathNavigable;
                 }
@@ -62,17 +63,13 @@
             }
         }
 
-        public IXPathNavigable Xml
-        {
-            get;
-            set;
-        }
+        public IXPathNavigable Xml { get; set; }
 
         public static implicit operator ApplicationXml(string value)
         {
             return ReferenceEquals(null, value)
-                ? null
-                : FromString(value);
+                       ? null
+                       : FromString(value);
         }
 
         public static ApplicationXml FromString(string value)
@@ -92,16 +89,11 @@
             return new ApplicationXml(xml);
         }
 
-        public IContent ToContent(TextReader reader)
+        public override string ToString()
         {
-            if (null == reader)
-            {
-                throw new ArgumentNullException("reader");
-            }
-
-            return -1 == reader.Peek()
-                ? new ApplicationXml()
-                : FromString(reader.ReadToEnd());
+            return null == Xml
+                       ? null
+                       : Xml.CreateNavigator().OuterXml;
         }
 
         public void Write(TextWriter writer)
@@ -114,11 +106,16 @@
             writer.Write(ToString());
         }
 
-        public override string ToString()
+        public IContent ToContent(TextReader reader)
         {
-            return null == Xml
-                ? null
-                : Xml.CreateNavigator().OuterXml;
+            if (null == reader)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
+            return -1 == reader.Peek()
+                       ? new ApplicationXml()
+                       : FromString(reader.ReadToEnd());
         }
     }
 }

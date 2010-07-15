@@ -12,11 +12,7 @@
             Is = @is;
         }
 
-        public Type Is
-        {
-            get;
-            set;
-        }
+        public Type Is { get; set; }
 
         public bool Check()
         {

@@ -7,7 +7,7 @@
     public sealed class RequestLineFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(new TypeExpectations<RequestLine>()
                 .DerivesFrom<ComparableObject>()

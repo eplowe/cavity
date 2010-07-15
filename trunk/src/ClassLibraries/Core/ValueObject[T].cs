@@ -16,17 +16,13 @@ namespace Cavity
             Properties = new List<PropertyInfo>();
         }
 
-        private List<PropertyInfo> Properties
-        {
-            get;
-            set;
-        }
+        private List<PropertyInfo> Properties { get; set; }
 
         public static bool operator ==(ValueObject<T> operand1, ValueObject<T> operand2)
         {
             return ReferenceEquals(null, operand1)
-                ? ReferenceEquals(null, operand2)
-                : operand1.Equals(operand2);
+                       ? ReferenceEquals(null, operand2)
+                       : operand1.Equals(operand2);
         }
 
         public static bool operator >(ValueObject<T> operand1, ValueObject<T> operand2)
@@ -60,11 +56,11 @@ namespace Cavity
         public static int Compare(ValueObject<T> comparand1, ValueObject<T> comparand2)
         {
             return ReferenceEquals(comparand1, comparand2)
-            ? 0
-            : string.Compare(
-                ReferenceEquals(null, comparand1) ? null : comparand1.ToString(),
-                ReferenceEquals(null, comparand2) ? null : comparand2.ToString(),
-                StringComparison.OrdinalIgnoreCase);
+                       ? 0
+                       : string.Compare(
+                           ReferenceEquals(null, comparand1) ? null : comparand1.ToString(),
+                           ReferenceEquals(null, comparand2) ? null : comparand2.ToString(),
+                           StringComparison.OrdinalIgnoreCase);
         }
 
         public override bool Equals(object obj)
@@ -132,7 +128,8 @@ namespace Cavity
                 }
                 else
                 {
-                    if (Properties.Count == other.Properties.Count)
+                    if (Properties.Count ==
+                        other.Properties.Count)
                     {
                         result = true;
                         foreach (var property in Properties)
@@ -140,8 +137,8 @@ namespace Cavity
                             var left = property.GetValue(this, null);
                             var right = property.GetValue(other, null);
                             result = ReferenceEquals(null, left)
-                                ? ReferenceEquals(null, right)
-                                : left.Equals(right);
+                                         ? ReferenceEquals(null, right)
+                                         : left.Equals(right);
                             if (!result)
                             {
                                 break;
@@ -164,7 +161,8 @@ namespace Cavity
             }
 
             MemberExpression member;
-            if (ExpressionType.Convert == expression.Body.NodeType)
+            if (ExpressionType.Convert ==
+                expression.Body.NodeType)
             {
                 var body = (UnaryExpression)expression.Body;
                 member = body.Operand as MemberExpression;

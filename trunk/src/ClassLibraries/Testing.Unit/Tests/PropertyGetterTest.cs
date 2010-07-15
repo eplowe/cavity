@@ -13,11 +13,7 @@
             Expected = expected;
         }
 
-        public object Expected
-        {
-            get;
-            set;
-        }
+        public object Expected { get; set; }
 
         public override bool Check()
         {

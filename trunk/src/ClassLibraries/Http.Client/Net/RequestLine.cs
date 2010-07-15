@@ -89,8 +89,8 @@
         public static implicit operator RequestLine(string value)
         {
             return ReferenceEquals(null, value)
-                ? null
-                : FromString(value);
+                       ? null
+                       : FromString(value);
         }
 
         public static RequestLine FromString(string value)
@@ -104,7 +104,10 @@
                 throw new FormatException("value");
             }
 
-            var parts = value.Split(new[] { ' ' });
+            var parts = value.Split(new[]
+            {
+                ' '
+            });
 
             if (3 > parts.Length)
             {

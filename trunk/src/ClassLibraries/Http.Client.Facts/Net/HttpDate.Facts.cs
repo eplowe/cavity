@@ -7,7 +7,7 @@
     public sealed class HttpDateFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpDate>()
                 .IsValueType()

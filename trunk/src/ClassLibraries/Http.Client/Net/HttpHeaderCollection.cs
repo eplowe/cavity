@@ -14,7 +14,7 @@
     public sealed class HttpHeaderCollection : ComparableObject, ICollection<IHttpHeader>, IContentType
     {
         private readonly Collection<IHttpHeader> _collection;
-        
+
         public HttpHeaderCollection()
         {
             _collection = new Collection<IHttpHeader>();
@@ -27,8 +27,8 @@
                 var value = this["Content-Type"];
 
                 return null == value
-                    ? null
-                    : new ContentType(value);
+                           ? null
+                           : new ContentType(value);
             }
         }
 
@@ -79,8 +79,8 @@
         public static implicit operator HttpHeaderCollection(string value)
         {
             return ReferenceEquals(null, value)
-                ? null
-                : FromString(value);
+                       ? null
+                       : FromString(value);
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
@@ -110,26 +110,6 @@
             return result;
         }
 
-        public void Add(IHttpHeader item)
-        {
-            if (null == item)
-            {
-                throw new ArgumentNullException("item");
-            }
-
-            _collection.Add(item);
-        }
-
-        public void Clear()
-        {
-            _collection.Clear();
-        }
-
-        public bool Contains(IHttpHeader item)
-        {
-            return _collection.Contains(item);
-        }
-
         public bool ContainsName(Token name)
         {
             if (null == name)
@@ -137,17 +117,9 @@
                 throw new ArgumentNullException("name");
             }
 
-            return 0 != _collection.Where(x => x.Name.Equals(name)).Count();
-        }
-
-        public void CopyTo(IHttpHeader[] array, int arrayIndex)
-        {
-            _collection.CopyTo(array, arrayIndex);
-        }
-
-        public IEnumerator<IHttpHeader> GetEnumerator()
-        {
-            return _collection.GetEnumerator();
+            return 0 != _collection
+                .Where(x => x.Name.Equals(name))
+                .Count();
         }
 
         public void Read(TextReader reader)
@@ -161,13 +133,15 @@
             {
                 var peek = reader.Peek();
                 var line = reader.ReadLine();
-                if (-1 == peek || 13 == peek)
+                if (-1 == peek ||
+                    13 == peek)
                 {
                     break; // EOF or CR
                 }
                 else
                 {
-                    while (9 == reader.Peek() || 32 == reader.Peek())
+                    while (9 == reader.Peek() ||
+                           32 == reader.Peek())
                     {
                         line += Environment.NewLine + reader.ReadLine(); // HT or SPACE
                     }
@@ -175,11 +149,6 @@
                     Add(HttpHeader.FromString(line));
                 }
             }
-        }
-
-        public bool Remove(IHttpHeader item)
-        {
-            return _collection.Remove(item);
         }
 
         public override string ToString()
@@ -207,9 +176,44 @@
             }
         }
 
+        public void Add(IHttpHeader item)
+        {
+            if (null == item)
+            {
+                throw new ArgumentNullException("item");
+            }
+
+            _collection.Add(item);
+        }
+
+        public void Clear()
+        {
+            _collection.Clear();
+        }
+
+        public bool Contains(IHttpHeader item)
+        {
+            return _collection.Contains(item);
+        }
+
+        public void CopyTo(IHttpHeader[] array, int arrayIndex)
+        {
+            _collection.CopyTo(array, arrayIndex);
+        }
+
+        public bool Remove(IHttpHeader item)
+        {
+            return _collection.Remove(item);
+        }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return (_collection as IEnumerable).GetEnumerator();
+        }
+
+        public IEnumerator<IHttpHeader> GetEnumerator()
+        {
+            return _collection.GetEnumerator();
         }
 
         private IDictionary<string, string> ToDictionary()
@@ -227,7 +231,7 @@
                     result.Add(item.Name, item.Value);
                 }
             }
-            
+
             return result;
         }
     }

@@ -6,7 +6,7 @@
     public sealed class IContentTypeFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(typeof(IContentType).IsInterface);
         }

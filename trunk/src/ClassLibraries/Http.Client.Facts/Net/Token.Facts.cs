@@ -7,7 +7,7 @@
     public sealed class TokenFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(new TypeExpectations<Token>()
                 .DerivesFrom<ComparableObject>()

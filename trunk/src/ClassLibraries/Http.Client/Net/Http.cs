@@ -23,7 +23,7 @@
                 client = request.AbsoluteUri.ToTcpClient();
                 client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
                 client.NoDelay = true;
-                
+
                 result = Send(request, client);
             }
             finally
@@ -32,6 +32,18 @@
                 {
                     client.Close();
                 }
+            }
+
+            return result;
+        }
+
+        private static IHttpResponse Read(Stream stream)
+        {
+            var result = new HttpResponse();
+
+            using (var reader = new StreamReader(stream))
+            {
+                result.Read(reader);
             }
 
             return result;
@@ -50,18 +62,6 @@
                     writer.Flush();
                     result = Read(stream);
                 }
-            }
-
-            return result;
-        }
-
-        private static IHttpResponse Read(Stream stream)
-        {
-            var result = new HttpResponse();
-
-            using (var reader = new StreamReader(stream))
-            {
-                result.Read(reader);
             }
 
             return result;

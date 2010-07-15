@@ -8,7 +8,8 @@
     {
         public bool Check()
         {
-            if (!typeof(T).IsAbstract || typeof(T).IsSealed)
+            if (!typeof(T).IsAbstract ||
+                typeof(T).IsSealed)
             {
                 throw new TestException(string.Format(
                     CultureInfo.CurrentUICulture,

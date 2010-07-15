@@ -6,7 +6,7 @@
     <CSharp>
       <FormatSettings>
         <ANONYMOUS_METHOD_DECLARATION_BRACES>NEXT_LINE</ANONYMOUS_METHOD_DECLARATION_BRACES>
-        <BLANK_LINES_AROUND_FIELD>0</BLANK_LINES_AROUND_FIELD>
+        <BLANK_LINES_AROUND_SINGLE_LINE_FIELD>1</BLANK_LINES_AROUND_SINGLE_LINE_FIELD>
         <BLANK_LINES_AROUND_SINGLE_LINE_INVOCABLE>1</BLANK_LINES_AROUND_SINGLE_LINE_INVOCABLE>
         <CASE_BLOCK_BRACES>NEXT_LINE</CASE_BLOCK_BRACES>
         <FORCE_ATTRIBUTE_STYLE>SEPARATE</FORCE_ATTRIBUTE_STYLE>
@@ -253,7 +253,7 @@
                 <Kind Is="property"/>
             </Match>
             <Sort>
-                <Access Order="public internal protected-internal protected private"/>
+                <Access Order="public internal protected-internal protected private" />
                 <Static/>
                 <Name/>
             </Sort>
@@ -391,7 +391,7 @@
         <BlankLineAfterProcessingInstructions>False</BlankLineAfterProcessingInstructions>
         <MaxBlankLines>1</MaxBlankLines>
         <MaxSingleLineTagLength>100</MaxSingleLineTagLength>
-        <TagAttributesFormat>OnDifferentLines</TagAttributesFormat>
+        <TagAttributesFormat>FirstAttributeOnSingleLine</TagAttributesFormat>
       </FormatSettings>
     </XML>
     <GeneratedFileMasks IsNull="False">

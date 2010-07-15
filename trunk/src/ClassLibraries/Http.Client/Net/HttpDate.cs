@@ -13,6 +13,16 @@
             _value = value;
         }
 
+        public static bool operator ==(HttpDate operand1, HttpDate operand2)
+        {
+            return 0 == Compare(operand1, operand2);
+        }
+
+        public static bool operator >(HttpDate operand1, HttpDate operand2)
+        {
+            return Compare(operand1, operand2) > 0;
+        }
+
         public static implicit operator DateTime(HttpDate value)
         {
             return value.ToDateTime();
@@ -33,11 +43,6 @@
             return FromString(value);
         }
 
-        public static bool operator ==(HttpDate operand1, HttpDate operand2)
-        {
-            return 0 == Compare(operand1, operand2);
-        }
-
         public static bool operator !=(HttpDate operand1, HttpDate operand2)
         {
             return 0 != Compare(operand1, operand2);
@@ -46,11 +51,6 @@
         public static bool operator <(HttpDate operand1, HttpDate operand2)
         {
             return Compare(operand1, operand2) < 0;
-        }
-
-        public static bool operator >(HttpDate operand1, HttpDate operand2)
-        {
-            return Compare(operand1, operand2) > 0;
         }
 
         public static int Compare(HttpDate comparand1, HttpDate comparand2)
@@ -70,25 +70,6 @@
             }
 
             return new HttpDate(DateTime.Parse(value, CultureInfo.InvariantCulture));
-        }
-
-        public int CompareTo(object obj)
-        {
-            var result = 1;
-
-            if (!ReferenceEquals(null, obj))
-            {
-                if (obj is HttpDate)
-                {
-                    result = Compare(this, (HttpDate)obj);
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("obj");
-                }
-            }
-
-            return result;
         }
 
         public override bool Equals(object obj)
@@ -116,6 +97,25 @@
         public override string ToString()
         {
             return ToDateTime().ToString("R", CultureInfo.InvariantCulture);
+        }
+
+        public int CompareTo(object obj)
+        {
+            var result = 1;
+
+            if (!ReferenceEquals(null, obj))
+            {
+                if (obj is HttpDate)
+                {
+                    result = Compare(this, (HttpDate)obj);
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("obj");
+                }
+            }
+
+            return result;
         }
     }
 }

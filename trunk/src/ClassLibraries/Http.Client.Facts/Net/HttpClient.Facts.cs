@@ -11,7 +11,7 @@
     public sealed class HttpClientFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpClient>()
                 .DerivesFrom<ComparableObject>()

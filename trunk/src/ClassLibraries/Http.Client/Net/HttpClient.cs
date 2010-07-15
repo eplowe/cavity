@@ -17,6 +17,8 @@
             Http = http;
         }
 
+        public IHttpResponse Response { get; private set; }
+
         public string UserAgent
         {
             get
@@ -25,12 +27,6 @@
 
                 return null == userAgent ? new UserAgent().Value : userAgent.Value;
             }
-        }
-
-        public IHttpResponse Response
-        {
-            get;
-            private set;
         }
 
         private IHttp Http

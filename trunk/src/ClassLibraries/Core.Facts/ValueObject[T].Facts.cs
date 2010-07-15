@@ -7,7 +7,7 @@ namespace Cavity
     public sealed class ValueObjectOfTFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(new TypeExpectations<ValueObject<ValueObjectDerived>>()
                 .DerivesFrom<object>()

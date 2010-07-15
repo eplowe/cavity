@@ -15,11 +15,7 @@
             Attribute = attribute;
         }
 
-        public Type Attribute
-        {
-            get;
-            set;
-        }
+        public Type Attribute { get; set; }
 
         public override bool Check()
         {

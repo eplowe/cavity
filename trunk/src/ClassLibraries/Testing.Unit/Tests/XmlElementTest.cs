@@ -13,17 +13,9 @@ namespace Cavity.Tests
         {
         }
 
-        public string ElementName
-        {
-            get;
-            set;
-        }
+        public string ElementName { get; set; }
 
-        public string Namespace
-        {
-            get;
-            set;
-        }
+        public string Namespace { get; set; }
 
         public override bool Check()
         {

@@ -31,7 +31,8 @@
 
             set
             {
-                if (null == value || value is string)
+                if (null == value ||
+                    value is string)
                 {
                     Value = value as string;
                 }
@@ -60,17 +61,13 @@
             }
         }
 
-        public string Value
-        {
-            get;
-            set;
-        }
+        public string Value { get; set; }
 
         public static implicit operator TextPlain(string value)
         {
             return ReferenceEquals(null, value)
-                ? null
-                : FromString(value);
+                       ? null
+                       : FromString(value);
         }
 
         public static TextPlain FromString(string value)
@@ -83,14 +80,9 @@
             return new TextPlain(value);
         }
 
-        public IContent ToContent(TextReader reader)
+        public override string ToString()
         {
-            if (null == reader)
-            {
-                throw new ArgumentNullException("reader");
-            }
-
-            return new TextPlain(reader.ReadToEnd());
+            return Content as string;
         }
 
         public void Write(TextWriter writer)
@@ -103,9 +95,14 @@
             writer.Write(Content as string);
         }
 
-        public override string ToString()
+        public IContent ToContent(TextReader reader)
         {
-            return Content as string;
+            if (null == reader)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
+            return new TextPlain(reader.ReadToEnd());
         }
     }
 }

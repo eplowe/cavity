@@ -10,11 +10,7 @@
             Property = property;
         }
 
-        public PropertyInfo Property
-        {
-            get;
-            set;
-        }
+        public PropertyInfo Property { get; set; }
 
         public abstract bool Check();
     }

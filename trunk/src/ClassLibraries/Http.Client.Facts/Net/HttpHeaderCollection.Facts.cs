@@ -13,7 +13,7 @@
     public sealed class HttpHeaderCollectionFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpHeaderCollection>()
                 .DerivesFrom<object>()
