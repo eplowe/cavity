@@ -30,7 +30,8 @@
 
             private set
             {
-                if (value < 100 || value > 999)
+                if (value < 100 ||
+                    value > 999)
                 {
                     throw new ArgumentOutOfRangeException("value");
                 }
@@ -56,7 +57,8 @@
                 {
                     throw new ArgumentOutOfRangeException("value");
                 }
-                else if (value.Contains("\n") || value.Contains("\r"))
+                else if (value.Contains("\n") ||
+                         value.Contains("\r"))
                 {
                     throw new FormatException("value");
                 }
@@ -86,8 +88,8 @@
         public static implicit operator StatusLine(string value)
         {
             return ReferenceEquals(null, value)
-                ? null
-                : FromString(value);
+                       ? null
+                       : FromString(value);
         }
 
         public static StatusLine FromString(string value)
@@ -101,7 +103,10 @@
                 throw new FormatException("value");
             }
 
-            var parts = value.Split(new[] { ' ' });
+            var parts = value.Split(new[]
+            {
+                ' '
+            });
 
             if (3 > parts.Length)
             {

@@ -19,17 +19,9 @@
             Namespace = @namespace;
         }
 
-        public string ElementName
-        {
-            get;
-            set;
-        }
+        public string ElementName { get; set; }
 
-        public string Namespace
-        {
-            get;
-            set;
-        }
+        public string Namespace { get; set; }
 
         public bool Check()
         {

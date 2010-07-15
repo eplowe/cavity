@@ -8,7 +8,7 @@ namespace Cavity
     public sealed class ObjectExtensionMethodsFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(typeof(ObjectExtensionMethods).IsStatic());
         }

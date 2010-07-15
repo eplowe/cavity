@@ -14,11 +14,11 @@
             Major = major;
             Minor = minor;
         }
-    
+
         private HttpVersion()
         {
         }
-        
+
         public int Major
         {
             get
@@ -28,7 +28,8 @@
 
             private set
             {
-                if (value < 0 || value > 9)
+                if (value < 0 ||
+                    value > 9)
                 {
                     throw new ArgumentOutOfRangeException("value");
                 }
@@ -46,7 +47,8 @@
 
             private set
             {
-                if (value < 0 || value > 9)
+                if (value < 0 ||
+                    value > 9)
                 {
                     throw new ArgumentOutOfRangeException("value");
                 }
@@ -58,8 +60,8 @@
         public static implicit operator HttpVersion(string value)
         {
             return ReferenceEquals(null, value)
-                ? null
-                : FromString(value);
+                       ? null
+                       : FromString(value);
         }
 
         public static HttpVersion FromString(string value)
@@ -77,13 +79,16 @@
                 throw new FormatException("value");
             }
 
-            var parts = value.Substring("HTTP/".Length).Split(new[] { '.' });
+            var parts = value.Substring("HTTP/".Length).Split(new[]
+            {
+                '.'
+            });
 
             return new HttpVersion(
                 int.Parse(parts[0], CultureInfo.InvariantCulture),
                 int.Parse(parts[1], CultureInfo.InvariantCulture));
         }
-        
+
         public override string ToString()
         {
             return string.Format(CultureInfo.InvariantCulture, "HTTP/{0}.{1}", Major, Minor);

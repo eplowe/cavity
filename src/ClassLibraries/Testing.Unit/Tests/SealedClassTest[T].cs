@@ -11,11 +11,7 @@
             Value = value;
         }
 
-        public bool Value
-        {
-            get;
-            set;
-        }
+        public bool Value { get; set; }
 
         public bool Check()
         {

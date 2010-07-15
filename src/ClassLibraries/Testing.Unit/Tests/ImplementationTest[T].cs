@@ -12,11 +12,7 @@
             Interface = @interface;
         }
 
-        public Type Interface
-        {
-            get;
-            set;
-        }
+        public Type Interface { get; set; }
 
         public bool Check()
         {

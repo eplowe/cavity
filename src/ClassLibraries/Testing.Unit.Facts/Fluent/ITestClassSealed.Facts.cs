@@ -6,7 +6,7 @@
     public sealed class ITestClassSealedFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(typeof(ITestClassSealed).IsInterface);
         }

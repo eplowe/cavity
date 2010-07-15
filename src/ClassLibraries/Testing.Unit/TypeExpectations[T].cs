@@ -41,14 +41,25 @@
         {
             get
             {
-                return 0 == Items.Where(x => !x.Check()).Count();
+                return 0 == Items
+                                .Where(x => !x.Check())
+                                .Count();
             }
         }
 
-        private Collection<ITestExpectation> Items
+        private Collection<ITestExpectation> Items { get; set; }
+
+        /// <summary>
+        /// Adds an expectation that the type derives from a specified base type.
+        /// </summary>
+        /// <typeparam name="TBase">The expected type of the base type.</typeparam>
+        /// <returns>The current instance.</returns>
+        /// <seealso href="http://msdn.microsoft.com/library/hfw7t1ce">base (C# Reference)</seealso>
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
+        public ITestClassStyle DerivesFrom<TBase>()
         {
-            get;
-            set;
+            (this as ITestType).Add(new BaseClassTest<T>(typeof(TBase)));
+            return this;
         }
 
         /// <summary>
@@ -74,37 +85,23 @@
         }
 
         /// <summary>
-        /// Adds an expectation that the type derives from a specified base type.
+        /// Adds an expectation that the type has a default constructor.
         /// </summary>
-        /// <typeparam name="TBase">The expected type of the base type.</typeparam>
         /// <returns>The current instance.</returns>
-        /// <seealso href="http://msdn.microsoft.com/library/hfw7t1ce">base (C# Reference)</seealso>
-        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
-        public ITestClassStyle DerivesFrom<TBase>()
+        /// <seealso href="http://msdn.microsoft.com/library/ace5hbzh">Constructors (C# Programming Guide)</seealso>
+        ITestType ITestClassConstruction.HasDefaultConstructor()
         {
-            (this as ITestType).Add(new BaseClassTest<T>(typeof(TBase)));
+            (this as ITestType).Add(new DefaultConstructorTest<T>());
             return this;
         }
 
         /// <summary>
-        /// Adds an expectation that the type is an abstract base type.
+        /// Adds an expectation that the type does not have a default constructor.
         /// </summary>
         /// <returns>The current instance.</returns>
-        /// <seealso href="http://msdn.microsoft.com/library/sf985hc5">abstract (C# Reference)</seealso>
-        ITestType ITestClassStyle.IsAbstractBaseClass()
+        /// <seealso href="http://msdn.microsoft.com/library/ace5hbzh">Constructors (C# Programming Guide)</seealso>
+        ITestType ITestClassConstruction.NoDefaultConstructor()
         {
-            (this as ITestType).Add(new AbstractBaseClassTest<T>());
-            return this;
-        }
-
-        /// <summary>
-        /// Adds an expectation that the type is a concrete type.
-        /// </summary>
-        /// <returns>The current instance.</returns>
-        /// <seealso href="http://msdn.microsoft.com/library/0b0thckt">class (C# Reference)</seealso>
-        ITestClassSealed ITestClassStyle.IsConcreteClass()
-        {
-            (this as ITestType).Add(new ConcreteClassTest<T>());
             return this;
         }
 
@@ -131,23 +128,24 @@
         }
 
         /// <summary>
-        /// Adds an expectation that the type has a default constructor.
+        /// Adds an expectation that the type is an abstract base type.
         /// </summary>
         /// <returns>The current instance.</returns>
-        /// <seealso href="http://msdn.microsoft.com/library/ace5hbzh">Constructors (C# Programming Guide)</seealso>
-        ITestType ITestClassConstruction.HasDefaultConstructor()
+        /// <seealso href="http://msdn.microsoft.com/library/sf985hc5">abstract (C# Reference)</seealso>
+        ITestType ITestClassStyle.IsAbstractBaseClass()
         {
-            (this as ITestType).Add(new DefaultConstructorTest<T>());
+            (this as ITestType).Add(new AbstractBaseClassTest<T>());
             return this;
         }
 
         /// <summary>
-        /// Adds an expectation that the type does not have a default constructor.
+        /// Adds an expectation that the type is a concrete type.
         /// </summary>
         /// <returns>The current instance.</returns>
-        /// <seealso href="http://msdn.microsoft.com/library/ace5hbzh">Constructors (C# Programming Guide)</seealso>
-        ITestType ITestClassConstruction.NoDefaultConstructor()
+        /// <seealso href="http://msdn.microsoft.com/library/0b0thckt">class (C# Reference)</seealso>
+        ITestClassSealed ITestClassStyle.IsConcreteClass()
         {
+            (this as ITestType).Add(new ConcreteClassTest<T>());
             return this;
         }
 

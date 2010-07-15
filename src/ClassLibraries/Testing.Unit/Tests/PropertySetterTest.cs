@@ -13,17 +13,9 @@
             Value = value;
         }
 
-        public object Value
-        {
-            get;
-            set;
-        }
+        public Type ExpectedException { get; set; }
 
-        public Type ExpectedException
-        {
-            get;
-            set;
-        }
+        public object Value { get; set; }
 
         public override bool Check()
         {
@@ -37,7 +29,10 @@
 
                 Property.GetSetMethod(true).Invoke(
                     Activator.CreateInstance(type, true),
-                    new[] { Value });
+                    new[]
+                    {
+                        Value
+                    });
 
                 if (null != ExpectedException)
                 {
@@ -52,7 +47,8 @@
             catch (TargetInvocationException exception)
             {
                 if (null != ExpectedException
-                    && !ExpectedException.GetType().Equals(exception.InnerException.GetType()))
+                    &&
+                    !ExpectedException.GetType().Equals(exception.InnerException.GetType()))
                 {
                 }
                 else

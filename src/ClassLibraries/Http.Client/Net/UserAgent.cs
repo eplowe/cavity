@@ -40,8 +40,8 @@
         public static implicit operator UserAgent(string value)
         {
             return ReferenceEquals(null, value)
-                ? null
-                : FromString(value);
+                       ? null
+                       : FromString(value);
         }
 
         public static string Format()

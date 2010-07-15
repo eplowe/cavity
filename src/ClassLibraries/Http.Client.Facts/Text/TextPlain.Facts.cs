@@ -10,7 +10,7 @@
     public sealed class TextPlainFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(new TypeExpectations<TextPlain>()
                 .DerivesFrom<ComparableObject>()

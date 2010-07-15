@@ -9,7 +9,7 @@
     public sealed class UserAgentFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(new TypeExpectations<UserAgent>()
                 .DerivesFrom<ComparableObject>()

@@ -44,86 +44,15 @@
         {
             get
             {
-                return 0 == Items.Where(x => !x.Check()).Count();
+                return 0 == Items
+                    .Where(x => !x.Check())
+                    .Count();
             }
         }
 
-        private Collection<ITestExpectation> Items
-        {
-            get;
-            set;
-        }
+        private Collection<ITestExpectation> Items { get; set; }
 
-        private PropertyInfo Property
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Adds an expectation that the property is of the specified type.
-        /// </summary>
-        /// <typeparam name="TProperty">The expected type of the property.</typeparam>
-        /// <returns>The current instance.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
-        public PropertyExpectations<T> TypeIs<TProperty>()
-        {
-            Items.Add(new PropertyGetterTest<TProperty>(Property));
-            return this;
-        }
-
-        /// <summary>
-        /// Adds an expectation that the property default value is <see langword="null"/>.
-        /// </summary>
-        /// <returns>The current instance.</returns>
-        public PropertyExpectations<T> DefaultValueIsNull()
-        {
-            Items.Add(new PropertyGetterTest(Property, null));
-            return this;
-        }
-
-        /// <summary>
-        /// Adds an expectation that the property default value is equal to the specified <paramref name="value"/>.
-        /// </summary>
-        /// <param name="value">The expected property value.</param>
-        /// <returns>The current instance.</returns>
-        public PropertyExpectations<T> DefaultValueIs(object value)
-        {
-            Items.Add(new PropertyGetterTest(Property, value));
-            return this;
-        }
-
-        /// <summary>
-        /// Adds an expectation that the property default value is not <see langword="null"/>.
-        /// </summary>
-        /// <returns>The current instance.</returns>
-        public PropertyExpectations<T> DefaultValueIsNotNull()
-        {
-            Items.Add(new PropertyDefaultIsNotNullTest(Property));
-            return this;
-        }
-
-        /// <summary>
-        /// Adds an expectation that the property can be set to the default value of the specified type.
-        /// </summary>
-        /// <typeparam name="TValue">The type whose default value will be set.</typeparam>
-        /// <returns>The current instance.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
-        public PropertyExpectations<T> Set<TValue>()
-        {
-            return Set(default(TValue));
-        }
-
-        /// <summary>
-        /// Adds an expectation that the property can be set to the specified <paramref name="value"/>.
-        /// </summary>
-        /// <param name="value">The value to be set.</param>
-        /// <returns>The current instance.</returns>
-        public PropertyExpectations<T> Set(object value)
-        {
-            Items.Add(new PropertySetterTest(Property, value));
-            return this;
-        }
+        private PropertyInfo Property { get; set; }
 
         /// <summary>
         /// Adds an expectation that an <see cref="T:System.ArgumentNullException"/>
@@ -149,14 +78,33 @@
         }
 
         /// <summary>
-        /// Adds an expectation that a <see cref="T:System.FormatException"/>
-        /// will be thrown when the property is set to the specified <paramref name="value"/>.
+        /// Adds an expectation that the property default value is equal to the specified <paramref name="value"/>.
         /// </summary>
-        /// <param name="value">The value to be set.</param>
+        /// <param name="value">The expected property value.</param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations<T> FormatException(object value)
+        public PropertyExpectations<T> DefaultValueIs(object value)
         {
-            Exception(value, typeof(FormatException));
+            Items.Add(new PropertyGetterTest(Property, value));
+            return this;
+        }
+
+        /// <summary>
+        /// Adds an expectation that the property default value is not <see langword="null"/>.
+        /// </summary>
+        /// <returns>The current instance.</returns>
+        public PropertyExpectations<T> DefaultValueIsNotNull()
+        {
+            Items.Add(new PropertyDefaultIsNotNullTest(Property));
+            return this;
+        }
+
+        /// <summary>
+        /// Adds an expectation that the property default value is <see langword="null"/>.
+        /// </summary>
+        /// <returns>The current instance.</returns>
+        public PropertyExpectations<T> DefaultValueIsNull()
+        {
+            Items.Add(new PropertyGetterTest(Property, null));
             return this;
         }
 
@@ -185,7 +133,22 @@
                 throw new ArgumentOutOfRangeException("expectedException");
             }
 
-            Items.Add(new PropertySetterTest(Property, value) { ExpectedException = expectedException });
+            Items.Add(new PropertySetterTest(Property, value)
+            {
+                ExpectedException = expectedException
+            });
+            return this;
+        }
+
+        /// <summary>
+        /// Adds an expectation that a <see cref="T:System.FormatException"/>
+        /// will be thrown when the property is set to the specified <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">The value to be set.</param>
+        /// <returns>The current instance.</returns>
+        public PropertyExpectations<T> FormatException(object value)
+        {
+            Exception(value, typeof(FormatException));
             return this;
         }
 
@@ -278,6 +241,40 @@
         }
 
         /// <summary>
+        /// Adds an expectation that the property can be set to the default value of the specified type.
+        /// </summary>
+        /// <typeparam name="TValue">The type whose default value will be set.</typeparam>
+        /// <returns>The current instance.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
+        public PropertyExpectations<T> Set<TValue>()
+        {
+            return Set(default(TValue));
+        }
+
+        /// <summary>
+        /// Adds an expectation that the property can be set to the specified <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">The value to be set.</param>
+        /// <returns>The current instance.</returns>
+        public PropertyExpectations<T> Set(object value)
+        {
+            Items.Add(new PropertySetterTest(Property, value));
+            return this;
+        }
+
+        /// <summary>
+        /// Adds an expectation that the property is of the specified type.
+        /// </summary>
+        /// <typeparam name="TProperty">The expected type of the property.</typeparam>
+        /// <returns>The current instance.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
+        public PropertyExpectations<T> TypeIs<TProperty>()
+        {
+            Items.Add(new PropertyGetterTest<TProperty>(Property));
+            return this;
+        }
+
+        /// <summary>
         /// Adds an expectation that the property is decorated with the
         /// <see cref="T:System.Xml.Serialization.XmlArrayAttribute"/>
         /// with the specified <paramref name="arrayElementName"/>
@@ -292,7 +289,11 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlArray(string arrayElementName, string arrayItemElementName)
         {
-            Items.Add(new XmlArrayTest(Property) { ArrayElementName = arrayElementName, ArrayItemElementName = arrayItemElementName });
+            Items.Add(new XmlArrayTest(Property)
+            {
+                ArrayElementName = arrayElementName,
+                ArrayItemElementName = arrayItemElementName
+            });
             return this;
         }
 
@@ -307,7 +308,10 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlAttribute(string attributeName)
         {
-            Items.Add(new XmlAttributeTest(Property) { AttributeName = attributeName });
+            Items.Add(new XmlAttributeTest(Property)
+            {
+                AttributeName = attributeName
+            });
             return this;
         }
 
@@ -325,7 +329,11 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlAttribute(string attributeName, string @namespace)
         {
-            Items.Add(new XmlAttributeTest(Property) { AttributeName = attributeName, Namespace = @namespace });
+            Items.Add(new XmlAttributeTest(Property)
+            {
+                AttributeName = attributeName,
+                Namespace = @namespace
+            });
             return this;
         }
 
@@ -340,7 +348,10 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlElement(string elementName)
         {
-            Items.Add(new XmlElementTest(Property) { ElementName = elementName });
+            Items.Add(new XmlElementTest(Property)
+            {
+                ElementName = elementName
+            });
             return this;
         }
 
@@ -358,7 +369,11 @@
         /// <returns>The current instance.</returns>
         public PropertyExpectations<T> XmlElement(string elementName, string @namespace)
         {
-            Items.Add(new XmlElementTest(Property) { ElementName = elementName, Namespace = @namespace });
+            Items.Add(new XmlElementTest(Property)
+            {
+                ElementName = elementName,
+                Namespace = @namespace
+            });
             return this;
         }
 

@@ -7,7 +7,7 @@
     public sealed class HttpHeaderFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpHeader>()
                 .DerivesFrom<ComparableObject>()

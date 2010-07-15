@@ -58,8 +58,8 @@
         public static implicit operator HttpHeader(string value)
         {
             return ReferenceEquals(null, value)
-                ? null
-                : FromString(value);
+                       ? null
+                       : FromString(value);
         }
 
         public static HttpHeader FromString(string value)

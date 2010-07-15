@@ -14,7 +14,7 @@
     public sealed class HttpMessageFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpMessage>()
                 .DerivesFrom<ComparableObject>()

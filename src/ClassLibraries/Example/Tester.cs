@@ -9,11 +9,7 @@
             Expected = expected;
         }
 
-        public string Expected
-        {
-            get;
-            set;
-        }
+        public string Expected { get; set; }
 
         public bool Test(string actual)
         {
