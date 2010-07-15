@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
+[assembly: CLSCompliant(true)]
 [assembly: AssemblyDefaultAlias("Cavity.ServiceLocation.CastleWindsor.dll")]
 [assembly: AssemblyTitle("Cavity.ServiceLocation.CastleWindsor.dll")]
 
@@ -14,7 +15,5 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Castle Windsor Service Location Library (Release)")]
 
 #endif
-
-[assembly: CLSCompliant(true)]
 
 [assembly: SuppressMessage("Microsoft.Design", "CA2210:AssembliesShouldHaveValidStrongNames", Justification = "CommonServiceLocator.WindsorAdapter is not strongly named.")]

@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
+[assembly: CLSCompliant(true)]
 [assembly: AssemblyDefaultAlias("Cavity.Core.dll")]
 [assembly: AssemblyTitle("Cavity.Core.dll")]
 
@@ -14,8 +15,6 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Core Library (Release)")]
 
 #endif
-
-[assembly: CLSCompliant(true)]
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Cavity")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Cavity.IO")]

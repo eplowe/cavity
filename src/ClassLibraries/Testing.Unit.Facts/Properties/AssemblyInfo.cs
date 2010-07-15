@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
+[assembly: CLSCompliant(true)]
 [assembly: AssemblyDefaultAlias("Cavity.Testing.Unit.Facts.dll")]
 [assembly: AssemblyTitle("Cavity.Testing.Unit.Facts.dll")]
 
@@ -13,5 +14,3 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Unit Testing Facts Library (Release)")]
 
 #endif
-
-[assembly: CLSCompliant(true)]

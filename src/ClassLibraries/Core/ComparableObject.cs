@@ -4,18 +4,23 @@ namespace Cavity
 
     public abstract class ComparableObject : IComparable
     {
-        public static implicit operator string(ComparableObject value)
-        {
-            return ReferenceEquals(null, value)
-                ? null
-                : value.ToString();
-        }
-
         public static bool operator ==(ComparableObject operand1, ComparableObject operand2)
         {
             return ReferenceEquals(null, operand1)
                 ? ReferenceEquals(null, operand2)
                 : operand1.Equals(operand2);
+        }
+
+        public static bool operator >(ComparableObject operand1, ComparableObject operand2)
+        {
+            return Compare(operand1, operand2) > 0;
+        }
+
+        public static implicit operator string(ComparableObject value)
+        {
+            return ReferenceEquals(null, value)
+                ? null
+                : value.ToString();
         }
 
         public static bool operator !=(ComparableObject operand1, ComparableObject operand2)
@@ -30,11 +35,6 @@ namespace Cavity
             return Compare(operand1, operand2) < 0;
         }
 
-        public static bool operator >(ComparableObject operand1, ComparableObject operand2)
-        {
-            return Compare(operand1, operand2) > 0;
-        }
-
         public static int Compare(ComparableObject comparand1, ComparableObject comparand2)
         {
             return ReferenceEquals(comparand1, comparand2)
@@ -43,24 +43,6 @@ namespace Cavity
                     ReferenceEquals(null, comparand1) ? null : comparand1.ToString(),
                     ReferenceEquals(null, comparand2) ? null : comparand2.ToString(),
                     StringComparison.OrdinalIgnoreCase);
-        }
-
-        public virtual int CompareTo(object obj)
-        {
-            var result = 1;
-
-            if (!ReferenceEquals(null, obj))
-            {
-                var value = obj as ComparableObject;
-                if (ReferenceEquals(null, value))
-                {
-                    throw new ArgumentOutOfRangeException("obj");
-                }
-
-                result = Compare(this, value);
-            }
-
-            return result;
         }
 
         public override bool Equals(object obj)
@@ -92,13 +74,31 @@ namespace Cavity
             var value = ToString();
 
             return null == value
-                ? 0
-                : value.GetHashCode();
+                       ? 0
+                       : value.GetHashCode();
         }
 
         public override string ToString()
         {
             return null;
+        }
+
+        public virtual int CompareTo(object obj)
+        {
+            var result = 1;
+
+            if (!ReferenceEquals(null, obj))
+            {
+                var value = obj as ComparableObject;
+                if (ReferenceEquals(null, value))
+                {
+                    throw new ArgumentOutOfRangeException("obj");
+                }
+
+                result = Compare(this, value);
+            }
+
+            return result;
         }
     }
 }

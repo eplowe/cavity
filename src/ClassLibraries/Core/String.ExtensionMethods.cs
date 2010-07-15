@@ -39,8 +39,8 @@
                     writer.Flush();
                     stream.Position = 0;
                     result = typeof(Exception).IsAssignableFrom(type)
-                        ? new SoapFormatter().Deserialize(stream)
-                        : new XmlSerializer(type).Deserialize(stream);
+                                 ? new SoapFormatter().Deserialize(stream)
+                                 : new XmlSerializer(type).Deserialize(stream);
                 }
             }
 

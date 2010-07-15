@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
+[assembly: CLSCompliant(true)]
 [assembly: AssemblyDefaultAlias("Cavity.Core.Facts.dll")]
 [assembly: AssemblyTitle("Cavity.Core.Facts.dll")]
 
@@ -13,5 +14,3 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Core Facts Library (Release)")]
 
 #endif
-
-[assembly: CLSCompliant(true)]

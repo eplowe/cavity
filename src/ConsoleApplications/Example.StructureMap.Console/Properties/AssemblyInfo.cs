@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
+[assembly: CLSCompliant(true)]
 [assembly: AssemblyDefaultAlias("Example.StructureMap.Console.exe")]
 [assembly: AssemblyTitle("Example.StructureMap.Console.exe")]
 
@@ -13,5 +14,3 @@ using System.Reflection;
 [assembly: AssemblyDescription("Example StructureMap Console Application (Release)")]
 
 #endif
-
-[assembly: CLSCompliant(true)]

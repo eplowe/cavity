@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en-GB")]
+[assembly: ComVisible(false)]
 
 #if (DEBUG)
 
@@ -18,5 +19,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("Release Build")]
 
 #endif
-
-[assembly: ComVisible(false)]

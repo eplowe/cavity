@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
+[assembly: CLSCompliant(true)]
 [assembly: AssemblyDefaultAlias("Cavity.ServiceLocation.Autofac.Facts.dll")]
 [assembly: AssemblyTitle("Cavity.ServiceLocation.Autofac.Facts.dll")]
 
@@ -13,5 +14,3 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Autofac Service Location Facts Library (Release)")]
 
 #endif
-
-[assembly: CLSCompliant(true)]
