@@ -307,14 +307,6 @@
         }
 
         [Fact]
-        public void op_Equals_object_this()
-        {
-            var value = new HttpDate(new DateTime(1999, 12, 31));
-
-            Assert.True(value.Equals(value));
-        }
-
-        [Fact]
         public void op_Equals_objectNull()
         {
             Assert.False(new HttpDate().Equals(null));
