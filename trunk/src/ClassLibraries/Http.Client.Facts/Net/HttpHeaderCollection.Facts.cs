@@ -335,17 +335,6 @@
         }
 
         [Fact]
-        public void op_Equals_object_this()
-        {
-            var obj = new HttpHeaderCollection
-            {
-                new HttpHeader("name", "value")
-            };
-
-            Assert.True(obj.Equals(obj));
-        }
-
-        [Fact]
         public void op_Equals_objectNull()
         {
             Assert.False(new HttpHeaderCollection().Equals(null));
