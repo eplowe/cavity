@@ -3,7 +3,6 @@
     using System;
     using System.IO;
     using System.Text;
-    using Cavity;
     using Cavity.Net.Mime;
     using Cavity.Text;
     using Microsoft.Practices.ServiceLocation;
@@ -16,13 +15,13 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpRequest>()
-                .DerivesFrom<HttpMessage>()
-                .IsConcreteClass()
-                .IsSealed()
-                .NoDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IHttpRequest>()
-                .Result);
+                            .DerivesFrom<HttpMessage>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IHttpRequest>()
+                            .Result);
         }
 
         [Fact]
@@ -32,58 +31,21 @@
         }
 
         [Fact]
-        public void prop_AbsoluteUri()
+        public void opImplicit_HttpRequest_string()
         {
-            Assert.NotNull(new PropertyExpectations<HttpRequest>("AbsoluteUri")
-                .TypeIs<Uri>()
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_AbsoluteUri_get()
-        {
-            var expected = new Uri("http://www.example.com/path");
-
-            var obj = new HttpRequest
+            var expected = new HttpRequest
             {
-                RequestLine = new RequestLine("GET", expected.AbsoluteUri, "HTTP/1.1")
+                RequestLine = "GET / HTTP/1.1"
             };
-
-            var actual = obj.AbsoluteUri;
+            HttpRequest actual = "GET / HTTP/1.1";
 
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void prop_AbsoluteUri_getFromRelative()
+        public void opImplicit_HttpRequest_stringEmpty()
         {
-            var expected = new Uri("http://www.example.com/path");
-
-            var obj = new HttpRequest
-            {
-                RequestLine = "GET /path HTTP/1.1",
-                Headers =
-                {
-                    (HttpHeader)"Host: www.example.com"
-                }
-            };
-
-            var actual = obj.AbsoluteUri;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void prop_RequestLine()
-        {
-            Assert.NotNull(new PropertyExpectations<HttpRequest>("RequestLine")
-                .TypeIs<RequestLine>()
-                .DefaultValueIsNull()
-                .ArgumentNullException()
-                .Set(new RequestLine("GET", "/", "HTTP/1.1"))
-                .IsNotDecorated()
-                .Result);
+            Assert.Throws<ArgumentOutOfRangeException>(() => (HttpRequest)string.Empty);
         }
 
         [Fact]
@@ -95,32 +57,15 @@
         }
 
         [Fact]
-        public void opImplicit_HttpRequest_stringEmpty()
+        public void op_FromString_stringEmpty()
         {
-            HttpRequest expected;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => expected = string.Empty);
-        }
-
-        [Fact]
-        public void opImplicit_HttpRequest_string()
-        {
-            var expected = new HttpRequest { RequestLine = "GET / HTTP/1.1" };
-            HttpRequest actual = "GET / HTTP/1.1";
-
-            Assert.Equal(expected, actual);
+            Assert.Throws<ArgumentOutOfRangeException>(() => HttpRequest.FromString(string.Empty));
         }
 
         [Fact]
         public void op_FromString_stringNull()
         {
             Assert.Throws<ArgumentNullException>(() => HttpRequest.FromString(null));
-        }
-
-        [Fact]
-        public void op_FromString_stringEmpty()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => HttpRequest.FromString(string.Empty));
         }
 
         [Fact]
@@ -169,7 +114,7 @@
                     .Setup(e => e.GetInstance<IMediaType>("text/plain"))
                     .Returns(new TextPlain())
                     .Verifiable();
-                
+
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 obj = HttpRequest.FromString(value.ToString());
@@ -187,6 +132,29 @@
             Assert.True(obj.Headers.Contains(contentType));
             Assert.True(obj.Headers.Contains(host));
             Assert.True(obj.Headers.Contains(connection));
+        }
+
+        [Fact]
+        public void op_Read_TextReaderEmpty()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        Assert.Throws<ArgumentNullException>(() => new HttpRequest().Read(reader));
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_Read_TextReaderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Read(null));
         }
 
         [Fact]
@@ -241,7 +209,7 @@
                     .Setup(e => e.GetInstance<IMediaType>("text/plain"))
                     .Returns(new TextPlain())
                     .Verifiable();
-                
+
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 using (var stream = new MemoryStream())
@@ -283,26 +251,58 @@
         }
 
         [Fact]
-        public void op_Read_TextReaderEmpty()
+        public void op_ToString_whenGet()
         {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        Assert.Throws<ArgumentNullException>(() => new HttpRequest().Read(reader));
-                    }
-                }
-            }
+            var expected = new StringBuilder();
+            expected.AppendLine("GET / HTTP/1.1");
+            expected.AppendLine("Host: www.example.com");
+            expected.AppendLine("Connection: close");
+            expected.AppendLine(string.Empty);
+
+            var actual = HttpRequest.FromString(expected.ToString()).ToString();
+
+            Assert.Equal(expected.ToString(), actual);
         }
 
         [Fact]
-        public void op_Read_TextReaderNull()
+        public void op_ToString_whenPost()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Read(null));
+            var expected = new StringBuilder();
+            expected.AppendLine("POST / HTTP/1.1");
+            expected.AppendLine("Content-Length: 4");
+            expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
+            expected.AppendLine("Host: www.example.com");
+            expected.AppendLine("Connection: keep-alive");
+            expected.AppendLine(string.Empty);
+            expected.Append("text");
+
+            string actual;
+            try
+            {
+                var locator = new Mock<IServiceLocator>();
+                locator
+                    .Setup(e => e.GetInstance<IMediaType>("text/plain"))
+                    .Returns(new TextPlain())
+                    .Verifiable();
+
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
+
+                actual = HttpRequest.FromString(expected.ToString()).ToString();
+
+                locator.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
+            }
+
+            Assert.Equal(expected.ToString(), actual);
+        }
+
+        [Fact]
+        public void op_Write_TextWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Write(null));
         }
 
         [Fact]
@@ -351,7 +351,7 @@
                     .Setup(e => e.GetInstance<IMediaType>("text/plain"))
                     .Returns(new TextPlain())
                     .Verifiable();
-                
+
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 obj = HttpRequest.FromString(expected.ToString());
@@ -379,58 +379,58 @@
         }
 
         [Fact]
-        public void op_Write_TextWriterNull()
+        public void prop_AbsoluteUri()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpRequest().Write(null));
+            Assert.NotNull(new PropertyExpectations<HttpRequest>("AbsoluteUri")
+                               .TypeIs<Uri>()
+                               .IsNotDecorated()
+                               .Result);
         }
 
         [Fact]
-        public void op_ToString_whenGet()
+        public void prop_AbsoluteUri_get()
         {
-            var expected = new StringBuilder();
-            expected.AppendLine("GET / HTTP/1.1");
-            expected.AppendLine("Host: www.example.com");
-            expected.AppendLine("Connection: close");
-            expected.AppendLine(string.Empty);
+            var expected = new Uri("http://www.example.com/path");
 
-            var actual = HttpRequest.FromString(expected.ToString()).ToString();
+            var obj = new HttpRequest
+            {
+                RequestLine = new RequestLine("GET", expected.AbsoluteUri, "HTTP/1.1")
+            };
 
-            Assert.Equal(expected.ToString(), actual);
+            var actual = obj.AbsoluteUri;
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void op_ToString_whenPost()
+        public void prop_AbsoluteUri_getFromRelative()
         {
-            var expected = new StringBuilder();
-            expected.AppendLine("POST / HTTP/1.1");
-            expected.AppendLine("Content-Length: 4");
-            expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
-            expected.AppendLine("Host: www.example.com");
-            expected.AppendLine("Connection: keep-alive");
-            expected.AppendLine(string.Empty);
-            expected.Append("text");
+            var expected = new Uri("http://www.example.com/path");
 
-            string actual;
-            try
+            var obj = new HttpRequest
             {
-                var locator = new Mock<IServiceLocator>();
-                locator
-                    .Setup(e => e.GetInstance<IMediaType>("text/plain"))
-                    .Returns(new TextPlain())
-                    .Verifiable();
-                
-                ServiceLocator.SetLocatorProvider(() => locator.Object);
+                RequestLine = "GET /path HTTP/1.1",
+                Headers =
+                    {
+                        (HttpHeader)"Host: www.example.com"
+                    }
+            };
 
-                actual = HttpRequest.FromString(expected.ToString()).ToString();
+            var actual = obj.AbsoluteUri;
 
-                locator.VerifyAll();
-            }
-            finally
-            {
-                ServiceLocator.SetLocatorProvider(null);
-            }
+            Assert.Equal(expected, actual);
+        }
 
-            Assert.Equal(expected.ToString(), actual);
+        [Fact]
+        public void prop_RequestLine()
+        {
+            Assert.NotNull(new PropertyExpectations<HttpRequest>("RequestLine")
+                               .TypeIs<RequestLine>()
+                               .DefaultValueIsNull()
+                               .ArgumentNullException()
+                               .Set(new RequestLine("GET", "/", "HTTP/1.1"))
+                               .IsNotDecorated()
+                               .Result);
         }
     }
 }

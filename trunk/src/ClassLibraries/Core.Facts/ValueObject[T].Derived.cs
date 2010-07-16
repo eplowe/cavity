@@ -11,23 +11,11 @@ namespace Cavity
             RegisterProperty(x => x.StringProperty);
         }
 
-        public DateTime DateTimeProperty
-        {
-            get;
-            set;
-        }
+        public DateTime DateTimeProperty { get; set; }
 
-        public int Int32Property
-        {
-            get;
-            set;
-        }
+        public int Int32Property { get; set; }
 
-        public string StringProperty
-        {
-            get;
-            set;
-        }
+        public string StringProperty { get; set; }
 
         public void RegisterNullProperty()
         {

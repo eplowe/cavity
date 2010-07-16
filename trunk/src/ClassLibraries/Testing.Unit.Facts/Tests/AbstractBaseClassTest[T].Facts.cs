@@ -7,15 +7,15 @@
     public sealed class AbstractBaseClassTestOfTFacts
     {
         [Fact]
-        public void is_ITestExpectation()
-        {
-            Assert.IsAssignableFrom<ITestExpectation>(new AbstractBaseClassTest<int>());
-        }
-
-        [Fact]
         public void ctor()
         {
             Assert.NotNull(new AbstractBaseClassTest<object>());
+        }
+
+        [Fact]
+        public void is_ITestExpectation()
+        {
+            Assert.IsAssignableFrom<ITestExpectation>(new AbstractBaseClassTest<int>());
         }
 
         [Fact]

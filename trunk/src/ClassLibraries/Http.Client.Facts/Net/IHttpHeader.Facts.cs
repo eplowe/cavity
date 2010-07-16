@@ -6,12 +6,6 @@
     public sealed class IHttpHeaderFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(IHttpHeader).IsInterface);
-        }
-
-        [Fact]
         public void IHttpHeader_Name_get()
         {
             try
@@ -35,6 +29,12 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(IHttpHeader).IsInterface);
         }
     }
 }

@@ -4,7 +4,6 @@
     using System.Globalization;
     using System.IO;
     using System.Text;
-    using Cavity;
     using Cavity.Net.Mime;
     using Cavity.Text;
     using Microsoft.Practices.ServiceLocation;
@@ -17,37 +16,17 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpMessage>()
-                .DerivesFrom<ComparableObject>()
-                .IsAbstractBaseClass()
-                .IsNotDecorated()
-                .Implements<IHttpMessage>()
-                .Result);
+                            .DerivesFrom<ComparableObject>()
+                            .IsAbstractBaseClass()
+                            .IsNotDecorated()
+                            .Implements<IHttpMessage>()
+                            .Result);
         }
 
         [Fact]
         public void ctor()
         {
             Assert.NotNull(new DerivedHttpMessage() as HttpMessage);
-        }
-
-        [Fact]
-        public void prop_Body()
-        {
-            Assert.NotNull(new PropertyExpectations<DerivedHttpMessage>("Body")
-                .TypeIs<IContent>()
-                .ArgumentNullException()
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_Headers()
-        {
-            Assert.NotNull(new PropertyExpectations<DerivedHttpMessage>("Headers")
-                .TypeIs<HttpHeaderCollection>()
-                .ArgumentNullException()
-                .IsNotDecorated()
-                .Result);
         }
 
         [Fact]
@@ -74,6 +53,33 @@
 
             Assert.Equal(1, message.Headers.Count);
             Assert.True(message.Headers.Contains(connection));
+        }
+
+        [Fact]
+        public void op_Read_TextReaderEmpty()
+        {
+            HttpMessage message = new DerivedHttpMessage();
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        message.Read(reader);
+                    }
+                }
+            }
+
+            Assert.Empty(message.Headers);
+        }
+
+        [Fact]
+        public void op_Read_TextReaderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Read(null));
         }
 
         [Fact]
@@ -115,30 +121,52 @@
         }
 
         [Fact]
-        public void op_Read_TextReaderEmpty()
+        public void op_ToString()
         {
-            HttpMessage message = new DerivedHttpMessage();
+            var expected = new StringBuilder();
+            expected.AppendLine("Content-Length: 4");
+            expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
+            expected.AppendLine("Host: www.example.com");
+            expected.AppendLine("Connection: keep-alive");
+            expected.AppendLine(string.Empty);
+            expected.Append("text");
 
-            using (var stream = new MemoryStream())
+            HttpMessage obj = new DerivedHttpMessage();
+
+            try
             {
-                using (var writer = new StreamWriter(stream))
+                var locator = new Mock<IServiceLocator>();
+                locator
+                    .Setup(e => e.GetInstance<IMediaType>("text/plain"))
+                    .Returns(new TextPlain())
+                    .Verifiable();
+
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
+
+                using (var stream = new MemoryStream())
                 {
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
+                    using (var writer = new StreamWriter(stream))
                     {
-                        message.Read(reader);
+                        writer.Write(expected);
+                        writer.Flush();
+                        stream.Position = 0;
+                        using (var reader = new StreamReader(stream))
+                        {
+                            obj.Read(reader);
+                        }
                     }
                 }
+
+                locator.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
             }
 
-            Assert.Empty(message.Headers);
-        }
+            var actual = obj.ToString();
 
-        [Fact]
-        public void op_Read_TextReaderNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Read(null));
+            Assert.Equal(expected.ToString(), actual);
         }
 
         [Fact]
@@ -161,7 +189,7 @@
                     .Setup(e => e.GetInstance<IMediaType>("text/plain"))
                     .Returns(new TextPlain())
                     .Verifiable();
-                
+
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 using (var stream = new MemoryStream())
@@ -203,52 +231,23 @@
         }
 
         [Fact]
-        public void op_ToString()
+        public void prop_Body()
         {
-            var expected = new StringBuilder();
-            expected.AppendLine("Content-Length: 4");
-            expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
-            expected.AppendLine("Host: www.example.com");
-            expected.AppendLine("Connection: keep-alive");
-            expected.AppendLine(string.Empty);
-            expected.Append("text");
+            Assert.NotNull(new PropertyExpectations<DerivedHttpMessage>("Body")
+                               .TypeIs<IContent>()
+                               .ArgumentNullException()
+                               .IsNotDecorated()
+                               .Result);
+        }
 
-            HttpMessage obj = new DerivedHttpMessage();
-
-            try
-            {
-                var locator = new Mock<IServiceLocator>();
-                locator
-                    .Setup(e => e.GetInstance<IMediaType>("text/plain"))
-                    .Returns(new TextPlain())
-                    .Verifiable();
-                
-                ServiceLocator.SetLocatorProvider(() => locator.Object);
-
-                using (var stream = new MemoryStream())
-                {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.Write(expected);
-                        writer.Flush();
-                        stream.Position = 0;
-                        using (var reader = new StreamReader(stream))
-                        {
-                            obj.Read(reader);
-                        }
-                    }
-                }
-
-                locator.VerifyAll();
-            }
-            finally
-            {
-                ServiceLocator.SetLocatorProvider(null);
-            }
-
-            var actual = obj.ToString();
-
-            Assert.Equal(expected.ToString(), actual);
+        [Fact]
+        public void prop_Headers()
+        {
+            Assert.NotNull(new PropertyExpectations<DerivedHttpMessage>("Headers")
+                               .TypeIs<HttpHeaderCollection>()
+                               .ArgumentNullException()
+                               .IsNotDecorated()
+                               .Result);
         }
     }
 }

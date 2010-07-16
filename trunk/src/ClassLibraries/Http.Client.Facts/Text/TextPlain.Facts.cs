@@ -3,7 +3,6 @@
     using System;
     using System.IO;
     using System.Net.Mime;
-    using Cavity;
     using Cavity.Net.Mime;
     using Xunit;
 
@@ -13,14 +12,14 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<TextPlain>()
-                .DerivesFrom<ComparableObject>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IContent>()
-                .Implements<IMediaType>()
-                .Result);
+                            .DerivesFrom<ComparableObject>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IContent>()
+                            .Implements<IMediaType>()
+                            .Result);
         }
 
         [Fact]
@@ -30,9 +29,9 @@
         }
 
         [Fact]
-        public void ctor_stringNull()
+        public void ctor_string()
         {
-            Assert.NotNull(new TextPlain(null));
+            Assert.NotNull(new TextPlain("value"));
         }
 
         [Fact]
@@ -42,58 +41,9 @@
         }
 
         [Fact]
-        public void ctor_string()
+        public void ctor_stringNull()
         {
-            Assert.NotNull(new TextPlain("value"));
-        }
-
-        [Fact]
-        public void prop_Content()
-        {
-            Assert.NotNull(new PropertyExpectations<TextPlain>("Content")
-                .IsAutoProperty<object>()
-                .ArgumentOutOfRangeException(1234)
-                .Set("value")
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_ContentType()
-        {
-            Assert.NotNull(new PropertyExpectations<TextPlain>("ContentType")
-                .TypeIs<ContentType>()
-                .DefaultValueIs(new ContentType("text/plain"))
-                .ArgumentNullException()
-                .Set(new ContentType("text/plain"))
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_Value()
-        {
-            Assert.NotNull(new PropertyExpectations<TextPlain>("Value")
-                .IsAutoProperty<string>()
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void opImplicit_TextPlain_stringNull()
-        {
-            TextPlain obj = null as string;
-
-            Assert.Null(obj);
-        }
-
-        [Fact]
-        public void opImplicit_TextPlain_stringEmpty()
-        {
-            var expected = new TextPlain(string.Empty);
-            TextPlain actual = string.Empty;
-
-            Assert.Equal(expected, actual);
+            Assert.NotNull(new TextPlain(null));
         }
 
         [Fact]
@@ -106,9 +56,29 @@
         }
 
         [Fact]
-        public void op_FromString_stringNull()
+        public void opImplicit_TextPlain_stringEmpty()
         {
-            Assert.Throws<ArgumentNullException>(() => TextPlain.FromString(null));
+            var expected = new TextPlain(string.Empty);
+            TextPlain actual = string.Empty;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opImplicit_TextPlain_stringNull()
+        {
+            TextPlain obj = null as string;
+
+            Assert.Null(obj);
+        }
+
+        [Fact]
+        public void op_FromString_string()
+        {
+            var expected = new TextPlain("value");
+            var actual = TextPlain.FromString("value");
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -121,12 +91,9 @@
         }
 
         [Fact]
-        public void op_FromString_string()
+        public void op_FromString_stringNull()
         {
-            var expected = new TextPlain("value");
-            var actual = TextPlain.FromString("value");
-
-            Assert.Equal(expected, actual);
+            Assert.Throws<ArgumentNullException>(() => TextPlain.FromString(null));
         }
 
         [Fact]
@@ -149,28 +116,6 @@
             }
 
             Assert.Equal("text", ((TextPlain)body).Value);
-        }
-
-        [Fact]
-        public void op_ToContent_TextReader_whenStringEmpty()
-        {
-            IContent body;
-
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Write(string.Empty);
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        body = new TextPlain().ToContent(reader);
-                    }
-                }
-            }
-
-            Assert.Equal(string.Empty, ((TextPlain)body).Value);
         }
 
         [Fact]
@@ -201,6 +146,49 @@
         }
 
         [Fact]
+        public void op_ToContent_TextReader_whenStringEmpty()
+        {
+            IContent body;
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(string.Empty);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        body = new TextPlain().ToContent(reader);
+                    }
+                }
+            }
+
+            Assert.Equal(string.Empty, ((TextPlain)body).Value);
+        }
+
+        [Fact]
+        public void op_ToString()
+        {
+            Assert.Null(new TextPlain().ToString());
+        }
+
+        [Fact]
+        public void op_ToString_whenNotNull()
+        {
+            const string expected = "value";
+            var actual = new TextPlain(expected).ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Write_TextWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new TextPlain().Write(null));
+        }
+
+        [Fact]
         public void op_Write_TextWriter_whenPost()
         {
             using (var stream = new MemoryStream())
@@ -219,24 +207,35 @@
         }
 
         [Fact]
-        public void op_Write_TextWriterNull()
+        public void prop_Content()
         {
-            Assert.Throws<ArgumentNullException>(() => new TextPlain().Write(null));
+            Assert.NotNull(new PropertyExpectations<TextPlain>("Content")
+                               .IsAutoProperty<object>()
+                               .ArgumentOutOfRangeException(1234)
+                               .Set("value")
+                               .IsNotDecorated()
+                               .Result);
         }
 
         [Fact]
-        public void op_ToString()
+        public void prop_ContentType()
         {
-            Assert.Null(new TextPlain().ToString());
+            Assert.NotNull(new PropertyExpectations<TextPlain>("ContentType")
+                               .TypeIs<ContentType>()
+                               .DefaultValueIs(new ContentType("text/plain"))
+                               .ArgumentNullException()
+                               .Set(new ContentType("text/plain"))
+                               .IsNotDecorated()
+                               .Result);
         }
 
         [Fact]
-        public void op_ToString_whenNotNull()
+        public void prop_Value()
         {
-            const string expected = "value";
-            var actual = new TextPlain(expected).ToString();
-
-            Assert.Equal(expected, actual);
+            Assert.NotNull(new PropertyExpectations<TextPlain>("Value")
+                               .IsAutoProperty<string>()
+                               .IsNotDecorated()
+                               .Result);
         }
     }
 }

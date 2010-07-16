@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using Cavity;
     using Xunit;
 
     public sealed class HttpDateFacts
@@ -10,10 +9,10 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpDate>()
-                .IsValueType()
-                .IsNotDecorated()
-                .Implements<IComparable>()
-                .Result);
+                            .IsValueType()
+                            .IsNotDecorated()
+                            .Implements<IComparable>()
+                            .Result);
         }
 
         [Fact]
@@ -26,67 +25,6 @@
         public void ctor_DateTime()
         {
             Assert.NotNull(new HttpDate(DateTime.UtcNow));
-        }
-
-        [Fact]
-        public void opImplicit_DateTime_HttpDate()
-        {
-            var expected = new DateTime(1994, 11, 15, 8, 12, 31);
-            DateTime actual = new HttpDate(new DateTime(1994, 11, 15, 8, 12, 31));
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opImplicit_HttpDate_DateTime()
-        {
-            var expected = new HttpDate(new DateTime(1994, 11, 15, 8, 12, 31));
-            HttpDate actual = new DateTime(1994, 11, 15, 8, 12, 31);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opImplicit_string_HttpDate()
-        {
-            const string expected = "Tue, 15 Nov 1994 08:12:31 GMT";
-            string actual = new HttpDate(new DateTime(1994, 11, 15, 8, 12, 31));
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opImplicit_HttpDate_stringNull()
-        {
-            HttpDate obj;
-
-            Assert.Throws<ArgumentNullException>(() => obj = null as string);
-        }
-
-        [Fact]
-        public void opImplicit_HttpDate_stringEmpty()
-        {
-            HttpDate obj;
-
-            Assert.Throws<FormatException>(() => obj = string.Empty);
-        }
-
-        [Fact]
-        public void opImplicit_HttpDate_string()
-        {
-            var expected = new HttpDate(new DateTime(1994, 11, 15, 8, 12, 31));
-            HttpDate actual = "Tue, 15 Nov 1994 08:12:31 GMT";
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opEquality_HttpDate_HttpDate_whenTrue()
-        {
-            var operand1 = new HttpDate(new DateTime(1999, 12, 31));
-            var operand2 = new HttpDate(new DateTime(1999, 12, 31));
-
-            Assert.True(operand1 == operand2);
         }
 
         [Fact]
@@ -108,57 +46,21 @@
         }
 
         [Fact]
-        public void opInequality_HttpDate_HttpDate_whenTrue()
-        {
-            var operand1 = new HttpDate(new DateTime(1999, 12, 31));
-            var operand2 = new HttpDate(new DateTime(2009, 12, 31));
-
-            Assert.True(operand1 != operand2);
-        }
-
-        [Fact]
-        public void opInequality_HttpDate_HttpDate_whenFalse()
+        public void opEquality_HttpDate_HttpDate_whenTrue()
         {
             var operand1 = new HttpDate(new DateTime(1999, 12, 31));
             var operand2 = new HttpDate(new DateTime(1999, 12, 31));
 
-            Assert.False(operand1 != operand2);
+            Assert.True(operand1 == operand2);
         }
 
         [Fact]
-        public void opInequality_HttpDate_HttpDate_whenSame()
-        {
-            var operand1 = new HttpDate(new DateTime(1999, 12, 31));
-            var operand2 = operand1;
-
-            Assert.False(operand1 != operand2);
-        }
-
-        [Fact]
-        public void opLesser_HttpDate_HttpDate_whenSame()
-        {
-            var operand1 = new HttpDate(new DateTime(1999, 12, 31));
-            var operand2 = operand1;
-
-            Assert.False(operand1 < operand2);
-        }
-
-        [Fact]
-        public void opLesser_HttpDate_HttpDate_whenTrue()
+        public void opGreater_HttpDate_HttpDate_whenFalse()
         {
             var operand1 = new HttpDate(new DateTime(1999, 12, 31));
             var operand2 = new HttpDate(new DateTime(2009, 12, 31));
 
-            Assert.True(operand1 < operand2);
-        }
-
-        [Fact]
-        public void opLesser_HttpDate_HttpDate_whenFalse()
-        {
-            var operand1 = new HttpDate(new DateTime(2009, 12, 31));
-            var operand2 = new HttpDate(new DateTime(1999, 12, 31));
-
-            Assert.False(operand1 < operand2);
+            Assert.False(operand1 > operand2);
         }
 
         [Fact]
@@ -180,30 +82,152 @@
         }
 
         [Fact]
-        public void opGreater_HttpDate_HttpDate_whenFalse()
+        public void opImplicit_DateTime_HttpDate()
+        {
+            var expected = new DateTime(1994, 11, 15, 8, 12, 31);
+            DateTime actual = new HttpDate(new DateTime(1994, 11, 15, 8, 12, 31));
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opImplicit_HttpDate_DateTime()
+        {
+            var expected = new HttpDate(new DateTime(1994, 11, 15, 8, 12, 31));
+            HttpDate actual = new DateTime(1994, 11, 15, 8, 12, 31);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opImplicit_HttpDate_string()
+        {
+            var expected = new HttpDate(new DateTime(1994, 11, 15, 8, 12, 31));
+            HttpDate actual = "Tue, 15 Nov 1994 08:12:31 GMT";
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opImplicit_HttpDate_stringEmpty()
+        {
+            Assert.Throws<FormatException>(() => (HttpDate)string.Empty);
+        }
+
+        [Fact]
+        public void opImplicit_HttpDate_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (HttpDate)(null as string));
+        }
+
+        [Fact]
+        public void opImplicit_string_HttpDate()
+        {
+            const string expected = "Tue, 15 Nov 1994 08:12:31 GMT";
+            string actual = new HttpDate(new DateTime(1994, 11, 15, 8, 12, 31));
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opInequality_HttpDate_HttpDate_whenFalse()
+        {
+            var operand1 = new HttpDate(new DateTime(1999, 12, 31));
+            var operand2 = new HttpDate(new DateTime(1999, 12, 31));
+
+            Assert.False(operand1 != operand2);
+        }
+
+        [Fact]
+        public void opInequality_HttpDate_HttpDate_whenSame()
+        {
+            var operand1 = new HttpDate(new DateTime(1999, 12, 31));
+            var operand2 = operand1;
+
+            Assert.False(operand1 != operand2);
+        }
+
+        [Fact]
+        public void opInequality_HttpDate_HttpDate_whenTrue()
         {
             var operand1 = new HttpDate(new DateTime(1999, 12, 31));
             var operand2 = new HttpDate(new DateTime(2009, 12, 31));
 
-            Assert.False(operand1 > operand2);
+            Assert.True(operand1 != operand2);
         }
 
         [Fact]
-        public void op_Compare_HttpDate_HttpDate_whenEqual()
+        public void opLesser_HttpDate_HttpDate_whenFalse()
         {
-            var comparand1 = new HttpDate(new DateTime(1999, 12, 31));
-            var comparand2 = new HttpDate(new DateTime(1999, 12, 31));
+            var operand1 = new HttpDate(new DateTime(2009, 12, 31));
+            var operand2 = new HttpDate(new DateTime(1999, 12, 31));
 
-            Assert.Equal(0, HttpDate.Compare(comparand1, comparand2));
+            Assert.False(operand1 < operand2);
         }
 
         [Fact]
-        public void op_Compare_HttpDate_HttpDate_whenSame()
+        public void opLesser_HttpDate_HttpDate_whenSame()
         {
-            var comparand1 = new HttpDate(new DateTime(1999, 12, 31));
-            var comparand2 = comparand1;
+            var operand1 = new HttpDate(new DateTime(1999, 12, 31));
+            var operand2 = operand1;
 
-            Assert.Equal(0, HttpDate.Compare(comparand1, comparand2));
+            Assert.False(operand1 < operand2);
+        }
+
+        [Fact]
+        public void opLesser_HttpDate_HttpDate_whenTrue()
+        {
+            var operand1 = new HttpDate(new DateTime(1999, 12, 31));
+            var operand2 = new HttpDate(new DateTime(2009, 12, 31));
+
+            Assert.True(operand1 < operand2);
+        }
+
+        [Fact]
+        public void op_CompareTo_object()
+        {
+            var left = new HttpDate(new DateTime(1999, 12, 31));
+            var right = new HttpDate(new DateTime(1999, 12, 31));
+
+            Assert.Equal(0, left.CompareTo(right));
+        }
+
+        [Fact]
+        public void op_CompareTo_objectInt32()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new HttpDate(new DateTime(1999, 12, 31)).CompareTo(123));
+        }
+
+        [Fact]
+        public void op_CompareTo_objectNull()
+        {
+            Assert.True(new HttpDate().CompareTo(null) > 0);
+        }
+
+        [Fact]
+        public void op_CompareTo_objectSame()
+        {
+            var value = new HttpDate(new DateTime(1999, 12, 31));
+
+            Assert.Equal(0, value.CompareTo(value));
+        }
+
+        [Fact]
+        public void op_CompareTo_object_whenGreater()
+        {
+            var left = new HttpDate(new DateTime(2009, 12, 31));
+            var right = new HttpDate(new DateTime(1999, 12, 31));
+
+            Assert.True(left.CompareTo(right) > 0);
+        }
+
+        [Fact]
+        public void op_CompareTo_object_whenLesser()
+        {
+            var left = new HttpDate(new DateTime(1999, 12, 31));
+            var right = new HttpDate(new DateTime(2009, 12, 31));
+
+            Assert.True(left.CompareTo(right) < 0);
         }
 
         [Fact]
@@ -225,77 +249,21 @@
         }
 
         [Fact]
-        public void op_FromString_string()
+        public void op_Compare_HttpDate_HttpDate_whenEqual()
         {
-            var expected = new HttpDate(new DateTime(1994, 11, 15, 8, 12, 31));
-            var actual = HttpDate.FromString("Tue, 15 Nov 1994 08:12:31 GMT");
+            var comparand1 = new HttpDate(new DateTime(1999, 12, 31));
+            var comparand2 = new HttpDate(new DateTime(1999, 12, 31));
 
-            Assert.Equal(expected, actual);
+            Assert.Equal(0, HttpDate.Compare(comparand1, comparand2));
         }
 
         [Fact]
-        public void op_FromString_stringNull()
+        public void op_Compare_HttpDate_HttpDate_whenSame()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpDate.FromString(null));
-        }
+            var comparand1 = new HttpDate(new DateTime(1999, 12, 31));
+            var comparand2 = comparand1;
 
-        [Fact]
-        public void op_FromString_stringEmpty()
-        {
-            Assert.Throws<FormatException>(() => HttpDate.FromString(string.Empty));
-        }
-
-        [Fact]
-        public void op_FromString_stringInvalid()
-        {
-            Assert.Throws<FormatException>(() => HttpDate.FromString("not a date"));
-        }
-
-        [Fact]
-        public void op_CompareTo_objectNull()
-        {
-            Assert.True(new HttpDate().CompareTo(null) > 0);
-        }
-
-        [Fact]
-        public void op_CompareTo_objectSame()
-        {
-            var value = new HttpDate(new DateTime(1999, 12, 31));
-
-            Assert.Equal(0, value.CompareTo(value));
-        }
-
-        [Fact]
-        public void op_CompareTo_object()
-        {
-            var left = new HttpDate(new DateTime(1999, 12, 31));
-            var right = new HttpDate(new DateTime(1999, 12, 31));
-
-            Assert.Equal(0, left.CompareTo(right));
-        }
-
-        [Fact]
-        public void op_CompareTo_object_whenLesser()
-        {
-            var left = new HttpDate(new DateTime(1999, 12, 31));
-            var right = new HttpDate(new DateTime(2009, 12, 31));
-
-            Assert.True(left.CompareTo(right) < 0);
-        }
-
-        [Fact]
-        public void op_CompareTo_object_whenGreater()
-        {
-            var left = new HttpDate(new DateTime(2009, 12, 31));
-            var right = new HttpDate(new DateTime(1999, 12, 31));
-
-            Assert.True(left.CompareTo(right) > 0);
-        }
-
-        [Fact]
-        public void op_CompareTo_objectInt32()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new HttpDate(new DateTime(1999, 12, 31)).CompareTo(123));
+            Assert.Equal(0, HttpDate.Compare(comparand1, comparand2));
         }
 
         [Fact]
@@ -316,6 +284,33 @@
         public void op_Equals_objectString()
         {
             Assert.False(new HttpDate(new DateTime(1999, 12, 31)).Equals("123"));
+        }
+
+        [Fact]
+        public void op_FromString_string()
+        {
+            var expected = new HttpDate(new DateTime(1994, 11, 15, 8, 12, 31));
+            var actual = HttpDate.FromString("Tue, 15 Nov 1994 08:12:31 GMT");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_FromString_stringEmpty()
+        {
+            Assert.Throws<FormatException>(() => HttpDate.FromString(string.Empty));
+        }
+
+        [Fact]
+        public void op_FromString_stringInvalid()
+        {
+            Assert.Throws<FormatException>(() => HttpDate.FromString("not a date"));
+        }
+
+        [Fact]
+        public void op_FromString_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => HttpDate.FromString(null));
         }
 
         [Fact]

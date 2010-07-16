@@ -6,15 +6,15 @@
     public sealed class InterfaceTestOfTFacts
     {
         [Fact]
-        public void is_ITestExpectation()
-        {
-            Assert.IsAssignableFrom<ITestExpectation>(new InterfaceTest<ITestType>());
-        }
-
-        [Fact]
         public void ctor_Type()
         {
             Assert.NotNull(new InterfaceTest<ITestType>());
+        }
+
+        [Fact]
+        public void is_ITestExpectation()
+        {
+            Assert.IsAssignableFrom<ITestExpectation>(new InterfaceTest<ITestType>());
         }
 
         [Fact]

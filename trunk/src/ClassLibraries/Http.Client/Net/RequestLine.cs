@@ -7,7 +7,9 @@
     public sealed class RequestLine : ComparableObject
     {
         private string _method;
+
         private string _requestUri;
+
         private HttpVersion _version;
 
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", MessageId = "1#", Justification = "The requestUri is intentionally a string.")]

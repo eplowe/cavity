@@ -6,12 +6,6 @@
     public sealed class ITestClassConstructionFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(ITestClassConstruction).IsInterface);
-        }
-
-        [Fact]
         public void ITestClassConstruction_HasDefaultConstructor()
         {
             try
@@ -35,6 +29,12 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(ITestClassConstruction).IsInterface);
         }
     }
 }

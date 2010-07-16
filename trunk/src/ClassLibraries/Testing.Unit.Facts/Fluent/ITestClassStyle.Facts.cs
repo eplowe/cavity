@@ -6,12 +6,6 @@
     public sealed class ITestClassStyleFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(ITestClassStyle).IsInterface);
-        }
-
-        [Fact]
         public void ITestClassStyle_IsAbstractBaseClass()
         {
             try
@@ -35,6 +29,12 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(ITestClassStyle).IsInterface);
         }
     }
 }

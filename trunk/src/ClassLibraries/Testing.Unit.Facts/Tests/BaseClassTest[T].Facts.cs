@@ -8,15 +8,33 @@
     public sealed class BaseClassTestOfTFacts
     {
         [Fact]
+        public void ctor_Type()
+        {
+            Assert.NotNull(new BaseClassTest<object>(typeof(int)));
+        }
+
+        [Fact]
         public void is_ITestExpectation()
         {
             Assert.IsAssignableFrom<ITestExpectation>(new BaseClassTest<int>(typeof(int)));
         }
 
         [Fact]
-        public void ctor_Type()
+        public void op_Check_whenFalse()
         {
-            Assert.NotNull(new BaseClassTest<object>(typeof(int)));
+            Assert.Throws<TestException>(() => new BaseClassTest<object>(typeof(string)).Check());
+        }
+
+        [Fact]
+        public void op_Check_whenIsNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new BaseClassTest<object>(null).Check());
+        }
+
+        [Fact]
+        public void op_Check_whenTrue()
+        {
+            Assert.True(new BaseClassTest<DerivedClass1>(typeof(Class1)).Check());
         }
 
         [Fact]
@@ -44,24 +62,6 @@
             var actual = obj.Is;
 
             Assert.Same(expected, actual);
-        }
-
-        [Fact]
-        public void op_Check_whenFalse()
-        {
-            Assert.Throws<TestException>(() => new BaseClassTest<object>(typeof(string)).Check());
-        }
-
-        [Fact]
-        public void op_Check_whenIsNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new BaseClassTest<object>(null).Check());
-        }
-
-        [Fact]
-        public void op_Check_whenTrue()
-        {
-            Assert.True(new BaseClassTest<DerivedClass1>(typeof(Class1)).Check());
         }
     }
 }

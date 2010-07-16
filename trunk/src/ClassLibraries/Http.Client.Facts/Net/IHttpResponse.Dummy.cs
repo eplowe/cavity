@@ -10,7 +10,7 @@
             {
                 throw new NotSupportedException();
             }
-            
+
             set
             {
                 throw new NotSupportedException();

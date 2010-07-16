@@ -45,8 +45,8 @@
             get
             {
                 return 0 == Items
-                    .Where(x => !x.Check())
-                    .Count();
+                                .Where(x => !x.Check())
+                                .Count();
             }
         }
 

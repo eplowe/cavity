@@ -6,12 +6,6 @@
     public sealed class ITestClassSealedFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(ITestClassSealed).IsInterface);
-        }
-
-        [Fact]
         public void ITestClassSealed_IsSealed()
         {
             try
@@ -35,6 +29,12 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(ITestClassSealed).IsInterface);
         }
     }
 }

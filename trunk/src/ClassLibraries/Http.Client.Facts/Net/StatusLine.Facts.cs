@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using Cavity;
     using Xunit;
 
     public sealed class StatusLineFacts
@@ -10,12 +9,12 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<StatusLine>()
-                .DerivesFrom<ComparableObject>()
-                .IsConcreteClass()
-                .IsSealed()
-                .NoDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<ComparableObject>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
@@ -25,119 +24,12 @@
         }
 
         [Fact]
-        public void prop_Code()
+        public void opImplicit_StatusLine_string()
         {
-            Assert.True(new PropertyExpectations<StatusLine>("Code")
-                .TypeIs<int>()
-                .ArgumentOutOfRangeException(99)
-                .Set(100)
-                .Set(101)
-                .Set(200)
-                .Set(201)
-                .Set(202)
-                .Set(203)
-                .Set(204)
-                .Set(205)
-                .Set(206)
-                .Set(300)
-                .Set(301)
-                .Set(302)
-                .Set(303)
-                .Set(304)
-                .Set(305)
-                .Set(307)
-                .Set(400)
-                .Set(401)
-                .Set(402)
-                .Set(403)
-                .Set(404)
-                .Set(405)
-                .Set(406)
-                .Set(407)
-                .Set(408)
-                .Set(409)
-                .Set(410)
-                .Set(411)
-                .Set(412)
-                .Set(413)
-                .Set(414)
-                .Set(415)
-                .Set(416)
-                .Set(417)
-                .Set(500)
-                .Set(501)
-                .Set(502)
-                .Set(503)
-                .Set(504)
-                .Set(505)
-                .ArgumentOutOfRangeException(1000)
-                .IsNotDecorated()
-                .Result);
-        }
+            var expected = new StatusLine("HTTP/1.1", 200, "OK");
+            StatusLine actual = "HTTP/1.1 200 OK";
 
-        [Fact]
-        public void prop_Reason()
-        {
-            Assert.True(new PropertyExpectations<StatusLine>("Reason")
-                .TypeIs<string>()
-                .ArgumentNullException()
-                .ArgumentOutOfRangeException(string.Empty)
-                .FormatException("Foo \r Bar")
-                .FormatException("Foo \n Bar")
-                .Set("Continue")
-                .Set("Switching Protocols")
-                .Set("OK")
-                .Set("Created")
-                .Set("Accepted")
-                .Set("Non-Authoritative Information")
-                .Set("No Content")
-                .Set("Reset Content")
-                .Set("Partial Content")
-                .Set("Multiple Choices")
-                .Set("Moved Permanently")
-                .Set("Found")
-                .Set("See Other")
-                .Set("Not Modified")
-                .Set("Use Proxy")
-                .Set("Temporary Redirect")
-                .Set("Bad Request")
-                .Set("Unauthorized")
-                .Set("Payment Required")
-                .Set("Forbidden")
-                .Set("Not Found")
-                .Set("Method Not Allowed")
-                .Set("Not Acceptable")
-                .Set("Proxy Authentication Required")
-                .Set("Request Time-out")
-                .Set("Conflict")
-                .Set("Gone")
-                .Set("Length Required")
-                .Set("Precondition Failed")
-                .Set("Request Entity Too Large")
-                .Set("Request-URI Too Large")
-                .Set("Unsupported Media Type")
-                .Set("Requested range not satisfiable")
-                .Set("Expectation Failed")
-                .Set("Internal Server Error")
-                .Set("Not Implemented")
-                .Set("Bad Gateway")
-                .Set("Service Unavailable")
-                .Set("Gateway Time-out")
-                .Set("HTTP Version not supported")
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_Version()
-        {
-            Assert.True(new PropertyExpectations<StatusLine>("Version")
-                .TypeIs<HttpVersion>()
-                .ArgumentNullException()
-                .Set(new HttpVersion(1, 0))
-                .Set(new HttpVersion(1, 1))
-                .IsNotDecorated()
-                .Result);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -149,12 +41,15 @@
         }
 
         [Fact]
-        public void opImplicit_StatusLine_string()
+        public void op_FromString_stringEmpty()
         {
-            var expected = new StatusLine("HTTP/1.1", 200, "OK");
-            StatusLine actual = "HTTP/1.1 200 OK";
+            Assert.Throws<FormatException>(() => StatusLine.FromString(string.Empty));
+        }
 
-            Assert.Equal(expected, actual);
+        [Fact]
+        public void op_FromString_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => StatusLine.FromString(null));
         }
 
         [Fact]
@@ -518,15 +413,15 @@
         }
 
         [Fact]
-        public void op_FromString_stringNull()
+        public void op_FromString_string_whenCR()
         {
-            Assert.Throws<ArgumentNullException>(() => StatusLine.FromString(null));
+            Assert.Throws<FormatException>(() => StatusLine.FromString("999 Foo \r Bar"));
         }
 
         [Fact]
-        public void op_FromString_stringEmpty()
+        public void op_FromString_string_whenLR()
         {
-            Assert.Throws<FormatException>(() => StatusLine.FromString(string.Empty));
+            Assert.Throws<FormatException>(() => StatusLine.FromString("999 Foo \n Bar"));
         }
 
         [Fact]
@@ -542,24 +437,128 @@
         }
 
         [Fact]
-        public void op_FromString_string_whenCR()
-        {
-            Assert.Throws<FormatException>(() => StatusLine.FromString("999 Foo \r Bar"));
-        }
-
-        [Fact]
-        public void op_FromString_string_whenLR()
-        {
-            Assert.Throws<FormatException>(() => StatusLine.FromString("999 Foo \n Bar"));
-        }
-
-        [Fact]
         public void op_ToString()
         {
             const string expected = "HTTP/1.1 404 Not Found";
             var actual = new StatusLine("HTTP/1.1", 404, "Not Found").ToString();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void prop_Code()
+        {
+            Assert.True(new PropertyExpectations<StatusLine>("Code")
+                            .TypeIs<int>()
+                            .ArgumentOutOfRangeException(99)
+                            .Set(100)
+                            .Set(101)
+                            .Set(200)
+                            .Set(201)
+                            .Set(202)
+                            .Set(203)
+                            .Set(204)
+                            .Set(205)
+                            .Set(206)
+                            .Set(300)
+                            .Set(301)
+                            .Set(302)
+                            .Set(303)
+                            .Set(304)
+                            .Set(305)
+                            .Set(307)
+                            .Set(400)
+                            .Set(401)
+                            .Set(402)
+                            .Set(403)
+                            .Set(404)
+                            .Set(405)
+                            .Set(406)
+                            .Set(407)
+                            .Set(408)
+                            .Set(409)
+                            .Set(410)
+                            .Set(411)
+                            .Set(412)
+                            .Set(413)
+                            .Set(414)
+                            .Set(415)
+                            .Set(416)
+                            .Set(417)
+                            .Set(500)
+                            .Set(501)
+                            .Set(502)
+                            .Set(503)
+                            .Set(504)
+                            .Set(505)
+                            .ArgumentOutOfRangeException(1000)
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_Reason()
+        {
+            Assert.True(new PropertyExpectations<StatusLine>("Reason")
+                            .TypeIs<string>()
+                            .ArgumentNullException()
+                            .ArgumentOutOfRangeException(string.Empty)
+                            .FormatException("Foo \r Bar")
+                            .FormatException("Foo \n Bar")
+                            .Set("Continue")
+                            .Set("Switching Protocols")
+                            .Set("OK")
+                            .Set("Created")
+                            .Set("Accepted")
+                            .Set("Non-Authoritative Information")
+                            .Set("No Content")
+                            .Set("Reset Content")
+                            .Set("Partial Content")
+                            .Set("Multiple Choices")
+                            .Set("Moved Permanently")
+                            .Set("Found")
+                            .Set("See Other")
+                            .Set("Not Modified")
+                            .Set("Use Proxy")
+                            .Set("Temporary Redirect")
+                            .Set("Bad Request")
+                            .Set("Unauthorized")
+                            .Set("Payment Required")
+                            .Set("Forbidden")
+                            .Set("Not Found")
+                            .Set("Method Not Allowed")
+                            .Set("Not Acceptable")
+                            .Set("Proxy Authentication Required")
+                            .Set("Request Time-out")
+                            .Set("Conflict")
+                            .Set("Gone")
+                            .Set("Length Required")
+                            .Set("Precondition Failed")
+                            .Set("Request Entity Too Large")
+                            .Set("Request-URI Too Large")
+                            .Set("Unsupported Media Type")
+                            .Set("Requested range not satisfiable")
+                            .Set("Expectation Failed")
+                            .Set("Internal Server Error")
+                            .Set("Not Implemented")
+                            .Set("Bad Gateway")
+                            .Set("Service Unavailable")
+                            .Set("Gateway Time-out")
+                            .Set("HTTP Version not supported")
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_Version()
+        {
+            Assert.True(new PropertyExpectations<StatusLine>("Version")
+                            .TypeIs<HttpVersion>()
+                            .ArgumentNullException()
+                            .Set(new HttpVersion(1, 0))
+                            .Set(new HttpVersion(1, 1))
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

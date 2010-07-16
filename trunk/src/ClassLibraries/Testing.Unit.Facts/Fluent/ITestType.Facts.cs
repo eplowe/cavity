@@ -7,25 +7,6 @@
     public sealed class ITestTypeFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(ITestType).IsInterface);
-        }
-
-        [Fact]
-        public void ITestType_Result_get()
-        {
-            try
-            {
-                var value = (new ITestTypeDummy() as ITestType).Result;
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void ITestType_Add_ITestExpectation()
         {
             try
@@ -78,6 +59,19 @@
         }
 
         [Fact]
+        public void ITestType_Result_get()
+        {
+            try
+            {
+                var value = (new ITestTypeDummy() as ITestType).Result;
+                Assert.NotNull(value);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
+
+        [Fact]
         public void ITestType_Serializable()
         {
             try
@@ -114,6 +108,12 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(ITestType).IsInterface);
         }
     }
 }

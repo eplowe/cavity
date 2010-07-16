@@ -7,15 +7,15 @@
     public sealed class ValueTypeTestOfTFacts
     {
         [Fact]
-        public void is_ITestExpectation()
-        {
-            Assert.IsAssignableFrom<ITestExpectation>(new ValueTypeTest<DateTime>());
-        }
-
-        [Fact]
         public void ctor_Type()
         {
             Assert.NotNull(new ValueTypeTest<DateTime>());
+        }
+
+        [Fact]
+        public void is_ITestExpectation()
+        {
+            Assert.IsAssignableFrom<ITestExpectation>(new ValueTypeTest<DateTime>());
         }
 
         [Fact]

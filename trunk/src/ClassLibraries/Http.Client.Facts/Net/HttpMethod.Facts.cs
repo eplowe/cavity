@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using Cavity;
     using Xunit;
 
     public sealed class HttpMethodFacts
@@ -10,18 +9,18 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpMethod>()
-                .DerivesFrom<ComparableObject>()
-                .IsConcreteClass()
-                .IsSealed()
-                .NoDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<ComparableObject>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
-        public void ctor_stringNull()
+        public void ctor_string()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpMethod(null));
+            Assert.NotNull(new HttpMethod("GET"));
         }
 
         [Fact]
@@ -31,9 +30,41 @@
         }
 
         [Fact]
-        public void ctor_string()
+        public void ctor_stringNull()
         {
-            Assert.NotNull(new HttpMethod("GET"));
+            Assert.Throws<ArgumentNullException>(() => new HttpMethod(null));
+        }
+
+        [Fact]
+        public void opImplicit_HttpMethod_string()
+        {
+            var expected = new HttpMethod("GET");
+            HttpMethod actual = "GET";
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opImplicit_HttpMethod_stringEmpty()
+        {
+             Assert.Throws<ArgumentOutOfRangeException>(() => (HttpMethod)string.Empty);
+        }
+
+        [Fact]
+        public void opImplicit_HttpMethod_stringNull()
+        {
+            HttpMethod obj = null as string;
+
+            Assert.Null(obj);
+        }
+
+        [Fact]
+        public void op_ToString()
+        {
+            const string expected = "GET";
+            var actual = new HttpMethod(expected).ToString();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -61,6 +92,12 @@
         }
 
         [Fact]
+        public void prop_Options()
+        {
+            Assert.Equal<HttpMethod>("OPTIONS", HttpMethod.Options);
+        }
+
+        [Fact]
         public void prop_Post()
         {
             Assert.Equal<HttpMethod>("POST", HttpMethod.Post);
@@ -73,12 +110,6 @@
         }
 
         [Fact]
-        public void prop_Options()
-        {
-            Assert.Equal<HttpMethod>("OPTIONS", HttpMethod.Options);
-        }
-
-        [Fact]
         public void prop_Trace()
         {
             Assert.Equal<HttpMethod>("TRACE", HttpMethod.Trace);
@@ -88,54 +119,20 @@
         public void prop_Value()
         {
             Assert.True(new PropertyExpectations<HttpMethod>("Value")
-                .TypeIs<string>()
-                .ArgumentOutOfRangeException(string.Empty)
-                .FormatException("FOO BAR")
-                .FormatException("FOO123BAR")
-                .Set("OPTIONS")
-                .Set("GET")
-                .Set("HEAD")
-                .Set("POST")
-                .Set("PUT")
-                .Set("DELETE")
-                .Set("TRACE")
-                .Set("CONNECT")
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void opImplicit_HttpMethod_stringNull()
-        {
-            HttpMethod obj = null as string;
-
-            Assert.Null(obj);
-        }
-
-        [Fact]
-        public void opImplicit_HttpMethod_stringEmpty()
-        {
-            HttpMethod expected;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => expected = string.Empty);
-        }
-
-        [Fact]
-        public void opImplicit_HttpMethod_string()
-        {
-            var expected = new HttpMethod("GET");
-            HttpMethod actual = "GET";
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_ToString()
-        {
-            const string expected = "GET";
-            var actual = new HttpMethod(expected).ToString();
-
-            Assert.Equal(expected, actual);
+                            .TypeIs<string>()
+                            .ArgumentOutOfRangeException(string.Empty)
+                            .FormatException("FOO BAR")
+                            .FormatException("FOO123BAR")
+                            .Set("OPTIONS")
+                            .Set("GET")
+                            .Set("HEAD")
+                            .Set("POST")
+                            .Set("PUT")
+                            .Set("DELETE")
+                            .Set("TRACE")
+                            .Set("CONNECT")
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

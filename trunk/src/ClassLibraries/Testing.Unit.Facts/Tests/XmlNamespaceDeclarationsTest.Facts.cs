@@ -6,15 +6,15 @@
     public sealed class XmlNamespaceDeclarationsTestFacts
     {
         [Fact]
-        public void is_AttributePropertyTest()
-        {
-            Assert.IsAssignableFrom<MemberTestBase>(new XmlNamespaceDeclarationsTest(typeof(XmlSerializableClass1).GetProperty("Array1")));
-        }
-
-        [Fact]
         public void ctor()
         {
             Assert.NotNull(new XmlNamespaceDeclarationsTest(typeof(XmlSerializableClass1).GetProperty("Array1")));
+        }
+
+        [Fact]
+        public void is_AttributePropertyTest()
+        {
+            Assert.IsAssignableFrom<MemberTestBase>(new XmlNamespaceDeclarationsTest(typeof(XmlSerializableClass1).GetProperty("Array1")));
         }
 
         [Fact]

@@ -6,12 +6,6 @@
     public sealed class IHttpMessageFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(IHttpMessage).IsInterface);
-        }
-
-        [Fact]
         public void IHttpMessage_Body_get()
         {
             try
@@ -61,6 +55,12 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(IHttpMessage).IsInterface);
         }
     }
 }

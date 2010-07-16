@@ -13,6 +13,12 @@
         }
 
         [Fact]
+        public void op_Check()
+        {
+            Assert.Throws<NotImplementedException>(() => new DerivedPropertyTest(typeof(PropertiedClass1).GetProperty("AutoBoolean")).Check());
+        }
+
+        [Fact]
         public void prop_Property()
         {
             var expected = typeof(PropertiedClass1).GetProperty("AutoBoolean");
@@ -25,12 +31,6 @@
             var actual = obj.Property;
 
             Assert.Same(expected, actual);
-        }
-
-        [Fact]
-        public void op_Check()
-        {
-            Assert.Throws<NotImplementedException>(() => new DerivedPropertyTest(typeof(PropertiedClass1).GetProperty("AutoBoolean")).Check());
         }
     }
 }

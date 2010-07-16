@@ -6,6 +6,7 @@
     public sealed class HttpHeader : ComparableObject, IHttpHeader
     {
         private Token _name;
+
         private string _value;
 
         public HttpHeader(Token name, string value)

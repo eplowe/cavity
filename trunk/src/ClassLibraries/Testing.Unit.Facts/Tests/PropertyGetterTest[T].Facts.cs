@@ -6,15 +6,27 @@
     public sealed class PropertyGetterTestOfTFacts
     {
         [Fact]
+        public void ctor_PropertyInfo()
+        {
+            Assert.NotNull(new PropertyGetterTest<int>(typeof(PropertiedClass1).GetProperty("AutoBoolean")));
+        }
+
+        [Fact]
         public void is_PropertyTest()
         {
             Assert.IsAssignableFrom<PropertyTestBase>(new PropertyGetterTest<int>(typeof(PropertiedClass1).GetProperty("AutoBoolean")));
         }
 
         [Fact]
-        public void ctor_PropertyInfo()
+        public void op_Check_whenFalse()
         {
-            Assert.NotNull(new PropertyGetterTest<int>(typeof(PropertiedClass1).GetProperty("AutoBoolean")));
+            Assert.Throws<TestException>(() => new PropertyGetterTest<string>(typeof(PropertiedClass1).GetProperty("AutoBoolean")).Check());
+        }
+
+        [Fact]
+        public void op_Check_whenTrue()
+        {
+            Assert.True(new PropertyGetterTest<bool>(typeof(PropertiedClass1).GetProperty("AutoBoolean")).Check());
         }
 
         [Fact]
@@ -30,18 +42,6 @@
             var actual = obj.Expected;
 
             Assert.Same(expected, actual);
-        }
-
-        [Fact]
-        public void op_Check_whenFalse()
-        {
-            Assert.Throws<TestException>(() => new PropertyGetterTest<string>(typeof(PropertiedClass1).GetProperty("AutoBoolean")).Check());
-        }
-
-        [Fact]
-        public void op_Check_whenTrue()
-        {
-            Assert.True(new PropertyGetterTest<bool>(typeof(PropertiedClass1).GetProperty("AutoBoolean")).Check());
         }
     }
 }

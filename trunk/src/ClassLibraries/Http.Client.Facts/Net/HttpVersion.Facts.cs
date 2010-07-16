@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using Cavity;
     using Xunit;
 
     public sealed class HttpVersionFacts
@@ -10,76 +9,18 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpVersion>()
-                .DerivesFrom<ComparableObject>()
-                .IsConcreteClass()
-                .IsSealed()
-                .NoDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<ComparableObject>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void ctor_int_int()
         {
             Assert.NotNull(new HttpVersion(1, 0));
-        }
-
-        [Fact]
-        public void prop_Major()
-        {
-            Assert.True(new PropertyExpectations<HttpVersion>("Major")
-                .TypeIs<int>()
-                .ArgumentOutOfRangeException(-1)
-                .Set(0)
-                .Set(1)
-                .Set(2)
-                .Set(3)
-                .Set(4)
-                .Set(5)
-                .Set(6)
-                .Set(7)
-                .Set(8)
-                .Set(9)
-                .ArgumentOutOfRangeException(10)
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_Minor()
-        {
-            Assert.True(new PropertyExpectations<HttpVersion>("Minor")
-                .TypeIs<int>()
-                .ArgumentOutOfRangeException(-1)
-                .Set(0)
-                .Set(1)
-                .Set(2)
-                .Set(3)
-                .Set(4)
-                .Set(5)
-                .Set(6)
-                .Set(7)
-                .Set(8)
-                .Set(9)
-                .ArgumentOutOfRangeException(10)
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void opImplicit_HttpVersion_stringNull()
-        {
-            HttpVersion obj = null as string;
-
-            Assert.Null(obj);
-        }
-
-        [Fact]
-        public void opImplicit_HttpVersion_stringEmpty()
-        {
-            HttpVersion expected;
-
-            Assert.Throws<FormatException>(() => expected = string.Empty);
         }
 
         [Fact]
@@ -92,6 +33,20 @@
         }
 
         [Fact]
+        public void opImplicit_HttpVersion_stringEmpty()
+        {
+            Assert.Throws<FormatException>(() => (HttpVersion)string.Empty);
+        }
+
+        [Fact]
+        public void opImplicit_HttpVersion_stringNull()
+        {
+            HttpVersion obj = null as string;
+
+            Assert.Null(obj);
+        }
+
+        [Fact]
         public void op_FromString_string()
         {
             var expected = new HttpVersion(1, 0);
@@ -101,15 +56,15 @@
         }
 
         [Fact]
-        public void op_FromString_stringNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => HttpVersion.FromString(null));
-        }
-
-        [Fact]
         public void op_FromString_stringEmpty()
         {
             Assert.Throws<FormatException>(() => HttpVersion.FromString(string.Empty));
+        }
+
+        [Fact]
+        public void op_FromString_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => HttpVersion.FromString(null));
         }
 
         [Fact]
@@ -125,6 +80,48 @@
             var actual = new HttpVersion(1, 0).ToString();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void prop_Major()
+        {
+            Assert.True(new PropertyExpectations<HttpVersion>("Major")
+                            .TypeIs<int>()
+                            .ArgumentOutOfRangeException(-1)
+                            .Set(0)
+                            .Set(1)
+                            .Set(2)
+                            .Set(3)
+                            .Set(4)
+                            .Set(5)
+                            .Set(6)
+                            .Set(7)
+                            .Set(8)
+                            .Set(9)
+                            .ArgumentOutOfRangeException(10)
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_Minor()
+        {
+            Assert.True(new PropertyExpectations<HttpVersion>("Minor")
+                            .TypeIs<int>()
+                            .ArgumentOutOfRangeException(-1)
+                            .Set(0)
+                            .Set(1)
+                            .Set(2)
+                            .Set(3)
+                            .Set(4)
+                            .Set(5)
+                            .Set(6)
+                            .Set(7)
+                            .Set(8)
+                            .Set(9)
+                            .ArgumentOutOfRangeException(10)
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

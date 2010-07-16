@@ -5,7 +5,6 @@
     using System.Net.Mime;
     using System.Xml;
     using System.Xml.XPath;
-    using Cavity;
     using Cavity.Net.Mime;
     using Xunit;
 
@@ -15,14 +14,14 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<ApplicationXml>()
-                .DerivesFrom<ComparableObject>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IContent>()
-                .Implements<IMediaType>()
-                .Result);
+                            .DerivesFrom<ComparableObject>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IContent>()
+                            .Implements<IMediaType>()
+                            .Result);
         }
 
         [Fact]
@@ -32,66 +31,15 @@
         }
 
         [Fact]
-        public void ctor_IXPathNavigableNull()
-        {
-            Assert.NotNull(new ApplicationXml(null));
-        }
-
-        [Fact]
         public void ctor_IXPathNavigable()
         {
             Assert.NotNull(new ApplicationXml(new XmlDocument()));
         }
 
         [Fact]
-        public void prop_Content()
+        public void ctor_IXPathNavigableNull()
         {
-            Assert.NotNull(new PropertyExpectations<ApplicationXml>("Content")
-                .IsAutoProperty<object>()
-                .ArgumentOutOfRangeException(1234)
-                .Set(new XmlDocument())
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_ContentType()
-        {
-            Assert.NotNull(new PropertyExpectations<ApplicationXml>("ContentType")
-                .TypeIs<ContentType>()
-                .DefaultValueIs(new ContentType("application/xml"))
-                .ArgumentNullException()
-                .Set(new ContentType("application/xml"))
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_Xml()
-        {
-            Assert.NotNull(new PropertyExpectations<ApplicationXml>("Xml")
-                .TypeIs<IXPathNavigable>()
-                .DefaultValueIsNull()
-                .Set(null)
-                .Set(new XmlDocument())
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void opImplicit_ApplicationXml_stringNull()
-        {
-            ApplicationXml obj = null as string;
-
-            Assert.Null(obj);
-        }
-
-        [Fact]
-        public void opImplicit_ApplicationXml_stringEmpty()
-        {
-            ApplicationXml expected;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => expected = string.Empty);
+            Assert.NotNull(new ApplicationXml(null));
         }
 
         [Fact]
@@ -107,15 +55,17 @@
         }
 
         [Fact]
-        public void op_FromString_stringNull()
+        public void opImplicit_ApplicationXml_stringEmpty()
         {
-            Assert.Throws<ArgumentNullException>(() => ApplicationXml.FromString(null));
+            Assert.Throws<ArgumentOutOfRangeException>(() => (ApplicationXml)string.Empty);
         }
 
         [Fact]
-        public void op_FromString_stringEmpty()
+        public void opImplicit_ApplicationXml_stringNull()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => ApplicationXml.FromString(string.Empty));
+            ApplicationXml obj = null as string;
+
+            Assert.Null(obj);
         }
 
         [Fact]
@@ -128,6 +78,18 @@
             var actual = ApplicationXml.FromString("<root />");
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_FromString_stringEmpty()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => ApplicationXml.FromString(string.Empty));
+        }
+
+        [Fact]
+        public void op_FromString_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => ApplicationXml.FromString(null));
         }
 
         [Fact]
@@ -150,28 +112,6 @@
             }
 
             Assert.Equal<string>("<root />", (body as ApplicationXml));
-        }
-
-        [Fact]
-        public void op_ToContent_TextReader_whenStringEmpty()
-        {
-            IContent body;
-
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Write(string.Empty);
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        body = new ApplicationXml().ToContent(reader);
-                    }
-                }
-            }
-
-            Assert.Equal<string>(null, body as ApplicationXml);
         }
 
         [Fact]
@@ -202,6 +142,43 @@
         }
 
         [Fact]
+        public void op_ToContent_TextReader_whenStringEmpty()
+        {
+            IContent body;
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(string.Empty);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        body = new ApplicationXml().ToContent(reader);
+                    }
+                }
+            }
+
+            Assert.Equal<string>(null, body as ApplicationXml);
+        }
+
+        [Fact]
+        public void op_ToString()
+        {
+            const string expected = "<root />";
+            var actual = ApplicationXml.FromString(expected).ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Write_TextWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ApplicationXml().Write(null));
+        }
+
+        [Fact]
         public void op_Write_TextWriter_whenPost()
         {
             using (var stream = new MemoryStream())
@@ -220,18 +197,38 @@
         }
 
         [Fact]
-        public void op_Write_TextWriterNull()
+        public void prop_Content()
         {
-            Assert.Throws<ArgumentNullException>(() => new ApplicationXml().Write(null));
+            Assert.NotNull(new PropertyExpectations<ApplicationXml>("Content")
+                               .IsAutoProperty<object>()
+                               .ArgumentOutOfRangeException(1234)
+                               .Set(new XmlDocument())
+                               .IsNotDecorated()
+                               .Result);
         }
 
         [Fact]
-        public void op_ToString()
+        public void prop_ContentType()
         {
-            const string expected = "<root />";
-            var actual = ApplicationXml.FromString(expected).ToString();
+            Assert.NotNull(new PropertyExpectations<ApplicationXml>("ContentType")
+                               .TypeIs<ContentType>()
+                               .DefaultValueIs(new ContentType("application/xml"))
+                               .ArgumentNullException()
+                               .Set(new ContentType("application/xml"))
+                               .IsNotDecorated()
+                               .Result);
+        }
 
-            Assert.Equal(expected, actual);
+        [Fact]
+        public void prop_Xml()
+        {
+            Assert.NotNull(new PropertyExpectations<ApplicationXml>("Xml")
+                               .TypeIs<IXPathNavigable>()
+                               .DefaultValueIsNull()
+                               .Set(null)
+                               .Set(new XmlDocument())
+                               .IsNotDecorated()
+                               .Result);
         }
     }
 }
