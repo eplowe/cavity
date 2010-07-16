@@ -137,17 +137,17 @@ namespace Cavity
         }
 
         [Fact]
-        public void op_XmlSerialize_objectNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as object).XmlSerialize());
-        }
-
-        [Fact]
         public void op_XmlSerialize_objectException()
         {
             var xml = new ArgumentOutOfRangeException().XmlSerialize().CreateNavigator().OuterXml;
 
             Assert.True(xml.StartsWith("<SOAP-ENV:Envelope SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\""));
+        }
+
+        [Fact]
+        public void op_XmlSerialize_objectNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as object).XmlSerialize());
         }
     }
 }

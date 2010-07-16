@@ -6,15 +6,15 @@
     public sealed class XmlTextTestFacts
     {
         [Fact]
-        public void is_AttributePropertyTest()
-        {
-            Assert.IsAssignableFrom<MemberTestBase>(new XmlTextTest(typeof(XmlSerializableClass1).GetProperty("Text")));
-        }
-
-        [Fact]
         public void ctor()
         {
             Assert.NotNull(new XmlTextTest(typeof(XmlSerializableClass1).GetProperty("Text")));
+        }
+
+        [Fact]
+        public void is_AttributePropertyTest()
+        {
+            Assert.IsAssignableFrom<MemberTestBase>(new XmlTextTest(typeof(XmlSerializableClass1).GetProperty("Text")));
         }
 
         [Fact]

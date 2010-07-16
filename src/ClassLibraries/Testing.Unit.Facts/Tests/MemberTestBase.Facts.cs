@@ -20,6 +20,12 @@
         }
 
         [Fact]
+        public void op_Check()
+        {
+            Assert.Throws<NotImplementedException>(() => new DerivedMemberTest(typeof(PropertiedClass1).GetProperty("AutoBoolean")).Check());
+        }
+
+        [Fact]
         public void prop_Member_get()
         {
             var expected = typeof(PropertiedClass1).GetProperty("AutoBoolean");
@@ -52,12 +58,6 @@
             MemberInfo member = typeof(PropertiedClass1).GetProperty("AutoBoolean");
 
             Assert.Throws<ArgumentNullException>(() => new DerivedMemberTest(member).Member = null as MemberInfo);
-        }
-
-        [Fact]
-        public void op_Check()
-        {
-            Assert.Throws<NotImplementedException>(() => new DerivedMemberTest(typeof(PropertiedClass1).GetProperty("AutoBoolean")).Check());
         }
     }
 }

@@ -6,6 +6,7 @@
     public sealed class HttpVersion : ComparableObject
     {
         private int _major;
+
         private int _minor;
 
         public HttpVersion(int major, int minor)

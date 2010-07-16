@@ -1,6 +1,5 @@
 ﻿namespace Cavity.Configuration
 {
-    using Cavity;
     using Example;
     using Microsoft.Practices.ServiceLocation;
     using Xunit;
@@ -11,12 +10,12 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<XmlServiceLocatorProvider>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]

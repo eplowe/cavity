@@ -118,8 +118,8 @@
             }
 
             return 0 != _collection
-                .Where(x => x.Name.Equals(name))
-                .Count();
+                            .Where(x => x.Name.Equals(name))
+                            .Count();
         }
 
         public void Read(TextReader reader)

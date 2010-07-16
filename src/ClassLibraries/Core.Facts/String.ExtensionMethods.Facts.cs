@@ -24,6 +24,18 @@
         }
 
         [Fact]
+        public void op_XmlDeserializeOfT_stringEmpty()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => string.Empty.XmlDeserialize<int>());
+        }
+
+        [Fact]
+        public void op_XmlDeserializeOfT_stringEmpty_Type()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => string.Empty.XmlDeserialize(typeof(DateTime)));
+        }
+
+        [Fact]
         public void op_XmlDeserializeOfT_stringException()
         {
             const string xml = "<SOAP-ENV:Envelope SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:SOAP-ENC=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:clr=\"http://schemas.microsoft.com/soap/encoding/clr/1.0\">" +
@@ -53,15 +65,15 @@
         }
 
         [Fact]
-        public void op_XmlDeserializeOfT_stringEmpty()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => string.Empty.XmlDeserialize<int>());
-        }
-
-        [Fact]
         public void op_XmlDeserializeOfT_stringNull()
         {
             Assert.Throws<ArgumentNullException>(() => (null as string).XmlDeserialize<int>());
+        }
+
+        [Fact]
+        public void op_XmlDeserializeOfT_stringNull_Type()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).XmlDeserialize(typeof(DateTime)));
         }
 
         [Fact]
@@ -74,18 +86,6 @@
                 "<dateTime>2009-04-25T00:00:00</dateTime>").XmlDeserialize(typeof(DateTime));
 
             Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_XmlDeserializeOfT_stringEmpty_Type()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => string.Empty.XmlDeserialize(typeof(DateTime)));
-        }
-
-        [Fact]
-        public void op_XmlDeserializeOfT_stringNull_Type()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as string).XmlDeserialize(typeof(DateTime)));
         }
 
         [Fact]

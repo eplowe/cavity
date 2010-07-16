@@ -6,12 +6,6 @@
     public sealed class IMediaTypeFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(IMediaType).IsInterface);
-        }
-
-        [Fact]
         public void IContent_ToContent_TextReader()
         {
             try
@@ -22,6 +16,12 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(IMediaType).IsInterface);
         }
     }
 }

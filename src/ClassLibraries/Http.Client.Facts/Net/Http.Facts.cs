@@ -3,7 +3,6 @@
     using System;
     using System.Globalization;
     using System.IO;
-    using Cavity;
     using Cavity.Net.Mime;
     using Microsoft.Practices.ServiceLocation;
     using Moq;
@@ -15,25 +14,19 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<Http>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IHttp>()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IHttp>()
+                            .Result);
         }
 
         [Fact]
         public void ctor()
         {
             Assert.NotNull(new Http());
-        }
-
-        [Fact]
-        public void op_Send_IHttpRequestNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Http().Send(null));
         }
 
         [Fact]
@@ -62,7 +55,7 @@
                     .Setup(e => e.GetInstance<IMediaType>("text/html"))
                     .Returns(media.Object)
                     .Verifiable();
-                
+
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 var response = new Http().Send(request.Object);
@@ -78,6 +71,12 @@
             {
                 ServiceLocator.SetLocatorProvider(null);
             }
+        }
+
+        [Fact]
+        public void op_Send_IHttpRequestNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Http().Send(null));
         }
 
         [Fact(Skip = "Need to check what example.com is doing now.")]

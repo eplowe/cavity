@@ -6,12 +6,6 @@
     public sealed class ITestExpectationFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(ITestExpectation).IsInterface);
-        }
-
-        [Fact]
         public void ITestExpectation_Check()
         {
             try
@@ -22,6 +16,12 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(ITestExpectation).IsInterface);
         }
     }
 }

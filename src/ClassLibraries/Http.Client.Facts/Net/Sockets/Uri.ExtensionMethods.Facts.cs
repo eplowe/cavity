@@ -6,12 +6,6 @@
     public sealed class UriExtensionMethodsFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(UriExtensionMethods).IsStatic());
-        }
-
-        [Fact]
         public void ToTcpClient_UriAbsolute()
         {
             Assert.NotNull(new Uri("http://www.example.com/").ToTcpClient());
@@ -27,6 +21,12 @@
         public void ToTcpClient_UriRelative()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new Uri("/", UriKind.Relative).ToTcpClient());
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(UriExtensionMethods).IsStatic());
         }
     }
 }

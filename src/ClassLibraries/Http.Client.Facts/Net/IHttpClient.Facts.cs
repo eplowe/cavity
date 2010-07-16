@@ -6,12 +6,6 @@
     public sealed class IHttpClientFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(IHttpClient).IsInterface);
-        }
-
-        [Fact]
         public void IHttpClient_UserAgent_get()
         {
             try
@@ -22,6 +16,12 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(IHttpClient).IsInterface);
         }
     }
 }

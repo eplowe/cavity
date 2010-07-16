@@ -6,12 +6,19 @@
     public sealed class HttpMethod : ComparableObject
     {
         private static readonly HttpMethod _connect = new HttpMethod("CONNECT");
+
         private static readonly HttpMethod _delete = new HttpMethod("DELETE");
+
         private static readonly HttpMethod _get = new HttpMethod("GET");
+
         private static readonly HttpMethod _head = new HttpMethod("HEAD");
+
         private static readonly HttpMethod _options = new HttpMethod("OPTIONS");
+
         private static readonly HttpMethod _post = new HttpMethod("POST");
+
         private static readonly HttpMethod _put = new HttpMethod("PUT");
+
         private static readonly HttpMethod _trace = new HttpMethod("TRACE");
 
         private string _value;

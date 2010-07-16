@@ -6,18 +6,6 @@
     public sealed class IHttpRequestFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(IHttpRequest).IsInterface);
-        }
-
-        [Fact]
-        public void is_IHttpMessage()
-        {
-            Assert.True(typeof(IHttpRequest).Implements(typeof(IHttpMessage)));
-        }
-
-        [Fact]
         public void IHttpRequest_AbsoluteUri_get()
         {
             try
@@ -41,6 +29,18 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(IHttpRequest).IsInterface);
+        }
+
+        [Fact]
+        public void is_IHttpMessage()
+        {
+            Assert.True(typeof(IHttpRequest).Implements(typeof(IHttpMessage)));
         }
     }
 }

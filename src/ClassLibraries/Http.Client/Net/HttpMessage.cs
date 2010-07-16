@@ -11,6 +11,7 @@
     public abstract class HttpMessage : ComparableObject, IHttpMessage
     {
         private IContent _body;
+
         private HttpHeaderCollection _headers;
 
         protected HttpMessage()

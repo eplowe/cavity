@@ -6,12 +6,6 @@
     public sealed class ISetLocatorProviderFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(ISetLocatorProvider).IsInterface);
-        }
-
-        [Fact]
         public void ISetLocatorProvider_Configure()
         {
             try
@@ -22,6 +16,12 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(ISetLocatorProvider).IsInterface);
         }
     }
 }

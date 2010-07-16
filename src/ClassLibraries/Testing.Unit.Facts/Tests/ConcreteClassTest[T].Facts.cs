@@ -7,15 +7,15 @@
     public sealed class ConcreteClassTestOfTFacts
     {
         [Fact]
-        public void is_ITestExpectation()
-        {
-            Assert.IsAssignableFrom<ITestExpectation>(new ConcreteClassTest<int>());
-        }
-
-        [Fact]
         public void ctor()
         {
             Assert.NotNull(new ConcreteClassTest<object>());
+        }
+
+        [Fact]
+        public void is_ITestExpectation()
+        {
+            Assert.IsAssignableFrom<ITestExpectation>(new ConcreteClassTest<int>());
         }
 
         [Fact]

@@ -6,12 +6,6 @@
     public sealed class IContentTypeFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(IContentType).IsInterface);
-        }
-
-        [Fact]
         public void IContentType_ContentType_get()
         {
             try
@@ -22,6 +16,12 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(IContentType).IsInterface);
         }
     }
 }

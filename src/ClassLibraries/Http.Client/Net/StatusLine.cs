@@ -6,7 +6,9 @@
     public sealed class StatusLine : ComparableObject
     {
         private int _code;
+
         private string _reason;
+
         private HttpVersion _version;
 
         public StatusLine(HttpVersion version, int code, string reason)

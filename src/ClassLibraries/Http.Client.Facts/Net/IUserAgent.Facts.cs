@@ -6,12 +6,6 @@
     public sealed class IUserAgentFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(IUserAgent).IsInterface);
-        }
-
-        [Fact]
         public void IUserAgent_Value_get()
         {
             try
@@ -22,6 +16,12 @@
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(IUserAgent).IsInterface);
         }
     }
 }

@@ -2,7 +2,6 @@
 {
     using System.Configuration;
     using System.Xml;
-    using Cavity;
     using Xunit;
 
     public sealed class ServiceLocationFacts
@@ -11,31 +10,19 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<ServiceLocation>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IConfigurationSectionHandler>()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IConfigurationSectionHandler>()
+                            .Result);
         }
 
         [Fact]
         public void ctor()
         {
             Assert.NotNull(new ServiceLocation());
-        }
-
-        [Fact]
-        public void op_Settings()
-        {
-            Assert.Null(ServiceLocation.Settings());
-        }
-
-        [Fact]
-        public void op_Settings_string()
-        {
-            Assert.Null(ServiceLocation.Settings("serviceLocation"));
         }
 
         [Fact]
@@ -50,14 +37,12 @@
         }
 
         [Fact]
-        public void op_Create_object_object_XmlNode_whenAlternativeElementName()
+        public void op_Create_object_object_XmlNodeEmpty()
         {
             var xml = new XmlDocument();
-            xml.LoadXml("<foo type='Cavity.Configuration.ISetLocatorProviderDummy, Cavity.ServiceLocation.Facts' />");
+            xml.LoadXml("<serviceLocation />");
 
-            var actual = new ServiceLocation().Create(null, null, xml.DocumentElement) as ISetLocatorProvider;
-
-            Assert.IsAssignableFrom<ISetLocatorProviderDummy>(actual);
+            Assert.Throws<ConfigurationErrorsException>(() => new ServiceLocation().Create(null, null, xml.DocumentElement));
         }
 
         [Fact]
@@ -67,12 +52,14 @@
         }
 
         [Fact]
-        public void op_Create_object_object_XmlNodeEmpty()
+        public void op_Create_object_object_XmlNode_whenAlternativeElementName()
         {
             var xml = new XmlDocument();
-            xml.LoadXml("<serviceLocation />");
+            xml.LoadXml("<foo type='Cavity.Configuration.ISetLocatorProviderDummy, Cavity.ServiceLocation.Facts' />");
 
-            Assert.Throws<ConfigurationErrorsException>(() => new ServiceLocation().Create(null, null, xml.DocumentElement));
+            var actual = new ServiceLocation().Create(null, null, xml.DocumentElement) as ISetLocatorProvider;
+
+            Assert.IsAssignableFrom<ISetLocatorProviderDummy>(actual);
         }
 
         [Fact]
@@ -91,6 +78,18 @@
             xml.LoadXml("<serviceLocation type='System.DateTime' />");
 
             Assert.Throws<ConfigurationErrorsException>(() => new ServiceLocation().Create(null, null, xml.DocumentElement));
+        }
+
+        [Fact]
+        public void op_Settings()
+        {
+            Assert.Null(ServiceLocation.Settings());
+        }
+
+        [Fact]
+        public void op_Settings_string()
+        {
+            Assert.Null(ServiceLocation.Settings("serviceLocation"));
         }
     }
 }

@@ -3,7 +3,6 @@
     using System;
     using System.IO;
     using System.Text;
-    using Cavity;
     using Cavity.Net.Mime;
     using Cavity.Text;
     using Microsoft.Practices.ServiceLocation;
@@ -16,47 +15,19 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpResponse>()
-                .DerivesFrom<HttpMessage>()
-                .IsConcreteClass()
-                .IsSealed()
-                .NoDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IHttpResponse>()
-                .Result);
+                            .DerivesFrom<HttpMessage>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IHttpResponse>()
+                            .Result);
         }
 
         [Fact]
         public void ctor()
         {
             Assert.NotNull(new HttpResponse());
-        }
-
-        [Fact]
-        public void prop_StatusLine()
-        {
-            Assert.NotNull(new PropertyExpectations<HttpResponse>("StatusLine")
-                .TypeIs<StatusLine>()
-                .DefaultValueIsNull()
-                .ArgumentNullException()
-                .Set(new StatusLine("HTTP/1.1", 200, "OK"))
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void opImplicit_HttpResponse_stringNull()
-        {
-            HttpResponse obj = null as string;
-
-            Assert.Null(obj);
-        }
-
-        [Fact]
-        public void opImplicit_HttpResponse_stringEmpty()
-        {
-            HttpResponse expected;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => expected = string.Empty);
         }
 
         [Fact]
@@ -72,15 +43,29 @@
         }
 
         [Fact]
-        public void op_FromString_stringNull()
+        public void opImplicit_HttpResponse_stringEmpty()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpResponse.FromString(null));
+            Assert.Throws<ArgumentOutOfRangeException>(() => (HttpResponse)string.Empty);
+        }
+
+        [Fact]
+        public void opImplicit_HttpResponse_stringNull()
+        {
+            HttpResponse obj = null as string;
+
+            Assert.Null(obj);
         }
 
         [Fact]
         public void op_FromString_stringEmpty()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => HttpResponse.FromString(string.Empty));
+        }
+
+        [Fact]
+        public void op_FromString_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => HttpResponse.FromString(null));
         }
 
         [Fact]
@@ -122,7 +107,7 @@
                     .Setup(e => e.GetInstance<IMediaType>("text/plain"))
                     .Returns(new TextPlain())
                     .Verifiable();
-                
+
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 obj = HttpResponse.FromString(expected.ToString());
@@ -143,6 +128,29 @@
         }
 
         [Fact]
+        public void op_Read_TextReaderEmpty()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        Assert.Throws<ArgumentNullException>(() => new HttpResponse().Read(reader));
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_Read_TextReaderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HttpResponse().Read(null));
+        }
+
+        [Fact]
         public void op_Read_TextReader_when201()
         {
             var response = new HttpResponse();
@@ -157,7 +165,7 @@
                     .Setup(e => e.GetInstance<IMediaType>("text/plain"))
                     .Returns(new TextPlain())
                     .Verifiable();
-                
+
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 using (var stream = new MemoryStream())
@@ -209,7 +217,7 @@
                     .Setup(e => e.GetInstance<IMediaType>("text/plain"))
                     .Returns(new TextPlain())
                     .Verifiable();
-                
+
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 using (var stream = new MemoryStream())
@@ -247,26 +255,54 @@
         }
 
         [Fact]
-        public void op_Read_TextReaderEmpty()
+        public void op_ToString_when201()
         {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        Assert.Throws<ArgumentNullException>(() => new HttpResponse().Read(reader));
-                    }
-                }
-            }
+            var expected = new StringBuilder();
+            expected.AppendLine("HTTP/1.1 201 Created");
+            expected.AppendLine(string.Empty);
+
+            var actual = HttpResponse.FromString(expected.ToString()).ToString();
+
+            Assert.Equal(expected.ToString(), actual);
         }
 
         [Fact]
-        public void op_Read_TextReaderNull()
+        public void op_ToString_when404()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpResponse().Read(null));
+            var expected = new StringBuilder();
+            expected.AppendLine("HTTP/1.1 404 Not Found");
+            expected.AppendLine("Content-Length: 4");
+            expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
+            expected.AppendLine(string.Empty);
+            expected.Append("text");
+
+            string actual;
+            try
+            {
+                var locator = new Mock<IServiceLocator>();
+                locator
+                    .Setup(e => e.GetInstance<IMediaType>("text/plain"))
+                    .Returns(new TextPlain())
+                    .Verifiable();
+
+                ServiceLocator.SetLocatorProvider(() => locator.Object);
+
+                actual = HttpResponse.FromString(expected.ToString()).ToString();
+
+                locator.VerifyAll();
+            }
+            finally
+            {
+                ServiceLocator.SetLocatorProvider(null);
+            }
+
+            Assert.Equal(expected.ToString(), actual);
+        }
+
+        [Fact]
+        public void op_Write_TextWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HttpResponse().Write(null));
         }
 
         [Fact]
@@ -311,7 +347,7 @@
                     .Setup(e => e.GetInstance<IMediaType>("text/plain"))
                     .Returns(new TextPlain())
                     .Verifiable();
-                
+
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 obj = HttpResponse.FromString(expected.ToString());
@@ -339,54 +375,15 @@
         }
 
         [Fact]
-        public void op_Write_TextWriterNull()
+        public void prop_StatusLine()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpResponse().Write(null));
-        }
-
-        [Fact]
-        public void op_ToString_when201()
-        {
-            var expected = new StringBuilder();
-            expected.AppendLine("HTTP/1.1 201 Created");
-            expected.AppendLine(string.Empty);
-
-            var actual = HttpResponse.FromString(expected.ToString()).ToString();
-
-            Assert.Equal(expected.ToString(), actual);
-        }
-
-        [Fact]
-        public void op_ToString_when404()
-        {
-            var expected = new StringBuilder();
-            expected.AppendLine("HTTP/1.1 404 Not Found");
-            expected.AppendLine("Content-Length: 4");
-            expected.AppendLine("Content-Type: text/plain; charset=UTF-8");
-            expected.AppendLine(string.Empty);
-            expected.Append("text");
-
-            string actual;
-            try
-            {
-                var locator = new Mock<IServiceLocator>();
-                locator
-                    .Setup(e => e.GetInstance<IMediaType>("text/plain"))
-                    .Returns(new TextPlain())
-                    .Verifiable();
-                
-                ServiceLocator.SetLocatorProvider(() => locator.Object);
-
-                actual = HttpResponse.FromString(expected.ToString()).ToString();
-
-                locator.VerifyAll();
-            }
-            finally
-            {
-                ServiceLocator.SetLocatorProvider(null);
-            }
-
-            Assert.Equal(expected.ToString(), actual);
+            Assert.NotNull(new PropertyExpectations<HttpResponse>("StatusLine")
+                               .TypeIs<StatusLine>()
+                               .DefaultValueIsNull()
+                               .ArgumentNullException()
+                               .Set(new StatusLine("HTTP/1.1", 200, "OK"))
+                               .IsNotDecorated()
+                               .Result);
         }
     }
 }

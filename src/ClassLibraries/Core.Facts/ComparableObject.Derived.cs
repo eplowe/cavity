@@ -12,11 +12,7 @@ namespace Cavity
             Value = value;
         }
 
-        public string Value
-        {
-            get;
-            set;
-        }
+        public string Value { get; set; }
 
         public override string ToString()
         {

@@ -3,7 +3,6 @@
     using System;
     using System.Globalization;
     using System.Reflection;
-    using Cavity;
     using Xunit;
 
     public sealed class UserAgentFacts
@@ -12,13 +11,13 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<UserAgent>()
-                .DerivesFrom<ComparableObject>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IUserAgent>()
-                .Result);
+                            .DerivesFrom<ComparableObject>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IUserAgent>()
+                            .Result);
         }
 
         [Fact]
@@ -28,9 +27,9 @@
         }
 
         [Fact]
-        public void ctor_stringNull()
+        public void ctor_string()
         {
-            Assert.Throws<ArgumentNullException>(() => new UserAgent(null));
+            Assert.NotNull(new UserAgent("value"));
         }
 
         [Fact]
@@ -40,29 +39,18 @@
         }
 
         [Fact]
-        public void ctor_string()
+        public void ctor_stringNull()
         {
-            Assert.NotNull(new UserAgent("value"));
+            Assert.Throws<ArgumentNullException>(() => new UserAgent(null));
         }
 
         [Fact]
-        public void prop_Value()
+        public void opImplicit_UserAgent_string()
         {
-            Assert.NotNull(new PropertyExpectations<UserAgent>("Value")
-                .TypeIs<string>()
-                .DefaultValueIs(UserAgent.Format())
-                .ArgumentNullException()
-                .Set("value")
-                .IsNotDecorated()
-                .Result);
-        }
+            var expected = new UserAgent("value");
+            UserAgent actual = "value";
 
-        [Fact]
-        public void opImplicit_UserAgent_stringNull()
-        {
-            UserAgent obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -75,12 +63,11 @@
         }
 
         [Fact]
-        public void opImplicit_UserAgent_string()
+        public void opImplicit_UserAgent_stringNull()
         {
-            var expected = new UserAgent("value");
-            UserAgent actual = "value";
+            UserAgent obj = null as string;
 
-            Assert.Equal(expected, actual);
+            Assert.Null(obj);
         }
 
         [Fact]
@@ -106,9 +93,12 @@
         }
 
         [Fact]
-        public void op_FromString_stringNull()
+        public void op_FromString_string()
         {
-            Assert.Throws<ArgumentNullException>(() => UserAgent.FromString(null));
+            var expected = new UserAgent("value");
+            var actual = UserAgent.FromString("value");
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -121,12 +111,9 @@
         }
 
         [Fact]
-        public void op_FromString_string()
+        public void op_FromString_stringNull()
         {
-            var expected = new UserAgent("value");
-            var actual = UserAgent.FromString("value");
-
-            Assert.Equal(expected, actual);
+            Assert.Throws<ArgumentNullException>(() => UserAgent.FromString(null));
         }
 
         [Fact]
@@ -136,6 +123,18 @@
             var actual = new UserAgent(expected).ToString();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void prop_Value()
+        {
+            Assert.NotNull(new PropertyExpectations<UserAgent>("Value")
+                               .TypeIs<string>()
+                               .DefaultValueIs(UserAgent.Format())
+                               .ArgumentNullException()
+                               .Set("value")
+                               .IsNotDecorated()
+                               .Result);
         }
     }
 }

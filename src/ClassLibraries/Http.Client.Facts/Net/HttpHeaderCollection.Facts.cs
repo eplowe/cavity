@@ -6,24 +6,37 @@
     using System.IO;
     using System.Net.Mime;
     using System.Text;
-    using Cavity;
     using Cavity.Net.Mime;
     using Xunit;
 
     public sealed class HttpHeaderCollectionFacts
     {
         [Fact]
+        public void IEnumerable_op_GetEnumerator()
+        {
+            var item = new HttpHeader("name", "value");
+            var obj = new HttpHeaderCollection
+            {
+                item
+            };
+
+            var enumerator = (obj as IEnumerable).GetEnumerator();
+            enumerator.MoveNext();
+            Assert.Same(item, enumerator.Current);
+        }
+
+        [Fact]
         public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpHeaderCollection>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .Implements<IComparable>()
-                .Implements<ICollection<IHttpHeader>>()
-                .Implements<IContentType>()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .Implements<IComparable>()
+                            .Implements<ICollection<IHttpHeader>>()
+                            .Implements<IContentType>()
+                            .Result);
         }
 
         [Fact]
@@ -33,50 +46,32 @@
         }
 
         [Fact]
-        public void prop_Count()
+        public void opImplicit_HttpHeaderCollection_string()
         {
-            Assert.NotNull(new PropertyExpectations<HttpHeaderCollection>("Count")
-                .TypeIs<int>()
-                .DefaultValueIs(0)
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_ContentType()
-        {
-            Assert.NotNull(new PropertyExpectations<HttpHeaderCollection>("ContentType")
-                .TypeIs<ContentType>()
-                .DefaultValueIsNull()
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_ContentType_get()
-        {
-            var obj = new HttpHeaderCollection
+            var expected = new HttpHeaderCollection
             {
-                new HttpHeader("Content-Type", "text/plain")
+                new HttpHeader("name", "value")
             };
+            HttpHeaderCollection actual = "name: value";
 
-            Assert.Equal("text/plain", obj.ContentType.MediaType);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void prop_IsReadOnly()
+        public void opImplicit_HttpHeaderCollection_stringEmpty()
         {
-            Assert.NotNull(new PropertyExpectations<HttpHeaderCollection>("IsReadOnly")
-                .TypeIs<bool>()
-                .DefaultValueIs(false)
-                .IsNotDecorated()
-                .Result);
+            var expected = new HttpHeaderCollection();
+            HttpHeaderCollection actual = string.Empty;
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void opIndexer_stringNull()
+        public void opImplicit_HttpHeaderCollection_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new HttpHeaderCollection()[null as Token]);
+            HttpHeaderCollection obj = null as string;
+
+            Assert.Null(obj);
         }
 
         [Fact]
@@ -88,6 +83,12 @@
             };
 
             Assert.Equal("value", obj["name"]);
+        }
+
+        [Fact]
+        public void opIndexer_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HttpHeaderCollection()[null as Token]);
         }
 
         [Fact]
@@ -106,91 +107,6 @@
             };
 
             Assert.Equal("foo, bar", obj["name"]);
-        }
-
-        [Fact]
-        public void opImplicit_HttpHeaderCollection_stringNull()
-        {
-            HttpHeaderCollection obj = null as string;
-
-            Assert.Null(obj);
-        }
-
-        [Fact]
-        public void opImplicit_HttpHeaderCollection_stringEmpty()
-        {
-            var expected = new HttpHeaderCollection();
-            HttpHeaderCollection actual = string.Empty;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opImplicit_HttpHeaderCollection_string()
-        {
-            var expected = new HttpHeaderCollection
-            {
-                new HttpHeader("name", "value")
-            };
-            HttpHeaderCollection actual = "name: value";
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_FromString_stringNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => HttpHeaderCollection.FromString(null));
-        }
-
-        [Fact]
-        public void op_FromString_stringEmpty()
-        {
-            var expected = new HttpHeaderCollection();
-            var actual = HttpHeaderCollection.FromString(string.Empty);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_FromString_string()
-        {
-            var expected = new HttpHeaderCollection
-            {
-                new HttpHeader("name", "value")
-            };
-            var actual = HttpHeaderCollection.FromString("name: value");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_FromString_string_withLeadingWhitespace()
-        {
-            var expected = new HttpHeaderCollection
-            {
-                new HttpHeader("name", "value")
-            };
-            var actual = HttpHeaderCollection.FromString("name:         value");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_FromString_string_whenMultipleLines()
-        {
-            var value = 
-                "a" + Environment.NewLine +
-                ' ' + "b" + Environment.NewLine +
-                '\t' + "c";
-
-            var expected = new HttpHeaderCollection
-            {
-                new HttpHeader("name", value)
-            };
-            var actual = HttpHeaderCollection.FromString("name: " + value);
-
-            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -228,15 +144,14 @@
         }
 
         [Fact]
-        public void op_ContainsName_Token_whenTrue()
+        public void op_ContainsName_TokenNull()
         {
-            var item = new HttpHeader("name", "value");
             var obj = new HttpHeaderCollection
             {
-                item
+                new HttpHeader("name", "foo")
             };
 
-            Assert.True(obj.ContainsName("name"));
+            Assert.Throws<ArgumentNullException>(() => obj.ContainsName(null as string));
         }
 
         [Fact]
@@ -251,18 +166,7 @@
         }
 
         [Fact]
-        public void op_ContainsName_TokenNull()
-        {
-            var obj = new HttpHeaderCollection
-            {
-                new HttpHeader("name", "foo")
-            };
-
-            Assert.Throws<ArgumentNullException>(() => obj.ContainsName(null as string));
-        }
-
-        [Fact]
-        public void op_Contains_IHttpHeader_whenTrue()
+        public void op_ContainsName_Token_whenTrue()
         {
             var item = new HttpHeader("name", "value");
             var obj = new HttpHeaderCollection
@@ -270,7 +174,18 @@
                 item
             };
 
-            Assert.True(obj.Contains(item));
+            Assert.True(obj.ContainsName("name"));
+        }
+
+        [Fact]
+        public void op_Contains_IHttpHeaderNull()
+        {
+            var obj = new HttpHeaderCollection
+            {
+                new HttpHeader("name", "value")
+            };
+
+            Assert.False(obj.Contains(null));
         }
 
         [Fact]
@@ -285,14 +200,15 @@
         }
 
         [Fact]
-        public void op_Contains_IHttpHeaderNull()
+        public void op_Contains_IHttpHeader_whenTrue()
         {
+            var item = new HttpHeader("name", "value");
             var obj = new HttpHeaderCollection
             {
-                new HttpHeader("name", "value")
+                item
             };
 
-            Assert.False(obj.Contains(null));
+            Assert.True(obj.Contains(item));
         }
 
         [Fact]
@@ -323,6 +239,18 @@
         }
 
         [Fact]
+        public void op_Equals_objectNull()
+        {
+            Assert.False(new HttpHeaderCollection().Equals(null));
+        }
+
+        [Fact]
+        public void op_Equals_objectString()
+        {
+            Assert.False(HttpHeaderCollection.FromString("name: value").Equals("name: value"));
+        }
+
+        [Fact]
         public void op_Equals_object_whenMutiple()
         {
             var obj = new HttpHeaderCollection
@@ -335,15 +263,59 @@
         }
 
         [Fact]
-        public void op_Equals_objectNull()
+        public void op_FromString_string()
         {
-            Assert.False(new HttpHeaderCollection().Equals(null));
+            var expected = new HttpHeaderCollection
+            {
+                new HttpHeader("name", "value")
+            };
+            var actual = HttpHeaderCollection.FromString("name: value");
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void op_Equals_objectString()
+        public void op_FromString_stringEmpty()
         {
-            Assert.False(HttpHeaderCollection.FromString("name: value").Equals("name: value"));
+            var expected = new HttpHeaderCollection();
+            var actual = HttpHeaderCollection.FromString(string.Empty);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_FromString_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => HttpHeaderCollection.FromString(null));
+        }
+
+        [Fact]
+        public void op_FromString_string_whenMultipleLines()
+        {
+            var value =
+                "a" + Environment.NewLine +
+                ' ' + "b" + Environment.NewLine +
+                '\t' + "c";
+
+            var expected = new HttpHeaderCollection
+            {
+                new HttpHeader("name", value)
+            };
+            var actual = HttpHeaderCollection.FromString("name: " + value);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_FromString_string_withLeadingWhitespace()
+        {
+            var expected = new HttpHeaderCollection
+            {
+                new HttpHeader("name", "value")
+            };
+            var actual = HttpHeaderCollection.FromString("name:         value");
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -548,17 +520,44 @@
         }
 
         [Fact]
-        public void IEnumerable_op_GetEnumerator()
+        public void prop_ContentType()
         {
-            var item = new HttpHeader("name", "value");
+            Assert.NotNull(new PropertyExpectations<HttpHeaderCollection>("ContentType")
+                               .TypeIs<ContentType>()
+                               .DefaultValueIsNull()
+                               .IsNotDecorated()
+                               .Result);
+        }
+
+        [Fact]
+        public void prop_ContentType_get()
+        {
             var obj = new HttpHeaderCollection
             {
-                item
+                new HttpHeader("Content-Type", "text/plain")
             };
 
-            var enumerator = (obj as IEnumerable).GetEnumerator();
-            enumerator.MoveNext();
-            Assert.Same(item, enumerator.Current);
+            Assert.Equal("text/plain", obj.ContentType.MediaType);
+        }
+
+        [Fact]
+        public void prop_Count()
+        {
+            Assert.NotNull(new PropertyExpectations<HttpHeaderCollection>("Count")
+                               .TypeIs<int>()
+                               .DefaultValueIs(0)
+                               .IsNotDecorated()
+                               .Result);
+        }
+
+        [Fact]
+        public void prop_IsReadOnly()
+        {
+            Assert.NotNull(new PropertyExpectations<HttpHeaderCollection>("IsReadOnly")
+                               .TypeIs<bool>()
+                               .DefaultValueIs(false)
+                               .IsNotDecorated()
+                               .Result);
         }
     }
 }

@@ -4,18 +4,6 @@
 
     public sealed class PropertiedClass1
     {
-        public bool AutoBoolean
-        {
-            get;
-            set;
-        }
-
-        public string AutoString
-        {
-            get;
-            set;
-        }
-
         public string ArgumentExceptionValue
         {
             get
@@ -54,6 +42,10 @@
                 throw new ArgumentOutOfRangeException("value");
             }
         }
+
+        public bool AutoBoolean { get; set; }
+
+        public string AutoString { get; set; }
 
         public string FormatExceptionValue
         {

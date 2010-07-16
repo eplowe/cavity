@@ -11,12 +11,12 @@ namespace Cavity.IO
         public void a_definition()
         {
             Assert.True(new TypeExpectations<EncodedStringWriter>()
-                .DerivesFrom<StringWriter>()
-                .IsConcreteClass()
-                .IsSealed()
-                .NoDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<StringWriter>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]

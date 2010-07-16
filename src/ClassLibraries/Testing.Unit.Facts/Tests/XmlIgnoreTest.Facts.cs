@@ -6,15 +6,15 @@
     public sealed class XmlIgnoreTestFacts
     {
         [Fact]
-        public void is_AttributePropertyTest()
-        {
-            Assert.IsAssignableFrom<MemberTestBase>(new XmlIgnoreTest(typeof(XmlSerializableClass1).GetProperty("Ignore")));
-        }
-
-        [Fact]
         public void ctor()
         {
             Assert.NotNull(new XmlIgnoreTest(typeof(XmlSerializableClass1).GetProperty("Ignore")));
+        }
+
+        [Fact]
+        public void is_AttributePropertyTest()
+        {
+            Assert.IsAssignableFrom<MemberTestBase>(new XmlIgnoreTest(typeof(XmlSerializableClass1).GetProperty("Ignore")));
         }
 
         [Fact]

@@ -7,15 +7,33 @@
     public sealed class ImplementationTestOfTFacts
     {
         [Fact]
+        public void ctor()
+        {
+            Assert.NotNull(new ImplementationTest<object>(typeof(IInterface1)));
+        }
+
+        [Fact]
         public void is_ITestExpectation()
         {
             Assert.IsAssignableFrom<ITestExpectation>(new ImplementationTest<int>(typeof(IInterface1)));
         }
 
         [Fact]
-        public void ctor()
+        public void op_Check_whenFalse()
         {
-            Assert.NotNull(new ImplementationTest<object>(typeof(IInterface1)));
+            Assert.Throws<TestException>(() => new ImplementationTest<object>(typeof(IInterface1)).Check());
+        }
+
+        [Fact]
+        public void op_Check_whenTrue()
+        {
+            Assert.True(new ImplementationTest<InterfacedClass1>(typeof(IInterface1)).Check());
+        }
+
+        [Fact]
+        public void op_Check_whenUnexpectedInterface()
+        {
+            Assert.Throws<TestException>(() => new ImplementationTest<InterfacedClass1>(null).Check());
         }
 
         [Fact]
@@ -31,24 +49,6 @@
             var actual = obj.Interface;
 
             Assert.Same(expected, actual);
-        }
-
-        [Fact]
-        public void op_Check_whenFalse()
-        {
-            Assert.Throws<TestException>(() => new ImplementationTest<object>(typeof(IInterface1)).Check());
-        }
-
-        [Fact]
-        public void op_Check_whenUnexpectedInterface()
-        {
-            Assert.Throws<TestException>(() => new ImplementationTest<InterfacedClass1>(null).Check());
-        }
-
-        [Fact]
-        public void op_Check_whenTrue()
-        {
-            Assert.True(new ImplementationTest<InterfacedClass1>(typeof(IInterface1)).Check());
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using Cavity;
     using Xunit;
 
     public sealed class RequestLineFacts
@@ -10,12 +9,12 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<RequestLine>()
-                .DerivesFrom<ComparableObject>()
-                .IsConcreteClass()
-                .IsSealed()
-                .NoDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<ComparableObject>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
@@ -31,48 +30,18 @@
         }
 
         [Fact]
-        public void prop_Method()
+        public void opImplicit_RequestLine_string()
         {
-            Assert.True(new PropertyExpectations<RequestLine>("Method")
-                .TypeIs<string>()
-                .ArgumentNullException()
-                .ArgumentOutOfRangeException(string.Empty)
-                .Set("OPTIONS")
-                .Set("GET")
-                .Set("HEAD")
-                .Set("POST")
-                .Set("PUT")
-                .Set("DELETE")
-                .Set("TRACE")
-                .Set("CONNECT")
-                .IsNotDecorated()
-                .Result);
+            var expected = new RequestLine("GET", "/", "HTTP/1.1");
+            RequestLine actual = "GET / HTTP/1.1";
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void prop_RequestUri()
+        public void opImplicit_RequestLine_stringEmpty()
         {
-            Assert.True(new PropertyExpectations<RequestLine>("RequestUri")
-                .TypeIs<string>()
-                .ArgumentNullException()
-                .ArgumentOutOfRangeException(string.Empty)
-                .Set("*")
-                .Set("http://www.example.com/")
-                .Set("/")
-                .IsNotDecorated()
-                .Result);
-        }
-
-        [Fact]
-        public void prop_Version()
-        {
-            Assert.True(new PropertyExpectations<RequestLine>("Version")
-                .TypeIs<HttpVersion>()
-                .ArgumentNullException()
-                .Set(new HttpVersion(1, 0))
-                .Set(new HttpVersion(1, 1))
-                .IsNotDecorated()
-                .Result);
+            Assert.Throws<FormatException>(() => (RequestLine)string.Empty);
         }
 
         [Fact]
@@ -84,20 +53,21 @@
         }
 
         [Fact]
-        public void opImplicit_RequestLine_stringEmpty()
+        public void op_FromString_stringEmpty()
         {
-            RequestLine expected;
-
-            Assert.Throws<FormatException>(() => expected = string.Empty);
+            Assert.Throws<FormatException>(() => RequestLine.FromString(string.Empty));
         }
 
         [Fact]
-        public void opImplicit_RequestLine_string()
+        public void op_FromString_stringNull()
         {
-            var expected = new RequestLine("GET", "/", "HTTP/1.1");
-            RequestLine actual = "GET / HTTP/1.1";
+            Assert.Throws<ArgumentNullException>(() => RequestLine.FromString(null));
+        }
 
-            Assert.Equal(expected, actual);
+        [Fact]
+        public void op_FromString_string_whenCR()
+        {
+            Assert.Throws<FormatException>(() => RequestLine.FromString("999 Foo \r Bar"));
         }
 
         [Fact]
@@ -110,21 +80,9 @@
         }
 
         [Fact]
-        public void op_FromString_stringNull()
+        public void op_FromString_string_whenLR()
         {
-            Assert.Throws<ArgumentNullException>(() => RequestLine.FromString(null));
-        }
-
-        [Fact]
-        public void op_FromString_stringEmpty()
-        {
-            Assert.Throws<FormatException>(() => RequestLine.FromString(string.Empty));
-        }
-
-        [Fact]
-        public void op_FromString_string_whenMissingHttpVersion()
-        {
-            Assert.Throws<FormatException>(() => RequestLine.FromString("GET /"));
+            Assert.Throws<FormatException>(() => RequestLine.FromString("999 Foo \n Bar"));
         }
 
         [Fact]
@@ -134,21 +92,15 @@
         }
 
         [Fact]
+        public void op_FromString_string_whenMissingHttpVersion()
+        {
+            Assert.Throws<FormatException>(() => RequestLine.FromString("GET /"));
+        }
+
+        [Fact]
         public void op_FromString_string_whenMissingRequestUri()
         {
             Assert.Throws<FormatException>(() => RequestLine.FromString("GET HTTP/1.1"));
-        }
-
-        [Fact]
-        public void op_FromString_string_whenCR()
-        {
-            Assert.Throws<FormatException>(() => RequestLine.FromString("999 Foo \r Bar"));
-        }
-
-        [Fact]
-        public void op_FromString_string_whenLR()
-        {
-            Assert.Throws<FormatException>(() => RequestLine.FromString("999 Foo \n Bar"));
         }
 
         [Fact]
@@ -158,6 +110,51 @@
             var actual = new RequestLine("HEAD", "/", "HTTP/1.1").ToString();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void prop_Method()
+        {
+            Assert.True(new PropertyExpectations<RequestLine>("Method")
+                            .TypeIs<string>()
+                            .ArgumentNullException()
+                            .ArgumentOutOfRangeException(string.Empty)
+                            .Set("OPTIONS")
+                            .Set("GET")
+                            .Set("HEAD")
+                            .Set("POST")
+                            .Set("PUT")
+                            .Set("DELETE")
+                            .Set("TRACE")
+                            .Set("CONNECT")
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_RequestUri()
+        {
+            Assert.True(new PropertyExpectations<RequestLine>("RequestUri")
+                            .TypeIs<string>()
+                            .ArgumentNullException()
+                            .ArgumentOutOfRangeException(string.Empty)
+                            .Set("*")
+                            .Set("http://www.example.com/")
+                            .Set("/")
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_Version()
+        {
+            Assert.True(new PropertyExpectations<RequestLine>("Version")
+                            .TypeIs<HttpVersion>()
+                            .ArgumentNullException()
+                            .Set(new HttpVersion(1, 0))
+                            .Set(new HttpVersion(1, 1))
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

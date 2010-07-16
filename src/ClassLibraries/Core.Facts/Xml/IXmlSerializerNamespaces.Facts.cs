@@ -6,12 +6,6 @@ namespace Cavity.Xml
     public sealed class IXmlSerializerNamespacesFacts
     {
         [Fact]
-        public void a_definition()
-        {
-            Assert.True(typeof(IXmlSerializerNamespaces).IsInterface);
-        }
-
-        [Fact]
         public void IXmlSerializerNamespaces_XmlNamespaceDeclarations_get()
         {
             try
@@ -22,6 +16,12 @@ namespace Cavity.Xml
             catch (NotSupportedException)
             {
             }
+        }
+
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(IXmlSerializerNamespaces).IsInterface);
         }
     }
 }
