@@ -47,7 +47,7 @@
         [Fact]
         public void opImplicit_HttpMethod_stringEmpty()
         {
-             Assert.Throws<ArgumentOutOfRangeException>(() => (HttpMethod)string.Empty);
+            Assert.Throws<ArgumentOutOfRangeException>(() => (HttpMethod)string.Empty);
         }
 
         [Fact]
