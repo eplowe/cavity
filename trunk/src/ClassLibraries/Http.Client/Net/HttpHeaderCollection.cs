@@ -216,7 +216,7 @@
             return _collection.GetEnumerator();
         }
 
-        private IDictionary<string, string> ToDictionary()
+        private IEnumerable<KeyValuePair<string, string>> ToDictionary()
         {
             var result = new Dictionary<string, string>();
 
