@@ -121,6 +121,30 @@
         }
 
         [Fact]
+        public void op_ReadEntry_whenEmptyLine()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine("A,B");
+                    writer.WriteLine(string.Empty);
+                    writer.WriteLine("1A,1B");
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new CsvStreamReader(stream))
+                    {
+                        var actual = reader.ReadEntry();
+                        Assert.Equal(3, reader.LineNumber);
+                        Assert.Equal(1, reader.EntryNumber);
+                        Assert.Equal("1A", actual["A"]);
+                        Assert.Equal("1B", actual["B"]);
+                    }
+                }
+            }
+        }
+
+        [Fact]
         public void op_ReadEntry_whenLeadingAndTrailingSpaces()
         {
             using (var stream = new MemoryStream())
@@ -205,6 +229,30 @@
                         Assert.Equal(1, reader.EntryNumber);
                         Assert.Equal("1A", actual["A"]);
                         Assert.Equal("1B", actual["B"]);
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_ReadEntry_whenTrailingNewLine()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine("A,B");
+                    writer.WriteLine("1A,1B");
+                    writer.WriteLine(string.Empty);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new CsvStreamReader(stream))
+                    {
+                        reader.ReadEntry();
+                        var actual = reader.ReadEntry();
+                        Assert.Equal(3, reader.LineNumber);
+                        Assert.Equal(1, reader.EntryNumber);
+                        Assert.Empty(actual);
                     }
                 }
             }
