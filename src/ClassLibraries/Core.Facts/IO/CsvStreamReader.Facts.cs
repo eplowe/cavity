@@ -1,6 +1,7 @@
 ﻿namespace Cavity.IO
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using Xunit;
 
@@ -19,11 +20,60 @@
         }
 
         [Fact]
-        public void ctor()
+        public void ctor_Stream()
         {
             using (var stream = new MemoryStream())
             {
                 Assert.NotNull(new CsvStreamReader(stream));
+            }
+        }
+
+        [Fact]
+        public void ctor_StreamNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new CsvStreamReader(null));
+        }
+
+        [Fact]
+        public void ctor_StreamNull_IEnumerableString()
+        {
+            var headers = new[]
+            {
+                "A", "B"
+            };
+
+            Assert.Throws<ArgumentNullException>(() => new CsvStreamReader(null, headers));
+        }
+
+        [Fact]
+        public void ctor_StreamNull_IEnumerableStringEmpty()
+        {
+            using (var stream = new MemoryStream())
+            {
+                Assert.Throws<ArgumentOutOfRangeException>(() => new CsvStreamReader(stream, new List<string>()));
+            }
+        }
+
+        [Fact]
+        public void ctor_StreamNull_IEnumerableStringNull()
+        {
+            using (var stream = new MemoryStream())
+            {
+                Assert.Throws<ArgumentNullException>(() => new CsvStreamReader(stream, null));
+            }
+        }
+
+        [Fact]
+        public void ctor_Stream_IEnumerableString()
+        {
+            var headers = new[]
+            {
+                "A", "B"
+            };
+
+            using (var stream = new MemoryStream())
+            {
+                Assert.NotNull(new CsvStreamReader(stream, headers));
             }
         }
 
@@ -136,6 +186,33 @@
                     {
                         var actual = reader.ReadEntry();
                         Assert.Equal(3, reader.LineNumber);
+                        Assert.Equal(1, reader.EntryNumber);
+                        Assert.Equal("1A", actual["A"]);
+                        Assert.Equal("1B", actual["B"]);
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_ReadEntry_whenHeadersCtor()
+        {
+            var headers = new[]
+            {
+                "A", "B"
+            };
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine("1A,1B");
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new CsvStreamReader(stream, headers))
+                    {
+                        var actual = reader.ReadEntry();
+                        Assert.Equal(1, reader.LineNumber);
                         Assert.Equal(1, reader.EntryNumber);
                         Assert.Equal("1A", actual["A"]);
                         Assert.Equal("1B", actual["B"]);
