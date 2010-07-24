@@ -67,50 +67,88 @@
 
         private IList<string> Next()
         {
-            var result = new List<string>();
+            IList<string> result;
 
-            if (!EndOfStream)
+            if (EndOfStream)
             {
-                var buffer = new StringBuilder();
+                result = new List<string>();
+            }
+            else
+            {
                 Line = ReadLine();
                 LineNumber++;
-                var quote = false;
-                foreach (var c in Line)
+                result = Parse(Line);
+            }
+
+            return result;
+        }
+
+        private IList<string> Parse(string line)
+        {
+            IList<string> result = new List<string>();
+
+            var trim = true;
+            var buffer = new StringBuilder();
+            var quote = false;
+            for (var i = 0; i < line.Length; i++)
+            {
+                var c = line[i];
+                switch (c)
                 {
-                    switch (c)
-                    {
-                        case ',':
-                            if (quote)
-                            {
-                                buffer.Append(c);
-                            }
-                            else
-                            {
-                                result.Add(buffer.ToString());
-                                buffer.Remove(0, buffer.Length);
-                            }
+                    case ',':
+                        if (quote)
+                        {
+                            buffer.Append(c);
+                        }
+                        else
+                        {
+                            result.Add(trim ? buffer.ToString().Trim() : buffer.ToString());
+                            buffer.Remove(0, buffer.Length);
+                            trim = true;
+                        }
 
-                            break;
+                        break;
 
-                        case '"':
-                            if (quote)
+                    case '"':
+                        trim = false;
+                        if (quote)
+                        {
+                            if (i == line.Length - 1)
                             {
                                 quote = false;
                             }
-                            else if (0 == buffer.Length)
+                            else if ('"' == line[i + 1])
                             {
-                                quote = true;
+                                buffer.Append(c);
+                                i++;
                             }
+                            else
+                            {
+                                quote = false;
+                            }
+                        }
+                        else if (0 == buffer.Length)
+                        {
+                            quote = true;
+                        }
 
-                            break;
+                        break;
 
-                        default:
-                            buffer.Append(c);
-                            break;
-                    }
+                    default:
+                        buffer.Append(c);
+                        break;
                 }
+            }
 
-                result.Add(buffer.ToString());
+            if (quote)
+            {
+                Line = string.Concat(line, Environment.NewLine, ReadLine());
+                LineNumber++;
+                result = Parse(Line);
+            }
+            else
+            {
+                result.Add(trim ? buffer.ToString().Trim() : buffer.ToString());
             }
 
             return result;

@@ -74,6 +74,101 @@
         }
 
         [Fact]
+        public void op_ReadEntry_whenEmbeddedLeadingAndTrailingSpaces()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine(" A , B ");
+                    writer.WriteLine("\" 1A \", 1B ");
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new CsvStreamReader(stream))
+                    {
+                        var actual = reader.ReadEntry();
+                        Assert.Equal(2, reader.LineNumber);
+                        Assert.Equal(1, reader.EntryNumber);
+                        Assert.Equal(" 1A ", actual["A"]);
+                        Assert.Equal("1B", actual["B"]);
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_ReadEntry_whenEmbeddedQuotation()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine("A,B,C");
+                    writer.WriteLine("\"\"\"1A\",\"1\"\"B\",\"1C\"\"\"");
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new CsvStreamReader(stream))
+                    {
+                        var actual = reader.ReadEntry();
+                        Assert.Equal(2, reader.LineNumber);
+                        Assert.Equal(1, reader.EntryNumber);
+                        Assert.Equal("\"1A", actual["A"]);
+                        Assert.Equal("1\"B", actual["B"]);
+                        Assert.Equal("1C\"", actual["C"]);
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_ReadEntry_whenLeadingAndTrailingSpaces()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine(" A , B ");
+                    writer.WriteLine(" 1A , 1B ");
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new CsvStreamReader(stream))
+                    {
+                        var actual = reader.ReadEntry();
+                        Assert.Equal(2, reader.LineNumber);
+                        Assert.Equal(1, reader.EntryNumber);
+                        Assert.Equal("1A", actual["A"]);
+                        Assert.Equal("1B", actual["B"]);
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_ReadEntry_whenLineBreak()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine("A,B,C");
+                    writer.WriteLine("1A,\"Line1");
+                    writer.WriteLine("Line2\nLine3\",1C");
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new CsvStreamReader(stream))
+                    {
+                        var actual = reader.ReadEntry();
+                        Assert.Equal(4, reader.LineNumber);
+                        Assert.Equal(1, reader.EntryNumber);
+                        Assert.Equal("1A", actual["A"]);
+                        Assert.Equal("Line1" + Environment.NewLine + "Line2" + Environment.NewLine + "Line3", actual["B"]);
+                        Assert.Equal("1C", actual["C"]);
+                    }
+                }
+            }
+        }
+
+        [Fact]
         public void op_ReadEntry_whenMissingColumnItem()
         {
             using (var stream = new MemoryStream())
@@ -101,6 +196,28 @@
                 {
                     writer.WriteLine("A,B");
                     writer.WriteLine("\"1A\",\"1B\"");
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new CsvStreamReader(stream))
+                    {
+                        var actual = reader.ReadEntry();
+                        Assert.Equal(2, reader.LineNumber);
+                        Assert.Equal(1, reader.EntryNumber);
+                        Assert.Equal("1A", actual["A"]);
+                        Assert.Equal("1B", actual["B"]);
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_ReadEntry_whenUnixLF()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine("A,B\n1A,1B");
                     writer.Flush();
                     stream.Position = 0;
                     using (var reader = new CsvStreamReader(stream))
