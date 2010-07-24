@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using Cavity.Properties;
 
@@ -12,6 +13,26 @@
         public CsvStreamReader(Stream stream)
             : base(stream)
         {
+        }
+
+        public CsvStreamReader(Stream stream, IEnumerable<string> headers)
+            : base(stream)
+        {
+            if (null == headers)
+            {
+                throw new ArgumentNullException("headers");
+            }
+
+            if (0 == headers.Count())
+            {
+                throw new ArgumentOutOfRangeException("headers");
+            }
+
+            Headings = new List<string>();
+            foreach (var header in headers)
+            {
+                Headings.Add(header);
+            }
         }
 
         public int EntryNumber { get; private set; }
