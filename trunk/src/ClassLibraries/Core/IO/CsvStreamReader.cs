@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -15,23 +16,30 @@
         {
         }
 
-        public CsvStreamReader(Stream stream, IEnumerable<string> headers)
+        public CsvStreamReader(Stream stream, string header)
+            : this(stream, ParseHeader(header))
+        {
+            Header = header;
+        }
+
+        public CsvStreamReader(Stream stream, IEnumerable<string> columns)
             : base(stream)
         {
-            if (null == headers)
+            if (null == columns)
             {
-                throw new ArgumentNullException("headers");
+                throw new ArgumentNullException("columns");
             }
 
-            if (0 == headers.Count())
+            if (0 == columns.Count())
             {
-                throw new ArgumentOutOfRangeException("headers");
+                throw new ArgumentOutOfRangeException("columns");
             }
 
-            Headings = new List<string>();
-            foreach (var header in headers)
+            Columns = new List<string>();
+            foreach (var header in columns)
             {
-                Headings.Add(header);
+                Columns.Add(header);
+                Header += (string.IsNullOrEmpty(Header) ? string.Empty : ",") + header;
             }
         }
 
@@ -43,18 +51,18 @@
 
         public int LineNumber { get; private set; }
 
-        private List<string> Headings { get; set; }
+        private List<string> Columns { get; set; }
 
         public IDictionary<string, string> ReadEntry()
         {
             var result = new Dictionary<string, string>();
 
-            if (null == Headings)
+            if (null == Columns)
             {
-                Headings = new List<string>();
+                Columns = new List<string>();
                 foreach (var heading in Next())
                 {
-                    Headings.Add(heading);
+                    Columns.Add(heading);
                 }
 
                 Header = Line;
@@ -64,7 +72,7 @@
             if (0 != entry.Count)
             {
                 EntryNumber++;
-                if (Headings.Count !=
+                if (Columns.Count !=
                     entry.Count)
                 {
                     var message = string.Format(
@@ -74,9 +82,42 @@
                     throw new FormatException(message);
                 }
 
-                for (var i = 0; i < Headings.Count; i++)
+                for (var i = 0; i < Columns.Count; i++)
                 {
-                    result.Add(Headings[i], entry[i]);
+                    result.Add(Columns[i], entry[i]);
+                }
+            }
+
+            return result;
+        }
+
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
+        private static IEnumerable<string> ParseHeader(string header)
+        {
+            if (null == header)
+            {
+                throw new ArgumentNullException("header");
+            }
+
+            if (0 == header.Length)
+            {
+                throw new ArgumentOutOfRangeException("header");
+            }
+
+            IEnumerable<string> result;
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine(header);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new CsvStreamReader(stream))
+                    {
+                        reader.ReadEntry();
+                        result = reader.Columns;
+                    }
                 }
             }
 
