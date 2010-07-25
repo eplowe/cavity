@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="ComparableObject.Derived.cs" />
     <Compile Include="ComparableObject.Facts.cs" />
+    <Compile Include="IO\CsvFile.Facts.cs" />
     <Compile Include="IO\CsvStreamReader.Facts.cs" />
     <Compile Include="IO\EncodedStringWriter.Facts.cs" />
     <Compile Include="Object.ExtensionMethods.Facts.cs" />
