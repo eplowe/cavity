@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using Xunit;
 
     public sealed class CsvFileFacts
@@ -64,9 +65,9 @@
                     }
                 }
 
-                foreach (var item in new CsvFile(file) as IEnumerable)
+                IEnumerable enumerable = new CsvFile(file);
+                foreach (var entry in enumerable.Cast<IDictionary<string, string>>())
                 {
-                    var entry = (IDictionary<string, string>)item;
                     Assert.Equal("value", entry["name"]);
                 }
             }
