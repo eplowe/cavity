@@ -58,6 +58,7 @@
       <Link>Properties\Cavity.cs</Link>
     </Compile>
     <Compile Include="ComparableObject.cs" />
+    <Compile Include="IO\CsvFile.cs" />
     <Compile Include="IO\CsvStreamReader.cs" />
     <Compile Include="IO\EncodedStringWriter.cs" />
     <Compile Include="Object.ExtensionMethods.cs" />
