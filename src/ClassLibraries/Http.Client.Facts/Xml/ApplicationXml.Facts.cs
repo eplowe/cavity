@@ -132,7 +132,10 @@
                 }
             }
 
-            Assert.Equal<string>(null, body as ApplicationXml);
+            var expected = string.Empty;
+            var actual = body as ApplicationXml;
+
+            Assert.Equal<string>(expected, actual);
         }
 
         [Fact]
@@ -160,7 +163,10 @@
                 }
             }
 
-            Assert.Equal<string>(null, body as ApplicationXml);
+            var expected = string.Empty;
+            var actual = body as ApplicationXml;
+
+            Assert.Equal<string>(expected, actual);
         }
 
         [Fact]

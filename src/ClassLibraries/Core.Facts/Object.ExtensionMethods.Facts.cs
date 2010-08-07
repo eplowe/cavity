@@ -131,7 +131,21 @@ namespace Cavity
         public void op_XmlSerialize_object()
         {
             const string expected = "2009-04-25T00:00:00";
-            var actual = new DateTime(2009, 04, 25).XmlSerialize().CreateNavigator().SelectSingleNode("//dateTime").Value;
+            string actual = null;
+
+            var xml = new DateTime(2009, 04, 25).XmlSerialize();
+            if (null != xml)
+            {
+                var navigator = xml.CreateNavigator();
+                if (null != navigator)
+                {
+                    var node = navigator.SelectSingleNode("//dateTime");
+                    if (null != node)
+                    {
+                        actual = node.Value;
+                    }
+                }
+            }
 
             Assert.Equal(expected, actual);
         }

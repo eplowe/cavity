@@ -30,7 +30,7 @@
 
             return type
                 .GetInterfaces()
-                .Any(item => item.FullName.Equals(@interface.FullName));
+                .Any(item => null != item.FullName && item.FullName.Equals(@interface.FullName));
         }
 
         /// <summary>

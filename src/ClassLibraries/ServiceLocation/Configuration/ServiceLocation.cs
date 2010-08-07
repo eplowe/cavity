@@ -28,19 +28,24 @@
                     throw new XmlException(Resources.ServiceLocation_NullSectionMessage);
                 }
 
-                var attribute = section.Attributes["type"];
+                var attributes = section.Attributes;
+                if (null == attributes)
+                {
+                    throw new XmlException(Resources.ServiceLocation_TypeAttributeRequiredMessage);
+                }
+
+                var attribute = attributes["type"];
                 if (null == attribute)
                 {
                     throw new XmlException(Resources.ServiceLocation_TypeAttributeRequiredMessage);
                 }
 
-                var type = Type.GetType(attribute.Value);
-                if (null == type)
+                if (null == attribute.Value)
                 {
                     throw new XmlException(Resources.ServiceLocation_TypeAttributeRequiredMessage);
                 }
 
-                result = Activator.CreateInstance(type) as ISetLocatorProvider;
+                result = Activator.CreateInstance(Type.GetType(attribute.Value)) as ISetLocatorProvider;
                 if (null == result)
                 {
                     throw new XmlException(Resources.ServiceLocation_TypeInterfaceRequiredMessage);
