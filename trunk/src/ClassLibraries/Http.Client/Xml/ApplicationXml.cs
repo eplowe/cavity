@@ -92,7 +92,7 @@
         public override string ToString()
         {
             return null == Xml
-                       ? null
+                       ? string.Empty
                        : Xml.CreateNavigator().OuterXml;
         }
 

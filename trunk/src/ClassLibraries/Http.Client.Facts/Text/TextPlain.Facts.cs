@@ -170,7 +170,10 @@
         [Fact]
         public void op_ToString()
         {
-            Assert.Null(new TextPlain().ToString());
+            var expected = string.Empty;
+            var actual = new TextPlain().ToString();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

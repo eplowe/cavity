@@ -82,7 +82,7 @@
 
         public override string ToString()
         {
-            return Content as string;
+            return Content as string ?? string.Empty;
         }
 
         public void Write(TextWriter writer)

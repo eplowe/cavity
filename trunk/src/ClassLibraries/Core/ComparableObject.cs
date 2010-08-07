@@ -80,7 +80,7 @@ namespace Cavity
 
         public override string ToString()
         {
-            return null;
+            return string.Empty;
         }
 
         public virtual int CompareTo(object obj)

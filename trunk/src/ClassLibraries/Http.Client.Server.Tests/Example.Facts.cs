@@ -31,7 +31,7 @@
                 Assert.True(client.Response.Headers.ContainsName("Last-Modified"));
                 Assert.True(client.Response.Headers.ContainsName("ETag"));
                 Assert.True(client.Response.Headers.ContainsName("Accept-Ranges"));
-                Assert.Equal("574", client.Response.Headers["Content-Length"]);
+                Assert.Equal("596", client.Response.Headers["Content-Length"]);
                 Assert.Equal("close", client.Response.Headers["Connection"]);
                 Assert.Equal("text/html; charset=UTF-8", client.Response.Headers["Content-Type"]);
 
@@ -66,7 +66,7 @@
                 Assert.True(client.Response.Headers.ContainsName("Last-Modified"));
                 Assert.True(client.Response.Headers.ContainsName("ETag"));
                 Assert.True(client.Response.Headers.ContainsName("Accept-Ranges"));
-                Assert.Equal("574", client.Response.Headers["Content-Length"]);
+                Assert.Equal("596", client.Response.Headers["Content-Length"]);
                 Assert.Equal("close", client.Response.Headers["Connection"]);
                 Assert.Equal("text/html; charset=UTF-8", client.Response.Headers["Content-Type"]);
 
