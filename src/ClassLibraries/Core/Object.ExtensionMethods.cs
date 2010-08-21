@@ -16,54 +16,58 @@ namespace Cavity
     {
         public static string ToXmlString(this object value)
         {
-            string result = null;
-
-            if (null != value)
+            if (null == value)
             {
-                var s = value as string;
-                if (null != s)
-                {
-                    result = s;
-                }
-                else if (value is bool)
-                {
-                    result = XmlConvert.ToString((bool)value);
-                }
-                else if (value is DateTime)
-                {
-                    result = XmlConvert.ToString((DateTime)value, XmlDateTimeSerializationMode.Utc);
-                }
-                else if (value is DateTimeOffset)
-                {
-                    result = XmlConvert.ToString((DateTimeOffset)value);
-                }
-                else if (value is decimal)
-                {
-                    result = XmlConvert.ToString((decimal)value);
-                }
-                else if (value is double)
-                {
-                    result = XmlConvert.ToString((double)value);
-                }
-                else if (value is float)
-                {
-                    result = XmlConvert.ToString((float)value);
-                }
-                else if (value is TimeSpan)
-                {
-                    result = XmlConvert.ToString((TimeSpan)value);
-                }
-                else if (value is IConvertible)
-                {
-                    result = (string)Convert.ChangeType(value, typeof(string), CultureInfo.InvariantCulture);
-                }
-                else
-                {
-                    result = value.ToString();
-                }
+                return null;
             }
 
-            return result;
+            var s = value as string;
+            if (null != s)
+            {
+                return s;
+            }
+
+            if (value is bool)
+            {
+                return XmlConvert.ToString((bool)value);
+            }
+
+            if (value is DateTime)
+            {
+                return XmlConvert.ToString((DateTime)value, XmlDateTimeSerializationMode.Utc);
+            }
+
+            if (value is DateTimeOffset)
+            {
+                return XmlConvert.ToString((DateTimeOffset)value);
+            }
+
+            if (value is decimal)
+            {
+                return XmlConvert.ToString((decimal)value);
+            }
+
+            if (value is double)
+            {
+                return XmlConvert.ToString((double)value);
+            }
+
+            if (value is float)
+            {
+                return XmlConvert.ToString((float)value);
+            }
+
+            if (value is TimeSpan)
+            {
+                return XmlConvert.ToString((TimeSpan)value);
+            }
+
+            if (value is IConvertible)
+            {
+                return (string)Convert.ChangeType(value, typeof(string), CultureInfo.InvariantCulture);
+            }
+
+            return value.ToString();
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]

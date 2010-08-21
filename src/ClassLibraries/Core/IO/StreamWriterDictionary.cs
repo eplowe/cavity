@@ -1,0 +1,126 @@
+﻿namespace Cavity.IO
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.Security.Permissions;
+
+    [Serializable]
+    public sealed class StreamWriterDictionary : Dictionary<string, StreamWriter>, IDisposable
+    {
+        public StreamWriterDictionary()
+        {
+            Access = FileAccess.Write;
+            Mode = FileMode.OpenOrCreate;
+            Share = FileShare.None;
+        }
+
+        public StreamWriterDictionary(string firstLine)
+            : this()
+        {
+            FirstLine = firstLine;
+        }
+
+        private StreamWriterDictionary(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
+
+        ~StreamWriterDictionary()
+        {
+            Dispose(false);
+        }
+
+        public FileAccess Access { get; set; }
+
+        public string FirstLine { get; set; }
+
+        public FileMode Mode { get; set; }
+
+        public FileShare Share { get; set; }
+
+        private bool Disposed { get; set; }
+
+        [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+        }
+
+        public StreamWriter Item(FileInfo file)
+        {
+            return Item(file, FirstLine);
+        }
+
+        public StreamWriter Item(string fileName)
+        {
+            return Item(fileName, Mode, Access, Share);
+        }
+
+        public StreamWriter Item(string fileName, FileMode mode, FileAccess access, FileShare share)
+        {
+            return Item(fileName, FirstLine, mode, access, share);
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Only files are supported.")]
+        public StreamWriter Item(FileInfo file, string firstLine)
+        {
+            if (null == file)
+            {
+                throw new ArgumentNullException("file");
+            }
+
+            return Item(file.FullName, firstLine, Mode, Access, Share);
+        }
+
+        public StreamWriter Item(string fileName, string firstLine)
+        {
+            return Item(fileName, firstLine, Mode, Access, Share);
+        }
+
+        public StreamWriter Item(string fileName, string firstLine, FileMode mode, FileAccess access, FileShare share)
+        {
+            if (Disposed)
+            {
+                throw new InvalidOperationException("This object has been disposed.");
+            }
+
+            if (!ContainsKey(fileName))
+            {
+                var writer = new StreamWriter(new FileInfo(fileName).Open(mode, access, share));
+                Add(fileName, writer);
+                if (null != firstLine)
+                {
+                    writer.WriteLine(firstLine);
+                }
+            }
+
+            return this[fileName];
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!Disposed)
+            {
+                if (disposing)
+                {
+                    foreach (var item in this.Where(x => null != x.Value))
+                    {
+                        item.Value.Dispose();
+                    }
+                }
+            }
+
+            Disposed = true;
+        }
+    }
+}

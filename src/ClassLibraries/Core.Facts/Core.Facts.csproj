@@ -61,6 +61,7 @@
     <Compile Include="IO\CsvFile.Facts.cs" />
     <Compile Include="IO\CsvStreamReader.Facts.cs" />
     <Compile Include="IO\EncodedStringWriter.Facts.cs" />
+    <Compile Include="IO\StreamWriterDictionary.Facts.cs" />
     <Compile Include="Object.ExtensionMethods.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="String.ExtensionMethods.Facts.cs" />

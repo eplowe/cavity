@@ -47,33 +47,31 @@ namespace Cavity
 
         public override bool Equals(object obj)
         {
-            var result = false;
-
-            if (!ReferenceEquals(null, obj))
+            if (ReferenceEquals(null, obj))
             {
-                if (ReferenceEquals(this, obj))
-                {
-                    result = true;
-                }
-                else
-                {
-                    var cast = obj as ComparableObject;
-
-                    if (!ReferenceEquals(null, cast))
-                    {
-                        result = 0 == Compare(this, cast);
-                    }
-                }
+                return false;
             }
 
-            return result;
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            var cast = obj as ComparableObject;
+
+            if (ReferenceEquals(null, cast))
+            {
+                return false;
+            }
+
+            return 0 == Compare(this, cast);
         }
 
         public override int GetHashCode()
         {
             var value = ToString();
 
-            return null == value
+            return ReferenceEquals(null, value)
                        ? 0
                        : value.GetHashCode();
         }
@@ -85,20 +83,19 @@ namespace Cavity
 
         public virtual int CompareTo(object obj)
         {
-            var result = 1;
-
-            if (!ReferenceEquals(null, obj))
+            if (ReferenceEquals(null, obj))
             {
-                var value = obj as ComparableObject;
-                if (ReferenceEquals(null, value))
-                {
-                    throw new ArgumentOutOfRangeException("obj");
-                }
-
-                result = Compare(this, value);
+                return 1;
             }
 
-            return result;
+            var value = obj as ComparableObject;
+
+            if (ReferenceEquals(null, value))
+            {
+                throw new ArgumentOutOfRangeException("obj");
+            }
+
+            return Compare(this, value);
         }
     }
 }

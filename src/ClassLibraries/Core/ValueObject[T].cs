@@ -32,7 +32,9 @@ namespace Cavity
 
         public static implicit operator string(ValueObject<T> value)
         {
-            return ReferenceEquals(null, value) ? null : value.ToString();
+            return ReferenceEquals(null, value)
+                       ? null
+                       : value.ToString();
         }
 
         public static bool operator !=(ValueObject<T> operand1, ValueObject<T> operand2)
@@ -99,56 +101,55 @@ namespace Cavity
 
         public virtual int CompareTo(object obj)
         {
-            var result = 1;
-
-            if (!ReferenceEquals(null, obj))
+            if (ReferenceEquals(null, obj))
             {
-                var value = obj as ValueObject<T>;
-
-                if (ReferenceEquals(null, value))
-                {
-                    throw new ArgumentOutOfRangeException("obj");
-                }
-
-                result = Compare(this, value);
+                return 1;
             }
 
-            return result;
+            var value = obj as ValueObject<T>;
+
+            if (ReferenceEquals(null, value))
+            {
+                throw new ArgumentOutOfRangeException("obj");
+            }
+
+            return Compare(this, value);
         }
 
         public virtual bool Equals(T other)
         {
-            var result = false;
-
-            if (!ReferenceEquals(null, other))
+            if (ReferenceEquals(null, other))
             {
-                if (ReferenceEquals(this, other))
-                {
-                    result = true;
-                }
-                else
-                {
-                    if (Properties.Count ==
-                        other.Properties.Count)
-                    {
-                        result = true;
-                        foreach (var property in Properties)
-                        {
-                            var left = property.GetValue(this, null);
-                            var right = property.GetValue(other, null);
-                            result = ReferenceEquals(null, left)
-                                         ? ReferenceEquals(null, right)
-                                         : left.Equals(right);
-                            if (!result)
-                            {
-                                break;
-                            }
-                        }
-                    }
-                }
+                return false;
             }
 
-            return result;
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (Properties.Count !=
+                other.Properties.Count)
+            {
+                return false;
+            }
+
+            foreach (var property in Properties)
+            {
+                var left = property.GetValue(this, null);
+                var right = property.GetValue(other, null);
+
+                if (ReferenceEquals(null, left)
+                        ? ReferenceEquals(null, right)
+                        : left.Equals(right))
+                {
+                    continue;
+                }
+
+                return false;
+            }
+
+            return true;
         }
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This design is intentional.")]
@@ -165,11 +166,11 @@ namespace Cavity
                 expression.Body.NodeType)
             {
                 var body = (UnaryExpression)expression.Body;
-                member = body.Operand as MemberExpression;
+                member = (MemberExpression)body.Operand;
             }
             else
             {
-                member = expression.Body as MemberExpression;
+                member = (MemberExpression)expression.Body;
             }
 
             RegisterProperty(member);
@@ -177,7 +178,7 @@ namespace Cavity
 
         private void RegisterProperty(MemberExpression member)
         {
-            RegisterProperty(member.Member as PropertyInfo);
+            RegisterProperty((PropertyInfo)member.Member);
         }
 
         private void RegisterProperty(PropertyInfo property)
