@@ -104,8 +104,6 @@
                 throw new ArgumentOutOfRangeException("header");
             }
 
-            IEnumerable<string> result;
-
             using (var stream = new MemoryStream())
             {
                 using (var writer = new StreamWriter(stream))
@@ -116,12 +114,10 @@
                     using (var reader = new CsvStreamReader(stream))
                     {
                         reader.ReadEntry();
-                        result = reader.Columns;
+                        return reader.Columns;
                     }
                 }
             }
-
-            return result;
         }
 
         private IList<string> Next()
@@ -142,74 +138,74 @@
 
         private IList<string> Parse(string line)
         {
+            if (string.IsNullOrEmpty(line))
+            {
+                return new List<string>();
+            }
+
             IList<string> result = new List<string>();
 
-            if (!string.IsNullOrEmpty(line))
+            var trim = true;
+            var buffer = new StringBuilder();
+            var quote = false;
+            for (var i = 0; i < line.Length; i++)
             {
-                var trim = true;
-                var buffer = new StringBuilder();
-                var quote = false;
-                for (var i = 0; i < line.Length; i++)
+                var c = line[i];
+                switch (c)
                 {
-                    var c = line[i];
-                    switch (c)
-                    {
-                        case ',':
-                            if (quote)
+                    case ',':
+                        if (quote)
+                        {
+                            buffer.Append(c);
+                        }
+                        else
+                        {
+                            result.Add(trim ? buffer.ToString().Trim() : buffer.ToString());
+                            buffer.Remove(0, buffer.Length);
+                            trim = true;
+                        }
+
+                        break;
+
+                    case '"':
+                        trim = false;
+                        if (quote)
+                        {
+                            if (i == line.Length - 1)
+                            {
+                                quote = false;
+                            }
+                            else if ('"' == line[i + 1])
                             {
                                 buffer.Append(c);
+                                i++;
                             }
                             else
                             {
-                                result.Add(trim ? buffer.ToString().Trim() : buffer.ToString());
-                                buffer.Remove(0, buffer.Length);
-                                trim = true;
+                                quote = false;
                             }
+                        }
+                        else if (0 == buffer.Length)
+                        {
+                            quote = true;
+                        }
 
-                            break;
+                        break;
 
-                        case '"':
-                            trim = false;
-                            if (quote)
-                            {
-                                if (i == line.Length - 1)
-                                {
-                                    quote = false;
-                                }
-                                else if ('"' == line[i + 1])
-                                {
-                                    buffer.Append(c);
-                                    i++;
-                                }
-                                else
-                                {
-                                    quote = false;
-                                }
-                            }
-                            else if (0 == buffer.Length)
-                            {
-                                quote = true;
-                            }
-
-                            break;
-
-                        default:
-                            buffer.Append(c);
-                            break;
-                    }
-                }
-
-                if (quote)
-                {
-                    Line = string.Concat(line, Environment.NewLine, ReadLine());
-                    LineNumber++;
-                    result = Parse(Line);
-                }
-                else
-                {
-                    result.Add(trim ? buffer.ToString().Trim() : buffer.ToString());
+                    default:
+                        buffer.Append(c);
+                        break;
                 }
             }
+
+            if (quote)
+            {
+                Line = string.Concat(line, Environment.NewLine, ReadLine());
+                LineNumber++;
+                return Parse(Line);
+            }
+
+            result.Add(trim ? buffer.ToString().Trim() : buffer.ToString());
 
             return result;
         }

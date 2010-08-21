@@ -20,16 +20,16 @@
             {
                 throw new ArgumentNullException("xml");
             }
-            else if (0 == xml.Length)
+
+            if (0 == xml.Length)
             {
                 throw new ArgumentOutOfRangeException("xml");
             }
-            else if (null == type)
+
+            if (null == type)
             {
                 throw new ArgumentNullException("type");
             }
-
-            object result;
 
             using (var stream = new MemoryStream())
             {
@@ -38,13 +38,11 @@
                     writer.Write(xml);
                     writer.Flush();
                     stream.Position = 0;
-                    result = typeof(Exception).IsAssignableFrom(type)
-                                 ? new SoapFormatter().Deserialize(stream)
-                                 : new XmlSerializer(type).Deserialize(stream);
+                    return typeof(Exception).IsAssignableFrom(type)
+                               ? new SoapFormatter().Deserialize(stream)
+                               : new XmlSerializer(type).Deserialize(stream);
                 }
             }
-
-            return result;
         }
     }
 }
