@@ -57,6 +57,7 @@
       <Link>Properties\Cavity.cs</Link>
     </Compile>
     <Compile Include="Models\BritishPostcode.Facts.cs" />
+    <Compile Include="Models\Telephone.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
