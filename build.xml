@@ -127,6 +127,12 @@
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
+			Assembly="$(ClassLibrariesPath)\Domain.Facts\bin\$(Configuration)\Cavity.Domain.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Domain.Facts\bin\$(Configuration)"
+			Xml="$(TestResultsDirectory)\domain_facts_xunit.xml"
+			/>
+		<Xunit.Runner.MSBuild.xunit
+			ContinueOnError="false"
 			Assembly="$(ClassLibrariesPath)\Http.Client.Facts\bin\$(Configuration)\Cavity.Http.Client.Facts.dll"
 			WorkingFolder="$(ClassLibrariesPath)\Http.Client.Facts\bin\$(Configuration)"
 			Xml="$(TestResultsDirectory)\http_client_facts_xunit.xml"
