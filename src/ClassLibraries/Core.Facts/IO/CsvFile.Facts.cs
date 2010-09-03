@@ -10,6 +10,19 @@
     public sealed class CsvFileFacts
     {
         [Fact]
+        public void a_definition()
+        {
+            Assert.True(new TypeExpectations<CsvFile>()
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IEnumerable<IDictionary<string, string>>>()
+                            .Result);
+        }
+
+        [Fact]
         public void ctor_FileInfo()
         {
             Assert.NotNull(new CsvFile(new FileInfo("test.csv")));
@@ -87,19 +100,6 @@
                                .TypeIs<FileInfo>()
                                .IsNotDecorated()
                                .Result);
-        }
-
-        [Fact]
-        public void type_definition()
-        {
-            Assert.True(new TypeExpectations<CsvFile>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsSealed()
-                            .NoDefaultConstructor()
-                            .IsNotDecorated()
-                            .Implements<IEnumerable<IDictionary<string, string>>>()
-                            .Result);
         }
     }
 }
