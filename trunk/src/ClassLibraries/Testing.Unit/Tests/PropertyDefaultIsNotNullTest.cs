@@ -15,7 +15,7 @@
         {
             if (Equals(
                 null,
-                Property.GetGetMethod(true).Invoke(Activator.CreateInstance(Property.ReflectedType), null)))
+                Property.GetGetMethod(true).Invoke(Activator.CreateInstance(Property.ReflectedType, true), null)))
             {
                 throw new TestException(string.Format(CultureInfo.InvariantCulture, "{0}.{1} was unexpectedly null.", Property.ReflectedType.Name, Property.Name));
             }

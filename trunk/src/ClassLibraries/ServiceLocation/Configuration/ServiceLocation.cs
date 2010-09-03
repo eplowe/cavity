@@ -45,7 +45,7 @@
                     throw new XmlException(Resources.ServiceLocation_TypeAttributeRequiredMessage);
                 }
 
-                result = Activator.CreateInstance(Type.GetType(attribute.Value)) as ISetLocatorProvider;
+                result = Activator.CreateInstance(Type.GetType(attribute.Value), true) as ISetLocatorProvider;
                 if (null == result)
                 {
                     throw new XmlException(Resources.ServiceLocation_TypeInterfaceRequiredMessage);
