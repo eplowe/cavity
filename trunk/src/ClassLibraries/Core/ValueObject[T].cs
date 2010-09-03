@@ -134,22 +134,11 @@ namespace Cavity
                 return false;
             }
 
-            foreach (var property in Properties)
-            {
-                var left = property.GetValue(this, null);
-                var right = property.GetValue(other, null);
-
-                if (ReferenceEquals(null, left)
-                        ? ReferenceEquals(null, right)
-                        : left.Equals(right))
-                {
-                    continue;
-                }
-
-                return false;
-            }
-
-            return true;
+            return !(from property in Properties
+                     let left = property.GetValue(this, null)
+                     let right = property.GetValue(other, null)
+                     where ReferenceEquals(null, left) ? !ReferenceEquals(null, right) : !left.Equals(right)
+                     select left).Any();
         }
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This design is intentional.")]
