@@ -383,7 +383,7 @@
                         var actual = reader.ReadEntry();
                         Assert.Equal(3, reader.LineNumber);
                         Assert.Equal(1, reader.EntryNumber);
-                        Assert.Empty(actual);
+                        Assert.Null(actual);
                     }
                 }
             }

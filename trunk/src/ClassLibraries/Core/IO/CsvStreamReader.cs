@@ -69,6 +69,11 @@
             }
 
             var entry = Next();
+            if (null == entry)
+            {
+                return null;
+            }
+
             if (0 != entry.Count)
             {
                 EntryNumber++;
@@ -140,7 +145,7 @@
         {
             if (string.IsNullOrEmpty(line))
             {
-                return new List<string>();
+                return null;
             }
 
             IList<string> result = new List<string>();
