@@ -34,7 +34,13 @@
                 {
                     while (!reader.EndOfStream)
                     {
-                        yield return reader.ReadEntry();
+                        var entry = reader.ReadEntry();
+                        if (null == entry)
+                        {
+                            break;
+                        }
+
+                        yield return entry;
                     }
                 }
             }

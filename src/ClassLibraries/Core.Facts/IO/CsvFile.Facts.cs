@@ -64,6 +64,34 @@
         }
 
         [Fact]
+        public void op_GetEnumerator_whenOnlyHeader()
+        {
+            var file = new FileInfo(Path.GetTempFileName());
+            try
+            {
+                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                {
+                    using (var writer = new StreamWriter(stream))
+                    {
+                        writer.WriteLine("name");
+                    }
+                }
+
+                foreach (var item in new CsvFile(file))
+                {
+                    Assert.Equal("value", item["name"]);
+                }
+            }
+            finally
+            {
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+            }
+        }
+
+        [Fact]
         public void op_IEnumerable_GetEnumerator()
         {
             var file = new FileInfo(Path.GetTempFileName());
