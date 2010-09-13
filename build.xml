@@ -121,6 +121,12 @@
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
+			Assembly="$(ClassLibrariesPath)\Build.Tasks.Facts\bin\$(Configuration)\Cavity.Build.Tasks.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Build.Tasks.Facts\bin\$(Configuration)"
+			Xml="$(TestResultsDirectory)\build_tasks_facts_xunit.xml"
+			/>
+		<Xunit.Runner.MSBuild.xunit
+			ContinueOnError="false"
 			Assembly="$(ClassLibrariesPath)\Core.Facts\bin\$(Configuration)\Cavity.Core.Facts.dll"
 			WorkingFolder="$(ClassLibrariesPath)\Core.Facts\bin\$(Configuration)"
 			Xml="$(TestResultsDirectory)\core_facts_xunit.xml"
