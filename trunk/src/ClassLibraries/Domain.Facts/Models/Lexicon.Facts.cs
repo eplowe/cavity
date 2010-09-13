@@ -132,6 +132,38 @@
         }
 
         [Fact]
+        public void op_LoadCsv_FileInfo_withRepeats()
+        {
+            var file = new FileInfo(Path.GetTempFileName());
+            try
+            {
+                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                {
+                    using (var writer = new StreamWriter(stream))
+                    {
+                        writer.WriteLine("CANONICAL,SYNONYMS");
+                        writer.WriteLine("1,One");
+                        writer.WriteLine("1,Unit");
+                    }
+                }
+
+                var obj = Lexicon.LoadCsv(file);
+
+                Assert.Equal("1", obj.ToCanonicalForm("One"));
+                Assert.Equal("1", obj.ToCanonicalForm("Unit"));
+                Assert.Equal(1, obj.Items.Count);
+                Assert.Equal(2, obj.Items[0].Synonyms.Count);
+            }
+            finally
+            {
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+            }
+        }
+
+        [Fact]
         public void op_LoadCsv_FileInfo_withSingleSynonym()
         {
             var file = new FileInfo(Path.GetTempFileName());
@@ -149,6 +181,64 @@
                 var obj = Lexicon.LoadCsv(file);
 
                 Assert.Equal("1", obj.ToCanonicalForm("One"));
+            }
+            finally
+            {
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+            }
+        }
+
+        [Fact]
+        public void op_SaveCsv_FileInfo()
+        {
+            var file = new FileInfo(Path.GetTempFileName());
+            try
+            {
+                file.Delete();
+
+                var obj = new Lexicon();
+                obj.Items.Add(new LexicalItem("Example"));
+
+                obj.SaveCsv(file);
+
+                Assert.True(file.Exists);
+
+                Assert.True(Lexicon.LoadCsv(file).Contains("EXAMPLE", StringComparison.InvariantCultureIgnoreCase));
+            }
+            finally
+            {
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+            }
+        }
+
+        [Fact]
+        public void op_SaveCsv_FileInfoNull()
+        {
+            var obj = new Lexicon();
+            obj.Items.Add(new LexicalItem("Example"));
+
+            Assert.Throws<ArgumentNullException>(() => obj.SaveCsv(null));
+        }
+
+        [Fact]
+        public void op_SaveCsv_FileInfo_whenEmpty()
+        {
+            var file = new FileInfo(Path.GetTempFileName());
+            try
+            {
+                file.Delete();
+
+                new Lexicon().SaveCsv(file);
+
+                Assert.True(file.Exists);
+
+                Assert.True(File.ReadAllText(file.FullName).StartsWith("CANONICAL,SYNONYMS"));
             }
             finally
             {
