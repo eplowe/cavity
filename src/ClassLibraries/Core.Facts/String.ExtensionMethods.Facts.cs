@@ -12,6 +12,126 @@
         }
 
         [Fact]
+        public void op_Contains_stringEmpty_StringComparison()
+        {
+            Assert.False(string.Empty.Contains("example", StringComparison.Ordinal));
+        }
+
+        [Fact]
+        public void op_Contains_stringNull_StringComparison()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).Contains("example", StringComparison.Ordinal));
+        }
+
+        [Fact]
+        public void op_Contains_string_StringComparison()
+        {
+            Assert.True("abc".Contains("B", StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        [Fact]
+        public void op_Replace_stringEmpty_string_string_StringComparison()
+        {
+            var expected = string.Empty;
+            var actual = string.Empty.Replace("old", "new", StringComparison.Ordinal);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Replace_stringNull_string_string_StringComparison()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).Replace("old", "new", StringComparison.Ordinal));
+        }
+
+        [Fact]
+        public void op_Replace_string_stringEmpty_string_StringComparison()
+        {
+            const string expected = "example";
+            var actual = "example".Replace(string.Empty, "new", StringComparison.InvariantCultureIgnoreCase);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Replace_string_stringNull_string_StringComparison()
+        {
+            Assert.Throws<ArgumentNullException>(() => "example".Replace(null, "new", StringComparison.Ordinal));
+        }
+
+        [Fact]
+        public void op_Replace_string_string_stringEmpty_StringComparison()
+        {
+            const string expected = "example";
+            var actual = "example".Replace("old", string.Empty, StringComparison.InvariantCultureIgnoreCase);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Replace_string_string_stringEmpty_StringComparison_whenMultiple()
+        {
+            const string expected = "abc";
+            var actual = "_a_b_c_".Replace("_", string.Empty, StringComparison.InvariantCultureIgnoreCase);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Replace_string_string_stringNull_StringComparison()
+        {
+            const string expected = "example";
+            var actual = "example".Replace("old", null, StringComparison.InvariantCultureIgnoreCase);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Replace_string_string_string_StringComparison_whenEmbedded()
+        {
+            const string expected = "abc";
+            var actual = "aXYZc".Replace("xyz", "b", StringComparison.InvariantCultureIgnoreCase);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Replace_string_string_string_StringComparison_whenEnd()
+        {
+            const string expected = "abc";
+            var actual = "abXYZ".Replace("xyz", "c", StringComparison.InvariantCultureIgnoreCase);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Replace_string_string_string_StringComparison_whenMultiple()
+        {
+            const string expected = ".a.b.c.";
+            var actual = "_a_b_c_".Replace("_", ".", StringComparison.InvariantCultureIgnoreCase);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Replace_string_string_string_StringComparison_whenNoMatch()
+        {
+            const string expected = "example";
+            var actual = "example".Replace("old", "new", StringComparison.InvariantCultureIgnoreCase);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Replace_string_string_string_StringComparison_whenStart()
+        {
+            const string expected = "abc";
+            var actual = "XYZbc".Replace("xyz", "a", StringComparison.InvariantCultureIgnoreCase);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_XmlDeserializeOfT_string()
         {
             var expected = new DateTime(2009, 04, 25);

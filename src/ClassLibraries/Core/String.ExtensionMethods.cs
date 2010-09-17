@@ -4,10 +4,61 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Runtime.Serialization.Formatters.Soap;
+    using System.Text;
     using System.Xml.Serialization;
 
     public static class StringExtensionMethods
     {
+        public static bool Contains(this string obj, string value, StringComparison comparisonType)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return -1 != obj.IndexOf(value, comparisonType);
+        }
+
+        public static string Replace(this string obj, string oldValue, string newValue, StringComparison comparisonType)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (null == oldValue)
+            {
+                throw new ArgumentNullException("oldValue");
+            }
+
+            if (0 == obj.Length)
+            {
+                return obj;
+            }
+
+            if (0 == oldValue.Length)
+            {
+                return obj;
+            }
+
+            var buffer = new StringBuilder();
+            for (var i = 0; i < obj.Length; i++)
+            {
+                if (obj.Substring(i).StartsWith(oldValue, comparisonType))
+                {
+                    buffer.Append(newValue);
+                    i += oldValue.Length - 1;
+                    continue;
+                }
+                else
+                {
+                    buffer.Append(obj[i]);
+                }
+            }
+
+            return buffer.ToString();
+        }
+
         public static T XmlDeserialize<T>(this string xml)
         {
             return (T)XmlDeserialize(xml, typeof(T));
