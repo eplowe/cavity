@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
@@ -16,11 +17,24 @@
             Items = new Collection<LexicalItem>();
         }
 
-        public Collection<LexicalItem> Items { get; private set; }
+        public Lexicon(IComparer<string> comparer)
+            : this()
+        {
+            Comparer = comparer;
+        }
+
+        public IComparer<string> Comparer { get; set; }
+
+        public ICollection<LexicalItem> Items { get; private set; }
 
         public static Lexicon LoadCsv(FileInfo file)
         {
-            var result = new Lexicon();
+            return LoadCsv(file, null);
+        }
+
+        public static Lexicon LoadCsv(FileInfo file, IComparer<string> comparer)
+        {
+            var result = new Lexicon(comparer);
 
             foreach (var data in new CsvFile(file))
             {
@@ -53,12 +67,7 @@
 
         public bool Contains(string value)
         {
-            return Contains(value, StringComparison.Ordinal);
-        }
-
-        public bool Contains(string value, StringComparison comparisonType)
-        {
-            return Items.Any(item => item.Contains(value, comparisonType));
+            return Items.Any(item => item.Contains(value, Comparer));
         }
 
         [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Will trust in using statement.")]
@@ -111,13 +120,8 @@
 
         public string ToCanonicalForm(string value)
         {
-            return ToCanonicalForm(value, StringComparison.Ordinal);
-        }
-
-        public string ToCanonicalForm(string value, StringComparison comparisonType)
-        {
             return (from item in Items
-                    where item.Contains(value, comparisonType)
+                    where item.Contains(value, Comparer)
                     select item.CanonicalForm).FirstOrDefault();
         }
     }

@@ -46,9 +46,24 @@
         }
 
         [Fact]
-        public void op_Contains_stringEmpty_StringComparison()
+        public void op_Contains_stringEmpty_IComparer()
         {
-            Assert.False(new LexicalItem("Example").Contains(string.Empty, StringComparison.InvariantCultureIgnoreCase));
+            var obj = new LexicalItem("Example")
+            {
+                Synonyms =
+                    {
+                        "Foo",
+                        "Bar"
+                    }
+            };
+
+            Assert.False(obj.Contains(string.Empty, StringComparer.InvariantCultureIgnoreCase));
+        }
+
+        [Fact]
+        public void op_Contains_stringEmpty_IComparerNull()
+        {
+            Assert.False(new LexicalItem("Example").Contains(string.Empty, null));
         }
 
         [Fact]
@@ -58,21 +73,51 @@
         }
 
         [Fact]
-        public void op_Contains_stringNull_StringComparison()
+        public void op_Contains_stringNull_IComparer()
         {
-            Assert.False(new LexicalItem("Example").Contains(null, StringComparison.InvariantCultureIgnoreCase));
+            var obj = new LexicalItem("Example")
+            {
+                Synonyms =
+                    {
+                        "Foo",
+                        "Bar"
+                    }
+            };
+
+            Assert.False(obj.Contains(null, StringComparer.InvariantCultureIgnoreCase));
         }
 
         [Fact]
-        public void op_Contains_string_StringComparison()
+        public void op_Contains_stringNull_IComparerNull()
         {
-            Assert.False(new LexicalItem("Example").Contains("EXAMPLE", StringComparison.InvariantCulture));
+            Assert.False(new LexicalItem("Example").Contains(null, null));
         }
 
         [Fact]
-        public void op_Contains_string_StringComparisonInvariantCultureIgnoreCase()
+        public void op_Contains_string_IComparerNull()
         {
-            Assert.True(new LexicalItem("Example").Contains("EXAMPLE", StringComparison.InvariantCultureIgnoreCase));
+            Assert.True(new LexicalItem("Example").Contains("Example", null));
+        }
+
+        [Fact]
+        public void op_Contains_string_IComparer_whenMatchesCanonicalForm()
+        {
+            Assert.True(new LexicalItem("Example").Contains("EXAMPLE", StringComparer.InvariantCultureIgnoreCase));
+        }
+
+        [Fact]
+        public void op_Contains_string_IComparer_whenMatchesSynonym()
+        {
+            var obj = new LexicalItem("Example")
+            {
+                Synonyms =
+                    {
+                        "Foo",
+                        "Bar"
+                    }
+            };
+
+            Assert.True(obj.Contains("Bar", StringComparer.InvariantCultureIgnoreCase));
         }
 
         [Fact]
