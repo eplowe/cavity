@@ -1,7 +1,7 @@
 ﻿namespace Cavity.Models
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using Xunit;
@@ -12,6 +12,18 @@
         public void ctor()
         {
             Assert.NotNull(new Lexicon());
+        }
+
+        [Fact]
+        public void ctor_IComparer()
+        {
+            Assert.NotNull(new Lexicon(StringComparer.InvariantCulture));
+        }
+
+        [Fact]
+        public void ctor_IComparerNull()
+        {
+            Assert.NotNull(new Lexicon(null));
         }
 
         [Fact]
@@ -30,9 +42,9 @@
         }
 
         [Fact]
-        public void op_Contains_stringEmpty_StringComparison()
+        public void op_Contains_stringEmpty_whenInvariantComparer()
         {
-            Assert.False(new Lexicon().Contains(string.Empty, StringComparison.InvariantCulture));
+            Assert.False(new Lexicon(StringComparer.InvariantCulture).Contains(string.Empty));
         }
 
         [Fact]
@@ -42,30 +54,30 @@
         }
 
         [Fact]
-        public void op_Contains_stringNull_StringComparison()
+        public void op_Contains_stringNull_whenInvariantComparer()
         {
-            Assert.False(new Lexicon().Contains(null, StringComparison.InvariantCulture));
-        }
-
-        [Fact]
-        public void op_Contains_string_StringComparison()
-        {
-            var obj = new Lexicon();
-            obj.Items.Add(new LexicalItem("Example"));
-
-            Assert.True(obj.Contains("EXAMPLE", StringComparison.InvariantCultureIgnoreCase));
-        }
-
-        [Fact]
-        public void op_Contains_string_StringComparison_whenEmpty()
-        {
-            Assert.False(new Lexicon().Contains("Example", StringComparison.InvariantCulture));
+            Assert.False(new Lexicon(StringComparer.InvariantCulture).Contains(null));
         }
 
         [Fact]
         public void op_Contains_string_whenEmpty()
         {
             Assert.False(new Lexicon().Contains("Example"));
+        }
+
+        [Fact]
+        public void op_Contains_string_whenEmptyWithInvariantComparer()
+        {
+            Assert.False(new Lexicon(StringComparer.InvariantCulture).Contains("Example"));
+        }
+
+        [Fact]
+        public void op_Contains_string_whenInvariantComparer()
+        {
+            var obj = new Lexicon(StringComparer.InvariantCultureIgnoreCase);
+            obj.Items.Add(new LexicalItem("Example"));
+
+            Assert.True(obj.Contains("EXAMPLE"));
         }
 
         [Fact]
@@ -152,7 +164,7 @@
                 Assert.Equal("1", obj.ToCanonicalForm("One"));
                 Assert.Equal("1", obj.ToCanonicalForm("Unit"));
                 Assert.Equal(1, obj.Items.Count);
-                Assert.Equal(2, obj.Items[0].Synonyms.Count);
+                Assert.Equal(2, obj.Items.First().Synonyms.Count);
             }
             finally
             {
@@ -199,14 +211,14 @@
             {
                 file.Delete();
 
-                var obj = new Lexicon();
+                var obj = new Lexicon(StringComparer.InvariantCultureIgnoreCase);
                 obj.Items.Add(new LexicalItem("Example"));
 
                 obj.SaveCsv(file);
 
                 Assert.True(file.Exists);
 
-                Assert.True(Lexicon.LoadCsv(file).Contains("EXAMPLE", StringComparison.InvariantCultureIgnoreCase));
+                Assert.True(Lexicon.LoadCsv(file).Contains("Example"));
             }
             finally
             {
@@ -224,6 +236,58 @@
             obj.Items.Add(new LexicalItem("Example"));
 
             Assert.Throws<ArgumentNullException>(() => obj.SaveCsv(null));
+        }
+
+        [Fact]
+        public void op_SaveCsv_FileInfo_IComparer()
+        {
+            var file = new FileInfo(Path.GetTempFileName());
+            try
+            {
+                file.Delete();
+
+                var obj = new Lexicon();
+                obj.Items.Add(new LexicalItem("Example"));
+
+                obj.SaveCsv(file);
+
+                Assert.True(file.Exists);
+
+                Assert.True(Lexicon.LoadCsv(file, StringComparer.InvariantCultureIgnoreCase).Contains("EXAMPLE"));
+            }
+            finally
+            {
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+            }
+        }
+
+        [Fact]
+        public void op_SaveCsv_FileInfo_IComparerNull()
+        {
+            var file = new FileInfo(Path.GetTempFileName());
+            try
+            {
+                file.Delete();
+
+                var obj = new Lexicon();
+                obj.Items.Add(new LexicalItem("Example"));
+
+                obj.SaveCsv(file);
+
+                Assert.True(file.Exists);
+
+                Assert.True(Lexicon.LoadCsv(file, null).Contains("Example"));
+            }
+            finally
+            {
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+            }
         }
 
         [Fact]
@@ -263,7 +327,7 @@
                     }
             });
 
-            var actual = obj.ToCanonicalForm(obj.Items[0].Synonyms.First());
+            var actual = obj.ToCanonicalForm(obj.Items.First().Synonyms.First());
 
             Assert.Equal(expected, actual);
         }
@@ -275,9 +339,9 @@
         }
 
         [Fact]
-        public void op_ToCanonicalForm_stringEmpty_StringComparison()
+        public void op_ToCanonicalForm_stringEmpty_whenInvariantComparer()
         {
-            Assert.Null(new Lexicon().ToCanonicalForm(string.Empty, StringComparison.InvariantCulture));
+            Assert.Null(new Lexicon(StringComparer.InvariantCulture).ToCanonicalForm(string.Empty));
         }
 
         [Fact]
@@ -287,17 +351,17 @@
         }
 
         [Fact]
-        public void op_ToCanonicalForm_stringNull_StringComparison()
+        public void op_ToCanonicalForm_stringNull_whenInvariantComparer()
         {
-            Assert.Null(new Lexicon().ToCanonicalForm(null, StringComparison.InvariantCulture));
+            Assert.Null(new Lexicon(StringComparer.InvariantCulture).ToCanonicalForm(null));
         }
 
         [Fact]
-        public void op_ToCanonicalForm_string_StringComparison()
+        public void op_ToCanonicalForm_string_whenInvariantComparer()
         {
             const string expected = "1";
 
-            var obj = new Lexicon();
+            var obj = new Lexicon(StringComparer.InvariantCultureIgnoreCase);
             obj.Items.Add(new LexicalItem(expected)
             {
                 Synonyms =
@@ -306,18 +370,26 @@
                     }
             });
 
-            var actual = obj.ToCanonicalForm(
-                obj.Items[0].Synonyms.First().ToUpperInvariant(),
-                StringComparison.InvariantCultureIgnoreCase);
+            var actual = obj.ToCanonicalForm("ONE");
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void prop_Comparer()
+        {
+            Assert.NotNull(new PropertyExpectations<Lexicon>("Comparer")
+                               .TypeIs<IComparer<string>>()
+                               .DefaultValueIsNull()
+                               .IsNotDecorated()
+                               .Result);
         }
 
         [Fact]
         public void prop_Items()
         {
             Assert.NotNull(new PropertyExpectations<Lexicon>("Items")
-                               .TypeIs<Collection<LexicalItem>>()
+                               .TypeIs<ICollection<LexicalItem>>()
                                .DefaultValueIsNotNull()
                                .IsNotDecorated()
                                .Result);

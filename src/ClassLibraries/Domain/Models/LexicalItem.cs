@@ -47,14 +47,18 @@
 
         public bool Contains(string value)
         {
-            return string.Equals(CanonicalForm, value)
-                   || Synonyms.Contains(value);
+            return Contains(value, null);
         }
 
-        public bool Contains(string value, StringComparison comparisonType)
+        public bool Contains(string value, IComparer<string> comparer)
         {
-            return string.Equals(CanonicalForm, value, comparisonType)
-                   || Synonyms.Any(synonym => string.Equals(synonym, value, comparisonType));
+            if (null == comparer)
+            {
+                return string.Equals(CanonicalForm, value) || Synonyms.Contains(value);
+            }
+
+            return 0 == comparer.Compare(CanonicalForm, value)
+                   || Synonyms.Any(synonym => 0 == comparer.Compare(synonym, value));
         }
     }
 }
