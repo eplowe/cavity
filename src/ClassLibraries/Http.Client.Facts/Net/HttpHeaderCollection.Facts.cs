@@ -522,11 +522,11 @@
         [Fact]
         public void prop_ContentType()
         {
-            Assert.NotNull(new PropertyExpectations<HttpHeaderCollection>("ContentType")
-                               .TypeIs<ContentType>()
-                               .DefaultValueIsNull()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<HttpHeaderCollection>(p => p.ContentType)
+                            .TypeIs<ContentType>()
+                            .DefaultValueIsNull()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
@@ -543,21 +543,21 @@
         [Fact]
         public void prop_Count()
         {
-            Assert.NotNull(new PropertyExpectations<HttpHeaderCollection>("Count")
-                               .TypeIs<int>()
-                               .DefaultValueIs(0)
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<HttpHeaderCollection>(p => p.Count)
+                            .TypeIs<int>()
+                            .DefaultValueIs(0)
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_IsReadOnly()
         {
-            Assert.NotNull(new PropertyExpectations<HttpHeaderCollection>("IsReadOnly")
-                               .TypeIs<bool>()
-                               .DefaultValueIs(false)
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<HttpHeaderCollection>(p => p.IsReadOnly)
+                            .TypeIs<bool>()
+                            .DefaultValueIs(false)
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

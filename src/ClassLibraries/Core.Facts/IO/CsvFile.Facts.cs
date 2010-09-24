@@ -124,10 +124,10 @@
         [Fact]
         public void prop_Info()
         {
-            Assert.NotNull(new PropertyExpectations<CsvFile>("Info")
-                               .TypeIs<FileInfo>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<CsvFile>(p => p.Info)
+                            .TypeIs<FileInfo>()
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

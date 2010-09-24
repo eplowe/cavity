@@ -22,13 +22,17 @@
         [Fact]
         public void ctor_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new PropertyExpectations<Class1>(null));
+            Assert.Throws<ArgumentNullException>(() => new PropertyExpectations<Class1>(null as string));
         }
 
         [Fact]
         public void op_ArgumentNullException()
         {
             Assert.True(new PropertyExpectations<PropertiedClass1>("ArgumentNullExceptionValue")
+                            .ArgumentNullException()
+                            .Result);
+
+            Assert.True(new PropertyExpectations<PropertiedClass1>(p => p.ArgumentExceptionValue)
                             .ArgumentNullException()
                             .Result);
         }
@@ -39,12 +43,20 @@
             Assert.True(new PropertyExpectations<PropertiedClass1>("ArgumentOutOfRangeExceptionValue")
                             .ArgumentOutOfRangeException(string.Empty)
                             .Result);
+
+            Assert.True(new PropertyExpectations<PropertiedClass1>(p => p.ArgumentOutOfRangeExceptionValue)
+                            .ArgumentOutOfRangeException(string.Empty)
+                            .Result);
         }
 
         [Fact]
         public void op_Exception_object_Type()
         {
             Assert.True(new PropertyExpectations<PropertiedClass1>("ArgumentExceptionValue")
+                            .Exception(string.Empty, typeof(ArgumentException))
+                            .Result);
+
+            Assert.True(new PropertyExpectations<PropertiedClass1>(p => p.ArgumentExceptionValue)
                             .Exception(string.Empty, typeof(ArgumentException))
                             .Result);
         }

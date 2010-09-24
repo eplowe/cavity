@@ -212,33 +212,33 @@
         [Fact]
         public void prop_Content()
         {
-            Assert.NotNull(new PropertyExpectations<TextPlain>("Content")
-                               .IsAutoProperty<object>()
-                               .ArgumentOutOfRangeException(1234)
-                               .Set("value")
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<TextPlain>(p => p.Content)
+                            .IsAutoProperty<object>()
+                            .ArgumentOutOfRangeException(1234)
+                            .Set("value")
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_ContentType()
         {
-            Assert.NotNull(new PropertyExpectations<TextPlain>("ContentType")
-                               .TypeIs<ContentType>()
-                               .DefaultValueIs(new ContentType("text/plain"))
-                               .ArgumentNullException()
-                               .Set(new ContentType("text/plain"))
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<TextPlain>(p => p.ContentType)
+                            .TypeIs<ContentType>()
+                            .DefaultValueIs(new ContentType("text/plain"))
+                            .ArgumentNullException()
+                            .Set(new ContentType("text/plain"))
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Value()
         {
-            Assert.NotNull(new PropertyExpectations<TextPlain>("Value")
-                               .IsAutoProperty<string>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<TextPlain>(p => p.Value)
+                            .IsAutoProperty<string>()
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

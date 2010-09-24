@@ -233,21 +233,21 @@
         [Fact]
         public void prop_Body()
         {
-            Assert.NotNull(new PropertyExpectations<DerivedHttpMessage>("Body")
-                               .TypeIs<IContent>()
-                               .ArgumentNullException()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<DerivedHttpMessage>("Body")
+                            .TypeIs<IContent>()
+                            .ArgumentNullException()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Headers()
         {
-            Assert.NotNull(new PropertyExpectations<DerivedHttpMessage>("Headers")
-                               .TypeIs<HttpHeaderCollection>()
-                               .ArgumentNullException()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<DerivedHttpMessage>("Headers")
+                            .TypeIs<HttpHeaderCollection>()
+                            .ArgumentNullException()
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

@@ -128,10 +128,10 @@
         [Fact]
         public void prop_Number()
         {
-            Assert.NotNull(new PropertyExpectations<Telephone>("Number")
-                               .TypeIs<string>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<Telephone>(p => p.Number)
+                            .TypeIs<string>()
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

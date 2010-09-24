@@ -119,24 +119,24 @@
         [Fact]
         public void prop_Name()
         {
-            Assert.NotNull(new PropertyExpectations<HttpHeader>("Name")
-                               .TypeIs<Token>()
-                               .ArgumentNullException()
-                               .Set(new Token("name"))
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<HttpHeader>(p => p.Name)
+                            .TypeIs<Token>()
+                            .ArgumentNullException()
+                            .Set(new Token("name"))
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Value()
         {
-            Assert.NotNull(new PropertyExpectations<HttpHeader>("Value")
-                               .TypeIs<string>()
-                               .ArgumentNullException()
-                               .Set(string.Empty)
-                               .Set("value")
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<HttpHeader>(p => p.Value)
+                            .TypeIs<string>()
+                            .ArgumentNullException()
+                            .Set(string.Empty)
+                            .Set("value")
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

@@ -101,19 +101,19 @@
         [Fact]
         public void prop_Area()
         {
-            Assert.NotNull(new PropertyExpectations<BritishPostcode>("Area")
-                               .TypeIs<string>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<BritishPostcode>(p => p.Area)
+                            .TypeIs<string>()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_AreaName()
         {
-            Assert.NotNull(new PropertyExpectations<BritishPostcode>("AreaName")
-                               .TypeIs<string>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<BritishPostcode>(p => p.AreaName)
+                            .TypeIs<string>()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
@@ -131,28 +131,28 @@
         [Fact]
         public void prop_District()
         {
-            Assert.NotNull(new PropertyExpectations<BritishPostcode>("District")
-                               .TypeIs<string>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<BritishPostcode>(p => p.District)
+                            .TypeIs<string>()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Sector()
         {
-            Assert.NotNull(new PropertyExpectations<BritishPostcode>("Sector")
-                               .TypeIs<string>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<BritishPostcode>(p => p.Sector)
+                            .TypeIs<string>()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Unit()
         {
-            Assert.NotNull(new PropertyExpectations<BritishPostcode>("Unit")
-                               .TypeIs<string>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<BritishPostcode>(p => p.Unit)
+                            .TypeIs<string>()
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

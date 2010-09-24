@@ -381,10 +381,10 @@
         [Fact]
         public void prop_AbsoluteUri()
         {
-            Assert.NotNull(new PropertyExpectations<HttpRequest>("AbsoluteUri")
-                               .TypeIs<Uri>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<HttpRequest>(p => p.AbsoluteUri)
+                            .TypeIs<Uri>()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
@@ -424,13 +424,13 @@
         [Fact]
         public void prop_RequestLine()
         {
-            Assert.NotNull(new PropertyExpectations<HttpRequest>("RequestLine")
-                               .TypeIs<RequestLine>()
-                               .DefaultValueIsNull()
-                               .ArgumentNullException()
-                               .Set(new RequestLine("GET", "/", "HTTP/1.1"))
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<HttpRequest>(p => p.RequestLine)
+                            .TypeIs<RequestLine>()
+                            .DefaultValueIsNull()
+                            .ArgumentNullException()
+                            .Set(new RequestLine("GET", "/", "HTTP/1.1"))
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

@@ -144,22 +144,22 @@
         [Fact]
         public void prop_CanonicalForm()
         {
-            Assert.NotNull(new PropertyExpectations<LexicalItem>("CanonicalForm")
-                               .TypeIs<string>()
-                               .ArgumentNullException()
-                               .ArgumentOutOfRangeException(string.Empty)
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<LexicalItem>(p => p.CanonicalForm)
+                            .TypeIs<string>()
+                            .ArgumentNullException()
+                            .ArgumentOutOfRangeException(string.Empty)
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Synonyms()
         {
-            Assert.NotNull(new PropertyExpectations<LexicalItem>("Synonyms")
-                               .TypeIs<HashSet<string>>()
-                               .DefaultValueIsNotNull()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<LexicalItem>(p => p.Synonyms)
+                            .TypeIs<HashSet<string>>()
+                            .DefaultValueIsNotNull()
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

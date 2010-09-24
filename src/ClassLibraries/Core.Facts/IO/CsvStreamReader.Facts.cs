@@ -414,37 +414,37 @@
         [Fact]
         public void prop_EntryNumber()
         {
-            Assert.NotNull(new PropertyExpectations<CsvStreamReader>("EntryNumber")
-                               .TypeIs<int>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<CsvStreamReader>(p => p.EntryNumber)
+                            .TypeIs<int>()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Header()
         {
-            Assert.NotNull(new PropertyExpectations<CsvStreamReader>("Header")
-                               .TypeIs<string>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<CsvStreamReader>(p => p.Header)
+                            .TypeIs<string>()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Line()
         {
-            Assert.NotNull(new PropertyExpectations<CsvStreamReader>("Line")
-                               .TypeIs<string>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<CsvStreamReader>(p => p.Line)
+                            .TypeIs<string>()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_LineNumber()
         {
-            Assert.NotNull(new PropertyExpectations<CsvStreamReader>("LineNumber")
-                               .TypeIs<int>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<CsvStreamReader>(p => p.LineNumber)
+                            .TypeIs<int>()
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

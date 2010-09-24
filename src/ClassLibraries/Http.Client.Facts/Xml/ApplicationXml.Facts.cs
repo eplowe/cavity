@@ -205,36 +205,36 @@
         [Fact]
         public void prop_Content()
         {
-            Assert.NotNull(new PropertyExpectations<ApplicationXml>("Content")
-                               .IsAutoProperty<object>()
-                               .ArgumentOutOfRangeException(1234)
-                               .Set(new XmlDocument())
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<ApplicationXml>(p => p.Content)
+                            .IsAutoProperty<object>()
+                            .ArgumentOutOfRangeException(1234)
+                            .Set(new XmlDocument())
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_ContentType()
         {
-            Assert.NotNull(new PropertyExpectations<ApplicationXml>("ContentType")
-                               .TypeIs<ContentType>()
-                               .DefaultValueIs(new ContentType("application/xml"))
-                               .ArgumentNullException()
-                               .Set(new ContentType("application/xml"))
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<ApplicationXml>(p => p.ContentType)
+                            .TypeIs<ContentType>()
+                            .DefaultValueIs(new ContentType("application/xml"))
+                            .ArgumentNullException()
+                            .Set(new ContentType("application/xml"))
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Xml()
         {
-            Assert.NotNull(new PropertyExpectations<ApplicationXml>("Xml")
-                               .TypeIs<IXPathNavigable>()
-                               .DefaultValueIsNull()
-                               .Set(null)
-                               .Set(new XmlDocument())
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<ApplicationXml>(p => p.Xml)
+                            .TypeIs<IXPathNavigable>()
+                            .DefaultValueIsNull()
+                            .Set(null)
+                            .Set(new XmlDocument())
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

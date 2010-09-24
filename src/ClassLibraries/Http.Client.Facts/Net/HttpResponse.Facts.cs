@@ -377,13 +377,13 @@
         [Fact]
         public void prop_StatusLine()
         {
-            Assert.NotNull(new PropertyExpectations<HttpResponse>("StatusLine")
-                               .TypeIs<StatusLine>()
-                               .DefaultValueIsNull()
-                               .ArgumentNullException()
-                               .Set(new StatusLine("HTTP/1.1", 200, "OK"))
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<HttpResponse>(p => p.StatusLine)
+                            .TypeIs<StatusLine>()
+                            .DefaultValueIsNull()
+                            .ArgumentNullException()
+                            .Set(new StatusLine("HTTP/1.1", 200, "OK"))
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

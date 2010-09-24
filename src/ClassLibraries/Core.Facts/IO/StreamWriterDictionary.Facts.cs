@@ -312,37 +312,37 @@
         [Fact]
         public void prop_Access()
         {
-            Assert.NotNull(new PropertyExpectations<StreamWriterDictionary>("Access")
-                               .IsAutoProperty(FileAccess.Write)
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<StreamWriterDictionary>(p => p.Access)
+                            .IsAutoProperty(FileAccess.Write)
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_FirstLine()
         {
-            Assert.NotNull(new PropertyExpectations<StreamWriterDictionary>("FirstLine")
-                               .IsAutoProperty<string>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<StreamWriterDictionary>(p => p.FirstLine)
+                            .IsAutoProperty<string>()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Mode()
         {
-            Assert.NotNull(new PropertyExpectations<StreamWriterDictionary>("Mode")
-                               .IsAutoProperty(FileMode.OpenOrCreate)
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<StreamWriterDictionary>(p => p.Mode)
+                            .IsAutoProperty(FileMode.OpenOrCreate)
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Share()
         {
-            Assert.NotNull(new PropertyExpectations<StreamWriterDictionary>("Share")
-                               .IsAutoProperty(FileShare.None)
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<StreamWriterDictionary>(p => p.Share)
+                            .IsAutoProperty(FileShare.None)
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }
