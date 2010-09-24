@@ -57,6 +57,7 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="AbsoluteUri.cs" />
     <Compile Include="ComparableObject.cs" />
     <Compile Include="IO\CsvFile.cs" />
     <Compile Include="IO\CsvStreamReader.cs" />
@@ -69,8 +70,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RelativeUri.cs" />
     <Compile Include="String.ExtensionMethods.cs" />
-    <Compile Include="ValueObject[T].cs" />
+    <Compile Include="ValueObject`1.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.cs" />
   </ItemGroup>
   <ItemGroup>

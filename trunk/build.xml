@@ -175,6 +175,12 @@
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
+			Assembly="$(ClassLibrariesPath)\Testing.Http.Facts\bin\$(Configuration)\Cavity.Testing.Http.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Testing.Http.Facts\bin\$(Configuration)"
+			Xml="$(TestResultsDirectory)\testing_http_facts_xunit.xml"
+			/>
+		<Xunit.Runner.MSBuild.xunit
+			ContinueOnError="false"
 			Assembly="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(Configuration)\Cavity.Testing.Unit.Facts.dll"
 			WorkingFolder="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(Configuration)"
 			Xml="$(TestResultsDirectory)\testing_unit_facts_xunit.xml"

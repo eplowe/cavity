@@ -79,7 +79,7 @@
             Assert.Throws<ArgumentNullException>(() => new Http().Send(null));
         }
 
-        [Fact(Skip = "Need to check what example.com is doing now.")]
+        [Fact]
         public void op_Send_IHttpRequest_whenOptions()
         {
             try

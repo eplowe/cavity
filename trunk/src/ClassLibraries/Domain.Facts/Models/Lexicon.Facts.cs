@@ -9,6 +9,18 @@
     public sealed class LexiconFacts
     {
         [Fact]
+        public void a_definition()
+        {
+            Assert.True(new TypeExpectations<Lexicon>()
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
         public void ctor()
         {
             Assert.NotNull(new Lexicon());
@@ -393,18 +405,6 @@
                                .DefaultValueIsNotNull()
                                .IsNotDecorated()
                                .Result);
-        }
-
-        [Fact]
-        public void type_definition()
-        {
-            Assert.True(new TypeExpectations<Lexicon>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsSealed()
-                            .HasDefaultConstructor()
-                            .IsNotDecorated()
-                            .Result);
         }
     }
 }
