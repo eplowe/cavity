@@ -7,6 +7,7 @@
     using System.Linq;
     using System.Runtime.Serialization;
     using System.Security.Permissions;
+    using System.Text;
 
     [Serializable]
     public sealed class StreamWriterDictionary : Dictionary<string, StreamWriter>, IDisposable
@@ -90,7 +91,7 @@
 
             if (!ContainsKey(fileName))
             {
-                var writer = new StreamWriter(new FileInfo(fileName).Open(mode, access, share));
+                var writer = new StreamWriter(new FileInfo(fileName).Open(mode, access, share), Encoding.UTF8);
                 Add(fileName, writer);
                 if (null != firstLine)
                 {
