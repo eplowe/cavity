@@ -390,21 +390,21 @@
         [Fact]
         public void prop_Comparer()
         {
-            Assert.NotNull(new PropertyExpectations<Lexicon>("Comparer")
-                               .TypeIs<IComparer<string>>()
-                               .DefaultValueIsNull()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<Lexicon>(p => p.Comparer)
+                            .TypeIs<IComparer<string>>()
+                            .DefaultValueIsNull()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Items()
         {
-            Assert.NotNull(new PropertyExpectations<Lexicon>("Items")
-                               .TypeIs<ICollection<LexicalItem>>()
-                               .DefaultValueIsNotNull()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<Lexicon>(p => p.Items)
+                            .TypeIs<ICollection<LexicalItem>>()
+                            .DefaultValueIsNotNull()
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

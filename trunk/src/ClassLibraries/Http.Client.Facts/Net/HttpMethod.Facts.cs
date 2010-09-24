@@ -118,7 +118,7 @@
         [Fact]
         public void prop_Value()
         {
-            Assert.True(new PropertyExpectations<HttpMethod>("Value")
+            Assert.True(new PropertyExpectations<HttpMethod>(p => p.Value)
                             .TypeIs<string>()
                             .ArgumentOutOfRangeException(string.Empty)
                             .FormatException("FOO BAR")

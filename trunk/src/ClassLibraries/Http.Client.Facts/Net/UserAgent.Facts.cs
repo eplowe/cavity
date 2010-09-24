@@ -128,13 +128,13 @@
         [Fact]
         public void prop_Value()
         {
-            Assert.NotNull(new PropertyExpectations<UserAgent>("Value")
-                               .TypeIs<string>()
-                               .DefaultValueIs(UserAgent.Format())
-                               .ArgumentNullException()
-                               .Set("value")
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<UserAgent>(p => p.Value)
+                            .TypeIs<string>()
+                            .DefaultValueIs(UserAgent.Format())
+                            .ArgumentNullException()
+                            .Set("value")
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

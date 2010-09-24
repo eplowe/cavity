@@ -85,7 +85,7 @@
         [Fact]
         public void prop_Major()
         {
-            Assert.True(new PropertyExpectations<HttpVersion>("Major")
+            Assert.True(new PropertyExpectations<HttpVersion>(p => p.Major)
                             .TypeIs<int>()
                             .ArgumentOutOfRangeException(-1)
                             .Set(0)
@@ -106,7 +106,7 @@
         [Fact]
         public void prop_Minor()
         {
-            Assert.True(new PropertyExpectations<HttpVersion>("Minor")
+            Assert.True(new PropertyExpectations<HttpVersion>(p => p.Minor)
                             .TypeIs<int>()
                             .ArgumentOutOfRangeException(-1)
                             .Set(0)

@@ -115,7 +115,7 @@
         [Fact]
         public void prop_Method()
         {
-            Assert.True(new PropertyExpectations<RequestLine>("Method")
+            Assert.True(new PropertyExpectations<RequestLine>(p => p.Method)
                             .TypeIs<string>()
                             .ArgumentNullException()
                             .ArgumentOutOfRangeException(string.Empty)
@@ -134,7 +134,7 @@
         [Fact]
         public void prop_RequestUri()
         {
-            Assert.True(new PropertyExpectations<RequestLine>("RequestUri")
+            Assert.True(new PropertyExpectations<RequestLine>(p => p.RequestUri)
                             .TypeIs<string>()
                             .ArgumentNullException()
                             .ArgumentOutOfRangeException(string.Empty)
@@ -148,7 +148,7 @@
         [Fact]
         public void prop_Version()
         {
-            Assert.True(new PropertyExpectations<RequestLine>("Version")
+            Assert.True(new PropertyExpectations<RequestLine>(p => p.Version)
                             .TypeIs<HttpVersion>()
                             .ArgumentNullException()
                             .Set(new HttpVersion(1, 0))

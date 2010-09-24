@@ -123,11 +123,11 @@
         [Fact]
         public void prop_Response()
         {
-            Assert.NotNull(new PropertyExpectations<HttpClient>("Response")
-                               .TypeIs<IHttpResponse>()
-                               .DefaultValueIsNull()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<HttpClient>(p => p.Response)
+                            .TypeIs<IHttpResponse>()
+                            .DefaultValueIsNull()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
@@ -138,11 +138,11 @@
                 var locator = new Mock<IServiceLocator>();
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
-                Assert.NotNull(new PropertyExpectations<HttpClient>("UserAgent")
-                                   .TypeIs<string>()
-                                   .DefaultValueIs(UserAgent.Format())
-                                   .IsNotDecorated()
-                                   .Result);
+                Assert.True(new PropertyExpectations<HttpClient>(p => p.UserAgent)
+                                .TypeIs<string>()
+                                .DefaultValueIs(UserAgent.Format())
+                                .IsNotDecorated()
+                                .Result);
 
                 locator.VerifyAll();
             }
@@ -173,11 +173,11 @@
 
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
-                Assert.NotNull(new PropertyExpectations<HttpClient>("UserAgent")
-                                   .TypeIs<string>()
-                                   .DefaultValueIs(value)
-                                   .IsNotDecorated()
-                                   .Result);
+                Assert.True(new PropertyExpectations<HttpClient>(p => p.UserAgent)
+                                .TypeIs<string>()
+                                .DefaultValueIs(value)
+                                .IsNotDecorated()
+                                .Result);
 
                 userAgent.VerifyAll();
                 locator.VerifyAll();

@@ -70,50 +70,50 @@
         [Fact]
         public void prop_Value()
         {
-            Assert.NotNull(new PropertyExpectations<Token>("Value")
-                               .TypeIs<string>()
-                               .ArgumentNullException()
-                               .ArgumentOutOfRangeException(string.Empty)
-                               .FormatException(((char)31).ToString()) // CTL
-                               .FormatException(" ") // 32
-                               .Set("!") // 33
-                               .FormatException("\"") // 34
-                               .Set("#") // 35
-                               .Set("$") // 36
-                               .Set("%") // 37
-                               .FormatException("@") // 38
-                               .Set("'") // 39
-                               .FormatException("(") // 40
-                               .FormatException(")") // 41
-                               .Set("*") // 42
-                               .Set("+") // 43
-                               .FormatException(",") // 44
-                               .Set("-") // 45
-                               .Set(".") // 46
-                               .FormatException("/") // 47
-                               .Set("0123456789") // 48 ... 57
-                               .FormatException(":") // 58
-                               .FormatException(";") // 59
-                               .FormatException("<") // 60
-                               .FormatException("=") // 61
-                               .FormatException(">") // 62
-                               .FormatException("?") // 63
-                               .FormatException("@") // 64
-                               .Set("ABCDEFGHIJKLMNOPQRSTUVWXYZ") // 65 ... 90
-                               .FormatException("[") // 91
-                               .FormatException(@"\") // 92
-                               .FormatException("]") // 93
-                               .Set("^") // 94
-                               .Set("_") // 95
-                               .Set("`") // 96
-                               .Set("abcdefghijklmnopqrstuvwxyz") // 97 ... 122
-                               .FormatException("{") // 123
-                               .Set("|") // 124
-                               .FormatException("}") // 125
-                               .Set("~") // 126
-                               .FormatException(((char)127).ToString()) // DEL
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<Token>(p => p.Value)
+                            .TypeIs<string>()
+                            .ArgumentNullException()
+                            .ArgumentOutOfRangeException(string.Empty)
+                            .FormatException(((char)31).ToString()) // CTL
+                            .FormatException(" ") // 32
+                            .Set("!") // 33
+                            .FormatException("\"") // 34
+                            .Set("#") // 35
+                            .Set("$") // 36
+                            .Set("%") // 37
+                            .FormatException("@") // 38
+                            .Set("'") // 39
+                            .FormatException("(") // 40
+                            .FormatException(")") // 41
+                            .Set("*") // 42
+                            .Set("+") // 43
+                            .FormatException(",") // 44
+                            .Set("-") // 45
+                            .Set(".") // 46
+                            .FormatException("/") // 47
+                            .Set("0123456789") // 48 ... 57
+                            .FormatException(":") // 58
+                            .FormatException(";") // 59
+                            .FormatException("<") // 60
+                            .FormatException("=") // 61
+                            .FormatException(">") // 62
+                            .FormatException("?") // 63
+                            .FormatException("@") // 64
+                            .Set("ABCDEFGHIJKLMNOPQRSTUVWXYZ") // 65 ... 90
+                            .FormatException("[") // 91
+                            .FormatException(@"\") // 92
+                            .FormatException("]") // 93
+                            .Set("^") // 94
+                            .Set("_") // 95
+                            .Set("`") // 96
+                            .Set("abcdefghijklmnopqrstuvwxyz") // 97 ... 122
+                            .FormatException("{") // 123
+                            .Set("|") // 124
+                            .FormatException("}") // 125
+                            .Set("~") // 126
+                            .FormatException(((char)127).ToString()) // DEL
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

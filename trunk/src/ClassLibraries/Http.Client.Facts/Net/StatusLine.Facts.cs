@@ -448,7 +448,7 @@
         [Fact]
         public void prop_Code()
         {
-            Assert.True(new PropertyExpectations<StatusLine>("Code")
+            Assert.True(new PropertyExpectations<StatusLine>(p => p.Code)
                             .TypeIs<int>()
                             .ArgumentOutOfRangeException(99)
                             .Set(100)
@@ -499,7 +499,7 @@
         [Fact]
         public void prop_Reason()
         {
-            Assert.True(new PropertyExpectations<StatusLine>("Reason")
+            Assert.True(new PropertyExpectations<StatusLine>(p => p.Reason)
                             .TypeIs<string>()
                             .ArgumentNullException()
                             .ArgumentOutOfRangeException(string.Empty)
@@ -552,7 +552,7 @@
         [Fact]
         public void prop_Version()
         {
-            Assert.True(new PropertyExpectations<StatusLine>("Version")
+            Assert.True(new PropertyExpectations<StatusLine>(p => p.Version)
                             .TypeIs<HttpVersion>()
                             .ArgumentNullException()
                             .Set(new HttpVersion(1, 0))

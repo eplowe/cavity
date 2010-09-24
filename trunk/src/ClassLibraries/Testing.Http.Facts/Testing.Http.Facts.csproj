@@ -56,9 +56,18 @@
       <Link>Properties\Cavity.cs</Link>
     </Compile>
     <Compile Include="Net\HttpExpectations.Facts.cs" />
+    <Compile Include="Net\ITestHttp.Facts.cs" />
+    <Compile Include="Net\ITestHttp.Dummy.cs" />
+    <Compile Include="Net\ITestHttpExpectation.Dummy.cs" />
+    <Compile Include="Net\ITestHttpExpectation.Facts.cs" />
+    <Compile Include="Net\Response.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Testing.Http\Testing.Http.csproj">
       <Project>{AC90D9D3-8BF2-4B70-A11C-63893116EFE1}</Project>
       <Name>Testing.Http</Name>

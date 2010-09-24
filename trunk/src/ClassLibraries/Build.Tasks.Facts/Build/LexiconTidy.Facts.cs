@@ -93,7 +93,7 @@
         [Fact]
         public void prop_Paths()
         {
-            Assert.True(new PropertyExpectations<LexiconTidy>("Paths")
+            Assert.True(new PropertyExpectations<LexiconTidy>(p => p.Paths)
                             .IsAutoProperty<ITaskItem[]>()
                             .IsDecoratedWith<RequiredAttribute>()
                             .Result);

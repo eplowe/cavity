@@ -4,6 +4,7 @@
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Reflection;
     using System.Xml.Serialization;
     using Cavity.Fluent;
@@ -28,8 +29,42 @@
         /// </summary>
         /// <param name="name">The name of the property under test.</param>
         public PropertyExpectations(string name)
+            : this()
         {
             Property = typeof(T).GetProperty(name);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Cavity.PropertyExpectations`1"/> class
+        /// with the specified property <paramref name="expression"/>.
+        /// </summary>
+        /// <param name="expression">An expression describing the property under test.</param>
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "The consuming code isn't actually complex.")]
+        public PropertyExpectations(Expression<Func<T, object>> expression)
+            : this()
+        {
+            if (null == expression)
+            {
+                throw new ArgumentNullException("expression");
+            }
+
+            MemberExpression member;
+            if (ExpressionType.Convert ==
+                expression.Body.NodeType)
+            {
+                var body = (UnaryExpression)expression.Body;
+                member = (MemberExpression)body.Operand;
+            }
+            else
+            {
+                member = (MemberExpression)expression.Body;
+            }
+
+            Property = (PropertyInfo)member.Member;
+        }
+
+        private PropertyExpectations()
+        {
             Items = new Collection<ITestExpectation>();
         }
 
