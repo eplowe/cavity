@@ -6,6 +6,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
+    using Cavity.Data;
     using Cavity.IO;
     using Cavity.Linq;
 
@@ -99,8 +100,8 @@
                     writers
                         .Item(file.FullName)
                         .WriteLine("{0},{1}".FormatWith(
-                            item.CanonicalForm,
-                            item.Synonyms.OrderBy(x => x).Concat(';')));
+                            item.CanonicalForm.FormatCommaSeparatedValue(),
+                            item.Synonyms.OrderBy(x => x).Concat(';').FormatCommaSeparatedValue()));
                 }
             }
         }
