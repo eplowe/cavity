@@ -43,7 +43,102 @@
                 throw new ArgumentOutOfRangeException("args");
             }
 
-            return args.Aggregate(obj, (current, arg) => current.Replace(arg.ToString(), string.Empty));
+            return 0 == obj.Length
+                       ? string.Empty
+                       : args.Aggregate(obj, (current, arg) => current.Replace(arg.ToString(), string.Empty));
+        }
+
+        public static string RemoveAnyDigits(this string obj)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (0 == obj.Length)
+            {
+                return string.Empty;
+            }
+
+            var buffer = new StringBuilder(obj.Length);
+
+            foreach (var c in obj)
+            {
+                if (char.IsDigit(c))
+                {
+                    continue;
+                }
+
+                buffer.Append(c);
+            }
+
+            return buffer.ToString();
+        }
+
+        public static string RemoveAnyWhiteSpace(this string obj)
+        {
+            return obj.RemoveAny(
+                '\u0009',
+                //// HT (Horizontal Tab)
+                '\u000A',
+                //// LF (Line Feed)
+                '\u000B',
+                //// VT (Vertical Tab)
+                '\u000C',
+                //// FF (Form Feed)
+                '\u000D',
+                //// CR (Carriage Return)
+                '\u0020',
+                //// Space
+                '\u0085',
+                //// NEL (control character next line)
+                '\u00A0',
+                //// No-Break Space
+                '\u1680',
+                //// Ogham Space Mark
+                '\u180E',
+                //// Mongolian Vowel Separator
+                '\u2000',
+                //// En quad
+                '\u2001',
+                //// Em quad
+                '\u2002',
+                //// En Space
+                '\u2003',
+                //// Em Space
+                '\u2004',
+                //// Three-Per-Em Space
+                '\u2005',
+                //// Four-Per-Em Space
+                '\u2006',
+                //// Six-Per-Em Space
+                '\u2007',
+                //// Figure Space
+                '\u2008',
+                //// Punctuation Space
+                '\u2009',
+                //// Thin Space
+                '\u200A',
+                //// Hair Space
+                '\u200B',
+                //// Zero Width Space
+                '\u200C',
+                //// Zero Width Non Joiner
+                '\u200D',
+                //// Zero Width Joiner
+                '\u2028',
+                //// Line Separator
+                '\u2029',
+                //// Paragraph Separator
+                '\u202F',
+                //// Narrow No-Break Space
+                '\u205F',
+                //// Medium Mathematical Space
+                '\u2060',
+                //// Word Joiner
+                '\u3000',
+                //// Ideographic Space
+                '\uFEFF'); //// Zero Width No-Break Space
         }
 
         public static string Replace(this string obj, string oldValue, string newValue, StringComparison comparisonType)
