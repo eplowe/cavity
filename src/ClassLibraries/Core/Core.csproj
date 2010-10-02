@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="AbsoluteUri.cs" />
     <Compile Include="ComparableObject.cs" />
+    <Compile Include="Data\Data.String.ExtensionMethods.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Linq\Enumerable.cs" />
     <Compile Include="IO\CsvFile.cs" />
