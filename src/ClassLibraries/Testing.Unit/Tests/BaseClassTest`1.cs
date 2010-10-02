@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Tests
 {
     using System;
-    using System.Globalization;
     using Cavity.Fluent;
     using Cavity.Properties;
 
@@ -16,16 +15,12 @@
 
         public bool Check()
         {
-            if (!typeof(T).IsSubclassOf(Is))
+            if (typeof(T).IsSubclassOf(Is))
             {
-                throw new TestException(string.Format(
-                    CultureInfo.CurrentUICulture,
-                    Resources.BaseClassTestException_Message,
-                    typeof(T).Name,
-                    Is.Name));
+                return true;
             }
 
-            return true;
+            throw new UnitTestException(Resources.BaseClassTestException_Message.FormatWith(typeof(T).Name, Is.Name));
         }
     }
 }

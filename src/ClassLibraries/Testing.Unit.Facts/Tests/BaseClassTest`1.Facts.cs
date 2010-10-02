@@ -22,7 +22,7 @@
         [Fact]
         public void op_Check_whenFalse()
         {
-            Assert.Throws<TestException>(() => new BaseClassTest<object>(typeof(string)).Check());
+            Assert.Throws<UnitTestException>(() => new BaseClassTest<object>(typeof(string)).Check());
         }
 
         [Fact]

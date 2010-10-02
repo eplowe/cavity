@@ -12,7 +12,8 @@
             {
                 throw new ArgumentNullException("absoluteUri");
             }
-            else if (!absoluteUri.IsAbsoluteUri)
+
+            if (!absoluteUri.IsAbsoluteUri)
             {
                 throw new ArgumentOutOfRangeException("absoluteUri");
             }

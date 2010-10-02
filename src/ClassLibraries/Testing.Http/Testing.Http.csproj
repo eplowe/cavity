@@ -57,6 +57,21 @@
       <Link>Properties\Cavity.cs</Link>
     </Compile>
     <Compile Include="Net\HttpExpectations.cs" />
+    <Compile Include="Net\HttpHeadTest.cs" />
+    <Compile Include="Net\HttpRequestDefinition.cs" />
+    <Compile Include="Net\HttpTestException.cs" />
+    <Compile Include="Net\IHttpContent.cs" />
+    <Compile Include="Net\IRequestAcceptContent.cs" />
+    <Compile Include="Net\IRequestAcceptLanguage.cs" />
+    <Compile Include="Net\IResponseContent.cs" />
+    <Compile Include="Net\IRequestMethod.cs" />
+    <Compile Include="Net\IResponseCacheConditionals.cs" />
+    <Compile Include="Net\IResponseCacheControl.cs" />
+    <Compile Include="Net\IResponseContentLanguage.cs" />
+    <Compile Include="Net\IResponseContentMD5.cs" />
+    <Compile Include="Net\IResponseHtml.cs" />
+    <Compile Include="Net\IResponseStatus.cs" />
+    <Compile Include="Net\IResponseXml.cs" />
     <Compile Include="Net\ITestHttp.cs" />
     <Compile Include="Net\ITestHttpExpectation.cs" />
     <Compile Include="Net\Response.cs" />

@@ -32,13 +32,13 @@
 
             private set
             {
-                if (value < 100 ||
-                    value > 999)
+                if (value.IsBoundedBy(100, 999))
                 {
-                    throw new ArgumentOutOfRangeException("value");
+                    _code = value;
+                    return;
                 }
 
-                _code = value;
+                throw new ArgumentOutOfRangeException("value");
             }
         }
 
@@ -55,12 +55,14 @@
                 {
                     throw new ArgumentNullException("value");
                 }
-                else if (0 == value.Length)
+
+                if (0 == value.Length)
                 {
                     throw new ArgumentOutOfRangeException("value");
                 }
-                else if (value.Contains("\n") ||
-                         value.Contains("\r"))
+
+                if (value.Contains("\n") ||
+                    value.Contains("\r"))
                 {
                     throw new FormatException("value");
                 }
@@ -100,16 +102,13 @@
             {
                 throw new ArgumentNullException("value");
             }
-            else if (0 == value.Length)
+
+            if (0 == value.Length)
             {
                 throw new FormatException("value");
             }
 
-            var parts = value.Split(new[]
-            {
-                ' '
-            });
-
+            var parts = value.Split(' ');
             if (3 > parts.Length)
             {
                 throw new FormatException("value");
@@ -121,11 +120,10 @@
                 if (null == reason)
                 {
                     reason += parts[i];
+                    continue;
                 }
-                else
-                {
-                    reason += " " + parts[i];
-                }
+
+                reason += " " + parts[i];
             }
 
             return new StatusLine(
@@ -136,7 +134,7 @@
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", Version, Code, Reason);
+            return "{0} {1} {2}".FormatWith(Version, Code, Reason);
         }
     }
 }

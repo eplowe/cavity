@@ -4,11 +4,10 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
     using System.IO;
     using System.Linq;
-    using System.Text;
     using Cavity.IO;
+    using Cavity.Linq;
 
     public sealed class Lexicon
     {
@@ -48,21 +47,25 @@
                     result.Items.Add(item);
                 }
 
-                foreach (var synonym in data["SYNONYMS"].Split(
-                    new[]
-                    {
-                        ";"
-                    },
-                    StringSplitOptions.RemoveEmptyEntries))
+                foreach (var synonym in data["SYNONYMS"]
+                    .Split(';', StringSplitOptions.RemoveEmptyEntries)
+                    .Where(synonym => !item.Synonyms.Contains(synonym)))
                 {
-                    if (!item.Synonyms.Contains(synonym))
-                    {
-                        item.Synonyms.Add(synonym);
-                    }
+                    item.Synonyms.Add(synonym);
                 }
             }
 
             return result;
+        }
+
+        public void Add(string value)
+        {
+            if (Contains(value))
+            {
+                return;
+            }
+
+            Items.Add(new LexicalItem(value));
         }
 
         public bool Contains(string value)
@@ -87,33 +90,17 @@
             {
                 if (0 == Items.Count)
                 {
+                    writers.Item(file.FullName).WriteLine(string.Empty);
+                    return;
+                }
+
+                foreach (var item in Items.OrderBy(x => x.CanonicalForm))
+                {
                     writers
                         .Item(file.FullName)
-                        .WriteLine(string.Empty);
-                }
-                else
-                {
-                    foreach (var item in Items.OrderBy(x => x.CanonicalForm))
-                    {
-                        var synonyms = new StringBuilder();
-                        foreach (var synonym in item.Synonyms.OrderBy(x => x))
-                        {
-                            if (0 != synonyms.Length)
-                            {
-                                synonyms.Append(';');
-                            }
-
-                            synonyms.Append(synonym);
-                        }
-
-                        writers
-                            .Item(file.FullName)
-                            .WriteLine(string.Format(
-                                CultureInfo.InvariantCulture,
-                                "{0},{1}",
-                                item.CanonicalForm,
-                                synonyms));
-                    }
+                        .WriteLine("{0},{1}".FormatWith(
+                            item.CanonicalForm,
+                            item.Synonyms.OrderBy(x => x).Concat(';')));
                 }
             }
         }

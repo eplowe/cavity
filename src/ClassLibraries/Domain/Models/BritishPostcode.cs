@@ -427,33 +427,29 @@
                 throw new ArgumentNullException("value");
             }
 
-            BritishPostcode result = null;
-
-            if (0 != value.Length)
+            if (0 == value.Length)
             {
-                value = value.Trim().ToUpperInvariant();
-                var parts = value.Split(new[]
-                {
-                    ' '
-                });
-                var area = ToArea(parts[0]);
-                switch (parts.Length)
-                {
-                    case 1:
-                        result = new BritishPostcode(area, parts[0]);
-                        break;
-
-                    case 2:
-                        result = new BritishPostcode(
-                            area,
-                            parts[0],
-                            string.Concat(parts[0], ' ', ToSector(parts[1])),
-                            value);
-                        break;
-                }
+                return new BritishPostcode();
             }
 
-            return result ?? new BritishPostcode();
+            value = value.Trim().ToUpperInvariant();
+            var parts = value.Split(' ');
+            var area = ToArea(parts[0]);
+            switch (parts.Length)
+            {
+                case 1:
+                    return new BritishPostcode(area, parts[0]);
+
+                case 2:
+                    return new BritishPostcode(
+                        area,
+                        parts[0],
+                        string.Concat(parts[0], ' ', ToSector(parts[1])),
+                        value);
+
+                default:
+                    return new BritishPostcode();
+            }
         }
 
         public override string ToString()

@@ -39,6 +39,65 @@
         }
 
         [Fact]
+        public void op_Add_string()
+        {
+            const string expected = "Example";
+
+            var obj = new Lexicon();
+            obj.Add(expected);
+
+            var actual = obj.Items.First().CanonicalForm;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Add_stringEmpty()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Lexicon().Add(string.Empty));
+        }
+
+        [Fact]
+        public void op_Add_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Lexicon().Add(null));
+        }
+
+        [Fact]
+        public void op_Add_string_alreadyExists()
+        {
+            const string expected = "Example";
+
+            var obj = new Lexicon();
+            obj.Items.Add(new LexicalItem(expected));
+
+            obj.Add(expected);
+
+            Assert.Equal(1, obj.Items.Count);
+        }
+
+        [Fact]
+        public void op_Add_string_alreadyExistsAsSynonym()
+        {
+            const string expected = "foo";
+
+            var item = new LexicalItem("bar")
+            {
+                Synonyms =
+                    {
+                        expected
+                    }
+            };
+
+            var obj = new Lexicon();
+            obj.Items.Add(item);
+
+            obj.Add(expected);
+
+            Assert.Equal(1, obj.Items.Count);
+        }
+
+        [Fact]
         public void op_Contains_string()
         {
             var obj = new Lexicon();

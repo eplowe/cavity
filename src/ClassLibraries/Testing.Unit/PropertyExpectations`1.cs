@@ -79,8 +79,7 @@
         {
             get
             {
-                return 0 == Items
-                                .Where(x => !x.Check())
+                return 0 == Items.Where(x => !x.Check())
                                 .Count();
             }
         }
@@ -163,7 +162,8 @@
             {
                 throw new ArgumentNullException("expectedException");
             }
-            else if (!expectedException.IsSubclassOf(typeof(Exception)))
+
+            if (!expectedException.IsSubclassOf(typeof(Exception)))
             {
                 throw new ArgumentOutOfRangeException("expectedException");
             }
@@ -240,23 +240,28 @@
             {
                 throw new ArgumentOutOfRangeException(Resources.PropertyExpectations_IsDecoratedWithXmlArray);
             }
-            else if (typeof(XmlAttributeAttribute).IsAssignableFrom(typeof(TAttribute)))
+
+            if (typeof(XmlAttributeAttribute).IsAssignableFrom(typeof(TAttribute)))
             {
                 throw new ArgumentOutOfRangeException(Resources.PropertyExpectations_IsDecoratedWithXmlAttribute);
             }
-            else if (typeof(XmlElementAttribute).IsAssignableFrom(typeof(TAttribute)))
+
+            if (typeof(XmlElementAttribute).IsAssignableFrom(typeof(TAttribute)))
             {
                 throw new ArgumentOutOfRangeException(Resources.PropertyExpectations_IsDecoratedWithXmlElement);
             }
-            else if (typeof(XmlIgnoreAttribute).IsAssignableFrom(typeof(TAttribute)))
+
+            if (typeof(XmlIgnoreAttribute).IsAssignableFrom(typeof(TAttribute)))
             {
                 throw new ArgumentOutOfRangeException(Resources.PropertyExpectations_IsDecoratedWithXmlIgnore);
             }
-            else if (typeof(XmlTextAttribute).IsAssignableFrom(typeof(TAttribute)))
+
+            if (typeof(XmlTextAttribute).IsAssignableFrom(typeof(TAttribute)))
             {
                 throw new ArgumentOutOfRangeException(Resources.PropertyExpectations_IsDecoratedWithXmlText);
             }
-            else if (typeof(XmlNamespaceDeclarationsAttribute).IsAssignableFrom(typeof(TAttribute)))
+
+            if (typeof(XmlNamespaceDeclarationsAttribute).IsAssignableFrom(typeof(TAttribute)))
             {
                 throw new ArgumentOutOfRangeException(Resources.PropertyExpectations_IsDecoratedWithXmlNamespaceDeclarations);
             }

@@ -30,6 +30,45 @@
         }
 
         [Fact]
+        public void op_FormatWith_stringEmpty_objects()
+        {
+            var expected = string.Empty;
+            var actual = string.Empty.FormatWith(123);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_FormatWith_stringEmpty_objectsNull()
+        {
+            var expected = string.Empty;
+            var actual = string.Empty.FormatWith();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_FormatWith_stringNull_objects()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).FormatWith(123));
+        }
+
+        [Fact]
+        public void op_FormatWith_string_objects()
+        {
+            const string expected = "abc";
+            var actual = "a{0}c".FormatWith('b');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_FormatWith_string_objectsNull()
+        {
+            Assert.Throws<FormatException>(() => "a{0}c".FormatWith());
+        }
+
+        [Fact]
         public void op_Replace_stringEmpty_string_string_StringComparison()
         {
             var expected = string.Empty;
@@ -129,6 +168,20 @@
             var actual = "XYZbc".Replace("xyz", "a", StringComparison.InvariantCultureIgnoreCase);
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Split_stringNull_char_StringSplitOptions()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).Split(';', StringSplitOptions.RemoveEmptyEntries));
+        }
+
+        [Fact]
+        public void op_Split_string_char_StringSplitOptions()
+        {
+            var actual = "a;;b".Split(';', StringSplitOptions.RemoveEmptyEntries);
+
+            Assert.Equal(2, actual.Length);
         }
 
         [Fact]

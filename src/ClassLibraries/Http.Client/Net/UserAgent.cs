@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using System.Globalization;
     using System.Reflection;
     using Cavity.Properties;
 
@@ -53,7 +52,7 @@
 
         public static string Format(int major, int minor)
         {
-            return string.Format(CultureInfo.CurrentUICulture, Resources.UserAgent_ValueFormat, major, minor);
+            return Resources.UserAgent_ValueFormat.FormatWith(major, minor);
         }
 
         public static UserAgent FromString(string value)

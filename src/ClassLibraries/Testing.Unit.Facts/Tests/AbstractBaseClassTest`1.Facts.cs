@@ -21,7 +21,7 @@
         [Fact]
         public void op_Check_whenFalse()
         {
-            Assert.Throws<TestException>(() => new AbstractBaseClassTest<int>().Check());
+            Assert.Throws<UnitTestException>(() => new AbstractBaseClassTest<int>().Check());
         }
 
         [Fact]

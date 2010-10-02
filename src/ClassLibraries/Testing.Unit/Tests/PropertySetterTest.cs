@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Tests
 {
     using System;
-    using System.Globalization;
     using System.Reflection;
     using Cavity.Properties;
 
@@ -36,12 +35,7 @@
 
                 if (null != ExpectedException)
                 {
-                    throw new TestException(string.Format(
-                        CultureInfo.InvariantCulture,
-                        Resources.PropertySetterTestException_Message,
-                        Property.ReflectedType.Name,
-                        Property.Name,
-                        ExpectedException.Name));
+                    throw new UnitTestException(Resources.PropertySetterTestException_Message.FormatWith(Property.ReflectedType.Name, Property.Name, ExpectedException.Name));
                 }
             }
             catch (TargetInvocationException exception)

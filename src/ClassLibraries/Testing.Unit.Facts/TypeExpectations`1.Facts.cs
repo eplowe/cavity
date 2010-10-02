@@ -166,10 +166,8 @@
         public void prop_Result_whenSerializable()
         {
             Assert.True(new TypeExpectations<TestException>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsSealed()
-                            .HasDefaultConstructor()
+                            .DerivesFrom<Exception>()
+                            .IsAbstractBaseClass()
                             .Serializable()
                             .Result);
         }

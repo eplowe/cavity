@@ -69,19 +69,19 @@
         [Fact]
         public void op_Check_whenNameWrong()
         {
-            Assert.Throws<TestException>(() => new XmlRootTest<XmlSerializableClass1>("xxx").Check());
+            Assert.Throws<UnitTestException>(() => new XmlRootTest<XmlSerializableClass1>("xxx").Check());
         }
 
         [Fact]
         public void op_Check_whenNamespaceIsWrong()
         {
-            Assert.Throws<TestException>(() => new XmlRootTest<XmlSerializableClass1>("root").Check());
+            Assert.Throws<UnitTestException>(() => new XmlRootTest<XmlSerializableClass1>("root").Check());
         }
 
         [Fact]
         public void op_Check_whenUndecorated()
         {
-            Assert.Throws<TestException>(() => new XmlRootTest<object>("name").Check());
+            Assert.Throws<UnitTestException>(() => new XmlRootTest<object>("name").Check());
         }
 
         [Fact]

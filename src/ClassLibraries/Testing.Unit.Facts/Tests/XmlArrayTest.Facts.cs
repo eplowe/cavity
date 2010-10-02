@@ -26,7 +26,7 @@
                 ArrayItemElementName = "xxx"
             };
 
-            Assert.Throws<TestException>(() => obj.Check());
+            Assert.Throws<UnitTestException>(() => obj.Check());
         }
 
         [Fact]
@@ -37,7 +37,7 @@
                 ArrayElementName = "xxx"
             };
 
-            Assert.Throws<TestException>(() => obj.Check());
+            Assert.Throws<UnitTestException>(() => obj.Check());
         }
 
         [Fact]
@@ -61,7 +61,7 @@
                 ArrayItemElementName = "item2"
             };
 
-            Assert.Throws<TestException>(() => obj.Check());
+            Assert.Throws<UnitTestException>(() => obj.Check());
         }
 
         [Fact]
@@ -69,7 +69,7 @@
         {
             var obj = new XmlArrayTest(typeof(PropertiedClass1).GetProperty("AutoBoolean"));
 
-            Assert.Throws<TestException>(() => obj.Check());
+            Assert.Throws<UnitTestException>(() => obj.Check());
         }
 
         [Fact]

@@ -1,7 +1,6 @@
 namespace Cavity.Tests
 {
     using System;
-    using System.Globalization;
     using System.Reflection;
     using System.Xml.Serialization;
     using Cavity.Properties;
@@ -15,14 +14,9 @@ namespace Cavity.Tests
 
         public override bool Check()
         {
-            var attribute = Attribute.GetCustomAttribute(Member, typeof(XmlIgnoreAttribute), false) as XmlIgnoreAttribute;
-
-            if (null == attribute)
+            if (null == Attribute.GetCustomAttribute(Member, typeof(XmlIgnoreAttribute), false) as XmlIgnoreAttribute)
             {
-                throw new TestException(string.Format(
-                    CultureInfo.InvariantCulture,
-                    Resources.XmlIgnoreDecorationTestException_Message,
-                    Member.Name));
+                throw new UnitTestException(Resources.XmlIgnoreDecorationTestException_Message.FormatWith(Member.Name));
             }
 
             return true;

@@ -29,13 +29,13 @@
 
             private set
             {
-                if (value < 0 ||
-                    value > 9)
+                if (value.IsBoundedBy(0, 9))
                 {
-                    throw new ArgumentOutOfRangeException("value");
+                    _major = value;
+                    return;
                 }
 
-                _major = value;
+                throw new ArgumentOutOfRangeException("value");
             }
         }
 
@@ -48,13 +48,13 @@
 
             private set
             {
-                if (value < 0 ||
-                    value > 9)
+                if (value.IsBoundedBy(0, 9))
                 {
-                    throw new ArgumentOutOfRangeException("value");
+                    _minor = value;
+                    return;
                 }
 
-                _minor = value;
+                throw new ArgumentOutOfRangeException("value");
             }
         }
 
@@ -71,19 +71,18 @@
             {
                 throw new ArgumentNullException("value");
             }
-            else if (0 == value.Length)
-            {
-                throw new FormatException("value");
-            }
-            else if (!value.StartsWith("HTTP/", StringComparison.Ordinal))
+
+            if (0 == value.Length)
             {
                 throw new FormatException("value");
             }
 
-            var parts = value.Substring("HTTP/".Length).Split(new[]
+            if (!value.StartsWith("HTTP/", StringComparison.Ordinal))
             {
-                '.'
-            });
+                throw new FormatException("value");
+            }
+
+            var parts = value.Substring("HTTP/".Length).Split('.');
 
             return new HttpVersion(
                 int.Parse(parts[0], CultureInfo.InvariantCulture),
@@ -92,7 +91,7 @@
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "HTTP/{0}.{1}", Major, Minor);
+            return "HTTP/{0}.{1}".FormatWith(Major, Minor);
         }
     }
 }

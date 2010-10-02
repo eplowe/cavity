@@ -120,4 +120,7 @@
   <data name="CsvStreamReader_ReadEntry_FormatException" xml:space="preserve">
     <value>The number of columns in the header do match match the number of columns in line {0}.</value>
   </data>
+  <data name="ObjectExtensionMethods_IsBoundedBy_Message" xml:space="preserve">
+    <value>The upper bound must be greater than the lower bound.</value>
+  </data>
 </root>

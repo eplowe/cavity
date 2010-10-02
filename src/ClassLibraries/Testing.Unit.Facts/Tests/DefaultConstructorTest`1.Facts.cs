@@ -20,7 +20,7 @@
         [Fact]
         public void op_Check_whenFalse()
         {
-            Assert.Throws<TestException>(() => new DefaultConstructorTest<int>().Check());
+            Assert.Throws<UnitTestException>(() => new DefaultConstructorTest<int>().Check());
         }
 
         [Fact]

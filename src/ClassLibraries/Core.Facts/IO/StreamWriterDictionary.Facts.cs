@@ -133,10 +133,7 @@
                     obj.Item(file, "one").Write("two");
                 }
 
-                var expected = string.Format(
-                    CultureInfo.InvariantCulture,
-                    "one{0}two",
-                    Environment.NewLine);
+                var expected = "one{0}two".FormatWith(Environment.NewLine);
                 var actual = File.ReadAllText(file.FullName);
 
                 Assert.Equal(expected, actual);
@@ -197,10 +194,7 @@
                     obj.Item(file.FullName, FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
-                var expected = string.Format(
-                    CultureInfo.InvariantCulture,
-                    "one{0}two",
-                    Environment.NewLine);
+                var expected = "one{0}two".FormatWith(Environment.NewLine);
                 var actual = File.ReadAllText(file.FullName);
 
                 Assert.Equal(expected, actual);
@@ -223,10 +217,7 @@
                     obj.Item(file.FullName, "one").Write("two");
                 }
 
-                var expected = string.Format(
-                    CultureInfo.InvariantCulture,
-                    "one{0}two",
-                    Environment.NewLine);
+                var expected = "one{0}two".FormatWith(Environment.NewLine);
                 var actual = File.ReadAllText(file.FullName);
 
                 Assert.Equal(expected, actual);
@@ -295,10 +286,7 @@
                     obj.Item(file.FullName, "one", FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
-                var expected = string.Format(
-                    CultureInfo.InvariantCulture,
-                    "one{0}two",
-                    Environment.NewLine);
+                var expected = "one{0}two".FormatWith(Environment.NewLine);
                 var actual = File.ReadAllText(file.FullName);
 
                 Assert.Equal(expected, actual);

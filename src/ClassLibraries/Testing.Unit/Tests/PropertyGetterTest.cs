@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Tests
 {
     using System;
-    using System.Globalization;
     using System.Reflection;
     using Cavity.Properties;
 
@@ -17,18 +16,14 @@
 
         public override bool Check()
         {
-            if (!Equals(
+            if (Equals(
                 Expected,
                 Property.GetGetMethod(true).Invoke(Activator.CreateInstance(Property.ReflectedType, true), null)))
             {
-                throw new TestException(string.Format(
-                    CultureInfo.InvariantCulture,
-                    Resources.PropertyGetterTestException_Message,
-                    Property.ReflectedType.Name,
-                    Property.Name));
+                return true;
             }
 
-            return true;
+            throw new UnitTestException(Resources.PropertyGetterTestException_Message.FormatWith(Property.ReflectedType.Name, Property.Name));
         }
     }
 }

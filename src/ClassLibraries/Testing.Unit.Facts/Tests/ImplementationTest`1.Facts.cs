@@ -21,7 +21,7 @@
         [Fact]
         public void op_Check_whenFalse()
         {
-            Assert.Throws<TestException>(() => new ImplementationTest<object>(typeof(IInterface1)).Check());
+            Assert.Throws<UnitTestException>(() => new ImplementationTest<object>(typeof(IInterface1)).Check());
         }
 
         [Fact]
@@ -33,7 +33,7 @@
         [Fact]
         public void op_Check_whenUnexpectedInterface()
         {
-            Assert.Throws<TestException>(() => new ImplementationTest<InterfacedClass1>(null).Check());
+            Assert.Throws<UnitTestException>(() => new ImplementationTest<InterfacedClass1>(null).Check());
         }
 
         [Fact]

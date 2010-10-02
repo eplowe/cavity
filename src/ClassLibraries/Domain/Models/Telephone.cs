@@ -28,35 +28,30 @@
                 throw new ArgumentNullException("value");
             }
 
-            Telephone result = null;
-
-            if (0 != value.Length)
+            if (0 == value.Length)
             {
-                var number = new string(value.AsEnumerable().Where(c => char.IsDigit(c)).ToArray());
-                if (1 < number.Length)
-                {
-                    if ('+' == value[0])
-                    {
-                        number = "+" + number;
-                    }
-                    else if (number.StartsWith("00", StringComparison.Ordinal))
-                    {
-                        number = "+" + number.Substring(2);
-                    }
-                    else if ('0' == number[0])
-                    {
-                        number = "+44" + number.Substring(1);
-                    }
-                    else
-                    {
-                        number = "+44" + number;
-                    }
-
-                    result = new Telephone(number);
-                }
+                return new Telephone();
             }
 
-            return result ?? new Telephone();
+            var number = new string(value.AsEnumerable().Where(c => char.IsDigit(c)).ToArray());
+            if (2 > number.Length)
+            {
+                return new Telephone();
+            }
+
+            if ('+' == value[0])
+            {
+                return new Telephone("+" + number);
+            }
+
+            if (number.StartsWith("00", StringComparison.Ordinal))
+            {
+                return new Telephone("+" + number.Substring(2));
+            }
+
+            return '0' == number[0]
+                       ? new Telephone("+44" + number.Substring(1))
+                       : new Telephone("+44" + number);
         }
 
         public override string ToString()

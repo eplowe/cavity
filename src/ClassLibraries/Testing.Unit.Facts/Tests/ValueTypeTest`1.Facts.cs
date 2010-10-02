@@ -21,7 +21,7 @@
         [Fact]
         public void op_Check_whenFalse()
         {
-            Assert.Throws<TestException>(() => new ValueTypeTest<object>().Check());
+            Assert.Throws<UnitTestException>(() => new ValueTypeTest<object>().Check());
         }
 
         [Fact]

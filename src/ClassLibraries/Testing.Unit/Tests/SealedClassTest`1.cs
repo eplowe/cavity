@@ -1,6 +1,5 @@
 ﻿namespace Cavity.Tests
 {
-    using System.Globalization;
     using Cavity.Fluent;
     using Cavity.Properties;
 
@@ -15,25 +14,19 @@
 
         public bool Check()
         {
-            if (Value != typeof(T).IsSealed)
+            if (Value == typeof(T).IsSealed)
             {
-                if (Value)
-                {
-                    throw new TestException(string.Format(
-                        CultureInfo.CurrentUICulture,
-                        Resources.SealedClassTestException_UnsealedMessage,
-                        typeof(T).Name));
-                }
-                else
-                {
-                    throw new TestException(string.Format(
-                        CultureInfo.CurrentUICulture,
-                        Resources.SealedClassTestException_SealedMessage,
-                        typeof(T).Name));
-                }
+                return true;
             }
 
-            return true;
+            if (Value)
+            {
+                throw new UnitTestException(Resources.SealedClassTestException_UnsealedMessage.FormatWith(typeof(T).Name));
+            }
+            else
+            {
+                throw new UnitTestException(Resources.SealedClassTestException_SealedMessage.FormatWith(typeof(T).Name));
+            }
         }
     }
 }

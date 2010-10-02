@@ -39,14 +39,9 @@ namespace Cavity
 
         public static bool operator !=(ValueObject<T> operand1, ValueObject<T> operand2)
         {
-            if (ReferenceEquals(null, operand1))
-            {
-                return !ReferenceEquals(null, operand2);
-            }
-            else
-            {
-                return !operand1.Equals(operand2);
-            }
+            return ReferenceEquals(null, operand1)
+                       ? !ReferenceEquals(null, operand2)
+                       : !operand1.Equals(operand2);
         }
 
         public static bool operator <(ValueObject<T> operand1, ValueObject<T> operand2)
@@ -107,7 +102,6 @@ namespace Cavity
             }
 
             var value = obj as ValueObject<T>;
-
             if (ReferenceEquals(null, value))
             {
                 throw new ArgumentOutOfRangeException("obj");
