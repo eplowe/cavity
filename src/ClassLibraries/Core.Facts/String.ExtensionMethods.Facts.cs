@@ -69,6 +69,115 @@
         }
 
         [Fact]
+        public void op_RemoveAnyDigits_string()
+        {
+            const string expected = "abc";
+            var actual = "a01234b56789c".RemoveAnyDigits();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyDigits_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveAnyDigits();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyDigits_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).RemoveAnyDigits());
+        }
+
+        [Fact]
+        public void op_RemoveAnyWhiteSpace_string()
+        {
+            var expected = string.Empty;
+            var actual = string.Concat(
+                '\u0009',
+                // HT (Horizontal Tab)
+                '\u000A',
+                // LF (Line Feed)
+                '\u000B',
+                // VT (Vertical Tab)
+                '\u000C',
+                // FF (Form Feed)
+                '\u000D',
+                // CR (Carriage Return)
+                '\u0020',
+                // Space
+                '\u0085',
+                // NEL (control character next line)
+                '\u00A0',
+                // No-Break Space
+                '\u1680',
+                // Ogham Space Mark
+                '\u180E',
+                // Mongolian Vowel Separator
+                '\u2000',
+                // En quad
+                '\u2001',
+                // Em quad
+                '\u2002',
+                // En Space
+                '\u2003',
+                // Em Space
+                '\u2004',
+                // Three-Per-Em Space
+                '\u2005',
+                // Four-Per-Em Space
+                '\u2006',
+                // Six-Per-Em Space
+                '\u2007',
+                // Figure Space
+                '\u2008',
+                // Punctuation Space
+                '\u2009',
+                // Thin Space
+                '\u200A',
+                // Hair Space
+                '\u200B',
+                // Zero Width Space
+                '\u200C',
+                // Zero Width Non Joiner
+                '\u200D',
+                // Zero Width Joiner
+                '\u2028',
+                // Line Separator
+                '\u2029',
+                // Paragraph Separator
+                '\u202F',
+                // Narrow No-Break Space
+                '\u205F',
+                // Medium Mathematical Space
+                '\u2060',
+                // Word Joiner
+                '\u3000',
+                // Ideographic Space
+                '\uFEFF').RemoveAnyWhiteSpace();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyWhiteSpace_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveAnyWhiteSpace();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyWhiteSpace_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).RemoveAnyWhiteSpace());
+        }
+
+        [Fact]
         public void op_RemoveAny_stringEmpty_chars()
         {
             var expected = string.Empty;

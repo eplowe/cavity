@@ -59,6 +59,7 @@
       <Link>Properties\Cavity.cs</Link>
     </Compile>
     <Compile Include="Models\BritishPostcode.Facts.cs" />
+    <Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Models\LexicalItem.Facts.cs" />
     <Compile Include="Models\Lexicon.Facts.cs" />
     <Compile Include="Models\Telephone.Facts.cs" />
