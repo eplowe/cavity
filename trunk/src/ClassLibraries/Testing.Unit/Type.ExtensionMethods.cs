@@ -23,13 +23,13 @@
             {
                 throw new ArgumentNullException("type");
             }
-            else if (null == @interface)
+
+            if (null == @interface)
             {
                 throw new ArgumentNullException("interface");
             }
 
-            return type
-                .GetInterfaces()
+            return type.GetInterfaces()
                 .Any(item => null != item.FullName && item.FullName.Equals(@interface.FullName));
         }
 

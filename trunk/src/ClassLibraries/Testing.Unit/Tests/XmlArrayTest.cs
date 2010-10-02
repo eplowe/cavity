@@ -1,7 +1,6 @@
 namespace Cavity.Tests
 {
     using System;
-    using System.Globalization;
     using System.Reflection;
     using System.Xml.Serialization;
     using Cavity.Properties;
@@ -30,18 +29,12 @@ namespace Cavity.Tests
             var attribute = Attribute.GetCustomAttribute(Member, typeof(XmlArrayAttribute), false) as XmlArrayAttribute;
             if (null == attribute)
             {
-                throw new TestException(string.Format(
-                    CultureInfo.InvariantCulture,
-                    Resources.XmlArrayDecorationTestException_Message1,
-                    Member.Name));
+                throw new UnitTestException(Resources.XmlArrayDecorationTestException_Message1.FormatWith(Member.Name));
             }
-            else if (ArrayElementName != attribute.ElementName)
+
+            if (ArrayElementName != attribute.ElementName)
             {
-                throw new TestException(string.Format(
-                    CultureInfo.InvariantCulture,
-                    Resources.XmlArrayDecorationTestException_Message2,
-                    Member.Name,
-                    ArrayElementName));
+                throw new UnitTestException(Resources.XmlArrayDecorationTestException_Message2.FormatWith(Member.Name, ArrayElementName));
             }
         }
 
@@ -50,18 +43,12 @@ namespace Cavity.Tests
             var attribute = Attribute.GetCustomAttribute(Member, typeof(XmlArrayItemAttribute), false) as XmlArrayItemAttribute;
             if (null == attribute)
             {
-                throw new TestException(string.Format(
-                    CultureInfo.InvariantCulture,
-                    Resources.XmlArrayDecorationTestException_Message3,
-                    Member.Name));
+                throw new UnitTestException(Resources.XmlArrayDecorationTestException_Message3.FormatWith(Member.Name));
             }
-            else if (ArrayItemElementName != attribute.ElementName)
+
+            if (ArrayItemElementName != attribute.ElementName)
             {
-                throw new TestException(string.Format(
-                    CultureInfo.InvariantCulture,
-                    Resources.XmlArrayDecorationTestException_Message4,
-                    Member.Name,
-                    ArrayItemElementName));
+                throw new UnitTestException(Resources.XmlArrayDecorationTestException_Message4.FormatWith(Member.Name, ArrayItemElementName));
             }
         }
     }

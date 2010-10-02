@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using System.Globalization;
 
     public sealed class HttpHeader : ComparableObject, IHttpHeader
     {
@@ -69,7 +68,8 @@
             {
                 throw new ArgumentNullException("value");
             }
-            else if (0 == value.Length)
+
+            if (0 == value.Length)
             {
                 throw new ArgumentOutOfRangeException("value");
             }
@@ -85,7 +85,7 @@
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "{0}: {1}", Name, Value);
+            return "{0}: {1}".FormatWith(Name, Value);
         }
     }
 }

@@ -40,7 +40,8 @@
             {
                 throw new ArgumentNullException("value");
             }
-            else if (0 == value.Length)
+
+            if (0 == value.Length)
             {
                 throw new ArgumentOutOfRangeException("value");
             }

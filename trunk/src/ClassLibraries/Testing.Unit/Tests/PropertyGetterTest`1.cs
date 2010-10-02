@@ -1,6 +1,5 @@
 ﻿namespace Cavity.Tests
 {
-    using System.Globalization;
     using System.Reflection;
     using Cavity.Properties;
 
@@ -15,16 +14,12 @@
 
         public override bool Check()
         {
-            if (!Equals(typeof(T), Property.PropertyType))
+            if (Equals(typeof(T), Property.PropertyType))
             {
-                throw new TestException(string.Format(
-                    CultureInfo.InvariantCulture,
-                    Resources.PropertyGetterTestOfTException_Message,
-                    Property.PropertyType,
-                    typeof(T)));
+                return true;
             }
 
-            return true;
+            throw new UnitTestException(Resources.PropertyGetterTestOfTException_Message.FormatWith(Property.PropertyType, typeof(T)));
         }
     }
 }

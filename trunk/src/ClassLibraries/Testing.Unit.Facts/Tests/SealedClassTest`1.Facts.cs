@@ -21,7 +21,7 @@
         [Fact]
         public void op_Check_whenFalse()
         {
-            Assert.Throws<TestException>(() => new SealedClassTest<string>(false).Check());
+            Assert.Throws<UnitTestException>(() => new SealedClassTest<string>(false).Check());
         }
 
         [Fact]
@@ -33,7 +33,7 @@
         [Fact]
         public void op_Check_whenUnexpected()
         {
-            Assert.Throws<TestException>(() => new SealedClassTest<Class1>(true).Check());
+            Assert.Throws<UnitTestException>(() => new SealedClassTest<Class1>(true).Check());
         }
 
         [Fact]

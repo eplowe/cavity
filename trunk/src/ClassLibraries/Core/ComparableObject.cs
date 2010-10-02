@@ -58,7 +58,6 @@ namespace Cavity
             }
 
             var cast = obj as ComparableObject;
-
             if (ReferenceEquals(null, cast))
             {
                 return false;
@@ -89,7 +88,6 @@ namespace Cavity
             }
 
             var value = obj as ComparableObject;
-
             if (ReferenceEquals(null, value))
             {
                 throw new ArgumentOutOfRangeException("obj");

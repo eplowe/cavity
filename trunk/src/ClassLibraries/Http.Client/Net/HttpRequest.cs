@@ -13,7 +13,6 @@
             get
             {
                 var value = new Uri(RequestLine.RequestUri, UriKind.RelativeOrAbsolute);
-
                 if (!value.IsAbsoluteUri)
                 {
                     value = new Uri(new Uri("http://" + Headers["Host"], UriKind.Absolute), value);
@@ -55,7 +54,8 @@
             {
                 throw new ArgumentNullException("value");
             }
-            else if (0 == value.Length)
+
+            if (0 == value.Length)
             {
                 throw new ArgumentOutOfRangeException("value");
             }

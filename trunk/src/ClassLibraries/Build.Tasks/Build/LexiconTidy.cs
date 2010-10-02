@@ -50,11 +50,9 @@
                 Log.LogMessage(file.FullName);
                 return true;
             }
-            else
-            {
-                Log.LogWarning(file.FullName);
-                return false;
-            }
+
+            Log.LogWarning(file.FullName);
+            return false;
         }
     }
 }

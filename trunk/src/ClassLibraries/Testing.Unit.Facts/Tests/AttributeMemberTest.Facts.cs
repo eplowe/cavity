@@ -33,7 +33,7 @@
         [Fact]
         public void op_Check_whenFalse()
         {
-            Assert.Throws<TestException>(() => new AttributeMemberTest(typeof(object), typeof(Attribute1)).Check());
+            Assert.Throws<UnitTestException>(() => new AttributeMemberTest(typeof(object), typeof(Attribute1)).Check());
         }
 
         [Fact]
@@ -45,7 +45,7 @@
         [Fact]
         public void op_Check_whenUnexpectedAttribute()
         {
-            Assert.Throws<TestException>(() => new AttributeMemberTest(typeof(AttributedClass1), null).Check());
+            Assert.Throws<UnitTestException>(() => new AttributeMemberTest(typeof(AttributedClass1), null).Check());
         }
 
         [Fact]

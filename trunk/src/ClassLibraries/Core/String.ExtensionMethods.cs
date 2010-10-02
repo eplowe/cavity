@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.IO;
     using System.Runtime.Serialization.Formatters.Soap;
     using System.Text;
@@ -17,6 +18,11 @@
             }
 
             return -1 != obj.IndexOf(value, comparisonType);
+        }
+
+        public static string FormatWith(this string obj, params object[] args)
+        {
+            return string.Format(CultureInfo.InvariantCulture, obj, args);
         }
 
         public static string Replace(this string obj, string oldValue, string newValue, StringComparison comparisonType)
@@ -50,13 +56,26 @@
                     i += oldValue.Length - 1;
                     continue;
                 }
-                else
-                {
-                    buffer.Append(obj[i]);
-                }
+
+                buffer.Append(obj[i]);
             }
 
             return buffer.ToString();
+        }
+
+        public static string[] Split(this string obj, char separator, StringSplitOptions options)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return obj.Split(
+                new[]
+                {
+                    separator
+                },
+                options);
         }
 
         public static T XmlDeserialize<T>(this string xml)

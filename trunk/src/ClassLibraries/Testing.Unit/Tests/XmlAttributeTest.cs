@@ -1,7 +1,6 @@
 namespace Cavity.Tests
 {
     using System;
-    using System.Globalization;
     using System.Reflection;
     using System.Xml.Serialization;
     using Cavity.Properties;
@@ -22,27 +21,17 @@ namespace Cavity.Tests
             var attribute = Attribute.GetCustomAttribute(Member, typeof(XmlAttributeAttribute), false) as XmlAttributeAttribute;
             if (null == attribute)
             {
-                throw new TestException(string.Format(
-                    CultureInfo.InvariantCulture,
-                    Resources.XmlAttributeDecorationTestException_Message1,
-                    Member.Name));
+                throw new UnitTestException(Resources.XmlAttributeDecorationTestException_Message1.FormatWith(Member.Name));
             }
-            else if (AttributeName != attribute.AttributeName)
+
+            if (AttributeName != attribute.AttributeName)
             {
-                throw new TestException(string.Format(
-                    CultureInfo.InvariantCulture,
-                    Resources.XmlAttributeDecorationTestException_Message2,
-                    Member.Name,
-                    AttributeName));
+                throw new UnitTestException(Resources.XmlAttributeDecorationTestException_Message2.FormatWith(Member.Name, AttributeName));
             }
-            else if (Namespace != attribute.Namespace)
+
+            if (Namespace != attribute.Namespace)
             {
-                throw new TestException(string.Format(
-                    CultureInfo.InvariantCulture,
-                    Resources.XmlAttributeDecorationTestException_Message3,
-                    Member.Name,
-                    AttributeName,
-                    Namespace));
+                throw new UnitTestException(Resources.XmlAttributeDecorationTestException_Message3.FormatWith(Member.Name, AttributeName, Namespace));
             }
 
             return true;

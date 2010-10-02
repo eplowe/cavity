@@ -65,11 +65,10 @@
                     if (null == value)
                     {
                         value = item.Value;
+                        continue;
                     }
-                    else
-                    {
-                        value += ", " + item.Value;
-                    }
+
+                    value += ", " + item.Value;
                 }
 
                 return value;
@@ -133,21 +132,17 @@
             {
                 var peek = reader.Peek();
                 var line = reader.ReadLine();
-                if (-1 == peek ||
-                    13 == peek)
+                if (peek.EqualsOneOf(-1, 13))
                 {
                     break; // EOF or CR
                 }
-                else
-                {
-                    while (9 == reader.Peek() ||
-                           32 == reader.Peek())
-                    {
-                        line += Environment.NewLine + reader.ReadLine(); // HT or SPACE
-                    }
 
-                    Add(HttpHeader.FromString(line));
+                while (reader.Peek().EqualsOneOf(9, 32))
+                {
+                    line += Environment.NewLine + reader.ReadLine(); // HT or SPACE
                 }
+
+                Add(HttpHeader.FromString(line));
             }
         }
 
@@ -225,11 +220,10 @@
                 if (result.ContainsKey(item.Name))
                 {
                     result[item.Name] = string.Concat(result[item.Name], ", ", item.Value);
+                    continue;
                 }
-                else
-                {
-                    result.Add(item.Name, item.Value);
-                }
+
+                result.Add(item.Name, item.Value);
             }
 
             return result;

@@ -1,6 +1,5 @@
 ﻿namespace Cavity.Tests
 {
-    using System.Globalization;
     using Cavity.Fluent;
     using Cavity.Properties;
 
@@ -8,15 +7,12 @@
     {
         public bool Check()
         {
-            if (!typeof(T).IsValueType)
+            if (typeof(T).IsValueType)
             {
-                throw new TestException(string.Format(
-                    CultureInfo.CurrentUICulture,
-                    Resources.ValueTypeTestException_Message,
-                    typeof(T).Name));
+                return true;
             }
 
-            return true;
+            throw new UnitTestException(Resources.ValueTypeTestException_Message.FormatWith(typeof(T).Name));
         }
     }
 }

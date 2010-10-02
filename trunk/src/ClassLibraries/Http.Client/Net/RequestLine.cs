@@ -2,7 +2,6 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
 
     public sealed class RequestLine : ComparableObject
     {
@@ -38,7 +37,8 @@
                 {
                     throw new ArgumentNullException("value");
                 }
-                else if (0 == value.Length)
+
+                if (0 == value.Length)
                 {
                     throw new ArgumentOutOfRangeException("value");
                 }
@@ -61,7 +61,8 @@
                 {
                     throw new ArgumentNullException("value");
                 }
-                else if (0 == value.Length)
+
+                if (0 == value.Length)
                 {
                     throw new ArgumentOutOfRangeException("value");
                 }
@@ -101,15 +102,13 @@
             {
                 throw new ArgumentNullException("value");
             }
-            else if (0 == value.Length)
+
+            if (0 == value.Length)
             {
                 throw new FormatException("value");
             }
 
-            var parts = value.Split(new[]
-            {
-                ' '
-            });
+            var parts = value.Split(' ');
 
             if (3 > parts.Length)
             {
@@ -124,7 +123,7 @@
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", Method, RequestUri, Version);
+            return "{0} {1} {2}".FormatWith(Method, RequestUri, Version);
         }
     }
 }

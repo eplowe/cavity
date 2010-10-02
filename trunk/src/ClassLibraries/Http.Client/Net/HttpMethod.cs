@@ -110,15 +110,16 @@
                 {
                     throw new ArgumentNullException("value");
                 }
-                else if (0 == value.Length)
+
+                if (0 == value.Length)
                 {
                     throw new ArgumentOutOfRangeException("value");
                 }
-                else if (0 != value
-                                  .ToUpperInvariant()
-                                  .ToArray()
-                                  .Where(index => 'A' > index || 'Z' < index)
-                                  .Count())
+
+                if (0 != value.ToUpperInvariant()
+                             .ToArray()
+                             .Where(index => !index.IsBoundedBy('A', 'Z'))
+                             .Count())
                 {
                     throw new FormatException("value");
                 }

@@ -59,6 +59,8 @@
     </Compile>
     <Compile Include="AbsoluteUri.cs" />
     <Compile Include="ComparableObject.cs" />
+    <Compile Include="Data\DataCollection.cs" />
+    <Compile Include="Linq\Enumerable.cs" />
     <Compile Include="IO\CsvFile.cs" />
     <Compile Include="IO\CsvStreamReader.cs" />
     <Compile Include="IO\EncodedStringWriter.cs" />
@@ -72,8 +74,10 @@
     </Compile>
     <Compile Include="RelativeUri.cs" />
     <Compile Include="String.ExtensionMethods.cs" />
+    <Compile Include="TestException.cs" />
     <Compile Include="ValueObject`1.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.cs" />
+    <Compile Include="Xml\XmlNamespace.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\..\Cavity.dictionary">

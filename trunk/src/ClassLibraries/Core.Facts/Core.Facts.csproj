@@ -59,6 +59,9 @@
     <Compile Include="AbsoluteUri.Facts.cs" />
     <Compile Include="ComparableObject.Derived.cs" />
     <Compile Include="ComparableObject.Facts.cs" />
+    <Compile Include="Data\DataCollection.Facts.cs" />
+    <Compile Include="Linq\Enumerable.Facts.cs" />
+    <Compile Include="TestException.Derived.cs" />
     <Compile Include="IO\CsvFile.Facts.cs" />
     <Compile Include="IO\CsvStreamReader.Facts.cs" />
     <Compile Include="IO\EncodedStringWriter.Facts.cs" />
@@ -67,10 +70,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelativeUri.Facts.cs" />
     <Compile Include="String.ExtensionMethods.Facts.cs" />
+    <Compile Include="TestException.Facts.cs" />
     <Compile Include="ValueObject`1.Derived.cs" />
     <Compile Include="ValueObject`1.Facts.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.Dummy.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.Facts.cs" />
+    <Compile Include="Xml\XmlNamespace.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\..\Cavity.dictionary">

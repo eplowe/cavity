@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Tests
 {
     using System;
-    using System.Globalization;
     using Cavity.Fluent;
     using Cavity.Properties;
 
@@ -11,10 +10,7 @@
         {
             if (null == typeof(T).GetConstructor(Type.EmptyTypes))
             {
-                throw new TestException(string.Format(
-                    CultureInfo.CurrentUICulture,
-                    Resources.DefaultConstructorTestException_Message,
-                    typeof(T).Name));
+                throw new UnitTestException(Resources.DefaultConstructorTestException_Message.FormatWith(typeof(T).Name));
             }
 
             return true;

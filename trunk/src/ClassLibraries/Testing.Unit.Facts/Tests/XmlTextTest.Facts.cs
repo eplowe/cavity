@@ -30,7 +30,7 @@
         {
             var obj = new XmlTextTest(typeof(PropertiedClass1).GetProperty("AutoBoolean"));
 
-            Assert.Throws<TestException>(() => obj.Check());
+            Assert.Throws<UnitTestException>(() => obj.Check());
         }
     }
 }

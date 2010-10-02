@@ -20,7 +20,7 @@
 
         public static bool operator >(HttpDate operand1, HttpDate operand2)
         {
-            return Compare(operand1, operand2) > 0;
+            return 0 < Compare(operand1, operand2);
         }
 
         public static implicit operator DateTime(HttpDate value)
@@ -50,7 +50,7 @@
 
         public static bool operator <(HttpDate operand1, HttpDate operand2)
         {
-            return Compare(operand1, operand2) < 0;
+            return 0 > Compare(operand1, operand2);
         }
 
         public static int Compare(HttpDate comparand1, HttpDate comparand2)
@@ -64,7 +64,8 @@
             {
                 throw new ArgumentNullException("value");
             }
-            else if (0 == value.Length)
+
+            if (0 == value.Length)
             {
                 throw new FormatException("value");
             }
@@ -74,14 +75,12 @@
 
         public override bool Equals(object obj)
         {
-            var result = false;
-
             if (obj is HttpDate)
             {
-                result = 0 == Compare(this, (HttpDate)obj);
+                return 0 == Compare(this, (HttpDate)obj);
             }
 
-            return result;
+            return false;
         }
 
         public override int GetHashCode()
@@ -101,21 +100,17 @@
 
         public int CompareTo(object obj)
         {
-            var result = 1;
-
-            if (!ReferenceEquals(null, obj))
+            if (ReferenceEquals(null, obj))
             {
-                if (obj is HttpDate)
-                {
-                    result = Compare(this, (HttpDate)obj);
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("obj");
-                }
+                return 1;
             }
 
-            return result;
+            if (obj is HttpDate)
+            {
+                return Compare(this, (HttpDate)obj);
+            }
+
+            throw new ArgumentOutOfRangeException("obj");
         }
     }
 }

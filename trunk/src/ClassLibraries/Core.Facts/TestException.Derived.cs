@@ -4,23 +4,23 @@
     using System.Runtime.Serialization;
 
     [Serializable]
-    public sealed class TestException : Exception
+    public sealed class DerivedTestException : TestException
     {
-        public TestException()
+        public DerivedTestException()
         {
         }
 
-        public TestException(string message)
+        public DerivedTestException(string message)
             : base(message)
         {
         }
 
-        public TestException(string message, Exception innerException)
+        public DerivedTestException(string message, Exception innerException)
             : base(message, innerException)
         {
         }
 
-        private TestException(SerializationInfo info, StreamingContext context)
+        private DerivedTestException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

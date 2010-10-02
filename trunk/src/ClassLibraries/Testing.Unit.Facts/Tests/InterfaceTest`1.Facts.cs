@@ -20,7 +20,7 @@
         [Fact]
         public void op_Check_whenFalse()
         {
-            Assert.Throws<TestException>(() => new InterfaceTest<object>().Check());
+            Assert.Throws<UnitTestException>(() => new InterfaceTest<object>().Check());
         }
 
         [Fact]

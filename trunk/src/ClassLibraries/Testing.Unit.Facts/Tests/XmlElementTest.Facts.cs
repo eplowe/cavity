@@ -25,7 +25,7 @@
                 ElementName = "xxx"
             };
 
-            Assert.Throws<TestException>(() => obj.Check());
+            Assert.Throws<UnitTestException>(() => obj.Check());
         }
 
         [Fact]
@@ -37,7 +37,7 @@
                 Namespace = "xxx"
             };
 
-            Assert.Throws<TestException>(() => obj.Check());
+            Assert.Throws<UnitTestException>(() => obj.Check());
         }
 
         [Fact]
@@ -57,7 +57,7 @@
         {
             var obj = new XmlElementTest(typeof(PropertiedClass1).GetProperty("AutoBoolean"));
 
-            Assert.Throws<TestException>(() => obj.Check());
+            Assert.Throws<UnitTestException>(() => obj.Check());
         }
 
         [Fact]

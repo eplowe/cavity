@@ -41,8 +41,7 @@
         {
             get
             {
-                return 0 == Items
-                                .Where(x => !x.Check())
+                return 0 == Items.Where(x => !x.Check())
                                 .Count();
             }
         }
@@ -204,7 +203,8 @@
             {
                 throw new ArgumentOutOfRangeException(Resources.TypeExpectations_IsDecoratedWithSerializable);
             }
-            else if (typeof(XmlRootAttribute).IsAssignableFrom(typeof(TAttribute)))
+
+            if (typeof(XmlRootAttribute).IsAssignableFrom(typeof(TAttribute)))
             {
                 throw new ArgumentOutOfRangeException(Resources.TypeExpectations_IsDecoratedWithXmlRoot);
             }

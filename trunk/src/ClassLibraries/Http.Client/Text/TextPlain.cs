@@ -31,15 +31,19 @@
 
             set
             {
-                if (null == value ||
-                    value is string)
+                if (null == value)
+                {
+                    Value = null;
+                    return;
+                }
+
+                if (value is string)
                 {
                     Value = value as string;
+                    return;
                 }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("value");
-                }
+
+                throw new ArgumentOutOfRangeException("value");
             }
         }
 

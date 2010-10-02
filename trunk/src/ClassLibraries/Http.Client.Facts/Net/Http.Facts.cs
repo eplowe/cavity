@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using System.Globalization;
     using System.IO;
     using Cavity.Net.Mime;
     using Microsoft.Practices.ServiceLocation;
@@ -125,7 +124,7 @@
 
         private static void WriteGet(TextWriter writer, string method, string requestUri, string host)
         {
-            writer.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} {1} HTTP/1.1", method, requestUri));
+            writer.WriteLine("{0} {1} HTTP/1.1".FormatWith(method, requestUri));
             writer.WriteLine("Host: " + host);
             writer.WriteLine("Connection: Close");
             writer.WriteLine(string.Empty);

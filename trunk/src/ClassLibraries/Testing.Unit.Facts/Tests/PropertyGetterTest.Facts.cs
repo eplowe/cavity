@@ -20,7 +20,7 @@
         [Fact]
         public void op_Check_whenFalse()
         {
-            Assert.Throws<TestException>(() => new PropertyGetterTest(typeof(PropertiedClass1).GetProperty("AutoBoolean"), true).Check());
+            Assert.Throws<UnitTestException>(() => new PropertyGetterTest(typeof(PropertiedClass1).GetProperty("AutoBoolean"), true).Check());
         }
 
         [Fact]

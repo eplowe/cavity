@@ -4,16 +4,44 @@ namespace Cavity
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Runtime.Serialization.Formatters.Soap;
     using System.Text;
     using System.Xml;
     using System.Xml.Serialization;
     using System.Xml.XPath;
     using Cavity.IO;
+    using Cavity.Properties;
     using Cavity.Xml;
 
     public static class ObjectExtensionMethods
     {
+        public static bool EqualsOneOf<T>(this T obj, params T[] args)
+        {
+            return args.Contains(obj);
+        }
+
+        public static bool IsBoundedBy<T>(this T obj, T lower, T upper)
+            where T : IComparable<T>
+        {
+            if (ReferenceEquals(null, upper))
+            {
+                throw new ArgumentNullException("upper");
+            }
+
+            if (1 > upper.CompareTo(lower))
+            {
+                throw new ArgumentException(Resources.ObjectExtensionMethods_IsBoundedBy_Message);
+            }
+
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            return -1 < obj.CompareTo(lower) && 1 > obj.CompareTo(upper);
+        }
+
         public static string ToXmlString(this object value)
         {
             if (null == value)

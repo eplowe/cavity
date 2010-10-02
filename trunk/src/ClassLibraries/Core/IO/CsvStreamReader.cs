@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -80,11 +79,7 @@
                 if (Columns.Count !=
                     entry.Count)
                 {
-                    var message = string.Format(
-                        CultureInfo.InvariantCulture,
-                        Resources.CsvStreamReader_ReadEntry_FormatException,
-                        LineNumber);
-                    throw new FormatException(message);
+                    throw new FormatException(Resources.CsvStreamReader_ReadEntry_FormatException.FormatWith(LineNumber));
                 }
 
                 for (var i = 0; i < Columns.Count; i++)
@@ -162,14 +157,12 @@
                         if (quote)
                         {
                             buffer.Append(c);
-                        }
-                        else
-                        {
-                            result.Add(trim ? buffer.ToString().Trim() : buffer.ToString());
-                            buffer.Remove(0, buffer.Length);
-                            trim = true;
+                            break;
                         }
 
+                        result.Add(trim ? buffer.ToString().Trim() : buffer.ToString());
+                        buffer.Remove(0, buffer.Length);
+                        trim = true;
                         break;
 
                     case '"':
@@ -179,18 +172,21 @@
                             if (i == line.Length - 1)
                             {
                                 quote = false;
+                                break;
                             }
-                            else if ('"' == line[i + 1])
+
+                            if ('"' == line[i + 1])
                             {
                                 buffer.Append(c);
                                 i++;
+                                break;
                             }
-                            else
-                            {
-                                quote = false;
-                            }
+
+                            quote = false;
+                            break;
                         }
-                        else if (0 == buffer.Length)
+
+                        if (0 == buffer.Length)
                         {
                             quote = true;
                         }

@@ -68,5 +68,14 @@ namespace Cavity.Properties {
                 return ResourceManager.GetString("CsvStreamReader_ReadEntry_FormatException", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The upper bound must be greater than the lower bound..
+        /// </summary>
+        internal static string ObjectExtensionMethods_IsBoundedBy_Message {
+            get {
+                return ResourceManager.GetString("ObjectExtensionMethods_IsBoundedBy_Message", resourceCulture);
+            }
+        }
     }
 }

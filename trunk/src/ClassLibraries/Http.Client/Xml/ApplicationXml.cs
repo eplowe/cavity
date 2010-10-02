@@ -33,15 +33,19 @@
 
             set
             {
-                if (null == value ||
-                    value is IXPathNavigable)
+                if (null == value)
+                {
+                    Xml = null;
+                    return;
+                }
+
+                if (value is IXPathNavigable)
                 {
                     Xml = value as IXPathNavigable;
+                    return;
                 }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("value");
-                }
+
+                throw new ArgumentOutOfRangeException("value");
             }
         }
 
@@ -78,7 +82,8 @@
             {
                 throw new ArgumentNullException("value");
             }
-            else if (0 == value.Length)
+
+            if (0 == value.Length)
             {
                 throw new ArgumentOutOfRangeException("value");
             }
