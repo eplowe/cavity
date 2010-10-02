@@ -69,6 +69,36 @@
         }
 
         [Fact]
+        public void op_RemoveAny_stringEmpty_chars()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveAny('.');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAny_stringNull_chars()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).RemoveAny('.'));
+        }
+
+        [Fact]
+        public void op_RemoveAny_string_chars()
+        {
+            const string expected = "abc";
+            var actual = "a.b,c".RemoveAny('.', ',');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAny_string_charsEmpty()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => "abc".RemoveAny());
+        }
+
+        [Fact]
         public void op_Replace_stringEmpty_string_string_StringComparison()
         {
             var expected = string.Empty;

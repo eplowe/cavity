@@ -4,6 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Runtime.Serialization.Formatters.Soap;
     using System.Text;
     using System.Xml.Serialization;
@@ -23,6 +24,26 @@
         public static string FormatWith(this string obj, params object[] args)
         {
             return string.Format(CultureInfo.InvariantCulture, obj, args);
+        }
+
+        public static string RemoveAny(this string obj, params char[] args)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (null == args)
+            {
+                throw new ArgumentNullException("args");
+            }
+
+            if (0 == args.Length)
+            {
+                throw new ArgumentOutOfRangeException("args");
+            }
+
+            return args.Aggregate(obj, (current, arg) => current.Replace(arg.ToString(), string.Empty));
         }
 
         public static string Replace(this string obj, string oldValue, string newValue, StringComparison comparisonType)

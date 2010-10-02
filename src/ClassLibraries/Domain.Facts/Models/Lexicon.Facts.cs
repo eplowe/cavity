@@ -301,32 +301,6 @@
         }
 
         [Fact]
-        public void op_SaveCsv_FileInfo_withComma()
-        {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
-            {
-                file.Delete();
-
-                var obj = new Lexicon(StringComparer.InvariantCultureIgnoreCase);
-                obj.Items.Add(new LexicalItem("foo, bar"));
-
-                obj.SaveCsv(file);
-
-                Assert.True(file.Exists);
-
-                Assert.True(Lexicon.LoadCsv(file).Contains("foo, bar"));
-            }
-            finally
-            {
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
-            }
-        }
-
-        [Fact]
         public void op_SaveCsv_FileInfoNull()
         {
             var obj = new Lexicon();
@@ -400,6 +374,32 @@
                 Assert.True(file.Exists);
 
                 Assert.True(File.ReadAllText(file.FullName).StartsWith("CANONICAL,SYNONYMS"));
+            }
+            finally
+            {
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+            }
+        }
+
+        [Fact]
+        public void op_SaveCsv_FileInfo_withComma()
+        {
+            var file = new FileInfo(Path.GetTempFileName());
+            try
+            {
+                file.Delete();
+
+                var obj = new Lexicon(StringComparer.InvariantCultureIgnoreCase);
+                obj.Items.Add(new LexicalItem("foo, bar"));
+
+                obj.SaveCsv(file);
+
+                Assert.True(file.Exists);
+
+                Assert.True(Lexicon.LoadCsv(file).Contains("foo, bar"));
             }
             finally
             {

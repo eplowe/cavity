@@ -10,8 +10,8 @@
             }
 
             return value.Contains(",")
-                ? string.Concat("\"", value, "\"")
-                : value;
+                       ? string.Concat("\"", value, "\"")
+                       : value;
         }
     }
 }
