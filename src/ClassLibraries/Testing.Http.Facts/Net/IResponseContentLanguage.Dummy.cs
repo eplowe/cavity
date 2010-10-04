@@ -15,11 +15,6 @@
             throw new NotSupportedException();
         }
 
-        IResponseContentMD5 IResponseContentLanguage.HasContentLanguageOfEnglish()
-        {
-            throw new NotSupportedException();
-        }
-
         IResponseContentMD5 IResponseContentLanguage.IgnoreContentLanguage()
         {
             throw new NotSupportedException();

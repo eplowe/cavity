@@ -14,11 +14,6 @@
             throw new NotSupportedException();
         }
 
-        IResponseStatus IRequestMethod.Get(bool head)
-        {
-            throw new NotSupportedException();
-        }
-
         IResponseStatus IRequestMethod.Head()
         {
             throw new NotSupportedException();
@@ -40,11 +35,6 @@
         }
 
         IResponseStatus IRequestMethod.Use(string method)
-        {
-            throw new NotSupportedException();
-        }
-
-        IResponseStatus IRequestMethod.Use(string method, bool head)
         {
             throw new NotSupportedException();
         }

@@ -4,21 +4,22 @@
 
     public sealed class HttpHeadTest : ITestHttpExpectation
     {
-        public HttpHeadTest(HttpRequestDefinition definition)
+        public HttpHeadTest(IWebRequest request)
         {
-            if (null == definition)
+            if (null == request)
             {
-                throw new ArgumentNullException("definition");
-            }
-            else if (!"GET".Equals(definition.Method, StringComparison.OrdinalIgnoreCase))
-            {
-                throw new ArgumentOutOfRangeException("definition");
+                throw new ArgumentNullException("request");
             }
 
-            Definition = definition;
+            if (!"GET".Equals(request.Method, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new ArgumentOutOfRangeException("request");
+            }
+
+            Request = request;
         }
 
-        private HttpRequestDefinition Definition { get; set; }
+        private IWebRequest Request { get; set; }
 
         bool ITestHttpExpectation.Check(Response response)
         {

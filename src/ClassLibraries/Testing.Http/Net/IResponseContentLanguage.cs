@@ -8,8 +8,6 @@
 
         IResponseContentMD5 HasContentLanguage(string language);
 
-        IResponseContentMD5 HasContentLanguageOfEnglish();
-
         IResponseContentMD5 IgnoreContentLanguage();
     }
 }

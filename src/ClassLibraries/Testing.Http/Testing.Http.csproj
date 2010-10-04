@@ -56,9 +56,15 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Net\HttpResponseContentTypeTest.cs" />
     <Compile Include="Net\HttpExpectations.cs" />
     <Compile Include="Net\HttpHeadTest.cs" />
     <Compile Include="Net\HttpRequestDefinition.cs" />
+    <Compile Include="Net\HttpResponseCacheControlTest.cs" />
+    <Compile Include="Net\HttpResponseContentLanguageTest.cs" />
+    <Compile Include="Net\HttpResponseContentMD5Test.cs" />
+    <Compile Include="Net\HttpResponseHeaderTest.cs" />
+    <Compile Include="Net\HttpStatusCodeTest.cs" />
     <Compile Include="Net\HttpTestException.cs" />
     <Compile Include="Net\IHttpContent.cs" />
     <Compile Include="Net\IRequestAcceptContent.cs" />
@@ -74,6 +80,7 @@
     <Compile Include="Net\IResponseXml.cs" />
     <Compile Include="Net\ITestHttp.cs" />
     <Compile Include="Net\ITestHttpExpectation.cs" />
+    <Compile Include="Net\NoContentResponse.cs" />
     <Compile Include="Net\Response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

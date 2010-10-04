@@ -32,20 +32,6 @@
         }
 
         [Fact]
-        public void IRequestMethod_op_Get_bool()
-        {
-            try
-            {
-                const bool head = false;
-                var value = (new IRequestMethodDummy() as IRequestMethod).Get(head);
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void IRequestMethod_op_Head()
         {
             try
@@ -106,21 +92,6 @@
             {
                 string method = null;
                 var value = (new IRequestMethodDummy() as IRequestMethod).Use(method);
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IRequestMethod_op_Use_string_bool()
-        {
-            try
-            {
-                string method = null;
-                const bool head = false;
-                var value = (new IRequestMethodDummy() as IRequestMethod).Use(method, head);
                 Assert.NotNull(value);
             }
             catch (NotSupportedException)

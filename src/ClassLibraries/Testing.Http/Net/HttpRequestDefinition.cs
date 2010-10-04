@@ -3,7 +3,7 @@
     using System;
     using Cavity.Data;
 
-    public sealed class HttpRequestDefinition
+    public sealed class HttpRequestDefinition : IWebRequest
     {
         private AbsoluteUri _requestUri;
 

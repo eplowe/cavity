@@ -35,19 +35,6 @@
         }
 
         [Fact]
-        public void IResponseContentLanguage_op_HasContentLanguageOfEnglish()
-        {
-            try
-            {
-                var value = (new IResponseContentLanguageDummy() as IResponseContentLanguage).HasContentLanguageOfEnglish();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void IResponseContentLanguage_op_IgnoreContentLanguage()
         {
             try
