@@ -70,7 +70,7 @@
         [Fact]
         public void ctor_stringNull_ExceptionNull()
         {
-            Assert.NotNull(new HttpTestException(null, null));
+            Assert.NotNull(new HttpTestException(null, null as Exception));
         }
 
         [Fact]

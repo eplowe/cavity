@@ -13,7 +13,7 @@
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsSealed()
-                .HasDefaultConstructor()
+                .NoDefaultConstructor()
                 .IsNotDecorated()
                 .Implements<ITestHttpExpectation>()
                 .Result);
@@ -34,23 +34,23 @@
         [Fact]
         public void ctor_HttpRequestDefinition_whenGetMethod()
         {
-            var definition = new HttpRequestDefinition("http://example.com/")
+            var request = new HttpRequestDefinition("http://example.com/")
             {
                 Method = "GET"
             };
 
-            Assert.NotNull(new HttpHeadTest(definition));
+            Assert.NotNull(new HttpHeadTest(request));
         }
 
         [Fact]
         public void ITestHttpExpectation_op_Check_ResponseNull()
         {
-            var definition = new HttpRequestDefinition("http://example.com/")
+            var request = new HttpRequestDefinition("http://example.com/")
             {
                 Method = "GET"
             };
 
-            ITestHttpExpectation obj = new HttpHeadTest(definition);
+            ITestHttpExpectation obj = new HttpHeadTest(request);
 
             Assert.Throws<ArgumentNullException>(() => obj.Check(null));
         }
@@ -58,14 +58,12 @@
         [Fact]
         public void ITestHttpExpectation_op_Check_Response()
         {
-            var definition = new HttpRequestDefinition("http://example.com/")
+            var request = new HttpRequestDefinition("http://example.com/")
             {
                 Method = "GET"
             };
 
-            ITestHttpExpectation obj = new HttpHeadTest(definition);
-
-            var response = new Response();
+            ITestHttpExpectation obj = new HttpHeadTest(request);
 
             Assert.Throws<ArgumentNullException>(() => obj.Check(null));
         }

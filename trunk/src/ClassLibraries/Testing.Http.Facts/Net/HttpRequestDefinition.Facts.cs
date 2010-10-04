@@ -15,6 +15,7 @@
                             .IsSealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
+                            .Implements<IWebRequest>()
                             .Result);
         }
 
