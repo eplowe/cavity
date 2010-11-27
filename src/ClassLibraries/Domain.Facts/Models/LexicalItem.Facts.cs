@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Xunit;
 
     public sealed class LexicalItemFacts
@@ -63,7 +64,7 @@
         [Fact]
         public void op_Contains_stringEmpty_IComparerNull()
         {
-            Assert.False(new LexicalItem("Example").Contains(string.Empty, null));
+            Assert.Throws<ArgumentNullException>(() => new LexicalItem("Example").Contains(string.Empty, null));
         }
 
         [Fact]
@@ -90,13 +91,13 @@
         [Fact]
         public void op_Contains_stringNull_IComparerNull()
         {
-            Assert.False(new LexicalItem("Example").Contains(null, null));
+            Assert.Throws<ArgumentNullException>(() => new LexicalItem("Example").Contains(null, null));
         }
 
         [Fact]
         public void op_Contains_string_IComparerNull()
         {
-            Assert.True(new LexicalItem("Example").Contains("Example", null));
+            Assert.Throws<ArgumentNullException>(() => new LexicalItem("Example").Contains("Example", null));
         }
 
         [Fact]
@@ -150,6 +151,24 @@
                             .ArgumentOutOfRangeException(string.Empty)
                             .IsNotDecorated()
                             .Result);
+        }
+
+        [Fact]
+        public void prop_Spellings()
+        {
+            var obj = new LexicalItem("a")
+            {
+                Synonyms =
+                    {
+                        "b",
+                        "c"
+                    }
+            };
+
+            const string expected = "abc";
+            var actual = obj.Spellings.Aggregate<string, string>(null, (current, spelling) => current + spelling);
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
