@@ -13,13 +13,13 @@
     public sealed class Lexicon
     {
         public Lexicon()
+            : this(StringComparer.OrdinalIgnoreCase)
         {
-            Items = new Collection<LexicalItem>();
         }
 
         public Lexicon(IComparer<string> comparer)
-            : this()
         {
+            Items = new Collection<LexicalItem>();
             Comparer = comparer;
         }
 
@@ -34,7 +34,7 @@
 
         public static Lexicon LoadCsv(FileInfo file, IComparer<string> comparer)
         {
-            var result = new Lexicon(comparer);
+            var result = null == comparer ? new Lexicon() : new Lexicon(comparer);
 
             foreach (var data in new CsvFile(file))
             {

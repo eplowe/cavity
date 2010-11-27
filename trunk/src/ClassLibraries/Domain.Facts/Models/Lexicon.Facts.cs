@@ -477,7 +477,7 @@
         {
             Assert.True(new PropertyExpectations<Lexicon>(p => p.Comparer)
                             .TypeIs<IComparer<string>>()
-                            .DefaultValueIsNull()
+                            .DefaultValueIs(StringComparer.OrdinalIgnoreCase)
                             .IsNotDecorated()
                             .Result);
         }

@@ -43,22 +43,37 @@
             }
         }
 
+        public IEnumerable<string> Spellings
+        {
+            get
+            {
+                if (null != CanonicalForm)
+                {
+                    yield return CanonicalForm;
+                }
+
+                foreach (var synonym in Synonyms)
+                {
+                    yield return synonym;
+                }
+            }
+        }
+
         public HashSet<string> Synonyms { get; private set; }
 
         public bool Contains(string value)
         {
-            return Contains(value, null);
+            return Contains(value, StringComparer.OrdinalIgnoreCase);
         }
 
         public bool Contains(string value, IComparer<string> comparer)
         {
             if (null == comparer)
             {
-                return string.Equals(CanonicalForm, value) || Synonyms.Contains(value);
+                throw new ArgumentNullException("comparer");
             }
 
-            return 0 == comparer.Compare(CanonicalForm, value)
-                   || Synonyms.Any(synonym => 0 == comparer.Compare(synonym, value));
+            return Spellings.Any(spelling => 0 == comparer.Compare(spelling, value));
         }
     }
 }
