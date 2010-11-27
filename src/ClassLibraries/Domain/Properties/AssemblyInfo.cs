@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 [assembly: CLSCompliant(true)]
@@ -14,3 +15,5 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Domain Library (Release)")]
 
 #endif
+
+[assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Cavity.Data")]

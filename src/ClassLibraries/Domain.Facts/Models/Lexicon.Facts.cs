@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using Cavity.Data;
+    using Moq;
     using Xunit;
 
     public sealed class LexiconFacts
@@ -152,262 +154,45 @@
         }
 
         [Fact]
-        public void op_LoadCsv_FileInfo()
+        public void op_Save()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
-            {
-                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
-                {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.WriteLine("CANONICAL,SYNONYMS");
-                        writer.WriteLine("1,");
-                    }
-                }
-
-                var obj = Lexicon.LoadCsv(file);
-
-                Assert.Equal("1", obj.ToCanonicalForm("1"));
-            }
-            finally
-            {
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
-            }
+            Assert.Throws<ArgumentNullException>(() => new Lexicon().Save());
         }
 
         [Fact]
-        public void op_LoadCsv_FileInfoNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => Lexicon.LoadCsv(null));
-        }
-
-        [Fact]
-        public void op_LoadCsv_FileInfo_withMultipleSynonyms()
-        {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
-            {
-                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
-                {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.WriteLine("CANONICAL,SYNONYMS");
-                        writer.WriteLine("1,One;Unit");
-                    }
-                }
-
-                var obj = Lexicon.LoadCsv(file);
-
-                Assert.Equal("1", obj.ToCanonicalForm("One"));
-                Assert.Equal("1", obj.ToCanonicalForm("Unit"));
-            }
-            finally
-            {
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
-            }
-        }
-
-        [Fact]
-        public void op_LoadCsv_FileInfo_withRepeats()
-        {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
-            {
-                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
-                {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.WriteLine("CANONICAL,SYNONYMS");
-                        writer.WriteLine("1,One");
-                        writer.WriteLine("1,Unit");
-                    }
-                }
-
-                var obj = Lexicon.LoadCsv(file);
-
-                Assert.Equal("1", obj.ToCanonicalForm("One"));
-                Assert.Equal("1", obj.ToCanonicalForm("Unit"));
-                Assert.Equal(1, obj.Items.Count);
-                Assert.Equal(2, obj.Items.First().Synonyms.Count);
-            }
-            finally
-            {
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
-            }
-        }
-
-        [Fact]
-        public void op_LoadCsv_FileInfo_withSingleSynonym()
-        {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
-            {
-                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
-                {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.WriteLine("CANONICAL,SYNONYMS");
-                        writer.WriteLine("1,One");
-                    }
-                }
-
-                var obj = Lexicon.LoadCsv(file);
-
-                Assert.Equal("1", obj.ToCanonicalForm("One"));
-            }
-            finally
-            {
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
-            }
-        }
-
-        [Fact]
-        public void op_SaveCsv_FileInfo()
-        {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
-            {
-                file.Delete();
-
-                var obj = new Lexicon(StringComparer.InvariantCultureIgnoreCase);
-                obj.Items.Add(new LexicalItem("Example"));
-
-                obj.SaveCsv(file);
-
-                Assert.True(file.Exists);
-
-                Assert.True(Lexicon.LoadCsv(file).Contains("Example"));
-            }
-            finally
-            {
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
-            }
-        }
-
-        [Fact]
-        public void op_SaveCsv_FileInfoNull()
+        public void op_Save_whenStorageDefined()
         {
             var obj = new Lexicon();
-            obj.Items.Add(new LexicalItem("Example"));
 
-            Assert.Throws<ArgumentNullException>(() => obj.SaveCsv(null));
+            var storage = new Mock<IStoreLexicon>();
+            storage.Setup(x => x.Save(obj)).Verifiable();
+
+            obj.Storage = storage.Object;
+
+            obj.Save();
+
+            storage.VerifyAll();
         }
 
         [Fact]
-        public void op_SaveCsv_FileInfo_IComparer()
+        public void op_Save_IStoreLexiconNull()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
-            {
-                file.Delete();
-
-                var obj = new Lexicon();
-                obj.Items.Add(new LexicalItem("Example"));
-
-                obj.SaveCsv(file);
-
-                Assert.True(file.Exists);
-
-                Assert.True(Lexicon.LoadCsv(file, StringComparer.InvariantCultureIgnoreCase).Contains("EXAMPLE"));
-            }
-            finally
-            {
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
-            }
+            Assert.Throws<ArgumentNullException>(() => new Lexicon().Save(null));
         }
 
         [Fact]
-        public void op_SaveCsv_FileInfo_IComparerNull()
+        public void op_Save_IStoreLexicon()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
-            {
-                file.Delete();
+            var obj = new Lexicon();
 
-                var obj = new Lexicon();
-                obj.Items.Add(new LexicalItem("Example"));
+            var storage = new Mock<IStoreLexicon>();
+            storage.Setup(x => x.Save(obj)).Verifiable();
 
-                obj.SaveCsv(file);
+            obj.Save(storage.Object);
 
-                Assert.True(file.Exists);
+            Assert.Same(storage.Object, obj.Storage);
 
-                Assert.True(Lexicon.LoadCsv(file, null).Contains("Example"));
-            }
-            finally
-            {
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
-            }
-        }
-
-        [Fact]
-        public void op_SaveCsv_FileInfo_whenEmpty()
-        {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
-            {
-                file.Delete();
-
-                new Lexicon().SaveCsv(file);
-
-                Assert.True(file.Exists);
-
-                Assert.True(File.ReadAllText(file.FullName).StartsWith("CANONICAL,SYNONYMS"));
-            }
-            finally
-            {
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
-            }
-        }
-
-        [Fact]
-        public void op_SaveCsv_FileInfo_withComma()
-        {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
-            {
-                file.Delete();
-
-                var obj = new Lexicon(StringComparer.InvariantCultureIgnoreCase);
-                obj.Items.Add(new LexicalItem("foo, bar"));
-
-                obj.SaveCsv(file);
-
-                Assert.True(file.Exists);
-
-                Assert.True(Lexicon.LoadCsv(file).Contains("foo, bar"));
-            }
-            finally
-            {
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
-            }
+            storage.VerifyAll();
         }
 
         [Fact]
@@ -488,6 +273,15 @@
             Assert.True(new PropertyExpectations<Lexicon>(p => p.Items)
                             .TypeIs<ICollection<LexicalItem>>()
                             .DefaultValueIsNotNull()
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_Storage()
+        {
+            Assert.True(new PropertyExpectations<Lexicon>(p => p.Storage)
+                            .IsAutoProperty<IStoreLexicon>()
                             .IsNotDecorated()
                             .Result);
         }

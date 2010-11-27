@@ -56,6 +56,8 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Data\CsvLexiconStorage.cs" />
+    <Compile Include="Data\IStoreLexicon.cs" />
     <Compile Include="Models\BritishPostcode.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.cs" />
     <Compile Include="Models\LexicalItem.cs" />
