@@ -27,37 +27,7 @@
 
         public ICollection<LexicalItem> Items { get; private set; }
 
-        public static Lexicon LoadCsv(FileInfo file)
-        {
-            return LoadCsv(file, null);
-        }
-
-        public static Lexicon LoadCsv(FileInfo file, IComparer<string> comparer)
-        {
-            var result = null == comparer ? new Lexicon() : new Lexicon(comparer);
-
-            foreach (var data in new CsvFile(file))
-            {
-                var canonical = data["CANONICAL"];
-                var item = result.Items
-                    .Where(x => string.Equals(x.CanonicalForm, canonical, StringComparison.Ordinal))
-                    .FirstOrDefault();
-                if (null == item)
-                {
-                    item = new LexicalItem(canonical);
-                    result.Items.Add(item);
-                }
-
-                foreach (var synonym in data["SYNONYMS"]
-                    .Split(';', StringSplitOptions.RemoveEmptyEntries)
-                    .Where(synonym => !item.Synonyms.Contains(synonym)))
-                {
-                    item.Synonyms.Add(synonym);
-                }
-            }
-
-            return result;
-        }
+        public IStoreLexicon Storage { get; set; }
 
         public void Add(string value)
         {
@@ -72,6 +42,22 @@
         public bool Contains(string value)
         {
             return Items.Any(item => item.Contains(value, Comparer));
+        }
+
+        public void Save()
+        {
+            Save(Storage);
+        }
+
+        public void Save(IStoreLexicon storage)
+        {
+            if (null == storage)
+            {
+                throw new ArgumentNullException("storage");
+            }
+
+            Storage = storage;
+            Storage.Save(this);
         }
 
         [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Will trust in using statement.")]

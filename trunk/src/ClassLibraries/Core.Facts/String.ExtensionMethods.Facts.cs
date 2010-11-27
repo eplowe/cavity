@@ -69,30 +69,6 @@
         }
 
         [Fact]
-        public void op_RemoveAnyDigits_string()
-        {
-            const string expected = "abc";
-            var actual = "a01234b56789c".RemoveAnyDigits();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_RemoveAnyDigits_stringEmpty()
-        {
-            var expected = string.Empty;
-            var actual = expected.RemoveAnyDigits();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_RemoveAnyDigits_stringNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as string).RemoveAnyDigits());
-        }
-
-        [Fact]
         public void op_NormalizeWhiteSpace_string()
         {
             var expected = new string(' ', WhiteSpace.Characters.Count);
@@ -175,6 +151,30 @@
         public void op_NormalizeWhiteSpace_stringNull()
         {
             Assert.Null((null as string).NormalizeWhiteSpace());
+        }
+
+        [Fact]
+        public void op_RemoveAnyDigits_string()
+        {
+            const string expected = "abc";
+            var actual = "a01234b56789c".RemoveAnyDigits();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyDigits_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveAnyDigits();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyDigits_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).RemoveAnyDigits());
         }
 
         [Fact]
