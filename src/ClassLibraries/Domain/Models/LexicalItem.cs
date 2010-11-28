@@ -61,11 +61,6 @@
 
         public HashSet<string> Synonyms { get; private set; }
 
-        public bool Contains(string value)
-        {
-            return Contains(value, StringComparer.OrdinalIgnoreCase);
-        }
-
         public bool Contains(string value, IComparer<string> comparer)
         {
             if (null == comparer)

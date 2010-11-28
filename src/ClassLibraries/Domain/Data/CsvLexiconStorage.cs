@@ -83,7 +83,7 @@
             using (var writers = new StreamWriterDictionary("CANONICAL,SYNONYMS")
             {
                 Access = FileAccess.Write,
-                Mode = FileMode.CreateNew,
+                Mode = FileMode.Create,
                 Share = FileShare.None
             })
             {

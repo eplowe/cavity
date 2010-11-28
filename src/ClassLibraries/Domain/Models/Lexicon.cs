@@ -60,38 +60,6 @@
             Storage.Save(this);
         }
 
-        [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Will trust in using statement.")]
-        public void SaveCsv(FileSystemInfo file)
-        {
-            if (null == file)
-            {
-                throw new ArgumentNullException("file");
-            }
-
-            using (var writers = new StreamWriterDictionary("CANONICAL,SYNONYMS")
-            {
-                Access = FileAccess.Write,
-                Mode = FileMode.CreateNew,
-                Share = FileShare.None
-            })
-            {
-                if (0 == Items.Count)
-                {
-                    writers.Item(file.FullName).WriteLine(string.Empty);
-                    return;
-                }
-
-                foreach (var item in Items.OrderBy(x => x.CanonicalForm))
-                {
-                    writers
-                        .Item(file.FullName)
-                        .WriteLine("{0},{1}".FormatWith(
-                            item.CanonicalForm.FormatCommaSeparatedValue(),
-                            item.Synonyms.OrderBy(x => x).Concat(';').FormatCommaSeparatedValue()));
-                }
-            }
-        }
-
         public string ToCanonicalForm(string value)
         {
             return (from item in Items
