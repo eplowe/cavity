@@ -26,27 +26,6 @@
         }
 
         [Fact]
-        public void op_Contains_string()
-        {
-            var obj = new LexicalItem("Example")
-            {
-                Synonyms =
-                    {
-                        "One",
-                        "Two"
-                    }
-            };
-
-            Assert.False(obj.Contains("Three"));
-        }
-
-        [Fact]
-        public void op_Contains_stringEmpty()
-        {
-            Assert.False(new LexicalItem("Example").Contains(string.Empty));
-        }
-
-        [Fact]
         public void op_Contains_stringEmpty_IComparer()
         {
             var obj = new LexicalItem("Example")
@@ -65,12 +44,6 @@
         public void op_Contains_stringEmpty_IComparerNull()
         {
             Assert.Throws<ArgumentNullException>(() => new LexicalItem("Example").Contains(string.Empty, null));
-        }
-
-        [Fact]
-        public void op_Contains_stringNull()
-        {
-            Assert.False(new LexicalItem("Example").Contains(null));
         }
 
         [Fact]
@@ -119,27 +92,6 @@
             };
 
             Assert.True(obj.Contains("Bar", StringComparer.InvariantCultureIgnoreCase));
-        }
-
-        [Fact]
-        public void op_Contains_string_whenMatchesCanonicalForm()
-        {
-            Assert.True(new LexicalItem("Example").Contains("Example"));
-        }
-
-        [Fact]
-        public void op_Contains_string_whenMatchesSynonym()
-        {
-            var obj = new LexicalItem("Example")
-            {
-                Synonyms =
-                    {
-                        "Foo",
-                        "Bar"
-                    }
-            };
-
-            Assert.True(obj.Contains("Bar"));
         }
 
         [Fact]
