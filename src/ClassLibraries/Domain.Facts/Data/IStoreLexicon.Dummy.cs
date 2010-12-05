@@ -6,6 +6,11 @@
 
     public sealed class IStoreLexiconDummy : IStoreLexicon
     {
+        void IStoreLexicon.Delete(Lexicon lexicon)
+        {
+            throw new NotSupportedException();
+        }
+
         Lexicon IStoreLexicon.Load()
         {
             throw new NotSupportedException();

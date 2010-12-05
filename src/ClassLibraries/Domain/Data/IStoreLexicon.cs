@@ -5,6 +5,8 @@
 
     public interface IStoreLexicon
     {
+        void Delete(Lexicon lexicon);
+
         Lexicon Load();
 
         Lexicon Load(IComparer<string> comparer);

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using Cavity.Data;
     using Moq;
@@ -18,7 +17,6 @@
                             .IsConcreteClass()
                             .IsSealed()
                             .HasDefaultConstructor()
-                            .IsNotDecorated()
                             .Result);
         }
 
@@ -38,6 +36,49 @@
         public void ctor_IComparerNull()
         {
             Assert.NotNull(new Lexicon(null));
+        }
+
+        [Fact]
+        public void indexer_stringNull_get()
+        {
+            var obj = new Lexicon();
+
+            Assert.Throws<ArgumentNullException>(() => obj[null]);
+        }
+
+        [Fact]
+        public void indexer_string_get()
+        {
+            var expected = new LexicalItem("Example");
+
+            var obj = new Lexicon();
+            obj.Items.Add(expected);
+
+            var actual = obj[expected.CanonicalForm];
+
+            Assert.Same(expected, actual);
+        }
+
+        [Fact]
+        public void indexer_string_getWhenNotFound()
+        {
+            var obj = new Lexicon();
+
+            Assert.Null(obj["Example"]);
+        }
+
+        [Fact]
+        public void indexer_string_getWhenSynonym()
+        {
+            var expected = new LexicalItem("Foo");
+            expected.Synonyms.Add("Bar");
+
+            var obj = new Lexicon();
+            obj.Items.Add(expected);
+
+            var actual = obj[expected.Synonyms.First()];
+
+            Assert.Same(expected, actual);
         }
 
         [Fact]
@@ -154,30 +195,156 @@
         }
 
         [Fact]
-        public void op_Save()
+        public void op_Delete()
         {
-            Assert.Throws<ArgumentNullException>(() => new Lexicon().Save());
+            Assert.Throws<ArgumentNullException>(() => new Lexicon().Delete());
         }
 
         [Fact]
-        public void op_Save_whenStorageDefined()
+        public void op_Delete_IStoreLexicon()
         {
             var obj = new Lexicon();
 
             var storage = new Mock<IStoreLexicon>();
-            storage.Setup(x => x.Save(obj)).Verifiable();
+            storage.Setup(x => x.Delete(obj)).Verifiable();
 
-            obj.Storage = storage.Object;
+            obj.Delete(storage.Object);
 
-            obj.Save();
+            Assert.Same(storage.Object, obj.Storage);
 
             storage.VerifyAll();
         }
 
         [Fact]
-        public void op_Save_IStoreLexiconNull()
+        public void op_Delete_IStoreLexiconNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new Lexicon().Save(null));
+            Assert.Throws<ArgumentNullException>(() => new Lexicon().Delete(null));
+        }
+
+        [Fact]
+        public void op_Delete_whenStorageDefined()
+        {
+            var obj = new Lexicon();
+
+            var storage = new Mock<IStoreLexicon>();
+            storage.Setup(x => x.Delete(obj)).Verifiable();
+
+            obj.Storage = storage.Object;
+
+            obj.Delete();
+
+            storage.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Invoke_Func()
+        {
+            var obj = new Lexicon();
+            var item = new LexicalItem(string.Concat("Foo", '\u00A0', "Bar"))
+            {
+                Synonyms =
+                    {
+                        string.Concat("Left", '\u00A0', "Right")
+                    }
+            };
+
+            obj.Items.Add(item);
+
+            obj.Invoke(x => x.NormalizeWhiteSpace());
+
+            Assert.Equal("Foo Bar", obj.Items.First().CanonicalForm);
+            Assert.Equal("Left Right", obj.Items.First().Synonyms.First());
+        }
+
+        [Fact]
+        public void op_Invoke_FuncNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Lexicon().Invoke(null));
+        }
+
+        [Fact]
+        public void op_Remove_IEnumerableLexicalItems()
+        {
+            var obj = new Lexicon();
+            obj.Items.Add(new LexicalItem("1")
+            {
+                Synonyms =
+                    {
+                        "One"
+                    }
+            });
+
+            var lexicon = new Lexicon();
+            lexicon.Items.Add(new LexicalItem("1")
+            {
+                Synonyms =
+                    {
+                        "One"
+                    }
+            });
+
+            obj.Remove(lexicon.Items);
+
+            Assert.Equal(0, obj.Items.Count);
+        }
+
+        [Fact]
+        public void op_Remove_IEnumerableLexicalItemsEmpty()
+        {
+            var expected = new LexicalItem("1")
+            {
+                Synonyms =
+                    {
+                        "One"
+                    }
+            };
+
+            var obj = new Lexicon();
+            obj.Items.Add(expected);
+
+            obj.Remove(new Lexicon().Items);
+
+            var actual = obj.Items.First();
+
+            Assert.Same(expected, actual);
+        }
+
+        [Fact]
+        public void op_Remove_IEnumerableLexicalItemsNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Lexicon().Remove(null));
+        }
+
+        [Fact]
+        public void op_Remove_IEnumerableLexicalItemsSynonym()
+        {
+            var obj = new Lexicon();
+            obj.Items.Add(new LexicalItem("Foo")
+            {
+                Synonyms =
+                    {
+                        "One"
+                    }
+            });
+
+            var lexicon = new Lexicon();
+            lexicon.Items.Add(new LexicalItem("Bar")
+            {
+                Synonyms =
+                    {
+                        "One"
+                    }
+            });
+
+            obj.Remove(lexicon.Items);
+
+            Assert.Equal(0, obj.Items.Count);
+        }
+
+        [Fact]
+        public void op_Save()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Lexicon().Save());
         }
 
         [Fact]
@@ -191,6 +358,27 @@
             obj.Save(storage.Object);
 
             Assert.Same(storage.Object, obj.Storage);
+
+            storage.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Save_IStoreLexiconNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Lexicon().Save(null));
+        }
+
+        [Fact]
+        public void op_Save_whenStorageDefined()
+        {
+            var obj = new Lexicon();
+
+            var storage = new Mock<IStoreLexicon>();
+            storage.Setup(x => x.Save(obj)).Verifiable();
+
+            obj.Storage = storage.Object;
+
+            obj.Save();
 
             storage.VerifyAll();
         }

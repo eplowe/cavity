@@ -7,6 +7,19 @@
     public sealed class IStoreLexiconFacts
     {
         [Fact]
+        public void IStoreLexicon_Delete_Lexicon()
+        {
+            try
+            {
+                (new IStoreLexiconDummy() as IStoreLexicon).Delete(new Lexicon());
+                Assert.True(false);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
+
+        [Fact]
         public void IStoreLexicon_Load()
         {
             try

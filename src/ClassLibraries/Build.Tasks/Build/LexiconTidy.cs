@@ -43,6 +43,7 @@
 
         private bool Execute(FileInfo file)
         {
+            file.Refresh();
             if (file.Exists)
             {
                 var lexicon = new CsvLexiconStorage(file).Load();

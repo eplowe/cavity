@@ -40,6 +40,20 @@
             }
         }
 
+        public void Delete(Lexicon lexicon)
+        {
+            if (null == lexicon)
+            {
+                throw new ArgumentNullException("lexicon");
+            }
+
+            Location.Refresh();
+            if (Location.Exists)
+            {
+                Location.Delete();
+            }
+        }
+
         public Lexicon Load()
         {
             return Load(null);
@@ -54,7 +68,7 @@
             {
                 var canonical = data["CANONICAL"];
                 var item = result.Items
-                    .Where(x => string.Equals(x.CanonicalForm, canonical, StringComparison.Ordinal))
+                    .Where(x => 0 == (comparer ?? StringComparer.Ordinal).Compare(x.CanonicalForm, canonical))
                     .FirstOrDefault();
                 if (null == item)
                 {
@@ -63,10 +77,16 @@
                 }
 
                 foreach (var synonym in data["SYNONYMS"]
-                    .Split(';', StringSplitOptions.RemoveEmptyEntries)
-                    .Where(synonym => !item.Synonyms.Contains(synonym)))
+                    .Split(';', StringSplitOptions.RemoveEmptyEntries))
                 {
-                    item.Synonyms.Add(synonym);
+                    var s = synonym;
+                    if (0 == item
+                        .Synonyms
+                        .Where(x => 0 == (comparer ?? StringComparer.Ordinal).Compare(x, s))
+                        .Count())
+                    {
+                        item.Synonyms.Add(synonym);
+                    }
                 }
             }
 

@@ -104,6 +104,7 @@
                     obj.Item(file).Write("example");
                 }
 
+                file.Refresh();
                 Assert.True(file.Exists);
             }
             finally
@@ -156,6 +157,7 @@
                     obj.Item(file.FullName).Write("example");
                 }
 
+                file.Refresh();
                 Assert.True(file.Exists);
             }
             finally

@@ -52,12 +52,15 @@
                 };
 
                 Assert.True(obj.Execute());
+
+                file.Refresh();
                 Assert.True(file.Exists);
 
                 Assert.True(File.ReadAllText(file.FullName).Contains("1,One;Unit"));
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();
