@@ -61,6 +61,23 @@
 
         public HashSet<string> Synonyms { get; private set; }
 
+        public void Invoke(Func<string, string> function)
+        {
+            if (null == function)
+            {
+                throw new ArgumentNullException("function");
+            }
+
+            CanonicalForm = function.Invoke(CanonicalForm);
+
+            var synonyms = Synonyms.ToList();
+            Synonyms.Clear();
+            foreach (var synonym in synonyms.OrderBy(x => x))
+            {
+                Synonyms.Add(function.Invoke(synonym));
+            }
+        }
+
         public bool Contains(string value, IComparer<string> comparer)
         {
             if (null == comparer)

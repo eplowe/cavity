@@ -56,6 +56,7 @@
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();
@@ -84,6 +85,7 @@
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();
@@ -114,6 +116,7 @@
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();

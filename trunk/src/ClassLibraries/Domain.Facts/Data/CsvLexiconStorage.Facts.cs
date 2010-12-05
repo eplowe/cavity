@@ -36,6 +36,37 @@
         }
 
         [Fact]
+        public void op_Delete_Lexicon()
+        {
+            var file = new FileInfo(Path.GetTempFileName());
+            try
+            {
+                IStoreLexicon store = new CsvLexiconStorage(file);
+                store.Delete(new Lexicon());
+
+                file.Refresh();
+                Assert.False(file.Exists);
+            }
+            finally
+            {
+                file.Refresh();
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+            }
+        }
+
+        [Fact]
+        public void op_Delete_LexiconNull()
+        {
+            var file = new FileInfo(Path.GetTempFileName());
+            IStoreLexicon store = new CsvLexiconStorage(file);
+
+            Assert.Throws<ArgumentNullException>(() => store.Delete(null));
+        }
+
+        [Fact]
         public void op_Load()
         {
             var file = new FileInfo(Path.GetTempFileName());
@@ -59,6 +90,7 @@
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();
@@ -87,6 +119,7 @@
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();
@@ -115,6 +148,7 @@
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();
@@ -145,6 +179,7 @@
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();
@@ -178,6 +213,7 @@
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();
@@ -207,6 +243,7 @@
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();
@@ -228,12 +265,14 @@
                 IStoreLexicon store = new CsvLexiconStorage(file);
                 store.Save(lexicon);
 
+                file.Refresh();
                 Assert.True(file.Exists);
 
                 Assert.True(store.Load().Contains("Example"));
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();
@@ -261,12 +300,14 @@
                 IStoreLexicon store = new CsvLexiconStorage(file);
                 store.Save(new Lexicon());
 
+                file.Refresh();
                 Assert.True(file.Exists);
 
                 Assert.True(File.ReadAllText(file.FullName).StartsWith("CANONICAL,SYNONYMS"));
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();
@@ -288,12 +329,14 @@
                 IStoreLexicon store = new CsvLexiconStorage(file);
                 store.Save(lexicon);
 
+                file.Refresh();
                 Assert.True(file.Exists);
 
                 Assert.True(store.Load().Contains("foo, bar"));
             }
             finally
             {
+                file.Refresh();
                 if (file.Exists)
                 {
                     file.Delete();
