@@ -26,6 +26,45 @@
             return string.Format(CultureInfo.InvariantCulture, obj, args);
         }
 
+        public static int LevenshteinDistance(this string obj, string comparand)
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return null == comparand ? 0 : comparand.Length;
+            }
+
+            if (string.IsNullOrEmpty(comparand))
+            {
+                return obj.Length;
+            }
+
+            var n = obj.Length;
+            var m = comparand.Length;
+            var d = new int[n + 1, m + 1];
+
+            for (var i = 0; i <= n; d[i, 0] = i++)
+            {
+            }
+
+            for (var j = 0; j <= m; d[0, j] = j++)
+            {
+            }
+
+            for (var i = 1; i <= n; i++)
+            {
+                for (var j = 1; j <= m; j++)
+                {
+                    var cost = (comparand[j - 1] == obj[i - 1]) ? 0 : 1;
+
+                    d[i, j] = Math.Min(
+                        Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
+                        d[i - 1, j - 1] + cost);
+                }
+            }
+
+            return d[n, m];
+        }
+
         public static string NormalizeWhiteSpace(this string obj)
         {
             if (null == obj)
