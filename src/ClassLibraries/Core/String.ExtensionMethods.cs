@@ -206,6 +206,44 @@
                 options);
         }
 
+        public static bool StartsWithAny(this string obj, StringComparison comparison, params string[] args)
+        {
+            if (null == obj)
+            {
+                return false;
+            }
+
+            if (0 == obj.Length)
+            {
+                return false;
+            }
+
+            if (null == args)
+            {
+                return false;
+            }
+
+            if (0 == args.Length)
+            {
+                return false;
+            }
+
+            foreach (var arg in args)
+            {
+                if (string.IsNullOrEmpty(arg))
+                {
+                    continue;
+                }
+
+                if (obj.StartsWith(arg, comparison))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static T XmlDeserialize<T>(this string xml)
         {
             return (T)XmlDeserialize(xml, typeof(T));
