@@ -523,6 +523,36 @@
         }
 
         [Fact]
+        public void op_StartsWithAny_stringNull_StringComparison_strings()
+        {
+            Assert.False((null as string).StartsWithAny(StringComparison.Ordinal, "cat"));
+        }
+
+        [Fact]
+        public void op_StartsWithAny_stringEmpty_StringComparison_strings()
+        {
+            Assert.False(string.Empty.StartsWithAny(StringComparison.Ordinal, "cat"));
+        }
+
+        [Fact]
+        public void op_StartsWithAny_string_StringComparison_strings()
+        {
+            Assert.True("cat dog".StartsWithAny(StringComparison.Ordinal, "cat"));
+        }
+
+        [Fact]
+        public void op_StartsWithAny_string_StringComparison_stringsEmpty()
+        {
+            Assert.False("cat".StartsWithAny(StringComparison.Ordinal));
+        }
+
+        [Fact]
+        public void op_StartsWithAny_string_StringComparison_stringsNull()
+        {
+            Assert.False("cat".StartsWithAny(StringComparison.Ordinal, null as string[]));
+        }
+
+        [Fact]
         public void op_XmlDeserializeOfT_string()
         {
             var expected = new DateTime(2009, 04, 25);
