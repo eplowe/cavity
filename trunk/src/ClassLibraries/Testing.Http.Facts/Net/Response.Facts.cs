@@ -19,12 +19,6 @@
         }
 
         [Fact]
-        public void ctor_HttpStatusCode_AbsoluteUri_WebHeaderCollection_CookieCollection()
-        {
-            Assert.NotNull(new Response(HttpStatusCode.OK, new AbsoluteUri("http://example.com/"), new WebHeaderCollection(), new CookieCollection()));
-        }
-
-        [Fact]
         public void ctor_HttpStatusCode_AbsoluteUriNull_WebHeaderCollection_CookieCollection()
         {
             Assert.Throws<ArgumentNullException>(() => new Response(HttpStatusCode.OK, null, new WebHeaderCollection(), new CookieCollection()));
@@ -37,9 +31,29 @@
         }
 
         [Fact]
+        public void ctor_HttpStatusCode_AbsoluteUri_WebHeaderCollection_CookieCollection()
+        {
+            Assert.NotNull(new Response(HttpStatusCode.OK, new AbsoluteUri("http://example.com/"), new WebHeaderCollection(), new CookieCollection()));
+        }
+
+        [Fact]
         public void ctor_HttpStatusCode_AbsoluteUri_WebHeaderCollection_CookieCollectionNull()
         {
             Assert.Throws<ArgumentNullException>(() => new Response(HttpStatusCode.OK, new AbsoluteUri("http://example.com/"), new WebHeaderCollection(), null));
+        }
+
+        [Fact]
+        public void op_ToString()
+        {
+            var obj = new Response(HttpStatusCode.OK, new AbsoluteUri("http://example.com/"), new WebHeaderCollection(), new CookieCollection());
+
+            var expected =
+                "http://example.com/" + Environment.NewLine +
+                Environment.NewLine +
+                "HTTP/1.1 200 OK" + Environment.NewLine;
+            var actual = obj.ToString();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -76,20 +90,6 @@
                             .IsNotDecorated()
                             .TypeIs<HttpStatusCode>()
                             .Result);
-        }
-
-        [Fact]
-        public void op_ToString()
-        {
-            var obj = new Response(HttpStatusCode.OK, new AbsoluteUri("http://example.com/"), new WebHeaderCollection(), new CookieCollection());
-
-            var expected =
-                "http://example.com/" + Environment.NewLine +
-                Environment.NewLine +
-                "HTTP/1.1 200 OK" + Environment.NewLine;
-            var actual = obj.ToString();
-
-            Assert.Equal(expected, actual);
         }
     }
 }

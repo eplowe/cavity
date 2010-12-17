@@ -4,6 +4,7 @@
     <Recognized>
       <Word>Autofac</Word>
       <Word>Etag</Word>
+      <Word>Levenshtein</Word>
       <Word>xpaths</Word>
     </Recognized>
   </Words>

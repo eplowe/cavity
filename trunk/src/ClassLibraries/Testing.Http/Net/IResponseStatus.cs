@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
     using System.Net;
 
     public interface IResponseStatus

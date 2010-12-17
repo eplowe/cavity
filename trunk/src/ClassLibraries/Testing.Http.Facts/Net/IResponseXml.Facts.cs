@@ -7,13 +7,26 @@
     public sealed class IResponseXmlFacts
     {
         [Fact]
-        public void IResponseXml_op_Evaluate_T_strings()
+        public void IResponseXml_op_EvaluateFalse()
         {
             try
             {
-                const double expected = 1.23;
                 string[] xpaths = null;
-                var value = (new IResponseXmlDummy() as IResponseXml).Evaluate(expected, xpaths);
+                var value = (new IResponseXmlDummy() as IResponseXml).EvaluateFalse(xpaths);
+                Assert.NotNull(value);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
+
+        [Fact]
+        public void IResponseXml_op_EvaluateTrue()
+        {
+            try
+            {
+                string[] xpaths = null;
+                var value = (new IResponseXmlDummy() as IResponseXml).EvaluateTrue(xpaths);
                 Assert.NotNull(value);
             }
             catch (NotSupportedException)
@@ -38,26 +51,13 @@
         }
 
         [Fact]
-        public void IResponseXml_op_EvaluateFalse()
+        public void IResponseXml_op_Evaluate_T_strings()
         {
             try
             {
+                const double expected = 1.23;
                 string[] xpaths = null;
-                var value = (new IResponseXmlDummy() as IResponseXml).EvaluateFalse(xpaths);
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IResponseXml_op_EvaluateTrue()
-        {
-            try
-            {
-                string[] xpaths = null;
-                var value = (new IResponseXmlDummy() as IResponseXml).EvaluateTrue(xpaths);
+                var value = (new IResponseXmlDummy() as IResponseXml).Evaluate(expected, xpaths);
                 Assert.NotNull(value);
             }
             catch (NotSupportedException)

@@ -4,7 +4,6 @@
     using System.IO;
     using System.Linq;
     using Cavity.Data;
-    using Cavity.Models;
     using Cavity.Properties;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;

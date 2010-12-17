@@ -7,7 +7,9 @@
     public sealed class Response
     {
         private CookieCollection _cookies;
+
         private WebHeaderCollection _headers;
+
         private AbsoluteUri _location;
 
         public Response(HttpStatusCode status, AbsoluteUri location, WebHeaderCollection headers, CookieCollection cookies)

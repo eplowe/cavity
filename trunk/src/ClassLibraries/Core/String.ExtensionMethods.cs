@@ -26,6 +26,7 @@
             return string.Format(CultureInfo.InvariantCulture, obj, args);
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional", MessageId = "Body", Justification = "Space is not wasted.")]
         public static int LevenshteinDistance(this string obj, string comparand)
         {
             if (string.IsNullOrEmpty(obj))

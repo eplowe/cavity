@@ -6,21 +6,6 @@
     public sealed class IResponseHtmlFacts
     {
         [Fact]
-        public void IResponseHtml_op_Evaluate_T_string()
-        {
-            try
-            {
-                const double expected = 1.23;
-                string[] xpaths = null;
-                var value = (new IResponseHtmlDummy() as IResponseHtml).Evaluate(expected, xpaths);
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void IResponseHtml_op_EvaluateFalse_string()
         {
             try
@@ -41,6 +26,21 @@
             {
                 string[] xpaths = null;
                 var value = (new IResponseHtmlDummy() as IResponseHtml).EvaluateTrue(xpaths);
+                Assert.NotNull(value);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
+
+        [Fact]
+        public void IResponseHtml_op_Evaluate_T_string()
+        {
+            try
+            {
+                const double expected = 1.23;
+                string[] xpaths = null;
+                var value = (new IResponseHtmlDummy() as IResponseHtml).Evaluate(expected, xpaths);
                 Assert.NotNull(value);
             }
             catch (NotSupportedException)

@@ -12,7 +12,7 @@
         {
             Expected = expected;
         }
-        
+
         private HttpResponseContentTypeTest()
         {
         }

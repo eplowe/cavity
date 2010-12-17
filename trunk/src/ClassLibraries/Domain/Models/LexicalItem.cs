@@ -61,6 +61,16 @@
 
         public HashSet<string> Synonyms { get; private set; }
 
+        public bool Contains(string value, IComparer<string> comparer)
+        {
+            if (null == comparer)
+            {
+                throw new ArgumentNullException("comparer");
+            }
+
+            return Spellings.Any(spelling => 0 == comparer.Compare(spelling, value));
+        }
+
         public void Invoke(Func<string, string> function)
         {
             if (null == function)
@@ -76,16 +86,6 @@
             {
                 Synonyms.Add(function.Invoke(synonym));
             }
-        }
-
-        public bool Contains(string value, IComparer<string> comparer)
-        {
-            if (null == comparer)
-            {
-                throw new ArgumentNullException("comparer");
-            }
-
-            return Spellings.Any(spelling => 0 == comparer.Compare(spelling, value));
         }
     }
 }

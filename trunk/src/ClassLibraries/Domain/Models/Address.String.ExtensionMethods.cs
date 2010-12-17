@@ -70,17 +70,27 @@
 
                 for (var i = 0; i < part.Length; i++)
                 {
-                    if (char.IsDigit(part[i]) ||
-                        '-'.Equals(part[i]) ||
-                        '/'.Equals(part[i]))
+                    if (char.IsDigit(part[i]))
                     {
                         buffer.Append(part[i]);
+                        continue;
+                    }
+
+                    if ('-'.Equals(part[i]) ||
+                        '/'.Equals(part[i]))
+                    {
+                        buffer.Append('…');
                         continue;
                     }
 
                     if (i == part.Length - 1)
                     {
                         buffer.Append(part[i]);
+                    }
+                    else if (char.IsDigit(part[i + 1]))
+                    {
+                        buffer.Append(part[i]);
+                        continue;
                     }
 
                     return buffer.ToString().Trim();

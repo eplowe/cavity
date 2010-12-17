@@ -84,22 +84,7 @@
 
         public StreamWriter Item(string fileName, string firstLine, FileMode mode, FileAccess access, FileShare share)
         {
-            if (Disposed)
-            {
-                throw new InvalidOperationException("This object has been disposed.");
-            }
-
-            if (!ContainsKey(fileName))
-            {
-                var writer = new StreamWriter(new FileInfo(fileName).Open(mode, access, share), Encoding.UTF8);
-                Add(fileName, writer);
-                if (null != firstLine)
-                {
-                    writer.WriteLine(firstLine);
-                }
-            }
-
-            return this[fileName];
+            return Item(new FileInfo(fileName), firstLine, mode, access, share);
         }
 
         public void Dispose()
@@ -122,6 +107,40 @@
             }
 
             Disposed = true;
+        }
+
+        private StreamWriter Item(FileInfo file, string firstLine, FileMode mode, FileAccess access, FileShare share)
+        {
+            if (Disposed)
+            {
+                throw new InvalidOperationException("This object has been disposed.");
+            }
+
+            if (!ContainsKey(file.FullName))
+            {
+                var exists = file.Exists;
+                var writer = new StreamWriter(file.Open(mode, access, share), Encoding.UTF8);
+                Add(file.FullName, writer);
+                if (null != firstLine)
+                {
+                    switch (mode)
+                    {
+                        case FileMode.Append:
+                            if (!exists)
+                            {
+                                writer.WriteLine(firstLine);
+                            }
+
+                            break;
+
+                        default:
+                            writer.WriteLine(firstLine);
+                            break;
+                    }
+                }
+            }
+
+            return this[file.FullName];
         }
     }
 }

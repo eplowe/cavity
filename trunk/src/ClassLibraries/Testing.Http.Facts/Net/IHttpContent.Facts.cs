@@ -7,12 +7,12 @@
     public sealed class IHttpContentFacts
     {
         [Fact]
-        public void IHttpContent_prop_Type_get()
+        public void IHttpContent_op_Write_Stream()
         {
             try
             {
-                var value = (new IHttpContentDummy() as IHttpContent).Type;
-                Assert.NotNull(value);
+                Stream stream = null;
+                (new IHttpContentDummy() as IHttpContent).Write(stream);
             }
             catch (NotSupportedException)
             {
@@ -20,12 +20,12 @@
         }
 
         [Fact]
-        public void IHttpContent_op_Write_Stream()
+        public void IHttpContent_prop_Type_get()
         {
             try
             {
-                Stream stream = null;
-                (new IHttpContentDummy() as IHttpContent).Write(stream);
+                var value = (new IHttpContentDummy() as IHttpContent).Type;
+                Assert.NotNull(value);
             }
             catch (NotSupportedException)
             {
