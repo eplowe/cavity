@@ -3,7 +3,6 @@
     using System;
     using System.IO;
     using System.Runtime.Serialization.Formatters.Binary;
-    using Cavity;
     using Xunit;
 
     public sealed class HttpTestExceptionFacts
@@ -12,12 +11,12 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpTestException>()
-                .DerivesFrom<TestException>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .Serializable()
-                .Result);
+                            .DerivesFrom<TestException>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .Serializable()
+                            .Result);
         }
 
         [Fact]

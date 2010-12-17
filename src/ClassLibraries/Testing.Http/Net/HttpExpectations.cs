@@ -6,6 +6,7 @@
     using System.Globalization;
     using System.Net;
     using System.Net.Mime;
+    using Cavity.Xml;
 
     public sealed class HttpExpectations : IRequestAcceptContent, IRequestAcceptLanguage, IRequestMethod, IResponseStatus, IResponseCacheControl, IResponseCacheConditionals, IResponseContentLanguage, IResponseContentMD5, IResponseContent, IResponseHtml, IResponseXml, ITestHttp
     {
@@ -46,7 +47,10 @@
 
         string ITestHttp.Location
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         bool ITestHttp.Result
@@ -142,7 +146,7 @@
             {
                 throw new ArgumentNullException("method");
             }
-            
+
             if (0 == method.Length)
             {
                 throw new ArgumentOutOfRangeException("method");
@@ -163,11 +167,11 @@
             {
                 throw new ArgumentNullException("content");
             }
-            
+
             if ("DELETE".Equals(method, StringComparison.OrdinalIgnoreCase) ||
-                "GET".Equals(method, StringComparison.OrdinalIgnoreCase) || 
-                "HEAD".Equals(method, StringComparison.OrdinalIgnoreCase) || 
-                "OPTIONS".Equals(method, StringComparison.OrdinalIgnoreCase) || 
+                "GET".Equals(method, StringComparison.OrdinalIgnoreCase) ||
+                "HEAD".Equals(method, StringComparison.OrdinalIgnoreCase) ||
+                "OPTIONS".Equals(method, StringComparison.OrdinalIgnoreCase) ||
                 "TRACE".Equals(method, StringComparison.OrdinalIgnoreCase))
             {
                 throw new ArgumentOutOfRangeException("method");
@@ -178,15 +182,27 @@
             return this;
         }
 
-        IResponseCacheControl IResponseStatus.Is(HttpStatusCode status)
+        IResponseContentLanguage IResponseCacheConditionals.IgnoreCacheConditionals()
         {
-            Expectations.Add(new HttpStatusCodeTest(status));
             return this;
         }
 
-        ITestHttp IResponseStatus.IsSeeOther(AbsoluteUri location)
+        IResponseContentLanguage IResponseCacheConditionals.WithEtag()
         {
-            throw new NotImplementedException();
+            Expectations.Add(new HttpResponseHeaderTest(HttpResponseHeader.ETag));
+            return this;
+        }
+
+        IResponseContentLanguage IResponseCacheConditionals.WithExpires()
+        {
+            Expectations.Add(new HttpResponseHeaderTest(HttpResponseHeader.Expires));
+            return this;
+        }
+
+        IResponseContentLanguage IResponseCacheConditionals.WithLastModified()
+        {
+            Expectations.Add(new HttpResponseHeaderTest(HttpResponseHeader.LastModified));
+            return this;
         }
 
         IResponseCacheConditionals IResponseCacheControl.HasCacheControl(string value)
@@ -215,59 +231,10 @@
             return this;
         }
 
-        IResponseContentLanguage IResponseCacheConditionals.IgnoreCacheConditionals()
-        {
-            return this;
-        }
-
-        IResponseContentLanguage IResponseCacheConditionals.WithEtag()
-        {
-            Expectations.Add(new HttpResponseHeaderTest(HttpResponseHeader.ETag));
-            return this;
-        }
-
-        IResponseContentLanguage IResponseCacheConditionals.WithExpires()
-        {
-            Expectations.Add(new HttpResponseHeaderTest(HttpResponseHeader.Expires));
-            return this;
-        }
-
-        IResponseContentLanguage IResponseCacheConditionals.WithLastModified()
-        {
-            Expectations.Add(new HttpResponseHeaderTest(HttpResponseHeader.LastModified));
-            return this;
-        }
-
-        IResponseContentMD5 IResponseContentLanguage.HasContentLanguage(CultureInfo language)
-        {
-            return (this as IResponseContentLanguage).HasContentLanguage(null == language ? string.Empty : language.Name);
-        }
-
-        IResponseContentMD5 IResponseContentLanguage.HasContentLanguage(string language)
-        {
-            Expectations.Add(new HttpResponseContentLanguageTest(language));
-            return this;
-        }
-
-        IResponseContentMD5 IResponseContentLanguage.IgnoreContentLanguage()
-        {
-            return this;
-        }
-
-        IResponseContent IResponseContentMD5.HasContentMD5()
-        {
-            Expectations.Add(new HttpResponseContentMD5Test());
-            return this;
-        }
-
-        IResponseContent IResponseContentMD5.IgnoreContentMD5()
-        {
-            return this;
-        }
-
         ITestHttp IResponseContent.ResponseHasNoContent()
         {
             Expectations.Add(new HttpResponseContentTypeTest(null));
+
             // Response = NoContentResponse.Request(Request, Content);
             return this;
         }
@@ -327,6 +294,33 @@
             throw new NotImplementedException();
         }
 
+        IResponseContentMD5 IResponseContentLanguage.HasContentLanguage(CultureInfo language)
+        {
+            return (this as IResponseContentLanguage).HasContentLanguage(null == language ? string.Empty : language.Name);
+        }
+
+        IResponseContentMD5 IResponseContentLanguage.HasContentLanguage(string language)
+        {
+            Expectations.Add(new HttpResponseContentLanguageTest(language));
+            return this;
+        }
+
+        IResponseContentMD5 IResponseContentLanguage.IgnoreContentLanguage()
+        {
+            return this;
+        }
+
+        IResponseContent IResponseContentMD5.HasContentMD5()
+        {
+            Expectations.Add(new HttpResponseContentMD5Test());
+            return this;
+        }
+
+        IResponseContent IResponseContentMD5.IgnoreContentMD5()
+        {
+            return this;
+        }
+
         IResponseHtml IResponseHtml.Evaluate<T>(T expected, params string[] xpaths)
         {
             throw new NotImplementedException();
@@ -352,7 +346,13 @@
             throw new NotImplementedException();
         }
 
-        ITestHttp ITestHttp.HasContentLocation(AbsoluteUri location)
+        IResponseCacheControl IResponseStatus.Is(HttpStatusCode status)
+        {
+            Expectations.Add(new HttpStatusCodeTest(status));
+            return this;
+        }
+
+        ITestHttp IResponseStatus.IsSeeOther(AbsoluteUri location)
         {
             throw new NotImplementedException();
         }
@@ -362,7 +362,7 @@
             throw new NotImplementedException();
         }
 
-        IResponseXml IResponseXml.Evaluate<T>(T expected, string xpath, params Xml.XmlNamespace[] namespaces)
+        IResponseXml IResponseXml.Evaluate<T>(T expected, string xpath, params XmlNamespace[] namespaces)
         {
             throw new NotImplementedException();
         }
@@ -373,6 +373,11 @@
         }
 
         IResponseXml IResponseXml.EvaluateTrue(params string[] xpaths)
+        {
+            throw new NotImplementedException();
+        }
+
+        ITestHttp ITestHttp.HasContentLocation(AbsoluteUri location)
         {
             throw new NotImplementedException();
         }

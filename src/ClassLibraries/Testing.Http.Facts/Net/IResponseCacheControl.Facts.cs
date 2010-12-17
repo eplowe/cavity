@@ -6,20 +6,6 @@
     public sealed class IResponseCacheControlFacts
     {
         [Fact]
-        public void IResponseCacheControl_op_HasCacheControl_string()
-        {
-            try
-            {
-                string value = null;
-                var obj = (new IResponseCacheControlDummy() as IResponseCacheControl).HasCacheControl(value);
-                Assert.NotNull(obj);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void IResponseCacheControl_op_HasCacheControlNone()
         {
             try
@@ -52,6 +38,20 @@
             {
                 var value = (new IResponseCacheControlDummy() as IResponseCacheControl).HasCacheControlPublic();
                 Assert.NotNull(value);
+            }
+            catch (NotSupportedException)
+            {
+            }
+        }
+
+        [Fact]
+        public void IResponseCacheControl_op_HasCacheControl_string()
+        {
+            try
+            {
+                string value = null;
+                var obj = (new IResponseCacheControlDummy() as IResponseCacheControl).HasCacheControl(value);
+                Assert.NotNull(obj);
             }
             catch (NotSupportedException)
             {

@@ -12,105 +12,6 @@
         }
 
         [Fact]
-        public void op_LevenshteinDistance_stringA_stringZ()
-        {
-            const int expected = 1;
-            var actual = "A".LevenshteinDistance("Z");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_LevenshteinDistance_stringEmpty_string()
-        {
-            const int expected = 1;
-            var actual = string.Empty.LevenshteinDistance("Z");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_LevenshteinDistance_string_stringEmpty()
-        {
-            const int expected = 1;
-            var actual = "A".LevenshteinDistance(string.Empty);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_LevenshteinDistance_stringAnt_stringAunt()
-        {
-            const int expected = 1;
-            var actual = "Ant".LevenshteinDistance("Aunt");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_LevenshteinDistance_stringAunt_stringAnt()
-        {
-            const int expected = 1;
-            var actual = "Aunt".LevenshteinDistance("Ant");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_LevenshteinDistance_stringA_stringNull()
-        {
-            const int expected = 1;
-            var actual = "A".LevenshteinDistance(null);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_LevenshteinDistance_stringEmpty_stringEmpty()
-        {
-            const int expected = 0;
-            var actual = string.Empty.LevenshteinDistance(string.Empty);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_LevenshteinDistance_stringNull_stringNull()
-        {
-            const int expected = 0;
-            var actual = (null as string).LevenshteinDistance(null);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_LevenshteinDistance_stringNull_stringA()
-        {
-            const int expected = 1;
-            var actual = (null as string).LevenshteinDistance("A");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_LevenshteinDistance_stringFoo_stringBar()
-        {
-            const int expected = 3;
-            var actual = "Foo".LevenshteinDistance("Bar");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_LevenshteinDistance_stringABC_stringA2C()
-        {
-            const int expected = 1;
-            var actual = "ABC".LevenshteinDistance("A2C");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void op_Contains_stringEmpty_StringComparison()
         {
             Assert.False(string.Empty.Contains("example", StringComparison.Ordinal));
@@ -165,6 +66,105 @@
         public void op_FormatWith_string_objectsNull()
         {
             Assert.Throws<FormatException>(() => "a{0}c".FormatWith());
+        }
+
+        [Fact]
+        public void op_LevenshteinDistance_stringABC_stringA2C()
+        {
+            const int expected = 1;
+            var actual = "ABC".LevenshteinDistance("A2C");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_LevenshteinDistance_stringA_stringNull()
+        {
+            const int expected = 1;
+            var actual = "A".LevenshteinDistance(null);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_LevenshteinDistance_stringA_stringZ()
+        {
+            const int expected = 1;
+            var actual = "A".LevenshteinDistance("Z");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_LevenshteinDistance_stringAnt_stringAunt()
+        {
+            const int expected = 1;
+            var actual = "Ant".LevenshteinDistance("Aunt");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_LevenshteinDistance_stringAunt_stringAnt()
+        {
+            const int expected = 1;
+            var actual = "Aunt".LevenshteinDistance("Ant");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_LevenshteinDistance_stringEmpty_string()
+        {
+            const int expected = 1;
+            var actual = string.Empty.LevenshteinDistance("Z");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_LevenshteinDistance_stringEmpty_stringEmpty()
+        {
+            const int expected = 0;
+            var actual = string.Empty.LevenshteinDistance(string.Empty);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_LevenshteinDistance_stringFoo_stringBar()
+        {
+            const int expected = 3;
+            var actual = "Foo".LevenshteinDistance("Bar");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_LevenshteinDistance_stringNull_stringA()
+        {
+            const int expected = 1;
+            var actual = (null as string).LevenshteinDistance("A");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_LevenshteinDistance_stringNull_stringNull()
+        {
+            const int expected = 0;
+            var actual = (null as string).LevenshteinDistance(null);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_LevenshteinDistance_string_stringEmpty()
+        {
+            const int expected = 1;
+            var actual = "A".LevenshteinDistance(string.Empty);
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -286,6 +286,21 @@
         }
 
         [Fact]
+        public void op_RemoveAnyWhiteSpace_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveAnyWhiteSpace();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyWhiteSpace_stringNull()
+        {
+            Assert.Null((null as string).RemoveAnyWhiteSpace());
+        }
+
+        [Fact]
         public void op_RemoveAnyWhiteSpace_stringWhiteSpace()
         {
             var expected = string.Empty;
@@ -353,21 +368,6 @@
                 '\uFEFF').RemoveAnyWhiteSpace();
 
             Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_RemoveAnyWhiteSpace_stringEmpty()
-        {
-            var expected = string.Empty;
-            var actual = expected.RemoveAnyWhiteSpace();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_RemoveAnyWhiteSpace_stringNull()
-        {
-            Assert.Null((null as string).RemoveAnyWhiteSpace());
         }
 
         [Fact]
@@ -523,15 +523,15 @@
         }
 
         [Fact]
-        public void op_StartsWithAny_stringNull_StringComparison_strings()
-        {
-            Assert.False((null as string).StartsWithAny(StringComparison.Ordinal, "cat"));
-        }
-
-        [Fact]
         public void op_StartsWithAny_stringEmpty_StringComparison_strings()
         {
             Assert.False(string.Empty.StartsWithAny(StringComparison.Ordinal, "cat"));
+        }
+
+        [Fact]
+        public void op_StartsWithAny_stringNull_StringComparison_strings()
+        {
+            Assert.False((null as string).StartsWithAny(StringComparison.Ordinal, "cat"));
         }
 
         [Fact]

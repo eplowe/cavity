@@ -1,22 +1,47 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using Cavity;
     using Xunit;
 
     public sealed class HttpHeadTestFacts
     {
         [Fact]
+        public void ITestHttpExpectation_op_Check_Response()
+        {
+            var request = new HttpRequestDefinition("http://example.com/")
+            {
+                Method = "GET"
+            };
+
+            ITestHttpExpectation obj = new HttpHeadTest(request);
+
+            Assert.Throws<ArgumentNullException>(() => obj.Check(null));
+        }
+
+        [Fact]
+        public void ITestHttpExpectation_op_Check_ResponseNull()
+        {
+            var request = new HttpRequestDefinition("http://example.com/")
+            {
+                Method = "GET"
+            };
+
+            ITestHttpExpectation obj = new HttpHeadTest(request);
+
+            Assert.Throws<ArgumentNullException>(() => obj.Check(null));
+        }
+
+        [Fact]
         public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpHeadTest>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .NoDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<ITestHttpExpectation>()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<ITestHttpExpectation>()
+                            .Result);
         }
 
         [Fact]
@@ -40,32 +65,6 @@
             };
 
             Assert.NotNull(new HttpHeadTest(request));
-        }
-
-        [Fact]
-        public void ITestHttpExpectation_op_Check_ResponseNull()
-        {
-            var request = new HttpRequestDefinition("http://example.com/")
-            {
-                Method = "GET"
-            };
-
-            ITestHttpExpectation obj = new HttpHeadTest(request);
-
-            Assert.Throws<ArgumentNullException>(() => obj.Check(null));
-        }
-
-        [Fact]
-        public void ITestHttpExpectation_op_Check_Response()
-        {
-            var request = new HttpRequestDefinition("http://example.com/")
-            {
-                Method = "GET"
-            };
-
-            ITestHttpExpectation obj = new HttpHeadTest(request);
-
-            Assert.Throws<ArgumentNullException>(() => obj.Check(null));
         }
     }
 }

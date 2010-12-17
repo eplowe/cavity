@@ -29,6 +29,15 @@
         }
 
         [Fact]
+        public void op_FormatCommaSeparatedValue_stringCommaQuote()
+        {
+            const string expected = "\"\"\"foo\"\", bar\"";
+            var actual = "\"foo\", bar".FormatCommaSeparatedValue();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_FormatCommaSeparatedValue_stringEmpty()
         {
             var expected = string.Empty;
@@ -41,6 +50,15 @@
         public void op_FormatCommaSeparatedValue_stringNull()
         {
             Assert.Null((null as string).FormatCommaSeparatedValue());
+        }
+
+        [Fact]
+        public void op_FormatCommaSeparatedValue_stringQuote()
+        {
+            const string expected = "\"a, \"\"b\"\", c\"";
+            var actual = "a, \"b\", c".FormatCommaSeparatedValue();
+
+            Assert.Equal(expected, actual);
         }
     }
 }

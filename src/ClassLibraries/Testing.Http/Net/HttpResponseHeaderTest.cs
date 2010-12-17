@@ -23,7 +23,7 @@
             {
                 throw new ArgumentNullException("response");
             }
-            
+
             if (string.IsNullOrEmpty(response.Headers[Expected]))
             {
                 throw new HttpTestException(

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using Cavity.IO;
@@ -81,9 +82,9 @@
                 {
                     var s = synonym;
                     if (0 == item
-                        .Synonyms
-                        .Where(x => 0 == (comparer ?? StringComparer.Ordinal).Compare(x, s))
-                        .Count())
+                                 .Synonyms
+                                 .Where(x => 0 == (comparer ?? StringComparer.Ordinal).Compare(x, s))
+                                 .Count())
                     {
                         item.Synonyms.Add(synonym);
                     }
@@ -93,6 +94,7 @@
             return result;
         }
 
+        [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "I trust the using statement.")]
         public void Save(Lexicon lexicon)
         {
             if (null == lexicon)

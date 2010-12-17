@@ -26,29 +26,6 @@
         }
 
         [Fact]
-        public void op_Invoke_Func()
-        {
-            var obj = new LexicalItem(string.Concat("Foo", '\u00A0', "Bar"))
-            {
-                Synonyms =
-                    {
-                        string.Concat("Left", '\u00A0', "Right")
-                    }
-            };
-
-            obj.Invoke(x => x.NormalizeWhiteSpace());
-
-            Assert.Equal("Foo Bar", obj.CanonicalForm);
-            Assert.Equal("Left Right", obj.Synonyms.First());
-        }
-
-        [Fact]
-        public void op_Invoke_FuncNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new LexicalItem("Example").Invoke(null));
-        }
-
-        [Fact]
         public void op_Contains_stringEmpty_IComparer()
         {
             var obj = new LexicalItem("Example")
@@ -115,6 +92,29 @@
             };
 
             Assert.True(obj.Contains("Bar", StringComparer.InvariantCultureIgnoreCase));
+        }
+
+        [Fact]
+        public void op_Invoke_Func()
+        {
+            var obj = new LexicalItem(string.Concat("Foo", '\u00A0', "Bar"))
+            {
+                Synonyms =
+                    {
+                        string.Concat("Left", '\u00A0', "Right")
+                    }
+            };
+
+            obj.Invoke(x => x.NormalizeWhiteSpace());
+
+            Assert.Equal("Foo Bar", obj.CanonicalForm);
+            Assert.Equal("Left Right", obj.Synonyms.First());
+        }
+
+        [Fact]
+        public void op_Invoke_FuncNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new LexicalItem("Example").Invoke(null));
         }
 
         [Fact]

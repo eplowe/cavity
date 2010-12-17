@@ -12,21 +12,6 @@
         }
 
         [Fact]
-        public void op_ExtractFlatNumber_stringEmpty()
-        {
-            var expected = string.Empty;
-            var actual = string.Empty.ExtractFlatNumber();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_ExtractFlatNumber_stringNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as string).ExtractFlatNumber());
-        }
-
-        [Fact]
         public void op_ExtractFlatNumber_string()
         {
             var expected = string.Empty;
@@ -40,6 +25,15 @@
         {
             var expected = string.Empty;
             var actual = "123".ExtractFlatNumber();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ExtractFlatNumber_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = string.Empty.ExtractFlatNumber();
 
             Assert.Equal(expected, actual);
         }
@@ -81,18 +75,9 @@
         }
 
         [Fact]
-        public void op_ExtractHouseNumber_stringEmpty()
+        public void op_ExtractFlatNumber_stringNull()
         {
-            var expected = string.Empty;
-            var actual = string.Empty.ExtractHouseNumber();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_ExtractHouseNumber_stringNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as string).ExtractHouseNumber());
+            Assert.Throws<ArgumentNullException>(() => (null as string).ExtractFlatNumber());
         }
 
         [Fact]
@@ -100,6 +85,15 @@
         {
             var expected = string.Empty;
             var actual = "High Street".ExtractHouseNumber();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ExtractHouseNumber_string123()
+        {
+            const string expected = "123";
+            var actual = expected.ExtractHouseNumber();
 
             Assert.Equal(expected, actual);
         }
@@ -114,9 +108,9 @@
         }
 
         [Fact]
-        public void op_ExtractHouseNumber_string123()
+        public void op_ExtractHouseNumber_string123a()
         {
-            const string expected = "123";
+            const string expected = "123a";
             var actual = expected.ExtractHouseNumber();
 
             Assert.Equal(expected, actual);
@@ -132,18 +126,9 @@
         }
 
         [Fact]
-        public void op_ExtractHouseNumber_string123a()
-        {
-            const string expected = "123a";
-            var actual = expected.ExtractHouseNumber();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void op_ExtractHouseNumber_string123dash456HighStreet()
         {
-            const string expected = "123-456";
+            const string expected = "123…456";
             var actual = "123-456 High Street".ExtractHouseNumber();
 
             Assert.Equal(expected, actual);
@@ -152,10 +137,43 @@
         [Fact]
         public void op_ExtractHouseNumber_string123slash456HighStreet()
         {
-            const string expected = "123/456";
+            const string expected = "123…456";
             var actual = "123/456 High Street".ExtractHouseNumber();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ExtractHouseNumber_stringB12HighStreet()
+        {
+            const string expected = "B12";
+            var actual = "B12 High Street".ExtractHouseNumber();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ExtractHouseNumber_stringB1HighStreet()
+        {
+            const string expected = "B1";
+            var actual = "B1 High Street".ExtractHouseNumber();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ExtractHouseNumber_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = string.Empty.ExtractHouseNumber();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ExtractHouseNumber_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).ExtractHouseNumber());
         }
     }
 }
