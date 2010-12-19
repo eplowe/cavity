@@ -7,6 +7,7 @@
     using System.Linq;
     using System.Runtime.Serialization.Formatters.Soap;
     using System.Text;
+    using System.Threading;
     using System.Xml.Serialization;
 
     public static class StringExtensionMethods
@@ -243,6 +244,19 @@
             }
 
             return false;
+        }
+
+        [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Title casing only works from lower case strings.")]
+        public static string ToTitleCase(this string obj)
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return obj;
+            }
+
+            var info = Thread.CurrentThread.CurrentUICulture.TextInfo;
+
+            return info.ToTitleCase(obj.ToLowerInvariant());
         }
 
         public static T XmlDeserialize<T>(this string xml)
