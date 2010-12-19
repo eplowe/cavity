@@ -553,6 +553,30 @@
         }
 
         [Fact]
+        public void op_ToTitleCase_string()
+        {
+            const string expected = "Example";
+            var actual = "EXAMPLE".ToTitleCase();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToTitleCase_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.ToTitleCase();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToTitleCase_stringNull()
+        {
+            Assert.Null((null as string).ToTitleCase());
+        }
+
+        [Fact]
         public void op_XmlDeserializeOfT_string()
         {
             var expected = new DateTime(2009, 04, 25);

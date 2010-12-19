@@ -62,7 +62,6 @@
     <Compile Include="Data\IStoreLexicon.Dummy.cs" />
     <Compile Include="Data\IStoreLexicon.Facts.cs" />
     <Compile Include="Models\BritishPostcode.Facts.cs" />
-    <Compile Include="Models\Address.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Models\LexicalItem.Facts.cs" />
     <Compile Include="Models\Lexicon.Facts.cs" />
