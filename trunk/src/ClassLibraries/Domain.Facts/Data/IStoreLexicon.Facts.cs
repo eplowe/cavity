@@ -11,7 +11,7 @@
         {
             try
             {
-                (new IStoreLexiconDummy() as IStoreLexicon).Delete(new Lexicon());
+                (new IStoreLexiconDummy() as IStoreLexicon).Delete(new Lexicon(StandardLexiconComparer.Ordinal));
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -20,24 +20,11 @@
         }
 
         [Fact]
-        public void IStoreLexicon_Load()
+        public void IStoreLexicon_Load_ILexiconComparer()
         {
             try
             {
-                var value = (new IStoreLexiconDummy() as IStoreLexicon).Load();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IStoreLexicon_Load_IComparerOfString()
-        {
-            try
-            {
-                var value = (new IStoreLexiconDummy() as IStoreLexicon).Load(StringComparer.Ordinal);
+                var value = (new IStoreLexiconDummy() as IStoreLexicon).Load(StandardLexiconComparer.Ordinal);
                 Assert.NotNull(value);
             }
             catch (NotSupportedException)
@@ -50,7 +37,7 @@
         {
             try
             {
-                (new IStoreLexiconDummy() as IStoreLexicon).Save(new Lexicon());
+                (new IStoreLexiconDummy() as IStoreLexicon).Save(new Lexicon(StandardLexiconComparer.Ordinal));
                 Assert.True(false);
             }
             catch (NotSupportedException)

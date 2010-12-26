@@ -6,24 +6,27 @@
 
     public sealed class LexicalItem
     {
-        private string _canonicalForm;
+        private KeyValuePair<string, string> _canonicalForm;
 
-        public LexicalItem(string canonicalForm)
+        private ILexiconComparer _comparer;
+
+        public LexicalItem(ILexiconComparer comparer, string canonicalForm)
             : this()
         {
+            Comparer = comparer;
+            Synonyms = new SynonymCollection(comparer);
             CanonicalForm = canonicalForm;
         }
 
         private LexicalItem()
         {
-            Synonyms = new HashSet<string>();
         }
 
         public string CanonicalForm
         {
             get
             {
-                return _canonicalForm;
+                return _canonicalForm.Key;
             }
 
             set
@@ -39,7 +42,7 @@
                     throw new ArgumentOutOfRangeException("value");
                 }
 
-                _canonicalForm = value;
+                _canonicalForm = new KeyValuePair<string, string>(value, Comparer.Normalize(value));
             }
         }
 
@@ -59,16 +62,32 @@
             }
         }
 
-        public HashSet<string> Synonyms { get; private set; }
+        public SynonymCollection Synonyms { get; private set; }
 
-        public bool Contains(string value, IComparer<string> comparer)
+        private ILexiconComparer Comparer
         {
-            if (null == comparer)
+            get
             {
-                throw new ArgumentNullException("comparer");
+                return _comparer;
             }
 
-            return Spellings.Any(spelling => 0 == comparer.Compare(spelling, value));
+            set
+            {
+                if (null == value)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                _comparer = value;
+            }
+        }
+
+        public bool Contains(string value)
+        {
+            var x = _canonicalForm.Value;
+            var y = Comparer.Normalize(value);
+
+            return 0 == Comparer.Compare(x, y) || Synonyms.Contains(y);
         }
 
         public void Invoke(Func<string, string> function)

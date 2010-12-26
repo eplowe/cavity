@@ -58,6 +58,8 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Models\ILexiconComparer.Facts.cs" />
+    <Compile Include="Models\ILexiconComparer.Dummy.cs" />
     <Compile Include="Data\CsvLexiconStorage.Facts.cs" />
     <Compile Include="Data\IStoreLexicon.Dummy.cs" />
     <Compile Include="Data\IStoreLexicon.Facts.cs" />
@@ -65,6 +67,8 @@
     <Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Models\LexicalItem.Facts.cs" />
     <Compile Include="Models\Lexicon.Facts.cs" />
+    <Compile Include="Models\StandardLexiconComparer.Facts.cs" />
+    <Compile Include="Models\Synonyms.Facts.cs" />
     <Compile Include="Models\Telephone.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

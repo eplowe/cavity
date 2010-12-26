@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
@@ -55,39 +54,27 @@
             }
         }
 
-        public Lexicon Load()
+        public Lexicon Load(ILexiconComparer comparer)
         {
-            return Load(null);
-        }
-
-        public Lexicon Load(IComparer<string> comparer)
-        {
-            var result = null == comparer ? new Lexicon() : new Lexicon(comparer);
-            result.Storage = this;
+            var result = new Lexicon(comparer)
+            {
+                Storage = this
+            };
 
             foreach (var data in new CsvFile(Location))
             {
                 var canonical = data["CANONICAL"];
-                var item = result.Items
-                    .Where(x => 0 == (comparer ?? StringComparer.Ordinal).Compare(x.CanonicalForm, canonical))
-                    .FirstOrDefault();
+
+                var item = result[canonical];
                 if (null == item)
                 {
-                    item = new LexicalItem(canonical);
-                    result.Items.Add(item);
+                    item = result.Add(canonical);
                 }
 
                 foreach (var synonym in data["SYNONYMS"]
                     .Split(';', StringSplitOptions.RemoveEmptyEntries))
                 {
-                    var s = synonym;
-                    if (0 == item
-                                 .Synonyms
-                                 .Where(x => 0 == (comparer ?? StringComparer.Ordinal).Compare(x, s))
-                                 .Count())
-                    {
-                        item.Synonyms.Add(synonym);
-                    }
+                    item.Synonyms.Add(synonym);
                 }
             }
 
@@ -109,7 +96,7 @@
                 Share = FileShare.None
             })
             {
-                if (0 == lexicon.Items.Count)
+                if (0 == lexicon.Items.Count())
                 {
                     writers.Item(Location.FullName).WriteLine(string.Empty);
                     return;

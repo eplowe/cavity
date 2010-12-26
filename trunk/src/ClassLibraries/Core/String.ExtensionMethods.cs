@@ -22,6 +22,60 @@
             return -1 != obj.IndexOf(value, comparisonType);
         }
 
+        public static bool EndsWithAny(this string obj, StringComparison comparison, params string[] args)
+        {
+            if (null == obj)
+            {
+                return false;
+            }
+
+            if (0 == obj.Length)
+            {
+                return false;
+            }
+
+            if (null == args)
+            {
+                return false;
+            }
+
+            if (0 == args.Length)
+            {
+                return false;
+            }
+
+            return args
+                .Where(arg => !string.IsNullOrEmpty(arg))
+                .Any(arg => obj.EndsWith(arg, comparison));
+        }
+
+        public static bool EqualsAny(this string obj, StringComparison comparison, params string[] args)
+        {
+            if (null == obj)
+            {
+                return false;
+            }
+
+            if (0 == obj.Length)
+            {
+                return false;
+            }
+
+            if (null == args)
+            {
+                return false;
+            }
+
+            if (0 == args.Length)
+            {
+                return false;
+            }
+
+            return args
+                .Where(arg => !string.IsNullOrEmpty(arg))
+                .Any(arg => obj.Equals(arg, comparison));
+        }
+
         public static string FormatWith(this string obj, params object[] args)
         {
             return string.Format(CultureInfo.InvariantCulture, obj, args);
@@ -193,6 +247,11 @@
             return buffer.ToString();
         }
 
+        public static bool SameIndexesOfEach(this string obj, params char[] args)
+        {
+            return string.IsNullOrEmpty(obj) || args.All(arg => obj.IndexOf(arg) == obj.LastIndexOf(arg));
+        }
+
         public static string[] Split(this string obj, char separator, StringSplitOptions options)
         {
             if (null == obj)
@@ -206,6 +265,11 @@
                     separator
                 },
                 options);
+        }
+
+        public static bool StartsOrEndsWith(this string obj, params char[] args)
+        {
+            return !string.IsNullOrEmpty(obj) && args.Any(arg => arg.Equals(obj[0]) || arg.Equals(obj[obj.Length - 1]));
         }
 
         public static bool StartsWithAny(this string obj, StringComparison comparison, params string[] args)
@@ -230,20 +294,9 @@
                 return false;
             }
 
-            foreach (var arg in args)
-            {
-                if (string.IsNullOrEmpty(arg))
-                {
-                    continue;
-                }
-
-                if (obj.StartsWith(arg, comparison))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return args
+                .Where(arg => !string.IsNullOrEmpty(arg))
+                .Any(arg => obj.StartsWith(arg, comparison));
         }
 
         [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Title casing only works from lower case strings.")]

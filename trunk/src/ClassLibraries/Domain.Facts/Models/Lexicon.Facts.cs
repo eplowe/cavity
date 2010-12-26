@@ -16,32 +16,26 @@
                             .DerivesFrom<object>()
                             .IsConcreteClass()
                             .IsSealed()
-                            .HasDefaultConstructor()
+                            .NoDefaultConstructor()
                             .Result);
-        }
-
-        [Fact]
-        public void ctor()
-        {
-            Assert.NotNull(new Lexicon());
-        }
-
-        [Fact]
-        public void ctor_IComparer()
-        {
-            Assert.NotNull(new Lexicon(StringComparer.InvariantCulture));
         }
 
         [Fact]
         public void ctor_IComparerNull()
         {
-            Assert.NotNull(new Lexicon(null));
+            Assert.Throws<ArgumentNullException>(() => new Lexicon(null));
+        }
+
+        [Fact]
+        public void ctor_ILexiconComparer()
+        {
+            Assert.NotNull(new Lexicon(StandardLexiconComparer.Ordinal));
         }
 
         [Fact]
         public void indexer_stringNull_get()
         {
-            var obj = new Lexicon();
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
 
             Assert.Throws<ArgumentNullException>(() => obj[null]);
         }
@@ -49,12 +43,12 @@
         [Fact]
         public void indexer_string_get()
         {
-            var expected = new LexicalItem("Example");
+            const string expected = "Example";
 
-            var obj = new Lexicon();
-            obj.Items.Add(expected);
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
+            obj.Add(expected);
 
-            var actual = obj[expected.CanonicalForm];
+            var actual = obj[expected].CanonicalForm;
 
             Assert.Same(expected, actual);
         }
@@ -62,7 +56,7 @@
         [Fact]
         public void indexer_string_getWhenNotFound()
         {
-            var obj = new Lexicon();
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
 
             Assert.Null(obj["Example"]);
         }
@@ -70,13 +64,11 @@
         [Fact]
         public void indexer_string_getWhenSynonym()
         {
-            var expected = new LexicalItem("Foo");
-            expected.Synonyms.Add("Bar");
+            const string expected = "Foo";
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
+            obj.Add(expected).Synonyms.Add("Bar");
 
-            var obj = new Lexicon();
-            obj.Items.Add(expected);
-
-            var actual = obj[expected.Synonyms.First()];
+            var actual = obj["Bar"].CanonicalForm;
 
             Assert.Same(expected, actual);
         }
@@ -86,7 +78,7 @@
         {
             const string expected = "Example";
 
-            var obj = new Lexicon();
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
             obj.Add(expected);
 
             var actual = obj.Items.First().CanonicalForm;
@@ -97,13 +89,13 @@
         [Fact]
         public void op_Add_stringEmpty()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Lexicon().Add(string.Empty));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Lexicon(StandardLexiconComparer.Ordinal).Add(string.Empty));
         }
 
         [Fact]
         public void op_Add_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new Lexicon().Add(null));
+            Assert.Throws<ArgumentNullException>(() => new Lexicon(StandardLexiconComparer.Ordinal).Add(null));
         }
 
         [Fact]
@@ -111,12 +103,11 @@
         {
             const string expected = "Example";
 
-            var obj = new Lexicon();
-            obj.Items.Add(new LexicalItem(expected));
-
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
+            obj.Add(expected);
             obj.Add(expected);
 
-            Assert.Equal(1, obj.Items.Count);
+            Assert.Equal(1, obj.Items.Count());
         }
 
         [Fact]
@@ -124,27 +115,19 @@
         {
             const string expected = "foo";
 
-            var item = new LexicalItem("bar")
-            {
-                Synonyms =
-                    {
-                        expected
-                    }
-            };
-
-            var obj = new Lexicon();
-            obj.Items.Add(item);
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
+            obj.Add("bar").Synonyms.Add(expected);
 
             obj.Add(expected);
 
-            Assert.Equal(1, obj.Items.Count);
+            Assert.Equal(1, obj.Items.Count());
         }
 
         [Fact]
         public void op_Contains_string()
         {
-            var obj = new Lexicon();
-            obj.Items.Add(new LexicalItem("Example"));
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
+            obj.Add("Example");
 
             Assert.True(obj.Contains("Example"));
         }
@@ -152,44 +135,44 @@
         [Fact]
         public void op_Contains_stringEmpty()
         {
-            Assert.False(new Lexicon().Contains(string.Empty));
+            Assert.False(new Lexicon(StandardLexiconComparer.Ordinal).Contains(string.Empty));
         }
 
         [Fact]
-        public void op_Contains_stringEmpty_whenInvariantComparer()
+        public void op_Contains_stringEmpty_whenOrdinalComparer()
         {
-            Assert.False(new Lexicon(StringComparer.InvariantCulture).Contains(string.Empty));
+            Assert.False(new Lexicon(StandardLexiconComparer.Ordinal).Contains(string.Empty));
         }
 
         [Fact]
         public void op_Contains_stringNull()
         {
-            Assert.False(new Lexicon().Contains(null));
+            Assert.False(new Lexicon(StandardLexiconComparer.Ordinal).Contains(null));
         }
 
         [Fact]
-        public void op_Contains_stringNull_whenInvariantComparer()
+        public void op_Contains_stringNull_whenOrdinalComparer()
         {
-            Assert.False(new Lexicon(StringComparer.InvariantCulture).Contains(null));
+            Assert.False(new Lexicon(StandardLexiconComparer.Ordinal).Contains(null));
         }
 
         [Fact]
         public void op_Contains_string_whenEmpty()
         {
-            Assert.False(new Lexicon().Contains("Example"));
+            Assert.False(new Lexicon(StandardLexiconComparer.Ordinal).Contains("Example"));
         }
 
         [Fact]
-        public void op_Contains_string_whenEmptyWithInvariantComparer()
+        public void op_Contains_string_whenEmptyWithOrdinalComparer()
         {
-            Assert.False(new Lexicon(StringComparer.InvariantCulture).Contains("Example"));
+            Assert.False(new Lexicon(StandardLexiconComparer.Ordinal).Contains("Example"));
         }
 
         [Fact]
-        public void op_Contains_string_whenInvariantComparer()
+        public void op_Contains_string_whenOrdinalIgnoreCaseComparer()
         {
-            var obj = new Lexicon(StringComparer.InvariantCultureIgnoreCase);
-            obj.Items.Add(new LexicalItem("Example"));
+            var obj = new Lexicon(StandardLexiconComparer.OrdinalIgnoreCase);
+            obj.Add("Example");
 
             Assert.True(obj.Contains("EXAMPLE"));
         }
@@ -197,13 +180,13 @@
         [Fact]
         public void op_Delete()
         {
-            Assert.Throws<ArgumentNullException>(() => new Lexicon().Delete());
+            Assert.Throws<ArgumentNullException>(() => new Lexicon(StandardLexiconComparer.Ordinal).Delete());
         }
 
         [Fact]
         public void op_Delete_IStoreLexicon()
         {
-            var obj = new Lexicon();
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
 
             var storage = new Mock<IStoreLexicon>();
             storage.Setup(x => x.Delete(obj)).Verifiable();
@@ -218,13 +201,13 @@
         [Fact]
         public void op_Delete_IStoreLexiconNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new Lexicon().Delete(null));
+            Assert.Throws<ArgumentNullException>(() => new Lexicon(StandardLexiconComparer.Ordinal).Delete(null));
         }
 
         [Fact]
         public void op_Delete_whenStorageDefined()
         {
-            var obj = new Lexicon();
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
 
             var storage = new Mock<IStoreLexicon>();
             storage.Setup(x => x.Delete(obj)).Verifiable();
@@ -239,16 +222,8 @@
         [Fact]
         public void op_Invoke_Func()
         {
-            var obj = new Lexicon();
-            var item = new LexicalItem(string.Concat("Foo", '\u00A0', "Bar"))
-            {
-                Synonyms =
-                    {
-                        string.Concat("Left", '\u00A0', "Right")
-                    }
-            };
-
-            obj.Items.Add(item);
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
+            obj.Add(string.Concat("Foo", '\u00A0', "Bar")).Synonyms.Add(string.Concat("Left", '\u00A0', "Right"));
 
             obj.Invoke(x => x.NormalizeWhiteSpace());
 
@@ -259,98 +234,64 @@
         [Fact]
         public void op_Invoke_FuncNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new Lexicon().Invoke(null));
+            Assert.Throws<ArgumentNullException>(() => new Lexicon(StandardLexiconComparer.Ordinal).Invoke(null));
         }
 
         [Fact]
         public void op_Remove_IEnumerableLexicalItems()
         {
-            var obj = new Lexicon();
-            obj.Items.Add(new LexicalItem("1")
-            {
-                Synonyms =
-                    {
-                        "One"
-                    }
-            });
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
+            obj.Add("1").Synonyms.Add("One");
 
-            var lexicon = new Lexicon();
-            lexicon.Items.Add(new LexicalItem("1")
-            {
-                Synonyms =
-                    {
-                        "One"
-                    }
-            });
+            var lexicon = new Lexicon(StandardLexiconComparer.Ordinal);
+            lexicon.Add("1").Synonyms.Add("One");
 
             obj.Remove(lexicon.Items);
 
-            Assert.Equal(0, obj.Items.Count);
+            Assert.Equal(0, obj.Items.Count());
         }
 
         [Fact]
         public void op_Remove_IEnumerableLexicalItemsEmpty()
         {
-            var expected = new LexicalItem("1")
-            {
-                Synonyms =
-                    {
-                        "One"
-                    }
-            };
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
+            obj.Add("1").Synonyms.Add("One");
 
-            var obj = new Lexicon();
-            obj.Items.Add(expected);
+            obj.Remove(new Lexicon(StandardLexiconComparer.Ordinal).Items);
 
-            obj.Remove(new Lexicon().Items);
-
-            var actual = obj.Items.First();
-
-            Assert.Same(expected, actual);
+            Assert.Equal(1, obj.Items.Count());
         }
 
         [Fact]
         public void op_Remove_IEnumerableLexicalItemsNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new Lexicon().Remove(null));
+            Assert.Throws<ArgumentNullException>(() => new Lexicon(StandardLexiconComparer.Ordinal).Remove(null));
         }
 
         [Fact]
         public void op_Remove_IEnumerableLexicalItemsSynonym()
         {
-            var obj = new Lexicon();
-            obj.Items.Add(new LexicalItem("Foo")
-            {
-                Synonyms =
-                    {
-                        "One"
-                    }
-            });
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
+            obj.Add("Foo").Synonyms.Add("One");
 
-            var lexicon = new Lexicon();
-            lexicon.Items.Add(new LexicalItem("Bar")
-            {
-                Synonyms =
-                    {
-                        "One"
-                    }
-            });
+            var lexicon = new Lexicon(StandardLexiconComparer.Ordinal);
+            lexicon.Add("Bar").Synonyms.Add("One");
 
             obj.Remove(lexicon.Items);
 
-            Assert.Equal(0, obj.Items.Count);
+            Assert.Equal(0, obj.Items.Count());
         }
 
         [Fact]
         public void op_Save()
         {
-            Assert.Throws<ArgumentNullException>(() => new Lexicon().Save());
+            Assert.Throws<ArgumentNullException>(() => new Lexicon(StandardLexiconComparer.Ordinal).Save());
         }
 
         [Fact]
         public void op_Save_IStoreLexicon()
         {
-            var obj = new Lexicon();
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
 
             var storage = new Mock<IStoreLexicon>();
             storage.Setup(x => x.Save(obj)).Verifiable();
@@ -365,13 +306,13 @@
         [Fact]
         public void op_Save_IStoreLexiconNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new Lexicon().Save(null));
+            Assert.Throws<ArgumentNullException>(() => new Lexicon(StandardLexiconComparer.Ordinal).Save(null));
         }
 
         [Fact]
         public void op_Save_whenStorageDefined()
         {
-            var obj = new Lexicon();
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
 
             var storage = new Mock<IStoreLexicon>();
             storage.Setup(x => x.Save(obj)).Verifiable();
@@ -388,14 +329,8 @@
         {
             const string expected = "1";
 
-            var obj = new Lexicon();
-            obj.Items.Add(new LexicalItem(expected)
-            {
-                Synonyms =
-                    {
-                        "One"
-                    }
-            });
+            var obj = new Lexicon(StandardLexiconComparer.Ordinal);
+            obj.Add(expected).Synonyms.Add("One");
 
             var actual = obj.ToCanonicalForm(obj.Items.First().Synonyms.First());
 
@@ -405,40 +340,34 @@
         [Fact]
         public void op_ToCanonicalForm_stringEmpty()
         {
-            Assert.Null(new Lexicon().ToCanonicalForm(string.Empty));
+            Assert.Null(new Lexicon(StandardLexiconComparer.Ordinal).ToCanonicalForm(string.Empty));
         }
 
         [Fact]
         public void op_ToCanonicalForm_stringEmpty_whenInvariantComparer()
         {
-            Assert.Null(new Lexicon(StringComparer.InvariantCulture).ToCanonicalForm(string.Empty));
+            Assert.Null(new Lexicon(StandardLexiconComparer.Ordinal).ToCanonicalForm(string.Empty));
         }
 
         [Fact]
         public void op_ToCanonicalForm_stringNull()
         {
-            Assert.Null(new Lexicon().ToCanonicalForm(null));
+            Assert.Null(new Lexicon(StandardLexiconComparer.Ordinal).ToCanonicalForm(null));
         }
 
         [Fact]
         public void op_ToCanonicalForm_stringNull_whenInvariantComparer()
         {
-            Assert.Null(new Lexicon(StringComparer.InvariantCulture).ToCanonicalForm(null));
+            Assert.Null(new Lexicon(StandardLexiconComparer.Ordinal).ToCanonicalForm(null));
         }
 
         [Fact]
-        public void op_ToCanonicalForm_string_whenInvariantComparer()
+        public void op_ToCanonicalForm_string_whenOrdinalIgnoreCaseComparer()
         {
             const string expected = "1";
 
-            var obj = new Lexicon(StringComparer.InvariantCultureIgnoreCase);
-            obj.Items.Add(new LexicalItem(expected)
-            {
-                Synonyms =
-                    {
-                        "One"
-                    }
-            });
+            var obj = new Lexicon(StandardLexiconComparer.OrdinalIgnoreCase);
+            obj.Add(expected).Synonyms.Add("One");
 
             var actual = obj.ToCanonicalForm("ONE");
 
@@ -446,20 +375,10 @@
         }
 
         [Fact]
-        public void prop_Comparer()
-        {
-            Assert.True(new PropertyExpectations<Lexicon>(p => p.Comparer)
-                            .TypeIs<IComparer<string>>()
-                            .DefaultValueIs(StringComparer.OrdinalIgnoreCase)
-                            .IsNotDecorated()
-                            .Result);
-        }
-
-        [Fact]
         public void prop_Items()
         {
             Assert.True(new PropertyExpectations<Lexicon>(p => p.Items)
-                            .TypeIs<ICollection<LexicalItem>>()
+                            .TypeIs<IEnumerable<LexicalItem>>()
                             .DefaultValueIsNotNull()
                             .IsNotDecorated()
                             .Result);
