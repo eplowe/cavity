@@ -26,7 +26,61 @@
         [Fact]
         public void op_Contains_string_StringComparison()
         {
-            Assert.True("abc".Contains("B", StringComparison.InvariantCultureIgnoreCase));
+            Assert.True("abc".Contains("B", StringComparison.OrdinalIgnoreCase));
+        }
+
+        [Fact]
+        public void op_EqualsAny_stringEmpty_StringComparison_strings()
+        {
+            Assert.False(string.Empty.EqualsAny(StringComparison.Ordinal, "cat"));
+        }
+
+        [Fact]
+        public void op_EqualsAny_stringNull_StringComparison_strings()
+        {
+            Assert.False((null as string).EqualsAny(StringComparison.Ordinal, "cat"));
+        }
+
+        [Fact]
+        public void op_EqualsAny_string_StringComparison_strings()
+        {
+            Assert.True("dog".EqualsAny(StringComparison.Ordinal, "cat", "dog"));
+        }
+
+        [Fact]
+        public void op_EqualsAny_string_StringComparison_stringsEmpty()
+        {
+            Assert.False("cat".EqualsAny(StringComparison.Ordinal));
+        }
+
+        [Fact]
+        public void op_EndsWithAny_stringEmpty_StringComparison_strings()
+        {
+            Assert.False(string.Empty.EndsWithAny(StringComparison.Ordinal, "cat"));
+        }
+
+        [Fact]
+        public void op_EndsWithAny_stringNull_StringComparison_strings()
+        {
+            Assert.False((null as string).EndsWithAny(StringComparison.Ordinal, "cat"));
+        }
+
+        [Fact]
+        public void op_EndsWithAny_string_StringComparison_strings()
+        {
+            Assert.True("cat dog".EndsWithAny(StringComparison.Ordinal, " dog"));
+        }
+
+        [Fact]
+        public void op_EndsWithAny_string_StringComparison_stringsEmpty()
+        {
+            Assert.False("cat".EndsWithAny(StringComparison.Ordinal));
+        }
+
+        [Fact]
+        public void op_EndsWithAny_string_StringComparison_stringsNull()
+        {
+            Assert.False("cat".EndsWithAny(StringComparison.Ordinal, null as string[]));
         }
 
         [Fact]
@@ -425,7 +479,7 @@
         public void op_Replace_string_stringEmpty_string_StringComparison()
         {
             const string expected = "example";
-            var actual = "example".Replace(string.Empty, "new", StringComparison.InvariantCultureIgnoreCase);
+            var actual = "example".Replace(string.Empty, "new", StringComparison.OrdinalIgnoreCase);
 
             Assert.Equal(expected, actual);
         }
@@ -440,7 +494,7 @@
         public void op_Replace_string_string_stringEmpty_StringComparison()
         {
             const string expected = "example";
-            var actual = "example".Replace("old", string.Empty, StringComparison.InvariantCultureIgnoreCase);
+            var actual = "example".Replace("old", string.Empty, StringComparison.OrdinalIgnoreCase);
 
             Assert.Equal(expected, actual);
         }
@@ -449,7 +503,7 @@
         public void op_Replace_string_string_stringEmpty_StringComparison_whenMultiple()
         {
             const string expected = "abc";
-            var actual = "_a_b_c_".Replace("_", string.Empty, StringComparison.InvariantCultureIgnoreCase);
+            var actual = "_a_b_c_".Replace("_", string.Empty, StringComparison.OrdinalIgnoreCase);
 
             Assert.Equal(expected, actual);
         }
@@ -458,7 +512,7 @@
         public void op_Replace_string_string_stringNull_StringComparison()
         {
             const string expected = "example";
-            var actual = "example".Replace("old", null, StringComparison.InvariantCultureIgnoreCase);
+            var actual = "example".Replace("old", null, StringComparison.OrdinalIgnoreCase);
 
             Assert.Equal(expected, actual);
         }
@@ -467,7 +521,7 @@
         public void op_Replace_string_string_string_StringComparison_whenEmbedded()
         {
             const string expected = "abc";
-            var actual = "aXYZc".Replace("xyz", "b", StringComparison.InvariantCultureIgnoreCase);
+            var actual = "aXYZc".Replace("xyz", "b", StringComparison.OrdinalIgnoreCase);
 
             Assert.Equal(expected, actual);
         }
@@ -476,7 +530,7 @@
         public void op_Replace_string_string_string_StringComparison_whenEnd()
         {
             const string expected = "abc";
-            var actual = "abXYZ".Replace("xyz", "c", StringComparison.InvariantCultureIgnoreCase);
+            var actual = "abXYZ".Replace("xyz", "c", StringComparison.OrdinalIgnoreCase);
 
             Assert.Equal(expected, actual);
         }
@@ -485,7 +539,7 @@
         public void op_Replace_string_string_string_StringComparison_whenMultiple()
         {
             const string expected = ".a.b.c.";
-            var actual = "_a_b_c_".Replace("_", ".", StringComparison.InvariantCultureIgnoreCase);
+            var actual = "_a_b_c_".Replace("_", ".", StringComparison.OrdinalIgnoreCase);
 
             Assert.Equal(expected, actual);
         }
@@ -494,7 +548,7 @@
         public void op_Replace_string_string_string_StringComparison_whenNoMatch()
         {
             const string expected = "example";
-            var actual = "example".Replace("old", "new", StringComparison.InvariantCultureIgnoreCase);
+            var actual = "example".Replace("old", "new", StringComparison.OrdinalIgnoreCase);
 
             Assert.Equal(expected, actual);
         }
@@ -503,9 +557,57 @@
         public void op_Replace_string_string_string_StringComparison_whenStart()
         {
             const string expected = "abc";
-            var actual = "XYZbc".Replace("xyz", "a", StringComparison.InvariantCultureIgnoreCase);
+            var actual = "XYZbc".Replace("xyz", "a", StringComparison.OrdinalIgnoreCase);
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_SameIndexesOfEach_stringAbba_charsAa()
+        {
+            Assert.True("Abba".SameIndexesOfEach('A', 'a'));
+        }
+
+        [Fact]
+        public void op_SameIndexesOfEach_stringAbba_charsAbc()
+        {
+            Assert.False("Abba".SameIndexesOfEach('a', 'b', 'c'));
+        }
+
+        [Fact]
+        public void op_SameIndexesOfEach_stringAbc_charsXbz()
+        {
+            Assert.True("abc".SameIndexesOfEach('X', 'b', 'z'));
+        }
+
+        [Fact]
+        public void op_SameIndexesOfEach_stringAbc_charsXyz()
+        {
+            Assert.True("abc".SameIndexesOfEach('X', 'y', 'z'));
+        }
+
+        [Fact]
+        public void op_SameIndexesOfEach_stringEmpty_chars()
+        {
+            Assert.True(string.Empty.SameIndexesOfEach('a', 'b', 'c'));
+        }
+
+        [Fact]
+        public void op_SameIndexesOfEach_stringExample_charsExample()
+        {
+            Assert.True("Example".SameIndexesOfEach('E', 'x', 'a', 'm', 'p', 'l', 'e'));
+        }
+
+        [Fact]
+        public void op_SameIndexesOfEach_stringNull_chars()
+        {
+            Assert.True((null as string).SameIndexesOfEach('a', 'b', 'c'));
+        }
+
+        [Fact]
+        public void op_SameIndexesOfEach_string_charsNull()
+        {
+            Assert.True("Example".SameIndexesOfEach());
         }
 
         [Fact]
@@ -523,6 +625,54 @@
         }
 
         [Fact]
+        public void op_StartsOrEndsWith_stringAbba_charsAz()
+        {
+            Assert.True("Abba".StartsOrEndsWith('A', 'z'));
+        }
+
+        [Fact]
+        public void op_StartsOrEndsWith_stringAbba_charsZa()
+        {
+            Assert.True("Abba".StartsOrEndsWith('Z', 'a'));
+        }
+
+        [Fact]
+        public void op_StartsOrEndsWith_stringEmpty_charsAz()
+        {
+            Assert.False(string.Empty.StartsOrEndsWith('A', 'z'));
+        }
+
+        [Fact]
+        public void op_StartsOrEndsWith_stringNull_charsAz()
+        {
+            Assert.False((null as string).StartsOrEndsWith('A', 'z'));
+        }
+
+        [Fact]
+        public void op_StartsOrEndsWith_stringZulu_charsAbc()
+        {
+            Assert.False("Zulu".StartsOrEndsWith('a', 'b', 'c'));
+        }
+
+        [Fact]
+        public void op_StartsOrEndsWith_stringZulu_charsAz()
+        {
+            Assert.False("Zulu".StartsOrEndsWith('A', 'z'));
+        }
+
+        [Fact]
+        public void op_StartsOrEndsWith_stringZulu_charsZa()
+        {
+            Assert.True("Zulu".StartsOrEndsWith('Z', 'a'));
+        }
+
+        [Fact]
+        public void op_StartsOrEndsWith_string_charsNull()
+        {
+            Assert.False("Abba".StartsOrEndsWith());
+        }
+
+        [Fact]
         public void op_StartsWithAny_stringEmpty_StringComparison_strings()
         {
             Assert.False(string.Empty.StartsWithAny(StringComparison.Ordinal, "cat"));
@@ -537,7 +687,7 @@
         [Fact]
         public void op_StartsWithAny_string_StringComparison_strings()
         {
-            Assert.True("cat dog".StartsWithAny(StringComparison.Ordinal, "cat"));
+            Assert.True("cat dog".StartsWithAny(StringComparison.Ordinal, "cat "));
         }
 
         [Fact]

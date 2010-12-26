@@ -2,28 +2,56 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
     using Cavity.Data;
 
     public sealed class Lexicon
     {
-        public Lexicon()
-            : this(StringComparer.OrdinalIgnoreCase)
-        {
-        }
+        private readonly List<LexicalItem> _items;
 
-        public Lexicon(IComparer<string> comparer)
+        private ILexiconComparer _comparer;
+
+        public Lexicon(ILexiconComparer comparer)
+            : this()
         {
-            Items = new Collection<LexicalItem>();
             Comparer = comparer;
+            _items = new List<LexicalItem>();
         }
 
-        public IComparer<string> Comparer { get; set; }
+        private Lexicon()
+        {
+        }
 
-        public ICollection<LexicalItem> Items { get; private set; }
+        public IEnumerable<LexicalItem> Items
+        {
+            get
+            {
+                foreach (var item in _items)
+                {
+                    yield return item;
+                }
+            }
+        }
 
         public IStoreLexicon Storage { get; set; }
+
+        private ILexiconComparer Comparer
+        {
+            get
+            {
+                return _comparer;
+            }
+
+            set
+            {
+                if (null == value)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                _comparer = value;
+            }
+        }
 
         public LexicalItem this[string spelling]
         {
@@ -34,23 +62,28 @@
                     throw new ArgumentNullException("spelling");
                 }
 
-                return Items.Where(x => x.Contains(spelling, Comparer)).FirstOrDefault();
+                return Items.Where(x => x.Contains(spelling)).FirstOrDefault();
             }
         }
 
-        public void Add(string value)
+        public LexicalItem Add(string value)
         {
-            if (Contains(value))
+            var item = this[value];
+            if (null != item)
             {
-                return;
+                return item;
             }
 
-            Items.Add(new LexicalItem(value));
+            item = new LexicalItem(Comparer, value);
+
+            _items.Add(item);
+
+            return item;
         }
 
         public bool Contains(string value)
         {
-            return Items.Any(item => item.Contains(value, Comparer));
+            return Items.Any(item => item.Contains(value));
         }
 
         public void Delete()
@@ -104,7 +137,7 @@
                         continue;
                     }
 
-                    Items.Remove(match);
+                    _items.Remove(match);
                 }
             }
         }
@@ -128,7 +161,7 @@
         public string ToCanonicalForm(string value)
         {
             return (from item in Items
-                    where item.Contains(value, Comparer)
+                    where item.Contains(value)
                     select item.CanonicalForm).FirstOrDefault();
         }
     }
