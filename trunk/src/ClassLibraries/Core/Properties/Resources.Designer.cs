@@ -61,6 +61,15 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The configuration section is required..
+        /// </summary>
+        internal static string ConfiguredList_NullSectionMessage {
+            get {
+                return ResourceManager.GetString("ConfiguredList_NullSectionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The number of columns in the header do match match the number of columns in line {0}..
         /// </summary>
         internal static string CsvStreamReader_ReadEntry_FormatException {

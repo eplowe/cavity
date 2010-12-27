@@ -41,6 +41,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml.Linq" />
@@ -60,6 +61,7 @@
     <Compile Include="Char.ExtensionMethods.Facts.cs" />
     <Compile Include="ComparableObject.Derived.cs" />
     <Compile Include="ComparableObject.Facts.cs" />
+    <Compile Include="Configuration\ConfiguredList.Facts.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\DataCollection.Facts.cs" />
     <Compile Include="Linq\Enumerable.Facts.cs" />
@@ -86,6 +88,10 @@
     </CodeAnalysisDictionary>
     <None Include="..\..\Cavity.snk">
       <Link>Properties\Cavity.snk</Link>
+    </None>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,10 @@
     /// if any expectations are not met, a <see cref="T:Cavity.TestException"/> is thrown.
     /// </remarks>
     /// <seealso href="http://code.google.com/p/cavity/wiki/TypeExpectations">Guide to asserting expectations about types.</seealso>
-    public sealed class TypeExpectations<T> : ITestClassStyle, ITestClassSealed, ITestClassConstruction, ITestType
+    public sealed class TypeExpectations<T> : ITestClassStyle,
+                                              ITestClassSealed,
+                                              ITestClassConstruction,
+                                              ITestType
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Cavity.TypeExpectations`1"/> class.
