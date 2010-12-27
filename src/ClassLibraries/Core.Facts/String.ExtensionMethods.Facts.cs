@@ -30,30 +30,6 @@
         }
 
         [Fact]
-        public void op_EqualsAny_stringEmpty_StringComparison_strings()
-        {
-            Assert.False(string.Empty.EqualsAny(StringComparison.Ordinal, "cat"));
-        }
-
-        [Fact]
-        public void op_EqualsAny_stringNull_StringComparison_strings()
-        {
-            Assert.False((null as string).EqualsAny(StringComparison.Ordinal, "cat"));
-        }
-
-        [Fact]
-        public void op_EqualsAny_string_StringComparison_strings()
-        {
-            Assert.True("dog".EqualsAny(StringComparison.Ordinal, "cat", "dog"));
-        }
-
-        [Fact]
-        public void op_EqualsAny_string_StringComparison_stringsEmpty()
-        {
-            Assert.False("cat".EqualsAny(StringComparison.Ordinal));
-        }
-
-        [Fact]
         public void op_EndsWithAny_stringEmpty_StringComparison_strings()
         {
             Assert.False(string.Empty.EndsWithAny(StringComparison.Ordinal, "cat"));
@@ -81,6 +57,30 @@
         public void op_EndsWithAny_string_StringComparison_stringsNull()
         {
             Assert.False("cat".EndsWithAny(StringComparison.Ordinal, null as string[]));
+        }
+
+        [Fact]
+        public void op_EqualsAny_stringEmpty_StringComparison_strings()
+        {
+            Assert.False(string.Empty.EqualsAny(StringComparison.Ordinal, "cat"));
+        }
+
+        [Fact]
+        public void op_EqualsAny_stringNull_StringComparison_strings()
+        {
+            Assert.False((null as string).EqualsAny(StringComparison.Ordinal, "cat"));
+        }
+
+        [Fact]
+        public void op_EqualsAny_string_StringComparison_strings()
+        {
+            Assert.True("dog".EqualsAny(StringComparison.Ordinal, "cat", "dog"));
+        }
+
+        [Fact]
+        public void op_EqualsAny_string_StringComparison_stringsEmpty()
+        {
+            Assert.False("cat".EqualsAny(StringComparison.Ordinal));
         }
 
         [Fact]
