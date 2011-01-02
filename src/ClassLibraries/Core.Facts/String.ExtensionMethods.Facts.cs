@@ -461,6 +461,168 @@
         }
 
         [Fact]
+        public void op_RemoveDefiniteArticle_string()
+        {
+            const string expected = " Example";
+            var actual = "The Example".RemoveDefiniteArticle();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveDefiniteArticle_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveDefiniteArticle();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveDefiniteArticle_stringNull()
+        {
+            string expected = null;
+            var actual = (null as string).RemoveDefiniteArticle();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveFromEnd_stringEmpty_string_StringComparison()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveFromEnd("example", StringComparison.Ordinal);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveFromEnd_stringNull_string_StringComparison()
+        {
+            string expected = null;
+            var actual = (null as string).RemoveFromEnd("example", StringComparison.Ordinal);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveFromEnd_string_stringEmpty_StringComparison()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => "example".RemoveFromEnd(string.Empty, StringComparison.Ordinal));
+        }
+
+        [Fact]
+        public void op_RemoveFromEnd_string_stringNull_StringComparison()
+        {
+            Assert.Throws<ArgumentNullException>(() => "example".RemoveFromEnd(null, StringComparison.Ordinal));
+        }
+
+        [Fact]
+        public void op_RemoveFromEnd_string_string_StringComparison()
+        {
+            const string expected = "Ex";
+            var actual = "Example".RemoveFromEnd("ample", StringComparison.OrdinalIgnoreCase);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveFromStart_stringEmpty_string_StringComparison()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveFromStart("example", StringComparison.Ordinal);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveFromStart_stringNull_string_StringComparison()
+        {
+            string expected = null;
+            var actual = (null as string).RemoveFromStart("example", StringComparison.Ordinal);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveFromStart_string_stringEmpty_StringComparison()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => "example".RemoveFromStart(string.Empty, StringComparison.Ordinal));
+        }
+
+        [Fact]
+        public void op_RemoveFromStart_string_stringNull_StringComparison()
+        {
+            Assert.Throws<ArgumentNullException>(() => "example".RemoveFromStart(null, StringComparison.Ordinal));
+        }
+
+        [Fact]
+        public void op_RemoveFromStart_string_string_StringComparison()
+        {
+            const string expected = "ample";
+            var actual = "Example".RemoveFromStart("ex", StringComparison.OrdinalIgnoreCase);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceAllWith_stringEmpty_string_StringComparison_strings()
+        {
+            var expected = string.Empty;
+            var actual = expected.ReplaceAllWith("-", StringComparison.OrdinalIgnoreCase, "a", "B", "c");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceAllWith_stringNull_string_StringComparison_strings()
+        {
+            string expected = null;
+            var actual = expected.ReplaceAllWith("-", StringComparison.OrdinalIgnoreCase, "a", "B", "c");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceAllWith_string_stringEmpty_StringComparison_strings()
+        {
+            const string expected = "Example";
+            var actual = "-E-x-a-m-p-l-e-".ReplaceAllWith(string.Empty, StringComparison.OrdinalIgnoreCase, "-");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceAllWith_string_stringNull_StringComparison_strings()
+        {
+            Assert.Throws<ArgumentNullException>(() => "Example".ReplaceAllWith(null, StringComparison.OrdinalIgnoreCase, "a", "B", "c"));
+        }
+
+        [Fact]
+        public void op_ReplaceAllWith_string_string_StringComparison_strings()
+        {
+            const string expected = "X---Z";
+            var actual = "XaBcZ".ReplaceAllWith("-", StringComparison.OrdinalIgnoreCase, "a", "B", "c");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceAllWith_string_string_StringComparison_stringsEmpty()
+        {
+            const string expected = "Example";
+            var actual = "Example".ReplaceAllWith("-", StringComparison.OrdinalIgnoreCase);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceAllWith_string_string_StringComparison_stringsNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => "Example".ReplaceAllWith("-", StringComparison.OrdinalIgnoreCase, null as string[]));
+        }
+
+        [Fact]
         public void op_Replace_stringEmpty_string_string_StringComparison()
         {
             var expected = string.Empty;

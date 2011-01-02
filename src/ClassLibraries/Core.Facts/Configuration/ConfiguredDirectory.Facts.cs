@@ -2,16 +2,16 @@
 {
     using System.Collections.Generic;
     using System.Configuration;
-    using System.Linq;
+    using System.IO;
     using System.Xml;
     using Xunit;
 
-    public sealed class ConfiguredListFacts
+    public sealed class ConfiguredDirectoryFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<ConfiguredList>()
+            Assert.True(new TypeExpectations<ConfiguredDirectory>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
                             .IsSealed()
@@ -24,28 +24,27 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new ConfiguredList());
+            Assert.NotNull(new ConfiguredDirectory());
         }
 
         [Fact]
         public void op_Create_object_object_XmlNode()
         {
             var xml = new XmlDocument();
-            xml.LoadXml("<lists><list name='Example'><item>Foo</item><item>Bar</item></list></lists>");
+            xml.LoadXml(@"<directories><directory name='Example'>C:\Example</directory></directories>");
 
-            var actual = new ConfiguredList().Create(null, null, xml.DocumentElement) as IDictionary<string, IEnumerable<string>>;
+            var actual = new ConfiguredDirectory().Create(null, null, xml.DocumentElement) as IDictionary<string, DirectoryInfo>;
 
-            Assert.Equal("Foo", actual["Example"].First());
-            Assert.Equal("Bar", actual["Example"].Last());
+            Assert.Equal(@"C:\Example", actual["Example"].FullName);
         }
 
         [Fact]
         public void op_Create_object_object_XmlNodeEmpty()
         {
             var xml = new XmlDocument();
-            xml.LoadXml("<lists />");
+            xml.LoadXml("<directories />");
 
-            var actual = new ConfiguredList().Create(null, null, xml.DocumentElement) as IDictionary<string, IEnumerable<string>>;
+            var actual = new ConfiguredDirectory().Create(null, null, xml.DocumentElement) as IDictionary<string, DirectoryInfo>;
 
             Assert.Empty(actual);
         }
@@ -53,7 +52,7 @@
         [Fact]
         public void op_Create_object_object_XmlNodeNull()
         {
-            Assert.Throws<ConfigurationErrorsException>(() => new ConfiguredList().Create(null, null, null));
+            Assert.Throws<ConfigurationErrorsException>(() => new ConfiguredDirectory().Create(null, null, null));
         }
 
         [Fact]
@@ -62,30 +61,29 @@
             var xml = new XmlDocument();
             xml.LoadXml("<foo />");
 
-            var actual = new ConfiguredList().Create(null, null, xml.DocumentElement);
+            var actual = new ConfiguredDirectory().Create(null, null, xml.DocumentElement);
 
-            Assert.IsAssignableFrom<IDictionary<string, IEnumerable<string>>>(actual);
+            Assert.IsAssignableFrom<IDictionary<string, DirectoryInfo>>(actual);
         }
 
         [Fact]
-        public void op_Items_string()
+        public void op_Item_string()
         {
-            var actual = ConfiguredList.Items("Example");
+            var actual = ConfiguredDirectory.Item("Temp");
 
-            Assert.Equal("Foo", actual.First());
-            Assert.Equal("Bar", actual.Last());
+            Assert.Equal(@"C:\Temp", actual.FullName);
         }
 
         [Fact]
         public void op_Settings()
         {
-            Assert.NotNull(ConfiguredList.Settings());
+            Assert.NotNull(ConfiguredDirectory.Settings());
         }
 
         [Fact]
         public void op_Settings_string()
         {
-            Assert.NotNull(ConfiguredList.Settings("lists"));
+            Assert.NotNull(ConfiguredDirectory.Settings("directories"));
         }
 
         [Fact]
@@ -93,22 +91,19 @@
         {
             try
             {
-                var mock = new Dictionary<string, IEnumerable<string>>
+                var mock = new Dictionary<string, DirectoryInfo>
                 {
                     {
-                        "Example", new List<string>
-                        {
-                            "One"
-                        }
+                        "Windows", new DirectoryInfo(@"C:\Windows")
                         }
                 };
-                ConfiguredList.Mock = mock;
+                ConfiguredDirectory.Mock = mock;
 
-                Assert.Equal("One", ConfiguredList.Items("Example").First());
+                Assert.Equal(@"C:\Windows", ConfiguredDirectory.Item("Windows").FullName);
             }
             finally
             {
-                ConfiguredList.Mock = null;
+                ConfiguredDirectory.Mock = null;
             }
         }
     }

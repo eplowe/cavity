@@ -96,7 +96,7 @@
 
             var n = obj.Length;
             var m = comparand.Length;
-            var d = new int[n + 1, m + 1];
+            var d = new int[n + 1,m + 1];
 
             for (var i = 0; i <= n; d[i, 0] = i++)
             {
@@ -209,6 +209,55 @@
             return buffer.ToString();
         }
 
+        public static string RemoveDefiniteArticle(this string obj)
+        {
+            return obj.RemoveFromStart("THE", StringComparison.OrdinalIgnoreCase);
+        }
+
+        public static string RemoveFromEnd(this string obj, string value, StringComparison comparisonType)
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return obj;
+            }
+
+            if (null == value)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            if (0 == value.Length)
+            {
+                throw new ArgumentOutOfRangeException("value");
+            }
+
+            return obj.EndsWith(value, comparisonType)
+                       ? obj.Substring(0, obj.Length - value.Length)
+                       : obj;
+        }
+
+        public static string RemoveFromStart(this string obj, string value, StringComparison comparisonType)
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return obj;
+            }
+
+            if (null == value)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            if (0 == value.Length)
+            {
+                throw new ArgumentOutOfRangeException("value");
+            }
+
+            return obj.StartsWith(value, comparisonType)
+                       ? obj.Substring(value.Length)
+                       : obj;
+        }
+
         public static string Replace(this string obj, string oldValue, string newValue, StringComparison comparisonType)
         {
             if (null == obj)
@@ -245,6 +294,31 @@
             }
 
             return buffer.ToString();
+        }
+
+        public static string ReplaceAllWith(this string obj, string newValue, StringComparison comparisonType, params string[] args)
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return obj;
+            }
+
+            if (null == newValue)
+            {
+                throw new ArgumentNullException("newValue");
+            }
+
+            if (null == args)
+            {
+                throw new ArgumentNullException("args");
+            }
+
+            foreach (var arg in args)
+            {
+                obj = obj.Replace(arg, newValue, comparisonType);
+            }
+
+            return obj;
         }
 
         public static bool SameIndexesOfEach(this string obj, params char[] args)

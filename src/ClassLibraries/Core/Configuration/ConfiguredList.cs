@@ -9,9 +9,27 @@
 
     public sealed class ConfiguredList : IConfigurationSectionHandler
     {
+        [ThreadStatic]
+        private static IDictionary<string, IEnumerable<string>> _mock;
+
+        public static IDictionary<string, IEnumerable<string>> Mock
+        {
+            get
+            {
+                return _mock;
+            }
+
+            set
+            {
+                _mock = value;
+            }
+        }
+
         public static IEnumerable<string> Items(string name)
         {
-            return Settings()[name];
+            var settings = _mock ?? Settings();
+
+            return settings[name];
         }
 
         public static IDictionary<string, IEnumerable<string>> Settings()
