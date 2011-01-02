@@ -62,6 +62,7 @@
     <Compile Include="Char.ExtensionMethods.cs" />
     <Compile Include="ComparableObject.cs" />
     <Compile Include="Configuration\ConfiguredList.cs" />
+    <Compile Include="Configuration\ConfiguredDirectory.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Linq\Enumerable.cs" />

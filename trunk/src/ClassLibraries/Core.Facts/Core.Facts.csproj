@@ -62,6 +62,7 @@
     <Compile Include="ComparableObject.Derived.cs" />
     <Compile Include="ComparableObject.Facts.cs" />
     <Compile Include="Configuration\ConfiguredList.Facts.cs" />
+    <Compile Include="Configuration\ConfiguredDirectory.Facts.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\DataCollection.Facts.cs" />
     <Compile Include="Linq\Enumerable.Facts.cs" />
