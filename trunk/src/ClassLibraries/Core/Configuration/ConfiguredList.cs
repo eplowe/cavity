@@ -5,17 +5,23 @@
     using System.Configuration;
     using System.Linq;
     using System.Xml;
+    using Cavity.Collections.Generic;
     using Cavity.Properties;
 
     public sealed class ConfiguredList : IConfigurationSectionHandler
     {
         [ThreadStatic]
-        private static IDictionary<string, IEnumerable<string>> _mock;
+        private static MultitonCollection<string, IEnumerable<string>> _mock;
 
-        public static IDictionary<string, IEnumerable<string>> Mock
+        public static MultitonCollection<string, IEnumerable<string>> Mock
         {
             get
             {
+                if (null == _mock)
+                {
+                    _mock = new MultitonCollection<string, IEnumerable<string>>();
+                }
+
                 return _mock;
             }
 
@@ -32,19 +38,19 @@
             return settings[name];
         }
 
-        public static IDictionary<string, IEnumerable<string>> Settings()
+        public static MultitonCollection<string, IEnumerable<string>> Settings()
         {
             return Settings("lists");
         }
 
-        public static IDictionary<string, IEnumerable<string>> Settings(string sectionName)
+        public static MultitonCollection<string, IEnumerable<string>> Settings(string sectionName)
         {
-            return ConfigurationManager.GetSection(sectionName) as IDictionary<string, IEnumerable<string>>;
+            return ConfigurationManager.GetSection(sectionName) as MultitonCollection<string, IEnumerable<string>>;
         }
 
         public object Create(object parent, object configContext, XmlNode section)
         {
-            var result = new Dictionary<string, IEnumerable<string>>();
+            var result = new MultitonCollection<string, IEnumerable<string>>();
 
             try
             {

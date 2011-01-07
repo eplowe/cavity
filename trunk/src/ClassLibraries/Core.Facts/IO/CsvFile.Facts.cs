@@ -37,10 +37,9 @@
         [Fact]
         public void op_GetEnumerator()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
                 {
                     using (var writer = new StreamWriter(stream))
                     {
@@ -49,17 +48,9 @@
                     }
                 }
 
-                foreach (var item in new CsvFile(file))
+                foreach (var item in new CsvFile(file.Info))
                 {
                     Assert.Equal("value", item["name"]);
-                }
-            }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
                 }
             }
         }
@@ -67,10 +58,9 @@
         [Fact]
         public void op_GetEnumerator_whenOnlyHeader()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
                 {
                     using (var writer = new StreamWriter(stream))
                     {
@@ -78,17 +68,9 @@
                     }
                 }
 
-                foreach (var item in new CsvFile(file))
+                foreach (var item in new CsvFile(file.Info))
                 {
                     Assert.Equal("value", item["name"]);
-                }
-            }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
                 }
             }
         }
@@ -96,10 +78,9 @@
         [Fact]
         public void op_IEnumerable_GetEnumerator()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
                 {
                     using (var writer = new StreamWriter(stream))
                     {
@@ -108,18 +89,10 @@
                     }
                 }
 
-                IEnumerable enumerable = new CsvFile(file);
+                IEnumerable enumerable = new CsvFile(file.Info);
                 foreach (var entry in enumerable.Cast<IDictionary<string, string>>())
                 {
                     Assert.Equal("value", entry["name"]);
-                }
-            }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
                 }
             }
         }

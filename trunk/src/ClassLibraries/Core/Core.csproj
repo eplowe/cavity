@@ -60,11 +60,15 @@
     </Compile>
     <Compile Include="AbsoluteUri.cs" />
     <Compile Include="Char.ExtensionMethods.cs" />
+    <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
+    <Compile Include="CommentAttribute.cs" />
     <Compile Include="ComparableObject.cs" />
     <Compile Include="Configuration\ConfiguredList.cs" />
     <Compile Include="Configuration\ConfiguredDirectory.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.cs" />
     <Compile Include="Data\DataCollection.cs" />
+    <Compile Include="IO\TempDirectory.cs" />
+    <Compile Include="IO\TempFile.cs" />
     <Compile Include="Linq\Enumerable.cs" />
     <Compile Include="IO\CsvFile.cs" />
     <Compile Include="IO\CsvStreamReader.cs" />

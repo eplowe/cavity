@@ -59,12 +59,16 @@
     </Compile>
     <Compile Include="AbsoluteUri.Facts.cs" />
     <Compile Include="Char.ExtensionMethods.Facts.cs" />
+    <Compile Include="Collections\Generic\MultitonCollection`1.Facts.cs" />
+    <Compile Include="CommentAttribute.Facts.cs" />
     <Compile Include="ComparableObject.Derived.cs" />
     <Compile Include="ComparableObject.Facts.cs" />
     <Compile Include="Configuration\ConfiguredList.Facts.cs" />
     <Compile Include="Configuration\ConfiguredDirectory.Facts.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\DataCollection.Facts.cs" />
+    <Compile Include="IO\TempDirectory.Facts.cs" />
+    <Compile Include="IO\TempFile.Facts.cs" />
     <Compile Include="Linq\Enumerable.Facts.cs" />
     <Compile Include="TestException.Derived.cs" />
     <Compile Include="IO\CsvFile.Facts.cs" />

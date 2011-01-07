@@ -96,7 +96,7 @@
 
             var n = obj.Length;
             var m = comparand.Length;
-            var d = new int[n + 1,m + 1];
+            var d = new int[n + 1, m + 1];
 
             for (var i = 0; i <= n; d[i, 0] = i++)
             {

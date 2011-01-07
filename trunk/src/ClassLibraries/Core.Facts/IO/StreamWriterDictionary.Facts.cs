@@ -67,19 +67,13 @@
         [Fact]
         public void op_Dispose()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
                 var obj = new StreamWriterDictionary();
 
                 obj.Dispose();
 
-                Assert.Throws<InvalidOperationException>(() => obj.Item(file));
-            }
-            finally
-            {
-                file.Delete();
+                Assert.Throws<InvalidOperationException>(() => obj.Item(file.Info));
             }
         }
 
@@ -95,21 +89,15 @@
         [Fact]
         public void op_Item_FileInfo()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file).Write("example");
+                    obj.Item(file.Info).Write("example");
                 }
 
-                file.Refresh();
-                Assert.True(file.Exists);
-            }
-            finally
-            {
-                file.Delete();
+                file.Info.Refresh();
+                Assert.True(file.Info.Exists);
             }
         }
 
@@ -125,44 +113,32 @@
         [Fact]
         public void op_Item_FileInfo_string()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file, "one").Write("two");
+                    obj.Item(file.Info, "one").Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file.FullName).Write("example");
+                    obj.Item(file.Info.FullName).Write("example");
                 }
 
-                file.Refresh();
-                Assert.True(file.Exists);
-            }
-            finally
-            {
-                file.Delete();
+                file.Info.Refresh();
+                Assert.True(file.Info.Exists);
             }
         }
 
@@ -187,686 +163,530 @@
         [Fact]
         public void op_Item_string_FileModeAppend_FileAccessWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.Append, FileAccess.Write, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, FileMode.Append, FileAccess.Write, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_FileModeAppend_FileAccessWrite_FileShareWrite_whenCalledAgain()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.Append, FileAccess.Write, FileShare.Write).WriteLine("two");
+                    obj.Item(file.Info.FullName, FileMode.Append, FileAccess.Write, FileShare.Write).WriteLine("two");
                 }
 
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.Append, FileAccess.Write, FileShare.Write).Write("three");
+                    obj.Item(file.Info.FullName, FileMode.Append, FileAccess.Write, FileShare.Write).Write("three");
                 }
 
                 var expected = "one{0}two{0}three".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_FileModeCreateNew_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_FileModeCreate_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.Create, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, FileMode.Create, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_FileModeCreate_FileAccessReadWrite_FileShareWrite_whenCalledAgain()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.Create, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, FileMode.Create, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.Create, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, FileMode.Create, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_FileModeOpenOrCreate_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_FileModeOpenOrCreate_FileAccessReadWrite_FileShareWrite_whenCalledAgain()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_FileModeTruncate_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_FileModeTruncate_FileAccessReadWrite_FileShareWrite_whenCalledAgain()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 using (var obj = new StreamWriterDictionary("one"))
                 {
-                    obj.Item(file.FullName, FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_string()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file.FullName, "one").Write("two");
+                    obj.Item(file.Info.FullName, "one").Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_stringEmpty_FileModeCreateNew_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file.FullName, string.Empty, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Write);
+                    obj.Item(file.Info.FullName, string.Empty, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Write);
                 }
 
                 var expected = Environment.NewLine;
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_stringEmpty_FileModeCreate_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file.FullName, string.Empty, FileMode.Create, FileAccess.ReadWrite, FileShare.Write);
+                    obj.Item(file.Info.FullName, string.Empty, FileMode.Create, FileAccess.ReadWrite, FileShare.Write);
                 }
 
                 var expected = Environment.NewLine;
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_stringEmpty_FileModeCreate_FileAccessReadWrite_FileShareWrite_whenCalledAgain()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file.FullName, string.Empty, FileMode.Create, FileAccess.ReadWrite, FileShare.Write);
+                    obj.Item(file.Info.FullName, string.Empty, FileMode.Create, FileAccess.ReadWrite, FileShare.Write);
                 }
 
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file.FullName, string.Empty, FileMode.Create, FileAccess.ReadWrite, FileShare.Write);
+                    obj.Item(file.Info.FullName, string.Empty, FileMode.Create, FileAccess.ReadWrite, FileShare.Write);
                 }
 
                 var expected = Environment.NewLine;
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_stringEmpty_FileModeTruncate_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file.FullName, string.Empty, FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write);
+                    obj.Item(file.Info.FullName, string.Empty, FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write);
                 }
 
                 var expected = Environment.NewLine;
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_stringNull_FileModeCreateNew_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file.FullName, null, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Write);
+                    obj.Item(file.Info.FullName, null, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Write);
                 }
 
                 var expected = string.Empty;
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_stringNull_FileModeCreate_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file.FullName, null, FileMode.Create, FileAccess.ReadWrite, FileShare.Write);
+                    obj.Item(file.Info.FullName, null, FileMode.Create, FileAccess.ReadWrite, FileShare.Write);
                 }
 
                 var expected = string.Empty;
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_stringNull_FileModeCreate_FileAccessReadWrite_FileShareWrite_whenCalledAgain()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file.FullName, null, FileMode.Create, FileAccess.ReadWrite, FileShare.Write);
+                    obj.Item(file.Info.FullName, null, FileMode.Create, FileAccess.ReadWrite, FileShare.Write);
                 }
 
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file.FullName, null, FileMode.Create, FileAccess.ReadWrite, FileShare.Write);
+                    obj.Item(file.Info.FullName, null, FileMode.Create, FileAccess.ReadWrite, FileShare.Write);
                 }
 
                 var expected = string.Empty;
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_stringNull_FileModeTruncate_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
                 using (var obj = new StreamWriterDictionary())
                 {
-                    obj.Item(file.FullName, null, FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write);
+                    obj.Item(file.Info.FullName, null, FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write);
                 }
 
                 var expected = string.Empty;
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_string_FileModeAppend_FileAccessWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("example"))
                 {
-                    obj.Item(file.FullName, "one", FileMode.Append, FileAccess.Write, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, "one", FileMode.Append, FileAccess.Write, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_string_FileModeAppend_FileAccessWrite_FileShareWrite_whenCalledAgain()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("example"))
                 {
-                    obj.Item(file.FullName, "one", FileMode.Append, FileAccess.Write, FileShare.Write).WriteLine("two");
+                    obj.Item(file.Info.FullName, "one", FileMode.Append, FileAccess.Write, FileShare.Write).WriteLine("two");
                 }
 
                 using (var obj = new StreamWriterDictionary("example"))
                 {
-                    obj.Item(file.FullName, "one", FileMode.Append, FileAccess.Write, FileShare.Write).Write("three");
+                    obj.Item(file.Info.FullName, "one", FileMode.Append, FileAccess.Write, FileShare.Write).Write("three");
                 }
 
                 var expected = "one{0}two{0}three".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_string_FileModeCreate_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("example"))
                 {
-                    obj.Item(file.FullName, "one", FileMode.Create, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, "one", FileMode.Create, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_string_FileModeCreate_FileAccessReadWrite_FileShareWrite_whenCalledAgain()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("example"))
                 {
-                    obj.Item(file.FullName, "one", FileMode.Create, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, "one", FileMode.Create, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 using (var obj = new StreamWriterDictionary("example"))
                 {
-                    obj.Item(file.FullName, "one", FileMode.Create, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, "one", FileMode.Create, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_string_FileModeOpenOrCreate_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("example"))
                 {
-                    obj.Item(file.FullName, "one", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, "one", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_string_FileModeOpenOrCreate_FileAccessReadWrite_FileShareWrite_whenCalledAgain()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 using (var obj = new StreamWriterDictionary("example"))
                 {
-                    obj.Item(file.FullName, "one", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, "one", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 using (var obj = new StreamWriterDictionary("example"))
                 {
-                    obj.Item(file.FullName, "one", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, "one", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_string_FileModeTruncate_FileAccessReadWrite_FileShareWrite()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
                 using (var obj = new StreamWriterDictionary("example"))
                 {
-                    obj.Item(file.FullName, "one", FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, "one", FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
         [Fact]
         public void op_Item_string_string_FileModeTruncate_FileAccessReadWrite_FileShareWrite_whenCalledAgain()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            try
+            using (var file = new TempFile())
             {
                 using (var obj = new StreamWriterDictionary("example"))
                 {
-                    obj.Item(file.FullName, "one", FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, "one", FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 using (var obj = new StreamWriterDictionary("example"))
                 {
-                    obj.Item(file.FullName, "one", FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
+                    obj.Item(file.Info.FullName, "one", FileMode.Truncate, FileAccess.ReadWrite, FileShare.Write).Write("two");
                 }
 
                 var expected = "one{0}two".FormatWith(Environment.NewLine);
-                var actual = File.ReadAllText(file.FullName);
+                var actual = File.ReadAllText(file.Info.FullName);
 
                 Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                file.Delete();
             }
         }
 
