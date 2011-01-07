@@ -1,21 +1,26 @@
 ﻿namespace Cavity.Configuration
 {
     using System;
-    using System.Collections.Generic;
     using System.Configuration;
     using System.IO;
     using System.Xml;
+    using Cavity.Collections.Generic;
     using Cavity.Properties;
 
     public sealed class ConfiguredDirectory : IConfigurationSectionHandler
     {
         [ThreadStatic]
-        private static IDictionary<string, DirectoryInfo> _mock;
+        private static MultitonCollection<string, DirectoryInfo> _mock;
 
-        public static IDictionary<string, DirectoryInfo> Mock
+        public static MultitonCollection<string, DirectoryInfo> Mock
         {
             get
             {
+                if (null == _mock)
+                {
+                    _mock = new MultitonCollection<string, DirectoryInfo>();
+                }
+
                 return _mock;
             }
 
@@ -32,19 +37,19 @@
             return settings[name];
         }
 
-        public static IDictionary<string, DirectoryInfo> Settings()
+        public static MultitonCollection<string, DirectoryInfo> Settings()
         {
             return Settings("directories");
         }
 
-        public static IDictionary<string, DirectoryInfo> Settings(string sectionName)
+        public static MultitonCollection<string, DirectoryInfo> Settings(string sectionName)
         {
-            return ConfigurationManager.GetSection(sectionName) as IDictionary<string, DirectoryInfo>;
+            return ConfigurationManager.GetSection(sectionName) as MultitonCollection<string, DirectoryInfo>;
         }
 
         public object Create(object parent, object configContext, XmlNode section)
         {
-            var result = new Dictionary<string, DirectoryInfo>();
+            var result = new MultitonCollection<string, DirectoryInfo>();
 
             try
             {

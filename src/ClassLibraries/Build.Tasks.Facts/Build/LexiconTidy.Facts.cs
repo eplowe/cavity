@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Build
 {
     using System.IO;
+    using Cavity.IO;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
     using Moq;
@@ -29,10 +30,9 @@
         [Fact]
         public void op_Execute_IEnumerable()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
                 {
                     using (var writer = new StreamWriter(stream))
                     {
@@ -47,24 +47,16 @@
                     BuildEngine = new Mock<IBuildEngine>().Object,
                     Paths = new ITaskItem[]
                     {
-                        new TaskItem(file.FullName)
+                        new TaskItem(file.Info.FullName)
                     }
                 };
 
                 Assert.True(obj.Execute());
 
-                file.Refresh();
-                Assert.True(file.Exists);
+                file.Info.Refresh();
+                Assert.True(file.Info.Exists);
 
-                Assert.True(File.ReadAllText(file.FullName).Contains("1,One;Unit"));
-            }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
+                Assert.True(File.ReadAllText(file.Info.FullName).Contains("1,One;Unit"));
             }
         }
 

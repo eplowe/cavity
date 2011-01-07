@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using System.Linq;
+    using Cavity.IO;
     using Cavity.Models;
     using Xunit;
 
@@ -24,9 +25,10 @@
         [Fact]
         public void ctor_FileInfo()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-
-            Assert.NotNull(new CsvLexiconStorage(file));
+            using (var file = new TempFile())
+            {
+                Assert.NotNull(new CsvLexiconStorage(file.Info));
+            }
         }
 
         [Fact]
@@ -38,41 +40,33 @@
         [Fact]
         public void op_Delete_Lexicon()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                IStoreLexicon store = new CsvLexiconStorage(file);
+                IStoreLexicon store = new CsvLexiconStorage(file.Info);
                 store.Delete(new Lexicon(StandardLexiconComparer.Ordinal));
 
-                file.Refresh();
-                Assert.False(file.Exists);
-            }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
+                file.Info.Refresh();
+                Assert.False(file.Info.Exists);
             }
         }
 
         [Fact]
         public void op_Delete_LexiconNull()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            IStoreLexicon store = new CsvLexiconStorage(file);
+            using (var file = new TempFile())
+            {
+                IStoreLexicon store = new CsvLexiconStorage(file.Info);
 
-            Assert.Throws<ArgumentNullException>(() => store.Delete(null));
+                Assert.Throws<ArgumentNullException>(() => store.Delete(null));
+            }
         }
 
         [Fact]
         public void op_Load_IComparer()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
                 {
                     using (var writer = new StreamWriter(stream))
                     {
@@ -81,56 +75,38 @@
                     }
                 }
 
-                IStoreLexicon store = new CsvLexiconStorage(file);
+                IStoreLexicon store = new CsvLexiconStorage(file.Info);
                 var obj = store.Load(StandardLexiconComparer.Ordinal);
 
                 Assert.Equal("1", obj.ToCanonicalForm("1"));
 
                 Assert.Same(store, obj.Storage);
             }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
-            }
         }
 
         [Fact]
         public void op_Load_IComparerNull()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 var lexicon = new Lexicon(StandardLexiconComparer.Ordinal);
                 lexicon.Add("Example");
 
-                IStoreLexicon store = new CsvLexiconStorage(file);
+                IStoreLexicon store = new CsvLexiconStorage(file.Info);
                 store.Save(lexicon);
 
                 Assert.Throws<ArgumentNullException>(() => store.Load(null));
-            }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
             }
         }
 
         [Fact]
         public void op_Load_withMultipleSynonyms()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
                 {
                     using (var writer = new StreamWriter(stream))
                     {
@@ -139,29 +115,20 @@
                     }
                 }
 
-                IStoreLexicon store = new CsvLexiconStorage(file);
+                IStoreLexicon store = new CsvLexiconStorage(file.Info);
                 var obj = store.Load(StandardLexiconComparer.Ordinal);
 
                 Assert.Equal("1", obj.ToCanonicalForm("One"));
                 Assert.Equal("1", obj.ToCanonicalForm("Unit"));
-            }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
             }
         }
 
         [Fact]
         public void op_Load_withRepeats()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
                 {
                     using (var writer = new StreamWriter(stream))
                     {
@@ -171,7 +138,7 @@
                     }
                 }
 
-                IStoreLexicon store = new CsvLexiconStorage(file);
+                IStoreLexicon store = new CsvLexiconStorage(file.Info);
                 var obj = store.Load(StandardLexiconComparer.Ordinal);
 
                 Assert.Equal("1", obj.ToCanonicalForm("One"));
@@ -179,23 +146,14 @@
                 Assert.Equal(1, obj.Items.Count());
                 Assert.Equal(2, obj.Items.First().Synonyms.Count);
             }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
-            }
         }
 
         [Fact]
         public void op_Load_withSingleSynonym()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                using (var stream = file.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
                 {
                     using (var writer = new StreamWriter(stream))
                     {
@@ -204,111 +162,78 @@
                     }
                 }
 
-                IStoreLexicon store = new CsvLexiconStorage(file);
+                IStoreLexicon store = new CsvLexiconStorage(file.Info);
                 var obj = store.Load(StandardLexiconComparer.Ordinal);
 
                 Assert.Equal("1", obj.ToCanonicalForm("One"));
-            }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
             }
         }
 
         [Fact]
         public void op_Save_Lexicon()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 var lexicon = new Lexicon(StandardLexiconComparer.Ordinal);
                 lexicon.Add("Example");
 
-                IStoreLexicon store = new CsvLexiconStorage(file);
+                IStoreLexicon store = new CsvLexiconStorage(file.Info);
                 store.Save(lexicon);
 
-                file.Refresh();
-                Assert.True(file.Exists);
+                file.Info.Refresh();
+                Assert.True(file.Info.Exists);
 
                 Assert.True(store.Load(StandardLexiconComparer.Ordinal).Contains("Example"));
-            }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
             }
         }
 
         [Fact]
         public void op_Save_LexiconNull()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            IStoreLexicon store = new CsvLexiconStorage(file);
+            using (var file = new TempFile())
+            {
+                IStoreLexicon store = new CsvLexiconStorage(file.Info);
 
-            Assert.Throws<ArgumentNullException>(() => store.Save(null));
+                Assert.Throws<ArgumentNullException>(() => store.Save(null));
+            }
         }
 
         [Fact]
         public void op_Save_LexiconWhenEmpty()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
-                IStoreLexicon store = new CsvLexiconStorage(file);
+                IStoreLexicon store = new CsvLexiconStorage(file.Info);
                 store.Save(new Lexicon(StandardLexiconComparer.Ordinal));
 
-                file.Refresh();
-                Assert.True(file.Exists);
+                file.Info.Refresh();
+                Assert.True(file.Info.Exists);
 
-                Assert.True(File.ReadAllText(file.FullName).StartsWith("CANONICAL,SYNONYMS"));
-            }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
+                Assert.True(File.ReadAllText(file.Info.FullName).StartsWith("CANONICAL,SYNONYMS"));
             }
         }
 
         [Fact]
         public void op_Save_LexiconWithComma()
         {
-            var file = new FileInfo(Path.GetTempFileName());
-            try
+            using (var file = new TempFile())
             {
-                file.Delete();
+                file.Info.Delete();
 
                 var lexicon = new Lexicon(StandardLexiconComparer.Ordinal);
                 lexicon.Add("foo, bar");
 
-                IStoreLexicon store = new CsvLexiconStorage(file);
+                IStoreLexicon store = new CsvLexiconStorage(file.Info);
                 store.Save(lexicon);
 
-                file.Refresh();
-                Assert.True(file.Exists);
+                file.Info.Refresh();
+                Assert.True(file.Info.Exists);
 
                 Assert.True(store.Load(StandardLexiconComparer.Ordinal).Contains("foo, bar"));
-            }
-            finally
-            {
-                file.Refresh();
-                if (file.Exists)
-                {
-                    file.Delete();
-                }
             }
         }
 

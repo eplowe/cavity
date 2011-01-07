@@ -76,6 +76,10 @@
       <Project>{0FF43960-7762-46A3-BA82-DBA2161DBAC9}</Project>
       <Name>Build.Tasks</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{2494FF0C-7ABE-4F07-A66B-D209B061CD58}</Project>
       <Name>Domain</Name>

@@ -4,6 +4,7 @@
     using System.Configuration;
     using System.Linq;
     using System.Xml;
+    using Cavity.Collections.Generic;
     using Xunit;
 
     public sealed class ConfiguredListFacts
@@ -33,7 +34,7 @@
             var xml = new XmlDocument();
             xml.LoadXml("<lists><list name='Example'><item>Foo</item><item>Bar</item></list></lists>");
 
-            var actual = new ConfiguredList().Create(null, null, xml.DocumentElement) as IDictionary<string, IEnumerable<string>>;
+            var actual = new ConfiguredList().Create(null, null, xml.DocumentElement) as MultitonCollection<string, IEnumerable<string>>;
 
             Assert.Equal("Foo", actual["Example"].First());
             Assert.Equal("Bar", actual["Example"].Last());
@@ -45,7 +46,7 @@
             var xml = new XmlDocument();
             xml.LoadXml("<lists />");
 
-            var actual = new ConfiguredList().Create(null, null, xml.DocumentElement) as IDictionary<string, IEnumerable<string>>;
+            var actual = new ConfiguredList().Create(null, null, xml.DocumentElement) as MultitonCollection<string, IEnumerable<string>>;
 
             Assert.Empty(actual);
         }
@@ -64,7 +65,7 @@
 
             var actual = new ConfiguredList().Create(null, null, xml.DocumentElement);
 
-            Assert.IsAssignableFrom<IDictionary<string, IEnumerable<string>>>(actual);
+            Assert.IsAssignableFrom<MultitonCollection<string, IEnumerable<string>>>(actual);
         }
 
         [Fact]
@@ -93,16 +94,10 @@
         {
             try
             {
-                var mock = new Dictionary<string, IEnumerable<string>>
+                ConfiguredList.Mock["Example"] = new List<string>
                 {
-                    {
-                        "Example", new List<string>
-                        {
-                            "One"
-                        }
-                        }
+                    "One"
                 };
-                ConfiguredList.Mock = mock;
 
                 Assert.Equal("One", ConfiguredList.Items("Example").First());
             }

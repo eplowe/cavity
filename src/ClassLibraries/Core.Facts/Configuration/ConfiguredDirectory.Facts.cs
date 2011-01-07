@@ -1,9 +1,9 @@
 ﻿namespace Cavity.Configuration
 {
-    using System.Collections.Generic;
     using System.Configuration;
     using System.IO;
     using System.Xml;
+    using Cavity.Collections.Generic;
     using Xunit;
 
     public sealed class ConfiguredDirectoryFacts
@@ -33,7 +33,7 @@
             var xml = new XmlDocument();
             xml.LoadXml(@"<directories><directory name='Example'>C:\Example</directory></directories>");
 
-            var actual = new ConfiguredDirectory().Create(null, null, xml.DocumentElement) as IDictionary<string, DirectoryInfo>;
+            var actual = new ConfiguredDirectory().Create(null, null, xml.DocumentElement) as MultitonCollection<string, DirectoryInfo>;
 
             Assert.Equal(@"C:\Example", actual["Example"].FullName);
         }
@@ -44,7 +44,7 @@
             var xml = new XmlDocument();
             xml.LoadXml("<directories />");
 
-            var actual = new ConfiguredDirectory().Create(null, null, xml.DocumentElement) as IDictionary<string, DirectoryInfo>;
+            var actual = new ConfiguredDirectory().Create(null, null, xml.DocumentElement) as MultitonCollection<string, DirectoryInfo>;
 
             Assert.Empty(actual);
         }
@@ -63,7 +63,7 @@
 
             var actual = new ConfiguredDirectory().Create(null, null, xml.DocumentElement);
 
-            Assert.IsAssignableFrom<IDictionary<string, DirectoryInfo>>(actual);
+            Assert.IsAssignableFrom<MultitonCollection<string, DirectoryInfo>>(actual);
         }
 
         [Fact]
@@ -91,13 +91,7 @@
         {
             try
             {
-                var mock = new Dictionary<string, DirectoryInfo>
-                {
-                    {
-                        "Windows", new DirectoryInfo(@"C:\Windows")
-                        }
-                };
-                ConfiguredDirectory.Mock = mock;
+                ConfiguredDirectory.Mock["Windows"] = new DirectoryInfo(@"C:\Windows");
 
                 Assert.Equal(@"C:\Windows", ConfiguredDirectory.Item("Windows").FullName);
             }
