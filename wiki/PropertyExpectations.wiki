@@ -7,7 +7,7 @@
         [Fact]
         public void value_definition()
         {
-            Assert.True(new PropertyExpectations<Class1>("Value")
+            Assert.True(new PropertyExpectations<Class1>(x => x.Value)
                 .IsAutoProperty<string>()
                 .Result);
         }
@@ -19,7 +19,7 @@
         [Fact]
         public void value_definition()
         {
-            Assert.True(new PropertyExpectations<Class1>("Value")
+            Assert.True(new PropertyExpectations<Class1>(x => x.Value)
                 .IsAutoProperty<string>("default")
                 .Result);
         }
@@ -31,7 +31,7 @@
         [Fact]
         public void value_definition()
         {
-            Assert.True(new PropertyExpectations<Class1>("Value")
+            Assert.True(new PropertyExpectations<Class1>(x => x.Value)
                 .IsAutoProperty<string>()
                 .XmlAttribute("attribute")
                 .Result);
@@ -44,7 +44,7 @@
         [Fact]
         public void value_definition()
         {
-            Assert.True(new PropertyExpectations<Class1>("Value")
+            Assert.True(new PropertyExpectations<Class1>(x => x.Value)
                 .TypeIs<string>()
                 .DefaultValueIs("default")
                 .Set("example")
