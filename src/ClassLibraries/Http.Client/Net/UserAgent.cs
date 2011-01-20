@@ -50,7 +50,8 @@
             return Format(version.Major, version.Minor);
         }
 
-        public static string Format(int major, int minor)
+        public static string Format(int major,
+                                    int minor)
         {
             return Resources.UserAgent_ValueFormat.FormatWith(major, minor);
         }

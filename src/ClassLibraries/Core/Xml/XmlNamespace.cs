@@ -8,7 +8,8 @@
 
         private AbsoluteUri _uri;
 
-        public XmlNamespace(string prefix, AbsoluteUri uri)
+        public XmlNamespace(string prefix,
+                            AbsoluteUri uri)
         {
             Prefix = prefix;
             Uri = uri;

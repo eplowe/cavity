@@ -191,7 +191,8 @@
             return _collection.Contains(item);
         }
 
-        public void CopyTo(IHttpHeader[] array, int arrayIndex)
+        public void CopyTo(IHttpHeader[] array,
+                           int arrayIndex)
         {
             _collection.CopyTo(array, arrayIndex);
         }

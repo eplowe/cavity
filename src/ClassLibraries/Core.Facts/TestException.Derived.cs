@@ -15,12 +15,14 @@
         {
         }
 
-        public DerivedTestException(string message, Exception innerException)
+        public DerivedTestException(string message,
+                                    Exception innerException)
             : base(message, innerException)
         {
         }
 
-        private DerivedTestException(SerializationInfo info, StreamingContext context)
+        private DerivedTestException(SerializationInfo info,
+                                     StreamingContext context)
             : base(info, context)
         {
         }

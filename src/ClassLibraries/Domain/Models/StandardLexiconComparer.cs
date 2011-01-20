@@ -75,7 +75,8 @@
             }
         }
 
-        int IComparer<string>.Compare(string x, string y)
+        int IComparer<string>.Compare(string x,
+                                      string y)
         {
             return Comparer.Compare(x, y);
         }

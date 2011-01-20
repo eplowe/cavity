@@ -156,7 +156,8 @@
         /// Thrown when the specified <paramref name="expectedException"/> type
         /// does not derive from <see cref="T:System.Exception"/>.
         /// </exception>
-        public PropertyExpectations<T> Exception(object value, Type expectedException)
+        public PropertyExpectations<T> Exception(object value,
+                                                 Type expectedException)
         {
             if (null == expectedException)
             {
@@ -327,7 +328,8 @@
         /// The expected <see cref="P:System.Xml.Serialization.XmlArrayItemAttribute.ElementName"/> value.
         /// </param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations<T> XmlArray(string arrayElementName, string arrayItemElementName)
+        public PropertyExpectations<T> XmlArray(string arrayElementName,
+                                                string arrayItemElementName)
         {
             Items.Add(new XmlArrayTest(Property)
             {
@@ -367,7 +369,8 @@
         /// The expected <see cref="P:System.Xml.Serialization.XmlAttributeAttribute.Namespace"/> value.
         /// </param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations<T> XmlAttribute(string attributeName, string @namespace)
+        public PropertyExpectations<T> XmlAttribute(string attributeName,
+                                                    string @namespace)
         {
             Items.Add(new XmlAttributeTest(Property)
             {
@@ -407,7 +410,8 @@
         /// The expected <see cref="P:System.Xml.Serialization.XmlElementAttribute.Namespace"/> value.
         /// </param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations<T> XmlElement(string elementName, string @namespace)
+        public PropertyExpectations<T> XmlElement(string elementName,
+                                                  string @namespace)
         {
             Items.Add(new XmlElementTest(Property)
             {

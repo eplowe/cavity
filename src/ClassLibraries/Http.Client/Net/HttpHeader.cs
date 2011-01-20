@@ -8,7 +8,8 @@
 
         private string _value;
 
-        public HttpHeader(Token name, string value)
+        public HttpHeader(Token name,
+                          string value)
             : this()
         {
             Name = name;

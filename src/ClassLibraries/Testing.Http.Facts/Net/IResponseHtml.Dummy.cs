@@ -4,7 +4,8 @@
 
     public sealed class IResponseHtmlDummy : ITestHttpDummy, IResponseHtml
     {
-        IResponseHtml IResponseHtml.Evaluate<T>(T expected, params string[] xpaths)
+        IResponseHtml IResponseHtml.Evaluate<T>(T expected,
+                                                params string[] xpaths)
         {
             throw new NotSupportedException();
         }

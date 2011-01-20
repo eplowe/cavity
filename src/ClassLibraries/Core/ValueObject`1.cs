@@ -18,14 +18,16 @@ namespace Cavity
 
         private List<PropertyInfo> Properties { get; set; }
 
-        public static bool operator ==(ValueObject<T> operand1, ValueObject<T> operand2)
+        public static bool operator ==(ValueObject<T> operand1,
+                                       ValueObject<T> operand2)
         {
             return ReferenceEquals(null, operand1)
                        ? ReferenceEquals(null, operand2)
                        : operand1.Equals(operand2);
         }
 
-        public static bool operator >(ValueObject<T> operand1, ValueObject<T> operand2)
+        public static bool operator >(ValueObject<T> operand1,
+                                      ValueObject<T> operand2)
         {
             return Compare(operand1, operand2) > 0;
         }
@@ -37,20 +39,23 @@ namespace Cavity
                        : value.ToString();
         }
 
-        public static bool operator !=(ValueObject<T> operand1, ValueObject<T> operand2)
+        public static bool operator !=(ValueObject<T> operand1,
+                                       ValueObject<T> operand2)
         {
             return ReferenceEquals(null, operand1)
                        ? !ReferenceEquals(null, operand2)
                        : !operand1.Equals(operand2);
         }
 
-        public static bool operator <(ValueObject<T> operand1, ValueObject<T> operand2)
+        public static bool operator <(ValueObject<T> operand1,
+                                      ValueObject<T> operand2)
         {
             return Compare(operand1, operand2) < 0;
         }
 
         [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes", Justification = "Inference is not required here.")]
-        public static int Compare(ValueObject<T> comparand1, ValueObject<T> comparand2)
+        public static int Compare(ValueObject<T> comparand1,
+                                  ValueObject<T> comparand2)
         {
             return ReferenceEquals(comparand1, comparand2)
                        ? 0
@@ -72,7 +77,9 @@ namespace Cavity
             return Properties
                 .Select(property => property.GetValue(this, null))
                 .Where(value => null != value)
-                .Aggregate(result, (current, value) => current ^ value.GetHashCode());
+                .Aggregate(result,
+                           (current,
+                            value) => current ^ value.GetHashCode());
         }
 
         public override string ToString()

@@ -11,7 +11,9 @@
 
         private HttpVersion _version;
 
-        public StatusLine(HttpVersion version, int code, string reason)
+        public StatusLine(HttpVersion version,
+                          int code,
+                          string reason)
             : this()
         {
             Version = version;

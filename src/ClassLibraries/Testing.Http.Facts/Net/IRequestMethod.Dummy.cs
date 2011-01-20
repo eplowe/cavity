@@ -39,7 +39,8 @@
             throw new NotSupportedException();
         }
 
-        IResponseStatus IRequestMethod.Use(string method, IHttpContent content)
+        IResponseStatus IRequestMethod.Use(string method,
+                                           IHttpContent content)
         {
             throw new NotSupportedException();
         }

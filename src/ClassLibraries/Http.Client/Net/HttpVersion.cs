@@ -9,7 +9,8 @@
 
         private int _minor;
 
-        public HttpVersion(int major, int minor)
+        public HttpVersion(int major,
+                           int minor)
             : this()
         {
             Major = major;

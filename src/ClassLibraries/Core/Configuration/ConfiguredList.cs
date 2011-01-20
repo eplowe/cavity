@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Configuration;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Xml;
     using Cavity.Collections.Generic;
@@ -13,6 +14,7 @@
         [ThreadStatic]
         private static MultitonCollection<string, IEnumerable<string>> _mock;
 
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "I am happy with this design.")]
         public static MultitonCollection<string, IEnumerable<string>> Mock
         {
             get
@@ -38,17 +40,21 @@
             return settings[name];
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "I am happy with this design.")]
         public static MultitonCollection<string, IEnumerable<string>> Settings()
         {
             return Settings("lists");
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "I am happy with this design.")]
         public static MultitonCollection<string, IEnumerable<string>> Settings(string sectionName)
         {
             return ConfigurationManager.GetSection(sectionName) as MultitonCollection<string, IEnumerable<string>>;
         }
 
-        public object Create(object parent, object configContext, XmlNode section)
+        public object Create(object parent,
+                             object configContext,
+                             XmlNode section)
         {
             var result = new MultitonCollection<string, IEnumerable<string>>();
 

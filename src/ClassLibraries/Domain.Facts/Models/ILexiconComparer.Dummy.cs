@@ -5,7 +5,8 @@
 
     public sealed class ILexiconComparerDummy : ILexiconComparer
     {
-        int IComparer<string>.Compare(string x, string y)
+        int IComparer<string>.Compare(string x,
+                                      string y)
         {
             throw new NotSupportedException();
         }

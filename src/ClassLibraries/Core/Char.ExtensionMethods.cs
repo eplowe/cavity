@@ -4,7 +4,8 @@
 
     public static class CharExtensionMethods
     {
-        public static bool IsIn(this char value, params char[] args)
+        public static bool IsIn(this char value,
+                                params char[] args)
         {
             return args.Contains(value);
         }

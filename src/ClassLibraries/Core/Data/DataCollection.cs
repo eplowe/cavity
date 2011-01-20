@@ -93,14 +93,16 @@
             }
         }
 
-        public static bool operator ==(DataCollection obj, DataCollection comparand)
+        public static bool operator ==(DataCollection obj,
+                                       DataCollection comparand)
         {
             return ReferenceEquals(null, obj)
                        ? ReferenceEquals(null, comparand)
                        : obj.Equals(comparand);
         }
 
-        public static bool operator !=(DataCollection obj, DataCollection comparand)
+        public static bool operator !=(DataCollection obj,
+                                       DataCollection comparand)
         {
             return ReferenceEquals(null, obj)
                        ? !ReferenceEquals(null, comparand)
@@ -153,7 +155,8 @@
             }
         }
 
-        public void Add(string name, string value)
+        public void Add(string name,
+                        string value)
         {
             if (null == name)
             {
@@ -188,7 +191,8 @@
                             .Count();
         }
 
-        public bool Contains(string name, string value)
+        public bool Contains(string name,
+                             string value)
         {
             return 0 != Items.Where(x => x.Key.Equals(name, StringComparison.OrdinalIgnoreCase) && x.Value.Equals(value, StringComparison.Ordinal))
                             .Count();

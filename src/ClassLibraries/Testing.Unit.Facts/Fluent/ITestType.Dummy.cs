@@ -46,7 +46,8 @@
             throw new NotSupportedException();
         }
 
-        public ITestType XmlRoot(string elementName, string @namespace)
+        public ITestType XmlRoot(string elementName,
+                                 string @namespace)
         {
             throw new NotSupportedException();
         }

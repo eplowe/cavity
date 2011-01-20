@@ -10,7 +10,8 @@
 
         private ILexiconComparer _comparer;
 
-        public LexicalItem(ILexiconComparer comparer, string canonicalForm)
+        public LexicalItem(ILexiconComparer comparer,
+                           string canonicalForm)
             : this()
         {
             Comparer = comparer;

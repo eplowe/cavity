@@ -2,7 +2,8 @@
 {
     public interface IResponseHtml : ITestHttp
     {
-        IResponseHtml Evaluate<T>(T expected, params string[] xpaths);
+        IResponseHtml Evaluate<T>(T expected,
+                                  params string[] xpaths);
 
         IResponseHtml EvaluateFalse(params string[] xpaths);
 

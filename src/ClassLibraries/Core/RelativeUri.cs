@@ -19,7 +19,8 @@
             Value = value;
         }
 
-        private RelativeUri(SerializationInfo info, StreamingContext context)
+        private RelativeUri(SerializationInfo info,
+                            StreamingContext context)
         {
             _value = new Uri(info.GetString("_value"), UriKind.Relative);
         }
@@ -55,14 +56,16 @@
             }
         }
 
-        public static bool operator ==(RelativeUri obj, RelativeUri comparand)
+        public static bool operator ==(RelativeUri obj,
+                                       RelativeUri comparand)
         {
             return ReferenceEquals(null, obj)
                        ? ReferenceEquals(null, comparand)
                        : obj.Equals(comparand);
         }
 
-        public static bool operator >(RelativeUri obj, RelativeUri comparand)
+        public static bool operator >(RelativeUri obj,
+                                      RelativeUri comparand)
         {
             return ReferenceEquals(null, obj)
                        ? false
@@ -89,14 +92,16 @@
             return (null == value) ? null : new RelativeUri(value);
         }
 
-        public static bool operator !=(RelativeUri obj, RelativeUri comparand)
+        public static bool operator !=(RelativeUri obj,
+                                       RelativeUri comparand)
         {
             return ReferenceEquals(null, obj)
                        ? !ReferenceEquals(null, comparand)
                        : !obj.Equals(comparand);
         }
 
-        public static bool operator <(RelativeUri obj, RelativeUri comparand)
+        public static bool operator <(RelativeUri obj,
+                                      RelativeUri comparand)
         {
             return ReferenceEquals(null, obj)
                        ? !ReferenceEquals(null, comparand)
@@ -170,7 +175,8 @@
         }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
-        void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+        void ISerializable.GetObjectData(SerializationInfo info,
+                                         StreamingContext context)
         {
             if (null == info)
             {

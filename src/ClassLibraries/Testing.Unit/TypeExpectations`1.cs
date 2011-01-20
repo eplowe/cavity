@@ -259,7 +259,8 @@
         /// <param name="elementName">The expected <see cref="P:System.Xml.Serialization.XmlRootAttribute.ElementName"/> value.</param>
         /// <param name="namespace">The expected <see cref="P:System.Xml.Serialization.XmlRootAttribute.Namespace"/> value.</param>
         /// <returns>The current instance.</returns>
-        ITestType ITestType.XmlRoot(string elementName, string @namespace)
+        ITestType ITestType.XmlRoot(string elementName,
+                                    string @namespace)
         {
             (this as ITestType).Add(new XmlRootTest<T>(elementName, @namespace));
             return this;

@@ -8,7 +8,9 @@ namespace Cavity.IO
     {
         private readonly Encoding _encoding;
 
-        public EncodedStringWriter(StringBuilder builder, IFormatProvider formatProvider, Encoding encoding)
+        public EncodedStringWriter(StringBuilder builder,
+                                   IFormatProvider formatProvider,
+                                   Encoding encoding)
             : base(builder, formatProvider)
         {
             _encoding = encoding;

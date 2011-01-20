@@ -5,12 +5,15 @@
 
     public sealed class IResponseXmlDummy : ITestHttpDummy, IResponseXml
     {
-        IResponseXml IResponseXml.Evaluate<T>(T expected, params string[] xpaths)
+        IResponseXml IResponseXml.Evaluate<T>(T expected,
+                                              params string[] xpaths)
         {
             throw new NotSupportedException();
         }
 
-        IResponseXml IResponseXml.Evaluate<T>(T expected, string xpath, params XmlNamespace[] namespaces)
+        IResponseXml IResponseXml.Evaluate<T>(T expected,
+                                              string xpath,
+                                              params XmlNamespace[] namespaces)
         {
             throw new NotSupportedException();
         }

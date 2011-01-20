@@ -15,12 +15,14 @@
         {
         }
 
-        protected TestException(string message, Exception innerException)
+        protected TestException(string message,
+                                Exception innerException)
             : base(message, innerException)
         {
         }
 
-        protected TestException(SerializationInfo info, StreamingContext context)
+        protected TestException(SerializationInfo info,
+                                StreamingContext context)
             : base(info, context)
         {
         }

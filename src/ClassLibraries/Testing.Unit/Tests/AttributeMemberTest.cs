@@ -8,7 +8,8 @@
 
     public sealed class AttributeMemberTest : MemberTestBase
     {
-        public AttributeMemberTest(MemberInfo member, Type attribute)
+        public AttributeMemberTest(MemberInfo member,
+                                   Type attribute)
             : base(member)
         {
             Attribute = attribute;

@@ -17,7 +17,9 @@
             return ConfigurationManager.GetSection(sectionName) as ISetLocatorProvider;
         }
 
-        public object Create(object parent, object configContext, XmlNode section)
+        public object Create(object parent,
+                             object configContext,
+                             XmlNode section)
         {
             ISetLocatorProvider result;
 

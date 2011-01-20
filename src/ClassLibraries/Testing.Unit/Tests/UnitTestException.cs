@@ -15,12 +15,14 @@
         {
         }
 
-        public UnitTestException(string message, Exception innerException)
+        public UnitTestException(string message,
+                                 Exception innerException)
             : base(message, innerException)
         {
         }
 
-        private UnitTestException(SerializationInfo info, StreamingContext context)
+        private UnitTestException(SerializationInfo info,
+                                  StreamingContext context)
             : base(info, context)
         {
         }
