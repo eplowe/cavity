@@ -56,15 +56,16 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Collections\Generic\LevenshteinComparer.cs" />
     <Compile Include="Data\CsvLexiconStorage.cs" />
     <Compile Include="Data\IStoreLexicon.cs" />
     <Compile Include="Models\BritishPostcode.cs" />
-    <Compile Include="Models\ILexiconComparer.cs" />
+    <Compile Include="Collections\Generic\INormalizationComparer.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.cs" />
     <Compile Include="Models\LexicalItem.cs" />
     <Compile Include="Models\Lexicon.cs" />
-    <Compile Include="Models\StandardLexiconComparer.cs" />
-    <Compile Include="Models\SynonymCollection.cs" />
+    <Compile Include="Collections\Generic\NormalizationComparer.cs" />
+    <Compile Include="Collections\Generic\SynonymCollection.cs" />
     <Compile Include="Models\Telephone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using Cavity.Collections.Generic;
     using Xunit;
 
     public sealed class LexicalItemFacts
@@ -19,21 +20,21 @@
         }
 
         [Fact]
-        public void ctor_ILexiconComparerNull_string()
+        public void ctor_INormalizationComparerNull_string()
         {
             Assert.Throws<ArgumentNullException>(() => new LexicalItem(null, "Example"));
         }
 
         [Fact]
-        public void ctor_ILexiconComparer_string()
+        public void ctor_INormalizationComparer_string()
         {
-            Assert.NotNull(new LexicalItem(StandardLexiconComparer.Ordinal, "Example"));
+            Assert.NotNull(new LexicalItem(NormalizationComparer.Ordinal, "Example"));
         }
 
         [Fact]
         public void op_Contains_stringEmpty()
         {
-            var obj = new LexicalItem(StandardLexiconComparer.Ordinal, "Example");
+            var obj = new LexicalItem(NormalizationComparer.Ordinal, "Example");
 
             Assert.False(obj.Contains(string.Empty));
         }
@@ -41,7 +42,7 @@
         [Fact]
         public void op_Contains_stringEmpty_whenSynonyms()
         {
-            var obj = new LexicalItem(StandardLexiconComparer.Ordinal, "Example")
+            var obj = new LexicalItem(NormalizationComparer.Ordinal, "Example")
             {
                 Synonyms =
                     {
@@ -56,7 +57,7 @@
         [Fact]
         public void op_Contains_stringNull()
         {
-            var obj = new LexicalItem(StandardLexiconComparer.Ordinal, "Example");
+            var obj = new LexicalItem(NormalizationComparer.Ordinal, "Example");
 
             Assert.False(obj.Contains(null));
         }
@@ -64,7 +65,7 @@
         [Fact]
         public void op_Contains_stringNull_whenSynonyms()
         {
-            var obj = new LexicalItem(StandardLexiconComparer.Ordinal, "Example")
+            var obj = new LexicalItem(NormalizationComparer.Ordinal, "Example")
             {
                 Synonyms =
                     {
@@ -79,7 +80,7 @@
         [Fact]
         public void op_Contains_string_whenMatchesSynonym()
         {
-            var obj = new LexicalItem(StandardLexiconComparer.OrdinalIgnoreCase, "Example")
+            var obj = new LexicalItem(NormalizationComparer.OrdinalIgnoreCase, "Example")
             {
                 Synonyms =
                     {
@@ -94,7 +95,7 @@
         [Fact]
         public void op_Contains_string_whenOrdinalIgnoreCase()
         {
-            var obj = new LexicalItem(StandardLexiconComparer.OrdinalIgnoreCase, "Example");
+            var obj = new LexicalItem(NormalizationComparer.OrdinalIgnoreCase, "Example");
 
             Assert.True(obj.Contains("EXAMPLE"));
         }
@@ -102,7 +103,7 @@
         [Fact]
         public void op_Invoke_Func()
         {
-            var obj = new LexicalItem(StandardLexiconComparer.Ordinal, string.Concat("Foo", '\u00A0', "Bar"))
+            var obj = new LexicalItem(NormalizationComparer.Ordinal, string.Concat("Foo", '\u00A0', "Bar"))
             {
                 Synonyms =
                     {
@@ -119,7 +120,7 @@
         [Fact]
         public void op_Invoke_FuncNull()
         {
-            var obj = new LexicalItem(StandardLexiconComparer.Ordinal, "Example");
+            var obj = new LexicalItem(NormalizationComparer.Ordinal, "Example");
 
             Assert.Throws<ArgumentNullException>(() => obj.Invoke(null));
         }
@@ -138,7 +139,7 @@
         [Fact]
         public void prop_Spellings()
         {
-            var obj = new LexicalItem(StandardLexiconComparer.Ordinal, "a")
+            var obj = new LexicalItem(NormalizationComparer.Ordinal, "a")
             {
                 Synonyms =
                     {
