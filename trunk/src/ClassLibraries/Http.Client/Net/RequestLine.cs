@@ -12,7 +12,9 @@
         private HttpVersion _version;
 
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", MessageId = "1#", Justification = "The requestUri is intentionally a string.")]
-        public RequestLine(string method, string requestUri, HttpVersion version)
+        public RequestLine(string method,
+                           string requestUri,
+                           HttpVersion version)
             : this()
         {
             Method = method;

@@ -6,7 +6,8 @@
 
     public static class Enumerable
     {
-        public static string Concat(this IEnumerable<string> source, char separator)
+        public static string Concat(this IEnumerable<string> source,
+                                    char separator)
         {
             if (null == source)
             {

@@ -15,13 +15,15 @@
         {
         }
 
-        public CsvStreamReader(Stream stream, string header)
+        public CsvStreamReader(Stream stream,
+                               string header)
             : this(stream, ParseHeader(header))
         {
             Header = header;
         }
 
-        public CsvStreamReader(Stream stream, IEnumerable<string> columns)
+        public CsvStreamReader(Stream stream,
+                               IEnumerable<string> columns)
             : base(stream)
         {
             if (null == columns)

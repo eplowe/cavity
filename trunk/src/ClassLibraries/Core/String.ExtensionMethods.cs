@@ -12,7 +12,9 @@
 
     public static class StringExtensionMethods
     {
-        public static bool Contains(this string obj, string value, StringComparison comparisonType)
+        public static bool Contains(this string obj,
+                                    string value,
+                                    StringComparison comparisonType)
         {
             if (null == obj)
             {
@@ -22,7 +24,9 @@
             return -1 != obj.IndexOf(value, comparisonType);
         }
 
-        public static bool EndsWithAny(this string obj, StringComparison comparison, params string[] args)
+        public static bool EndsWithAny(this string obj,
+                                       StringComparison comparison,
+                                       params string[] args)
         {
             if (null == obj)
             {
@@ -49,7 +53,9 @@
                 .Any(arg => obj.EndsWith(arg, comparison));
         }
 
-        public static bool EqualsAny(this string obj, StringComparison comparison, params string[] args)
+        public static bool EqualsAny(this string obj,
+                                     StringComparison comparison,
+                                     params string[] args)
         {
             if (null == obj)
             {
@@ -76,13 +82,15 @@
                 .Any(arg => obj.Equals(arg, comparison));
         }
 
-        public static string FormatWith(this string obj, params object[] args)
+        public static string FormatWith(this string obj,
+                                        params object[] args)
         {
             return string.Format(CultureInfo.InvariantCulture, obj, args);
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional", MessageId = "Body", Justification = "Space is not wasted.")]
-        public static int LevenshteinDistance(this string obj, string comparand)
+        public static int LevenshteinDistance(this string obj,
+                                              string comparand)
         {
             if (string.IsNullOrEmpty(obj))
             {
@@ -138,7 +146,8 @@
             return buffer.ToString();
         }
 
-        public static string RemoveAny(this string obj, params char[] args)
+        public static string RemoveAny(this string obj,
+                                       params char[] args)
         {
             if (null == obj)
             {
@@ -157,7 +166,9 @@
 
             return 0 == obj.Length
                        ? string.Empty
-                       : args.Aggregate(obj, (current, arg) => current.Replace(arg.ToString(), string.Empty));
+                       : args.Aggregate(obj,
+                                        (current,
+                                         arg) => current.Replace(arg.ToString(), string.Empty));
         }
 
         public static string RemoveAnyDigits(this string obj)
@@ -214,7 +225,9 @@
             return obj.RemoveFromStart("THE", StringComparison.OrdinalIgnoreCase);
         }
 
-        public static string RemoveFromEnd(this string obj, string value, StringComparison comparisonType)
+        public static string RemoveFromEnd(this string obj,
+                                           string value,
+                                           StringComparison comparisonType)
         {
             if (string.IsNullOrEmpty(obj))
             {
@@ -236,7 +249,9 @@
                        : obj;
         }
 
-        public static string RemoveFromStart(this string obj, string value, StringComparison comparisonType)
+        public static string RemoveFromStart(this string obj,
+                                             string value,
+                                             StringComparison comparisonType)
         {
             if (string.IsNullOrEmpty(obj))
             {
@@ -258,7 +273,10 @@
                        : obj;
         }
 
-        public static string Replace(this string obj, string oldValue, string newValue, StringComparison comparisonType)
+        public static string Replace(this string obj,
+                                     string oldValue,
+                                     string newValue,
+                                     StringComparison comparisonType)
         {
             if (null == obj)
             {
@@ -296,7 +314,10 @@
             return buffer.ToString();
         }
 
-        public static string ReplaceAllWith(this string obj, string newValue, StringComparison comparisonType, params string[] args)
+        public static string ReplaceAllWith(this string obj,
+                                            string newValue,
+                                            StringComparison comparisonType,
+                                            params string[] args)
         {
             if (string.IsNullOrEmpty(obj))
             {
@@ -321,12 +342,15 @@
             return obj;
         }
 
-        public static bool SameIndexesOfEach(this string obj, params char[] args)
+        public static bool SameIndexesOfEach(this string obj,
+                                             params char[] args)
         {
             return string.IsNullOrEmpty(obj) || args.All(arg => obj.IndexOf(arg) == obj.LastIndexOf(arg));
         }
 
-        public static string[] Split(this string obj, char separator, StringSplitOptions options)
+        public static string[] Split(this string obj,
+                                     char separator,
+                                     StringSplitOptions options)
         {
             if (null == obj)
             {
@@ -341,12 +365,15 @@
                 options);
         }
 
-        public static bool StartsOrEndsWith(this string obj, params char[] args)
+        public static bool StartsOrEndsWith(this string obj,
+                                            params char[] args)
         {
             return !string.IsNullOrEmpty(obj) && args.Any(arg => arg.Equals(obj[0]) || arg.Equals(obj[obj.Length - 1]));
         }
 
-        public static bool StartsWithAny(this string obj, StringComparison comparison, params string[] args)
+        public static bool StartsWithAny(this string obj,
+                                         StringComparison comparison,
+                                         params string[] args)
         {
             if (null == obj)
             {
@@ -392,7 +419,8 @@
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
-        public static object XmlDeserialize(this string xml, Type type)
+        public static object XmlDeserialize(this string xml,
+                                            Type type)
         {
             if (null == xml)
             {

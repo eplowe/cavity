@@ -24,6 +24,7 @@
         ITestType XmlRoot(string elementName);
 
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "namespace", Justification = "This naming is intentional.")]
-        ITestType XmlRoot(string elementName, string @namespace);
+        ITestType XmlRoot(string elementName,
+                          string @namespace);
     }
 }

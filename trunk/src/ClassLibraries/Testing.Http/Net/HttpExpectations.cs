@@ -161,7 +161,8 @@
             return this;
         }
 
-        IResponseStatus IRequestMethod.Use(string method, IHttpContent content)
+        IResponseStatus IRequestMethod.Use(string method,
+                                           IHttpContent content)
         {
             if (null == content)
             {
@@ -321,7 +322,8 @@
             return this;
         }
 
-        IResponseHtml IResponseHtml.Evaluate<T>(T expected, params string[] xpaths)
+        IResponseHtml IResponseHtml.Evaluate<T>(T expected,
+                                                params string[] xpaths)
         {
             throw new NotImplementedException();
         }
@@ -357,12 +359,15 @@
             throw new NotImplementedException();
         }
 
-        IResponseXml IResponseXml.Evaluate<T>(T expected, params string[] xpaths)
+        IResponseXml IResponseXml.Evaluate<T>(T expected,
+                                              params string[] xpaths)
         {
             throw new NotImplementedException();
         }
 
-        IResponseXml IResponseXml.Evaluate<T>(T expected, string xpath, params XmlNamespace[] namespaces)
+        IResponseXml IResponseXml.Evaluate<T>(T expected,
+                                              string xpath,
+                                              params XmlNamespace[] namespaces)
         {
             throw new NotImplementedException();
         }

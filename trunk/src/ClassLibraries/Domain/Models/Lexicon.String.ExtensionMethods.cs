@@ -4,7 +4,8 @@
 
     public static class LexiconStringExtensionMethods
     {
-        public static string RemoveMatch(this string value, Lexicon lexicon)
+        public static string RemoveMatch(this string value,
+                                         Lexicon lexicon)
         {
             if (null == value)
             {

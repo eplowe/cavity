@@ -4,14 +4,16 @@ namespace Cavity
 
     public abstract class ComparableObject : IComparable
     {
-        public static bool operator ==(ComparableObject operand1, ComparableObject operand2)
+        public static bool operator ==(ComparableObject operand1,
+                                       ComparableObject operand2)
         {
             return ReferenceEquals(null, operand1)
                        ? ReferenceEquals(null, operand2)
                        : operand1.Equals(operand2);
         }
 
-        public static bool operator >(ComparableObject operand1, ComparableObject operand2)
+        public static bool operator >(ComparableObject operand1,
+                                      ComparableObject operand2)
         {
             return Compare(operand1, operand2) > 0;
         }
@@ -23,19 +25,22 @@ namespace Cavity
                        : value.ToString();
         }
 
-        public static bool operator !=(ComparableObject operand1, ComparableObject operand2)
+        public static bool operator !=(ComparableObject operand1,
+                                       ComparableObject operand2)
         {
             return ReferenceEquals(null, operand1)
                        ? !ReferenceEquals(null, operand2)
                        : !operand1.Equals(operand2);
         }
 
-        public static bool operator <(ComparableObject operand1, ComparableObject operand2)
+        public static bool operator <(ComparableObject operand1,
+                                      ComparableObject operand2)
         {
             return Compare(operand1, operand2) < 0;
         }
 
-        public static int Compare(ComparableObject comparand1, ComparableObject comparand2)
+        public static int Compare(ComparableObject comparand1,
+                                  ComparableObject comparand2)
         {
             return ReferenceEquals(comparand1, comparand2)
                        ? 0

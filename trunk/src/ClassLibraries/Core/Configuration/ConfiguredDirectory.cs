@@ -47,7 +47,9 @@
             return ConfigurationManager.GetSection(sectionName) as MultitonCollection<string, DirectoryInfo>;
         }
 
-        public object Create(object parent, object configContext, XmlNode section)
+        public object Create(object parent,
+                             object configContext,
+                             XmlNode section)
         {
             var result = new MultitonCollection<string, DirectoryInfo>();
 

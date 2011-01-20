@@ -12,7 +12,8 @@
         {
         }
 
-        public XmlRootTest(string elementName, string @namespace)
+        public XmlRootTest(string elementName,
+                           string @namespace)
         {
             ElementName = elementName;
             Namespace = @namespace;

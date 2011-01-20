@@ -12,7 +12,10 @@
 
         private AbsoluteUri _location;
 
-        public Response(HttpStatusCode status, AbsoluteUri location, WebHeaderCollection headers, CookieCollection cookies)
+        public Response(HttpStatusCode status,
+                        AbsoluteUri location,
+                        WebHeaderCollection headers,
+                        CookieCollection cookies)
             : this()
         {
             Cookies = cookies;

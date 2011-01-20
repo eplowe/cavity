@@ -7,7 +7,6 @@
     {
         public TempDirectory()
         {
-
             Info = new DirectoryInfo(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString()));
             Info.Create();
         }

@@ -122,7 +122,10 @@
             }
         }
 
-        private static void WriteGet(TextWriter writer, string method, string requestUri, string host)
+        private static void WriteGet(TextWriter writer,
+                                     string method,
+                                     string requestUri,
+                                     string host)
         {
             writer.WriteLine("{0} {1} HTTP/1.1".FormatWith(method, requestUri));
             writer.WriteLine("Host: " + host);

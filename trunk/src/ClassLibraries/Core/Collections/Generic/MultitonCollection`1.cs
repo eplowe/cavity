@@ -38,7 +38,8 @@
             }
         }
 
-        public virtual void Add(TKey key, TValue value)
+        public virtual void Add(TKey key,
+                                TValue value)
         {
             _dictionary[key] = value;
         }

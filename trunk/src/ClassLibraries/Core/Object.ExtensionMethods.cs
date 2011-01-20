@@ -16,12 +16,15 @@ namespace Cavity
 
     public static class ObjectExtensionMethods
     {
-        public static bool EqualsOneOf<T>(this T obj, params T[] args)
+        public static bool EqualsOneOf<T>(this T obj,
+                                          params T[] args)
         {
             return args.Contains(obj);
         }
 
-        public static bool IsBoundedBy<T>(this T obj, T lower, T upper)
+        public static bool IsBoundedBy<T>(this T obj,
+                                          T lower,
+                                          T upper)
             where T : IComparable<T>
         {
             if (ReferenceEquals(null, upper))

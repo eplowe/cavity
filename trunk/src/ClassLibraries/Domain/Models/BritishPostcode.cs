@@ -386,13 +386,17 @@
         {
         }
 
-        private BritishPostcode(string area, string district)
+        private BritishPostcode(string area,
+                                string district)
         {
             Area = area;
             District = district;
         }
 
-        private BritishPostcode(string area, string district, string sector, string unit)
+        private BritishPostcode(string area,
+                                string district,
+                                string sector,
+                                string unit)
             : this(area, district)
         {
             Sector = sector;
@@ -461,14 +465,18 @@
         {
             return value
                 .TakeWhile(c => c >= 'A' && c <= 'Z')
-                .Aggregate<char, string>(null, (current, c) => current + c);
+                .Aggregate<char, string>(null,
+                                         (current,
+                                          c) => current + c);
         }
 
         private static string ToSector(IEnumerable<char> value)
         {
             return value
                 .Where(c => c >= '0' && c <= '9')
-                .Aggregate<char, string>(null, (current, c) => current + c);
+                .Aggregate<char, string>(null,
+                                         (current,
+                                          c) => current + c);
         }
     }
 }

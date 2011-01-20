@@ -6,7 +6,8 @@
 
     public sealed class PropertySetterTest : PropertyTestBase
     {
-        public PropertySetterTest(PropertyInfo property, object value)
+        public PropertySetterTest(PropertyInfo property,
+                                  object value)
             : base(property)
         {
             Value = value;

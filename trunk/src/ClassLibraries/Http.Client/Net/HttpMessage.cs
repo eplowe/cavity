@@ -105,7 +105,8 @@
             }
         }
 
-        private static IContent ToContent(TextReader reader, IMediaType mediaType)
+        private static IContent ToContent(TextReader reader,
+                                          IMediaType mediaType)
         {
             if (null == mediaType)
             {

@@ -19,6 +19,7 @@
 
         IResponseStatus Use(string method);
 
-        IResponseStatus Use(string method, IHttpContent content);
+        IResponseStatus Use(string method,
+                            IHttpContent content);
     }
 }

@@ -16,17 +16,20 @@
         {
         }
 
-        public HttpTestException(Response response, string message)
+        public HttpTestException(Response response,
+                                 string message)
             : this(string.Format(CultureInfo.InvariantCulture, "{0}\r\n\r\n{1}", message, response))
         {
         }
 
-        public HttpTestException(string message, Exception innerException)
+        public HttpTestException(string message,
+                                 Exception innerException)
             : base(message, innerException)
         {
         }
 
-        private HttpTestException(SerializationInfo info, StreamingContext context)
+        private HttpTestException(SerializationInfo info,
+                                  StreamingContext context)
             : base(info, context)
         {
         }
