@@ -3,15 +3,16 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Cavity.Collections.Generic;
     using Cavity.Data;
 
     public sealed class Lexicon
     {
         private readonly List<LexicalItem> _items;
 
-        private ILexiconComparer _comparer;
+        private INormalizationComparer _comparer;
 
-        public Lexicon(ILexiconComparer comparer)
+        public Lexicon(INormalizationComparer comparer)
             : this()
         {
             Comparer = comparer;
@@ -35,7 +36,7 @@
 
         public IStoreLexicon Storage { get; set; }
 
-        private ILexiconComparer Comparer
+        private INormalizationComparer Comparer
         {
             get
             {

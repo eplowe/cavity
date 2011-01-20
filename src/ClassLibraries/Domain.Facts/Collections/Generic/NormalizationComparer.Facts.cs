@@ -1,40 +1,40 @@
-﻿namespace Cavity.Models
+﻿namespace Cavity.Collections.Generic
 {
     using System;
     using System.Collections.Generic;
     using Xunit;
 
-    public sealed class StandardLexiconComparerFacts
+    public sealed class NormalizationComparerFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<StandardLexiconComparer>()
+            Assert.True(new TypeExpectations<NormalizationComparer>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
                             .IsSealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
-                            .Implements<ILexiconComparer>()
+                            .Implements<INormalizationComparer>()
                             .Result);
         }
 
         [Fact]
         public void ctor_IComparerOfString()
         {
-            Assert.NotNull(new StandardLexiconComparer(StringComparer.Ordinal));
+            Assert.NotNull(new NormalizationComparer(StringComparer.Ordinal));
         }
 
         [Fact]
         public void ctor_IComparerOfStringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new StandardLexiconComparer(null));
+            Assert.Throws<ArgumentNullException>(() => new NormalizationComparer(null));
         }
 
         [Fact]
         public void op_Compare_string_string()
         {
-            IComparer<string> obj = new StandardLexiconComparer(StringComparer.Ordinal);
+            IComparer<string> obj = new NormalizationComparer(StringComparer.Ordinal);
 
             var expected = StringComparer.Ordinal.Compare("x", "y");
             var actual = obj.Compare("x", "y");
@@ -45,7 +45,7 @@
         [Fact]
         public void op_Normalize_stringNull_whenOrdinalIgnoreCase()
         {
-            ILexiconComparer obj = new StandardLexiconComparer(StringComparer.OrdinalIgnoreCase);
+            INormalizationComparer obj = new NormalizationComparer(StringComparer.OrdinalIgnoreCase);
 
             Assert.Null(obj.Normalize(null));
         }
@@ -53,7 +53,7 @@
         [Fact]
         public void op_Normalize_string_whenCurrentCultureIgnoreCase()
         {
-            ILexiconComparer obj = new StandardLexiconComparer(StringComparer.CurrentCultureIgnoreCase);
+            INormalizationComparer obj = new NormalizationComparer(StringComparer.CurrentCultureIgnoreCase);
 
             const string expected = "EXAMPLE";
             var actual = obj.Normalize("Example");
@@ -64,7 +64,7 @@
         [Fact]
         public void op_Normalize_string_whenInvariantCultureIgnoreCase()
         {
-            ILexiconComparer obj = new StandardLexiconComparer(StringComparer.InvariantCultureIgnoreCase);
+            INormalizationComparer obj = new NormalizationComparer(StringComparer.InvariantCultureIgnoreCase);
 
             const string expected = "EXAMPLE";
             var actual = obj.Normalize("Example");
@@ -75,7 +75,7 @@
         [Fact]
         public void op_Normalize_string_whenOrdinal()
         {
-            ILexiconComparer obj = new StandardLexiconComparer(StringComparer.Ordinal);
+            INormalizationComparer obj = new NormalizationComparer(StringComparer.Ordinal);
 
             const string expected = "Example";
             var actual = obj.Normalize(expected);
@@ -86,7 +86,7 @@
         [Fact]
         public void op_Normalize_string_whenOrdinalIgnoreCase()
         {
-            ILexiconComparer obj = new StandardLexiconComparer(StringComparer.OrdinalIgnoreCase);
+            INormalizationComparer obj = new NormalizationComparer(StringComparer.OrdinalIgnoreCase);
 
             const string expected = "EXAMPLE";
             var actual = obj.Normalize("Example");
@@ -97,7 +97,7 @@
         [Fact]
         public void prop_Comparer()
         {
-            Assert.NotNull(new PropertyExpectations<StandardLexiconComparer>(x => x.Comparer)
+            Assert.NotNull(new PropertyExpectations<NormalizationComparer>(x => x.Comparer)
                                .TypeIs<IComparer<string>>()
                                .ArgumentNullException()
                                .Set(StringComparer.Ordinal)
@@ -108,7 +108,7 @@
         public void prop_CurrentCulture()
         {
             var expected = StringComparer.CurrentCulture;
-            var actual = StandardLexiconComparer.CurrentCulture.Comparer;
+            var actual = NormalizationComparer.CurrentCulture.Comparer;
 
             Assert.Equal(expected, actual);
         }
@@ -117,7 +117,7 @@
         public void prop_CurrentCultureIgnoreCase()
         {
             var expected = StringComparer.CurrentCultureIgnoreCase;
-            var actual = StandardLexiconComparer.CurrentCultureIgnoreCase.Comparer;
+            var actual = NormalizationComparer.CurrentCultureIgnoreCase.Comparer;
 
             Assert.Equal(expected, actual);
         }
@@ -126,7 +126,7 @@
         public void prop_Ordinal()
         {
             var expected = StringComparer.Ordinal;
-            var actual = StandardLexiconComparer.Ordinal.Comparer;
+            var actual = NormalizationComparer.Ordinal.Comparer;
 
             Assert.Equal(expected, actual);
         }
@@ -135,7 +135,7 @@
         public void prop_OrdinalIgnoreCase()
         {
             var expected = StringComparer.OrdinalIgnoreCase;
-            var actual = StandardLexiconComparer.OrdinalIgnoreCase.Comparer;
+            var actual = NormalizationComparer.OrdinalIgnoreCase.Comparer;
 
             Assert.Equal(expected, actual);
         }

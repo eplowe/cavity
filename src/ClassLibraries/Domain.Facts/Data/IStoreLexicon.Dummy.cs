@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System;
+    using Cavity.Collections.Generic;
     using Cavity.Models;
 
     public sealed class IStoreLexiconDummy : IStoreLexicon
@@ -10,7 +11,7 @@
             throw new NotSupportedException();
         }
 
-        Lexicon IStoreLexicon.Load(ILexiconComparer comparer)
+        Lexicon IStoreLexicon.Load(INormalizationComparer comparer)
         {
             throw new NotSupportedException();
         }

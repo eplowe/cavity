@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using Cavity.Collections.Generic;
     using Cavity.Data;
-    using Cavity.Models;
     using Cavity.Properties;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
@@ -46,7 +46,7 @@
             file.Refresh();
             if (file.Exists)
             {
-                var lexicon = new CsvLexiconStorage(file).Load(StandardLexiconComparer.OrdinalIgnoreCase);
+                var lexicon = new CsvLexiconStorage(file).Load(NormalizationComparer.OrdinalIgnoreCase);
                 file.Delete();
                 lexicon.Save();
                 Log.LogMessage(file.FullName);

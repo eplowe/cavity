@@ -3,14 +3,15 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Cavity.Collections.Generic;
 
     public sealed class LexicalItem
     {
         private KeyValuePair<string, string> _canonicalForm;
 
-        private ILexiconComparer _comparer;
+        private INormalizationComparer _comparer;
 
-        public LexicalItem(ILexiconComparer comparer,
+        public LexicalItem(INormalizationComparer comparer,
                            string canonicalForm)
             : this()
         {
@@ -65,7 +66,7 @@
 
         public SynonymCollection Synonyms { get; private set; }
 
-        private ILexiconComparer Comparer
+        private INormalizationComparer Comparer
         {
             get
             {

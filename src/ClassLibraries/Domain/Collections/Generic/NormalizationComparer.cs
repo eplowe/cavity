@@ -1,31 +1,31 @@
-﻿namespace Cavity.Models
+﻿namespace Cavity.Collections.Generic
 {
     using System;
     using System.Collections.Generic;
 
-    public sealed class StandardLexiconComparer : ILexiconComparer
+    public sealed class NormalizationComparer : INormalizationComparer
     {
-        private static readonly StandardLexiconComparer _currentCulture = new StandardLexiconComparer(StringComparer.CurrentCulture);
+        private static readonly NormalizationComparer _currentCulture = new NormalizationComparer(StringComparer.CurrentCulture);
 
-        private static readonly StandardLexiconComparer _currentCultureIgnoreCase = new StandardLexiconComparer(StringComparer.CurrentCultureIgnoreCase);
+        private static readonly NormalizationComparer _currentCultureIgnoreCase = new NormalizationComparer(StringComparer.CurrentCultureIgnoreCase);
 
-        private static readonly StandardLexiconComparer _ordinal = new StandardLexiconComparer(StringComparer.Ordinal);
+        private static readonly NormalizationComparer _ordinal = new NormalizationComparer(StringComparer.Ordinal);
 
-        private static readonly StandardLexiconComparer _ordinalIgnoreCase = new StandardLexiconComparer(StringComparer.OrdinalIgnoreCase);
+        private static readonly NormalizationComparer _ordinalIgnoreCase = new NormalizationComparer(StringComparer.OrdinalIgnoreCase);
 
         private IComparer<string> _comparer;
 
-        public StandardLexiconComparer(IComparer<string> comparer)
+        public NormalizationComparer(IComparer<string> comparer)
             : this()
         {
             Comparer = comparer;
         }
 
-        private StandardLexiconComparer()
+        private NormalizationComparer()
         {
         }
 
-        public static StandardLexiconComparer CurrentCulture
+        public static NormalizationComparer CurrentCulture
         {
             get
             {
@@ -33,7 +33,7 @@
             }
         }
 
-        public static StandardLexiconComparer CurrentCultureIgnoreCase
+        public static NormalizationComparer CurrentCultureIgnoreCase
         {
             get
             {
@@ -41,7 +41,7 @@
             }
         }
 
-        public static StandardLexiconComparer Ordinal
+        public static NormalizationComparer Ordinal
         {
             get
             {
@@ -49,7 +49,7 @@
             }
         }
 
-        public static StandardLexiconComparer OrdinalIgnoreCase
+        public static NormalizationComparer OrdinalIgnoreCase
         {
             get
             {
@@ -81,7 +81,7 @@
             return Comparer.Compare(x, y);
         }
 
-        string ILexiconComparer.Normalize(string value)
+        string INormalizationComparer.Normalize(string value)
         {
             if (string.IsNullOrEmpty(value))
             {

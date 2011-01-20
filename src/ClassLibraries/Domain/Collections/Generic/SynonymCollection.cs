@@ -1,4 +1,4 @@
-﻿namespace Cavity.Models
+﻿namespace Cavity.Collections.Generic
 {
     using System;
     using System.Collections;
@@ -7,9 +7,9 @@
 
     public sealed class SynonymCollection : IEnumerable<string>
     {
-        private ILexiconComparer _comparer;
+        private INormalizationComparer _comparer;
 
-        public SynonymCollection(ILexiconComparer comparer)
+        public SynonymCollection(INormalizationComparer comparer)
             : this()
         {
             Comparer = comparer;
@@ -28,7 +28,7 @@
             }
         }
 
-        private ILexiconComparer Comparer
+        private INormalizationComparer Comparer
         {
             get
             {

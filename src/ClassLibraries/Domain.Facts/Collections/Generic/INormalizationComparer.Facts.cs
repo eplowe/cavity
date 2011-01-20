@@ -1,17 +1,17 @@
-﻿namespace Cavity.Models
+﻿namespace Cavity.Collections.Generic
 {
     using System;
     using System.Collections.Generic;
     using Xunit;
 
-    public sealed class ILexiconComparerFacts
+    public sealed class INormalizationComparerFacts
     {
         [Fact]
-        public void ILexiconComparer_Normalize_string()
+        public void INormalizationComparer_Normalize_string()
         {
             try
             {
-                var value = (new ILexiconComparerDummy() as ILexiconComparer).Normalize(null);
+                var value = (new NormalizationComparerDummy() as INormalizationComparer).Normalize(null);
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -22,7 +22,7 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<ILexiconComparer>()
+            Assert.True(new TypeExpectations<INormalizationComparer>()
                             .IsInterface()
                             .Implements<IComparer<string>>()
                             .Result);

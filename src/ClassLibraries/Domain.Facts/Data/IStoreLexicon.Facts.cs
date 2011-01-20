@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System;
+    using Cavity.Collections.Generic;
     using Cavity.Models;
     using Xunit;
 
@@ -11,7 +12,7 @@
         {
             try
             {
-                (new IStoreLexiconDummy() as IStoreLexicon).Delete(new Lexicon(StandardLexiconComparer.Ordinal));
+                (new IStoreLexiconDummy() as IStoreLexicon).Delete(new Lexicon(NormalizationComparer.Ordinal));
                 Assert.True(false);
             }
             catch (NotSupportedException)
@@ -20,11 +21,11 @@
         }
 
         [Fact]
-        public void IStoreLexicon_Load_ILexiconComparer()
+        public void IStoreLexicon_Load_INormalizationComparer()
         {
             try
             {
-                var value = (new IStoreLexiconDummy() as IStoreLexicon).Load(StandardLexiconComparer.Ordinal);
+                var value = (new IStoreLexiconDummy() as IStoreLexicon).Load(NormalizationComparer.Ordinal);
                 Assert.NotNull(value);
             }
             catch (NotSupportedException)
@@ -37,7 +38,7 @@
         {
             try
             {
-                (new IStoreLexiconDummy() as IStoreLexicon).Save(new Lexicon(StandardLexiconComparer.Ordinal));
+                (new IStoreLexiconDummy() as IStoreLexicon).Save(new Lexicon(NormalizationComparer.Ordinal));
                 Assert.True(false);
             }
             catch (NotSupportedException)

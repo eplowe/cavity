@@ -1,4 +1,4 @@
-﻿namespace Cavity.Models
+﻿namespace Cavity.Collections.Generic
 {
     using System;
     using System.Collections.Generic;
@@ -20,13 +20,13 @@
         }
 
         [Fact]
-        public void ctor_ILexiconComparer()
+        public void ctor_INormalizationComparer()
         {
-            Assert.NotNull(new SynonymCollection(new ILexiconComparerDummy()));
+            Assert.NotNull(new SynonymCollection(new NormalizationComparerDummy()));
         }
 
         [Fact]
-        public void ctor_ILexiconComparerNull()
+        public void ctor_INormalizationComparerNull()
         {
             Assert.Throws<ArgumentNullException>(() => new SynonymCollection(null));
         }
@@ -34,7 +34,7 @@
         [Fact]
         public void op_Add_string()
         {
-            var obj = new SynonymCollection(StandardLexiconComparer.OrdinalIgnoreCase)
+            var obj = new SynonymCollection(NormalizationComparer.OrdinalIgnoreCase)
             {
                 "Example"
             };
@@ -43,7 +43,7 @@
         [Fact]
         public void op_Clear()
         {
-            var obj = new SynonymCollection(StandardLexiconComparer.OrdinalIgnoreCase)
+            var obj = new SynonymCollection(NormalizationComparer.OrdinalIgnoreCase)
             {
                 "Example"
             };
@@ -58,7 +58,7 @@
         [Fact]
         public void op_Contains_string()
         {
-            var obj = new SynonymCollection(StandardLexiconComparer.Ordinal)
+            var obj = new SynonymCollection(NormalizationComparer.Ordinal)
             {
                 "Example"
             };
@@ -71,7 +71,7 @@
         {
             const string expected = "Example";
 
-            var obj = new SynonymCollection(StandardLexiconComparer.Ordinal)
+            var obj = new SynonymCollection(NormalizationComparer.Ordinal)
             {
                 expected
             };
@@ -82,7 +82,7 @@
         [Fact]
         public void op_Contains_string_whenOrdinalIgnoreCase()
         {
-            var obj = new SynonymCollection(StandardLexiconComparer.OrdinalIgnoreCase)
+            var obj = new SynonymCollection(NormalizationComparer.OrdinalIgnoreCase)
             {
                 "Example"
             };
@@ -95,7 +95,7 @@
         {
             const string expected = "Example";
 
-            var obj = new SynonymCollection(StandardLexiconComparer.OrdinalIgnoreCase)
+            var obj = new SynonymCollection(NormalizationComparer.OrdinalIgnoreCase)
             {
                 expected
             };
@@ -109,7 +109,7 @@
         [Fact]
         public void prop_Count()
         {
-            var obj = new SynonymCollection(StandardLexiconComparer.OrdinalIgnoreCase);
+            var obj = new SynonymCollection(NormalizationComparer.OrdinalIgnoreCase);
 
             Assert.Equal(0, obj.Count);
 
