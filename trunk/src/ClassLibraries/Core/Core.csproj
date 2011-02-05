@@ -66,6 +66,7 @@
     <Compile Include="Configuration\ConfiguredList.cs" />
     <Compile Include="Configuration\ConfiguredDirectory.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.cs" />
+    <Compile Include="Generic.ExtensionMethods.cs" />
     <Compile Include="DateTime.ExtensionMethods.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.cs" />
     <Compile Include="Data\DataCollection.cs" />

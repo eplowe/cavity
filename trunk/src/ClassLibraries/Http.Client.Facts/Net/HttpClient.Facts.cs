@@ -60,7 +60,7 @@
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 HttpRequest request =
-                    "GET http://www.example.com/ HTTP/1.1" + Environment.NewLine +
+                    "GET http://www.alan-dean.com/about.en.html HTTP/1.1" + Environment.NewLine +
                     "Host: www.example.com" + Environment.NewLine +
                     "Connection: close" + Environment.NewLine +
                     string.Empty;
