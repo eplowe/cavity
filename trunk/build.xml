@@ -40,7 +40,7 @@
 			/>
 	</Target>
 	
-	<Target Name="Build" DependsOnTargets="Versioning">
+	<Target Name="Build"> <!-- DependsOnTargets="Versioning" -->
 		<MSBuild
 			Projects="$(MSBuildProjectDirectory)\src\Cavity.sln"
 			Targets="Rebuild"
