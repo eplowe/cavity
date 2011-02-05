@@ -36,7 +36,7 @@
                 var request = new Mock<IHttpRequest>();
                 request
                     .SetupGet(x => x.AbsoluteUri)
-                    .Returns(new Uri("http://www.example.com/"))
+                    .Returns(new Uri("http://www.alan-dean.com/about.en.html"))
                     .Verifiable();
                 request
                     .Setup(x => x.Write(It.IsAny<TextWriter>()))
@@ -78,7 +78,7 @@
             Assert.Throws<ArgumentNullException>(() => new Http().Send(null));
         }
 
-        [Fact]
+        [Fact(Skip = "Await xsamples.com implementation.")]
         public void op_Send_IHttpRequest_whenOptions()
         {
             try

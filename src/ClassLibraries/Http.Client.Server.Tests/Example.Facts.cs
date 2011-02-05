@@ -8,7 +8,7 @@
 
     public sealed class ExampleFacts
     {
-        [Fact]
+        [Fact(Skip = "Await xsamples.com implementation.")]
         public void get()
         {
             try
@@ -43,7 +43,7 @@
             }
         }
 
-        [Fact]
+        [Fact(Skip = "Await xsamples.com implementation.")]
         public void head()
         {
             try
@@ -78,7 +78,7 @@
             }
         }
 
-        [Fact]
+        [Fact(Skip = "Await xsamples.com implementation.")]
         public void options()
         {
             try
@@ -136,7 +136,7 @@
             }
         }
 
-        [Fact]
+        [Fact(Skip = "Await xsamples.com implementation.")]
         public void trace()
         {
             try
