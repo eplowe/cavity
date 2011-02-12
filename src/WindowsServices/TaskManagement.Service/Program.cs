@@ -6,10 +6,10 @@
     {
         public static void Main()
         {
-            ServiceBase.Run(new ServiceBase[] 
-			{ 
-				new TaskManagementService() 
-			});
+            ServiceBase.Run(new ServiceBase[]
+            {
+                new TaskManagementService()
+            });
         }
     }
 }
