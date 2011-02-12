@@ -2,23 +2,22 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5033C424-2DB0-4171-82B6-AE08EE0D9FB4}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{9A604E09-0CC1-4E81-9C4B-137DC35FDE7A}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cavity</RootNamespace>
-    <AssemblyName>Cavity.TaskManagement.Service</AssemblyName>
+    <AssemblyName>Cavity.TaskManagement.Facts</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\Cavity.snk</AssemblyOriginatorKeyFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -28,10 +27,9 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\..\Cavity.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\Cavity.Facts.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,16 +38,21 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\..\Cavity.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\Cavity.Facts.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
+    <Reference Include="Moq">
+      <HintPath>..\..\..\lib\trove\Framework\v3.5\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit">
+      <HintPath>..\..\..\lib\trove\Framework\v2.0\xunit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Build.cs">
@@ -58,26 +61,18 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TaskManagementService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="TaskManagementService.Designer.cs">
-      <DependentUpon>TaskManagementService.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="..\..\Cavity.dictionary">
-      <Link>Properties\Cavity.dictionary</Link>
+    <CodeAnalysisDictionary Include="..\..\Cavity.Facts.dictionary">
+      <Link>Properties\Cavity.Facts.dictionary</Link>
     </CodeAnalysisDictionary>
     <None Include="..\..\Cavity.snk">
       <Link>Properties\Cavity.snk</Link>
     </None>
-    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ClassLibraries\TaskManagement\TaskManagement.csproj">
+    <ProjectReference Include="..\TaskManagement\TaskManagement.csproj">
       <Project>{B3D39F6B-980E-4B0F-B58E-BF295A936B2C}</Project>
       <Name>TaskManagement</Name>
     </ProjectReference>
