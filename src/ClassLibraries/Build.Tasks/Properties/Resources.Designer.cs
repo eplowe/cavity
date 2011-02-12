@@ -61,6 +61,15 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compliance (.csproj) {0}.
+        /// </summary>
+        internal static string CSharpProjectCompliance_File_Message {
+            get {
+                return ResourceManager.GetString("CSharpProjectCompliance_File_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No paths have been specified..
         /// </summary>
         internal static string CSharpProjectCompliance_PathsEmpty_Message {

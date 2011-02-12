@@ -4,6 +4,7 @@
 	<Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v2.0\xunit.runner.msbuild.tasks.targets" />
 	<Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v2.0\MSBuild.Community.Tasks.Targets" />
 	<Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v3.5\MSBuild.ExtensionPack.tasks" />
+	<Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v3.5\Cavity.Build.Tasks.Targets" />
 	
 	<PropertyGroup>
 		<Configuration Condition="'$(Configuration)'==''">Release</Configuration>
@@ -18,6 +19,13 @@
 		<!-- CallTarget Targets="Deploy" Condition="'$(registry:HKEY_LOCAL_MACHINE\Software\Microsoft\InetStp@MajorVersion)'=='7'" / -->
 		<CallTarget Targets="Test" />
 		<CallTarget Targets="Zip" />
+	</Target>
+	
+	<Target Name="Compliance">
+		<ItemGroup>
+			<CSharpProjectFiles Include="$(MSBuildProjectDirectory)\**\*.csproj"/>
+		</ItemGroup>
+		<Cavity.Build.CSharpProjectCompliance Paths="@(CSharpProjectFiles)" />
 	</Target>
 	
 	<Target Name="Clean">

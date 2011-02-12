@@ -50,6 +50,7 @@
 
         private bool Execute(FileSystemInfo file)
         {
+            Log.LogMessage(MessageImportance.Normal, Resources.CSharpProjectCompliance_File_Message, file.FullName);
             var xml = new XmlDocument();
             xml.Load(file.FullName);
 
