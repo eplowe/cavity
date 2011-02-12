@@ -13,6 +13,7 @@
 	</PropertyGroup>
   
 	<Target Name="Run">
+		<CallTarget Targets="Compliance" />
 		<CallTarget Targets="Clean" />
 		<CallTarget Targets="Versioning" Condition="'$(Versioning)'=='Subversion'" />
 		<CallTarget Targets="Build" />
