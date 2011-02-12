@@ -61,6 +61,7 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Build\CSharpProjectCompliance.Facts.cs" />
     <Compile Include="Build\LexiconTidy.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,6 +90,9 @@
       <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
       <Name>Testing.Unit</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Build\CSharpProjectCompliance.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets" />

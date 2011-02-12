@@ -93,6 +93,7 @@
     <Compile Include="WhiteSpace.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.cs" />
     <Compile Include="Xml\XmlNamespace.cs" />
+    <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\..\Cavity.dictionary">

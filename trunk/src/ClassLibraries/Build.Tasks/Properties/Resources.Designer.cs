@@ -63,6 +63,33 @@ namespace Cavity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to No paths have been specified..
         /// </summary>
+        internal static string CSharpProjectCompliance_PathsEmpty_Message {
+            get {
+                return ResourceManager.GetString("CSharpProjectCompliance_PathsEmpty_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paths have not been set..
+        /// </summary>
+        internal static string CSharpProjectCompliance_PathsNull_Message {
+            get {
+                return ResourceManager.GetString("CSharpProjectCompliance_PathsNull_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XPath evaluation failed: {0}.
+        /// </summary>
+        internal static string CSharpProjectCompliance_XPath_Message {
+            get {
+                return ResourceManager.GetString("CSharpProjectCompliance_XPath_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No paths have been specified..
+        /// </summary>
         internal static string LexiconTidy_PathsEmpty_Message {
             get {
                 return ResourceManager.GetString("LexiconTidy_PathsEmpty_Message", resourceCulture);
