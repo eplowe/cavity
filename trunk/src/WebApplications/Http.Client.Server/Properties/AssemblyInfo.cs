@@ -1,14 +1,16 @@
-﻿using System.Reflection;
-using System.Runtime.InteropServices;
+﻿using System;
+using System.Reflection;
 
-[assembly: ComVisible(false)]
-[assembly: AssemblyTitle("Example")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Example")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2010")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: CLSCompliant(true)]
+[assembly: AssemblyDefaultAlias("Example.dll")]
+[assembly: AssemblyTitle("Example.dll")]
+
+#if (DEBUG)
+
+[assembly: AssemblyDescription("Cavity : Example Website (Debug)")]
+
+#else
+
+[assembly: AssemblyDescription("Cavity : Example Website (Release)")]
+
+#endif

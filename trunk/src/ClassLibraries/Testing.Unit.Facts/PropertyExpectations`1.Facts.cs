@@ -122,7 +122,7 @@
             Assert.True(new PropertyExpectations<AttributedClass1>("Value")
                             .TypeIs<string>()
                             .DefaultValueIsNull()
-                            .IsDecoratedWith<Attribute2>()
+                            .IsDecoratedWith<Attribute2Attribute>()
                             .Result);
         }
 
@@ -181,9 +181,9 @@
         }
 
         [Fact]
-        public void prop_Result_whenNamespacedXmlAttribute()
+        public void prop_Result_whenNamespaceXmlAttribute()
         {
-            Assert.True(new PropertyExpectations<XmlSerializableClass1>("NamespacedAttribute")
+            Assert.True(new PropertyExpectations<XmlSerializableClass1>("NamespaceAttribute")
                             .TypeIs<string>()
                             .DefaultValueIsNull()
                             .XmlAttribute("attribute", "urn:example.org")
@@ -191,9 +191,9 @@
         }
 
         [Fact]
-        public void prop_Result_whenNamespacedXmlElement()
+        public void prop_Result_whenNamespaceXmlElement()
         {
-            Assert.True(new PropertyExpectations<XmlSerializableClass1>("NamespacedElement")
+            Assert.True(new PropertyExpectations<XmlSerializableClass1>("NamespaceElement")
                             .TypeIs<string>()
                             .DefaultValueIsNull()
                             .XmlElement("element", "urn:example.org")

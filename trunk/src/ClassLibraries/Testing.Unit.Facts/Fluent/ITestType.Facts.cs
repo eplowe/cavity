@@ -37,7 +37,7 @@
         {
             try
             {
-                var value = (new ITestTypeDummy() as ITestType).IsDecoratedWith<Attribute1>();
+                var value = (new ITestTypeDummy() as ITestType).IsDecoratedWith<Attribute1Attribute>();
                 Assert.NotNull(value);
             }
             catch (NotSupportedException)

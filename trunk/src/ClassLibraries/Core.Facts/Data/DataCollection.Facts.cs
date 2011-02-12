@@ -4,12 +4,14 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.Specialized;
+    using System.Diagnostics.CodeAnalysis;
     using System.Xml.Serialization;
     using Xunit;
 
     public sealed class DataCollectionFacts
     {
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "Top", Justification = "This is a test of a generic type.")]
         public void IEnumerableOfT_op_GetEnumerator()
         {
             Assert.IsAssignableFrom<IEnumerator<KeyValuePair<string, string>>>((new DataCollection() as IEnumerable<KeyValuePair<string, string>>).GetEnumerator());

@@ -24,6 +24,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\Cavity.Facts.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +35,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\Cavity.Facts.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac">
@@ -65,8 +69,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <CodeAnalysisDictionary Include="..\..\Cavity.dictionary">
-      <Link>Properties\Cavity.dictionary</Link>
+    <CodeAnalysisDictionary Include="..\..\Cavity.Facts.dictionary">
+      <Link>Properties\Cavity.Facts.dictionary</Link>
     </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>

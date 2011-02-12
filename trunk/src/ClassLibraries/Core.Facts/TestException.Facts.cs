@@ -73,7 +73,7 @@
         [Fact]
         public void ctor_string_Exception()
         {
-            Assert.NotNull(new DerivedTestException("message", new Exception()));
+            Assert.NotNull(new DerivedTestException("message", new InvalidOperationException()));
         }
 
         [Fact]

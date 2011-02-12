@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Xml.XPath
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Xml;
     using System.Xml.XPath;
     using Xunit;
@@ -14,12 +15,14 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Justification = "Following the Microsoft naming convention.")]
         public void op_Evaluate_XPathNavigatorNull_string()
         {
             Assert.Throws<ArgumentNullException>(() => (null as XPathNavigator).Evaluate<string>("/text()"));
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Justification = "Following the Microsoft naming convention.")]
         public void op_Evaluate_XPathNavigatorNull_string_IXmlNamespaceResolver()
         {
             var xml = new XmlDocument();
@@ -32,6 +35,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Justification = "Following the Microsoft naming convention.")]
         public void op_Evaluate_XPathNavigator_string()
         {
             var xml = new XmlDocument();
@@ -41,6 +45,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Justification = "Following the Microsoft naming convention.")]
         public void op_Evaluate_XPathNavigator_stringEmpty()
         {
             var xml = new XmlDocument();
@@ -50,6 +55,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Justification = "Following the Microsoft naming convention.")]
         public void op_Evaluate_XPathNavigator_stringEmpty_IXmlNamespaceResolver()
         {
             var xml = new XmlDocument();
@@ -62,6 +68,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Justification = "Following the Microsoft naming convention.")]
         public void op_Evaluate_XPathNavigator_stringNull()
         {
             var xml = new XmlDocument();
@@ -71,6 +78,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Justification = "Following the Microsoft naming convention.")]
         public void op_Evaluate_XPathNavigator_stringNull_IXmlNamespaceResolver()
         {
             var xml = new XmlDocument();
@@ -83,6 +91,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Justification = "Following the Microsoft naming convention.")]
         public void op_Evaluate_XPathNavigator_string_IXmlNamespaceResolver()
         {
             var xml = new XmlDocument();

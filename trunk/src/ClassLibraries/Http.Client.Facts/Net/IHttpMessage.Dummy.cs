@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using Cavity.Net.Mime;
 
@@ -19,6 +20,7 @@
             }
         }
 
+        [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly", Justification = "This is only temporary.")]
         public HttpHeaderCollection Headers
         {
             get

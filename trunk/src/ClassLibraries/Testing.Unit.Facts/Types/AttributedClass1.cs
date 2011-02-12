@@ -1,9 +1,9 @@
 ﻿namespace Cavity.Types
 {
-    [Attribute1]
+    [Attribute1Attribute]
     public sealed class AttributedClass1
     {
-        [Attribute2]
+        [Attribute2Attribute]
         public string Value { get; set; }
     }
 }

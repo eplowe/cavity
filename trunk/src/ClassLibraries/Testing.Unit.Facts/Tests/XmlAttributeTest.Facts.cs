@@ -43,7 +43,7 @@
         [Fact]
         public void op_Check_whenTrue()
         {
-            var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("NamespacedAttribute"))
+            var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("NamespaceAttribute"))
             {
                 AttributeName = "attribute",
                 Namespace = "urn:example.org"
