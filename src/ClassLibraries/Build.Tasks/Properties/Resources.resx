@@ -127,7 +127,7 @@
     <value>Paths have not been set.</value>
   </data>
   <data name="CSharpProjectCompliance_XPath_Message" xml:space="preserve">
-    <value>XPath evaluation failed: {0}</value>
+    <value>{0} failed compliance: {1}</value>
   </data>
   <data name="LexiconTidy_PathsEmpty_Message" xml:space="preserve">
     <value>No paths have been specified.</value>

@@ -75,7 +75,7 @@
         [Fact]
         public void ctor_string_Exception()
         {
-            Assert.NotNull(new HttpTestException("message", new Exception()));
+            Assert.NotNull(new HttpTestException("message", new InvalidOperationException()));
         }
 
         [Fact]

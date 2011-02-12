@@ -1,6 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Xunit;
 
     public sealed class StringExtensionMethodsFacts
@@ -737,6 +738,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Xbz", Justification = "This is for testing purposes.")]
         public void op_SameIndexesOfEach_stringAbc_charsXbz()
         {
             Assert.True("abc".SameIndexesOfEach('X', 'b', 'z'));
@@ -793,6 +795,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Za", Justification = "This is for testing purposes.")]
         public void op_StartsOrEndsWith_stringAbba_charsZa()
         {
             Assert.True("Abba".StartsOrEndsWith('Z', 'a'));
@@ -823,6 +826,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Za", Justification = "This is for testing purposes.")]
         public void op_StartsOrEndsWith_stringZulu_charsZa()
         {
             Assert.True("Zulu".StartsOrEndsWith('Z', 'a'));
@@ -913,6 +917,7 @@
         }
 
         [Fact]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "This is for testing purposes.")]
         public void op_XmlDeserializeOfT_stringException()
         {
             const string xml = "<SOAP-ENV:Envelope SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:SOAP-ENC=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:clr=\"http://schemas.microsoft.com/soap/encoding/clr/1.0\">" +

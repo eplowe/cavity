@@ -214,7 +214,7 @@
                 file.Info.Refresh();
                 Assert.True(file.Info.Exists);
 
-                Assert.True(File.ReadAllText(file.Info.FullName).StartsWith("CANONICAL,SYNONYMS"));
+                Assert.True(File.ReadAllText(file.Info.FullName).StartsWith("CANONICAL,SYNONYMS", StringComparison.Ordinal));
             }
         }
 

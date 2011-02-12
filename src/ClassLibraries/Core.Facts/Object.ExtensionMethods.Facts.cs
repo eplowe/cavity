@@ -249,9 +249,9 @@ namespace Cavity
         [Fact]
         public void op_XmlSerialize_objectException()
         {
-            var xml = new ArgumentOutOfRangeException().XmlSerialize().CreateNavigator().OuterXml;
+            var xml = new InvalidOperationException().XmlSerialize().CreateNavigator().OuterXml;
 
-            Assert.True(xml.StartsWith("<SOAP-ENV:Envelope SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\""));
+            Assert.True(xml.StartsWith("<SOAP-ENV:Envelope SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"", StringComparison.Ordinal));
         }
 
         [Fact]

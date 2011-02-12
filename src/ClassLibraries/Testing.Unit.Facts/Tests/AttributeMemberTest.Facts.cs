@@ -9,13 +9,13 @@
         [Fact]
         public void ctor_MemberInfoNull_Type()
         {
-            Assert.Throws<ArgumentNullException>(() => new AttributeMemberTest(null, typeof(Attribute1)));
+            Assert.Throws<ArgumentNullException>(() => new AttributeMemberTest(null, typeof(Attribute1Attribute)));
         }
 
         [Fact]
         public void ctor_MemberInfo_Type()
         {
-            Assert.NotNull(new AttributeMemberTest(typeof(object), typeof(Attribute1)));
+            Assert.NotNull(new AttributeMemberTest(typeof(object), typeof(Attribute1Attribute)));
         }
 
         [Fact]
@@ -27,19 +27,19 @@
         [Fact]
         public void is_AttributePropertyTest()
         {
-            Assert.IsAssignableFrom<MemberTestBase>(new AttributeMemberTest(typeof(object), typeof(Attribute1)));
+            Assert.IsAssignableFrom<MemberTestBase>(new AttributeMemberTest(typeof(object), typeof(Attribute1Attribute)));
         }
 
         [Fact]
         public void op_Check_whenFalse()
         {
-            Assert.Throws<UnitTestException>(() => new AttributeMemberTest(typeof(object), typeof(Attribute1)).Check());
+            Assert.Throws<UnitTestException>(() => new AttributeMemberTest(typeof(object), typeof(Attribute1Attribute)).Check());
         }
 
         [Fact]
         public void op_Check_whenTrue()
         {
-            Assert.True(new AttributeMemberTest(typeof(AttributedClass1), typeof(Attribute1)).Check());
+            Assert.True(new AttributeMemberTest(typeof(AttributedClass1), typeof(Attribute1Attribute)).Check());
         }
 
         [Fact]
@@ -51,7 +51,7 @@
         [Fact]
         public void prop_Attribute()
         {
-            var expected = typeof(Attribute1);
+            var expected = typeof(Attribute1Attribute);
 
             var obj = new AttributeMemberTest(typeof(object), null)
             {

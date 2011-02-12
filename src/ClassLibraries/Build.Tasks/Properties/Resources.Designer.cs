@@ -88,7 +88,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XPath evaluation failed: {0}.
+        ///   Looks up a localized string similar to {0} failed compliance: {1}.
         /// </summary>
         internal static string CSharpProjectCompliance_XPath_Message {
             get {

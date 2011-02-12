@@ -24,6 +24,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\Cavity.Facts.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +35,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\Cavity.Facts.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -97,11 +101,11 @@
     <Compile Include="Tests\XmlRootTest`1.Facts.cs" />
     <Compile Include="Type.ExtensionMethods.Facts.cs" />
     <Compile Include="Types\AbstractBaseClass1.cs" />
-    <Compile Include="Types\Attribute1.cs" />
+    <Compile Include="Types\Attribute1Attribute.cs" />
     <Compile Include="Types\AttributedClass1.cs" />
     <Compile Include="Types\Class1.cs" />
     <Compile Include="Types\ConstructorClass1.cs" />
-    <Compile Include="Types\Attribute2.cs" />
+    <Compile Include="Types\Attribute2Attribute.cs" />
     <Compile Include="Types\StaticClass1.cs" />
     <Compile Include="Types\XmlRootClass1.cs" />
     <Compile Include="Types\SealedClass1.cs" />
@@ -112,8 +116,8 @@
     <Compile Include="Types\XmlSerializableClass1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="..\..\Cavity.dictionary">
-      <Link>Properties\Cavity.dictionary</Link>
+    <CodeAnalysisDictionary Include="..\..\Cavity.Facts.dictionary">
+      <Link>Properties\Cavity.Facts.dictionary</Link>
     </CodeAnalysisDictionary>
     <None Include="..\..\Cavity.snk">
       <Link>Properties\Cavity.snk</Link>

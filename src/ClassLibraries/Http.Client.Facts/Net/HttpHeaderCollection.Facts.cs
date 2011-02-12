@@ -251,7 +251,7 @@
         }
 
         [Fact]
-        public void op_Equals_object_whenMutiple()
+        public void op_Equals_object_whenMultiple()
         {
             var obj = new HttpHeaderCollection
             {
@@ -307,7 +307,7 @@
         }
 
         [Fact]
-        public void op_FromString_string_withLeadingWhitespace()
+        public void op_FromString_string_withLeadingWhiteSpace()
         {
             var expected = new HttpHeaderCollection
             {

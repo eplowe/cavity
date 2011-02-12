@@ -54,29 +54,33 @@
             var xml = new XmlDocument();
             xml.Load(file.FullName);
 
-            return Execute(xml);
+            return Execute(file, xml);
         }
 
-        private bool Execute(IXPathNavigable xml)
+        private bool Execute(FileSystemInfo file,
+                             IXPathNavigable xml)
         {
-            return Execute(xml.CreateNavigator());
+            return Execute(file, xml.CreateNavigator());
         }
 
-        private bool Execute(XPathNavigator navigator)
+        private bool Execute(FileSystemInfo file,
+                             XPathNavigator navigator)
         {
-            return Execute(navigator, navigator.NameTable);
+            return Execute(file, navigator, navigator.NameTable);
         }
 
-        private bool Execute(XPathNavigator navigator,
+        private bool Execute(FileSystemInfo file,
+                             XPathNavigator navigator,
                              XmlNameTable nameTable)
         {
             var namespaces = new XmlNamespaceManager(nameTable);
             namespaces.AddNamespace("b", "http://schemas.microsoft.com/developer/msbuild/2003");
 
-            return Execute(navigator, namespaces);
+            return Execute(file, navigator, namespaces);
         }
 
-        private bool Execute(XPathNavigator navigator,
+        private bool Execute(FileSystemInfo file,
+                             XPathNavigator navigator,
                              IXmlNamespaceResolver namespaces)
         {
             var result = true;
@@ -98,7 +102,7 @@
                 @"1=count(/b:Project/b:ItemGroup/b:CodeAnalysisDictionary[@Include]/b:Link[text()])"
             })
             {
-                if (!Execute(navigator, namespaces, xpath))
+                if (!Execute(file, navigator, namespaces, xpath))
                 {
                     result = false;
                 }
@@ -107,13 +111,14 @@
             return result;
         }
 
-        private bool Execute(XPathNavigator navigator,
+        private bool Execute(FileSystemInfo file,
+                             XPathNavigator navigator,
                              IXmlNamespaceResolver namespaces,
                              string xpath)
         {
             if (!navigator.Evaluate<bool>(xpath, namespaces))
             {
-                Log.LogWarning(Resources.CSharpProjectCompliance_XPath_Message.FormatWith(xpath));
+                Log.LogError(Resources.CSharpProjectCompliance_XPath_Message, file, xpath);
                 return false;
             }
 

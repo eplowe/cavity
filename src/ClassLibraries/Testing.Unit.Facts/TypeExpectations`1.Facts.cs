@@ -90,7 +90,7 @@
                             .IsConcreteClass()
                             .IsSealed()
                             .HasDefaultConstructor()
-                            .IsDecoratedWith<Attribute1>()
+                            .IsDecoratedWith<Attribute1Attribute>()
                             .Result);
         }
 
