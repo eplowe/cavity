@@ -101,6 +101,9 @@
     <CodeAnalysisDictionary Include="..\..\Cavity.Facts.dictionary">
       <Link>Properties\Cavity.Facts.dictionary</Link>
     </CodeAnalysisDictionary>
+    <None Include="..\..\Cavity.snk">
+      <Link>Properties\Cavity.snk</Link>
+    </None>
     <None Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

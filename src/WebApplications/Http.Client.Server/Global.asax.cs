@@ -1,5 +1,6 @@
 ﻿namespace Example
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
@@ -20,6 +21,7 @@
                 });
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "The MVC runtime requires that this is an instance member.")]
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

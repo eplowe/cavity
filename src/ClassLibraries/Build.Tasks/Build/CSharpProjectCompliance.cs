@@ -92,7 +92,7 @@
                 "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:RunCodeAnalysis[text()='true'])])",
                 "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:CodeAnalysisRuleSet[text()])])",
                 "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:ErrorReport[text()='prompt'])])",
-                "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:SignAssembly[text()='true'])",
+                "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:SignAssembly[text()])",
                 "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:AssemblyOriginatorKeyFile[text()])",
                 "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:AppDesignerFolder[text()='Properties'])",
                 "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:StyleCopTreatErrorsAsWarnings[text()='false'])",
