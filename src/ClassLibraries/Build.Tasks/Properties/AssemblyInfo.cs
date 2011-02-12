@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 [assembly: CLSCompliant(true)]
@@ -14,3 +15,5 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Build Tasks Library (Release)")]
 
 #endif
+
+[assembly: SuppressMessage("Microsoft.Naming", "CA1701:ResourceStringCompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Scope = "resource", Target = "Cavity.Properties.Resources.resources")]

@@ -90,6 +90,7 @@
     <Compile Include="Xml\IXmlSerializerNamespaces.Dummy.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.Facts.cs" />
     <Compile Include="Xml\XmlNamespace.Facts.cs" />
+    <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\..\Cavity.dictionary">

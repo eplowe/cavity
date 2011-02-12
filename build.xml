@@ -13,6 +13,7 @@
   
 	<Target Name="Run">
 		<CallTarget Targets="Clean" />
+		<CallTarget Targets="Versioning" Condition="'$(Versioning)'=='Subversion'" />
 		<CallTarget Targets="Build" />
 		<!-- CallTarget Targets="Deploy" Condition="'$(registry:HKEY_LOCAL_MACHINE\Software\Microsoft\InetStp@MajorVersion)'=='7'" / -->
 		<CallTarget Targets="Test" />
@@ -40,7 +41,7 @@
 			/>
 	</Target>
 	
-	<Target Name="Build"> <!-- DependsOnTargets="Versioning" -->
+	<Target Name="Build">
 		<MSBuild
 			Projects="$(MSBuildProjectDirectory)\src\Cavity.sln"
 			Targets="Rebuild"

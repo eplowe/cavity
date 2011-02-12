@@ -8,7 +8,18 @@
     using System.Net.Mime;
     using Cavity.Xml;
 
-    public sealed class HttpExpectations : IRequestAcceptContent, IRequestAcceptLanguage, IRequestMethod, IResponseStatus, IResponseCacheControl, IResponseCacheConditionals, IResponseContentLanguage, IResponseContentMD5, IResponseContent, IResponseHtml, IResponseXml, ITestHttp
+    public sealed class HttpExpectations : IRequestAcceptContent,
+                                           IRequestAcceptLanguage,
+                                           IRequestMethod,
+                                           IResponseStatus,
+                                           IResponseCacheControl,
+                                           IResponseCacheConditionals,
+                                           IResponseContentLanguage,
+                                           IResponseContentMD5,
+                                           IResponseContent,
+                                           IResponseHtml,
+                                           IResponseXml,
+                                           ITestHttp
     {
         private IWebRequest _request;
 
