@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -55,6 +55,7 @@
     <Compile Include="..\..\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
+    <Compile Include="Models\ITask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +66,13 @@
       <Link>Properties\Cavity.snk</Link>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
