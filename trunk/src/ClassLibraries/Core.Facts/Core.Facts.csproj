@@ -47,6 +47,9 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Moq">
+      <HintPath>..\..\..\lib\trove\Framework\v3.5\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\..\lib\trove\Framework\v2.0\xunit.dll</HintPath>
     </Reference>
@@ -67,7 +70,6 @@
     <Compile Include="Configuration\ConfiguredList.Facts.cs" />
     <Compile Include="Configuration\ConfiguredDirectory.Facts.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.Facts.cs" />
-    <Compile Include="Data\IRepository.Dummy.cs" />
     <Compile Include="Data\IRepository.Facts.cs" />
     <Compile Include="Generic.ExtensionMethods.Facts.cs" />
     <Compile Include="DateTime.ExtensionMethods.Facts.cs" />
@@ -89,7 +91,6 @@
     <Compile Include="ValueObject`1.Derived.cs" />
     <Compile Include="ValueObject`1.Facts.cs" />
     <Compile Include="WhiteSpace.Facts.cs" />
-    <Compile Include="Xml\IXmlSerializerNamespaces.Dummy.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.Facts.cs" />
     <Compile Include="Xml\XmlNamespace.Facts.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.Facts.cs" />

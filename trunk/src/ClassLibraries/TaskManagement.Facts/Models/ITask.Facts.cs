@@ -1,8 +1,7 @@
 ﻿namespace Cavity.Models
 {
-    using System;
-    using Cavity;
     using Cavity.Data;
+    using Moq;
     using Xunit;
 
     public sealed class ITaskFacts
@@ -16,16 +15,23 @@
         }
 
         [Fact]
-        public void ITask_Execute_DataCollection()
+        public void op_Execute_DataCollection()
         {
-            try
-            {
-                var value = (new ITaskDummy() as ITask).Execute(new DataCollection());
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
+            var expected = new DataCollection();
+
+            var configuration = new DataCollection();
+
+            var mock = new Mock<ITask>();
+            mock
+                .Setup(x => x.Execute(configuration))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Execute(configuration);
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

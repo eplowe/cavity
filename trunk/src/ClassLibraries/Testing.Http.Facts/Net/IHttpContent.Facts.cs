@@ -1,41 +1,49 @@
 ﻿namespace Cavity.Net
 {
-    using System;
     using System.IO;
+    using System.Net.Mime;
+    using Moq;
     using Xunit;
 
     public sealed class IHttpContentFacts
     {
         [Fact]
-        public void IHttpContent_op_Write_Stream()
-        {
-            try
-            {
-                Stream stream = null;
-                (new IHttpContentDummy() as IHttpContent).Write(stream);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IHttpContent_prop_Type_get()
-        {
-            try
-            {
-                var value = (new IHttpContentDummy() as IHttpContent).Type;
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(IHttpContent).IsInterface);
+        }
+
+        [Fact]
+        public void op_Write_Stream()
+        {
+            var stream = new Mock<Stream>().Object;
+
+            var mock = new Mock<IHttpContent>();
+            mock
+                .Setup(x => x.Write(stream))
+                .Verifiable();
+
+            mock.Object.Write(stream);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Type_get()
+        {
+            var expected = new ContentType("text/plain");
+
+            var mock = new Mock<IHttpContent>();
+            mock
+                .SetupGet(x => x.Type)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Type;
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

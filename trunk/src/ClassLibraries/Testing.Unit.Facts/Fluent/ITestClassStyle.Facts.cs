@@ -1,40 +1,50 @@
 ﻿namespace Cavity.Fluent
 {
-    using System;
+    using Moq;
     using Xunit;
 
     public sealed class ITestClassStyleFacts
     {
         [Fact]
-        public void ITestClassStyle_IsAbstractBaseClass()
-        {
-            try
-            {
-                var value = (new ITestClassStyleDummy() as ITestClassStyle).IsAbstractBaseClass();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void ITestClassStyle_IsConcreteClass()
-        {
-            try
-            {
-                var value = (new ITestClassStyleDummy() as ITestClassStyle).IsConcreteClass();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(ITestClassStyle).IsInterface);
+        }
+
+        [Fact]
+        public void op_IsAbstractBaseClass()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            var mock = new Mock<ITestClassStyle>();
+            mock
+                .Setup(x => x.IsAbstractBaseClass())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.IsAbstractBaseClass();
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_IsConcreteClass()
+        {
+            var expected = new Mock<ITestClassSealed>().Object;
+
+            var mock = new Mock<ITestClassStyle>();
+            mock
+                .Setup(x => x.IsConcreteClass())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.IsConcreteClass();
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

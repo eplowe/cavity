@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,6 +45,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Moq">
+      <HintPath>..\..\..\lib\trove\Framework\v3.5\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\..\lib\trove\Framework\v2.0\xunit.dll</HintPath>
     </Reference>
@@ -67,32 +70,18 @@
     <Compile Include="Net\HttpStatusCodeTest.Facts.cs" />
     <Compile Include="Net\HttpTestException.Facts.cs" />
     <Compile Include="Net\IHttpContent.Facts.cs" />
-    <Compile Include="Net\IHttpContent.Dummy.cs" />
-    <Compile Include="Net\IRequestAcceptContent.Dummy.cs" />
     <Compile Include="Net\IRequestAcceptContent.Facts.cs" />
     <Compile Include="Net\IRequestAcceptLanguage.Facts.cs" />
-    <Compile Include="Net\IRequestAcceptLanguage.Dummy.cs" />
     <Compile Include="Net\IResponseContent.Facts.cs" />
-    <Compile Include="Net\IResponseContent.Dummy.cs" />
     <Compile Include="Net\IRequestMethod.Facts.cs" />
-    <Compile Include="Net\IRequestMethod.Dummy.cs" />
     <Compile Include="Net\IResponseCacheConditionals.Facts.cs" />
-    <Compile Include="Net\IResponseCacheConditionals.Dummy.cs" />
-    <Compile Include="Net\IResponseCacheControl.Dummy.cs" />
     <Compile Include="Net\IResponseCacheControl.Facts.cs" />
     <Compile Include="Net\IResponseContentLanguage.Facts.cs" />
-    <Compile Include="Net\IResponseContentLanguage.Dummy.cs" />
-    <Compile Include="Net\IResponseContentMD5.Dummy.cs" />
     <Compile Include="Net\IResponseContentMD5.Facts.cs" />
     <Compile Include="Net\IResponseHtml.Facts.cs" />
-    <Compile Include="Net\IResponseHtml.Dummy.cs" />
-    <Compile Include="Net\IResponseStatus.Dummy.cs" />
     <Compile Include="Net\IResponseStatus.Facts.cs" />
     <Compile Include="Net\IResponseXml.Facts.cs" />
-    <Compile Include="Net\IResponseXml.Dummy.cs" />
     <Compile Include="Net\ITestHttp.Facts.cs" />
-    <Compile Include="Net\ITestHttp.Dummy.cs" />
-    <Compile Include="Net\ITestHttpExpectation.Dummy.cs" />
     <Compile Include="Net\ITestHttpExpectation.Facts.cs" />
     <Compile Include="Net\NoContentResponse.Facts.cs" />
     <Compile Include="Net\Response.Facts.cs" />

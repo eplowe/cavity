@@ -1,40 +1,50 @@
 ﻿namespace Cavity.Fluent
 {
-    using System;
+    using Moq;
     using Xunit;
 
     public sealed class ITestClassSealedFacts
     {
         [Fact]
-        public void ITestClassSealed_IsSealed()
-        {
-            try
-            {
-                var value = (new ITestClassSealedDummy() as ITestClassSealed).IsSealed();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void ITestClassSealed_IsUnsealed()
-        {
-            try
-            {
-                var value = (new ITestClassSealedDummy() as ITestClassSealed).IsUnsealed();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(ITestClassSealed).IsInterface);
+        }
+
+        [Fact]
+        public void op_IsSealed()
+        {
+            var expected = new Mock<ITestClassConstruction>().Object;
+
+            var mock = new Mock<ITestClassSealed>();
+            mock
+                .Setup(x => x.IsSealed())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.IsSealed();
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_IsUnsealed()
+        {
+            var expected = new Mock<ITestClassConstruction>().Object;
+
+            var mock = new Mock<ITestClassSealed>();
+            mock
+                .Setup(x => x.IsUnsealed())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.IsUnsealed();
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

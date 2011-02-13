@@ -1,40 +1,50 @@
 ﻿namespace Cavity.Net
 {
-    using System;
+    using Moq;
     using Xunit;
 
     public sealed class IHttpHeaderFacts
     {
         [Fact]
-        public void IHttpHeader_Name_get()
-        {
-            try
-            {
-                var value = (new IHttpHeaderDummy() as IHttpHeader).Name;
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IHttpHeader_Value_get()
-        {
-            try
-            {
-                var value = (new IHttpHeaderDummy() as IHttpHeader).Value;
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(IHttpHeader).IsInterface);
+        }
+
+        [Fact]
+        public void prop_Name_get()
+        {
+            Token expected = "Example";
+
+            var mock = new Mock<IHttpHeader>();
+            mock
+                .SetupGet(x => x.Name)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Name;
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Value_get()
+        {
+            const string expected = "Example";
+
+            var mock = new Mock<IHttpHeader>();
+            mock
+                .SetupGet(x => x.Value)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Value;
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

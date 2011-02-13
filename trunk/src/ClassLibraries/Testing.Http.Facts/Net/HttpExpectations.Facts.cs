@@ -5,6 +5,7 @@
     using System.Globalization;
     using System.Linq;
     using System.Net;
+    using Moq;
     using Xunit;
 
     public sealed class HttpExpectationsFacts
@@ -153,7 +154,7 @@
         [Fact]
         public void IRequestMethod_op_Post_IHttpContent()
         {
-            var content = new IHttpContentDummy();
+            var content = new Mock<IHttpContent>().Object;
             var obj = (HttpExpectations)HttpExpectations.RequestUri("http://example.com/")
                                             .AcceptAnyContent()
                                             .AcceptAnyLanguage()
@@ -166,7 +167,7 @@
         [Fact]
         public void IRequestMethod_op_Put_IHttpContent()
         {
-            var content = new IHttpContentDummy();
+            var content = new Mock<IHttpContent>().Object;
             var obj = (HttpExpectations)HttpExpectations.RequestUri("http://example.com/")
                                             .AcceptAnyContent()
                                             .AcceptAnyLanguage()
@@ -182,7 +183,7 @@
             Assert.Throws<ArgumentOutOfRangeException>(() => HttpExpectations.RequestUri("http://example.com/")
                                                                  .AcceptAnyContent()
                                                                  .AcceptAnyLanguage()
-                                                                 .Use("DELETE", new IHttpContentDummy()));
+                                                                 .Use("DELETE", new Mock<IHttpContent>().Object));
         }
 
         [Fact]
@@ -191,7 +192,7 @@
             Assert.Throws<ArgumentOutOfRangeException>(() => HttpExpectations.RequestUri("http://example.com/")
                                                                  .AcceptAnyContent()
                                                                  .AcceptAnyLanguage()
-                                                                 .Use("GET", new IHttpContentDummy()));
+                                                                 .Use("GET", new Mock<IHttpContent>().Object));
         }
 
         [Fact]
@@ -200,7 +201,7 @@
             Assert.Throws<ArgumentOutOfRangeException>(() => HttpExpectations.RequestUri("http://example.com/")
                                                                  .AcceptAnyContent()
                                                                  .AcceptAnyLanguage()
-                                                                 .Use("HEAD", new IHttpContentDummy()));
+                                                                 .Use("HEAD", new Mock<IHttpContent>().Object));
         }
 
         [Fact]
@@ -209,7 +210,7 @@
             Assert.Throws<ArgumentOutOfRangeException>(() => HttpExpectations.RequestUri("http://example.com/")
                                                                  .AcceptAnyContent()
                                                                  .AcceptAnyLanguage()
-                                                                 .Use("OPTIONS", new IHttpContentDummy()));
+                                                                 .Use("OPTIONS", new Mock<IHttpContent>().Object));
         }
 
         [Fact]
@@ -218,14 +219,14 @@
             Assert.Throws<ArgumentOutOfRangeException>(() => HttpExpectations.RequestUri("http://example.com/")
                                                                  .AcceptAnyContent()
                                                                  .AcceptAnyLanguage()
-                                                                 .Use("TRACE", new IHttpContentDummy()));
+                                                                 .Use("TRACE", new Mock<IHttpContent>().Object));
         }
 
         [Fact]
         public void IRequestMethod_op_Use_string_IHttpContent()
         {
             const string method = "POST";
-            var content = new IHttpContentDummy();
+            var content = new Mock<IHttpContent>().Object;
             var obj = (HttpExpectations)HttpExpectations.RequestUri("http://example.com/")
                                             .AcceptAnyContent()
                                             .AcceptAnyLanguage()

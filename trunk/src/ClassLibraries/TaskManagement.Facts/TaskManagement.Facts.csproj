@@ -62,7 +62,6 @@
       <Link>Properties\Cavity.cs</Link>
     </Compile>
     <Compile Include="Models\ITask.Facts.cs" />
-    <Compile Include="Models\ITaskDummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,23 +1,10 @@
 ﻿namespace Cavity.Net
 {
-    using System;
+    using Moq;
     using Xunit;
 
     public sealed class IHttpResponseFacts
     {
-        [Fact]
-        public void IHttpResponse_StatusLine_get()
-        {
-            try
-            {
-                var value = (new IHttpResponseDummy() as IHttpResponse).StatusLine;
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
         [Fact]
         public void a_definition()
         {
@@ -28,6 +15,24 @@
         public void is_IHttpMessage()
         {
             Assert.True(typeof(IHttpResponse).Implements(typeof(IHttpMessage)));
+        }
+
+        [Fact]
+        public void prop_StatusLine_get()
+        {
+            StatusLine expected = "HTTP/1.1 200 OK";
+
+            var mock = new Mock<IHttpResponse>();
+            mock
+                .SetupGet(x => x.StatusLine)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.StatusLine;
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

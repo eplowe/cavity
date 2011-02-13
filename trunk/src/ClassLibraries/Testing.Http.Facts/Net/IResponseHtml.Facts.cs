@@ -1,81 +1,10 @@
 ﻿namespace Cavity.Net
 {
-    using System;
+    using Moq;
     using Xunit;
 
     public sealed class IResponseHtmlFacts
     {
-        [Fact]
-        public void IResponseHtml_op_EvaluateFalse_string()
-        {
-            try
-            {
-                string[] xpaths = null;
-                var value = (new IResponseHtmlDummy() as IResponseHtml).EvaluateFalse(xpaths);
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IResponseHtml_op_EvaluateTrue_string()
-        {
-            try
-            {
-                string[] xpaths = null;
-                var value = (new IResponseHtmlDummy() as IResponseHtml).EvaluateTrue(xpaths);
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IResponseHtml_op_Evaluate_T_string()
-        {
-            try
-            {
-                const double expected = 1.23;
-                string[] xpaths = null;
-                var value = (new IResponseHtmlDummy() as IResponseHtml).Evaluate(expected, xpaths);
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IResponseHtml_op_HasRobotsTag_string()
-        {
-            try
-            {
-                string value = null;
-                var obj = (new IResponseHtmlDummy() as IResponseHtml).HasRobotsTag(value);
-                Assert.NotNull(obj);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IResponseHtml_op_HasStyleSheetLink_string()
-        {
-            try
-            {
-                string href = null;
-                var value = (new IResponseHtmlDummy() as IResponseHtml).HasStyleSheetLink(href);
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
         [Fact]
         public void a_definition()
         {
@@ -86,6 +15,100 @@
         public void is_ITestHttp()
         {
             Assert.True(typeof(IResponseHtml).Implements(typeof(ITestHttp)));
+        }
+
+        [Fact]
+        public void op_EvaluateFalse_string()
+        {
+            var expected = new Mock<IResponseHtml>().Object;
+
+            var mock = new Mock<IResponseHtml>();
+            mock
+                .Setup(x => x.EvaluateFalse("/x", "/y", "/z"))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.EvaluateFalse("/x", "/y", "/z");
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_EvaluateTrue_string()
+        {
+            var expected = new Mock<IResponseHtml>().Object;
+
+            var mock = new Mock<IResponseHtml>();
+            mock
+                .Setup(x => x.EvaluateTrue("/x", "/y", "/z"))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.EvaluateTrue("/x", "/y", "/z");
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Evaluate_T_string()
+        {
+            var expected = new Mock<IResponseHtml>().Object;
+
+            var mock = new Mock<IResponseHtml>();
+            mock
+                .Setup(x => x.Evaluate(double.Epsilon, "/x", "/y", "/z"))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Evaluate(double.Epsilon, "/x", "/y", "/z");
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_HasRobotsTag_string()
+        {
+            var expected = new Mock<IResponseHtml>().Object;
+
+            const string value = "Example";
+
+            var mock = new Mock<IResponseHtml>();
+            mock
+                .Setup(x => x.HasRobotsTag(value))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.HasRobotsTag(value);
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_HasStyleSheetLink_string()
+        {
+            var expected = new Mock<IResponseHtml>().Object;
+
+            const string href = "/site.css";
+
+            var mock = new Mock<IResponseHtml>();
+            mock
+                .Setup(x => x.HasStyleSheetLink(href))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.HasStyleSheetLink(href);
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

@@ -1,27 +1,33 @@
 namespace Cavity.Xml
 {
-    using System;
+    using System.Xml.Serialization;
+    using Moq;
     using Xunit;
 
     public sealed class IXmlSerializerNamespacesFacts
     {
         [Fact]
-        public void IXmlSerializerNamespaces_XmlNamespaceDeclarations_get()
-        {
-            try
-            {
-                var value = (new IXmlSerializerNamespacesDummy() as IXmlSerializerNamespaces).XmlNamespaceDeclarations;
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(IXmlSerializerNamespaces).IsInterface);
+        }
+
+        [Fact]
+        public void prop_XmlNamespaceDeclarations_get()
+        {
+            var expected = new XmlSerializerNamespaces();
+
+            var mock = new Mock<IXmlSerializerNamespaces>();
+            mock
+                .SetupGet(x => x.XmlNamespaceDeclarations)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.XmlNamespaceDeclarations;
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

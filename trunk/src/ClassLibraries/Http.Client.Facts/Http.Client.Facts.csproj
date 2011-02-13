@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -65,20 +65,14 @@
     <Compile Include="Net\HttpMessage.Derived.cs" />
     <Compile Include="Net\HttpMessage.Facts.cs" />
     <Compile Include="Net\Mime\IContentType.Facts.cs" />
-    <Compile Include="Net\Mime\IContentType.Dummy.cs" />
     <Compile Include="Net\Mime\IMediaType.Facts.cs" />
-    <Compile Include="Net\Mime\IMediaType.Dummy.cs" />
     <Compile Include="Net\IHttpMessage.Facts.cs" />
-    <Compile Include="Net\IHttpMessage.Dummy.cs" />
     <Compile Include="Net\Mime\IContent.Facts.cs" />
-    <Compile Include="Net\Mime\IContent.Dummy.cs" />
     <Compile Include="Net\IHttpHeader.Facts.cs" />
-    <Compile Include="Net\IHttpHeader.Dummy.cs" />
     <Compile Include="Net\Http.Facts.cs" />
     <Compile Include="Net\HttpHeader.Facts.cs" />
     <Compile Include="Net\HttpHeaderCollection.Facts.cs" />
     <Compile Include="Net\IHttp.Facts.cs" />
-    <Compile Include="Net\IHttp.Dummy.cs" />
     <Compile Include="Net\HttpMethod.Facts.cs" />
     <Compile Include="Net\HttpRequest.Facts.cs" />
     <Compile Include="Net\HttpResponse.Facts.cs" />
@@ -91,14 +85,10 @@
     <Compile Include="Net\Token.Facts.cs" />
     <Compile Include="Net\UserAgent.Facts.cs" />
     <Compile Include="Net\IHttpClient.Facts.cs" />
-    <Compile Include="Net\IHttpClient.Dummy.cs" />
     <Compile Include="Net\IHttpResponse.Facts.cs" />
-    <Compile Include="Net\IHttpResponse.Dummy.cs" />
     <Compile Include="Net\IHttpRequest.Facts.cs" />
-    <Compile Include="Net\IHttpRequest.Dummy.cs" />
     <Compile Include="Net\HttpClient.Facts.cs" />
     <Compile Include="Net\IUserAgent.Facts.cs" />
-    <Compile Include="Net\IUserAgent.Dummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
