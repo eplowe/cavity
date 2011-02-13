@@ -30,6 +30,16 @@
 	</Target>
 	
 	<Target Name="Clean">
+		<ItemGroup>
+			<CsProjUserFiles Include="$(MSBuildProjectDirectory)\**\*.csproj.user"/>
+			<CsProjVs10xFiles Include="$(MSBuildProjectDirectory)\**\*.csproj.vs10x"/>
+			<ResharperUserFiles Include="$(MSBuildProjectDirectory)\**\*.Resharper.user"/>
+			<TeamCityUserFiles Include="$(MSBuildProjectDirectory)\**\*.TeamCity.user"/>
+		</ItemGroup>
+		<Delete Files="@(CsProjUserFiles)" />
+		<Delete Files="@(CsProjVs10xFiles)" />
+		<Delete Files="@(ResharperUserFiles)" />
+		<Delete Files="@(TeamCityUserFiles)" />
 		<MSBuild
 			Projects="$(MSBuildProjectDirectory)\src\Cavity.sln"
 			Targets="Clean"
