@@ -1,41 +1,52 @@
 ﻿namespace Cavity.Net
 {
-    using System;
+    using Moq;
     using Xunit;
 
     public sealed class IRequestAcceptContentFacts
     {
         [Fact]
-        public void IRequestAcceptContent_op_AcceptAnyContent()
-        {
-            try
-            {
-                var obj = (new IRequestAcceptContentDummy() as IRequestAcceptContent).AcceptAnyContent();
-                Assert.NotNull(obj);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IRequestAcceptContent_op_Accept_string()
-        {
-            try
-            {
-                string value = null;
-                var obj = (new IRequestAcceptContentDummy() as IRequestAcceptContent).Accept(value);
-                Assert.NotNull(obj);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(IRequestAcceptContent).IsInterface);
+        }
+
+        [Fact]
+        public void op_AcceptAnyContent()
+        {
+            var expected = new Mock<IRequestAcceptLanguage>().Object;
+
+            var mock = new Mock<IRequestAcceptContent>();
+            mock
+                .Setup(x => x.AcceptAnyContent())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.AcceptAnyContent();
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Accept_string()
+        {
+            var expected = new Mock<IRequestAcceptLanguage>().Object;
+
+            const string value = "text/plain; text/html";
+
+            var mock = new Mock<IRequestAcceptContent>();
+            mock
+                .Setup(x => x.Accept(value))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Accept(value);
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

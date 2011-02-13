@@ -1,27 +1,33 @@
 ﻿namespace Cavity.Net.Mime
 {
-    using System;
+    using System.Net.Mime;
+    using Moq;
     using Xunit;
 
     public sealed class IContentTypeFacts
     {
         [Fact]
-        public void IContentType_ContentType_get()
-        {
-            try
-            {
-                var value = (new IContentTypeDummy() as IContentType).ContentType;
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(IContentType).IsInterface);
+        }
+
+        [Fact]
+        public void prop_ContentType_get()
+        {
+            var expected = new ContentType("text/plain");
+
+            var mock = new Mock<IContentType>();
+            mock
+                .SetupGet(x => x.ContentType)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.ContentType;
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

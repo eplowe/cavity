@@ -1,40 +1,50 @@
 ﻿namespace Cavity.Fluent
 {
-    using System;
+    using Moq;
     using Xunit;
 
     public sealed class ITestClassConstructionFacts
     {
         [Fact]
-        public void ITestClassConstruction_HasDefaultConstructor()
-        {
-            try
-            {
-                var value = (new ITestClassConstructionDummy() as ITestClassConstruction).HasDefaultConstructor();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void ITestClassConstruction_NoDefaultConstructor()
-        {
-            try
-            {
-                var value = (new ITestClassConstructionDummy() as ITestClassConstruction).NoDefaultConstructor();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(ITestClassConstruction).IsInterface);
+        }
+
+        [Fact]
+        public void op_HasDefaultConstructor()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            var mock = new Mock<ITestClassConstruction>();
+            mock
+                .Setup(x => x.HasDefaultConstructor())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.HasDefaultConstructor();
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_NoDefaultConstructor()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            var mock = new Mock<ITestClassConstruction>();
+            mock
+                .Setup(x => x.NoDefaultConstructor())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.NoDefaultConstructor();
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Moq;
     using Xunit;
 
     public sealed class SynonymCollectionFacts
@@ -22,7 +23,7 @@
         [Fact]
         public void ctor_INormalizationComparer()
         {
-            Assert.NotNull(new SynonymCollection(new NormalizationComparerDummy()));
+            Assert.NotNull(new SynonymCollection(new Mock<INormalizationComparer>().Object));
         }
 
         [Fact]
@@ -34,7 +35,7 @@
         [Fact]
         public void op_Add_string()
         {
-            var obj = new SynonymCollection(NormalizationComparer.OrdinalIgnoreCase)
+            new SynonymCollection(NormalizationComparer.OrdinalIgnoreCase)
             {
                 "Example"
             };

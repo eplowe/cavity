@@ -1,56 +1,73 @@
 ﻿namespace Cavity.Net
 {
-    using System;
     using System.Globalization;
+    using Moq;
     using Xunit;
 
     public sealed class IResponseContentLanguageFacts
     {
         [Fact]
-        public void IResponseContentLanguage_op_HasContentLanguage_CultureInfo()
-        {
-            try
-            {
-                CultureInfo language = null;
-                var value = (new IResponseContentLanguageDummy() as IResponseContentLanguage).HasContentLanguage(language);
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IResponseContentLanguage_op_HasContentLanguage_string()
-        {
-            try
-            {
-                string language = null;
-                var value = (new IResponseContentLanguageDummy() as IResponseContentLanguage).HasContentLanguage(language);
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IResponseContentLanguage_op_IgnoreContentLanguage()
-        {
-            try
-            {
-                var value = (new IResponseContentLanguageDummy() as IResponseContentLanguage).IgnoreContentLanguage();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(IResponseContentLanguage).IsInterface);
+        }
+
+        [Fact]
+        public void op_HasContentLanguage_CultureInfo()
+        {
+            var expected = new Mock<IResponseContentMD5>().Object;
+
+            var language = new CultureInfo("en-gb");
+
+            var mock = new Mock<IResponseContentLanguage>();
+            mock
+                .Setup(x => x.HasContentLanguage(language))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.HasContentLanguage(language);
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_HasContentLanguage_string()
+        {
+            var expected = new Mock<IResponseContentMD5>().Object;
+
+            const string language = "en-gb";
+
+            var mock = new Mock<IResponseContentLanguage>();
+            mock
+                .Setup(x => x.HasContentLanguage(language))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.HasContentLanguage(language);
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_IgnoreContentLanguage()
+        {
+            var expected = new Mock<IResponseContentMD5>().Object;
+
+            var mock = new Mock<IResponseContentLanguage>();
+            mock
+                .Setup(x => x.IgnoreContentLanguage())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.IgnoreContentLanguage();
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

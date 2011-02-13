@@ -1,36 +1,11 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using Moq;
     using Xunit;
 
     public sealed class IHttpRequestFacts
     {
-        [Fact]
-        public void IHttpRequest_AbsoluteUri_get()
-        {
-            try
-            {
-                var value = (new IHttpRequestDummy() as IHttpRequest).AbsoluteUri;
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IHttpRequest_RequestLine_get()
-        {
-            try
-            {
-                var value = (new IHttpRequestDummy() as IHttpRequest).RequestLine;
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
         [Fact]
         public void a_definition()
         {
@@ -41,6 +16,42 @@
         public void is_IHttpMessage()
         {
             Assert.True(typeof(IHttpRequest).Implements(typeof(IHttpMessage)));
+        }
+
+        [Fact]
+        public void prop_AbsoluteUri_get()
+        {
+            var expected = new Uri("http://example.com/");
+
+            var mock = new Mock<IHttpRequest>();
+            mock
+                .SetupGet(x => x.AbsoluteUri)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.AbsoluteUri;
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_RequestLine_get()
+        {
+            RequestLine expected = "GET / HTTP/1.1";
+
+            var mock = new Mock<IHttpRequest>();
+            mock
+                .SetupGet(x => x.RequestLine)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.RequestLine;
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

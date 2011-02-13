@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -61,9 +61,7 @@
     </Compile>
     <Compile Include="Collections\Generic\LevenshteinComparer.Derived.cs" />
     <Compile Include="Collections\Generic\INormalizationComparer.Facts.cs" />
-    <Compile Include="Collections\Generic\INormalizationComparer.Dummy.cs" />
     <Compile Include="Data\CsvLexiconStorage.Facts.cs" />
-    <Compile Include="Data\IStoreLexicon.Dummy.cs" />
     <Compile Include="Data\IStoreLexicon.Facts.cs" />
     <Compile Include="Models\BritishPostcode.Facts.cs" />
     <Compile Include="Collections\Generic\LevenshteinComparer.Facts.cs" />

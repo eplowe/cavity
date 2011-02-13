@@ -1,119 +1,165 @@
 ﻿namespace Cavity.Fluent
 {
-    using System;
     using Cavity.Types;
+    using Moq;
     using Xunit;
 
     public sealed class ITestTypeFacts
     {
         [Fact]
-        public void ITestType_Add_ITestExpectation()
-        {
-            try
-            {
-                var value = (new ITestTypeDummy() as ITestType).Add(new ITestExpectationDummy());
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void ITestType_ImplementsOfT()
-        {
-            try
-            {
-                var value = (new ITestTypeDummy() as ITestType).Implements<IInterface1>();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void ITestType_IsDecoratedWithOfT()
-        {
-            try
-            {
-                var value = (new ITestTypeDummy() as ITestType).IsDecoratedWith<Attribute1Attribute>();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void ITestType_IsNotDecorated()
-        {
-            try
-            {
-                var value = (new ITestTypeDummy() as ITestType).IsNotDecorated();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void ITestType_Result_get()
-        {
-            try
-            {
-                var value = (new ITestTypeDummy() as ITestType).Result;
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void ITestType_Serializable()
-        {
-            try
-            {
-                var value = (new ITestTypeDummy() as ITestType).Serializable();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void ITestType_XmlRoot_string()
-        {
-            try
-            {
-                var value = (new ITestTypeDummy() as ITestType).XmlRoot("name");
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void ITestType_XmlRoot_string_string()
-        {
-            try
-            {
-                var value = (new ITestTypeDummy() as ITestType).XmlRoot("name", "namespace");
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(ITestType).IsInterface);
+        }
+
+        [Fact]
+        public void op_Add_ITestExpectation()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            var expectation = new Mock<ITestExpectation>().Object;
+
+            var mock = new Mock<ITestType>();
+            mock
+                .Setup(x => x.Add(expectation))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Add(expectation);
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_ImplementsOfT()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            var mock = new Mock<ITestType>();
+            mock
+                .Setup(x => x.Implements<IInterface1>())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Implements<IInterface1>();
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_IsDecoratedWithOfT()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            var mock = new Mock<ITestType>();
+            mock
+                .Setup(x => x.IsDecoratedWith<Attribute1Attribute>())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.IsDecoratedWith<Attribute1Attribute>();
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_IsNotDecorated()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            var mock = new Mock<ITestType>();
+            mock
+                .Setup(x => x.IsNotDecorated())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.IsNotDecorated();
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Serializable()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            var mock = new Mock<ITestType>();
+            mock
+                .Setup(x => x.Serializable())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Serializable();
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_XmlRoot_string()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            const string elementName = "example";
+
+            var mock = new Mock<ITestType>();
+            mock
+                .Setup(x => x.XmlRoot(elementName))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.XmlRoot(elementName);
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_XmlRoot_string_string()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            const string elementName = "example";
+
+            var mock = new Mock<ITestType>();
+            mock
+                .Setup(x => x.XmlRoot(elementName, "namespace"))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.XmlRoot(elementName, "namespace");
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Result_get()
+        {
+            const bool expected = true;
+
+            var mock = new Mock<ITestType>();
+            mock
+                .SetupGet(x => x.Result)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Result;
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

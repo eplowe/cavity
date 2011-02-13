@@ -1,27 +1,32 @@
 ﻿namespace Cavity.Net
 {
-    using System;
+    using Moq;
     using Xunit;
 
     public sealed class IHttpClientFacts
     {
         [Fact]
-        public void IHttpClient_UserAgent_get()
-        {
-            try
-            {
-                var value = (new IHttpClientDummy() as IHttpClient).UserAgent;
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(IHttpClient).IsInterface);
+        }
+
+        [Fact]
+        public void prop_UserAgent_get()
+        {
+            const string expected = "Example";
+
+            var mock = new Mock<IHttpClient>();
+            mock
+                .SetupGet(x => x.UserAgent)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.UserAgent;
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

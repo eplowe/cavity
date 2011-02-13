@@ -1,27 +1,32 @@
 ﻿namespace Cavity.Net
 {
-    using System;
+    using Moq;
     using Xunit;
 
     public sealed class IUserAgentFacts
     {
         [Fact]
-        public void IUserAgent_Value_get()
-        {
-            try
-            {
-                var value = (new IUserAgentDummy() as IUserAgent).Value;
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(IUserAgent).IsInterface);
+        }
+
+        [Fact]
+        public void prop_Value_get()
+        {
+            const string expected = "Example";
+
+            var mock = new Mock<IUserAgent>();
+            mock
+                .SetupGet(x => x.Value)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Value;
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
         }
     }
 }

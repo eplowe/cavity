@@ -1,27 +1,27 @@
 ﻿namespace Cavity.Configuration
 {
-    using System;
+    using Moq;
     using Xunit;
 
     public sealed class ISetLocatorProviderFacts
     {
         [Fact]
-        public void ISetLocatorProvider_Configure()
-        {
-            try
-            {
-                new ISetLocatorProviderDummy().Configure();
-                Assert.True(false);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(ISetLocatorProvider).IsInterface);
+        }
+
+        [Fact]
+        public void op_Configure()
+        {
+            var mock = new Mock<ISetLocatorProvider>();
+            mock
+                .Setup(x => x.Configure())
+                .Verifiable();
+
+            mock.Object.Configure();
+
+            mock.VerifyAll();
         }
     }
 }

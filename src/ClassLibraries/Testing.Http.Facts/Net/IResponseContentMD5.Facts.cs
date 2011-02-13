@@ -1,40 +1,48 @@
 ﻿namespace Cavity.Net
 {
-    using System;
+    using Moq;
     using Xunit;
 
     public sealed class IResponseContentMD5Facts
     {
         [Fact]
-        public void IResponseContentMD5_op_HasContentMD5()
-        {
-            try
-            {
-                var value = (new IResponseContentMD5Dummy() as IResponseContentMD5).HasContentMD5();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IResponseContentMD5_op_IgnoreContentMD5()
-        {
-            try
-            {
-                var value = (new IResponseContentMD5Dummy() as IResponseContentMD5).IgnoreContentMD5();
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
         public void a_definition()
         {
             Assert.True(typeof(IResponseContentMD5).IsInterface);
+        }
+
+        [Fact]
+        public void op_HasContentMD5()
+        {
+            var expected = new Mock<IResponseContent>().Object;
+
+            var mock = new Mock<IResponseContentMD5>();
+            mock
+                .Setup(x => x.HasContentMD5())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.HasContentMD5();
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_IgnoreContentMD5()
+        {
+            var expected = new Mock<IResponseContent>().Object;
+
+            var mock = new Mock<IResponseContentMD5>();
+            mock
+                .Setup(x => x.IgnoreContentMD5())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.IgnoreContentMD5();
+
+            Assert.Same(expected, actual);
         }
     }
 }

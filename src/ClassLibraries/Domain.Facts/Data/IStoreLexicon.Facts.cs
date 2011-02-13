@@ -1,57 +1,66 @@
 ﻿namespace Cavity.Data
 {
-    using System;
     using Cavity.Collections.Generic;
     using Cavity.Models;
+    using Moq;
     using Xunit;
 
     public sealed class IStoreLexiconFacts
     {
-        [Fact]
-        public void IStoreLexicon_Delete_Lexicon()
-        {
-            try
-            {
-                (new IStoreLexiconDummy() as IStoreLexicon).Delete(new Lexicon(NormalizationComparer.Ordinal));
-                Assert.True(false);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IStoreLexicon_Load_INormalizationComparer()
-        {
-            try
-            {
-                var value = (new IStoreLexiconDummy() as IStoreLexicon).Load(NormalizationComparer.Ordinal);
-                Assert.NotNull(value);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
-        [Fact]
-        public void IStoreLexicon_Save_Lexicon()
-        {
-            try
-            {
-                (new IStoreLexiconDummy() as IStoreLexicon).Save(new Lexicon(NormalizationComparer.Ordinal));
-                Assert.True(false);
-            }
-            catch (NotSupportedException)
-            {
-            }
-        }
-
         [Fact]
         public void a_definition()
         {
             Assert.True(new TypeExpectations<IStoreLexicon>()
                             .IsInterface()
                             .Result);
+        }
+
+        [Fact]
+        public void op_Delete_Lexicon()
+        {
+            var lexicon = new Lexicon(NormalizationComparer.Ordinal);
+
+            var mock = new Mock<IStoreLexicon>();
+            mock
+                .Setup(x => x.Delete(lexicon))
+                .Verifiable();
+
+            mock.Object.Delete(lexicon);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Load_INormalizationComparer()
+        {
+            var expected = new Lexicon(NormalizationComparer.Ordinal);
+
+            var mock = new Mock<IStoreLexicon>();
+            mock
+                .Setup(x => x.Load(NormalizationComparer.Ordinal))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Load(NormalizationComparer.Ordinal);
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Save_Lexicon()
+        {
+            var lexicon = new Lexicon(NormalizationComparer.Ordinal);
+
+            var mock = new Mock<IStoreLexicon>();
+            mock
+                .Setup(x => x.Save(lexicon))
+                .Verifiable();
+
+            mock.Object.Save(lexicon);
+
+            mock.VerifyAll();
         }
     }
 }
