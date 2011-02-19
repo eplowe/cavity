@@ -2,6 +2,7 @@
 <Dictionary>
   <Words>
     <Recognized>
+      <Word>Ato</Word>
       <Word>Autofac</Word>
       <Word>ctor</Word>
       <Word>Etag</Word>
@@ -9,6 +10,7 @@
       <Word>Levenshtein</Word>
       <Word>Multiton</Word>
       <Word>Satisfiable</Word>
+      <Word>Zz</Word>
     </Recognized>
   </Words>
 </Dictionary>
