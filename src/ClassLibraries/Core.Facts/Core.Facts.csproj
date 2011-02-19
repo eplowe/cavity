@@ -62,6 +62,7 @@
       <Link>Properties\Cavity.cs</Link>
     </Compile>
     <Compile Include="AbsoluteUri.Facts.cs" />
+    <Compile Include="AlphaDecimal.Facts.cs" />
     <Compile Include="Char.ExtensionMethods.Facts.cs" />
     <Compile Include="Collections\Generic\MultitonCollection`1.Facts.cs" />
     <Compile Include="CommentAttribute.Facts.cs" />
