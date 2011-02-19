@@ -365,7 +365,7 @@
 
         private static long Parse(string expression)
         {
-            if (expression == null)
+            if (null == expression)
             {
                 throw new ArgumentNullException("expression");
             }
