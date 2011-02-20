@@ -20,8 +20,8 @@
 		<CallTarget Targets="Build" />
 		<!-- CallTarget Targets="Deploy" Condition="'$(registry:HKEY_LOCAL_MACHINE\Software\Microsoft\InetStp@MajorVersion)'=='7'" / -->
 		<CallTarget Targets="Test" />
-		<CallTarget Targets="Zip" />
 		<CallTarget Targets="Trove" />
+		<CallTarget Targets="Zip" />
 	</Target>
 	
 	<Target Name="Compliance">
