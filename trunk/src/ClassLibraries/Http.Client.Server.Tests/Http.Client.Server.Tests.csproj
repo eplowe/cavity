@@ -1,71 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <ProjectGuid>{513E2CF7-8C8E-4321-84BD-5663AE3F58C1}</ProjectGuid>
+    <AssemblyName>Cavity.Http.Client.Server.Tests</AssemblyName>
+    <RootNamespace>Cavity</RootNamespace>
+    <OutputType>Library</OutputType>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{513E2CF7-8C8E-4321-84BD-5663AE3F58C1}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputPath>bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cavity</RootNamespace>
-    <AssemblyName>Cavity.Http.Client.Server.Tests</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\..\Cavity.snk</AssemblyOriginatorKeyFile>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\Cavity.Facts.ruleset</CodeAnalysisRuleSet>
+    <AssemblyOriginatorKeyFile>..\..\Cavity.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\..\Cavity.Facts.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\..\Cavity.Facts.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
+    <DefineConstants>NET20</DefineConstants>
+    <TargetFrameworkVersionNumber>2.0</TargetFrameworkVersionNumber>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
+    <DefineConstants>NET35</DefineConstants>
+    <TargetFrameworkVersionNumber>3.5</TargetFrameworkVersionNumber>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
+    <DefineConstants>NET40</DefineConstants>
+    <TargetFrameworkVersionNumber>4.0</TargetFrameworkVersionNumber>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="System" />
+    <Reference Include="System.Core" Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' " />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' " />
+    <Reference Include="Microsoft.CSharp" Condition=" '$(TargetFrameworkVersionNumber)' >= '4.0' " />
+    <Reference Include="Microsoft.Practices.ServiceLocation" />
+    <Reference Include="Castle.Core" Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' ">
       <HintPath>..\..\..\lib\trove\Framework\v3.5\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.DynamicProxy2">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Castle.DynamicProxy2" Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' ">
       <HintPath>..\..\..\lib\trove\Framework\v3.5\Castle.DynamicProxy2.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.MicroKernel">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Castle.MicroKernel" Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' ">
       <HintPath>..\..\..\lib\trove\Framework\v3.5\Castle.MicroKernel.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Windsor">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Castle.Windsor" Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' ">
       <HintPath>..\..\..\lib\trove\Framework\v3.5\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation" />
-    <Reference Include="Moq">
+    <Reference Include="Moq" Condition=" '$(TargetFrameworkVersionNumber)' == '3.5' ">
       <HintPath>..\..\..\lib\trove\Framework\v3.5\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
+    <Reference Include="Moq" Condition=" '$(TargetFrameworkVersionNumber)' >= '4.0' ">
+      <HintPath>..\..\..\lib\trove\Framework\v4.0\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\..\lib\trove\Framework\v2.0\xunit.dll</HintPath>
     </Reference>
@@ -112,7 +118,6 @@
       <Name>ServiceLocation</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

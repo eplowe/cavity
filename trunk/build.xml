@@ -13,7 +13,7 @@
 	</PropertyGroup>
   
 	<Target Name="Run">
-		<CallTarget Targets="Compliance" />
+		<!-- CallTarget Targets="Compliance" / -->
 		<CallTarget Targets="Clean" />
 		<CallTarget Targets="Versioning" Condition="'$(Versioning)'=='Subversion'" />
 		<CallTarget Targets="Build" />
@@ -141,85 +141,85 @@
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
-			Assembly="$(ClassLibrariesPath)\Build.Tasks.Facts\bin\$(Configuration)\Cavity.Build.Tasks.Facts.dll"
-			WorkingFolder="$(ClassLibrariesPath)\Build.Tasks.Facts\bin\$(Configuration)"
+			Assembly="$(ClassLibrariesPath)\Build.Tasks.Facts\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.Build.Tasks.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Build.Tasks.Facts\bin\$(Configuration) $(TargetFrameworkVersion)"
 			Xml="$(TestResultsDirectory)\build_tasks_facts_xunit.xml"
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
-			Assembly="$(ClassLibrariesPath)\Core.Facts\bin\$(Configuration)\Cavity.Core.Facts.dll"
-			WorkingFolder="$(ClassLibrariesPath)\Core.Facts\bin\$(Configuration)"
+			Assembly="$(ClassLibrariesPath)\Core.Facts\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.Core.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Core.Facts\bin\$(Configuration) $(TargetFrameworkVersion)"
 			Xml="$(TestResultsDirectory)\core_facts_xunit.xml"
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
-			Assembly="$(ClassLibrariesPath)\Domain.Facts\bin\$(Configuration)\Cavity.Domain.Facts.dll"
-			WorkingFolder="$(ClassLibrariesPath)\Domain.Facts\bin\$(Configuration)"
+			Assembly="$(ClassLibrariesPath)\Domain.Facts\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.Domain.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Domain.Facts\bin\$(Configuration) $(TargetFrameworkVersion)"
 			Xml="$(TestResultsDirectory)\domain_facts_xunit.xml"
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
-			Assembly="$(ClassLibrariesPath)\Http.Client.Facts\bin\$(Configuration)\Cavity.Http.Client.Facts.dll"
-			WorkingFolder="$(ClassLibrariesPath)\Http.Client.Facts\bin\$(Configuration)"
+			Assembly="$(ClassLibrariesPath)\Http.Client.Facts\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.Http.Client.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Http.Client.Facts\bin\$(Configuration) $(TargetFrameworkVersion)"
 			Xml="$(TestResultsDirectory)\http_client_facts_xunit.xml"
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
-			Assembly="$(ClassLibrariesPath)\ServiceLocation.Facts\bin\$(Configuration)\Cavity.ServiceLocation.Facts.dll"
-			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.Facts\bin\$(Configuration)"
+			Assembly="$(ClassLibrariesPath)\ServiceLocation.Facts\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.ServiceLocation.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.Facts\bin\$(Configuration) $(TargetFrameworkVersion)"
 			Xml="$(TestResultsDirectory)\service_location_facts_xunit.xml"
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
-			Assembly="$(ClassLibrariesPath)\ServiceLocation.Autofac.Facts\bin\$(Configuration)\Cavity.ServiceLocation.Autofac.Facts.dll"
-			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.Autofac.Facts\bin\$(Configuration)"
+			Assembly="$(ClassLibrariesPath)\ServiceLocation.Autofac.Facts\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.ServiceLocation.Autofac.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.Autofac.Facts\bin\$(Configuration) $(TargetFrameworkVersion)"
 			Xml="$(TestResultsDirectory)\service_location_autofac_facts_xunit.xml"
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
-			Assembly="$(ClassLibrariesPath)\ServiceLocation.CastleWindsor.Facts\bin\$(Configuration)\Cavity.ServiceLocation.CastleWindsor.Facts.dll"
-			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.CastleWindsor.Facts\bin\$(Configuration)"
+			Assembly="$(ClassLibrariesPath)\ServiceLocation.CastleWindsor.Facts\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.ServiceLocation.CastleWindsor.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.CastleWindsor.Facts\bin\$(Configuration) $(TargetFrameworkVersion)"
 			Xml="$(TestResultsDirectory)\service_location_castle_windsor_facts_xunit.xml"
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
-			Assembly="$(ClassLibrariesPath)\ServiceLocation.StructureMap.Facts\bin\$(Configuration)\Cavity.ServiceLocation.StructureMap.Facts.dll"
-			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.StructureMap.Facts\bin\$(Configuration)"
+			Assembly="$(ClassLibrariesPath)\ServiceLocation.StructureMap.Facts\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.ServiceLocation.StructureMap.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.StructureMap.Facts\bin\$(Configuration) $(TargetFrameworkVersion)"
 			Xml="$(TestResultsDirectory)\service_location_structuremap_facts_xunit.xml"
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
-			Assembly="$(ClassLibrariesPath)\ServiceLocation.Unity.Facts\bin\$(Configuration)\Cavity.ServiceLocation.Unity.Facts.dll"
-			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.Unity.Facts\bin\$(Configuration)"
+			Assembly="$(ClassLibrariesPath)\ServiceLocation.Unity.Facts\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.ServiceLocation.Unity.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.Unity.Facts\bin\$(Configuration) $(TargetFrameworkVersion)"
 			Xml="$(TestResultsDirectory)\service_location_unity_facts_xunit.xml"
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
-			Assembly="$(ClassLibrariesPath)\Testing.Http.Facts\bin\$(Configuration)\Cavity.Testing.Http.Facts.dll"
-			WorkingFolder="$(ClassLibrariesPath)\Testing.Http.Facts\bin\$(Configuration)"
+			Assembly="$(ClassLibrariesPath)\Testing.Http.Facts\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.Testing.Http.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Testing.Http.Facts\bin\$(Configuration) $(TargetFrameworkVersion)"
 			Xml="$(TestResultsDirectory)\testing_http_facts_xunit.xml"
 			/>
 		<Xunit.Runner.MSBuild.xunit
 			ContinueOnError="false"
-			Assembly="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(Configuration)\Cavity.Testing.Unit.Facts.dll"
-			WorkingFolder="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(Configuration)"
+			Assembly="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.Testing.Unit.Facts.dll"
+			WorkingFolder="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(Configuration) $(TargetFrameworkVersion)"
 			Xml="$(TestResultsDirectory)\testing_unit_facts_xunit.xml"
 			/>
 		<Exec
 			Command="Example.Autofac.Console.exe"
-			WorkingDirectory="$(ConsoleApplicationsPath)\Example.Autofac.Console\bin\$(Configuration)"
+			WorkingDirectory="$(ConsoleApplicationsPath)\Example.Autofac.Console\bin\$(Configuration) $(TargetFrameworkVersion)"
 			/>
 		<Exec
 			Command="Example.CastleWindsor.Console.exe"
-			WorkingDirectory="$(ConsoleApplicationsPath)\Example.CastleWindsor.Console\bin\$(Configuration)"
+			WorkingDirectory="$(ConsoleApplicationsPath)\Example.CastleWindsor.Console\bin\$(Configuration) $(TargetFrameworkVersion)"
 			/>
 		<Exec
 			Command="Example.StructureMap.Console.exe"
-			WorkingDirectory="$(ConsoleApplicationsPath)\Example.StructureMap.Console\bin\$(Configuration)"
+			WorkingDirectory="$(ConsoleApplicationsPath)\Example.StructureMap.Console\bin\$(Configuration) $(TargetFrameworkVersion)"
 			/>
 		<Exec
 			Command="Example.Unity.Console.exe"
-			WorkingDirectory="$(ConsoleApplicationsPath)\Example.Unity.Console\bin\$(Configuration)"
+			WorkingDirectory="$(ConsoleApplicationsPath)\Example.Unity.Console\bin\$(Configuration) $(TargetFrameworkVersion)"
 			/>
 		<!-- merging test files -->
 		<CreateItem Include="$(TestResultsDirectory)\*_xunit.xml">
@@ -279,7 +279,7 @@
 			NoJobHeader="true"
 			/>
 		<Delete
-			Files="$(ZipDirectory)\Cavity Source [$(Configuration) $(Version).$(Revision)].zip"
+			Files="$(ZipDirectory)\Cavity Source [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			/>
 		<ItemGroup>
 			<ZipSourceFiles Include="$(PublishDirectory)\Source\**\*.*" />
@@ -287,7 +287,7 @@
 		<MSBuild.Community.Tasks.Zip
 			Files="@(ZipSourceFiles)"
 			WorkingDirectory="$(PublishDirectory)\Source"
-			ZipFileName="$(ZipDirectory)\Cavity Source [$(Configuration) $(Version).$(Revision)].zip"
+			ZipFileName="$(ZipDirectory)\Cavity Source [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			ZipLevel="9"
 			/>
 		<RemoveDir
@@ -306,7 +306,7 @@
 			Condition="!Exists('$(PublishDirectory)\Http.Client')"
 			/>
 		<MSBuild.Community.Tasks.RoboCopy
-			SourceFolder="$(ClassLibrariesPath)\Http.Client\bin\$(Configuration)"
+			SourceFolder="$(ClassLibrariesPath)\Http.Client\bin\$(Configuration) $(TargetFrameworkVersion)"
 			DestinationFolder="$(PublishDirectory)\Http.Client"
 			Mirror="true"
 			ExcludeFolders=".svn;_svn;obj"
@@ -314,7 +314,7 @@
 			NoJobHeader="true"
 			/>
 		<Delete
-			Files="$(ZipDirectory)\Cavity HTTP Client [$(Configuration) $(Version).$(Revision)].zip"
+			Files="$(ZipDirectory)\Cavity HTTP Client [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			/>
 		<ItemGroup>
 			<ZipHttpClientFiles Include="$(PublishDirectory)\Http.Client\**\*.*" />
@@ -322,7 +322,7 @@
 		<MSBuild.Community.Tasks.Zip
 			Files="@(ZipHttpClientFiles)"
 			WorkingDirectory="$(PublishDirectory)\Http.Client"
-			ZipFileName="$(ZipDirectory)\Cavity HTTP Client [$(Configuration) $(Version).$(Revision)].zip"
+			ZipFileName="$(ZipDirectory)\Cavity HTTP Client [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			ZipLevel="9"
 			/>
 		<RemoveDir
@@ -341,7 +341,7 @@
 			Condition="!Exists('$(PublishDirectory)\UnitTesting')"
 			/>
 		<MSBuild.Community.Tasks.RoboCopy
-			SourceFolder="$(ClassLibrariesPath)\Testing.Unit\bin\$(Configuration)"
+			SourceFolder="$(ClassLibrariesPath)\Testing.Unit\bin\$(Configuration) $(TargetFrameworkVersion)"
 			DestinationFolder="$(PublishDirectory)\UnitTesting"
 			Mirror="true"
 			ExcludeFolders=".svn;_svn;obj"
@@ -349,7 +349,7 @@
 			NoJobHeader="true"
 			/>
 		<Delete
-			Files="$(ZipDirectory)\Cavity Unit Testing [$(Configuration) $(Version).$(Revision)].zip"
+			Files="$(ZipDirectory)\Cavity Unit Testing [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			/>
 		<ItemGroup>
 			<ZipUnitTestingFiles Include="$(PublishDirectory)\Testing.Unit\**\*.*" />
@@ -357,7 +357,7 @@
 		<MSBuild.Community.Tasks.Zip
 			Files="@(ZipUnitTestingFiles)"
 			WorkingDirectory="$(PublishDirectory)\Testing.Unit"
-			ZipFileName="$(ZipDirectory)\Cavity Unit Testing [$(Configuration) $(Version).$(Revision)].zip"
+			ZipFileName="$(ZipDirectory)\Cavity Unit Testing [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			ZipLevel="9"
 			/>
 		<RemoveDir
@@ -372,7 +372,7 @@
 			Condition="!Exists('$(PublishDirectory)\Autofac')"
 			/>
 		<MSBuild.Community.Tasks.RoboCopy
-			SourceFolder="$(ConsoleApplicationsPath)\Example.Autofac.Console\bin\$(Configuration)"
+			SourceFolder="$(ConsoleApplicationsPath)\Example.Autofac.Console\bin\$(Configuration) $(TargetFrameworkVersion)"
 			DestinationFolder="$(PublishDirectory)\Autofac"
 			Mirror="true"
 			ExcludeFolders=""
@@ -396,7 +396,7 @@
 			XPath="/autofac/components/component"
 			Delete="true"/>
 		<Delete
-			Files="$(ZipDirectory)\Cavity Service Location (Autofac) [$(Configuration) $(Version).$(Revision)].zip"
+			Files="$(ZipDirectory)\Cavity Service Location (Autofac) [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			/>
 		<ItemGroup>
 			<ZipAutofacFiles Include="$(PublishDirectory)\Autofac\**\*.*" />
@@ -404,7 +404,7 @@
 		<MSBuild.Community.Tasks.Zip
 			Files="@(ZipAutofacFiles)"
 			WorkingDirectory="$(PublishDirectory)\Autofac"
-			ZipFileName="$(ZipDirectory)\Cavity Service Location (Autofac) [$(Configuration) $(Version).$(Revision)].zip"
+			ZipFileName="$(ZipDirectory)\Cavity Service Location (Autofac) [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			ZipLevel="9"
 			/>
 		<RemoveDir
@@ -419,7 +419,7 @@
 			Condition="!Exists('$(PublishDirectory)\CastleWindsor')"
 			/>
 		<MSBuild.Community.Tasks.RoboCopy
-			SourceFolder="$(ConsoleApplicationsPath)\Example.CastleWindsor.Console\bin\$(Configuration)"
+			SourceFolder="$(ConsoleApplicationsPath)\Example.CastleWindsor.Console\bin\$(Configuration) $(TargetFrameworkVersion)"
 			DestinationFolder="$(PublishDirectory)\CastleWindsor"
 			Mirror="true"
 			ExcludeFolders=""
@@ -439,7 +439,7 @@
 			XPath="/castle/components/component"
 			Delete="true"/>
 		<Delete
-			Files="$(ZipDirectory)\Cavity Service Location (Castle Windsor) [$(Configuration) $(Version).$(Revision)].zip"
+			Files="$(ZipDirectory)\Cavity Service Location (Castle Windsor) [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			/>
 		<ItemGroup>
 			<ZipCastleWindsorFiles Include="$(PublishDirectory)\CastleWindsor\**\*.*" />
@@ -447,7 +447,7 @@
 		<MSBuild.Community.Tasks.Zip
 			Files="@(ZipCastleWindsorFiles)"
 			WorkingDirectory="$(PublishDirectory)\CastleWindsor"
-			ZipFileName="$(ZipDirectory)\Cavity Service Location (Castle Windsor) [$(Configuration) $(Version).$(Revision)].zip"
+			ZipFileName="$(ZipDirectory)\Cavity Service Location (Castle Windsor) [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			ZipLevel="9"
 			/>
 		<RemoveDir
@@ -462,7 +462,7 @@
 			Condition="!Exists('$(PublishDirectory)\StructureMap')"
 			/>
 		<MSBuild.Community.Tasks.RoboCopy
-			SourceFolder="$(ConsoleApplicationsPath)\Example.StructureMap.Console\bin\$(Configuration)"
+			SourceFolder="$(ConsoleApplicationsPath)\Example.StructureMap.Console\bin\$(Configuration) $(TargetFrameworkVersion)"
 			DestinationFolder="$(PublishDirectory)\StructureMap"
 			Mirror="true"
 			ExcludeFolders=""
@@ -482,7 +482,7 @@
 			XPath="/StructureMap/DefaultInstance"
 			Delete="true"/>
 		<Delete
-			Files="$(ZipDirectory)\Cavity Service Location (StructureMap) [$(Configuration) $(Version).$(Revision)].zip"
+			Files="$(ZipDirectory)\Cavity Service Location (StructureMap) [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			/>
 		<ItemGroup>
 			<ZipStructureMapFiles Include="$(PublishDirectory)\StructureMap\**\*.*" />
@@ -490,7 +490,7 @@
 		<MSBuild.Community.Tasks.Zip
 			Files="@(ZipStructureMapFiles)"
 			WorkingDirectory="$(PublishDirectory)\StructureMap"
-			ZipFileName="$(ZipDirectory)\Cavity Service Location (StructureMap) [$(Configuration) $(Version).$(Revision)].zip"
+			ZipFileName="$(ZipDirectory)\Cavity Service Location (StructureMap) [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			ZipLevel="9"
 			/>
 		<RemoveDir
@@ -505,7 +505,7 @@
 			Condition="!Exists('$(PublishDirectory)\Unity')"
 			/>
 		<MSBuild.Community.Tasks.RoboCopy
-			SourceFolder="$(ConsoleApplicationsPath)\Example.Unity.Console\bin\$(Configuration)"
+			SourceFolder="$(ConsoleApplicationsPath)\Example.Unity.Console\bin\$(Configuration) $(TargetFrameworkVersion)"
 			DestinationFolder="$(PublishDirectory)\Unity"
 			Mirror="true"
 			ExcludeFolders=""
@@ -533,7 +533,7 @@
 			XPath="/unity/containers/container"
 			Delete="true"/>
 		<Delete
-			Files="$(ZipDirectory)\Cavity Service Location (Unity) [$(Configuration) $(Version).$(Revision)].zip"
+			Files="$(ZipDirectory)\Cavity Service Location (Unity) [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			/>
 		<ItemGroup>
 			<ZipUnityFiles Include="$(PublishDirectory)\Unity\**\*.*" />
@@ -541,7 +541,7 @@
 		<MSBuild.Community.Tasks.Zip
 			Files="@(ZipUnityFiles)"
 			WorkingDirectory="$(PublishDirectory)\Unity"
-			ZipFileName="$(ZipDirectory)\Cavity Service Location (Unity) [$(Configuration) $(Version).$(Revision)].zip"
+			ZipFileName="$(ZipDirectory)\Cavity Service Location (Unity) [$(Configuration) $(TargetFrameworkVersion)] $(Version).$(Revision).zip"
 			ZipLevel="9"
 			/>
 		<RemoveDir
