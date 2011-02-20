@@ -174,7 +174,9 @@
                        : 0 == CompareTo(other);
         }
 
-        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
+#if !NET40
+        [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.LinkDemand, Flags = System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter)]
+#endif
         void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {
