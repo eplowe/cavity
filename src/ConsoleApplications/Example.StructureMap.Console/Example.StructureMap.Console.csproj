@@ -1,124 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Conditional" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="Conditional">
-    <CallTarget Targets="Build" Condition=" '$(TargetFrameworkVersion)' == 'v3.5' " />
-    <CallTarget Targets="Build" Condition=" '$(TargetFrameworkVersion)' == 'v4.0' " />
-  </Target>
-  <PropertyGroup>
-    <ProjectGuid>{440ACB41-EA41-4BC4-87BA-FB6498EBD909}</ProjectGuid>
-    <AssemblyName>Example.StructureMap.Console</AssemblyName>
-    <RootNamespace>Example</RootNamespace>
-    <OutputType>Exe</OutputType>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <OutputPath>bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <FileAlignment>512</FileAlignment>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\..\Cavity.ruleset</CodeAnalysisRuleSet>
-    <AssemblyOriginatorKeyFile>..\..\Cavity.snk</AssemblyOriginatorKeyFile>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
-    <DefineConstants>NET20</DefineConstants>
-    <TargetFrameworkVersionNumber>2.0</TargetFrameworkVersionNumber>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
-    <DefineConstants>NET35</DefineConstants>
-    <TargetFrameworkVersionNumber>3.5</TargetFrameworkVersionNumber>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
-    <DefineConstants>NET40</DefineConstants>
-    <TargetFrameworkVersionNumber>4.0</TargetFrameworkVersionNumber>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' " />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' " />
-    <Reference Include="Microsoft.CSharp" Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' " />
-    <Reference Include="Microsoft.Practices.ServiceLocation" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\Build.cs">
-      <Link>Properties\Build.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Cavity.cs">
-      <Link>Properties\Cavity.cs</Link>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="..\..\Cavity.dictionary">
-      <Link>Properties\Cavity.dictionary</Link>
-    </CodeAnalysisDictionary>
-    <None Include="..\..\Cavity.snk">
-      <Link>Properties\Cavity.snk</Link>
-    </None>
-    <None Include="app.config" />
-    <None Include="StructureMap.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ClassLibraries\Example\Example.csproj">
-      <Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
-      <Name>Example</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ClassLibraries\ServiceLocation\ServiceLocation.csproj">
-      <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
-      <Name>ServiceLocation</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\..\..\lib\trove\Framework\v3.5\StructureMap.dll">
-      <Link>StructureMap.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\..\lib\trove\Framework\v3.5\StructureMapAdapter.dll">
-      <Link>StructureMapAdapter.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\ClassLibraries\ServiceLocation.StructureMap\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.ServiceLocation.StructureMap.dll">
-      <Link>Cavity.ServiceLocation.StructureMap.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Choose>
+		<When Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' ">
+			<PropertyGroup>
+				<ProjectGuid>{440ACB41-EA41-4BC4-87BA-FB6498EBD909}</ProjectGuid>
+				<AssemblyName>Example.StructureMap.Console</AssemblyName>
+				<RootNamespace>Example</RootNamespace>
+				<OutputType>Exe</OutputType>
+				<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+				<Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+				<TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.0</TargetFrameworkVersion>
+				<TargetFrameworkProfile/>
+				<ProductVersion>8.0.30703</ProductVersion>
+				<SchemaVersion>2.0</SchemaVersion>
+				<OutputPath>bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
+				<AppDesignerFolder>Properties</AppDesignerFolder>
+				<FileAlignment>512</FileAlignment>
+				<ErrorReport>prompt</ErrorReport>
+				<WarningLevel>4</WarningLevel>
+				<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+				<StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+				<RunCodeAnalysis>true</RunCodeAnalysis>
+				<CodeAnalysisRuleSet>..\..\Cavity.ruleset</CodeAnalysisRuleSet>
+				<AssemblyOriginatorKeyFile>..\..\Cavity.snk</AssemblyOriginatorKeyFile>
+				<SignAssembly>true</SignAssembly>
+			</PropertyGroup>
+			<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+				<DebugSymbols>true</DebugSymbols>
+				<DebugType>full</DebugType>
+				<Optimize>false</Optimize>
+				<DefineConstants>TRACE;DEBUG</DefineConstants>
+			</PropertyGroup>
+			<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+				<DebugType>pdbonly</DebugType>
+				<Optimize>true</Optimize>
+				<DefineConstants>TRACE</DefineConstants>
+			</PropertyGroup>
+			<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
+				<DefineConstants>NET20</DefineConstants>
+				<TargetFrameworkVersionNumber>2.0</TargetFrameworkVersionNumber>
+			</PropertyGroup>
+			<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
+				<DefineConstants>NET35</DefineConstants>
+				<TargetFrameworkVersionNumber>3.5</TargetFrameworkVersionNumber>
+			</PropertyGroup>
+			<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
+				<DefineConstants>NET40</DefineConstants>
+				<TargetFrameworkVersionNumber>4.0</TargetFrameworkVersionNumber>
+			</PropertyGroup>
+			<ItemGroup>
+				<Reference Include="System"/>
+				<Reference Include="System.Core" Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' "/>
+				<Reference Include="System.Xml"/>
+				<Reference Include="System.Xml.Linq" Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' "/>
+				<Reference Include="Microsoft.CSharp" Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' "/>
+				<Reference Include="Microsoft.Practices.ServiceLocation"/>
+			</ItemGroup>
+			<ItemGroup>
+				<Compile Include="..\..\Build.cs">
+					<Link>Properties\Build.cs</Link>
+				</Compile>
+				<Compile Include="..\..\Cavity.cs">
+					<Link>Properties\Cavity.cs</Link>
+				</Compile>
+				<Compile Include="Program.cs"/>
+				<Compile Include="Properties\AssemblyInfo.cs"/>
+				<Compile Include="Properties\Resources.Designer.cs">
+					<AutoGen>True</AutoGen>
+					<DesignTime>True</DesignTime>
+					<DependentUpon>Resources.resx</DependentUpon>
+				</Compile>
+			</ItemGroup>
+			<ItemGroup>
+				<CodeAnalysisDictionary Include="..\..\Cavity.dictionary">
+					<Link>Properties\Cavity.dictionary</Link>
+				</CodeAnalysisDictionary>
+				<None Include="..\..\Cavity.snk">
+					<Link>Properties\Cavity.snk</Link>
+				</None>
+				<None Include="app.config"/>
+				<None Include="StructureMap.config">
+					<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+				</None>
+			</ItemGroup>
+			<ItemGroup>
+				<ProjectReference Include="..\..\ClassLibraries\Example\Example.csproj">
+					<Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
+					<Name>Example</Name>
+				</ProjectReference>
+				<ProjectReference Include="..\..\ClassLibraries\ServiceLocation\ServiceLocation.csproj">
+					<Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
+					<Name>ServiceLocation</Name>
+				</ProjectReference>
+			</ItemGroup>
+			<ItemGroup>
+				<EmbeddedResource Include="Properties\Resources.resx">
+					<Generator>ResXFileCodeGenerator</Generator>
+					<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+				</EmbeddedResource>
+			</ItemGroup>
+			<ItemGroup>
+				<Content Include="..\..\..\lib\trove\Framework\v3.5\StructureMap.dll">
+					<Link>StructureMap.dll</Link>
+					<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+				</Content>
+				<Content Include="..\..\..\lib\trove\Framework\v3.5\StructureMapAdapter.dll">
+					<Link>StructureMapAdapter.dll</Link>
+					<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+				</Content>
+				<Content Include="..\..\ClassLibraries\ServiceLocation.StructureMap\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.ServiceLocation.StructureMap.dll">
+					<Link>Cavity.ServiceLocation.StructureMap.dll</Link>
+					<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+				</Content>
+			</ItemGroup>
+		</When>
+		<Otherwise>
+			<PropertyGroup>
+				<OutputType>Library</OutputType>
+				<OutputPath>bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
+			</PropertyGroup>
+			<ItemGroup>
+				<Reference Include="System"/>
+			</ItemGroup>
+			<ItemGroup>
+				<Compile Include="..\..\Build.cs">
+					<Link>Properties\Build.cs</Link>
+				</Compile>
+				<Compile Include="..\..\Cavity.cs">
+					<Link>Properties\Cavity.cs</Link>
+				</Compile>
+				<Compile Include="Properties\AssemblyInfo.cs"/>
+			</ItemGroup>
+		</Otherwise>
+	</Choose>
+	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+	<Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets"/>
+	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
