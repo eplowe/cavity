@@ -16,7 +16,7 @@
 	<Target Name="Run">
 		<!-- CallTarget Targets="Compliance" / -->
 		<CallTarget Targets="Clean" />
-		<CallTarget Targets="Versioning" Condition="'$(Versioning)'=='Subversion'" />
+		<CallTarget Targets="Versioning" />
 		<CallTarget Targets="Build" />
 		<!-- CallTarget Targets="Deploy" Condition="'$(registry:HKEY_LOCAL_MACHINE\Software\Microsoft\InetStp@MajorVersion)'=='7'" / -->
 		<CallTarget Targets="Test" />
@@ -49,7 +49,7 @@
 			/>
 	</Target>
 	
-	<Target Name="Versioning">
+	<Target Name="Versioning" Condition="'$(Versioning)'=='Subversion'">
 		<MSBuild.Community.Tasks.Subversion.SvnVersion LocalPath=".">
 			<Output TaskParameter="Revision" PropertyName="Revision" />
 		</MSBuild.Community.Tasks.Subversion.SvnVersion>
@@ -132,7 +132,7 @@
 		<ConsoleApplicationsPath>$(MSBuildProjectDirectory)\src\ConsoleApplications</ConsoleApplicationsPath>
 	</PropertyGroup>
 	
-	<Target Name="Test">
+	<Target Name="Test" Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' ">
 		<RemoveDir
 			Directories="$(TestResultsDirectory)"
 			Condition="Exists('$(TestResultsDirectory)')"
@@ -245,7 +245,7 @@
 		<TroveDirectory>$(MSBuildProjectDirectory)\lib\trove\Framework\$(TargetFrameworkVersion)</TroveDirectory>
 	</PropertyGroup>
 	
-	<Target Name="Trove">
+	<Target Name="Trove" Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' ">
 		<Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.dll"
 			  DestinationFolder="$(TroveDirectory)"
 			  OverwriteReadOnlyFiles="true" />
@@ -263,7 +263,7 @@
 			  OverwriteReadOnlyFiles="true" />
 	</Target>
 	
-	<Target Name="Zip">
+	<Target Name="Zip" Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' ">
 		<CallTarget Targets="Create Zip Folder" />
 		<CallTarget Targets="Zip Source" />
 		<CallTarget Targets="Zip HTTP Client" />
