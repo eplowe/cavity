@@ -1,5 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Conditional" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="Conditional">
+    <CallTarget Targets="Build" Condition=" '$(TargetFrameworkVersion)' == 'v3.5' " />
+    <CallTarget Targets="Build" Condition=" '$(TargetFrameworkVersion)' == 'v4.0' " />
+  </Target>
   <PropertyGroup>
     <ProjectGuid>{874C73B7-5FEE-4726-BCA1-344B75569B2C}</ProjectGuid>
     <AssemblyName>Example.Unity.Console</AssemblyName>
