@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<Choose>
-		<When Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' ">
+		<When Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 			<PropertyGroup>
 				<ProjectGuid>{7DD77C51-A1D5-486A-948A-20AA80C4D55E}</ProjectGuid>
 				<AssemblyName>Cavity.ServiceLocation.CastleWindsor.Facts</AssemblyName>

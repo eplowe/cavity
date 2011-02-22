@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<Choose>
-		<When Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' ">
+		<When Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 			<PropertyGroup>
 				<ProjectGuid>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</ProjectGuid>
 				<AssemblyName>Example</AssemblyName>
