@@ -223,11 +223,11 @@
         [Fact]
         public void op_Add_AlphaDecimal()
         {
+            AlphaDecimal one = 1;
             AlphaDecimal two = 2;
 
             AlphaDecimal expected = 3;
-            AlphaDecimal actual = 1;
-            actual.Add(two);
+            var actual = one.Add(two);
 
             Assert.Equal(expected, actual);
         }
@@ -300,10 +300,10 @@
         [Fact]
         public void op_Decrement()
         {
-            AlphaDecimal actual = 2;
+            AlphaDecimal two = 2;
 
             AlphaDecimal expected = 1;
-            actual.Decrement();
+            var actual = two.Decrement();
 
             Assert.Equal(expected, actual);
         }
@@ -312,10 +312,10 @@
         public void op_Divide_AlphaDecimal()
         {
             AlphaDecimal two = 2;
+            AlphaDecimal six = 6;
 
             AlphaDecimal expected = 3;
-            AlphaDecimal actual = 6;
-            actual.Divide(two);
+            var actual = six.Divide(two);
 
             Assert.Equal(expected, actual);
         }
@@ -480,10 +480,10 @@
         [Fact]
         public void op_Increment()
         {
-            AlphaDecimal actual = 1;
+            AlphaDecimal one = 1;
 
             AlphaDecimal expected = 2;
-            actual.Increment();
+            var actual = one.Increment();
 
             Assert.Equal(expected, actual);
         }
@@ -503,11 +503,11 @@
         [Fact]
         public void op_Multiply_AlphaDecimal()
         {
+            AlphaDecimal two = 2;
             AlphaDecimal six = 6;
 
             AlphaDecimal expected = 12;
-            AlphaDecimal actual = 2;
-            actual.Multiply(six);
+            var actual = two.Multiply(six);
 
             Assert.Equal(expected, actual);
         }
@@ -522,10 +522,10 @@
         public void op_Subtract_AlphaDecimal()
         {
             AlphaDecimal one = 1;
+            AlphaDecimal three = 3;
 
             AlphaDecimal expected = 2;
-            AlphaDecimal actual = 3;
-            actual.Subtract(one);
+            var actual = three.Subtract(one);
 
             Assert.Equal(expected, actual);
         }
@@ -827,24 +827,6 @@
 
             AlphaDecimal value = -1;
             var actual = value.Abs;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void prop_MaxValue()
-        {
-            AlphaDecimal expected = long.MaxValue;
-            var actual = AlphaDecimal.MaxValue;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void prop_MinValue()
-        {
-            AlphaDecimal expected = long.MinValue;
-            var actual = AlphaDecimal.MinValue;
 
             Assert.Equal(expected, actual);
         }
