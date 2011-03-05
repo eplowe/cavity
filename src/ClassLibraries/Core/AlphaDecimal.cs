@@ -411,41 +411,9 @@
 
 #if NET20 || NET35
         private static long Parse(string expression)
-        {
-            if (null == expression)
-            {
-                throw new ArgumentNullException("expression");
-            }
-
-            if (0 == expression.Length)
-            {
-                throw new ArgumentOutOfRangeException("expression");
-            }
-
-            long value = 0;
-            var radix = 0;
-
-            var negative = false;
-            if (expression.StartsWith("-", StringComparison.OrdinalIgnoreCase))
-            {
-                negative = true;
-                expression = expression.Substring(1);
-            }
-
-            for (var i = expression.Length - 1; i > -1; i--)
-            {
-                if (!Chars.Contains(expression[i].ToString()))
-                {
-                    throw new FormatException("A base-36 string can only contain characters in the range [0-9] and [a-z].");
-                }
-
-                value += Chars.IndexOf(expression[i]) * _powers[radix++];
-            }
-
-            return negative ? (0 - value) : value;
-        }
 #else
         private static BigInteger Parse(string expression)
+#endif
         {
             if (null == expression)
             {
@@ -457,7 +425,6 @@
                 throw new ArgumentOutOfRangeException("expression");
             }
 
-            BigInteger value = 0;
             var radix = 0;
 
             var negative = false;
@@ -467,7 +434,11 @@
                 expression = expression.Substring(1);
             }
 
-            var powers = new List<BigInteger>()
+#if NET20 || NET35
+            long value = 0;
+#else
+            BigInteger value = 0;
+            var powers = new List<BigInteger>
             {
                 1,
                 36,
@@ -490,6 +461,7 @@
                     powers.Add(powers.Last() * 36);
                 }
             }
+#endif
 
             for (var i = expression.Length - 1; i > -1; i--)
             {
@@ -498,11 +470,14 @@
                     throw new FormatException("A base-36 string can only contain characters in the range [0-9] and [a-z].");
                 }
 
+#if NET20 || NET35
+                value += Chars.IndexOf(expression[i]) * _powers[radix++];
+#else
                 value += Chars.IndexOf(expression[i]) * powers[radix++];
+#endif
             }
 
             return negative ? (0 - value) : value;
         }
-#endif
     }
 }
