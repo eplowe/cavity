@@ -75,7 +75,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web Applications", "Web App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Client.Server", "WebApplications\Http.Client.Server\Http.Client.Server.csproj", "{49BD6C0E-5494-41B0-B4EC-6E7AA4C7ACF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Client.Server.Tests", "ClassLibraries\Http.Client.Server.Tests\Http.Client.Server.Tests.csproj", "{513E2CF7-8C8E-4321-84BD-5663AE3F58C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Client.Server.Tests", "WebApplications\Http.Client.Server.Tests\Http.Client.Server.Tests.csproj", "{513E2CF7-8C8E-4321-84BD-5663AE3F58C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindowsServices", "WindowsServices", "{97BD7A1B-B62D-4FC5-B94E-A78533D905BA}"
 EndProject
