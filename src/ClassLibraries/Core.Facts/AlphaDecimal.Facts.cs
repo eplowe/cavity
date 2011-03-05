@@ -179,6 +179,7 @@
             Assert.Equal(expected, actual);
         }
 #endif
+
         [Fact]
         public void opImplicit_long_AlphaDecimal()
         {
