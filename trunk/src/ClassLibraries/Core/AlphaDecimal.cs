@@ -3,7 +3,9 @@
     using System;
     using System.Runtime.Serialization;
     using System.Security.Cryptography;
+#if NET20 || NET35
     using System.Security.Permissions;
+#endif
 
     /// <summary>
     /// Represents an integer with a radix of 36.
@@ -50,22 +52,6 @@
             Value = Parse(info.GetString("_value"));
         }
 
-        public static AlphaDecimal MaxValue
-        {
-            get
-            {
-                return long.MaxValue;
-            }
-        }
-
-        public static AlphaDecimal MinValue
-        {
-            get
-            {
-                return long.MinValue;
-            }
-        }
-
         public static AlphaDecimal Zero
         {
             get
@@ -87,18 +73,18 @@
         public static AlphaDecimal operator +(AlphaDecimal operand1,
                                               AlphaDecimal operand2)
         {
-            return operand1.Value + operand2.Value;
+            return operand1.Add(operand2);
         }
 
         public static AlphaDecimal operator --(AlphaDecimal operand)
         {
-            return operand.Value - 1;
+            return operand.Decrement();
         }
 
         public static AlphaDecimal operator /(AlphaDecimal operand1,
                                               AlphaDecimal operand2)
         {
-            return operand1.Value / operand2.Value;
+            return operand1.Divide(operand2);
         }
 
         public static bool operator ==(AlphaDecimal obj,
@@ -130,7 +116,7 @@
 
         public static AlphaDecimal operator ++(AlphaDecimal operand)
         {
-            return operand.Value + 1;
+            return operand.Increment();
         }
 
         public static bool operator !=(AlphaDecimal obj,
@@ -148,19 +134,19 @@
         public static AlphaDecimal operator %(AlphaDecimal operand1,
                                               AlphaDecimal operand2)
         {
-            return operand1.Value % operand2.Value;
+            return operand1.Mod(operand2);
         }
 
         public static AlphaDecimal operator *(AlphaDecimal operand1,
                                               AlphaDecimal operand2)
         {
-            return operand1.Value * operand2.Value;
+            return operand1.Multiply(operand2);
         }
 
         public static AlphaDecimal operator -(AlphaDecimal operand1,
                                               AlphaDecimal operand2)
         {
-            return operand1.Value - operand2.Value;
+            return operand1.Subtract(operand2);
         }
 
         public static long Compare(AlphaDecimal operand1,
@@ -182,19 +168,19 @@
             return BitConverter.ToInt64(buffer, 0);
         }
 
-        public void Add(AlphaDecimal value)
+        public AlphaDecimal Add(AlphaDecimal value)
         {
-            Value += value;
+            return Value + value.Value;
         }
 
-        public void Decrement()
+        public AlphaDecimal Decrement()
         {
-            Value--;
+            return Value - 1;
         }
 
-        public void Divide(AlphaDecimal value)
+        public AlphaDecimal Divide(AlphaDecimal value)
         {
-            Value /= value;
+            return Value / value.Value;
         }
 
         public override bool Equals(object obj)
@@ -207,24 +193,24 @@
             return Value.GetHashCode();
         }
 
-        public void Increment()
+        public AlphaDecimal Increment()
         {
-            Value++;
+            return Value + 1;
         }
 
         public AlphaDecimal Mod(AlphaDecimal value)
         {
-            return this % value;
+            return Value % value.Value;
         }
 
-        public void Multiply(AlphaDecimal value)
+        public AlphaDecimal Multiply(AlphaDecimal value)
         {
-            Value *= value;
+            return Value * value.Value;
         }
 
-        public void Subtract(AlphaDecimal value)
+        public AlphaDecimal Subtract(AlphaDecimal value)
         {
-            Value -= value;
+            return Value - value.Value;
         }
 
         public override string ToString()
