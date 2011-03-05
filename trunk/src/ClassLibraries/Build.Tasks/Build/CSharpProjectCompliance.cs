@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Build
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Xml;
@@ -13,29 +14,34 @@
     public sealed class CSharpProjectCompliance : Task
     {
         [Required]
-        public ITaskItem[] Paths { get; set; }
+        public ITaskItem[] Projects { get; set; }
+
+        [Required]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Justification = "Following the Microsoft naming convention.")]
+        public string XPath { get; set; }
 
         public override bool Execute()
         {
-            return Execute(Paths);
+            Log.LogMessage(MessageImportance.Normal, Resources.CSharpProjectCompliance_Execute_Message, XPath);
+            return Execute(Projects);
         }
 
-        private bool Execute(IEnumerable<ITaskItem> paths)
+        private bool Execute(IEnumerable<ITaskItem> projects)
         {
-            if (null == paths)
+            if (null == projects)
             {
                 Log.LogError(Resources.CSharpProjectCompliance_PathsNull_Message);
                 return false;
             }
 
-            if (0 == paths.Count())
+            if (0 == projects.Count())
             {
                 Log.LogWarning(Resources.CSharpProjectCompliance_PathsEmpty_Message);
                 return false;
             }
 
             var result = false;
-            if (0 == paths.Where(path => !Execute(path)).Count())
+            if (0 == projects.Where(path => !Execute(path)).Count())
             {
                 result = true;
             }
@@ -50,7 +56,6 @@
 
         private bool Execute(FileSystemInfo file)
         {
-            Log.LogMessage(MessageImportance.Normal, Resources.CSharpProjectCompliance_File_Message, file.FullName);
             var xml = new XmlDocument();
             xml.Load(file.FullName);
 
@@ -83,42 +88,33 @@
                              XPathNavigator navigator,
                              IXmlNamespaceResolver namespaces)
         {
-            var result = true;
+            ////var result = true;
 
-            foreach (var xpath in new[]
+            ////foreach (var xpath in new[]
+            ////{
+            ////    "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])",
+            ////    "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:TreatWarningsAsErrors[text()='true'])])",
+            ////    "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:RunCodeAnalysis[text()='true'])])",
+            ////    "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:CodeAnalysisRuleSet[text()])])",
+            ////    "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:ErrorReport[text()='prompt'])])",
+            ////    "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:SignAssembly[text()])",
+            ////    "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:AssemblyOriginatorKeyFile[text()])",
+            ////    "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:AppDesignerFolder[text()='Properties'])",
+            ////    "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:StyleCopTreatErrorsAsWarnings[text()='false'])",
+            ////    @"1=count(/b:Project/b:Import[@Project='$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets'])",
+            ////    @"1=count(/b:Project/b:ItemGroup/b:Compile[@Include='Properties\AssemblyInfo.cs'])",
+            ////    @"1=count(/b:Project/b:ItemGroup/b:Compile[@Include='..\..\Build.cs']/b:Link[text()='Properties\Build.cs'])",
+            ////    @"1=count(/b:Project/b:ItemGroup/b:CodeAnalysisDictionary[@Include]/b:Link[text()])"
+            ////})
+            ////{
+            ////    if (!Execute(file, navigator, namespaces, xpath))
+            ////    {
+            ////        result = false;
+            ////    }
+            ////}
+            if (!navigator.Evaluate<bool>(XPath, namespaces))
             {
-                "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])",
-                "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:TreatWarningsAsErrors[text()='true'])])",
-                "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:RunCodeAnalysis[text()='true'])])",
-                "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:CodeAnalysisRuleSet[text()])])",
-                "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:ErrorReport[text()='prompt'])])",
-                "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:SignAssembly[text()])",
-                "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:AssemblyOriginatorKeyFile[text()])",
-                "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:AppDesignerFolder[text()='Properties'])",
-                "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:StyleCopTreatErrorsAsWarnings[text()='false'])",
-                @"1=count(/b:Project/b:Import[@Project='$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets'])",
-                @"1=count(/b:Project/b:ItemGroup/b:Compile[@Include='Properties\AssemblyInfo.cs'])",
-                @"1=count(/b:Project/b:ItemGroup/b:Compile[@Include='..\..\Build.cs']/b:Link[text()='Properties\Build.cs'])",
-                @"1=count(/b:Project/b:ItemGroup/b:CodeAnalysisDictionary[@Include]/b:Link[text()])"
-            })
-            {
-                if (!Execute(file, navigator, namespaces, xpath))
-                {
-                    result = false;
-                }
-            }
-
-            return result;
-        }
-
-        private bool Execute(FileSystemInfo file,
-                             XPathNavigator navigator,
-                             IXmlNamespaceResolver namespaces,
-                             string xpath)
-        {
-            if (!navigator.Evaluate<bool>(xpath, namespaces))
-            {
-                Log.LogError(Resources.CSharpProjectCompliance_XPath_Message, file, xpath);
+                Log.LogError(Resources.CSharpProjectCompliance_XPath_Message, file, XPath);
                 return false;
             }
 
