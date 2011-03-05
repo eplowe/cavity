@@ -3,6 +3,9 @@
     using System;
     using System.Globalization;
     using System.IO;
+#if NET40
+    using System.Numerics;
+#endif
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Xml;
@@ -132,6 +135,50 @@
             Assert.Equal(expected, actual);
         }
 
+#if NET40
+        [Fact]
+        public void opImplicit_AlphaDecimal_BigInteger()
+        {
+            var value = BigInteger.Zero;
+
+            var expected = new AlphaDecimal();
+            AlphaDecimal actual = value;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opImplicit_AlphaDecimal_Guid()
+        {
+            var value = new Guid("f71ae311-462f-4f65-a704-8eb9fe49a679");
+
+            AlphaDecimal expected = new BigInteger(value.ToByteArray());
+            AlphaDecimal actual = value;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opImplicit_AlphaDecimal_GuidEmpty()
+        {
+            var expected = new AlphaDecimal();
+            AlphaDecimal actual = Guid.Empty;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opImplicit_BigInteger_AlphaDecimal()
+        {
+            var expected = new BigInteger(123);
+
+            AlphaDecimal value = expected;
+
+            BigInteger actual = value;
+
+            Assert.Equal(expected, actual);
+        }
+#endif
         [Fact]
         public void opImplicit_long_AlphaDecimal()
         {
@@ -414,6 +461,19 @@
 
             Assert.Equal(expected, actual);
         }
+
+#if NET40
+        [Fact]
+        public void op_FromString_stringBig()
+        {
+            var value = new Guid("f71ae311-462f-4f65-a704-8eb9fe49a679");
+
+            AlphaDecimal expected = new BigInteger(value.ToByteArray());
+            AlphaDecimal actual = AlphaDecimal.FromString("779q4dambvi6xhpfak8ne5ekx");
+
+            Assert.Equal(expected, actual);
+        }
+#endif
 
         [Fact]
         public void op_FromString_stringNull()
