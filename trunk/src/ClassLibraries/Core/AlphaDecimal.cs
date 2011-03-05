@@ -199,7 +199,7 @@
         }
 #else
         public static BigInteger Compare(AlphaDecimal operand1,
-                                   AlphaDecimal operand2)
+                                         AlphaDecimal operand2)
         {
             return operand1 - operand2;
         }
@@ -398,6 +398,7 @@
 #if !NET40
         [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.LinkDemand, Flags = System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter)]
 #endif
+
         void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {
