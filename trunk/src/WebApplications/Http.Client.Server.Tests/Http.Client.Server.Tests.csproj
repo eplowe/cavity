@@ -103,19 +103,19 @@
 				</None>
 			</ItemGroup>
 			<ItemGroup>
-				<ProjectReference Include="..\Core\Core.csproj">
+				<ProjectReference Include="..\..\ClassLibraries\Core\Core.csproj">
 					<Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
 					<Name>Core</Name>
 				</ProjectReference>
-				<ProjectReference Include="..\Http.Client\Http.Client.csproj">
+				<ProjectReference Include="..\..\ClassLibraries\Http.Client\Http.Client.csproj">
 					<Project>{C0BA6034-C107-4295-B494-BA6163C8B6E4}</Project>
 					<Name>Http.Client</Name>
 				</ProjectReference>
-				<ProjectReference Include="..\ServiceLocation.CastleWindsor\ServiceLocation.CastleWindsor.csproj">
+				<ProjectReference Include="..\..\ClassLibraries\ServiceLocation.CastleWindsor\ServiceLocation.CastleWindsor.csproj">
 					<Project>{DAA78F38-1405-4971-AB8D-1D42FD41B848}</Project>
 					<Name>ServiceLocation.CastleWindsor</Name>
 				</ProjectReference>
-				<ProjectReference Include="..\ServiceLocation\ServiceLocation.csproj">
+				<ProjectReference Include="..\..\ClassLibraries\ServiceLocation\ServiceLocation.csproj">
 					<Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
 					<Name>ServiceLocation</Name>
 				</ProjectReference>
