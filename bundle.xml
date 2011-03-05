@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Run"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         ToolsVersion="4.0">
+
+  <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v2.0\MSBuild.Community.Tasks.Targets" />
+  <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v3.5\MSBuild.ExtensionPack.tasks" />
+
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)'==''">Release</Configuration><!--
+    <Version Condition="'$(Version)'==''">1.0.0</Version>
+    <Revision>0</Revision>-->
+    <BuildName>$(Configuration) $(TargetFrameworkVersion)</BuildName>
+  </PropertyGroup>
+
+  <Target Name="Run">
+    <!--<CallTarget Targets="Zip" />-->
+    <CallTarget Targets="Trove" />
+  </Target>
+
+  <!--<PropertyGroup>
+    <TestResultsDirectory>$(MSBuildProjectDirectory)\TestResults</TestResultsDirectory>
+    <ConsoleApplicationsPath>$(MSBuildProjectDirectory)\src\ConsoleApplications</ConsoleApplicationsPath>
+  </PropertyGroup>-->
+
+  <PropertyGroup>
+    <ClassLibrariesPath>$(MSBuildProjectDirectory)\src\ClassLibraries</ClassLibrariesPath>
+    <PublishDirectory>$(MSBuildProjectDirectory)\Publish</PublishDirectory>
+    <ZipDirectory>$(MSBuildProjectDirectory)\zip</ZipDirectory>
+    <TroveDirectory>$(MSBuildProjectDirectory)\lib\trove\Framework\$(TargetFrameworkVersion)</TroveDirectory>
+  </PropertyGroup>
+
+  <Target Name="Trove"
+          Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' ">
+    <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.dll"
+          DestinationFolder="$(TroveDirectory)"
+          OverwriteReadOnlyFiles="true" />
+    <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.Targets"
+          DestinationFolder="$(TroveDirectory)"
+          OverwriteReadOnlyFiles="true" />
+    <Copy SourceFiles="$(ClassLibrariesPath)\Core\bin\$(BuildName)\Cavity.Core.dll"
+          DestinationFolder="$(TroveDirectory)"
+          OverwriteReadOnlyFiles="true" />
+    <Copy SourceFiles="$(ClassLibrariesPath)\Domain\bin\$(BuildName)\Cavity.Domain.dll"
+          DestinationFolder="$(TroveDirectory)"
+          OverwriteReadOnlyFiles="true" />
+    <Copy SourceFiles="$(ClassLibrariesPath)\Testing.Unit\bin\$(BuildName)\Cavity.Testing.Unit.dll"
+          DestinationFolder="$(TroveDirectory)"
+          OverwriteReadOnlyFiles="true" />
+  </Target>
+
+  <Target Name="Zip"
+          Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' ">
+    <CallTarget Targets="Create Zip Folder" />
+    <CallTarget Targets="Zip Source" />
+    <CallTarget Targets="Zip HTTP Client" />
+    <CallTarget Targets="Zip Unit Testing" />
+    <CallTarget Targets="Zip Autofac Package" />
+    <CallTarget Targets="Zip Castle Windsor Package" />
+    <CallTarget Targets="Zip StructureMap Package" />
+    <CallTarget Targets="Zip Unity Package" />
+    <CallTarget Targets="Delete Publish Folder" />
+  </Target>
+
+  <Target Name="Create Zip Folder">
+    <MakeDir Directories="$(ZipDirectory)"
+             Condition="!Exists('$(ZipDirectory)')" />
+  </Target>
+
+  <Target Name="Zip Source">
+    <MakeDir Directories="$(PublishDirectory)\Source"
+             Condition="!Exists('$(PublishDirectory)\Source')" />
+    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(MSBuildProjectDirectory)\src"
+                                      DestinationFolder="$(PublishDirectory)\Source"
+                                      Mirror="true"
+                                      ExcludeFolders=".svn;_svn;obj;bin;PrecompiledWeb"
+                                      ExcludeFiles="*.suo;*.csproj.user;*.vs10x;StyleCop.Cache"
+                                      NoJobHeader="true" />
+    <Delete Files="$(ZipDirectory)\$(Version).$(Revision)\Cavity Source.zip" />
+    <ItemGroup>
+      <ZipSourceFiles Include="$(PublishDirectory)\Source\**\*.*" />
+    </ItemGroup>
+    <MSBuild.Community.Tasks.Zip Files="@(ZipSourceFiles)"
+                                 WorkingDirectory="$(PublishDirectory)\Source"
+                                 ZipFileName="$(ZipDirectory)\$(Version).$(Revision)\Cavity Source.zip"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(PublishDirectory)\Source"
+               Condition="Exists('$(PublishDirectory)\Source')" />
+  </Target>
+
+  <Target Name="Zip HTTP Client">
+    <RemoveDir Directories="$(PublishDirectory)\Http.Client"
+               Condition="Exists('$(PublishDirectory)\Http.Client')" />
+    <MakeDir Directories="$(PublishDirectory)\Http.Client"
+             Condition="!Exists('$(PublishDirectory)\Http.Client')" />
+    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(ClassLibrariesPath)\Http.Client\bin\$(BuildName)"
+                                      DestinationFolder="$(PublishDirectory)\Http.Client"
+                                      Mirror="true"
+                                      ExcludeFolders=".svn;_svn;obj"
+                                      ExcludeFiles="*.pdb;*.xml;*.stylecop;*CodeAnalysis*"
+                                      NoJobHeader="true" />
+    <Delete Files="$(ZipDirectory)\$(Version).$(Revision)\$(BuildName)\Cavity HTTP Client.zip" />
+    <ItemGroup>
+      <ZipHttpClientFiles Include="$(PublishDirectory)\Http.Client\**\*.*" />
+    </ItemGroup>
+    <MSBuild.Community.Tasks.Zip Files="@(ZipHttpClientFiles)"
+                                 WorkingDirectory="$(PublishDirectory)\Http.Client"
+                                 ZipFileName="$(ZipDirectory)\$(Version).$(Revision)\$(BuildName)\Cavity HTTP Client.zip"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(PublishDirectory)\Http.Client"
+               Condition="Exists('$(PublishDirectory)\Http.Client')" />
+  </Target>
+
+  <Target Name="Zip Unit Testing">
+    <RemoveDir Directories="$(PublishDirectory)\Testing.Unit"
+               Condition="Exists('$(PublishDirectory)\Testing.Unit')" />
+    <MakeDir Directories="$(PublishDirectory)\Testing.Unit"
+             Condition="!Exists('$(PublishDirectory)\Testing.Unit')" />
+    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(ClassLibrariesPath)\Testing.Unit\bin\$(BuildName)"
+                                      DestinationFolder="$(PublishDirectory)\UnitTesting"
+                                      Mirror="true"
+                                      ExcludeFolders=".svn;_svn;obj"
+                                      ExcludeFiles="*.pdb;*.xml;*.stylecop;*CodeAnalysis*"
+                                      NoJobHeader="true" />
+    <Delete Files="$(ZipDirectory)\$(Version).$(Revision)\$(BuildName)\Cavity Unit Testing.zip" />
+    <ItemGroup>
+      <ZipUnitTestingFiles Include="$(PublishDirectory)\Testing.Unit\**\*.*" />
+    </ItemGroup>
+    <MSBuild.Community.Tasks.Zip Files="@(ZipUnitTestingFiles)"
+                                 WorkingDirectory="$(PublishDirectory)\Testing.Unit"
+                                 ZipFileName="$(ZipDirectory)\$(Version).$(Revision)\$(BuildName)\Cavity Unit Testing.zip"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(PublishDirectory)\Testing.Unit"
+               Condition="Exists('$(PublishDirectory)\Testing.Unit')" />
+  </Target>
+
+  <Target Name="Zip Autofac Package">
+    <MakeDir Directories="$(PublishDirectory)\Autofac"
+             Condition="!Exists('$(PublishDirectory)\Autofac')" />
+    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(ConsoleApplicationsPath)\Example.Autofac.Console\bin\$(BuildName)"
+                                      DestinationFolder="$(PublishDirectory)\Autofac"
+                                      Mirror="true"
+                                      ExcludeFolders=""
+                                      ExcludeFiles="*.pdb;*.exe;*.xml;*.lastcodeanalysissucceeded;Example.dll"
+                                      NoJobHeader="true" />
+    <Exec Command="RENAME Example.Autofac.Console.exe.config app.config"
+          WorkingDirectory="$(PublishDirectory)\Autofac" />
+    <MSBuild.Community.Tasks.XmlUpdate XmlFileName="$(PublishDirectory)\Autofac\app.config"
+                                       XPath="/configuration/startup"
+                                       Delete="true" />
+    <MSBuild.Community.Tasks.XmlUpdate XmlFileName="$(PublishDirectory)\Autofac\autofac.config"
+                                       XPath="/autofac/@defaultAssembly"
+                                       Value="" />
+    <MSBuild.Community.Tasks.XmlUpdate XmlFileName="$(PublishDirectory)\Autofac\autofac.config"
+                                       XPath="/autofac/components/component"
+                                       Delete="true" />
+    <Delete Files="$(ZipDirectory)\$(Version).$(Revision)\$(BuildName)\Cavity Service Location (Autofac).zip" />
+    <ItemGroup>
+      <ZipAutofacFiles Include="$(PublishDirectory)\Autofac\**\*.*" />
+    </ItemGroup>
+    <MSBuild.Community.Tasks.Zip Files="@(ZipAutofacFiles)"
+                                 WorkingDirectory="$(PublishDirectory)\Autofac"
+                                 ZipFileName="$(ZipDirectory)\$(Version).$(Revision)\$(BuildName)\Cavity Service Location (Autofac).zip"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(PublishDirectory)\Autofac"
+               Condition="Exists('$(PublishDirectory)\Autofac')" />
+  </Target>
+
+  <Target Name="Zip Castle Windsor Package">
+    <MakeDir Directories="$(PublishDirectory)\CastleWindsor"
+             Condition="!Exists('$(PublishDirectory)\CastleWindsor')" />
+    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(ConsoleApplicationsPath)\Example.CastleWindsor.Console\bin\$(BuildName)"
+                                      DestinationFolder="$(PublishDirectory)\CastleWindsor"
+                                      Mirror="true"
+                                      ExcludeFolders=""
+                                      ExcludeFiles="*.pdb;*.exe;*.xml;*.lastcodeanalysissucceeded;Example.dll"
+                                      NoJobHeader="true" />
+    <Exec Command="RENAME Example.CastleWindsor.Console.exe.config app.config"
+          WorkingDirectory="$(PublishDirectory)\CastleWindsor" />
+    <MSBuild.Community.Tasks.XmlUpdate XmlFileName="$(PublishDirectory)\CastleWindsor\app.config"
+                                       XPath="/configuration/startup"
+                                       Delete="true" />
+    <MSBuild.Community.Tasks.XmlUpdate XmlFileName="$(PublishDirectory)\CastleWindsor\castle.config"
+                                       XPath="/castle/components/component"
+                                       Delete="true" />
+    <Delete Files="$(ZipDirectory)\$(Version).$(Revision)\$(BuildName)\Cavity Service Location (Castle Windsor).zip" />
+    <ItemGroup>
+      <ZipCastleWindsorFiles Include="$(PublishDirectory)\CastleWindsor\**\*.*" />
+    </ItemGroup>
+    <MSBuild.Community.Tasks.Zip Files="@(ZipCastleWindsorFiles)"
+                                 WorkingDirectory="$(PublishDirectory)\CastleWindsor"
+                                 ZipFileName="$(ZipDirectory)\$(Version).$(Revision)\$(BuildName)\Cavity Service Location (Castle Windsor).zip"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(PublishDirectory)\CastleWindsor"
+               Condition="Exists('$(PublishDirectory)\CastleWindsor')" />
+  </Target>
+
+  <Target Name="Zip StructureMap Package">
+    <MakeDir Directories="$(PublishDirectory)\StructureMap"
+             Condition="!Exists('$(PublishDirectory)\StructureMap')" />
+    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(ConsoleApplicationsPath)\Example.StructureMap.Console\bin\$(BuildName)"
+                                      DestinationFolder="$(PublishDirectory)\StructureMap"
+                                      Mirror="true"
+                                      ExcludeFolders=""
+                                      ExcludeFiles="*.pdb;*.exe;*.xml;*.lastcodeanalysissucceeded;Example.dll"
+                                      NoJobHeader="true" />
+    <Exec Command="RENAME Example.StructureMap.Console.exe.config app.config"
+          WorkingDirectory="$(PublishDirectory)\StructureMap" />
+    <MSBuild.Community.Tasks.XmlUpdate XmlFileName="$(PublishDirectory)\StructureMap\app.config"
+                                       XPath="/configuration/startup"
+                                       Delete="true" />
+    <MSBuild.Community.Tasks.XmlUpdate XmlFileName="$(PublishDirectory)\StructureMap\StructureMap.config"
+                                       XPath="/StructureMap/DefaultInstance"
+                                       Delete="true" />
+    <Delete Files="$(ZipDirectory)\$(Version).$(Revision)\$(BuildName)\Cavity Service Location (StructureMap).zip" />
+    <ItemGroup>
+      <ZipStructureMapFiles Include="$(PublishDirectory)\StructureMap\**\*.*" />
+    </ItemGroup>
+    <MSBuild.Community.Tasks.Zip Files="@(ZipStructureMapFiles)"
+                                 WorkingDirectory="$(PublishDirectory)\StructureMap"
+                                 ZipFileName="$(ZipDirectory)\$(Version).$(Revision)\$(BuildName)\Cavity Service Location (StructureMap).zip"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(PublishDirectory)\StructureMap"
+               Condition="Exists('$(PublishDirectory)\StructureMap')" />
+  </Target>
+
+  <Target Name="Zip Unity Package">
+    <MakeDir Directories="$(PublishDirectory)\Unity"
+             Condition="!Exists('$(PublishDirectory)\Unity')" />
+    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(ConsoleApplicationsPath)\Example.Unity.Console\bin\$(BuildName)"
+                                      DestinationFolder="$(PublishDirectory)\Unity"
+                                      Mirror="true"
+                                      ExcludeFolders=""
+                                      ExcludeFiles="*.pdb;*.exe;*.xml;*.lastcodeanalysissucceeded;Example.dll"
+                                      NoJobHeader="true" />
+    <Exec Command="RENAME Example.Unity.Console.exe.config app.config"
+          WorkingDirectory="$(PublishDirectory)\Unity" />
+    <MSBuild.Community.Tasks.XmlUpdate XmlFileName="$(PublishDirectory)\Unity\app.config"
+                                       XPath="/configuration/startup"
+                                       Delete="true" />
+    <MSBuild.Community.Tasks.XmlUpdate XmlFileName="$(PublishDirectory)\Unity\unity.config"
+                                       XPath="/unity/typeAliases/typeAlias[@alias='ITest']"
+                                       Delete="true" />
+    <MSBuild.Community.Tasks.XmlUpdate XmlFileName="$(PublishDirectory)\Unity\unity.config"
+                                       XPath="/unity/typeAliases/typeAlias[@alias='Tester']"
+                                       Delete="true" />
+    <MSBuild.Community.Tasks.XmlUpdate XmlFileName="$(PublishDirectory)\Unity\unity.config"
+                                       XPath="/unity/containers/container"
+                                       Delete="true" />
+    <Delete Files="$(ZipDirectory)\$(Version).$(Revision)\$(BuildName)\Cavity Service Location (Unity).zip" />
+    <ItemGroup>
+      <ZipUnityFiles Include="$(PublishDirectory)\Unity\**\*.*" />
+    </ItemGroup>
+    <MSBuild.Community.Tasks.Zip Files="@(ZipUnityFiles)"
+                                 WorkingDirectory="$(PublishDirectory)\Unity"
+                                 ZipFileName="$(ZipDirectory)\$(Version).$(Revision)\$(BuildName)\Cavity Service Location (Unity).zip"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(PublishDirectory)\Unity"
+               Condition="Exists('$(PublishDirectory)\Unity')" />
+  </Target>
+
+  <Target Name="Delete Publish Folder">
+    <RemoveDir Directories="$(PublishDirectory)"
+               Condition="Exists('$(PublishDirectory)')" />
+  </Target>
+
+</Project>

@@ -1,21 +1,43 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{BDC54AD6-BF84-4E61-AFF4-504E978E2F14}"
+	ProjectSection(SolutionItems) = preProject
+		..\build.xml = ..\build.xml
+		..\bundle.xml = ..\bundle.xml
+	EndProjectSection
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Class Libraries", "Class Libraries", "{8953A4A0-B92A-4C85-A690-F9C9248DE52F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build.Tasks", "ClassLibraries\Build.Tasks\Build.Tasks.csproj", "{0FF43960-7762-46A3-BA82-DBA2161DBAC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build.Tasks.Facts", "ClassLibraries\Build.Tasks.Facts\Build.Tasks.Facts.csproj", "{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "ClassLibraries\Core\Core.csproj", "{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Facts", "ClassLibraries\Core.Facts\Core.Facts.csproj", "{E912C668-ED80-471E-9E57-BDB10394E47B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "ClassLibraries\Domain\Domain.csproj", "{2494FF0C-7ABE-4F07-A66B-D209B061CD58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Facts", "ClassLibraries\Domain.Facts\Domain.Facts.csproj", "{8687E437-6EB9-4EB2-A8D1-A98E2C3971C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "ClassLibraries\Example\Example.csproj", "{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Client", "ClassLibraries\Http.Client\Http.Client.csproj", "{C0BA6034-C107-4295-B494-BA6163C8B6E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Client.Facts", "ClassLibraries\Http.Client.Facts\Http.Client.Facts.csproj", "{0A237283-3525-405E-B571-79D40170C763}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Client.Server.Tests", "ClassLibraries\Http.Client.Server.Tests\Http.Client.Server.Tests.csproj", "{513E2CF7-8C8E-4321-84BD-5663AE3F58C1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation", "ClassLibraries\ServiceLocation\ServiceLocation.csproj", "{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.Facts", "ClassLibraries\ServiceLocation.Facts\ServiceLocation.Facts.csproj", "{9E656B3A-FF1E-4CA4-8E6B-4BD7ADF1809F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement", "ClassLibraries\TaskManagement\TaskManagement.csproj", "{B3D39F6B-980E-4B0F-B58E-BF295A936B2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Facts", "ClassLibraries\TaskManagement.Facts\TaskManagement.Facts.csproj", "{9A604E09-0CC1-4E81-9C4B-137DC35FDE7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Http", "ClassLibraries\Testing.Http\Testing.Http.csproj", "{AC90D9D3-8BF2-4B70-A11C-63893116EFE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Http.Facts", "ClassLibraries\Testing.Http.Facts\Testing.Http.Facts.csproj", "{D51419D9-47CB-480F-9BA1-5DA6585D73C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Unit", "ClassLibraries\Testing.Unit\Testing.Unit.csproj", "{006D53FD-73F1-47F9-B17E-E858B3DC52D8}"
 EndProject
@@ -41,8 +63,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.Unity.Facts
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console Applications", "Console Applications", "{B46E9F9D-F31E-4114-B813-2D8EC1B2FC6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "ClassLibraries\Example\Example.csproj", "{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.CastleWindsor.Console", "ConsoleApplications\Example.CastleWindsor.Console\Example.CastleWindsor.Console.csproj", "{57F749C6-E68D-4E01-B23F-F58E14745FF8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Autofac.Console", "ConsoleApplications\Example.Autofac.Console\Example.Autofac.Console.csproj", "{EEF576C7-FF70-4949-8999-B716C1F7245C}"
@@ -55,25 +75,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web Applications", "Web App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Client.Server", "WebApplications\Http.Client.Server\Http.Client.Server.csproj", "{49BD6C0E-5494-41B0-B4EC-6E7AA4C7ACF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "ClassLibraries\Domain\Domain.csproj", "{2494FF0C-7ABE-4F07-A66B-D209B061CD58}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Facts", "ClassLibraries\Domain.Facts\Domain.Facts.csproj", "{8687E437-6EB9-4EB2-A8D1-A98E2C3971C3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build.Tasks", "ClassLibraries\Build.Tasks\Build.Tasks.csproj", "{0FF43960-7762-46A3-BA82-DBA2161DBAC9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build.Tasks.Facts", "ClassLibraries\Build.Tasks.Facts\Build.Tasks.Facts.csproj", "{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Http", "ClassLibraries\Testing.Http\Testing.Http.csproj", "{AC90D9D3-8BF2-4B70-A11C-63893116EFE1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Http.Facts", "ClassLibraries\Testing.Http.Facts\Testing.Http.Facts.csproj", "{D51419D9-47CB-480F-9BA1-5DA6585D73C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Client.Server.Tests", "ClassLibraries\Http.Client.Server.Tests\Http.Client.Server.Tests.csproj", "{513E2CF7-8C8E-4321-84BD-5663AE3F58C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindowsServices", "WindowsServices", "{97BD7A1B-B62D-4FC5-B94E-A78533D905BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Service", "WindowsServices\TaskManagement.Service\TaskManagement.Service.csproj", "{5033C424-2DB0-4171-82B6-AE08EE0D9FB4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement", "ClassLibraries\TaskManagement\TaskManagement.csproj", "{B3D39F6B-980E-4B0F-B58E-BF295A936B2C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Facts", "ClassLibraries\TaskManagement.Facts\TaskManagement.Facts.csproj", "{9A604E09-0CC1-4E81-9C4B-137DC35FDE7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -414,7 +420,6 @@ Global
 		{E912C668-ED80-471E-9E57-BDB10394E47B} = {8953A4A0-B92A-4C85-A690-F9C9248DE52F}
 		{C0BA6034-C107-4295-B494-BA6163C8B6E4} = {8953A4A0-B92A-4C85-A690-F9C9248DE52F}
 		{0A237283-3525-405E-B571-79D40170C763} = {8953A4A0-B92A-4C85-A690-F9C9248DE52F}
-		{513E2CF7-8C8E-4321-84BD-5663AE3F58C1} = {8953A4A0-B92A-4C85-A690-F9C9248DE52F}
 		{6FE7A292-4EF7-4DA1-95AF-6F03822042E7} = {8953A4A0-B92A-4C85-A690-F9C9248DE52F}
 		{9E656B3A-FF1E-4CA4-8E6B-4BD7ADF1809F} = {8953A4A0-B92A-4C85-A690-F9C9248DE52F}
 		{006D53FD-73F1-47F9-B17E-E858B3DC52D8} = {8953A4A0-B92A-4C85-A690-F9C9248DE52F}
@@ -441,6 +446,7 @@ Global
 		{440ACB41-EA41-4BC4-87BA-FB6498EBD909} = {B46E9F9D-F31E-4114-B813-2D8EC1B2FC6E}
 		{874C73B7-5FEE-4726-BCA1-344B75569B2C} = {B46E9F9D-F31E-4114-B813-2D8EC1B2FC6E}
 		{49BD6C0E-5494-41B0-B4EC-6E7AA4C7ACF2} = {60CB3FFB-0F18-4BCA-8CED-F38C7B2B78B9}
+		{513E2CF7-8C8E-4321-84BD-5663AE3F58C1} = {60CB3FFB-0F18-4BCA-8CED-F38C7B2B78B9}
 		{5033C424-2DB0-4171-82B6-AE08EE0D9FB4} = {97BD7A1B-B62D-4FC5-B94E-A78533D905BA}
 	EndGlobalSection
 EndGlobal
