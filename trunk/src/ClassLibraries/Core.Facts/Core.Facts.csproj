@@ -43,10 +43,10 @@
 				</Reference>
 			</ItemGroup>
 			<ItemGroup>
-				<Compile Include="..\..\Build.cs">
+				<Compile Include="$(SolutionDir)\Build.cs">
 					<Link>Properties\Build.cs</Link>
 				</Compile>
-				<Compile Include="..\..\Cavity.cs">
+				<Compile Include="$(SolutionDir)\Cavity.cs">
 					<Link>Properties\Cavity.cs</Link>
 				</Compile>
 				<Compile Include="AbsoluteUri.Facts.cs"/>
@@ -85,10 +85,10 @@
 				<Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.Facts.cs"/>
 			</ItemGroup>
 			<ItemGroup>
-				<CodeAnalysisDictionary Include="..\..\Cavity.Facts.dictionary">
+				<CodeAnalysisDictionary Include="$(SolutionDir)\Cavity.Facts.dictionary">
 					<Link>Properties\Cavity.Facts.dictionary</Link>
 				</CodeAnalysisDictionary>
-				<None Include="..\..\Cavity.snk">
+				<None Include="$(SolutionDir)\Cavity.snk">
 					<Link>Properties\Cavity.snk</Link>
 				</None>
 				<None Include="app.config">
@@ -113,10 +113,10 @@
 				<Reference Include="System"/>
 			</ItemGroup>
 			<ItemGroup>
-				<Compile Include="..\..\Build.cs">
+				<Compile Include="$(SolutionDir)\Build.cs">
 					<Link>Properties\Build.cs</Link>
 				</Compile>
-				<Compile Include="..\..\Cavity.cs">
+				<Compile Include="$(SolutionDir)\Cavity.cs">
 					<Link>Properties\Cavity.cs</Link>
 				</Compile>
 				<Compile Include="Properties\AssemblyInfo.cs"/>

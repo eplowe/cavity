@@ -26,6 +26,9 @@
   </PropertyGroup>
 
   <Target Name="Trove">
+    <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Compliance"
+          DestinationFolder="$(TroveDirectory)"
+          OverwriteReadOnlyFiles="true"/>
     <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.dll"
           DestinationFolder="$(TroveDirectory)"
           OverwriteReadOnlyFiles="true"/>
