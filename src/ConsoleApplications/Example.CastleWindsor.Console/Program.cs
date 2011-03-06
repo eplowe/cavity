@@ -1,14 +1,17 @@
 ﻿namespace Example
 {
+#if !NET20
     using System;
     using Cavity.Configuration;
     using Example.Properties;
     using Microsoft.Practices.ServiceLocation;
+#endif
 
     public static class Program
     {
         public static void Main()
         {
+#if !NET20
             ServiceLocation.Settings().Configure();
             if (ServiceLocator.Current.GetInstance<ITest>().Test("value"))
             {
@@ -18,6 +21,7 @@
             {
                 throw new NotImplementedException(Resources.Test_Failed);
             }
+#endif
         }
     }
 }

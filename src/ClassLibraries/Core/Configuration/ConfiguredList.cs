@@ -19,10 +19,7 @@
         {
             get
             {
-                if (null == _mock)
-                {
-                    _mock = new MultitonCollection<string, IEnumerable<string>>();
-                }
+                _mock = _mock ?? new MultitonCollection<string, IEnumerable<string>>();
 
                 return _mock;
             }

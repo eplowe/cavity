@@ -16,10 +16,7 @@
         {
             get
             {
-                if (null == _mock)
-                {
-                    _mock = new MultitonCollection<string, DirectoryInfo>();
-                }
+                _mock = _mock ?? new MultitonCollection<string, DirectoryInfo>();
 
                 return _mock;
             }

@@ -6,14 +6,12 @@
 				<ProjectGuid>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</ProjectGuid>
 				<AssemblyName>Cavity.Testing.Unit</AssemblyName>
 				<RootNamespace>Cavity</RootNamespace>
-				<OutputType>Library</OutputType>
 				<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 				<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 				<TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.0</TargetFrameworkVersion>
 				<TargetFrameworkProfile/>
 				<ProductVersion>8.0.30703</ProductVersion>
 				<SchemaVersion>2.0</SchemaVersion>
-				<OutputPath>bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
 				<AppDesignerFolder>Properties</AppDesignerFolder>
 				<FileAlignment>512</FileAlignment>
 				<ErrorReport>prompt</ErrorReport>
@@ -100,10 +98,6 @@
 			</ItemGroup>
 		</When>
 		<Otherwise>
-			<PropertyGroup>
-				<OutputType>Library</OutputType>
-				<OutputPath>bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
-			</PropertyGroup>
 			<ItemGroup>
 				<Reference Include="System"/>
 			</ItemGroup>
@@ -118,6 +112,10 @@
 			</ItemGroup>
 		</Otherwise>
 	</Choose>
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<OutputPath>bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
+	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DebugSymbols>true</DebugSymbols>
 		<DebugType>full</DebugType>

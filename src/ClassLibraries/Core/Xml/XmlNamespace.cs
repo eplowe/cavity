@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Xml
 {
     using System;
+    using System.Globalization;
 
     public sealed class XmlNamespace : ComparableObject
     {
@@ -10,6 +11,7 @@
 
         public XmlNamespace(string prefix,
                             AbsoluteUri uri)
+            : this()
         {
             Prefix = prefix;
             Uri = uri;
@@ -62,7 +64,7 @@
 
         public override string ToString()
         {
-            return "xmlns:{0}=\"{1}\"".FormatWith(Prefix, Uri);
+            return string.Format(CultureInfo.InvariantCulture, "xmlns:{0}=\"{1}\"", Prefix, Uri);
         }
     }
 }
