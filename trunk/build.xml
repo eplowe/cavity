@@ -34,13 +34,14 @@
     <CallTarget Targets="Compliance : Project" />
     <CallTarget Targets="Compliance : Project Debug" />
     <CallTarget Targets="Compliance : Project Release" />
+    <CallTarget Targets="Compliance : Project Targeting" />
     <CallTarget Targets="Compliance : Conditional references" />
   </Target>
 
   <PropertyGroup>
     <WhenNotNet20XPath>/b:Project/b:Choose/b:When[@Condition=%22 %27%24(TargetFrameworkVersion)%27 != %27v2.0%27 %22]</WhenNotNet20XPath>
-    <ProjectDebugXPath>$(WhenNotNet20XPath)/b:PropertyGroup[@Condition=%22 %27%24(Configuration)|%24(Platform)%27 == %27Debug|AnyCPU%27 %22 or @Condition=%22 %27%24(Configuration)|%24(Platform)%27 == %27Debug|x86%27 %22]</ProjectDebugXPath>
-    <ProjectReleaseXPath>$(WhenNotNet20XPath)/b:PropertyGroup[@Condition=%22 %27%24(Configuration)|%24(Platform)%27 == %27Release|AnyCPU%27 %22 or @Condition=%22 %27%24(Configuration)|%24(Platform)%27 == %27Release|x86%27 %22]</ProjectReleaseXPath>
+    <ProjectDebugXPath>/b:Project/b:PropertyGroup[@Condition=%22 %27%24(Configuration)|%24(Platform)%27 == %27Debug|AnyCPU%27 %22 or @Condition=%22 %27%24(Configuration)|%24(Platform)%27 == %27Debug|x86%27 %22]</ProjectDebugXPath>
+    <ProjectReleaseXPath>/b:Project/b:PropertyGroup[@Condition=%22 %27%24(Configuration)|%24(Platform)%27 == %27Release|AnyCPU%27 %22 or @Condition=%22 %27%24(Configuration)|%24(Platform)%27 == %27Release|x86%27 %22]</ProjectReleaseXPath>
   </PropertyGroup>
 
   <Target Name="Compliance : Project">
@@ -110,6 +111,27 @@
                                           XPath="1=count($(ProjectReleaseXPath)/b:DefineConstants[text()='TRACE'])" />
     <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
                                           XPath="1=count($(ProjectReleaseXPath)/b:Optimize[text()='true'])" />
+  </Target>
+
+  <Target Name="Compliance : Project Targeting">
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="2=count(/b:Project/b:PropertyGroup[@Condition=%22 %27%24(TargetFrameworkVersion)%27 == %27v2.0%27 %22]/*)" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count(/b:Project/b:PropertyGroup[@Condition=%22 %27%24(TargetFrameworkVersion)%27 == %27v2.0%27 %22]/b:DefineConstants[text()='NET20'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count(/b:Project/b:PropertyGroup[@Condition=%22 %27%24(TargetFrameworkVersion)%27 == %27v2.0%27 %22]/b:TargetFrameworkVersionNumber[text()='2.0'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="2=count(/b:Project/b:PropertyGroup[@Condition=%22 %27%24(TargetFrameworkVersion)%27 == %27v3.5%27 %22]/*)" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count(/b:Project/b:PropertyGroup[@Condition=%22 %27%24(TargetFrameworkVersion)%27 == %27v3.5%27 %22]/b:DefineConstants[text()='NET35'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count(/b:Project/b:PropertyGroup[@Condition=%22 %27%24(TargetFrameworkVersion)%27 == %27v3.5%27 %22]/b:TargetFrameworkVersionNumber[text()='3.5'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="2=count(/b:Project/b:PropertyGroup[@Condition=%22 %27%24(TargetFrameworkVersion)%27 == %27v4.0%27 %22]/*)" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count(/b:Project/b:PropertyGroup[@Condition=%22 %27%24(TargetFrameworkVersion)%27 == %27v4.0%27 %22]/b:DefineConstants[text()='NET40'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count(/b:Project/b:PropertyGroup[@Condition=%22 %27%24(TargetFrameworkVersion)%27 == %27v4.0%27 %22]/b:TargetFrameworkVersionNumber[text()='4.0'])" />
   </Target>
 
   <Target Name="Compliance : Conditional references">
