@@ -32,20 +32,84 @@
 
   <Target Name="Compliance">
     <CallTarget Targets="Compliance : Project" />
+    <CallTarget Targets="Compliance : Project Debug" />
+    <CallTarget Targets="Compliance : Project Release" />
     <CallTarget Targets="Compliance : Conditional references" />
   </Target>
 
+  <PropertyGroup>
+    <WhenNotNet20XPath>/b:Project/b:Choose/b:When[@Condition=%22 %27%24(TargetFrameworkVersion)%27 != %27v2.0%27 %22]</WhenNotNet20XPath>
+    <ProjectDebugXPath>$(WhenNotNet20XPath)/b:PropertyGroup[@Condition=%22 %27%24(Configuration)|%24(Platform)%27 == %27Debug|AnyCPU%27 %22 or @Condition=%22 %27%24(Configuration)|%24(Platform)%27 == %27Debug|x86%27 %22]</ProjectDebugXPath>
+    <ProjectReleaseXPath>$(WhenNotNet20XPath)/b:PropertyGroup[@Condition=%22 %27%24(Configuration)|%24(Platform)%27 == %27Release|AnyCPU%27 %22 or @Condition=%22 %27%24(Configuration)|%24(Platform)%27 == %27Release|x86%27 %22]</ProjectReleaseXPath>
+  </PropertyGroup>
+
   <Target Name="Compliance : Project">
     <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
-                                          XPath="1=count(/b:Project/b:Choose/b:When[@Condition]/b:PropertyGroup/b:ProjectGuid[text()])" />
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:AppDesignerFolder[text()='Properties'])" />
     <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
-                                          XPath="1=count(/b:Project/b:Choose/b:When[@Condition]/b:PropertyGroup/b:AssemblyName[text()])" />
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:AssemblyName[text()])" />
     <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
-                                          XPath="1=count(/b:Project/b:Choose/b:When[@Condition]/b:PropertyGroup/b:RootNamespace[text()])" />
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:AssemblyOriginatorKeyFile[text()='..\..\Cavity.snk'])" />
     <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
-                                          XPath="1=count(/b:Project/b:Choose/b:When[@Condition]/b:PropertyGroup/b:OutputType[text()])" />
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:CodeAnalysisRuleSet[text()='..\..\Cavity.ruleset' or text()='..\..\Cavity.Facts.ruleset'])" />
     <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
-                                          XPath="1=count(/b:Project/b:Choose/b:When[@Condition]/b:PropertyGroup/b:SignAssembly[text()])" />
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:Configuration[@Condition=%22 %27%24(Configuration)%27 == %27%27 %22][text()='Debug'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:ErrorReport[text()='prompt'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:FileAlignment[text()='512'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:OutputPath[text()='bin\%24(Configuration) %24(TargetFrameworkVersion)\'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:OutputType[text()])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:Platform[@Condition=%22 %27%24(Platform)%27 == %27%27 %22][text()='AnyCPU' or text()='x86'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:ProjectGuid[text()])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:ProductVersion[text()])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:RootNamespace[text()='Cavity' or text()='Example'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:RunCodeAnalysis[text()='true'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:SchemaVersion[text()])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:SignAssembly[text()])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:StyleCopTreatErrorsAsWarnings[text()='false'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:TargetFrameworkProfile)" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:TargetFrameworkVersion[@Condition=%22 %27%24(TargetFrameworkVersion)%27 == %27%27 %22][text()='v4.0'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:TreatWarningsAsErrors[text()='true'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(WhenNotNet20XPath)/b:PropertyGroup[not(@Condition)]/b:WarningLevel[text()='4'])" />
+  </Target>
+
+  <Target Name="Compliance : Project Debug">
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="4=count($(ProjectDebugXPath)/*)" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(ProjectDebugXPath)/b:DebugSymbols[text()='true'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(ProjectDebugXPath)/b:DebugType[text()='full'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(ProjectDebugXPath)/b:DefineConstants[text()='TRACE;DEBUG'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(ProjectDebugXPath)/b:Optimize[text()='false'])" />
+  </Target>
+
+  <Target Name="Compliance : Project Release">
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="3=count($(ProjectReleaseXPath)/*)" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(ProjectReleaseXPath)/b:DebugType[text()='pdbonly'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(ProjectReleaseXPath)/b:DefineConstants[text()='TRACE'])" />
+    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
+                                          XPath="1=count($(ProjectReleaseXPath)/b:Optimize[text()='true'])" />
   </Target>
 
   <Target Name="Compliance : Conditional references">
