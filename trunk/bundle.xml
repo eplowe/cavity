@@ -18,11 +18,6 @@
     <CallTarget Targets="Trove" />
   </Target>
 
-  <!--<PropertyGroup>
-    <TestResultsDirectory>$(MSBuildProjectDirectory)\TestResults</TestResultsDirectory>
-    <ConsoleApplicationsPath>$(MSBuildProjectDirectory)\src\ConsoleApplications</ConsoleApplicationsPath>
-  </PropertyGroup>-->
-
   <PropertyGroup>
     <ClassLibrariesPath>$(MSBuildProjectDirectory)\src\ClassLibraries</ClassLibrariesPath>
     <PublishDirectory>$(MSBuildProjectDirectory)\Publish</PublishDirectory>
@@ -30,23 +25,24 @@
     <TroveDirectory>$(MSBuildProjectDirectory)\lib\trove\Framework\$(TargetFrameworkVersion)</TroveDirectory>
   </PropertyGroup>
 
-  <Target Name="Trove"
-          Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' ">
-    <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.dll"
-          DestinationFolder="$(TroveDirectory)"
-          OverwriteReadOnlyFiles="true" />
-    <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.Targets"
-          DestinationFolder="$(TroveDirectory)"
-          OverwriteReadOnlyFiles="true" />
+  <Target Name="Trove">
     <Copy SourceFiles="$(ClassLibrariesPath)\Core\bin\$(BuildName)\Cavity.Core.dll"
           DestinationFolder="$(TroveDirectory)"
           OverwriteReadOnlyFiles="true" />
-    <Copy SourceFiles="$(ClassLibrariesPath)\Domain\bin\$(BuildName)\Cavity.Domain.dll"
+    <Copy SourceFiles="$(ClassLibrariesPath)\Domain\bin\$(BuildName)\Cavity.Domain.dll" Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' "
           DestinationFolder="$(TroveDirectory)"
           OverwriteReadOnlyFiles="true" />
-    <Copy SourceFiles="$(ClassLibrariesPath)\Testing.Unit\bin\$(BuildName)\Cavity.Testing.Unit.dll"
+    <Copy SourceFiles="$(ClassLibrariesPath)\Testing.Unit\bin\$(BuildName)\Cavity.Testing.Unit.dll" Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' "
           DestinationFolder="$(TroveDirectory)"
           OverwriteReadOnlyFiles="true" />
+    <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.dll"
+          DestinationFolder="$(TroveDirectory)"
+          OverwriteReadOnlyFiles="true"
+          Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' "/>
+    <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.Targets"
+          DestinationFolder="$(TroveDirectory)"
+          OverwriteReadOnlyFiles="true"
+          Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' "/>
   </Target>
 
   <Target Name="Zip"

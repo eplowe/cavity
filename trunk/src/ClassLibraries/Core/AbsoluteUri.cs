@@ -2,6 +2,9 @@
 {
     using System;
     using System.Runtime.Serialization;
+#if NET20 || NET35
+    using System.Security.Permissions;
+#endif
 
     [Serializable]
     public sealed class AbsoluteUri : IComparable, IComparable<AbsoluteUri>, IEquatable<AbsoluteUri>, ISerializable
@@ -165,8 +168,8 @@
                        : 0 == CompareTo(other);
         }
 
-#if !NET40
-        [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.LinkDemand, Flags = System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter)]
+#if NET20 || NET35
+        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
         void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
