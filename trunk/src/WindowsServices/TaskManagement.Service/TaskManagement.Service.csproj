@@ -13,7 +13,7 @@
 				<TargetFrameworkProfile/>
 				<ProductVersion>8.0.30703</ProductVersion>
 				<SchemaVersion>2.0</SchemaVersion>
-				<OutputPath>bin\</OutputPath>
+				<OutputPath>bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
 				<AppDesignerFolder>Properties</AppDesignerFolder>
 				<FileAlignment>512</FileAlignment>
 				<ErrorReport>prompt</ErrorReport>
