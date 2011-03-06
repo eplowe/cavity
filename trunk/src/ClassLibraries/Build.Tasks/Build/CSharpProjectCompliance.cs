@@ -3,11 +3,15 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using System.Xml;
     using System.Xml.XPath;
     using Cavity.Properties;
+#if !NET20
     using Cavity.Xml.XPath;
+#endif
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
 
@@ -34,17 +38,30 @@
                 return false;
             }
 
+#if !NET20
             if (0 == projects.Count())
             {
                 Log.LogWarning(Resources.CSharpProjectCompliance_PathsEmpty_Message);
                 return false;
             }
+#endif
 
+#if NET20
+            var result = true;
+            foreach (var project in projects)
+            {
+                if (!Execute(project))
+                {
+                    result = false;
+                }
+            }
+#else
             var result = false;
-            if (0 == projects.Where(path => !Execute(path)).Count())
+            if (0 == projects.Where(project => !Execute(project)).Count())
             {
                 result = true;
             }
+#endif
 
             return result;
         }
@@ -112,11 +129,19 @@
             ////        result = false;
             ////    }
             ////}
+#if NET20
+            if (!(bool)navigator.Evaluate(XPath, namespaces))
+            {
+                Log.LogError(Resources.CSharpProjectCompliance_XPath_Message, file, XPath);
+                return false;
+            }
+#else
             if (!navigator.Evaluate<bool>(XPath, namespaces))
             {
                 Log.LogError(Resources.CSharpProjectCompliance_XPath_Message, file, XPath);
                 return false;
             }
+#endif
 
             return true;
         }

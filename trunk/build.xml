@@ -158,8 +158,6 @@
     <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
                                           XPath="0=count(//b:ItemGroup/b:Reference[@Include='Castle.Windsor'][not(@Condition)])" />
     <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
-                                          XPath="0=count(//b:ItemGroup/b:Reference[@Include='Microsoft.Build.Utilities.v3.5'][not(@Condition)])" />
-    <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
                                           XPath="0=count(//b:ItemGroup/b:Reference[@Include='Microsoft.CSharp'][not(@Condition)])" />
     <Cavity.Build.CSharpProjectCompliance Projects="@(CSharpProjectFiles)"
                                           XPath="0=count(//b:ItemGroup/b:Reference[@Include='Microsoft.Practices.Unity'][not(@Condition)])" />
