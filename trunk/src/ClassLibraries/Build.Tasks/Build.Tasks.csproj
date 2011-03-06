@@ -85,7 +85,7 @@
 			<DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
 		<Compile Include="Build\CSharpProjectCompliance.cs"/>
-		<Compile Include="Build\LexiconTidy.cs" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' "/>
+		<Compile Include="Build\LexiconTidy.cs"/>
 	</ItemGroup>
 	<ItemGroup>
 		<CodeAnalysisDictionary Include="..\..\Cavity.dictionary">

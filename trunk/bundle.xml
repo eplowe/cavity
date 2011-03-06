@@ -35,7 +35,7 @@
     <Copy SourceFiles="$(ClassLibrariesPath)\Core\bin\$(BuildName)\Cavity.Core.dll"
           DestinationFolder="$(TroveDirectory)"
           OverwriteReadOnlyFiles="true" />
-    <Copy SourceFiles="$(ClassLibrariesPath)\Domain\bin\$(BuildName)\Cavity.Domain.dll" Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' "
+    <Copy SourceFiles="$(ClassLibrariesPath)\Domain\bin\$(BuildName)\Cavity.Domain.dll"
           DestinationFolder="$(TroveDirectory)"
           OverwriteReadOnlyFiles="true" />
     <Copy SourceFiles="$(ClassLibrariesPath)\Testing.Unit\bin\$(BuildName)\Cavity.Testing.Unit.dll" Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' "

@@ -135,4 +135,7 @@
   <data name="LexiconTidy_PathsNull_Message" xml:space="preserve">
     <value>Paths have not been set.</value>
   </data>
+  <data name="Unsupported_Framework_Version" xml:space="preserve">
+    <value>This task is not supported on the current .NET Framework version.</value>
+  </data>
 </root>

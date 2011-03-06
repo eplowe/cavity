@@ -113,5 +113,14 @@ namespace Cavity.Properties {
                 return ResourceManager.GetString("LexiconTidy_PathsNull_Message", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This task is not supported on the current .NET Framework version..
+        /// </summary>
+        internal static string Unsupported_Framework_Version {
+            get {
+                return ResourceManager.GetString("Unsupported_Framework_Version", resourceCulture);
+            }
+        }
     }
 }
