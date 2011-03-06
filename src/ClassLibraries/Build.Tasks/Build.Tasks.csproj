@@ -25,29 +25,6 @@
 				<AssemblyOriginatorKeyFile>..\..\Cavity.snk</AssemblyOriginatorKeyFile>
 				<SignAssembly>true</SignAssembly>
 			</PropertyGroup>
-			<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-				<DebugSymbols>true</DebugSymbols>
-				<DebugType>full</DebugType>
-				<Optimize>false</Optimize>
-				<DefineConstants>TRACE;DEBUG</DefineConstants>
-			</PropertyGroup>
-			<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-				<DebugType>pdbonly</DebugType>
-				<Optimize>true</Optimize>
-				<DefineConstants>TRACE</DefineConstants>
-			</PropertyGroup>
-			<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
-				<DefineConstants>NET20</DefineConstants>
-				<TargetFrameworkVersionNumber>2.0</TargetFrameworkVersionNumber>
-			</PropertyGroup>
-			<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
-				<DefineConstants>NET35</DefineConstants>
-				<TargetFrameworkVersionNumber>3.5</TargetFrameworkVersionNumber>
-			</PropertyGroup>
-			<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
-				<DefineConstants>NET40</DefineConstants>
-				<TargetFrameworkVersionNumber>4.0</TargetFrameworkVersionNumber>
-			</PropertyGroup>
 			<ItemGroup>
 				<Reference Include="System"/>
 				<Reference Include="System.Core" Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' "/>
@@ -120,6 +97,29 @@
 			</ItemGroup>
 		</Otherwise>
 	</Choose>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<DefineConstants>TRACE;DEBUG</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<DefineConstants>TRACE</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
+		<DefineConstants>NET20</DefineConstants>
+		<TargetFrameworkVersionNumber>2.0</TargetFrameworkVersionNumber>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
+		<DefineConstants>NET35</DefineConstants>
+		<TargetFrameworkVersionNumber>3.5</TargetFrameworkVersionNumber>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
+		<DefineConstants>NET40</DefineConstants>
+		<TargetFrameworkVersionNumber>4.0</TargetFrameworkVersionNumber>
+	</PropertyGroup>
 	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 	<Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets"/>
 	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
