@@ -13,10 +13,10 @@
 		<Reference Include="Microsoft.Practices.Unity.Configuration"/>
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build.cs">
-			<Link>Properties\Build.cs</Link>
+		<Compile Include="$(SolutionDir)Build\Version.cs">
+			<Link>Properties\Version.cs</Link>
 		</Compile>
-		<Compile Include="$(SolutionDir)Cavity.cs">
+		<Compile Include="$(SolutionDir)Build\Cavity.cs">
 			<Link>Properties\Cavity.cs</Link>
 		</Compile>
 		<Compile Include="Properties\AssemblyInfo.cs"/>
@@ -25,11 +25,11 @@
 		<Compile Include="Configuration\XmlServiceLocatorProvider.cs"/>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="$(SolutionDir)Cavity.snk">
+		<None Include="$(SolutionDir)Build\Cavity.snk">
 			<Link>Properties\Cavity.snk</Link>
 		</None>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Cavity.dictionary">
-			<Link>Properties\Cavity.dictionary</Link>
+		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
+			<Link>Properties\Code.dictionary</Link>
 		</CodeAnalysisDictionary>
 	</ItemGroup>
 	<ItemGroup>

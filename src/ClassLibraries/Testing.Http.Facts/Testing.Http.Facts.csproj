@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<ProjectGuid>{D51419D9-47CB-480F-9BA1-5DA6585D73C7}</ProjectGuid>
 		<AssemblyName>Cavity.Testing.Http.Facts</AssemblyName>
-		<CodeAnalysisRuleSet>$(SolutionDir)Cavity.Facts.ruleset</CodeAnalysisRuleSet>
+		<CodeAnalysisRuleSet>$(SolutionDir)Build\Facts.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="Moq" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
@@ -14,10 +14,10 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build.cs">
-			<Link>Properties\Build.cs</Link>
+		<Compile Include="$(SolutionDir)Build\Version.cs">
+			<Link>Properties\Version.cs</Link>
 		</Compile>
-		<Compile Include="$(SolutionDir)Cavity.cs">
+		<Compile Include="$(SolutionDir)Build\Cavity.cs">
 			<Link>Properties\Cavity.cs</Link>
 		</Compile>
 		<Compile Include="Properties\AssemblyInfo.cs"/>
@@ -65,11 +65,11 @@
 		</ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="$(SolutionDir)Cavity.snk">
+		<None Include="$(SolutionDir)Build\Cavity.snk">
 			<Link>Properties\Cavity.snk</Link>
 		</None>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Cavity.Facts.dictionary">
-			<Link>Properties\Cavity.Facts.dictionary</Link>
+		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Facts.dictionary">
+			<Link>Properties\Facts.dictionary</Link>
 		</CodeAnalysisDictionary>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>

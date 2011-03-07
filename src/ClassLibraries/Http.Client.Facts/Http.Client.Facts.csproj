@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<ProjectGuid>{0A237283-3525-405E-B571-79D40170C763}</ProjectGuid>
 		<AssemblyName>Cavity.Http.Client.Facts</AssemblyName>
-		<CodeAnalysisRuleSet>$(SolutionDir)Cavity.Facts.ruleset</CodeAnalysisRuleSet>
+		<CodeAnalysisRuleSet>$(SolutionDir)Build\Facts.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="System.Runtime.Serialization.Formatters.Soap"/>
@@ -18,10 +18,10 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build.cs">
-			<Link>Properties\Build.cs</Link>
+		<Compile Include="$(SolutionDir)Build\Version.cs">
+			<Link>Properties\Version.cs</Link>
 		</Compile>
-		<Compile Include="$(SolutionDir)Cavity.cs">
+		<Compile Include="$(SolutionDir)Build\Cavity.cs">
 			<Link>Properties\Cavity.cs</Link>
 		</Compile>
 		<Compile Include="Properties\AssemblyInfo.cs"/>
@@ -57,10 +57,10 @@
 		<Compile Include="Net\IUserAgent.Facts.cs"/>
 	</ItemGroup>
 	<ItemGroup>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Cavity.Facts.dictionary">
-			<Link>Properties\Cavity.Facts.dictionary</Link>
+		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Facts.dictionary">
+			<Link>Properties\Facts.dictionary</Link>
 		</CodeAnalysisDictionary>
-		<None Include="$(SolutionDir)Cavity.snk">
+		<None Include="$(SolutionDir)Build\Cavity.snk">
 			<Link>Properties\Cavity.snk</Link>
 		</None>
 	</ItemGroup>

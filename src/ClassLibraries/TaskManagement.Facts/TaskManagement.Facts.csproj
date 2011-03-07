@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<ProjectGuid>{9A604E09-0CC1-4E81-9C4B-137DC35FDE7A}</ProjectGuid>
 		<AssemblyName>Cavity.TaskManagement.Facts</AssemblyName>
-		<CodeAnalysisRuleSet>$(SolutionDir)Cavity.Facts.ruleset</CodeAnalysisRuleSet>
+		<CodeAnalysisRuleSet>$(SolutionDir)Build\Facts.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="System.Data"/>
@@ -18,10 +18,10 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build.cs">
-			<Link>Properties\Build.cs</Link>
+		<Compile Include="$(SolutionDir)Build\Version.cs">
+			<Link>Properties\Version.cs</Link>
 		</Compile>
-		<Compile Include="$(SolutionDir)Cavity.cs">
+		<Compile Include="$(SolutionDir)Build\Cavity.cs">
 			<Link>Properties\Cavity.cs</Link>
 		</Compile>
 		<Compile Include="Properties\AssemblyInfo.cs"/>
@@ -30,11 +30,11 @@
 		<Compile Include="Models\ITask.Facts.cs"/>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="$(SolutionDir)Cavity.snk">
+		<None Include="$(SolutionDir)Build\Cavity.snk">
 			<Link>Properties\Cavity.snk</Link>
 		</None>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Cavity.Facts.dictionary">
-			<Link>Properties\Cavity.Facts.dictionary</Link>
+		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Facts.dictionary">
+			<Link>Properties\Facts.dictionary</Link>
 		</CodeAnalysisDictionary>
 	</ItemGroup>
 	<ItemGroup>
