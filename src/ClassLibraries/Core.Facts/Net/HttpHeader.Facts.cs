@@ -11,7 +11,7 @@
             Assert.True(new TypeExpectations<HttpHeader>()
                             .DerivesFrom<ComparableObject>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Implements<IHttpHeader>()

@@ -38,11 +38,11 @@
     <Compile Include="Configuration\ConfiguredList.Facts.cs" />
     <Compile Include="Configuration\ConfiguredDirectory.Facts.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.Facts.cs" />
-    <Compile Include="Data\IRepository.Facts.cs" />
     <Compile Include="Generic.ExtensionMethods.Facts.cs" />
     <Compile Include="DateTime.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\IRecord.Facts.cs" />
+    <Compile Include="Data\IRepository.Facts.cs" />
     <Compile Include="Data\DataCollection.Facts.cs" />
     <Compile Include="IO\TempDirectory.Facts.cs" />
     <Compile Include="IO\TempFile.Facts.cs" />
@@ -52,6 +52,7 @@
     <Compile Include="IO\CsvStreamReader.Facts.cs" />
     <Compile Include="IO\EncodedStringWriter.Facts.cs" />
     <Compile Include="IO\StreamWriterDictionary.Facts.cs" />
+    <Compile Include="Net\CacheControl.Facts.cs" />
     <Compile Include="Net\HttpHeader.Facts.cs" />
     <Compile Include="Net\IHttpHeader.Facts.cs" />
     <Compile Include="Net\Token.Facts.cs" />
