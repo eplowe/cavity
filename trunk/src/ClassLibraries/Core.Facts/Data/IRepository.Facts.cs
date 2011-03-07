@@ -33,15 +33,15 @@
         [Fact]
         public void op_Delete_AlphaDecimal()
         {
-            var token = AlphaDecimal.Random();
+            var key = AlphaDecimal.Random();
 
             var mock = new Mock<IRepository>();
             mock
-                .Setup(x => x.Delete(token))
+                .Setup(x => x.Delete(key))
                 .Returns(true)
                 .Verifiable();
 
-            Assert.True(mock.Object.Delete(token));
+            Assert.True(mock.Object.Delete(key));
 
             mock.VerifyAll();
         }
@@ -65,15 +65,15 @@
         [Fact]
         public void op_Exists_AlphaDecimal()
         {
-            var token = AlphaDecimal.Random();
+            var key = AlphaDecimal.Random();
 
             var mock = new Mock<IRepository>();
             mock
-                .Setup(x => x.Exists(token))
+                .Setup(x => x.Exists(key))
                 .Returns(true)
                 .Verifiable();
 
-            Assert.True(mock.Object.Exists(token));
+            Assert.True(mock.Object.Exists(key));
 
             mock.VerifyAll();
         }

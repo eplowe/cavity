@@ -2,7 +2,7 @@
 {
     using System;
 
-    public sealed class HttpHeader : ComparableObject, IHttpHeader
+    public class HttpHeader : ComparableObject, IHttpHeader
     {
         private Token _name;
 

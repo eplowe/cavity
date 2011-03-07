@@ -6,11 +6,11 @@
     {
         bool Delete(AbsoluteUri urn);
 
-        bool Delete(AlphaDecimal urn);
+        bool Delete(AlphaDecimal key);
 
         bool Exists(AbsoluteUri urn);
 
-        bool Exists(AlphaDecimal urn);
+        bool Exists(AlphaDecimal key);
 
         bool Exists(XPathExpression xpath);
     }
