@@ -8,7 +8,9 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(typeof(IUserAgent).IsInterface);
+            Assert.True(new TypeExpectations<IUserAgent>()
+                            .IsInterface()
+                            .Result);
         }
 
         [Fact]

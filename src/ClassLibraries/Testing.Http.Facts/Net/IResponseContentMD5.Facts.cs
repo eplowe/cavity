@@ -8,7 +8,9 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(typeof(IResponseContentMD5).IsInterface);
+            Assert.True(new TypeExpectations<IResponseContentMD5>()
+                            .IsInterface()
+                            .Result);
         }
 
         [Fact]

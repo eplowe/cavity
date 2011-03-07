@@ -8,7 +8,9 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(typeof(ITestClassConstruction).IsInterface);
+            Assert.True(new TypeExpectations<ITestClassConstruction>()
+                            .IsInterface()
+                            .Result);
         }
 
         [Fact]

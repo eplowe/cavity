@@ -8,7 +8,9 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(typeof(IHttpResponse).IsInterface);
+            Assert.True(new TypeExpectations<IHttpResponse>()
+                            .IsInterface()
+                            .Result);
         }
 
         [Fact]
