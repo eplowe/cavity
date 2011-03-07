@@ -7,15 +7,15 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="System.Data"/>
+		<Reference Include="Moq" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+			<HintPath>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)\Moq.dll</HintPath>
+		</Reference>
 		<Reference Include="xunit">
 			<HintPath>$(TrunkDir)\lib\trove\Framework\v2.0\xunit.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Reference Include="System.Data.DataSetExtensions"/>
-		<Reference Include="Moq">
-			<HintPath>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)\Moq.dll</HintPath>
-		</Reference>
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="$(SolutionDir)Build\Version.cs">

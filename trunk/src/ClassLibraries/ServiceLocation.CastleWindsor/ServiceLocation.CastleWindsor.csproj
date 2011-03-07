@@ -41,6 +41,9 @@
 		</ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
+		<None Include="$(SolutionDir)Build\Cavity.snk">
+			<Link>Properties\Cavity.snk</Link>
+		</None>
 		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
 			<Link>Properties\Code.dictionary</Link>
 		</CodeAnalysisDictionary>
