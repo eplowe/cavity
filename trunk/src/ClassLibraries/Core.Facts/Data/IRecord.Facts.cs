@@ -18,7 +18,7 @@
         [Fact]
         public void prop_Cacheability_get()
         {
-            var expected = CacheControl.Public;
+            const string expected = "public";
 
             var mock = new Mock<IRecord>();
             mock
@@ -36,7 +36,7 @@
         [Fact]
         public void prop_Cacheability_set()
         {
-            var value = CacheControl.Public;
+            const string value = "public";
 
             var mock = new Mock<IRecord>();
             mock
@@ -51,7 +51,7 @@
         [Fact]
         public void prop_Created_get()
         {
-            var expected = DateTime.UtcNow;
+            DateTime? expected = DateTime.UtcNow;
 
             var mock = new Mock<IRecord>();
             mock
@@ -69,7 +69,7 @@
         [Fact]
         public void prop_Created_set()
         {
-            var value = DateTime.UtcNow;
+            DateTime? value = DateTime.UtcNow;
 
             var mock = new Mock<IRecord>();
             mock
@@ -77,6 +77,222 @@
                 .Verifiable();
 
             mock.Object.Created = value;
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Entity_get()
+        {
+            const string expected = "example: abc";
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupGet(x => x.Entity)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Entity;
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Etag_get()
+        {
+            const string expected = "\"xyz\"";
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupGet(x => x.Etag)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Etag;
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Etag_set()
+        {
+            const string value = "\"xyz\"";
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupSet(x => x.Etag = value)
+                .Verifiable();
+
+            mock.Object.Etag = value;
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Expiration_get()
+        {
+            const string expected = "P1D";
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupGet(x => x.Expiration)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Expiration;
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Expiration_set()
+        {
+            const string value = "P1D";
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupSet(x => x.Expiration = value)
+                .Verifiable();
+
+            mock.Object.Expiration = value;
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Key_get()
+        {
+            AlphaDecimal? expected = AlphaDecimal.Random();
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupGet(x => x.Key)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Key;
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Key_set()
+        {
+            AlphaDecimal? value = AlphaDecimal.Random();
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupSet(x => x.Key = value)
+                .Verifiable();
+
+            mock.Object.Key = value;
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Modified_get()
+        {
+            DateTime? expected = DateTime.UtcNow;
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupGet(x => x.Modified)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Modified;
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Modified_set()
+        {
+            DateTime? value = DateTime.UtcNow;
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupSet(x => x.Modified = value)
+                .Verifiable();
+
+            mock.Object.Modified = value;
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Status_get()
+        {
+            int? expected = 200;
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupGet(x => x.Status)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Status;
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Status_set()
+        {
+            int? value = 200;
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupSet(x => x.Status = value)
+                .Verifiable();
+
+            mock.Object.Status = value;
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Urn_get()
+        {
+            AbsoluteUri expected = "urn://example.com/path";
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupGet(x => x.Urn)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Urn;
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Urn_set()
+        {
+            AbsoluteUri value = "urn://example.com/path";
+
+            var mock = new Mock<IRecord>();
+            mock
+                .SetupSet(x => x.Urn = value)
+                .Verifiable();
+
+            mock.Object.Urn = value;
 
             mock.VerifyAll();
         }
