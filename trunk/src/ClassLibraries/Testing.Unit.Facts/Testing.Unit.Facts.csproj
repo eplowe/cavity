@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<ProjectGuid>{DEE68EFC-926D-4FBF-9ACB-E5539E2313E6}</ProjectGuid>
 		<AssemblyName>Cavity.Testing.Unit.Facts</AssemblyName>
-		<CodeAnalysisRuleSet>$(SolutionDir)Cavity.Facts.ruleset</CodeAnalysisRuleSet>
+		<CodeAnalysisRuleSet>$(SolutionDir)Build\Facts.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="Moq" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
@@ -14,10 +14,10 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build.cs">
-			<Link>Properties\Build.cs</Link>
+		<Compile Include="$(SolutionDir)Build\Version.cs">
+			<Link>Properties\Version.cs</Link>
 		</Compile>
-		<Compile Include="$(SolutionDir)Cavity.cs">
+		<Compile Include="$(SolutionDir)Build\Cavity.cs">
 			<Link>Properties\Cavity.cs</Link>
 		</Compile>
 		<Compile Include="Properties\AssemblyInfo.cs"/>
@@ -73,11 +73,11 @@
 		<Compile Include="Types\XmlSerializableClass1.cs"/>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="$(SolutionDir)Cavity.snk">
+		<None Include="$(SolutionDir)Build\Cavity.snk">
 			<Link>Properties\Cavity.snk</Link>
 		</None>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Cavity.Facts.dictionary">
-			<Link>Properties\Cavity.Facts.dictionary</Link>
+		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Facts.dictionary">
+			<Link>Properties\Facts.dictionary</Link>
 		</CodeAnalysisDictionary>
 	</ItemGroup>
 	<ItemGroup>

@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<ProjectGuid>{9E656B3A-FF1E-4CA4-8E6B-4BD7ADF1809F}</ProjectGuid>
 		<AssemblyName>Cavity.ServiceLocation.Facts</AssemblyName>
-		<CodeAnalysisRuleSet>$(SolutionDir)Cavity.Facts.ruleset</CodeAnalysisRuleSet>
+		<CodeAnalysisRuleSet>$(SolutionDir)Build\Facts.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="System.Configuration"/>
@@ -18,10 +18,10 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build.cs">
-			<Link>Properties\Build.cs</Link>
+		<Compile Include="$(SolutionDir)Build\Version.cs">
+			<Link>Properties\Version.cs</Link>
 		</Compile>
-		<Compile Include="$(SolutionDir)Cavity.cs">
+		<Compile Include="$(SolutionDir)Build\Cavity.cs">
 			<Link>Properties\Cavity.cs</Link>
 		</Compile>
 		<Compile Include="Properties\AssemblyInfo.cs"/>
@@ -32,11 +32,11 @@
 		<Compile Include="Configuration\ISetLocatorProvider.Facts.cs"/>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="$(SolutionDir)Cavity.snk">
+		<None Include="$(SolutionDir)Build\Cavity.snk">
 			<Link>Properties\Cavity.snk</Link>
 		</None>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Cavity.Facts.dictionary">
-			<Link>Properties\Cavity.Facts.dictionary</Link>
+		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Facts.dictionary">
+			<Link>Properties\Facts.dictionary</Link>
 		</CodeAnalysisDictionary>
 	</ItemGroup>
 	<ItemGroup>

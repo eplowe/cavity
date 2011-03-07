@@ -15,7 +15,7 @@
 		<SchemaVersion>2.0</SchemaVersion>
 	</PropertyGroup>
 	<PropertyGroup>
-		<AssemblyOriginatorKeyFile>$(SolutionDir)Cavity.snk</AssemblyOriginatorKeyFile>
+		<AssemblyOriginatorKeyFile>$(SolutionDir)Build\Cavity.snk</AssemblyOriginatorKeyFile>
 		<OutputPath Condition=" '$(OutputPath)' == '' ">bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
 		<OutputType Condition=" '$(OutputType)' == '' ">Library</OutputType>
 		<RootNamespace Condition=" '$(RootNamespace)' == '' ">Cavity</RootNamespace>
@@ -28,7 +28,7 @@
 		<TargetFrameworkProfile/>
 	</PropertyGroup>
 	<PropertyGroup>
-		<CodeAnalysisRuleSet Condition=" '$(CodeAnalysisRuleSet)' == '' ">$(SolutionDir)Cavity.ruleset</CodeAnalysisRuleSet>
+		<CodeAnalysisRuleSet Condition=" '$(CodeAnalysisRuleSet)' == '' ">$(SolutionDir)Build\Code.ruleset</CodeAnalysisRuleSet>
 		<ErrorReport>prompt</ErrorReport>
 		<RunCodeAnalysis>true</RunCodeAnalysis>
 		<StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>

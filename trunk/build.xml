@@ -45,7 +45,7 @@
               PropertyName="Revision" />
     </MSBuild.Community.Tasks.Subversion.SvnVersion>
     <AssemblyInfo CodeLanguage="CS"
-                  OutputFile="$(MSBuildProjectDirectory)\src\Build.cs"
+                  OutputFile="$(MSBuildProjectDirectory)\src\Build\Version.cs"
                   AssemblyVersion="$(Version).$(Revision)"
                   AssemblyFileVersion="$(Version).$(Revision)"
                   AssemblyInformationalVersion="$(Version).$(Revision)" />
