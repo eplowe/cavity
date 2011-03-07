@@ -16,7 +16,7 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<AssemblyOriginatorKeyFile>$(SolutionDir)Cavity.snk</AssemblyOriginatorKeyFile>
-		<OutputPath>bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
+		<OutputPath Condition=" '$(OutputPath)' == '' ">bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
 		<OutputType Condition=" '$(OutputType)' == '' ">Library</OutputType>
 		<RootNamespace Condition=" '$(RootNamespace)' == '' ">Cavity</RootNamespace>
 		<SignAssembly Condition=" '$(SignAssembly)' == '' ">true</SignAssembly>
