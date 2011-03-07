@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <WebApplicationName>cavity.example.net</WebApplicationName>
+    <WebApplicationPath>$(MSBuildProjectDirectory)\src\WebApplications\Http.Client.Server</WebApplicationPath>
+  </PropertyGroup>
+
+  <Target Name="Deploy">
+    <ItemGroup>
+      <WebApplication Include="/">
+        <PhysicalPath>$(WebApplicationPath)</PhysicalPath>
+      </WebApplication>
+    </ItemGroup>
+    <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="CheckExists"
+                                           Name="$(WebApplicationName)">
+      <Output TaskParameter="Exists"
+              PropertyName="WebApplicationExists" />
+    </MSBuild.ExtensionPack.Web.Iis7Website>
+    <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="Create"
+                                           Name="$(WebApplicationName)"
+                                           Path="$(WebApplicationPath)"
+                                           Port="80"
+                                           AppPool="ASP.NET v4.0"
+                                           Condition="'$(WebApplicationExists)'=='False'" />
+    <MSBuild.ExtensionPack.Web.Iis7Binding TaskAction="Remove"
+                                           Name="$(WebApplicationName)"
+                                           BindingInformation="*:80:"
+                                           BindingProtocol="http" />
+    <MSBuild.ExtensionPack.Web.Iis7Binding TaskAction="Add"
+                                           Name="$(WebApplicationName)"
+                                           BindingInformation="127.0.0.127:80:$(WebApplicationName)"
+                                           BindingProtocol="http"
+                                           Condition="'$(WebApplicationExists)'=='False'" />
+    <MSBuild.Community.Tasks.Sleep Milliseconds="3000" />
+    <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="Stop"
+                                           Name="$(WebApplicationName)" />
+    <MSBuild.Community.Tasks.Sleep Milliseconds="3000" />
+    <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="Start"
+                                           Name="$(WebApplicationName)" />
+  </Target>
+
+</Project>

@@ -3,11 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{BDC54AD6-BF84-4E61-AFF4-504E978E2F14}"
 	ProjectSection(SolutionItems) = preProject
-		Build\Any.Project = Build\Any.Project
-		Build\AnyCPU.Project = Build\AnyCPU.Project
 		..\build.xml = ..\build.xml
 		..\bundle.xml = ..\bundle.xml
-		Build\x86.Project = Build\x86.Project
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Class Libraries", "Class Libraries", "{8953A4A0-B92A-4C85-A690-F9C9248DE52F}"
@@ -83,6 +80,23 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindowsServices", "WindowsServices", "{97BD7A1B-B62D-4FC5-B94E-A78533D905BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Service", "WindowsServices\TaskManagement.Service\TaskManagement.Service.csproj", "{5033C424-2DB0-4171-82B6-AE08EE0D9FB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "csproj", "csproj", "{26C322B3-E76A-478E-9F4F-8F25B3C74388}"
+	ProjectSection(SolutionItems) = preProject
+		Build\Any.Project = Build\Any.Project
+		Build\AnyCPU.Project = Build\AnyCPU.Project
+		Build\x86.Project = Build\x86.Project
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "import", "import", "{49EB2DE6-09BF-4F60-A897-373FBBCFD7D0}"
+	ProjectSection(SolutionItems) = preProject
+		Build\Clean.xml = Build\Clean.xml
+		Build\Deploy.xml = Build\Deploy.xml
+		Build\Test.xml = Build\Test.xml
+		Build\Trove.xml = Build\Trove.xml
+		Build\Versioning.xml = Build\Versioning.xml
+		Build\Zip.xml = Build\Zip.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -419,6 +433,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{26C322B3-E76A-478E-9F4F-8F25B3C74388} = {BDC54AD6-BF84-4E61-AFF4-504E978E2F14}
+		{49EB2DE6-09BF-4F60-A897-373FBBCFD7D0} = {BDC54AD6-BF84-4E61-AFF4-504E978E2F14}
 		{0FF43960-7762-46A3-BA82-DBA2161DBAC9} = {8953A4A0-B92A-4C85-A690-F9C9248DE52F}
 		{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557} = {8953A4A0-B92A-4C85-A690-F9C9248DE52F}
 		{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA} = {8953A4A0-B92A-4C85-A690-F9C9248DE52F}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="Clean">
+    <ItemGroup>
+      <CsProjUserFiles Include="$(MSBuildProjectDirectory)\**\*.csproj.user" />
+      <CsProjVs10xFiles Include="$(MSBuildProjectDirectory)\**\*.csproj.vs10x" />
+      <ResharperUserFiles Include="$(MSBuildProjectDirectory)\**\*.Resharper.user" />
+      <TeamCityUserFiles Include="$(MSBuildProjectDirectory)\**\*.TeamCity.user" />
+    </ItemGroup>
+    <Delete Files="@(CsProjUserFiles)" />
+    <Delete Files="@(CsProjVs10xFiles)" />
+    <Delete Files="@(ResharperUserFiles)" />
+    <Delete Files="@(TeamCityUserFiles)" />
+    <MSBuild Projects="$(MSBuildProjectDirectory)\src\Cavity.sln"
+             Targets="Clean"
+             Properties="Configuration=$(Configuration)" />
+  </Target>
+
+</Project>
