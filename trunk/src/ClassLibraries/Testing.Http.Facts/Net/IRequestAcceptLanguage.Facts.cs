@@ -9,7 +9,9 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(typeof(IRequestAcceptLanguage).IsInterface);
+            Assert.True(new TypeExpectations<IRequestAcceptLanguage>()
+                            .IsInterface()
+                            .Result);
         }
 
         [Fact]

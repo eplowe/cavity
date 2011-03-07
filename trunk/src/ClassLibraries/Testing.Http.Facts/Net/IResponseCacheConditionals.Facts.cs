@@ -8,7 +8,9 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(typeof(IResponseCacheConditionals).IsInterface);
+            Assert.True(new TypeExpectations<IResponseCacheConditionals>()
+                            .IsInterface()
+                            .Result);
         }
 
         [Fact]

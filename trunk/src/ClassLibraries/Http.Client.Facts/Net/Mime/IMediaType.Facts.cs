@@ -9,7 +9,9 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(typeof(IMediaType).IsInterface);
+            Assert.True(new TypeExpectations<IMediaType>()
+                            .IsInterface()
+                            .Result);
         }
 
         [Fact]

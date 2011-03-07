@@ -1,77 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<ProjectGuid>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</ProjectGuid>
-		<AssemblyName>Cavity.Core</AssemblyName>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="System.Configuration"/>
-		<Reference Include="System.Runtime.Serialization.Formatters.Soap"/>
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' >= '4.0' ">
-		<Reference Include="System.Numerics"/>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build\Version.cs">
-			<Link>Properties\Version.cs</Link>
-		</Compile>
-		<Compile Include="$(SolutionDir)Build\Cavity.cs">
-			<Link>Properties\Cavity.cs</Link>
-		</Compile>
-		<Compile Include="Properties\AssemblyInfo.cs"/>
-		<Compile Include="Properties\Resources.Designer.cs">
-			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
-			<DependentUpon>Resources.resx</DependentUpon>
-		</Compile>
-		<Compile Include="Data\IRepository.cs"/>
-		<Compile Include="IO\EncodedStringWriter.cs"/>
-		<Compile Include="IO\TempDirectory.cs"/>
-		<Compile Include="IO\TempFile.cs"/>
-		<Compile Include="Xml\IXmlSerializerNamespaces.cs"/>
-		<Compile Include="Xml\XmlNamespace.cs"/>
-		<Compile Include="AbsoluteUri.cs"/>
-		<Compile Include="AlphaDecimal.cs"/>
-		<Compile Include="CommentAttribute.cs"/>
-		<Compile Include="ComparableObject.cs"/>
-		<Compile Include="RelativeUri.cs"/>
-		<Compile Include="TestException.cs"/>
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-		<Compile Include="Collections\Generic\MultitonCollection`1.cs"/>
-		<Compile Include="Collections\IEnumerable.ExtensionMethods.cs"/>
-		<Compile Include="Configuration\ConfiguredDirectory.cs"/>
-		<Compile Include="Configuration\ConfiguredList.cs"/>
-		<Compile Include="Data\Data.String.ExtensionMethods.cs"/>
-		<Compile Include="Data\DataCollection.cs"/>
-		<Compile Include="IO\CsvFile.cs"/>
-		<Compile Include="IO\CsvStreamReader.cs"/>
-		<Compile Include="IO\StreamWriterDictionary.cs"/>
-		<Compile Include="Linq\Enumerable.cs"/>
-		<Compile Include="Net\IWebRequest.cs"/>
-		<Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.cs"/>
-		<Compile Include="Char.ExtensionMethods.cs"/>
-		<Compile Include="DateTime.ExtensionMethods.cs"/>
-		<Compile Include="Generic.ExtensionMethods.cs"/>
-		<Compile Include="Object.ExtensionMethods.cs"/>
-		<Compile Include="String.ExtensionMethods.cs"/>
-		<Compile Include="ValueObject`1.cs"/>
-		<Compile Include="WhiteSpace.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="$(SolutionDir)Build\Cavity.snk">
-			<Link>Properties\Cavity.snk</Link>
-		</None>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
-			<Link>Properties\Code.dictionary</Link>
-		</CodeAnalysisDictionary>
-		<EmbeddedResource Include="Properties\Resources.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-	</ItemGroup>
-	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
-	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <PropertyGroup>
+    <ProjectGuid>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</ProjectGuid>
+    <AssemblyName>Cavity.Core</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Reference Include="System.Numerics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(SolutionDir)Build\Version.cs">
+      <Link>Properties\Version.cs</Link>
+    </Compile>
+    <Compile Include="$(SolutionDir)Build\Cavity.cs">
+      <Link>Properties\Cavity.cs</Link>
+    </Compile>
+    <Compile Include="Data\IRecord.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="IO\EncodedStringWriter.cs" />
+    <Compile Include="IO\TempDirectory.cs" />
+    <Compile Include="IO\TempFile.cs" />
+    <Compile Include="Xml\IXmlSerializerNamespaces.cs" />
+    <Compile Include="Xml\XmlNamespace.cs" />
+    <Compile Include="AbsoluteUri.cs" />
+    <Compile Include="AlphaDecimal.cs" />
+    <Compile Include="CommentAttribute.cs" />
+    <Compile Include="ComparableObject.cs" />
+    <Compile Include="RelativeUri.cs" />
+    <Compile Include="TestException.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
+    <Compile Include="Collections\IEnumerable.ExtensionMethods.cs" />
+    <Compile Include="Configuration\ConfiguredDirectory.cs" />
+    <Compile Include="Configuration\ConfiguredList.cs" />
+    <Compile Include="Data\Data.String.ExtensionMethods.cs" />
+    <Compile Include="Data\DataCollection.cs" />
+    <Compile Include="IO\CsvFile.cs" />
+    <Compile Include="IO\CsvStreamReader.cs" />
+    <Compile Include="IO\StreamWriterDictionary.cs" />
+    <Compile Include="Linq\Enumerable.cs" />
+    <Compile Include="Net\IWebRequest.cs" />
+    <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.cs" />
+    <Compile Include="Char.ExtensionMethods.cs" />
+    <Compile Include="DateTime.ExtensionMethods.cs" />
+    <Compile Include="Generic.ExtensionMethods.cs" />
+    <Compile Include="Object.ExtensionMethods.cs" />
+    <Compile Include="String.ExtensionMethods.cs" />
+    <Compile Include="ValueObject`1.cs" />
+    <Compile Include="WhiteSpace.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(SolutionDir)Build\Cavity.snk">
+      <Link>Properties\Cavity.snk</Link>
+    </None>
+    <CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
+      <Link>Properties\Code.dictionary</Link>
+    </CodeAnalysisDictionary>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

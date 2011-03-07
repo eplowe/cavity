@@ -8,7 +8,9 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(typeof(ISetLocatorProvider).IsInterface);
+            Assert.True(new TypeExpectations<ISetLocatorProvider>()
+                            .IsInterface()
+                            .Result);
         }
 
         [Fact]

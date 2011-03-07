@@ -9,7 +9,9 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(typeof(IContentType).IsInterface);
+            Assert.True(new TypeExpectations<IContentType>()
+                            .IsInterface()
+                            .Result);
         }
 
         [Fact]
