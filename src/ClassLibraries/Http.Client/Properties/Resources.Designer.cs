@@ -38,7 +38,7 @@ namespace Cavity.Properties {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
-                if (ReferenceEquals(resourceMan, null)) {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cavity.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
@@ -57,15 +57,6 @@ namespace Cavity.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A token is restricted to any char except control keys or separators..
-        /// </summary>
-        internal static string Token_FormatException_Message {
-            get {
-                return ResourceManager.GetString("Token_FormatException_Message", resourceCulture);
             }
         }
         
