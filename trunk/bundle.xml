@@ -21,12 +21,13 @@
 
   <PropertyGroup>
     <ClassLibrariesPath>$(MSBuildProjectDirectory)\src\ClassLibraries</ClassLibrariesPath>
+    <ConsoleApplicationsPath>$(MSBuildProjectDirectory)\src\ConsoleApplications</ConsoleApplicationsPath>
   </PropertyGroup>
 
   <Target Name="Run">
     <CallTarget Targets="Versioning" />
     <CallTarget Targets="Trove" />
-    <!--<CallTarget Targets="Zip" />-->
+    <CallTarget Targets="Zip" />
   </Target>
 
 </Project>
