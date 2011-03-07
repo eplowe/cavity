@@ -3,14 +3,21 @@
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
          ToolsVersion="4.0">
 
-  <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v2.0\xunit.runner.msbuild.tasks.targets" />
-  <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v2.0\MSBuild.Community.Tasks.Targets" />
-  <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v3.5\MSBuild.ExtensionPack.tasks" />
+  <ImportGroup>
+    <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v2.0\xunit.runner.msbuild.tasks.targets" />
+    <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v2.0\MSBuild.Community.Tasks.Targets" />
+    <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v3.5\MSBuild.ExtensionPack.tasks" />
+  </ImportGroup>
+  
+  <ImportGroup>
+    <Import Project="$(MSBuildProjectDirectory)\src\Build\Clean.xml" />
+    <Import Project="$(MSBuildProjectDirectory)\src\Build\Deploy.xml" />
+    <Import Project="$(MSBuildProjectDirectory)\src\Build\Test.xml" />
+    <Import Project="$(MSBuildProjectDirectory)\src\Build\Versioning.xml" />
+  </ImportGroup>
 
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
-    <Version Condition="'$(Version)'==''">1.0.0</Version>
-    <Revision>0</Revision>
     <BuildName>$(Configuration) $(TargetFrameworkVersion)</BuildName>
   </PropertyGroup>
 
@@ -22,35 +29,6 @@
     <CallTarget Targets="Test" />
   </Target>
 
-  <Target Name="Clean">
-    <ItemGroup>
-      <CsProjUserFiles Include="$(MSBuildProjectDirectory)\**\*.csproj.user" />
-      <CsProjVs10xFiles Include="$(MSBuildProjectDirectory)\**\*.csproj.vs10x" />
-      <ResharperUserFiles Include="$(MSBuildProjectDirectory)\**\*.Resharper.user" />
-      <TeamCityUserFiles Include="$(MSBuildProjectDirectory)\**\*.TeamCity.user" />
-    </ItemGroup>
-    <Delete Files="@(CsProjUserFiles)" />
-    <Delete Files="@(CsProjVs10xFiles)" />
-    <Delete Files="@(ResharperUserFiles)" />
-    <Delete Files="@(TeamCityUserFiles)" />
-    <MSBuild Projects="$(MSBuildProjectDirectory)\src\Cavity.sln"
-             Targets="Clean"
-             Properties="Configuration=$(Configuration)" />
-  </Target>
-
-  <Target Name="Versioning"
-          Condition="'$(Versioning)'=='Subversion'">
-    <MSBuild.Community.Tasks.Subversion.SvnVersion LocalPath=".">
-      <Output TaskParameter="Revision"
-              PropertyName="Revision" />
-    </MSBuild.Community.Tasks.Subversion.SvnVersion>
-    <AssemblyInfo CodeLanguage="CS"
-                  OutputFile="$(MSBuildProjectDirectory)\src\Build\Version.cs"
-                  AssemblyVersion="$(Version).$(Revision)"
-                  AssemblyFileVersion="$(Version).$(Revision)"
-                  AssemblyInformationalVersion="$(Version).$(Revision)" />
-  </Target>
-
   <Target Name="Build">
     <MSBuild Projects="$(MSBuildProjectDirectory)\src\Cavity.sln"
              Targets="Rebuild"
@@ -58,122 +36,6 @@
       <Output TaskParameter="TargetOutputs"
               ItemName="CodeAssemblies" />
     </MSBuild>
-  </Target>
-
-  <PropertyGroup>
-    <WebApplicationName>cavity.example.net</WebApplicationName>
-    <WebApplicationPath>$(MSBuildProjectDirectory)\src\WebApplications\Http.Client.Server</WebApplicationPath>
-  </PropertyGroup>
-
-  <Target Name="Deploy">
-    <ItemGroup>
-      <WebApplication Include="/">
-        <PhysicalPath>$(WebApplicationPath)</PhysicalPath>
-      </WebApplication>
-    </ItemGroup>
-    <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="CheckExists"
-                                           Name="$(WebApplicationName)">
-      <Output TaskParameter="Exists"
-              PropertyName="WebApplicationExists" />
-    </MSBuild.ExtensionPack.Web.Iis7Website>
-    <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="Create"
-                                           Name="$(WebApplicationName)"
-                                           Path="$(WebApplicationPath)"
-                                           Port="80"
-                                           AppPool="ASP.NET v4.0"
-                                           Condition="'$(WebApplicationExists)'=='False'" />
-    <MSBuild.ExtensionPack.Web.Iis7Binding TaskAction="Remove"
-                                           Name="$(WebApplicationName)"
-                                           BindingInformation="*:80:"
-                                           BindingProtocol="http" />
-    <MSBuild.ExtensionPack.Web.Iis7Binding TaskAction="Add"
-                                           Name="$(WebApplicationName)"
-                                           BindingInformation="127.0.0.127:80:$(WebApplicationName)"
-                                           BindingProtocol="http"
-                                           Condition="'$(WebApplicationExists)'=='False'" />
-    <MSBuild.Community.Tasks.Sleep Milliseconds="3000" />
-    <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="Stop"
-                                           Name="$(WebApplicationName)" />
-    <MSBuild.Community.Tasks.Sleep Milliseconds="3000" />
-    <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="Start"
-                                           Name="$(WebApplicationName)" />
-  </Target>
-
-  <PropertyGroup>
-    <TestResultsDirectory>$(MSBuildProjectDirectory)\TestResults</TestResultsDirectory>
-    <ClassLibrariesPath>$(MSBuildProjectDirectory)\src\ClassLibraries</ClassLibrariesPath>
-    <ConsoleApplicationsPath>$(MSBuildProjectDirectory)\src\ConsoleApplications</ConsoleApplicationsPath>
-  </PropertyGroup>
-
-  <Target Name="Test"
-          Condition=" '$(TargetFrameworkVersion)' == 'v3.5' Or '$(TargetFrameworkVersion)' == 'v4.0' ">
-    <RemoveDir Directories="$(TestResultsDirectory)"
-               Condition="Exists('$(TestResultsDirectory)')" />
-    <MakeDir Directories="$(TestResultsDirectory)"
-             Condition="!Exists('$(TestResultsDirectory)')" />
-    <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
-                                Assembly="$(ClassLibrariesPath)\Build.Tasks.Facts\bin\$(BuildName)\Cavity.Build.Tasks.Facts.dll"
-                                WorkingFolder="$(ClassLibrariesPath)\Build.Tasks.Facts\bin\$(BuildName)"
-                                Xml="$(TestResultsDirectory)\build_tasks_facts_xunit.xml" />
-    <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
-                                Assembly="$(ClassLibrariesPath)\Core.Facts\bin\$(BuildName)\Cavity.Core.Facts.dll"
-                                WorkingFolder="$(ClassLibrariesPath)\Core.Facts\bin\$(BuildName)"
-                                Xml="$(TestResultsDirectory)\core_facts_xunit.xml" />
-    <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
-                                Assembly="$(ClassLibrariesPath)\Domain.Facts\bin\$(BuildName)\Cavity.Domain.Facts.dll"
-                                WorkingFolder="$(ClassLibrariesPath)\Domain.Facts\bin\$(BuildName)"
-                                Xml="$(TestResultsDirectory)\domain_facts_xunit.xml" />
-    <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
-                                Assembly="$(ClassLibrariesPath)\Http.Client.Facts\bin\$(BuildName)\Cavity.Http.Client.Facts.dll"
-                                WorkingFolder="$(ClassLibrariesPath)\Http.Client.Facts\bin\$(BuildName)"
-                                Xml="$(TestResultsDirectory)\http_client_facts_xunit.xml" />
-    <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
-                                Assembly="$(ClassLibrariesPath)\ServiceLocation.Facts\bin\$(BuildName)\Cavity.ServiceLocation.Facts.dll"
-                                WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.Facts\bin\$(BuildName)"
-                                Xml="$(TestResultsDirectory)\service_location_facts_xunit.xml" />
-    <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
-                                Assembly="$(ClassLibrariesPath)\ServiceLocation.Autofac.Facts\bin\$(BuildName)\Cavity.ServiceLocation.Autofac.Facts.dll"
-                                WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.Autofac.Facts\bin\$(BuildName)"
-                                Xml="$(TestResultsDirectory)\service_location_autofac_facts_xunit.xml" />
-    <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
-                                Assembly="$(ClassLibrariesPath)\ServiceLocation.CastleWindsor.Facts\bin\$(BuildName)\Cavity.ServiceLocation.CastleWindsor.Facts.dll"
-                                WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.CastleWindsor.Facts\bin\$(BuildName)"
-                                Xml="$(TestResultsDirectory)\service_location_castle_windsor_facts_xunit.xml" />
-    <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
-                                Assembly="$(ClassLibrariesPath)\ServiceLocation.StructureMap.Facts\bin\$(BuildName)\Cavity.ServiceLocation.StructureMap.Facts.dll"
-                                WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.StructureMap.Facts\bin\$(BuildName)"
-                                Xml="$(TestResultsDirectory)\service_location_structuremap_facts_xunit.xml" />
-    <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
-                                Assembly="$(ClassLibrariesPath)\ServiceLocation.Unity.Facts\bin\$(BuildName)\Cavity.ServiceLocation.Unity.Facts.dll"
-                                WorkingFolder="$(ClassLibrariesPath)\ServiceLocation.Unity.Facts\bin\$(BuildName)"
-                                Xml="$(TestResultsDirectory)\service_location_unity_facts_xunit.xml" />
-    <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
-                                Assembly="$(ClassLibrariesPath)\Testing.Http.Facts\bin\$(BuildName)\Cavity.Testing.Http.Facts.dll"
-                                WorkingFolder="$(ClassLibrariesPath)\Testing.Http.Facts\bin\$(BuildName)"
-                                Xml="$(TestResultsDirectory)\testing_http_facts_xunit.xml" />
-    <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
-                                Assembly="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(BuildName)\Cavity.Testing.Unit.Facts.dll"
-                                WorkingFolder="$(ClassLibrariesPath)\Testing.Unit.Facts\bin\$(BuildName)"
-                                Xml="$(TestResultsDirectory)\testing_unit_facts_xunit.xml" />
-    <Exec Command="Example.Autofac.Console.exe"
-          WorkingDirectory="$(ConsoleApplicationsPath)\Example.Autofac.Console\bin\$(BuildName)" />
-    <Exec Command="Example.CastleWindsor.Console.exe"
-          WorkingDirectory="$(ConsoleApplicationsPath)\Example.CastleWindsor.Console\bin\$(BuildName)" />
-    <Exec Command="Example.StructureMap.Console.exe"
-          WorkingDirectory="$(ConsoleApplicationsPath)\Example.StructureMap.Console\bin\$(BuildName)" />
-    <Exec Command="Example.Unity.Console.exe"
-          WorkingDirectory="$(ConsoleApplicationsPath)\Example.Unity.Console\bin\$(BuildName)" />
-    <!-- merging test files -->
-    <CreateItem Include="$(TestResultsDirectory)\*_xunit.xml">
-      <Output TaskParameter="Include"
-              ItemName="XmlTestFiles" />
-    </CreateItem>
-    <Xunit.Runner.MSBuild.CombineXunitXml InputFiles="@(XmlTestFiles)"
-                                          OutputFile="$(TestResultsDirectory)\Combined.xml" />
-    <Delete Files="@(XmlTestFiles)" />
-    <!-- deleting the combined xml file as it isn't being used -->
-    <RemoveDir Directories="$(TestResultsDirectory)"
-               Condition="Exists('$(TestResultsDirectory)')" />
   </Target>
 
 </Project>
