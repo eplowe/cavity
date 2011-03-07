@@ -1,137 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="Prepare" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<Target Name="Prepare">
-		<ConvertToAbsolutePath Paths="$(TrunkDir)">
-			<Output TaskParameter="AbsolutePaths" PropertyName="TrunkDir"/>
-		</ConvertToAbsolutePath>
-	</Target>
-	<Choose>
-		<When Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-			<PropertyGroup>
-				<ProjectGuid>{AC90D9D3-8BF2-4B70-A11C-63893116EFE1}</ProjectGuid>
-				<AssemblyName>Cavity.Testing.Http</AssemblyName>
-				<RootNamespace>Cavity</RootNamespace>
-				<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-				<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-				<TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.0</TargetFrameworkVersion>
-				<TargetFrameworkProfile/>
-				<ProductVersion>8.0.30703</ProductVersion>
-				<SchemaVersion>2.0</SchemaVersion>
-				<AppDesignerFolder>Properties</AppDesignerFolder>
-				<FileAlignment>512</FileAlignment>
-				<ErrorReport>prompt</ErrorReport>
-				<WarningLevel>4</WarningLevel>
-				<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-				<StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
-				<RunCodeAnalysis>true</RunCodeAnalysis>
-				<CodeAnalysisRuleSet>$(SolutionDir)\Cavity.ruleset</CodeAnalysisRuleSet>
-				<AssemblyOriginatorKeyFile>$(SolutionDir)\Cavity.snk</AssemblyOriginatorKeyFile>
-				<SignAssembly>true</SignAssembly>
-			</PropertyGroup>
-			<ItemGroup>
-				<Reference Include="System"/>
-				<Reference Include="System.Core" Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' "/>
-				<Reference Include="System.Xml"/>
-				<Reference Include="System.Xml.Linq" Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' "/>
-				<Reference Include="Microsoft.CSharp" Condition=" '$(TargetFrameworkVersionNumber)' >= '4.0' "/>
-			</ItemGroup>
-			<ItemGroup>
-				<Compile Include="$(SolutionDir)\Build.cs">
-					<Link>Properties\Build.cs</Link>
-				</Compile>
-				<Compile Include="$(SolutionDir)\Cavity.cs">
-					<Link>Properties\Cavity.cs</Link>
-				</Compile>
-				<Compile Include="Net\HttpResponseContentTypeTest.cs"/>
-				<Compile Include="Net\HttpExpectations.cs"/>
-				<Compile Include="Net\HttpHeadTest.cs"/>
-				<Compile Include="Net\HttpRequestDefinition.cs"/>
-				<Compile Include="Net\HttpResponseCacheControlTest.cs"/>
-				<Compile Include="Net\HttpResponseContentLanguageTest.cs"/>
-				<Compile Include="Net\HttpResponseContentMD5Test.cs"/>
-				<Compile Include="Net\HttpResponseHeaderTest.cs"/>
-				<Compile Include="Net\HttpStatusCodeTest.cs"/>
-				<Compile Include="Net\HttpTestException.cs"/>
-				<Compile Include="Net\IHttpContent.cs"/>
-				<Compile Include="Net\IRequestAcceptContent.cs"/>
-				<Compile Include="Net\IRequestAcceptLanguage.cs"/>
-				<Compile Include="Net\IResponseContent.cs"/>
-				<Compile Include="Net\IRequestMethod.cs"/>
-				<Compile Include="Net\IResponseCacheConditionals.cs"/>
-				<Compile Include="Net\IResponseCacheControl.cs"/>
-				<Compile Include="Net\IResponseContentLanguage.cs"/>
-				<Compile Include="Net\IResponseContentMD5.cs"/>
-				<Compile Include="Net\IResponseHtml.cs"/>
-				<Compile Include="Net\IResponseStatus.cs"/>
-				<Compile Include="Net\IResponseXml.cs"/>
-				<Compile Include="Net\ITestHttp.cs"/>
-				<Compile Include="Net\ITestHttpExpectation.cs"/>
-				<Compile Include="Net\NoContentResponse.cs"/>
-				<Compile Include="Net\Response.cs"/>
-				<Compile Include="Properties\AssemblyInfo.cs"/>
-			</ItemGroup>
-			<ItemGroup>
-				<CodeAnalysisDictionary Include="$(SolutionDir)\Cavity.dictionary">
-					<Link>Properties\Cavity.dictionary</Link>
-				</CodeAnalysisDictionary>
-				<None Include="$(SolutionDir)\Cavity.snk">
-					<Link>Properties\Cavity.snk</Link>
-				</None>
-			</ItemGroup>
-			<ItemGroup>
-				<ProjectReference Include="..\Core\Core.csproj">
-					<Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-					<Name>Core</Name>
-				</ProjectReference>
-			</ItemGroup>
-		</When>
-		<Otherwise>
-			<ItemGroup>
-				<Reference Include="System"/>
-			</ItemGroup>
-			<ItemGroup>
-				<Compile Include="$(SolutionDir)\Build.cs">
-					<Link>Properties\Build.cs</Link>
-				</Compile>
-				<Compile Include="$(SolutionDir)\Cavity.cs">
-					<Link>Properties\Cavity.cs</Link>
-				</Compile>
-				<Compile Include="Properties\AssemblyInfo.cs"/>
-			</ItemGroup>
-		</Otherwise>
-	</Choose>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
-		<OutputType>Library</OutputType>
-		<OutputPath>bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
-		<TrunkDir>$(SolutionDir)..</TrunkDir>
-		<TroveDir>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)</TroveDir>
+		<ProjectGuid>{AC90D9D3-8BF2-4B70-A11C-63893116EFE1}</ProjectGuid>
+		<AssemblyName>Cavity.Testing.Http</AssemblyName>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>full</DebugType>
-		<Optimize>false</Optimize>
-		<DefineConstants>TRACE;DEBUG</DefineConstants>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<DebugType>pdbonly</DebugType>
-		<Optimize>true</Optimize>
-		<DefineConstants>TRACE</DefineConstants>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
-		<DefineConstants>NET20</DefineConstants>
-		<TargetFrameworkVersionNumber>2.0</TargetFrameworkVersionNumber>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
-		<DefineConstants>NET35</DefineConstants>
-		<TargetFrameworkVersionNumber>3.5</TargetFrameworkVersionNumber>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
-		<DefineConstants>NET40</DefineConstants>
-		<TargetFrameworkVersionNumber>4.0</TargetFrameworkVersionNumber>
-	</PropertyGroup>
-	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
-	<Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets"/>
-	<Import Project="$(TroveDir)\Cavity.Build.Compliance"/>
+	<ItemGroup>
+		<Compile Include="$(SolutionDir)\Build.cs">
+			<Link>Properties\Build.cs</Link>
+		</Compile>
+		<Compile Include="$(SolutionDir)\Cavity.cs">
+			<Link>Properties\Cavity.cs</Link>
+		</Compile>
+		<Compile Include="Properties\AssemblyInfo.cs"/>
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+		<Compile Include="Net\HttpResponseContentTypeTest.cs"/>
+		<Compile Include="Net\HttpExpectations.cs"/>
+		<Compile Include="Net\HttpHeadTest.cs"/>
+		<Compile Include="Net\HttpRequestDefinition.cs"/>
+		<Compile Include="Net\HttpResponseCacheControlTest.cs"/>
+		<Compile Include="Net\HttpResponseContentLanguageTest.cs"/>
+		<Compile Include="Net\HttpResponseContentMD5Test.cs"/>
+		<Compile Include="Net\HttpResponseHeaderTest.cs"/>
+		<Compile Include="Net\HttpStatusCodeTest.cs"/>
+		<Compile Include="Net\HttpTestException.cs"/>
+		<Compile Include="Net\IHttpContent.cs"/>
+		<Compile Include="Net\IRequestAcceptContent.cs"/>
+		<Compile Include="Net\IRequestAcceptLanguage.cs"/>
+		<Compile Include="Net\IResponseContent.cs"/>
+		<Compile Include="Net\IRequestMethod.cs"/>
+		<Compile Include="Net\IResponseCacheConditionals.cs"/>
+		<Compile Include="Net\IResponseCacheControl.cs"/>
+		<Compile Include="Net\IResponseContentLanguage.cs"/>
+		<Compile Include="Net\IResponseContentMD5.cs"/>
+		<Compile Include="Net\IResponseHtml.cs"/>
+		<Compile Include="Net\IResponseStatus.cs"/>
+		<Compile Include="Net\IResponseXml.cs"/>
+		<Compile Include="Net\ITestHttp.cs"/>
+		<Compile Include="Net\ITestHttpExpectation.cs"/>
+		<Compile Include="Net\NoContentResponse.cs"/>
+		<Compile Include="Net\Response.cs"/>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="$(SolutionDir)\Cavity.snk">
+			<Link>Properties\Cavity.snk</Link>
+		</None>
+		<CodeAnalysisDictionary Include="$(SolutionDir)\Cavity.dictionary">
+			<Link>Properties\Cavity.dictionary</Link>
+		</CodeAnalysisDictionary>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Core\Core.csproj">
+			<Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+			<Name>Core</Name>
+		</ProjectReference>
+	</ItemGroup>
+	<Import Project="$(SolutionDir)Build\ClassLibraries.Project"/>
 	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
