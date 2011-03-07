@@ -5,10 +5,10 @@
 		<AssemblyName>Cavity.Testing.Http</AssemblyName>
 	</PropertyGroup>
 	<ItemGroup>
-		<Compile Include="$(SolutionDir)\Build.cs">
+		<Compile Include="$(SolutionDir)Build.cs">
 			<Link>Properties\Build.cs</Link>
 		</Compile>
-		<Compile Include="$(SolutionDir)\Cavity.cs">
+		<Compile Include="$(SolutionDir)Cavity.cs">
 			<Link>Properties\Cavity.cs</Link>
 		</Compile>
 		<Compile Include="Properties\AssemblyInfo.cs"/>
@@ -42,10 +42,10 @@
 		<Compile Include="Net\Response.cs"/>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="$(SolutionDir)\Cavity.snk">
+		<None Include="$(SolutionDir)Cavity.snk">
 			<Link>Properties\Cavity.snk</Link>
 		</None>
-		<CodeAnalysisDictionary Include="$(SolutionDir)\Cavity.dictionary">
+		<CodeAnalysisDictionary Include="$(SolutionDir)Cavity.dictionary">
 			<Link>Properties\Cavity.dictionary</Link>
 		</CodeAnalysisDictionary>
 	</ItemGroup>
@@ -55,7 +55,7 @@
 			<Name>Core</Name>
 		</ProjectReference>
 	</ItemGroup>
-	<Import Project="$(SolutionDir)Build\ClassLibraries.Project"/>
+	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
 	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
