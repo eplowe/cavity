@@ -1,76 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<ProjectGuid>{C0BA6034-C107-4295-B494-BA6163C8B6E4}</ProjectGuid>
-		<AssemblyName>Cavity.Http.Client</AssemblyName>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="System.Runtime.Serialization.Formatters.Soap"/>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build\Version.cs">
-			<Link>Properties\Version.cs</Link>
-		</Compile>
-		<Compile Include="$(SolutionDir)Build\Cavity.cs">
-			<Link>Properties\Cavity.cs</Link>
-		</Compile>
-		<Compile Include="Properties\AssemblyInfo.cs"/>
-		<Compile Include="Properties\Resources.Designer.cs">
-			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
-			<DependentUpon>Resources.resx</DependentUpon>
-		</Compile>
-		<Compile Include="Net\Mime\IContentType.cs"/>
-		<Compile Include="Net\Mime\IMediaType.cs"/>
-		<Compile Include="Net\Mime\IContent.cs"/>
-		<Compile Include="Net\HttpDate.cs"/>
-		<Compile Include="Net\IHttpClient.cs"/>
-		<Compile Include="Net\IUserAgent.cs"/>
-		<Compile Include="Text\TextPlain.cs"/>
-		<Compile Include="Xml\ApplicationXml.cs"/>
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-		<Compile Include="Net\Sockets\Uri.ExtensionMethods.cs"/>
-		<Compile Include="Net\Http.cs"/>
-		<Compile Include="Net\HttpClient.cs"/>
-		<Compile Include="Net\HttpHeader.cs"/>
-		<Compile Include="Net\HttpHeaderCollection.cs"/>
-		<Compile Include="Net\HttpMethod.cs"/>
-		<Compile Include="Net\HttpMessage.cs"/>
-		<Compile Include="Net\HttpRequest.cs"/>
-		<Compile Include="Net\HttpResponse.cs"/>
-		<Compile Include="Net\HttpVersion.cs"/>
-		<Compile Include="Net\IHttp.cs"/>
-		<Compile Include="Net\IHttpHeader.cs"/>
-		<Compile Include="Net\IHttpMessage.cs"/>
-		<Compile Include="Net\IHttpRequest.cs"/>
-		<Compile Include="Net\IHttpResponse.cs"/>
-		<Compile Include="Net\RequestLine.cs"/>
-		<Compile Include="Net\StatusLine.cs"/>
-		<Compile Include="Net\Token.cs"/>
-		<Compile Include="Net\UserAgent.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="$(SolutionDir)Build\Cavity.snk">
-			<Link>Properties\Cavity.snk</Link>
-		</None>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
-			<Link>Properties\Code.dictionary</Link>
-		</CodeAnalysisDictionary>
-		<EmbeddedResource Include="Properties\Resources.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Core\Core.csproj">
-			<Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-			<Name>Core</Name>
-		</ProjectReference>
-	</ItemGroup>
-	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
-	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <PropertyGroup>
+    <ProjectGuid>{C0BA6034-C107-4295-B494-BA6163C8B6E4}</ProjectGuid>
+    <AssemblyName>Cavity.Http.Client</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="Microsoft.Practices.ServiceLocation" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(SolutionDir)Build\Version.cs">
+      <Link>Properties\Version.cs</Link>
+    </Compile>
+    <Compile Include="$(SolutionDir)Build\Cavity.cs">
+      <Link>Properties\Cavity.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Net\Mime\IContentType.cs" />
+    <Compile Include="Net\Mime\IMediaType.cs" />
+    <Compile Include="Net\Mime\IContent.cs" />
+    <Compile Include="Net\HttpDate.cs" />
+    <Compile Include="Net\IHttpClient.cs" />
+    <Compile Include="Net\IUserAgent.cs" />
+    <Compile Include="Text\TextPlain.cs" />
+    <Compile Include="Xml\ApplicationXml.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Net\Sockets\Uri.ExtensionMethods.cs" />
+    <Compile Include="Net\Http.cs" />
+    <Compile Include="Net\HttpClient.cs" />
+    <Compile Include="Net\HttpHeaderCollection.cs" />
+    <Compile Include="Net\HttpMethod.cs" />
+    <Compile Include="Net\HttpMessage.cs" />
+    <Compile Include="Net\HttpRequest.cs" />
+    <Compile Include="Net\HttpResponse.cs" />
+    <Compile Include="Net\HttpVersion.cs" />
+    <Compile Include="Net\IHttp.cs" />
+    <Compile Include="Net\IHttpMessage.cs" />
+    <Compile Include="Net\IHttpRequest.cs" />
+    <Compile Include="Net\IHttpResponse.cs" />
+    <Compile Include="Net\RequestLine.cs" />
+    <Compile Include="Net\StatusLine.cs" />
+    <Compile Include="Net\UserAgent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(SolutionDir)Build\Cavity.snk">
+      <Link>Properties\Cavity.snk</Link>
+    </None>
+    <CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
+      <Link>Properties\Code.dictionary</Link>
+    </CodeAnalysisDictionary>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

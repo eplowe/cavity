@@ -86,5 +86,14 @@ namespace Cavity.Properties {
                 return ResourceManager.GetString("ObjectExtensionMethods_IsBoundedBy_Message", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A token is restricted to any char except control keys or separators..
+        /// </summary>
+        internal static string Token_FormatException_Message {
+            get {
+                return ResourceManager.GetString("Token_FormatException_Message", resourceCulture);
+            }
+        }
     }
 }

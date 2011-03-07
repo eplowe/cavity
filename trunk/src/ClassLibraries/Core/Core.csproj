@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</ProjectGuid>
@@ -50,6 +50,9 @@
     <Compile Include="IO\StreamWriterDictionary.cs" />
     <Compile Include="Linq\Enumerable.cs" />
     <Compile Include="Net\IWebRequest.cs" />
+    <Compile Include="Net\HttpHeader.cs" />
+    <Compile Include="Net\IHttpHeader.cs" />
+    <Compile Include="Net\Token.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.cs" />
     <Compile Include="Char.ExtensionMethods.cs" />
     <Compile Include="DateTime.ExtensionMethods.cs" />
