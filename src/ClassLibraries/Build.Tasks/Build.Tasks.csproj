@@ -41,9 +41,6 @@
 		<Compile Include="Build\LexiconTidy.cs"/>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="Cavity.Build.Compliance">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 		<None Include="Cavity.Build.Tasks.Targets">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

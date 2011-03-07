@@ -60,5 +60,5 @@
 	</ItemGroup>
 	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 	<Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets"/>
-	<!-- Import Project="$(TroveDir)\Cavity.Build.Compliance"/ -->
+	<Import Project="Compliance.CSharp.targets"/>
 </Project>
