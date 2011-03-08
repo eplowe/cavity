@@ -4,9 +4,6 @@
 		<ProjectGuid>{6BCF22E0-E321-431B-AEE2-981A03C66E09}</ProjectGuid>
 		<AssemblyName>Cavity.ServiceLocation.Autofac</AssemblyName>
 	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
-	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Reference Include="Autofac">
 			<HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\Autofac.dll</HintPath>

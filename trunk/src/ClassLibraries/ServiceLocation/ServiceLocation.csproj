@@ -5,10 +5,6 @@
 		<AssemblyName>Cavity.ServiceLocation</AssemblyName>
 	</PropertyGroup>
 	<ItemGroup>
-		<Reference Include="System.Configuration"/>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
-	</ItemGroup>
-	<ItemGroup>
 		<Compile Include="$(SolutionDir)Build\Version.cs">
 			<Link>Properties\Version.cs</Link>
 		</Compile>

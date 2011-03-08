@@ -4,10 +4,6 @@
 		<ProjectGuid>{4E862695-27DA-49EB-B567-586767F731BA}</ProjectGuid>
 		<AssemblyName>Cavity.ServiceLocation.Unity</AssemblyName>
 	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="System.Configuration"/>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
-	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Reference Include="Microsoft.Practices.Unity"/>
 		<Reference Include="Microsoft.Practices.Unity.Configuration"/>

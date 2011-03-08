@@ -7,9 +7,6 @@
 		<OutputType>Exe</OutputType>
 	</PropertyGroup>
 	<ItemGroup>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
-	</ItemGroup>
-	<ItemGroup>
 		<Content Include="$(TrunkDir)\lib\trove\Framework\v3.5\Microsoft.Practices.Unity.Configuration.dll">
 			<Link>Microsoft.Practices.Unity.Configuration.dll</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -7,7 +7,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="System.Runtime.Serialization.Formatters.Soap"/>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
 		<Reference Include="Moq" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 			<HintPath>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)\Moq.dll</HintPath>
 		</Reference>

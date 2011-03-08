@@ -6,9 +6,6 @@
 		<RootNamespace>Example</RootNamespace>
 		<OutputType>Exe</OutputType>
 	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
-	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Content Include="$(TrunkDir)\lib\trove\Framework\v3.5\Autofac.dll">
 			<Link>Autofac.dll</Link>

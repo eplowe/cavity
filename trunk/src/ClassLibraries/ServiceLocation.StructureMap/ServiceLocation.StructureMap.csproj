@@ -5,9 +5,6 @@
 		<AssemblyName>Cavity.ServiceLocation.StructureMap</AssemblyName>
 		<SignAssembly>false</SignAssembly>
 	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
-	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Reference Include="StructureMap" Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' ">
 			<HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\StructureMap.dll</HintPath>
