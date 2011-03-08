@@ -98,14 +98,17 @@
         [Fact]
         public void op_Insert_IRecord()
         {
-            var record = new Mock<IRecord>().Object;
+            var expected = new Mock<IRecord>().Object;
 
             var mock = new Mock<IRepository>();
             mock
-                .Setup(x => x.Insert(record))
+                .Setup(x => x.Insert(expected))
+                .Returns(expected)
                 .Verifiable();
 
-            mock.Object.Insert(record);
+            var actual = mock.Object.Insert(expected);
+            
+            Assert.Same(expected, actual);
 
             mock.VerifyAll();
         }

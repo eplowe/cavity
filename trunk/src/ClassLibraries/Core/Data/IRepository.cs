@@ -16,7 +16,7 @@
 
         bool Exists(XPathExpression xpath);
 
-        void Insert(IRecord record);
+        IRecord Insert(IRecord record);
 
         bool Match(AbsoluteUri urn, string etag);
 
