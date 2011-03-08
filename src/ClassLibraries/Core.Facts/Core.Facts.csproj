@@ -6,7 +6,6 @@
     <CodeAnalysisRuleSet>$(SolutionDir)Build\Facts.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="Moq" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
       <HintPath>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)\Moq.dll</HintPath>
@@ -44,6 +43,7 @@
     <Compile Include="Data\IRecord.Facts.cs" />
     <Compile Include="Data\IRepository.Facts.cs" />
     <Compile Include="Data\DataCollection.Facts.cs" />
+    <Compile Include="Data\Record.Facts.cs" />
     <Compile Include="Data\RepositoryException.Facts.cs" />
     <Compile Include="IO\TempDirectory.Facts.cs" />
     <Compile Include="IO\TempFile.Facts.cs" />

@@ -5,9 +5,6 @@
 		<AssemblyName>Cavity.ServiceLocation.CastleWindsor</AssemblyName>
 		<SignAssembly>false</SignAssembly>
 	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
-	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Reference Include="Castle.Core">
 			<HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\Castle.Core.dll</HintPath>

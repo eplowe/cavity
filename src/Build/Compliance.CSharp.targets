@@ -52,12 +52,14 @@
 	
 	<Target Name="csproj : references" Condition="$(ProjectExt) == '.csproj'">
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ItemGroup/b:Reference[@Include='System'])"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ItemGroup/b:Reference[@Include='System.Configuration'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ItemGroup/b:Reference[@Include='System.Core'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ItemGroup[not(@Condition=%22 %27%24(TargetFrameworkVersion)%27 != %27v2.0%27 %22)]/b:Reference[@Include='System.Data.DataSetExtensions'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ItemGroup[not(@Condition=%22 %27%24(TargetFrameworkVersionNumber)%27 &gt;= %274.0%27 %22)]/b:Reference[@Include='System.Numerics'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ItemGroup/b:Reference[@Include='System.Xml'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ItemGroup/b:Reference[@Include='System.Xml.Linq'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ItemGroup/b:Reference[@Include='Microsoft.CSharp'])"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ItemGroup/b:Reference[@Include='Microsoft.Practices.ServiceLocation'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ItemGroup[@Condition]/b:Reference[@Include='Moq'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ItemGroup/b:Reference[@Include='Moq'][not(@Condition=%22 %27%24(TargetFrameworkVersion)%27 != %27v2.0%27 %22)])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ItemGroup/b:Reference[@Include='Moq']/b:HintPath[not(text()='%24(TrunkDir)\lib\trove\Framework\%24(TargetFrameworkVersion)\Moq.dll')])"/>

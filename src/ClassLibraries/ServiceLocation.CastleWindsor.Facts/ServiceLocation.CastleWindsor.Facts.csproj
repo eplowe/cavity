@@ -7,7 +7,6 @@
 		<SignAssembly>false</SignAssembly>
 	</PropertyGroup>
 	<ItemGroup>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
 		<Reference Include="Moq" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 			<HintPath>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)\Moq.dll</HintPath>
 		</Reference>

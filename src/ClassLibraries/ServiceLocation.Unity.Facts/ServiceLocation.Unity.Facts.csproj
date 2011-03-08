@@ -6,8 +6,6 @@
 		<CodeAnalysisRuleSet>$(SolutionDir)Build\Facts.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<ItemGroup>
-		<Reference Include="System.Configuration"/>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
 		<Reference Include="xunit">
 			<HintPath>$(TrunkDir)\lib\trove\Framework\v2.0\xunit.dll</HintPath>
 		</Reference>

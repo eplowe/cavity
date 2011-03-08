@@ -13,7 +13,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="System.ComponentModel.DataAnnotations"/>
-		<Reference Include="System.Configuration"/>
 		<Reference Include="System.Data"/>
 		<Reference Include="System.Drawing"/>
 		<Reference Include="System.EnterpriseServices"/>

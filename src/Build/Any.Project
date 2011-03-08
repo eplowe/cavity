@@ -49,7 +49,9 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="System"/>
+		<Reference Include="System.Configuration"/>
 		<Reference Include="System.Xml"/>
+		<Reference Include="Microsoft.Practices.ServiceLocation"/>
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' ">
 		<Reference Include="System.Core"/>

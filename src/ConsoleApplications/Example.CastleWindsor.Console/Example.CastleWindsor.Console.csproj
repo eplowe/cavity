@@ -7,9 +7,6 @@
 		<OutputType>Exe</OutputType>
 	</PropertyGroup>
 	<ItemGroup>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
-	</ItemGroup>
-	<ItemGroup>
 		<Content Include="$(TrunkDir)\lib\trove\Framework\v3.5\Castle.Core.dll">
 			<Link>Castle.Core.dll</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
