@@ -24,6 +24,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
+    <Compile Include="Configuration\ConfiguredDirectory.cs" />
+    <Compile Include="Data\IRecord.cs" />
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Data\RepositoryException.cs" />
     <Compile Include="IO\EncodedStringWriter.cs" />
     <Compile Include="IO\TempDirectory.cs" />
     <Compile Include="IO\TempFile.cs" />
@@ -37,22 +42,18 @@
     <Compile Include="TestException.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.cs" />
-    <Compile Include="Configuration\ConfiguredDirectory.cs" />
     <Compile Include="Configuration\ConfiguredList.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.cs" />
     <Compile Include="Data\DataCollection.cs" />
-    <Compile Include="Data\IRecord.cs" />
-    <Compile Include="Data\IRepository.cs" />
     <Compile Include="IO\CsvFile.cs" />
     <Compile Include="IO\CsvStreamReader.cs" />
     <Compile Include="IO\StreamWriterDictionary.cs" />
     <Compile Include="Linq\Enumerable.cs" />
     <Compile Include="Net\CacheControl.cs" />
-    <Compile Include="Net\IWebRequest.cs" />
     <Compile Include="Net\HttpHeader.cs" />
     <Compile Include="Net\IHttpHeader.cs" />
+    <Compile Include="Net\IWebRequest.cs" />
     <Compile Include="Net\Token.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.cs" />
     <Compile Include="Char.ExtensionMethods.cs" />
