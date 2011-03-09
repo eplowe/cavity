@@ -223,56 +223,92 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An unexpected exception was encountered..
-        /// </summary>
-        internal static string Repository_UnexpectedException_Message {
-            get {
-                return ResourceManager.GetString("Repository_UnexpectedException_Message", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Insert(IRecord) should set the key of the returned record..
         /// </summary>
-        internal static string RepositoryInsertRecord_UnitTestExceptionMessage {
+        internal static string Repository_Insert_Record_ReturnsIncorrectKey_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("RepositoryInsertRecord_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_Insert_Record_ReturnsIncorrectKey_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Insert(IRecord) should throw an RepositoryException when an object with the key already exists..
         /// </summary>
-        internal static string RepositoryInsertRecordKeyExists_UnitTestExceptionMessage {
+        internal static string Repository_Insert_RecordKeyExists_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("RepositoryInsertRecordKeyExists_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_Insert_RecordKeyExists_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Insert(IRecord) should throw an ArgumentNullException when a null object is specified..
         /// </summary>
-        internal static string RepositoryInsertRecordNull_UnitTestExceptionMessage {
+        internal static string Repository_Insert_RecordNull_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("RepositoryInsertRecordNull_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_Insert_RecordNull_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Insert(IRecord) should throw an RepositoryException when an object with the URN already exists..
         /// </summary>
-        internal static string RepositoryInsertRecordUrnExists_UnitTestExceptionMessage {
+        internal static string Repository_Insert_RecordUrnExists_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("RepositoryInsertRecordUrnExists_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_Insert_RecordUrnExists_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Insert(IRecord) should throw an RepositoryException when an object does not specify a URN..
         /// </summary>
-        internal static string RepositoryInsertRecordUrnNull_UnitTestExceptionMessage {
+        internal static string Repository_Insert_RecordUrnNull_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("RepositoryInsertRecordUrnNull_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_Insert_RecordUrnNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select(AbsoluteUri) should return an object with the correct key..
+        /// </summary>
+        internal static string Repository_Select_Urn_ReturnsIncorrectKey_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Select_Urn_ReturnsIncorrectKey_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select(AbsoluteUri) should return an object with the correct URN..
+        /// </summary>
+        internal static string Repository_Select_Urn_ReturnsIncorrectUrn_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Select_Urn_ReturnsIncorrectUrn_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select(AbsoluteUri) should return an object..
+        /// </summary>
+        internal static string Repository_Select_Urn_ReturnsNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Select_Urn_ReturnsNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select(IRecord) should throw an ArgumentNullException when a null object is specified..
+        /// </summary>
+        internal static string Repository_Select_UrnNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Select_UrnNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unexpected exception was encountered..
+        /// </summary>
+        internal static string Repository_UnexpectedException_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_UnexpectedException_UnitTestExceptionMessage", resourceCulture);
             }
         }
         

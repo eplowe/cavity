@@ -20,7 +20,7 @@
     <Compile Include="$(SolutionDir)Build\Cavity.cs">
       <Link>Properties\Cavity.cs</Link>
     </Compile>
-    <Compile Include="Data\IExpectRepository.cs" />
+    <Compile Include="Data\IVerifyRepository`1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -29,13 +29,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Compile Include="Data\FakeRepository.cs" />
+    <Compile Include="Data\FakeRepository`1.cs" />
     <Compile Include="Data\RepositoryExpectations`1.cs" />
-    <Compile Include="Data\RepositoryInsertRecord.cs" />
-    <Compile Include="Data\RepositoryInsertRecordKeyExists.cs" />
-    <Compile Include="Data\RepositoryInsertRecordNull.cs" />
-    <Compile Include="Data\RepositoryInsertRecordUrnNull.cs" />
-    <Compile Include="Data\RepositoryInsertRecordUrnExists.cs" />
+    <Compile Include="Data\RepositoryInsertRecord`1.cs" />
+    <Compile Include="Data\RepositoryInsertRecordKeyExists`1.cs" />
+    <Compile Include="Data\RepositoryInsertRecordNull`1.cs" />
+    <Compile Include="Data\RepositoryInsertRecordUrnNull`1.cs" />
+    <Compile Include="Data\RepositoryInsertRecordUrnExists`1.cs" />
+    <Compile Include="Data\RepositorySelectUrnNull`1.cs" />
+    <Compile Include="Data\RepositorySelectUrn`1.cs" />
     <Compile Include="Fluent\ITestClassConstruction.cs" />
     <Compile Include="Fluent\ITestClassSealed.cs" />
     <Compile Include="Fluent\ITestExpectation.cs" />

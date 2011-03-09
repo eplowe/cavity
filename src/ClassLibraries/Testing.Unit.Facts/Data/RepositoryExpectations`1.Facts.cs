@@ -3,12 +3,12 @@
     using Cavity;
     using Xunit;
 
-    public sealed class RepositoryExpectationsFacts
+    public sealed class RepositoryExpectationsOfTFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<RepositoryExpectations<FakeRepository>>()
+            Assert.True(new TypeExpectations<RepositoryExpectations<int>>()
                 .DerivesFrom<object>()
                 .IsConcreteClass()
                 .IsSealed()
@@ -20,13 +20,13 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new RepositoryExpectations<FakeRepository>());
+            Assert.NotNull(new RepositoryExpectations<int>());
         }
 
         [Fact]
         public void op_VerifyAll()
         {
-            new RepositoryExpectations<FakeRepository>().VerifyAll();
+            new RepositoryExpectations<int>().VerifyAll<FakeRepository<int>>();
         }
     }
 }
