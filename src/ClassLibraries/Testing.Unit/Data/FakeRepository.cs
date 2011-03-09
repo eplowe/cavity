@@ -9,9 +9,12 @@
         public FakeRepository()
         {
             Keys = new HashSet<AlphaDecimal>();
+            Urns = new HashSet<AbsoluteUri>();
         }
 
         private HashSet<AlphaDecimal> Keys { get; set; }
+
+        private HashSet<AbsoluteUri> Urns { get; set; }
 
         bool IRepository.Delete(AbsoluteUri urn)
         {
@@ -45,6 +48,16 @@
                 throw new ArgumentNullException("record");
             }
 
+            if (null == record.Urn)
+            {
+                throw new RepositoryException();
+            }
+
+            if (Urns.Contains(record.Urn))
+            {
+                throw new RepositoryException();
+            }
+
             if (!record.Key.HasValue)
             {
                 record.Key = AlphaDecimal.Random();
@@ -56,6 +69,7 @@
             }
 
             Keys.Add(record.Key.Value);
+            Urns.Add(record.Urn);
 
             return record;
         }

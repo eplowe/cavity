@@ -32,6 +32,8 @@
     <Compile Include="Data\RepositoryInsertRecord.Facts.cs" />
     <Compile Include="Data\RepositoryInsertRecordKeyExists.Facts.cs" />
     <Compile Include="Data\RepositoryInsertRecordNull.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecordUrnNull.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecordUrnExists.Facts.cs" />
     <Compile Include="Fluent\ITestClassConstruction.Facts.cs" />
     <Compile Include="Fluent\ITestClassSealed.Facts.cs" />
     <Compile Include="Fluent\ITestClassStyle.Facts.cs" />
