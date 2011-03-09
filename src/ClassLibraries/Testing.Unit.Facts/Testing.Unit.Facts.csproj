@@ -30,6 +30,8 @@
     <Compile Include="Data\IExpectRepository.Facts.cs" />
     <Compile Include="Data\RepositoryExpectations`1.Facts.cs" />
     <Compile Include="Data\RepositoryInsertRecord.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecordKeyExists.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecordNull.Facts.cs" />
     <Compile Include="Fluent\ITestClassConstruction.Facts.cs" />
     <Compile Include="Fluent\ITestClassSealed.Facts.cs" />
     <Compile Include="Fluent\ITestClassStyle.Facts.cs" />
