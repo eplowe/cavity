@@ -28,50 +28,36 @@
         }
 
         [Fact]
-        public void ctor_IRecord()
-        {
-            Assert.NotNull(new RepositoryInsertRecord(new Mock<IRecord>().Object));
-        }
-
-        [Fact]
         public void op_Verify_IRepository()
         {
-            var record = new Mock<IRecord>();
-            record
-                .SetupGet(x => x.Key)
-                .Returns(AlphaDecimal.Random())
-                .Verifiable();
+            var obj = new RepositoryInsertRecord();
+            obj.Record.Object.Key = AlphaDecimal.Random();
 
             var repository = new Mock<IRepository>();
             repository
-                .Setup(x => x.Insert(record.Object))
-                .Returns(record.Object)
+                .Setup(x => x.Insert(obj.Record.Object))
+                .Returns(obj.Record.Object)
                 .Verifiable();
 
-            new RepositoryInsertRecord(record.Object).Verify(repository.Object);
+            obj.Verify(repository.Object);
 
-            record.VerifyAll();
             repository.VerifyAll();
         }
 
         [Fact]
         public void op_Verify_IRepository_whenKeyIsNotSet()
         {
-            var record = new Mock<IRecord>();
-            record
-                .SetupGet(x => x.Key)
-                .Returns((int?)null)
-                .Verifiable();
+            var obj = new RepositoryInsertRecord();
+            obj.Record.Object.Key = (int?)null;
 
             var repository = new Mock<IRepository>();
             repository
-                .Setup(x => x.Insert(record.Object))
-                .Returns(record.Object)
+                .Setup(x => x.Insert(obj.Record.Object))
+                .Returns(obj.Record.Object)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryInsertRecord(record.Object).Verify(repository.Object));
+            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
 
-            record.VerifyAll();
             repository.VerifyAll();
         }
 

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Transactions;
+    using Cavity.Properties;
     using Cavity.Tests;
     using Moq;
 
@@ -9,14 +10,10 @@
     {
         public RepositoryInsertRecord()
         {
+            Record = new Mock<IRecord>().SetupProperty(x => x.Key);
         }
 
-        public RepositoryInsertRecord(IRecord record)
-        {
-            Record = record;
-        }
-
-        public IRecord Record { get; set; }
+        public Mock<IRecord> Record { get; set; }
 
         public void Verify(IRepository repository)
         {
@@ -25,17 +22,16 @@
                 throw new ArgumentNullException("repository");
             }
 
-            var record = Record ?? new Mock<IRecord>().SetupProperty(x => x.Key).Object;
-
             using (new TransactionScope())
             {
-                record = repository.Insert(record);
+                var record = repository.Insert(Record.Object);
                 if (record.Key.HasValue)
                 {
+                    Record.VerifyAll();
                     return;
                 }
 
-                throw new UnitTestException("Insert(IRecord) should populate the key.");
+                throw new UnitTestException(Resources.RepositoryInsertRecord_UnitTestExceptionMessage);
             }
         }
     }

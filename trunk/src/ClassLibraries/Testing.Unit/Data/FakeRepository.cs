@@ -1,10 +1,18 @@
 ﻿namespace Cavity.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Xml.XPath;
 
     public sealed class FakeRepository : IRepository
     {
+        public FakeRepository()
+        {
+            Keys = new HashSet<AlphaDecimal>();
+        }
+
+        private HashSet<AlphaDecimal> Keys { get; set; }
+
         bool IRepository.Delete(AbsoluteUri urn)
         {
             throw new System.NotImplementedException();
@@ -32,7 +40,22 @@
 
         IRecord IRepository.Insert(IRecord record)
         {
-            record.Key = AlphaDecimal.Random();
+            if (null == record)
+            {
+                throw new ArgumentNullException("record");
+            }
+
+            if (!record.Key.HasValue)
+            {
+                record.Key = AlphaDecimal.Random();
+            }
+
+            if (Keys.Contains(record.Key.Value))
+            {
+                throw new RepositoryException();
+            }
+
+            Keys.Add(record.Key.Value);
 
             return record;
         }
