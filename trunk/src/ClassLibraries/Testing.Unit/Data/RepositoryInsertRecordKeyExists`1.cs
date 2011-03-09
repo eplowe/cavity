@@ -1,18 +1,19 @@
 ﻿namespace Cavity.Data
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Transactions;
     using Cavity.Properties;
     using Cavity.Tests;
     using Moq;
 
-    public sealed class RepositoryInsertRecordKeyExists : IExpectRepository
+    public sealed class RepositoryInsertRecordKeyExists<T> : IVerifyRepository<T>
     {
         public RepositoryInsertRecordKeyExists()
         {
             var key = AlphaDecimal.Random();
 
-            var record = new Mock<IRecord>();
+            var record = new Mock<IRecord<T>>();
             record
                 .SetupGet(x => x.Key)
                 .Returns(key);
@@ -21,7 +22,7 @@
                 .Returns("urn://example.com/" + Guid.NewGuid());
             Record = record;
 
-            var duplicate = new Mock<IRecord>();
+            var duplicate = new Mock<IRecord<T>>();
             duplicate
                 .SetupGet(x => x.Key)
                 .Returns(key);
@@ -32,11 +33,13 @@
             Duplicate = duplicate;
         }
 
-        public Mock<IRecord> Duplicate { get; set; }
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is required for mocking.")]
+        public Mock<IRecord<T>> Duplicate { get; set; }
 
-        public Mock<IRecord> Record { get; set; }
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is required for mocking.")]
+        public Mock<IRecord<T>> Record { get; set; }
 
-        public void Verify(IRepository repository)
+        public void Verify(IRepository<T> repository)
         {
             if (null == repository)
             {
@@ -51,7 +54,7 @@
                 }
                 catch (Exception exception)
                 {
-                    throw new UnitTestException(Resources.Repository_UnexpectedException_Message, exception);
+                    throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
                 }
 
                 RepositoryException expected = null;
@@ -65,12 +68,12 @@
                 }
                 catch (Exception exception)
                 {
-                    throw new UnitTestException(Resources.RepositoryInsertRecordKeyExists_UnitTestExceptionMessage, exception);
+                    throw new UnitTestException(Resources.Repository_Insert_RecordKeyExists_UnitTestExceptionMessage, exception);
                 }
 
                 if (null == expected)
                 {
-                    throw new UnitTestException(Resources.RepositoryInsertRecordKeyExists_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_Insert_RecordKeyExists_UnitTestExceptionMessage);
                 }
             }
         }

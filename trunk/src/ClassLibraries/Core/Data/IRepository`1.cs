@@ -4,7 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Xml.XPath;
 
-    public interface IRepository
+    public interface IRepository<T>
     {
         bool Delete(AbsoluteUri urn);
 
@@ -16,7 +16,7 @@
 
         bool Exists(XPathExpression xpath);
 
-        IRecord Insert(IRecord record);
+        IRecord<T> Insert(IRecord<T> record);
 
         bool Match(AbsoluteUri urn, string etag);
 
@@ -26,21 +26,19 @@
 
         bool ModifiedSince(AlphaDecimal key, string etag);
 
-        IEnumerable<T> Query<T>(XPathExpression xpath)
-            where T : IRecord;
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This design is intentional.")]
+        IEnumerable<IRecord<T>> Query(XPathExpression xpath);
 
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Select", Justification = "The naming is intentional.")]
-        T Select<T>(AbsoluteUri urn)
-            where T : IRecord;
+        IRecord<T> Select(AbsoluteUri urn);
 
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Select", Justification = "The naming is intentional.")]
-        T Select<T>(AlphaDecimal key)
-            where T : IRecord;
+        IRecord<T> Select(AlphaDecimal key);
 
         AlphaDecimal? Key(AbsoluteUri urn);
 
-        bool Update(IRecord record);
+        bool Update(IRecord<T> record);
 
-        void Upsert(IRecord record);
+        void Upsert(IRecord<T> record);
     }
 }

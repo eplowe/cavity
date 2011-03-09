@@ -5,12 +5,12 @@
     using Moq;
     using Xunit;
 
-    public sealed class IRecordFacts
+    public sealed class IRecordOfTFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<IRecord>()
+            Assert.True(new TypeExpectations<IRecord<int>>()
                             .IsInterface()
                             .Result);
         }
@@ -20,7 +20,7 @@
         {
             const string expected = "public";
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupGet(x => x.Cacheability)
                 .Returns(expected)
@@ -38,7 +38,7 @@
         {
             const string value = "public";
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupSet(x => x.Cacheability = value)
                 .Verifiable();
@@ -53,7 +53,7 @@
         {
             DateTime? expected = DateTime.UtcNow;
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupGet(x => x.Created)
                 .Returns(expected)
@@ -71,7 +71,7 @@
         {
             DateTime? value = DateTime.UtcNow;
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupSet(x => x.Created = value)
                 .Verifiable();
@@ -86,7 +86,7 @@
         {
             const string expected = "example: abc";
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupGet(x => x.Entity)
                 .Returns(expected)
@@ -104,7 +104,7 @@
         {
             const string expected = "\"xyz\"";
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupGet(x => x.Etag)
                 .Returns(expected)
@@ -122,7 +122,7 @@
         {
             const string value = "\"xyz\"";
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupSet(x => x.Etag = value)
                 .Verifiable();
@@ -137,7 +137,7 @@
         {
             const string expected = "P1D";
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupGet(x => x.Expiration)
                 .Returns(expected)
@@ -155,7 +155,7 @@
         {
             const string value = "P1D";
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupSet(x => x.Expiration = value)
                 .Verifiable();
@@ -170,7 +170,7 @@
         {
             AlphaDecimal? expected = AlphaDecimal.Random();
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupGet(x => x.Key)
                 .Returns(expected)
@@ -188,7 +188,7 @@
         {
             AlphaDecimal? value = AlphaDecimal.Random();
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupSet(x => x.Key = value)
                 .Verifiable();
@@ -203,7 +203,7 @@
         {
             DateTime? expected = DateTime.UtcNow;
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupGet(x => x.Modified)
                 .Returns(expected)
@@ -221,7 +221,7 @@
         {
             DateTime? value = DateTime.UtcNow;
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupSet(x => x.Modified = value)
                 .Verifiable();
@@ -236,7 +236,7 @@
         {
             int? expected = 200;
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupGet(x => x.Status)
                 .Returns(expected)
@@ -254,7 +254,7 @@
         {
             int? value = 200;
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupSet(x => x.Status = value)
                 .Verifiable();
@@ -269,7 +269,7 @@
         {
             AbsoluteUri expected = "urn://example.com/path";
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupGet(x => x.Urn)
                 .Returns(expected)
@@ -287,12 +287,45 @@
         {
             AbsoluteUri value = "urn://example.com/path";
 
-            var mock = new Mock<IRecord>();
+            var mock = new Mock<IRecord<int>>();
             mock
                 .SetupSet(x => x.Urn = value)
                 .Verifiable();
 
             mock.Object.Urn = value;
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Value_get()
+        {
+            const int expected = 123;
+
+            var mock = new Mock<IRecord<int>>();
+            mock
+                .SetupGet(x => x.Value)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Value;
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Value_set()
+        {
+            const int value = 123;
+
+            var mock = new Mock<IRecord<int>>();
+            mock
+                .SetupSet(x => x.Value = value)
+                .Verifiable();
+
+            mock.Object.Value = value;
 
             mock.VerifyAll();
         }

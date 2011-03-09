@@ -3,7 +3,7 @@
     using System;
     using System.Xml.Serialization;
 
-    public abstract class Record : ValueObject<Record>, IRecord
+    public abstract class Record<T> : ValueObject<Record<T>>, IRecord<T>
     {
         protected Record()
         {
@@ -44,5 +44,8 @@
 
         [XmlIgnore]
         public AbsoluteUri Urn { get; set; }
+
+        [XmlIgnore]
+        public T Value { get; set; }
     }
 }

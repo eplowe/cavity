@@ -5,9 +5,9 @@
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositoryInsertRecordNull : IExpectRepository
+    public sealed class RepositoryInsertRecordNull<T> : IVerifyRepository<T>
     {
-        public void Verify(IRepository repository)
+        public void Verify(IRepository<T> repository)
         {
             if (null == repository)
             {
@@ -27,12 +27,12 @@
                 }
                 catch (Exception exception)
                 {
-                    throw new UnitTestException(Resources.RepositoryInsertRecordNull_UnitTestExceptionMessage, exception);
+                    throw new UnitTestException(Resources.Repository_Insert_RecordNull_UnitTestExceptionMessage, exception);
                 }
 
                 if (null == expected)
                 {
-                    throw new UnitTestException(Resources.RepositoryInsertRecordNull_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_Insert_RecordNull_UnitTestExceptionMessage);
                 }
             }
         }

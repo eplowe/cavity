@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface IRecord
+    public interface IRecord<T>
     {
         string Cacheability { get; set; }
 
@@ -21,5 +21,7 @@
         int? Status { get; set; }
 
         AbsoluteUri Urn { get; set; }
+
+        T Value { get; set; }
     }
 }

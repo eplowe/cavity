@@ -5,12 +5,12 @@
     using Moq;
     using Xunit;
 
-    public sealed class IRepositoryFacts
+    public sealed class IRepositoryOfTFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<IRepository>()
+            Assert.True(new TypeExpectations<IRepository<int>>()
                             .IsInterface()
                             .Result);
         }
@@ -20,7 +20,7 @@
         {
             var urn = new AbsoluteUri("urn://example.com/path");
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.Delete(urn))
                 .Returns(true)
@@ -36,7 +36,7 @@
         {
             var key = AlphaDecimal.Random();
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.Delete(key))
                 .Returns(true)
@@ -52,7 +52,7 @@
         {
             var urn = new AbsoluteUri("urn://example.com/path");
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.Exists(urn))
                 .Returns(true)
@@ -68,7 +68,7 @@
         {
             var key = AlphaDecimal.Random();
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.Exists(key))
                 .Returns(true)
@@ -83,8 +83,8 @@
         public void op_Exists_XPathExpression()
         {
             var xpath = XPathExpression.Compile("//root");
-            
-            var mock = new Mock<IRepository>();
+
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.Exists(xpath))
                 .Returns(true)
@@ -98,9 +98,9 @@
         [Fact]
         public void op_Insert_IRecord()
         {
-            var expected = new Mock<IRecord>().Object;
+            var expected = new Mock<IRecord<int>>().Object;
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.Insert(expected))
                 .Returns(expected)
@@ -119,7 +119,7 @@
             var urn = new AbsoluteUri("urn://example.com/path");
             const string etag = "\"xyz\"";
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.Match(urn, etag))
                 .Returns(true)
@@ -136,7 +136,7 @@
             var key = AlphaDecimal.Random();
             const string etag = "\"xyz\"";
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.Match(key, etag))
                 .Returns(true)
@@ -153,7 +153,7 @@
             var urn = new AbsoluteUri("urn://example.com/path");
             const string etag = "\"xyz\"";
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.ModifiedSince(urn, etag))
                 .Returns(true)
@@ -170,7 +170,7 @@
             var key = AlphaDecimal.Random();
             const string etag = "\"xyz\"";
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.ModifiedSince(key, etag))
                 .Returns(true)
@@ -185,18 +185,18 @@
         public void op_Query_XPathExpression()
         {
             var xpath = XPathExpression.Compile("//root");
-            var expected = new List<IRecord>
+            var expected = new List<IRecord<int>>
             {
-                new Mock<IRecord>().Object
+                new Mock<IRecord<int>>().Object
             };
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
-                .Setup(x => x.Query<IRecord>(xpath))
+                .Setup(x => x.Query(xpath))
                 .Returns(expected)
                 .Verifiable();
 
-            var actual = mock.Object.Query<IRecord>(xpath);
+            var actual = mock.Object.Query(xpath);
 
             Assert.Same(expected, actual);
 
@@ -207,15 +207,15 @@
         public void op_Select_AbsoluteUri()
         {
             var urn = new AbsoluteUri("urn://example.com/path");
-            var expected = new Mock<IRecord>().Object;
+            var expected = new Mock<IRecord<int>>().Object;
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
-                .Setup(x => x.Select<IRecord>(urn))
+                .Setup(x => x.Select(urn))
                 .Returns(expected)
                 .Verifiable();
 
-            var actual = mock.Object.Select<IRecord>(urn);
+            var actual = mock.Object.Select(urn);
 
             Assert.Same(expected, actual);
 
@@ -226,15 +226,15 @@
         public void op_Select_AlphaDecimal()
         {
             var key = AlphaDecimal.Random();
-            var expected = new Mock<IRecord>().Object;
+            var expected = new Mock<IRecord<int>>().Object;
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
-                .Setup(x => x.Select<IRecord>(key))
+                .Setup(x => x.Select(key))
                 .Returns(expected)
                 .Verifiable();
 
-            var actual = mock.Object.Select<IRecord>(key);
+            var actual = mock.Object.Select(key);
 
             Assert.Same(expected, actual);
 
@@ -247,7 +247,7 @@
             var urn = new AbsoluteUri("urn://example.com/path");
             var expected = AlphaDecimal.Random();
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.Key(urn))
                 .Returns(expected)
@@ -263,9 +263,9 @@
         [Fact]
         public void op_Update_IRecord()
         {
-            var record = new Mock<IRecord>().Object;
+            var record = new Mock<IRecord<int>>().Object;
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.Update(record))
                 .Returns(true)
@@ -279,9 +279,9 @@
         [Fact]
         public void op_Upsert_IRecord()
         {
-            var record = new Mock<IRecord>().Object;
+            var record = new Mock<IRecord<int>>().Object;
 
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IRepository<int>>();
             mock
                 .Setup(x => x.Upsert(record))
                 .Verifiable();
