@@ -177,6 +177,12 @@
   <data name="RepositoryInsertRecordNull_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(IRecord) should throw an ArgumentNullException when a null object is specified.</value>
   </data>
+  <data name="RepositoryInsertRecordUrnExists_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Insert(IRecord) should throw an RepositoryException when an object with the URN already exists.</value>
+  </data>
+  <data name="RepositoryInsertRecordUrnNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Insert(IRecord) should throw an RepositoryException when an object does not specify a URN.</value>
+  </data>
   <data name="RepositoryInsertRecord_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(IRecord) should set the key of the returned record.</value>
   </data>

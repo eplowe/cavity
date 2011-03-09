@@ -6,28 +6,24 @@
     using Cavity.Tests;
     using Moq;
 
-    public sealed class RepositoryInsertRecordKeyExists : IExpectRepository
+    public sealed class RepositoryInsertRecordUrnExists : IExpectRepository
     {
-        public RepositoryInsertRecordKeyExists()
+        public RepositoryInsertRecordUrnExists()
         {
-            var key = AlphaDecimal.Random();
+            AbsoluteUri urn = "urn://example.com/" + Guid.NewGuid();
 
-            var record = new Mock<IRecord>();
-            record
-                .SetupGet(x => x.Key)
-                .Returns(key);
+            var record = new Mock<IRecord>()
+                .SetupProperty(x => x.Key);
             record
                 .SetupGet(x => x.Urn)
-                .Returns("urn://example.com/" + Guid.NewGuid());
+                .Returns(urn);
             Record = record;
 
-            var duplicate = new Mock<IRecord>();
-            duplicate
-                .SetupGet(x => x.Key)
-                .Returns(key);
+            var duplicate = new Mock<IRecord>()
+                .SetupProperty(x => x.Key);
             duplicate
                 .SetupGet(x => x.Urn)
-                .Returns("urn://example.com/" + Guid.NewGuid());
+                .Returns(urn);
 
             Duplicate = duplicate;
         }
@@ -65,12 +61,12 @@
                 }
                 catch (Exception exception)
                 {
-                    throw new UnitTestException(Resources.RepositoryInsertRecordKeyExists_UnitTestExceptionMessage, exception);
+                    throw new UnitTestException(Resources.RepositoryInsertRecordUrnExists_UnitTestExceptionMessage, exception);
                 }
 
                 if (null == expected)
                 {
-                    throw new UnitTestException(Resources.RepositoryInsertRecordKeyExists_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.RepositoryInsertRecordUrnExists_UnitTestExceptionMessage);
                 }
             }
         }

@@ -259,6 +259,24 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert(IRecord) should throw an RepositoryException when an object with the URN already exists..
+        /// </summary>
+        internal static string RepositoryInsertRecordUrnExists_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("RepositoryInsertRecordUrnExists_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert(IRecord) should throw an RepositoryException when an object does not specify a URN..
+        /// </summary>
+        internal static string RepositoryInsertRecordUrnNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("RepositoryInsertRecordUrnNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} unexpectedly is a sealed class..
         /// </summary>
         internal static string SealedClassTestException_SealedMessage {

@@ -10,7 +10,12 @@
     {
         public RepositoryInsertRecord()
         {
-            Record = new Mock<IRecord>().SetupProperty(x => x.Key);
+            var record = new Mock<IRecord>()
+                .SetupProperty(x => x.Key);
+            record
+                .SetupGet(x => x.Urn)
+                .Returns("urn://example.com/" + Guid.NewGuid());
+            Record = record;
         }
 
         public Mock<IRecord> Record { get; set; }
@@ -27,7 +32,6 @@
                 var record = repository.Insert(Record.Object);
                 if (record.Key.HasValue)
                 {
-                    Record.VerifyAll();
                     return;
                 }
 
