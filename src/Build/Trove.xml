@@ -8,10 +8,10 @@
   <Target Name="Trove">
     <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.dll"
           DestinationFolder="$(TroveDirectory)"
-          OverwriteReadOnlyFiles="true"/>
+          OverwriteReadOnlyFiles="true" />
     <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.Targets"
           DestinationFolder="$(TroveDirectory)"
-          OverwriteReadOnlyFiles="true"/>
+          OverwriteReadOnlyFiles="true" />
     <Copy SourceFiles="$(ClassLibrariesPath)\Core\bin\$(BuildName)\Cavity.Core.dll"
           DestinationFolder="$(TroveDirectory)"
           OverwriteReadOnlyFiles="true" />

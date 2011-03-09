@@ -107,8 +107,27 @@
                 .Verifiable();
 
             var actual = mock.Object.Insert(expected);
-            
+
             Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Key_AbsoluteUri()
+        {
+            var urn = new AbsoluteUri("urn://example.com/path");
+            var expected = AlphaDecimal.Random();
+
+            var mock = new Mock<IRepository<int>>();
+            mock
+                .Setup(x => x.Key(urn))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Key(urn);
+
+            Assert.Equal(expected, actual);
 
             mock.VerifyAll();
         }
@@ -237,25 +256,6 @@
             var actual = mock.Object.Select(key);
 
             Assert.Same(expected, actual);
-
-            mock.VerifyAll();
-        }
-
-        [Fact]
-        public void op_Key_AbsoluteUri()
-        {
-            var urn = new AbsoluteUri("urn://example.com/path");
-            var expected = AlphaDecimal.Random();
-
-            var mock = new Mock<IRepository<int>>();
-            mock
-                .Setup(x => x.Key(urn))
-                .Returns(expected)
-                .Verifiable();
-
-            var actual = mock.Object.Key(urn);
-
-            Assert.Equal(expected, actual);
 
             mock.VerifyAll();
         }

@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using Cavity;
     using Cavity.Tests;
     using Moq;
     using Xunit;
@@ -12,13 +11,13 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<RepositoryInsertRecordUrnNull<int>>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IVerifyRepository<int>>()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IVerifyRepository<int>>()
+                            .Result);
         }
 
         [Fact]
@@ -41,6 +40,12 @@
             obj.Verify(repository.Object);
 
             repository.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Verify_IRepositoryNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new RepositoryInsertRecordUrnNull<int>().Verify(null));
         }
 
         [Fact]
@@ -73,12 +78,6 @@
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
-        }
-
-        [Fact]
-        public void op_Verify_IRepositoryNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new RepositoryInsertRecordUrnNull<int>().Verify(null));
         }
     }
 }

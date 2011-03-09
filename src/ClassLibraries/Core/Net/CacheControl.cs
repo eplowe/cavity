@@ -3,8 +3,11 @@
     public sealed class CacheControl : HttpHeader
     {
         private static readonly CacheControl _nocache = new CacheControl("no-cache");
+
         private static readonly CacheControl _nostore = new CacheControl("no-store");
+
         private static readonly CacheControl _private = new CacheControl("private");
+
         private static readonly CacheControl _public = new CacheControl("public");
 
         public CacheControl()

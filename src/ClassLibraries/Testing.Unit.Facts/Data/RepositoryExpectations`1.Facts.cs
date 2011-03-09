@@ -1,6 +1,5 @@
 ﻿namespace Cavity.Data
 {
-    using Cavity;
     using Xunit;
 
     public sealed class RepositoryExpectationsOfTFacts
@@ -9,12 +8,12 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<RepositoryExpectations<int>>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
