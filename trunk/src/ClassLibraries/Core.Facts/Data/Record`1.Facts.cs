@@ -1,8 +1,6 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using Cavity;
-    using Moq;
     using Xunit;
 
     public sealed class RecordOfTFacts
@@ -11,11 +9,11 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<Record<int>>()
-                .DerivesFrom<ValueObject<Record<int>>>()
-                .IsAbstractBaseClass()
-                .IsNotDecorated()
-                .Implements<IRecord<int>>()
-                .Result);
+                            .DerivesFrom<ValueObject<Record<int>>>()
+                            .IsAbstractBaseClass()
+                            .IsNotDecorated()
+                            .Implements<IRecord<int>>()
+                            .Result);
         }
 
         [Fact]

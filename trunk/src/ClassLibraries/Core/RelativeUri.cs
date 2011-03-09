@@ -2,6 +2,7 @@
 {
     using System;
     using System.Runtime.Serialization;
+
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
@@ -179,6 +180,7 @@
 #if NET20 || NET35
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
+
         void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {

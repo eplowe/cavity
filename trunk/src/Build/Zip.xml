@@ -6,7 +6,8 @@
     <ZipDirectory>$(MSBuildProjectDirectory)\zip</ZipDirectory>
   </PropertyGroup>
 
-  <Target Name="Zip" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  <Target Name="Zip"
+          Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <CallTarget Targets="Create Zip Folder" />
     <CallTarget Targets="Zip Source" />
     <CallTarget Targets="Zip HTTP Client" />
@@ -23,7 +24,8 @@
              Condition="!Exists('$(ZipDirectory)')" />
   </Target>
 
-  <Target Name="Zip Source" Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
+  <Target Name="Zip Source"
+          Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
     <MakeDir Directories="$(PublishDirectory)\Source"
              Condition="!Exists('$(PublishDirectory)\Source')" />
     <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(MSBuildProjectDirectory)\src"

@@ -1,7 +1,5 @@
 ﻿namespace Cavity.Net
 {
-    using System;
-    using Cavity;
     using Xunit;
 
     public sealed class CacheControlFacts
@@ -10,12 +8,12 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<CacheControl>()
-                .DerivesFrom<HttpHeader>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<HttpHeader>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]

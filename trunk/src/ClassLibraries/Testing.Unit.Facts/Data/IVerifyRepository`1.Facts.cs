@@ -1,7 +1,5 @@
 ﻿namespace Cavity.Data
 {
-    using System;
-    using Cavity;
     using Moq;
     using Xunit;
 
@@ -11,9 +9,9 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<IVerifyRepository<int>>()
-                .IsInterface()
-                .IsNotDecorated()
-                .Result);
+                            .IsInterface()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]

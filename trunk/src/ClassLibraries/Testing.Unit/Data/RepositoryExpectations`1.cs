@@ -1,10 +1,10 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using System.Linq;
     using System.Reflection;
 
-    public sealed class RepositoryExpectations<T> where T : new()
+    public sealed class RepositoryExpectations<T>
+        where T : new()
     {
         public void VerifyAll<TRepository>() where TRepository : IRepository<T>
         {

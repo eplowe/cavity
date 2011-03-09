@@ -2,7 +2,6 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Cavity;
     using Cavity.Tests;
     using Moq;
     using Xunit;
@@ -13,13 +12,13 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<RepositorySelectUrnNull<int>>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IVerifyRepository<int>>()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IVerifyRepository<int>>()
+                            .Result);
         }
 
         [Fact]
@@ -41,6 +40,12 @@
             new RepositorySelectUrnNull<int>().Verify(repository.Object);
 
             repository.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Verify_IRepositoryNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new RepositorySelectUrnNull<int>().Verify(null));
         }
 
         [Fact]
@@ -69,12 +74,6 @@
             Assert.Throws<UnitTestException>(() => new RepositorySelectUrnNull<int>().Verify(repository.Object));
 
             repository.VerifyAll();
-        }
-
-        [Fact]
-        public void op_Verify_IRepositoryNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new RepositorySelectUrnNull<int>().Verify(null));
         }
     }
 }

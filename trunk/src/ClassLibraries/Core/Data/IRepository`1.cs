@@ -18,13 +18,19 @@
 
         IRecord<T> Insert(IRecord<T> record);
 
-        bool Match(AbsoluteUri urn, string etag);
+        AlphaDecimal? Key(AbsoluteUri urn);
 
-        bool Match(AlphaDecimal key, string etag);
+        bool Match(AbsoluteUri urn,
+                   string etag);
 
-        bool ModifiedSince(AbsoluteUri urn, string etag);
+        bool Match(AlphaDecimal key,
+                   string etag);
 
-        bool ModifiedSince(AlphaDecimal key, string etag);
+        bool ModifiedSince(AbsoluteUri urn,
+                           string etag);
+
+        bool ModifiedSince(AlphaDecimal key,
+                           string etag);
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This design is intentional.")]
         IEnumerable<IRecord<T>> Query(XPathExpression xpath);
@@ -34,8 +40,6 @@
 
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Select", Justification = "The naming is intentional.")]
         IRecord<T> Select(AlphaDecimal key);
-
-        AlphaDecimal? Key(AbsoluteUri urn);
 
         bool Update(IRecord<T> record);
 
