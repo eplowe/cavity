@@ -171,6 +171,12 @@
   <data name="PropertySetterTestException_Message" xml:space="preserve">
     <value>{0}.{1} did not throw the expected {2}.</value>
   </data>
+  <data name="Repository_Exists_ReturnsFalse_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Exists(AbsoluteUri) should return true when the record exists.</value>
+  </data>
+  <data name="Repository_Exists_ReturnsTrue_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Exists(AbsoluteUri) should return false when the record does not exist.</value>
+  </data>
   <data name="Repository_Insert_RecordKeyExists_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(IRecord) should throw an RepositoryException when an object with the key already exists.</value>
   </data>

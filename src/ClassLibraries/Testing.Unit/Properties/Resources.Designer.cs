@@ -223,6 +223,24 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exists(AbsoluteUri) should return true when the record exists..
+        /// </summary>
+        internal static string Repository_Exists_ReturnsFalse_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Exists_ReturnsFalse_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exists(AbsoluteUri) should return false when the record does not exist..
+        /// </summary>
+        internal static string Repository_Exists_ReturnsTrue_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Exists_ReturnsTrue_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert(IRecord) should set the key of the returned record..
         /// </summary>
         internal static string Repository_Insert_Record_ReturnsIncorrectKey_UnitTestExceptionMessage {
