@@ -7,12 +7,13 @@
     using Cavity.Tests;
     using Moq;
 
-    public sealed class RepositoryMatchUrn<T> : IVerifyRepository<T>
+    public sealed class RepositoryModifiedSinceKey<T> : IVerifyRepository<T>
     {
-        public RepositoryMatchUrn()
+        public RepositoryModifiedSinceKey()
         {
             var record = new Mock<IRecord<T>>()
-                .SetupProperty(x => x.Key);
+                .SetupProperty(x => x.Key)
+                .SetupProperty(x => x.Modified);
             record
                 .SetupGet(x => x.Etag)
                 .Returns("\"abc\"");
@@ -35,13 +36,22 @@
             using (new TransactionScope())
             {
                 repository.Insert(Record.Object);
+                if (!Record.Object.Key.HasValue)
+                {
+                    throw new InvalidOperationException();
+                }
 
-                if (repository.Match(Record.Object.Urn, Record.Object.Etag))
+                if (repository.ModifiedSince(Record.Object.Key.Value, DateTime.MaxValue))
+                {
+                    throw new UnitTestException(Resources.Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage);
+                }
+
+                if (repository.ModifiedSince(Record.Object.Key.Value, DateTime.MinValue))
                 {
                     return;
                 }
 
-                throw new UnitTestException(Resources.Repository_Match_ReturnsFalse_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_ModifiedSince_ReturnsFalse_UnitTestExceptionMessage);
             }
         }
     }

@@ -5,7 +5,7 @@
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositoryMatchUrnNotFound<T> : IVerifyRepository<T>
+    public sealed class RepositoryDeleteUrnNotFound<T> : IVerifyRepository<T>
     {
         public void Verify(IRepository<T> repository)
         {
@@ -16,9 +16,9 @@
 
             using (new TransactionScope())
             {
-                if (repository.Match("urn://example.com/" + Guid.NewGuid(), Guid.NewGuid().ToString()))
+                if (repository.Delete("urn://example.com/" + Guid.NewGuid()))
                 {
-                    throw new UnitTestException(Resources.Repository_Match_ReturnsTrue_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_Delete_ReturnsTrue_UnitTestExceptionMessage);
                 }
             }
         }

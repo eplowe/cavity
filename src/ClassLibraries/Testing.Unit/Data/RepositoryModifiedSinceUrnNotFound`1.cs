@@ -5,7 +5,7 @@
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositoryMatchUrnNotFound<T> : IVerifyRepository<T>
+    public sealed class RepositoryModifiedSinceUrnNotFound<T> : IVerifyRepository<T>
     {
         public void Verify(IRepository<T> repository)
         {
@@ -16,9 +16,9 @@
 
             using (new TransactionScope())
             {
-                if (repository.Match("urn://example.com/" + Guid.NewGuid(), Guid.NewGuid().ToString()))
+                if (repository.ModifiedSince("urn://example.com/" + Guid.NewGuid(), DateTime.MinValue))
                 {
-                    throw new UnitTestException(Resources.Repository_Match_ReturnsTrue_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage);
                 }
             }
         }

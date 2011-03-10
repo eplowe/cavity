@@ -28,6 +28,11 @@
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Data\FakeRepository`1.Facts.cs" />
     <Compile Include="Data\IVerifyRepository`1.Facts.cs" />
+    <Compile Include="Data\RepositoryDeleteUrn`1.Facts.cs" />
+    <Compile Include="Data\RepositoryDeleteUrnNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryDeleteUrnNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryDeleteKey`1.Facts.cs" />
+    <Compile Include="Data\RepositoryDeleteKeyNotFound`1.Facts.cs" />
     <Compile Include="Data\RepositoryExistsKey`1.Facts.cs" />
     <Compile Include="Data\RepositoryExistsKeyNotFound`1.Facts.cs" />
     <Compile Include="Data\RepositoryExistsUrn`1.Facts.cs" />
@@ -44,6 +49,11 @@
     <Compile Include="Data\RepositoryMatchUrnNull`1.Facts.cs" />
     <Compile Include="Data\RepositoryMatchKey`1.Facts.cs" />
     <Compile Include="Data\RepositoryMatchKeyNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryModifiedSinceKey`1.Facts.cs" />
+    <Compile Include="Data\RepositoryModifiedSinceKeyNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryModifiedSinceUrn`1.Facts.cs" />
+    <Compile Include="Data\RepositoryModifiedSinceUrnNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryModifiedSinceUrnNull`1.Facts.cs" />
     <Compile Include="Data\RepositorySelectKey`1.Facts.cs" />
     <Compile Include="Data\RepositorySelectUrn`1.Facts.cs" />
     <Compile Include="Data\RepositorySelectUrnNotFound`1.Facts.cs" />
