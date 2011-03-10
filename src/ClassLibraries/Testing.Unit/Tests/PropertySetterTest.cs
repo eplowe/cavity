@@ -41,8 +41,7 @@
             }
             catch (TargetInvocationException exception)
             {
-                if (null != ExpectedException
-                    &&
+                if (null != ExpectedException  &&
                     !ExpectedException.GetType().Equals(exception.InnerException.GetType()))
                 {
                 }

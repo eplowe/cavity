@@ -223,7 +223,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exists(AbsoluteUri) should return true when the record exists..
+        ///   Looks up a localized string similar to Exists(...) should return true when the record exists..
         /// </summary>
         internal static string Repository_Exists_ReturnsFalse_UnitTestExceptionMessage {
             get {
@@ -232,7 +232,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exists(AbsoluteUri) should return false when the record does not exist..
+        ///   Looks up a localized string similar to Exists(...) should return false when the record does not exist..
         /// </summary>
         internal static string Repository_Exists_ReturnsTrue_UnitTestExceptionMessage {
             get {
@@ -241,7 +241,16 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(IRecord) should set the key of the returned record..
+        ///   Looks up a localized string similar to Exists(...) should throw an ArgumentNullException when a null URN is specified..
+        /// </summary>
+        internal static string Repository_Exists_UrnNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Exists_UrnNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert(...) should set the key of the returned record..
         /// </summary>
         internal static string Repository_Insert_Record_ReturnsIncorrectKey_UnitTestExceptionMessage {
             get {
@@ -250,7 +259,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(IRecord) should throw an RepositoryException when an object with the key already exists..
+        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when an object with the key already exists..
         /// </summary>
         internal static string Repository_Insert_RecordKeyExists_UnitTestExceptionMessage {
             get {
@@ -259,7 +268,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(IRecord) should throw an ArgumentNullException when a null record is specified..
+        ///   Looks up a localized string similar to Insert(...) should throw an ArgumentNullException when a null record is specified..
         /// </summary>
         internal static string Repository_Insert_RecordNull_UnitTestExceptionMessage {
             get {
@@ -268,7 +277,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(IRecord) should throw an RepositoryException when an record with the URN already exists..
+        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when an record with the URN already exists..
         /// </summary>
         internal static string Repository_Insert_RecordUrnExists_UnitTestExceptionMessage {
             get {
@@ -277,7 +286,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(IRecord) should throw an RepositoryException when an record does not specify a URN..
+        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when an record does not specify a URN..
         /// </summary>
         internal static string Repository_Insert_RecordUrnNull_UnitTestExceptionMessage {
             get {
@@ -286,7 +295,34 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select(AbsoluteUri) should return a record with the correct key..
+        ///   Looks up a localized string similar to Match(...) should return true when a matching record exists..
+        /// </summary>
+        internal static string Repository_Match_ReturnsFalse_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Match_ReturnsFalse_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match(...) should return false when no matching record exists..
+        /// </summary>
+        internal static string Repository_Match_ReturnsTrue_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Match_ReturnsTrue_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match(...) should throw an ArgumentNullException when a null URN is specified..
+        /// </summary>
+        internal static string Repository_Match_UrnNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Match_UrnNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select(...) should return a record with the correct key..
         /// </summary>
         internal static string Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage {
             get {
@@ -295,7 +331,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select(AbsoluteUri) should return a record with the correct URN..
+        ///   Looks up a localized string similar to Select(...) should return a record with the correct URN..
         /// </summary>
         internal static string Repository_Select_ReturnsIncorrectUrn_UnitTestExceptionMessage {
             get {
@@ -304,7 +340,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select(AbsoluteUri) should return a record with the correct value..
+        ///   Looks up a localized string similar to Select(...) should return a record with the correct value..
         /// </summary>
         internal static string Repository_Select_ReturnsIncorrectValue_UnitTestExceptionMessage {
             get {
@@ -313,7 +349,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select(AbsoluteUri) should return a record..
+        ///   Looks up a localized string similar to Select(...) should return a record..
         /// </summary>
         internal static string Repository_Select_ReturnsNull_UnitTestExceptionMessage {
             get {
@@ -322,7 +358,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select(AbsoluteUri) should return null when the URN is not found..
+        ///   Looks up a localized string similar to Select(...) should return null when the URN is not found..
         /// </summary>
         internal static string Repository_Select_UrnNotFound_UnitTestExceptionMessage {
             get {
@@ -331,7 +367,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select(IRecord) should throw an ArgumentNullException when a null object is specified..
+        ///   Looks up a localized string similar to Select(...) should throw an ArgumentNullException when a null object is specified..
         /// </summary>
         internal static string Repository_Select_UrnNull_UnitTestExceptionMessage {
             get {
@@ -340,7 +376,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ToKey(AbsoluteUri) should return the correct key..
+        ///   Looks up a localized string similar to ToKey(...) should return the correct key..
         /// </summary>
         internal static string Repository_ToKey_ReturnsIncorrectKey_UnitTestExceptionMessage {
             get {
@@ -349,7 +385,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ToKey(AbsoluteUri) should return a key..
+        ///   Looks up a localized string similar to ToKey(...) should return a key..
         /// </summary>
         internal static string Repository_ToKey_ReturnsNull_UnitTestExceptionMessage {
             get {
@@ -358,7 +394,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ToKey(AbsoluteUri) should return null when the URN is not found..
+        ///   Looks up a localized string similar to ToKey(...) should return null when the URN is not found..
         /// </summary>
         internal static string Repository_ToKey_UrnNotFound_UnitTestExceptionMessage {
             get {
@@ -367,7 +403,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ToKey(AbsoluteUri) should throw an ArgumentNullException when a null URN is specified..
+        ///   Looks up a localized string similar to ToKey(...) should throw an ArgumentNullException when a null URN is specified..
         /// </summary>
         internal static string Repository_ToKey_UrnNull_UnitTestExceptionMessage {
             get {
@@ -376,7 +412,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ToUrn(AbsoluteUri) should return null when the key is not found..
+        ///   Looks up a localized string similar to ToUrn(...) should return null when the key is not found..
         /// </summary>
         internal static string Repository_ToUrn_KeyNotFound_UnitTestExceptionMessage {
             get {
@@ -385,7 +421,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ToUrn(AbsoluteUri) should return the correct URN..
+        ///   Looks up a localized string similar to ToUrn(...) should return the correct URN..
         /// </summary>
         internal static string Repository_ToUrn_ReturnsIncorrectUrn_UnitTestExceptionMessage {
             get {
@@ -394,7 +430,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ToUrn(AbsoluteUri) should return a URN..
+        ///   Looks up a localized string similar to ToUrn(...) should return a URN..
         /// </summary>
         internal static string Repository_ToUrn_ReturnsNull_UnitTestExceptionMessage {
             get {
@@ -426,15 +462,6 @@ namespace Cavity.Properties {
         internal static string SealedClassTestException_UnsealedMessage {
             get {
                 return ResourceManager.GetString("SealedClassTestException_UnsealedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is not a static class..
-        /// </summary>
-        internal static string StaticClassTestException_Message {
-            get {
-                return ResourceManager.GetString("StaticClassTestException_Message", resourceCulture);
             }
         }
         

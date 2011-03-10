@@ -82,13 +82,22 @@
         bool IRepository<T>.Match(AbsoluteUri urn,
                                   string etag)
         {
-            throw new NotImplementedException();
+            if (null == urn)
+            {
+                throw new ArgumentNullException("urn");
+            }
+
+            return null != Records
+                .Where(x => x.Urn.Equals(urn) && x.Etag.Equals(etag))
+                .FirstOrDefault();
         }
 
         bool IRepository<T>.Match(AlphaDecimal key,
                                   string etag)
         {
-            throw new NotImplementedException();
+            return null != Records
+                .Where(x => x.Key.Equals(key) && x.Etag.Equals(etag))
+                .FirstOrDefault();
         }
 
         bool IRepository<T>.ModifiedSince(AbsoluteUri urn,
