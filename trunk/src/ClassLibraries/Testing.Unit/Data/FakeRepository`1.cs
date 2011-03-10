@@ -14,6 +14,14 @@
 
         private HashSet<IRecord<T>> Records { get; set; }
 
+        private IRepository<T> Repository
+        {
+            get
+            {
+                return this;
+            }
+        }
+
         bool IRepository<T>.Delete(AbsoluteUri urn)
         {
             throw new NotImplementedException();
@@ -26,12 +34,12 @@
 
         bool IRepository<T>.Exists(AbsoluteUri urn)
         {
-            throw new NotImplementedException();
+            return null != Repository.Select(urn);
         }
 
         bool IRepository<T>.Exists(AlphaDecimal key)
         {
-            throw new NotImplementedException();
+            return null != Repository.Select(key);
         }
 
         bool IRepository<T>.Exists(XPathExpression xpath)
@@ -51,7 +59,7 @@
                 throw new RepositoryException();
             }
 
-            if (Records.Where(x => x.Urn.Equals(record.Urn)).Any())
+            if (null != Repository.Select(record.Urn))
             {
                 throw new RepositoryException();
             }
@@ -61,7 +69,7 @@
                 record.Key = AlphaDecimal.Random();
             }
 
-            if (Records.Where(x => x.Key.Equals(record.Key)).Any())
+            if (null != Repository.Select(record.Key.Value))
             {
                 throw new RepositoryException();
             }
@@ -121,12 +129,7 @@
 
         AlphaDecimal? IRepository<T>.ToKey(AbsoluteUri urn)
         {
-            if (null == urn)
-            {
-                throw new ArgumentNullException("urn");
-            }
-
-            var record = (this as IRepository<T>).Select(urn);
+            var record = Repository.Select(urn);
 
             return null == record
                 ? null
@@ -135,7 +138,7 @@
 
         AbsoluteUri IRepository<T>.ToUrn(AlphaDecimal key)
         {
-            var record = (this as IRepository<T>).Select(key);
+            var record = Repository.Select(key);
 
             return null == record
                 ? null

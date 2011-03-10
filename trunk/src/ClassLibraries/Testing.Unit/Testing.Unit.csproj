@@ -30,6 +30,10 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Data\FakeRepository`1.cs" />
+    <Compile Include="Data\RepositoryExistsKey`1.cs" />
+    <Compile Include="Data\RepositoryExistsKeyNotFound`1.cs" />
+    <Compile Include="Data\RepositoryExistsUrn`1.cs" />
+    <Compile Include="Data\RepositoryExistsUrnNotFound`1.cs" />
     <Compile Include="Data\RepositoryExpectations`1.cs" />
     <Compile Include="Data\RepositoryInsertRecord`1.cs" />
     <Compile Include="Data\RepositoryInsertRecordKeyExists`1.cs" />
