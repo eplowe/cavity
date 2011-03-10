@@ -7,9 +7,9 @@
     using Cavity.Tests;
     using Moq;
 
-    public sealed class RepositorySelectUrn<T> : IVerifyRepository<T>
+    public sealed class RepositorySelectKey<T> : IVerifyRepository<T>
     {
-        public RepositorySelectUrn()
+        public RepositorySelectKey()
         {
             var record = new Mock<IRecord<T>>()
                 .SetupProperty(x => x.Key);
@@ -32,7 +32,12 @@
             using (new TransactionScope())
             {
                 var key = repository.Insert(Record.Object).Key;
-                var record = repository.Select(Record.Object.Urn);
+                if (!Record.Object.Key.HasValue)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                var record = repository.Select(Record.Object.Key.Value);
 
                 if (null == record)
                 {

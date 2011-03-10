@@ -18,8 +18,6 @@
 
         IRecord<T> Insert(IRecord<T> record);
 
-        AlphaDecimal? Key(AbsoluteUri urn);
-
         bool Match(AbsoluteUri urn,
                    string etag);
 
@@ -40,6 +38,10 @@
 
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Select", Justification = "The naming is intentional.")]
         IRecord<T> Select(AlphaDecimal key);
+
+        AlphaDecimal? ToKey(AbsoluteUri urn);
+
+        AbsoluteUri ToUrn(AlphaDecimal key);
 
         bool Update(IRecord<T> record);
 
