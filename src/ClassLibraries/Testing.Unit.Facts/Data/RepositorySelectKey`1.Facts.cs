@@ -56,6 +56,22 @@
         }
 
         [Fact]
+        public void op_Verify_IRepository_whenInvalidOperationException()
+        {
+            var obj = new RepositorySelectKey<int>();
+
+            var repository = new Mock<IRepository<int>>();
+            repository
+                .Setup(x => x.Insert(obj.Record.Object))
+                .Returns(obj.Record.Object)
+                .Verifiable();
+
+            Assert.Throws<InvalidOperationException>(() => obj.Verify(repository.Object));
+
+            repository.VerifyAll();
+        }
+
+        [Fact]
         public void op_Verify_IRepository_whenKeyIsDifferent()
         {
             var key = AlphaDecimal.Random();
@@ -171,22 +187,6 @@
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
-
-            repository.VerifyAll();
-        }
-
-        [Fact]
-        public void op_Verify_IRepository_whenInvalidOperationException()
-        {
-            var obj = new RepositorySelectKey<int>();
-
-            var repository = new Mock<IRepository<int>>();
-            repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
-                .Verifiable();
-
-            Assert.Throws<InvalidOperationException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
         }

@@ -88,16 +88,16 @@
             }
 
             return null != Records
-                .Where(x => x.Urn.Equals(urn) && x.Etag.Equals(etag))
-                .FirstOrDefault();
+                               .Where(x => x.Urn.Equals(urn) && x.Etag.Equals(etag))
+                               .FirstOrDefault();
         }
 
         bool IRepository<T>.Match(AlphaDecimal key,
                                   string etag)
         {
             return null != Records
-                .Where(x => x.Key.Equals(key) && x.Etag.Equals(etag))
-                .FirstOrDefault();
+                               .Where(x => x.Key.Equals(key) && x.Etag.Equals(etag))
+                               .FirstOrDefault();
         }
 
         bool IRepository<T>.ModifiedSince(AbsoluteUri urn,
@@ -141,8 +141,8 @@
             var record = Repository.Select(urn);
 
             return null == record
-                ? null
-                : record.Key;
+                       ? null
+                       : record.Key;
         }
 
         AbsoluteUri IRepository<T>.ToUrn(AlphaDecimal key)
@@ -150,8 +150,8 @@
             var record = Repository.Select(key);
 
             return null == record
-                ? null
-                : record.Urn;
+                       ? null
+                       : record.Urn;
         }
 
         bool IRepository<T>.Update(IRecord<T> record)

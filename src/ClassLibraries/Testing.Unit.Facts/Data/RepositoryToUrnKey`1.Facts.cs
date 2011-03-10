@@ -56,24 +56,17 @@
         }
 
         [Fact]
-        public void op_Verify_IRepository_whenUrnIsDifferent()
+        public void op_Verify_IRepository_whenInvalidOperationException()
         {
-            var key = AlphaDecimal.Random();
-
             var obj = new RepositoryToUrnKey<int>();
-            obj.Record.Object.Key = key;
 
             var repository = new Mock<IRepository<int>>();
             repository
                 .Setup(x => x.Insert(obj.Record.Object))
                 .Returns(obj.Record.Object)
                 .Verifiable();
-            repository
-                .Setup(x => x.ToUrn(key))
-                .Returns("urn://example.com/" + Guid.NewGuid())
-                .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
+            Assert.Throws<InvalidOperationException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
         }
@@ -102,17 +95,24 @@
         }
 
         [Fact]
-        public void op_Verify_IRepository_whenInvalidOperationException()
+        public void op_Verify_IRepository_whenUrnIsDifferent()
         {
+            var key = AlphaDecimal.Random();
+
             var obj = new RepositoryToUrnKey<int>();
+            obj.Record.Object.Key = key;
 
             var repository = new Mock<IRepository<int>>();
             repository
                 .Setup(x => x.Insert(obj.Record.Object))
                 .Returns(obj.Record.Object)
                 .Verifiable();
+            repository
+                .Setup(x => x.ToUrn(key))
+                .Returns("urn://example.com/" + Guid.NewGuid())
+                .Verifiable();
 
-            Assert.Throws<InvalidOperationException>(() => obj.Verify(repository.Object));
+            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
         }
