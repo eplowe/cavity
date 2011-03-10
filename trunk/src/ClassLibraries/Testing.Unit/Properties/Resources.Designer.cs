@@ -241,7 +241,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(IRecord) should throw an ArgumentNullException when a null object is specified..
+        ///   Looks up a localized string similar to Insert(IRecord) should throw an ArgumentNullException when a null record is specified..
         /// </summary>
         internal static string Repository_Insert_RecordNull_UnitTestExceptionMessage {
             get {
@@ -250,7 +250,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(IRecord) should throw an RepositoryException when an object with the URN already exists..
+        ///   Looks up a localized string similar to Insert(IRecord) should throw an RepositoryException when an record with the URN already exists..
         /// </summary>
         internal static string Repository_Insert_RecordUrnExists_UnitTestExceptionMessage {
             get {
@@ -259,7 +259,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(IRecord) should throw an RepositoryException when an object does not specify a URN..
+        ///   Looks up a localized string similar to Insert(IRecord) should throw an RepositoryException when an record does not specify a URN..
         /// </summary>
         internal static string Repository_Insert_RecordUrnNull_UnitTestExceptionMessage {
             get {
@@ -268,29 +268,47 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select(AbsoluteUri) should return an object with the correct key..
+        ///   Looks up a localized string similar to Select(AbsoluteUri) should return a record with the correct key..
         /// </summary>
-        internal static string Repository_Select_Urn_ReturnsIncorrectKey_UnitTestExceptionMessage {
+        internal static string Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("Repository_Select_Urn_ReturnsIncorrectKey_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select(AbsoluteUri) should return an object with the correct URN..
+        ///   Looks up a localized string similar to Select(AbsoluteUri) should return a record with the correct URN..
         /// </summary>
-        internal static string Repository_Select_Urn_ReturnsIncorrectUrn_UnitTestExceptionMessage {
+        internal static string Repository_Select_ReturnsIncorrectUrn_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("Repository_Select_Urn_ReturnsIncorrectUrn_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_Select_ReturnsIncorrectUrn_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select(AbsoluteUri) should return an object..
+        ///   Looks up a localized string similar to Select(AbsoluteUri) should return a record with the correct value..
         /// </summary>
-        internal static string Repository_Select_Urn_ReturnsNull_UnitTestExceptionMessage {
+        internal static string Repository_Select_ReturnsIncorrectValue_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("Repository_Select_Urn_ReturnsNull_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_Select_ReturnsIncorrectValue_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select(AbsoluteUri) should return a record..
+        /// </summary>
+        internal static string Repository_Select_ReturnsNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Select_ReturnsNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select(AbsoluteUri) should return null when the URN is not found..
+        /// </summary>
+        internal static string Repository_Select_UrnNotFound_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Select_UrnNotFound_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
@@ -300,6 +318,69 @@ namespace Cavity.Properties {
         internal static string Repository_Select_UrnNull_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_Select_UrnNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ToKey(AbsoluteUri) should return the correct key..
+        /// </summary>
+        internal static string Repository_ToKey_ReturnsIncorrectKey_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ToKey_ReturnsIncorrectKey_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ToKey(AbsoluteUri) should return a key..
+        /// </summary>
+        internal static string Repository_ToKey_ReturnsNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ToKey_ReturnsNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ToKey(AbsoluteUri) should return null when the URN is not found..
+        /// </summary>
+        internal static string Repository_ToKey_UrnNotFound_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ToKey_UrnNotFound_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ToKey(AbsoluteUri) should throw an ArgumentNullException when a null URN is specified..
+        /// </summary>
+        internal static string Repository_ToKey_UrnNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ToKey_UrnNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ToUrn(AbsoluteUri) should return null when the key is not found..
+        /// </summary>
+        internal static string Repository_ToUrn_KeyNotFound_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ToUrn_KeyNotFound_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ToUrn(AbsoluteUri) should return the correct URN..
+        /// </summary>
+        internal static string Repository_ToUrn_ReturnsIncorrectUrn_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ToUrn_ReturnsIncorrectUrn_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ToUrn(AbsoluteUri) should return a URN..
+        /// </summary>
+        internal static string Repository_ToUrn_ReturnsNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ToUrn_ReturnsNull_UnitTestExceptionMessage", resourceCulture);
             }
         }
         

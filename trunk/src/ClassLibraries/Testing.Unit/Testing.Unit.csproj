@@ -36,8 +36,15 @@
     <Compile Include="Data\RepositoryInsertRecordNull`1.cs" />
     <Compile Include="Data\RepositoryInsertRecordUrnNull`1.cs" />
     <Compile Include="Data\RepositoryInsertRecordUrnExists`1.cs" />
-    <Compile Include="Data\RepositorySelectUrnNull`1.cs" />
+    <Compile Include="Data\RepositorySelectKey`1.cs" />
     <Compile Include="Data\RepositorySelectUrn`1.cs" />
+    <Compile Include="Data\RepositorySelectUrnNotFound`1.cs" />
+    <Compile Include="Data\RepositorySelectUrnNull`1.cs" />
+    <Compile Include="Data\RepositoryToKeyUrn`1.cs" />
+    <Compile Include="Data\RepositoryToKeyUrnNotFound`1.cs" />
+    <Compile Include="Data\RepositoryToKeyUrnNull`1.cs" />
+    <Compile Include="Data\RepositoryToUrnKey`1.cs" />
+    <Compile Include="Data\RepositoryToUrnKeyNotFound`1.cs" />
     <Compile Include="Fluent\ITestClassConstruction.cs" />
     <Compile Include="Fluent\ITestClassSealed.cs" />
     <Compile Include="Fluent\ITestExpectation.cs" />

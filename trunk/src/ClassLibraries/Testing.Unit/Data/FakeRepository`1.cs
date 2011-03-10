@@ -71,11 +71,6 @@
             return record;
         }
 
-        AlphaDecimal? IRepository<T>.Key(AbsoluteUri urn)
-        {
-            throw new NotImplementedException();
-        }
-
         bool IRepository<T>.Match(AbsoluteUri urn,
                                   string etag)
         {
@@ -119,7 +114,32 @@
 
         IRecord<T> IRepository<T>.Select(AlphaDecimal key)
         {
-            throw new NotImplementedException();
+            return Records
+                .Where(x => x.Key.Equals(key))
+                .FirstOrDefault();
+        }
+
+        AlphaDecimal? IRepository<T>.ToKey(AbsoluteUri urn)
+        {
+            if (null == urn)
+            {
+                throw new ArgumentNullException("urn");
+            }
+
+            var record = (this as IRepository<T>).Select(urn);
+
+            return null == record
+                ? null
+                : record.Key;
+        }
+
+        AbsoluteUri IRepository<T>.ToUrn(AlphaDecimal key)
+        {
+            var record = (this as IRepository<T>).Select(key);
+
+            return null == record
+                ? null
+                : record.Urn;
         }
 
         bool IRepository<T>.Update(IRecord<T> record)

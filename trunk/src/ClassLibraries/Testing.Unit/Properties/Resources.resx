@@ -175,28 +175,55 @@
     <value>Insert(IRecord) should throw an RepositoryException when an object with the key already exists.</value>
   </data>
   <data name="Repository_Insert_RecordNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Insert(IRecord) should throw an ArgumentNullException when a null object is specified.</value>
+    <value>Insert(IRecord) should throw an ArgumentNullException when a null record is specified.</value>
   </data>
   <data name="Repository_Insert_RecordUrnExists_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Insert(IRecord) should throw an RepositoryException when an object with the URN already exists.</value>
+    <value>Insert(IRecord) should throw an RepositoryException when an record with the URN already exists.</value>
   </data>
   <data name="Repository_Insert_RecordUrnNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Insert(IRecord) should throw an RepositoryException when an object does not specify a URN.</value>
+    <value>Insert(IRecord) should throw an RepositoryException when an record does not specify a URN.</value>
   </data>
   <data name="Repository_Insert_Record_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(IRecord) should set the key of the returned record.</value>
   </data>
+  <data name="Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Select(AbsoluteUri) should return a record with the correct key.</value>
+  </data>
+  <data name="Repository_Select_ReturnsIncorrectUrn_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Select(AbsoluteUri) should return a record with the correct URN.</value>
+  </data>
+  <data name="Repository_Select_ReturnsIncorrectValue_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Select(AbsoluteUri) should return a record with the correct value.</value>
+  </data>
+  <data name="Repository_Select_ReturnsNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Select(AbsoluteUri) should return a record.</value>
+  </data>
+  <data name="Repository_Select_UrnNotFound_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Select(AbsoluteUri) should return null when the URN is not found.</value>
+  </data>
   <data name="Repository_Select_UrnNull_UnitTestExceptionMessage" xml:space="preserve">
     <value>Select(IRecord) should throw an ArgumentNullException when a null object is specified.</value>
   </data>
-  <data name="Repository_Select_Urn_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Select(AbsoluteUri) should return an object with the correct key.</value>
+  <data name="Repository_ToKey_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
+    <value>ToKey(AbsoluteUri) should return the correct key.</value>
   </data>
-  <data name="Repository_Select_Urn_ReturnsIncorrectUrn_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Select(AbsoluteUri) should return an object with the correct URN.</value>
+  <data name="Repository_ToKey_ReturnsNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>ToKey(AbsoluteUri) should return a key.</value>
   </data>
-  <data name="Repository_Select_Urn_ReturnsNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Select(AbsoluteUri) should return an object.</value>
+  <data name="Repository_ToKey_UrnNotFound_UnitTestExceptionMessage" xml:space="preserve">
+    <value>ToKey(AbsoluteUri) should return null when the URN is not found.</value>
+  </data>
+  <data name="Repository_ToKey_UrnNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>ToKey(AbsoluteUri) should throw an ArgumentNullException when a null URN is specified.</value>
+  </data>
+  <data name="Repository_ToUrn_KeyNotFound_UnitTestExceptionMessage" xml:space="preserve">
+    <value>ToUrn(AbsoluteUri) should return null when the key is not found.</value>
+  </data>
+  <data name="Repository_ToUrn_ReturnsIncorrectUrn_UnitTestExceptionMessage" xml:space="preserve">
+    <value>ToUrn(AbsoluteUri) should return the correct URN.</value>
+  </data>
+  <data name="Repository_ToUrn_ReturnsNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>ToUrn(AbsoluteUri) should return a URN.</value>
   </data>
   <data name="Repository_UnexpectedException_UnitTestExceptionMessage" xml:space="preserve">
     <value>An unexpected exception was encountered.</value>

@@ -5,12 +5,12 @@
     using Moq;
     using Xunit;
 
-    public sealed class RepositorySelectUrnOfTFacts
+    public sealed class RepositorySelectKeyOfTFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<RepositorySelectUrn<int>>()
+            Assert.True(new TypeExpectations<RepositorySelectKey<int>>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
                             .IsSealed()
@@ -23,14 +23,16 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new RepositorySelectUrn<int>());
+            Assert.NotNull(new RepositorySelectKey<int>());
         }
 
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositorySelectUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var key = AlphaDecimal.Random();
+
+            var obj = new RepositorySelectKey<int>();
+            obj.Record.Object.Key = key;
 
             var repository = new Mock<IRepository<int>>();
             repository
@@ -38,7 +40,7 @@
                 .Returns(obj.Record.Object)
                 .Verifiable();
             repository
-                .Setup(x => x.Select(obj.Record.Object.Urn))
+                .Setup(x => x.Select(key))
                 .Returns(obj.Record.Object)
                 .Verifiable();
 
@@ -50,14 +52,16 @@
         [Fact]
         public void op_Verify_IRepositoryNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new RepositorySelectUrn<int>().Verify(null));
+            Assert.Throws<ArgumentNullException>(() => new RepositorySelectKey<int>().Verify(null));
         }
 
         [Fact]
         public void op_Verify_IRepository_whenKeyIsDifferent()
         {
-            var obj = new RepositorySelectUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var key = AlphaDecimal.Random();
+
+            var obj = new RepositorySelectKey<int>();
+            obj.Record.Object.Key = key;
 
             var repository = new Mock<IRepository<int>>();
             repository
@@ -73,7 +77,7 @@
                 .SetupGet(x => x.Urn)
                 .Returns(obj.Record.Object.Urn);
             repository
-                .Setup(x => x.Select(obj.Record.Object.Urn))
+                .Setup(x => x.Select(key))
                 .Returns(record.Object)
                 .Verifiable();
 
@@ -85,8 +89,10 @@
         [Fact]
         public void op_Verify_IRepository_whenNullIsReturned()
         {
-            var obj = new RepositorySelectUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var key = AlphaDecimal.Random();
+
+            var obj = new RepositorySelectKey<int>();
+            obj.Record.Object.Key = key;
 
             var repository = new Mock<IRepository<int>>();
             repository
@@ -94,7 +100,7 @@
                 .Returns(obj.Record.Object)
                 .Verifiable();
             repository
-                .Setup(x => x.Select(obj.Record.Object.Urn))
+                .Setup(x => x.Select(key))
                 .Returns(null as IRecord<int>)
                 .Verifiable();
 
@@ -106,8 +112,10 @@
         [Fact]
         public void op_Verify_IRepository_whenUrnIsDifferent()
         {
-            var obj = new RepositorySelectUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var key = AlphaDecimal.Random();
+
+            var obj = new RepositorySelectKey<int>();
+            obj.Record.Object.Key = key;
 
             var repository = new Mock<IRepository<int>>();
             repository
@@ -123,7 +131,7 @@
                 .SetupGet(x => x.Urn)
                 .Returns("urn://example.net/" + Guid.NewGuid());
             repository
-                .Setup(x => x.Select(obj.Record.Object.Urn))
+                .Setup(x => x.Select(key))
                 .Returns(record.Object)
                 .Verifiable();
 
@@ -135,8 +143,10 @@
         [Fact]
         public void op_Verify_IRepository_whenValueIsDifferent()
         {
-            var obj = new RepositorySelectUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var key = AlphaDecimal.Random();
+
+            var obj = new RepositorySelectKey<int>();
+            obj.Record.Object.Key = key;
             obj.Record.Object.Value = 123;
 
             var repository = new Mock<IRepository<int>>();
@@ -156,7 +166,7 @@
                 .SetupGet(x => x.Value)
                 .Returns(456);
             repository
-                .Setup(x => x.Select(obj.Record.Object.Urn))
+                .Setup(x => x.Select(key))
                 .Returns(record.Object)
                 .Verifiable();
 

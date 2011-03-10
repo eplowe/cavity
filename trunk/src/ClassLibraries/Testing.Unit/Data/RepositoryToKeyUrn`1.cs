@@ -7,9 +7,9 @@
     using Cavity.Tests;
     using Moq;
 
-    public sealed class RepositorySelectUrn<T> : IVerifyRepository<T>
+    public sealed class RepositoryToKeyUrn<T> : IVerifyRepository<T>
     {
-        public RepositorySelectUrn()
+        public RepositoryToKeyUrn()
         {
             var record = new Mock<IRecord<T>>()
                 .SetupProperty(x => x.Key);
@@ -31,27 +31,17 @@
 
             using (new TransactionScope())
             {
-                var key = repository.Insert(Record.Object).Key;
-                var record = repository.Select(Record.Object.Urn);
+                var insert = repository.Insert(Record.Object).Key;
+                var key = repository.ToKey(Record.Object.Urn);
 
-                if (null == record)
+                if (null == key)
                 {
-                    throw new UnitTestException(Resources.Repository_Select_ReturnsNull_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_ToKey_ReturnsNull_UnitTestExceptionMessage);
                 }
 
-                if (key != record.Key)
+                if (key != insert)
                 {
-                    throw new UnitTestException(Resources.Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage);
-                }
-
-                if (Record.Object.Urn != record.Urn)
-                {
-                    throw new UnitTestException(Resources.Repository_Select_ReturnsIncorrectUrn_UnitTestExceptionMessage);
-                }
-
-                if (!Record.Object.Value.Equals(record.Value))
-                {
-                    throw new UnitTestException(Resources.Repository_Select_ReturnsIncorrectValue_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_ToKey_ReturnsIncorrectKey_UnitTestExceptionMessage);
                 }
             }
         }

@@ -1,11 +1,13 @@
 ﻿namespace Cavity.Data
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
 
     public sealed class RepositoryExpectations<T>
         where T : new()
     {
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "This design is required to make activation work.")]
         public void VerifyAll<TRepository>() where TRepository : IRepository<T>
         {
             VerifyAll<TRepository>(GetType().Assembly);
