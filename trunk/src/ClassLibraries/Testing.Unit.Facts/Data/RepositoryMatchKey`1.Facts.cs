@@ -5,12 +5,12 @@
     using Moq;
     using Xunit;
 
-    public sealed class RepositoryToUrnKeyOfTFacts
+    public sealed class RepositoryMatchKeyOfTFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<RepositoryToUrnKey<int>>()
+            Assert.True(new TypeExpectations<RepositoryMatchKey<int>>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
                             .IsSealed()
@@ -23,7 +23,7 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new RepositoryToUrnKey<int>());
+            Assert.NotNull(new RepositoryMatchKey<int>());
         }
 
         [Fact]
@@ -31,7 +31,7 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryToUrnKey<int>();
+            var obj = new RepositoryMatchKey<int>();
             obj.Record.Object.Key = key;
 
             var repository = new Mock<IRepository<int>>();
@@ -40,8 +40,8 @@
                 .Returns(obj.Record.Object)
                 .Verifiable();
             repository
-                .Setup(x => x.ToUrn(key))
-                .Returns(obj.Record.Object.Urn)
+                .Setup(x => x.Match(key, obj.Record.Object.Etag))
+                .Returns(true)
                 .Verifiable();
 
             obj.Verify(repository.Object);
@@ -52,15 +52,15 @@
         [Fact]
         public void op_Verify_IRepositoryNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new RepositoryToUrnKey<int>().Verify(null));
+            Assert.Throws<ArgumentNullException>(() => new RepositoryMatchKey<int>().Verify(null));
         }
 
         [Fact]
-        public void op_Verify_IRepository_whenUrnIsDifferent()
+        public void op_Verify_IRepository_whenFalse()
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryToUrnKey<int>();
+            var obj = new RepositoryMatchKey<int>();
             obj.Record.Object.Key = key;
 
             var repository = new Mock<IRepository<int>>();
@@ -69,31 +69,8 @@
                 .Returns(obj.Record.Object)
                 .Verifiable();
             repository
-                .Setup(x => x.ToUrn(key))
-                .Returns("urn://example.com/" + Guid.NewGuid())
-                .Verifiable();
-
-            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
-
-            repository.VerifyAll();
-        }
-
-        [Fact]
-        public void op_Verify_IRepository_whenNullIsReturned()
-        {
-            var key = AlphaDecimal.Random();
-
-            var obj = new RepositoryToUrnKey<int>();
-            obj.Record.Object.Key = key;
-
-            var repository = new Mock<IRepository<int>>();
-            repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
-                .Verifiable();
-            repository
-                .Setup(x => x.ToUrn(key))
-                .Returns(null as AbsoluteUri)
+                .Setup(x => x.Match(key, obj.Record.Object.Etag))
+                .Returns(false)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
@@ -104,7 +81,7 @@
         [Fact]
         public void op_Verify_IRepository_whenInvalidOperationException()
         {
-            var obj = new RepositoryToUrnKey<int>();
+            var obj = new RepositoryMatchKey<int>();
 
             var repository = new Mock<IRepository<int>>();
             repository

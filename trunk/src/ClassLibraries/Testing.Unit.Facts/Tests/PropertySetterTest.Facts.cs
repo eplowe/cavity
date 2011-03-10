@@ -44,6 +44,17 @@
         }
 
         [Fact]
+        public void op_Check_whenExpectedException()
+        {
+            var obj = new PropertySetterTest(typeof(PropertiedClass1).GetProperty("AutoBoolean"), false)
+            {
+                ExpectedException = typeof(ArgumentException)
+            };
+
+            Assert.Throws<UnitTestException>(() => obj.Check());
+        }
+
+        [Fact]
         public void prop_Expected()
         {
             const bool expected = true;

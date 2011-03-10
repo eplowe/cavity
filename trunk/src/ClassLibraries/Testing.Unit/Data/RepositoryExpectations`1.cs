@@ -28,13 +28,10 @@
                 }
 
                 var obj = Activator.CreateInstance(type.MakeGenericType(typeof(T))) as IVerifyRepository<T>;
-
-                if (null == obj)
+                if (null != obj)
                 {
-                    continue;
+                    obj.Verify(Activator.CreateInstance<TRepository>());
                 }
-
-                obj.Verify(Activator.CreateInstance<TRepository>());
             }
         }
     }
