@@ -52,6 +52,12 @@
         }
 
         [Fact]
+        public void op_Verify_IRepositoryNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new RepositoryDeleteUrn<int>().Verify(null));
+        }
+
+        [Fact]
         public void op_Verify_IRepository_whenExists()
         {
             var obj = new RepositoryDeleteUrn<int>();
@@ -74,12 +80,6 @@
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
-        }
-
-        [Fact]
-        public void op_Verify_IRepositoryNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new RepositoryDeleteUrn<int>().Verify(null));
         }
 
         [Fact]
