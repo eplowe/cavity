@@ -7,15 +7,12 @@
     using Cavity.Tests;
     using Moq;
 
-    public sealed class RepositoryMatchUrn<T> : IVerifyRepository<T>
+    public sealed class RepositoryDeleteUrn<T> : IVerifyRepository<T>
     {
-        public RepositoryMatchUrn()
+        public RepositoryDeleteUrn()
         {
             var record = new Mock<IRecord<T>>()
                 .SetupProperty(x => x.Key);
-            record
-                .SetupGet(x => x.Etag)
-                .Returns("\"abc\"");
             record
                 .SetupGet(x => x.Urn)
                 .Returns("urn://example.com/" + Guid.NewGuid());
@@ -36,12 +33,15 @@
             {
                 repository.Insert(Record.Object);
 
-                if (repository.Match(Record.Object.Urn, Record.Object.Etag))
+                if (!repository.Delete(Record.Object.Urn))
                 {
-                    return;
+                    throw new UnitTestException(Resources.Repository_Delete_ReturnsFalse_UnitTestExceptionMessage);
                 }
 
-                throw new UnitTestException(Resources.Repository_Match_ReturnsFalse_UnitTestExceptionMessage);
+                if (repository.Exists(Record.Object.Urn))
+                {
+                    throw new UnitTestException(Resources.Repository_Exists_ReturnsTrue_UnitTestExceptionMessage);
+                }
             }
         }
     }

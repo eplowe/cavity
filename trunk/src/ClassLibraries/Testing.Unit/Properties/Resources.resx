@@ -171,6 +171,15 @@
   <data name="PropertySetterTestException_Message" xml:space="preserve">
     <value>{0}.{1} did not throw the expected {2}.</value>
   </data>
+  <data name="Repository_Delete_ReturnsFalse_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Delete(...) should return true when an existing record is deleted.</value>
+  </data>
+  <data name="Repository_Delete_ReturnsTrue_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Delete(...) should return false when the record does not exist.</value>
+  </data>
+  <data name="Repository_Delete_UrnNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Delete(...) should throw an ArgumentNullException when a null URN is specified.</value>
+  </data>
   <data name="Repository_Exists_ReturnsFalse_UnitTestExceptionMessage" xml:space="preserve">
     <value>Exists(...) should return true when the record exists.</value>
   </data>
@@ -203,6 +212,15 @@
   </data>
   <data name="Repository_Match_UrnNull_UnitTestExceptionMessage" xml:space="preserve">
     <value>Match(...) should throw an ArgumentNullException when a null URN is specified.</value>
+  </data>
+  <data name="Repository_ModifiedSince_ReturnsFalse_UnitTestExceptionMessage" xml:space="preserve">
+    <value>ModifiedSince(...) should return true when the record has been modified since the specified date.</value>
+  </data>
+  <data name="Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage" xml:space="preserve">
+    <value>ModifiedSince(...) should return false when the record has not been modified since the specified date.</value>
+  </data>
+  <data name="Repository_ModifiedSince_UrnNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>ModifiedSince(...) should throw an ArgumentNullException when a null URN is specified.</value>
   </data>
   <data name="Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
     <value>Select(...) should return a record with the correct key.</value>

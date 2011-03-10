@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Xml.XPath;
     using Moq;
@@ -148,35 +149,35 @@
         }
 
         [Fact]
-        public void op_ModifiedSince_AbsoluteUri_string()
+        public void op_ModifiedSince_AbsoluteUri_DateTime()
         {
             var urn = new AbsoluteUri("urn://example.com/path");
-            const string etag = "\"xyz\"";
+            var value = DateTime.UtcNow;
 
             var mock = new Mock<IRepository<int>>();
             mock
-                .Setup(x => x.ModifiedSince(urn, etag))
+                .Setup(x => x.ModifiedSince(urn, value))
                 .Returns(true)
                 .Verifiable();
 
-            Assert.True(mock.Object.ModifiedSince(urn, etag));
+            Assert.True(mock.Object.ModifiedSince(urn, value));
 
             mock.VerifyAll();
         }
 
         [Fact]
-        public void op_ModifiedSince_AlphaDecimal_string()
+        public void op_ModifiedSince_AlphaDecimal_DateTime()
         {
             var key = AlphaDecimal.Random();
-            const string etag = "\"xyz\"";
+            var value = DateTime.UtcNow;
 
             var mock = new Mock<IRepository<int>>();
             mock
-                .Setup(x => x.ModifiedSince(key, etag))
+                .Setup(x => x.ModifiedSince(key, value))
                 .Returns(true)
                 .Verifiable();
 
-            Assert.True(mock.Object.ModifiedSince(key, etag));
+            Assert.True(mock.Object.ModifiedSince(key, value));
 
             mock.VerifyAll();
         }

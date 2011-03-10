@@ -223,6 +223,33 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete(...) should return true when an existing record is deleted..
+        /// </summary>
+        internal static string Repository_Delete_ReturnsFalse_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Delete_ReturnsFalse_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete(...) should return false when the record does not exist..
+        /// </summary>
+        internal static string Repository_Delete_ReturnsTrue_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Delete_ReturnsTrue_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete(...) should throw an ArgumentNullException when a null URN is specified..
+        /// </summary>
+        internal static string Repository_Delete_UrnNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Delete_UrnNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exists(...) should return true when the record exists..
         /// </summary>
         internal static string Repository_Exists_ReturnsFalse_UnitTestExceptionMessage {
@@ -318,6 +345,33 @@ namespace Cavity.Properties {
         internal static string Repository_Match_UrnNull_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_Match_UrnNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ModifiedSince(...) should return true when the record has been modified since the specified date..
+        /// </summary>
+        internal static string Repository_ModifiedSince_ReturnsFalse_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ModifiedSince_ReturnsFalse_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ModifiedSince(...) should return false when the record has not been modified since the specified date..
+        /// </summary>
+        internal static string Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ModifiedSince(...) should throw an ArgumentNullException when a null URN is specified..
+        /// </summary>
+        internal static string Repository_ModifiedSince_UrnNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ModifiedSince_UrnNull_UnitTestExceptionMessage", resourceCulture);
             }
         }
         

@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Xml.XPath;
@@ -25,10 +26,10 @@
                    string etag);
 
         bool ModifiedSince(AbsoluteUri urn,
-                           string etag);
+                           DateTime value);
 
         bool ModifiedSince(AlphaDecimal key,
-                           string etag);
+                           DateTime value);
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This design is intentional.")]
         IEnumerable<IRecord<T>> Query(XPathExpression xpath);

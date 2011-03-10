@@ -24,12 +24,28 @@
 
         bool IRepository<T>.Delete(AbsoluteUri urn)
         {
-            throw new NotImplementedException();
+            var record = Repository.Select(urn);
+            if (null == record)
+            {
+                return false;
+            }
+
+            Records.Remove(record);
+
+            return true;
         }
 
         bool IRepository<T>.Delete(AlphaDecimal key)
         {
-            throw new NotImplementedException();
+            var record = Repository.Select(key);
+            if (null == record)
+            {
+                return false;
+            }
+
+            Records.Remove(record);
+
+            return true;
         }
 
         bool IRepository<T>.Exists(AbsoluteUri urn)
@@ -74,6 +90,8 @@
                 throw new RepositoryException();
             }
 
+            record.Modified = DateTime.UtcNow;
+
             Records.Add(record);
 
             return record;
@@ -101,15 +119,24 @@
         }
 
         bool IRepository<T>.ModifiedSince(AbsoluteUri urn,
-                                          string etag)
+                                          DateTime value)
         {
-            throw new NotImplementedException();
+            if (null == urn)
+            {
+                throw new ArgumentNullException("urn");
+            }
+
+            return null != Records
+                               .Where(x => x.Urn.Equals(urn) && x.Modified > value)
+                               .FirstOrDefault();
         }
 
         bool IRepository<T>.ModifiedSince(AlphaDecimal key,
-                                          string etag)
+                                          DateTime value)
         {
-            throw new NotImplementedException();
+            return null != Records
+                               .Where(x => x.Key.Equals(key) && x.Modified > value)
+                               .FirstOrDefault();
         }
 
         IEnumerable<IRecord<T>> IRepository<T>.Query(XPathExpression xpath)
