@@ -44,7 +44,8 @@
                     throw new UnitTestException(Resources.Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage);
                 }
 
-                if (Record.Object.Urn != record.Urn)
+                if (Record.Object.Urn !=
+                    record.Urn)
                 {
                     throw new UnitTestException(Resources.Repository_Select_ReturnsIncorrectUrn_UnitTestExceptionMessage);
                 }

@@ -19,7 +19,7 @@
                 ArgumentNullException expected = null;
                 try
                 {
-                    repository.Match(null as AbsoluteUri, "\"abc\"");
+                    repository.Match(null, "\"abc\"");
                 }
                 catch (ArgumentNullException exception)
                 {
