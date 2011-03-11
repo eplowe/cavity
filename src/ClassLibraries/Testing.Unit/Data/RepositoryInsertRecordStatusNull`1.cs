@@ -7,27 +7,21 @@
     using Cavity.Tests;
     using Moq;
 
-    public sealed class RepositoryModifiedSinceKey<T> : IVerifyRepository<T>
+    public sealed class RepositoryInsertRecordStatusNull<T> : IVerifyRepository<T>
     {
-        public RepositoryModifiedSinceKey()
+        public RepositoryInsertRecordStatusNull()
         {
             var record = new Mock<IRecord<T>>();
             record
                 .SetupGet(x => x.Cacheability)
                 .Returns("public");
             record
-                .SetupGet(x => x.Etag)
-                .Returns("\"abc\"");
-            record
                 .SetupGet(x => x.Expiration)
                 .Returns("P1D");
             record
                 .SetupProperty(x => x.Key);
             record
-                .SetupProperty(x => x.Modified);
-            record
-                .SetupGet(x => x.Status)
-                .Returns(200);
+                .SetupProperty(x => x.Status);
             record
                 .SetupGet(x => x.Urn)
                 .Returns("urn://example.com/" + Guid.NewGuid());
@@ -46,23 +40,24 @@
 
             using (new TransactionScope())
             {
-                repository.Insert(Record.Object);
-                if (!Record.Object.Key.HasValue)
+                RepositoryException expected = null;
+                try
                 {
-                    throw new InvalidOperationException();
+                    repository.Insert(Record.Object);
+                }
+                catch (RepositoryException exception)
+                {
+                    expected = exception;
+                }
+                catch (Exception exception)
+                {
+                    throw new UnitTestException(Resources.Repository_Insert_RecordStatusNull_UnitTestExceptionMessage, exception);
                 }
 
-                if (repository.ModifiedSince(Record.Object.Key.Value, DateTime.MaxValue))
+                if (null == expected)
                 {
-                    throw new UnitTestException(Resources.Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_Insert_RecordStatusNull_UnitTestExceptionMessage);
                 }
-
-                if (repository.ModifiedSince(Record.Object.Key.Value, DateTime.MinValue))
-                {
-                    return;
-                }
-
-                throw new UnitTestException(Resources.Repository_ModifiedSince_ReturnsFalse_UnitTestExceptionMessage);
             }
         }
     }

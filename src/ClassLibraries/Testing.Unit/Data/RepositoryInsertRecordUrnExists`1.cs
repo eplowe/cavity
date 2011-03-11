@@ -23,6 +23,9 @@
             record
                 .SetupProperty(x => x.Key);
             record
+                .SetupGet(x => x.Status)
+                .Returns(200);
+            record
                 .SetupGet(x => x.Urn)
                 .Returns(urn);
             Record = record;
@@ -36,6 +39,9 @@
                 .Returns("P1D");
             duplicate
                 .SetupProperty(x => x.Key);
+            duplicate
+                .SetupGet(x => x.Status)
+                .Returns(200);
             duplicate
                 .SetupGet(x => x.Urn)
                 .Returns(urn);

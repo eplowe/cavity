@@ -46,6 +46,7 @@
     <Compile Include="Data\RepositoryInsertRecordExpirationNull`1.cs" />
     <Compile Include="Data\RepositoryInsertRecordKey`1.cs" />
     <Compile Include="Data\RepositoryInsertRecordNull`1.cs" />
+    <Compile Include="Data\RepositoryInsertRecordStatusNull`1.cs" />
     <Compile Include="Data\RepositoryInsertRecordUrnNull`1.cs" />
     <Compile Include="Data\RepositoryInsertRecordUrnExists`1.cs" />
     <Compile Include="Data\RepositoryMatchKey`1.cs" />

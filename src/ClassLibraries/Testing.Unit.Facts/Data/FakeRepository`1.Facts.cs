@@ -24,9 +24,15 @@
         }
 
         [Fact]
-        public void expectations()
+        public void expectations_int()
         {
             new RepositoryExpectations<int>().VerifyAll<FakeRepository<int>>();
+        }
+
+        [Fact]
+        public void expectations_string()
+        {
+            new RepositoryExpectations<string>().VerifyAll<FakeRepository<string>>();
         }
     }
 }
