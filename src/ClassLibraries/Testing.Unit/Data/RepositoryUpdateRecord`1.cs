@@ -7,9 +7,9 @@
     using Cavity.Tests;
     using Moq;
 
-    public sealed class RepositoryInsertRecord<T> : IVerifyRepository<T>
+    public sealed class RepositoryUpdateRecord<T> : IVerifyRepository<T>
     {
-        public RepositoryInsertRecord()
+        public RepositoryUpdateRecord()
         {
             var record = new Mock<IRecord<T>>()
                 .SetupProperty(x => x.Key);
@@ -32,12 +32,12 @@
             using (new TransactionScope())
             {
                 var record = repository.Insert(Record.Object);
-                if (record.Key.HasValue)
+                if (repository.Update(record))
                 {
                     return;
                 }
 
-                throw new UnitTestException(Resources.Repository_Insert_ReturnsIncorrectKey_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_Update_ReturnsFalse_UnitTestExceptionMessage);
             }
         }
     }

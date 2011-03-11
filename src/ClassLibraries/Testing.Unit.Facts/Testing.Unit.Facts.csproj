@@ -63,6 +63,12 @@
     <Compile Include="Data\RepositoryToKeyUrnNull`1.Facts.cs" />
     <Compile Include="Data\RepositoryToUrnKey`1.Facts.cs" />
     <Compile Include="Data\RepositoryToUrnKeyNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecord`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordKeyNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordKeyNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordUrnNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordUrnNull`1.Facts.cs" />
     <Compile Include="Fluent\ITestClassConstruction.Facts.cs" />
     <Compile Include="Fluent\ITestClassSealed.Facts.cs" />
     <Compile Include="Fluent\ITestClassStyle.Facts.cs" />

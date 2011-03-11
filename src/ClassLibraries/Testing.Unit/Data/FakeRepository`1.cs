@@ -183,7 +183,28 @@
 
         bool IRepository<T>.Update(IRecord<T> record)
         {
-            throw new NotImplementedException();
+            if (null == record)
+            {
+                throw new ArgumentNullException("record");
+            }
+
+            if (null == record.Urn)
+            {
+                throw new RepositoryException();
+            }
+
+            if (!record.Key.HasValue)
+            {
+                throw new RepositoryException();
+            }
+
+            var existing = Repository.Select(record.Key.Value);
+            if (null == existing)
+            {
+                throw new RepositoryException();
+            }
+
+            return true;
         }
 
         void IRepository<T>.Upsert(IRecord<T> record)
