@@ -44,7 +44,7 @@
 
         AbsoluteUri ToUrn(AlphaDecimal key);
 
-        bool Update(IRecord<T> record);
+        IRecord<T> Update(IRecord<T> record);
 
         IRecord<T> Upsert(IRecord<T> record);
     }

@@ -194,7 +194,7 @@
                        : record.Urn;
         }
 
-        bool IRepository<T>.Update(IRecord<T> record)
+        IRecord<T> IRepository<T>.Update(IRecord<T> record)
         {
             if (null == record)
             {
@@ -232,7 +232,7 @@
                 throw new RepositoryException();
             }
 
-            return true;
+            return record;
         }
 
         IRecord<T> IRepository<T>.Upsert(IRecord<T> record)
@@ -242,14 +242,9 @@
                 throw new ArgumentNullException("record");
             }
 
-            if (null == record.Key)
-            {
-                return Repository.Insert(record);
-            }
-
-            Repository.Update(record);
-
-            return Repository.Select(record.Key.Value);
+            return null == record.Key
+                ? Repository.Insert(record)
+                : Repository.Update(record);
         }
     }
 }

@@ -66,7 +66,7 @@
                 .Verifiable();
             repository
                 .Setup(x => x.Update(obj.Record.Object))
-                .Returns(false)
+                .Returns(new Mock<IRecord<int>>().Object)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
