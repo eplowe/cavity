@@ -547,6 +547,24 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update(...) should throw an RepositoryException when a record does not specify cacheability..
+        /// </summary>
+        internal static string Repository_Update_RecordCacheabilityNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Update_RecordCacheabilityNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update(...) should throw an RepositoryException when a record does not specify expiration..
+        /// </summary>
+        internal static string Repository_Update_RecordExpirationNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Update_RecordExpirationNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update(...) should throw an RepositoryException when a record with the key does not exist..
         /// </summary>
         internal static string Repository_Update_RecordKeyNotFound_UnitTestExceptionMessage {
@@ -570,6 +588,15 @@ namespace Cavity.Properties {
         internal static string Repository_Update_RecordNull_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_Update_RecordNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update(...) should throw an RepositoryException when a record does not specify status..
+        /// </summary>
+        internal static string Repository_Update_RecordStatusNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Update_RecordStatusNull_UnitTestExceptionMessage", resourceCulture);
             }
         }
         

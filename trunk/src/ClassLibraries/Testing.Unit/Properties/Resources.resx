@@ -279,6 +279,12 @@
   <data name="Repository_UnexpectedException_UnitTestExceptionMessage" xml:space="preserve">
     <value>An unexpected exception was encountered.</value>
   </data>
+  <data name="Repository_Update_RecordCacheabilityNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Update(...) should throw an RepositoryException when a record does not specify cacheability.</value>
+  </data>
+  <data name="Repository_Update_RecordExpirationNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Update(...) should throw an RepositoryException when a record does not specify expiration.</value>
+  </data>
   <data name="Repository_Update_RecordKeyNotFound_UnitTestExceptionMessage" xml:space="preserve">
     <value>Update(...) should throw an RepositoryException when a record with the key does not exist.</value>
   </data>
@@ -287,6 +293,9 @@
   </data>
   <data name="Repository_Update_RecordNull_UnitTestExceptionMessage" xml:space="preserve">
     <value>Update(...) should throw an ArgumentNullException when a null record is specified.</value>
+  </data>
+  <data name="Repository_Update_RecordStatusNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Update(...) should throw an RepositoryException when a record does not specify status.</value>
   </data>
   <data name="Repository_Update_RecordUrnNull_UnitTestExceptionMessage" xml:space="preserve">
     <value>Update(...) should throw an RepositoryException when a record does not specify a URN.</value>
