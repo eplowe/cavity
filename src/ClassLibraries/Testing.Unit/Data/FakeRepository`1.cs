@@ -235,9 +235,21 @@
             return true;
         }
 
-        void IRepository<T>.Upsert(IRecord<T> record)
+        IRecord<T> IRepository<T>.Upsert(IRecord<T> record)
         {
-            throw new NotImplementedException();
+            if (null == record)
+            {
+                throw new ArgumentNullException("record");
+            }
+
+            if (null == record.Key)
+            {
+                return Repository.Insert(record);
+            }
+
+            Repository.Update(record);
+
+            return Repository.Select(record.Key.Value);
         }
     }
 }

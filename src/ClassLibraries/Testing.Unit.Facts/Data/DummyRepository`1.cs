@@ -90,7 +90,7 @@
             throw new NotImplementedException();
         }
 
-        public void Upsert(IRecord<T> record)
+        public IRecord<T> Upsert(IRecord<T> record)
         {
             throw new NotImplementedException();
         }
