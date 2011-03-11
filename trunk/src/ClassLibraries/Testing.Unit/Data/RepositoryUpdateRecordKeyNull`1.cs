@@ -23,6 +23,9 @@
             record
                 .SetupProperty(x => x.Key);
             record
+                .SetupGet(x => x.Status)
+                .Returns(200);
+            record
                 .SetupGet(x => x.Urn)
                 .Returns(urn);
             Record = record;
@@ -31,11 +34,14 @@
             record2
                 .SetupGet(x => x.Cacheability)
                 .Returns("public");
-            record
+            record2
                 .SetupGet(x => x.Expiration)
                 .Returns("P1D");
-            record
+            record2
                 .SetupProperty(x => x.Key);
+            record2
+                .SetupGet(x => x.Status)
+                .Returns(200);
             record2
                 .SetupGet(x => x.Urn)
                 .Returns(urn);

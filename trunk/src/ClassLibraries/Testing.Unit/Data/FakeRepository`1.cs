@@ -80,6 +80,11 @@
                 throw new RepositoryException();
             }
 
+            if (null == record.Status)
+            {
+                throw new RepositoryException();
+            }
+
             if (null == record.Urn)
             {
                 throw new RepositoryException();

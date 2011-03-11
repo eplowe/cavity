@@ -24,6 +24,9 @@
             record
                 .SetupProperty(x => x.Key);
             record
+                .SetupGet(x => x.Status)
+                .Returns(200);
+            record
                 .SetupGet(x => x.Urn)
                 .Returns("urn://example.com/" + Guid.NewGuid());
             Record = record;

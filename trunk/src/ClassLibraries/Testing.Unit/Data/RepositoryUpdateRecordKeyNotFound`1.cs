@@ -20,6 +20,9 @@
             record
                 .SetupProperty(x => x.Key);
             record
+                .SetupGet(x => x.Status)
+                .Returns(200);
+            record
                 .SetupGet(x => x.Urn)
                 .Returns(urn);
             Record = record;
@@ -34,6 +37,9 @@
             record2
                 .SetupGet(x => x.Key)
                 .Returns(AlphaDecimal.Random());
+            record2
+                .SetupGet(x => x.Status)
+                .Returns(200);
             record2
                 .SetupGet(x => x.Urn)
                 .Returns(urn);

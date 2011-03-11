@@ -313,6 +313,15 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when a record does not specify status..
+        /// </summary>
+        internal static string Repository_Insert_RecordStatusNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Insert_RecordStatusNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when an record with the URN already exists..
         /// </summary>
         internal static string Repository_Insert_RecordUrnExists_UnitTestExceptionMessage {
