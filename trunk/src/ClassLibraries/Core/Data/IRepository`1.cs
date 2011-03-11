@@ -46,6 +46,6 @@
 
         bool Update(IRecord<T> record);
 
-        void Upsert(IRecord<T> record);
+        IRecord<T> Upsert(IRecord<T> record);
     }
 }

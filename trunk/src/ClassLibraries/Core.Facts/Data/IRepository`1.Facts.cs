@@ -299,14 +299,17 @@
         [Fact]
         public void op_Upsert_IRecord()
         {
-            var record = new Mock<IRecord<int>>().Object;
+            var expected = new Mock<IRecord<int>>().Object;
 
             var mock = new Mock<IRepository<int>>();
             mock
-                .Setup(x => x.Upsert(record))
+                .Setup(x => x.Upsert(expected))
+                .Returns(expected)
                 .Verifiable();
 
-            mock.Object.Upsert(record);
+            var actual = mock.Object.Upsert(expected);
+
+            Assert.Same(expected, actual);
 
             mock.VerifyAll();
         }
