@@ -28,6 +28,9 @@
             record2
                 .SetupGet(x => x.Cacheability)
                 .Returns("public");
+            record
+                .SetupGet(x => x.Expiration)
+                .Returns("P1D");
             record2
                 .SetupGet(x => x.Key)
                 .Returns(AlphaDecimal.Random());

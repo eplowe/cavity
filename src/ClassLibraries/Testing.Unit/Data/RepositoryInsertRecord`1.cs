@@ -18,6 +18,9 @@
             record
                 .SetupProperty(x => x.Created);
             record
+                .SetupGet(x => x.Expiration)
+                .Returns("P1D");
+            record
                 .SetupProperty(x => x.Key);
             record
                 .SetupProperty(x => x.Modified);

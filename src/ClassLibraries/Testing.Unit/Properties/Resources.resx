@@ -192,6 +192,9 @@
   <data name="Repository_Insert_RecordCacheabilityNull_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(...) should throw an RepositoryException when a record does not specify cacheability.</value>
   </data>
+  <data name="Repository_Insert_RecordExpirationNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Insert(...) should throw an RepositoryException when a record does not specify expiration.</value>
+  </data>
   <data name="Repository_Insert_RecordKeyExists_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(...) should throw an RepositoryException when an object with the key already exists.</value>
   </data>

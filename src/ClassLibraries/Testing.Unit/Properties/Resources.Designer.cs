@@ -286,6 +286,15 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when a record does not specify expiration..
+        /// </summary>
+        internal static string Repository_Insert_RecordExpirationNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Insert_RecordExpirationNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when an object with the key already exists..
         /// </summary>
         internal static string Repository_Insert_RecordKeyExists_UnitTestExceptionMessage {
