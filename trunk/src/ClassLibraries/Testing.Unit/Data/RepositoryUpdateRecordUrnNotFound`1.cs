@@ -7,15 +7,18 @@
     using Cavity.Tests;
     using Moq;
 
-    public sealed class RepositoryInsertRecord<T> : IVerifyRepository<T>
+    public sealed class RepositoryUpdateRecordUrnNotFound<T> : IVerifyRepository<T>
     {
-        public RepositoryInsertRecord()
+        public RepositoryUpdateRecordUrnNotFound()
         {
+            var key = AlphaDecimal.Random();
+
             var record = new Mock<IRecord<T>>()
-                .SetupProperty(x => x.Key);
+                .SetupProperty(x => x.Urn);
             record
-                .SetupGet(x => x.Urn)
-                .Returns("urn://example.com/" + Guid.NewGuid());
+                .SetupGet(x => x.Key)
+                .Returns(key);
+            record.Object.Urn = "urn://example.com/" + Guid.NewGuid();
             Record = record;
         }
 
@@ -32,12 +35,14 @@
             using (new TransactionScope())
             {
                 var record = repository.Insert(Record.Object);
-                if (record.Key.HasValue)
+                record.Urn = "urn://example.com/" + Guid.NewGuid();
+
+                if (repository.Update(record))
                 {
                     return;
                 }
 
-                throw new UnitTestException(Resources.Repository_Insert_ReturnsIncorrectKey_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_Update_ReturnsFalse_UnitTestExceptionMessage);
             }
         }
     }
