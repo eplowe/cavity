@@ -283,15 +283,17 @@
         [Fact]
         public void op_Update_IRecord()
         {
-            var record = new Mock<IRecord<int>>().Object;
+            var expected = new Mock<IRecord<int>>().Object;
 
             var mock = new Mock<IRepository<int>>();
             mock
-                .Setup(x => x.Update(record))
-                .Returns(true)
+                .Setup(x => x.Update(expected))
+                .Returns(expected)
                 .Verifiable();
 
-            Assert.True(mock.Object.Update(record));
+            var actual = mock.Object.Update(expected);
+
+            Assert.Same(expected, actual);
 
             mock.VerifyAll();
         }

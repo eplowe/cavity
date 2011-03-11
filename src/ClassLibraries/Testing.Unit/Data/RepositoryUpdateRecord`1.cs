@@ -42,7 +42,7 @@
             using (new TransactionScope())
             {
                 var record = repository.Insert(Record.Object);
-                if (repository.Update(record))
+                if (record.Key == repository.Update(record).Key)
                 {
                     return;
                 }

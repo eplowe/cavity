@@ -44,7 +44,7 @@
                 var record = repository.Insert(Record.Object);
                 record.Urn = "urn://example.com/" + Guid.NewGuid();
 
-                if (repository.Update(record))
+                if (record.Key == repository.Update(record).Key)
                 {
                     return;
                 }

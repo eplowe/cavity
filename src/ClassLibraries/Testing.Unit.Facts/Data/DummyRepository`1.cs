@@ -85,7 +85,7 @@
             throw new NotImplementedException();
         }
 
-        public bool Update(IRecord<T> record)
+        public IRecord<T> Update(IRecord<T> record)
         {
             throw new NotImplementedException();
         }
