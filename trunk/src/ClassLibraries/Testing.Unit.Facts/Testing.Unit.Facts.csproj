@@ -42,6 +42,7 @@
     <Compile Include="Data\RepositoryExpectations`1.Facts.cs" />
     <Compile Include="Data\RepositoryInsertRecord`1.Facts.cs" />
     <Compile Include="Data\RepositoryInsertRecordCacheabilityNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecordExpirationNull`1.Facts.cs" />
     <Compile Include="Data\RepositoryInsertRecordKey`1.Facts.cs" />
     <Compile Include="Data\RepositoryInsertRecordNull`1.Facts.cs" />
     <Compile Include="Data\RepositoryInsertRecordUrnNull`1.Facts.cs" />

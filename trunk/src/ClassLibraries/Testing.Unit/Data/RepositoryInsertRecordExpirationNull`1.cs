@@ -7,17 +7,16 @@
     using Cavity.Tests;
     using Moq;
 
-    public sealed class RepositoryDeleteUrn<T> : IVerifyRepository<T>
+    public sealed class RepositoryInsertRecordExpirationNull<T> : IVerifyRepository<T>
     {
-        public RepositoryDeleteUrn()
+        public RepositoryInsertRecordExpirationNull()
         {
             var record = new Mock<IRecord<T>>();
             record
                 .SetupGet(x => x.Cacheability)
                 .Returns("public");
             record
-                .SetupGet(x => x.Expiration)
-                .Returns("P1D");
+                .SetupProperty(x => x.Expiration);
             record
                 .SetupProperty(x => x.Key);
             record
@@ -38,16 +37,23 @@
 
             using (new TransactionScope())
             {
-                repository.Insert(Record.Object);
-
-                if (!repository.Delete(Record.Object.Urn))
+                RepositoryException expected = null;
+                try
                 {
-                    throw new UnitTestException(Resources.Repository_Delete_ReturnsFalse_UnitTestExceptionMessage);
+                    repository.Insert(Record.Object);
+                }
+                catch (RepositoryException exception)
+                {
+                    expected = exception;
+                }
+                catch (Exception exception)
+                {
+                    throw new UnitTestException(Resources.Repository_Insert_RecordExpirationNull_UnitTestExceptionMessage, exception);
                 }
 
-                if (repository.Exists(Record.Object.Urn))
+                if (null == expected)
                 {
-                    throw new UnitTestException(Resources.Repository_Exists_ReturnsTrue_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_Insert_RecordExpirationNull_UnitTestExceptionMessage);
                 }
             }
         }

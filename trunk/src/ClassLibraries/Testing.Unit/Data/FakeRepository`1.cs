@@ -75,6 +75,11 @@
                 throw new RepositoryException();
             }
 
+            if (null == record.Expiration)
+            {
+                throw new RepositoryException();
+            }
+
             if (null == record.Urn)
             {
                 throw new RepositoryException();

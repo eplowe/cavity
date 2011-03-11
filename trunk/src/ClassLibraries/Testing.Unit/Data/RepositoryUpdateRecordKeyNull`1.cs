@@ -18,6 +18,9 @@
                 .SetupGet(x => x.Cacheability)
                 .Returns("public");
             record
+                .SetupGet(x => x.Expiration)
+                .Returns("P1D");
+            record
                 .SetupProperty(x => x.Key);
             record
                 .SetupGet(x => x.Urn)
@@ -28,6 +31,9 @@
             record2
                 .SetupGet(x => x.Cacheability)
                 .Returns("public");
+            record
+                .SetupGet(x => x.Expiration)
+                .Returns("P1D");
             record
                 .SetupProperty(x => x.Key);
             record2

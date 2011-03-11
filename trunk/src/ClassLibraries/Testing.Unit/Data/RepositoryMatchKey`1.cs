@@ -19,6 +19,9 @@
                 .SetupGet(x => x.Etag)
                 .Returns("\"abc\"");
             record
+                .SetupGet(x => x.Expiration)
+                .Returns("P1D");
+            record
                 .SetupProperty(x => x.Key);
             record
                 .SetupGet(x => x.Urn)
