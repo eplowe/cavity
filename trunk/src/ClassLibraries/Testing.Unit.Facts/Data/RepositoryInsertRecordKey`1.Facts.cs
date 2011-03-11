@@ -5,12 +5,12 @@
     using Moq;
     using Xunit;
 
-    public sealed class RepositoryInsertRecordKeyExistsOfTFacts
+    public sealed class RepositoryInsertRecordKeyOfTFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<RepositoryInsertRecordKeyExists<int>>()
+            Assert.True(new TypeExpectations<RepositoryInsertRecordKey<int>>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
                             .IsSealed()
@@ -23,21 +23,17 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new RepositoryInsertRecordKeyExists<int>());
+            Assert.NotNull(new RepositoryInsertRecordKey<int>());
         }
 
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryInsertRecordKeyExists<int>();
+            var obj = new RepositoryInsertRecordKey<int>();
 
             var repository = new Mock<IRepository<int>>();
             repository
                 .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
-                .Verifiable();
-            repository
-                .Setup(x => x.Insert(obj.Duplicate.Object))
                 .Throws(new RepositoryException())
                 .Verifiable();
 
@@ -49,22 +45,18 @@
         [Fact]
         public void op_Verify_IRepositoryNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new RepositoryInsertRecordKeyExists<int>().Verify(null));
+            Assert.Throws<ArgumentNullException>(() => new RepositoryInsertRecordKey<int>().Verify(null));
         }
 
         [Fact]
         public void op_Verify_IRepository_whenRepositoryExceptionIsNotThrown()
         {
-            var obj = new RepositoryInsertRecordKeyExists<int>();
+            var obj = new RepositoryInsertRecordKey<int>();
 
             var repository = new Mock<IRepository<int>>();
             repository
                 .Setup(x => x.Insert(obj.Record.Object))
                 .Returns(obj.Record.Object)
-                .Verifiable();
-            repository
-                .Setup(x => x.Insert(obj.Duplicate.Object))
-                .Returns(obj.Duplicate.Object)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
@@ -75,15 +67,11 @@
         [Fact]
         public void op_Verify_IRepository_whenUnexpectedExceptionIsThrownOnDuplicateRecord()
         {
-            var obj = new RepositoryInsertRecordKeyExists<int>();
+            var obj = new RepositoryInsertRecordKey<int>();
 
             var repository = new Mock<IRepository<int>>();
             repository
                 .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
-                .Verifiable();
-            repository
-                .Setup(x => x.Insert(obj.Duplicate.Object))
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 
@@ -95,7 +83,7 @@
         [Fact]
         public void op_Verify_IRepository_whenUnexpectedExceptionIsThrownOnInitialRecord()
         {
-            var obj = new RepositoryInsertRecordKeyExists<int>();
+            var obj = new RepositoryInsertRecordKey<int>();
 
             var repository = new Mock<IRepository<int>>();
             repository

@@ -42,7 +42,8 @@
     <Compile Include="Data\RepositoryExistsUrnNull`1.cs" />
     <Compile Include="Data\RepositoryExpectations`1.cs" />
     <Compile Include="Data\RepositoryInsertRecord`1.cs" />
-    <Compile Include="Data\RepositoryInsertRecordKeyExists`1.cs" />
+    <Compile Include="Data\RepositoryInsertRecordCacheabilityNull`1.cs" />
+    <Compile Include="Data\RepositoryInsertRecordKey`1.cs" />
     <Compile Include="Data\RepositoryInsertRecordNull`1.cs" />
     <Compile Include="Data\RepositoryInsertRecordUrnNull`1.cs" />
     <Compile Include="Data\RepositoryInsertRecordUrnExists`1.cs" />

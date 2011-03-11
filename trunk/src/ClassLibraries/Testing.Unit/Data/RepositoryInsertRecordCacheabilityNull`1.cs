@@ -7,14 +7,13 @@
     using Cavity.Tests;
     using Moq;
 
-    public sealed class RepositorySelectUrn<T> : IVerifyRepository<T>
+    public sealed class RepositoryInsertRecordCacheabilityNull<T> : IVerifyRepository<T>
     {
-        public RepositorySelectUrn()
+        public RepositoryInsertRecordCacheabilityNull()
         {
             var record = new Mock<IRecord<T>>();
             record
-                .SetupGet(x => x.Cacheability)
-                .Returns("public");
+                .SetupProperty(x => x.Cacheability);
             record
                 .SetupProperty(x => x.Key);
             record
@@ -35,28 +34,23 @@
 
             using (new TransactionScope())
             {
-                var key = repository.Insert(Record.Object).Key;
-                var record = repository.Select(Record.Object.Urn);
-
-                if (null == record)
+                RepositoryException expected = null;
+                try
                 {
-                    throw new UnitTestException(Resources.Repository_Select_ReturnsNull_UnitTestExceptionMessage);
+                    repository.Insert(Record.Object);
+                }
+                catch (RepositoryException exception)
+                {
+                    expected = exception;
+                }
+                catch (Exception exception)
+                {
+                    throw new UnitTestException(Resources.Repository_Insert_RecordCacheabilityNull_UnitTestExceptionMessage, exception);
                 }
 
-                if (key != record.Key)
+                if (null == expected)
                 {
-                    throw new UnitTestException(Resources.Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage);
-                }
-
-                if (Record.Object.Urn !=
-                    record.Urn)
-                {
-                    throw new UnitTestException(Resources.Repository_Select_ReturnsIncorrectUrn_UnitTestExceptionMessage);
-                }
-
-                if (!Record.Object.Value.Equals(record.Value))
-                {
-                    throw new UnitTestException(Resources.Repository_Select_ReturnsIncorrectValue_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_Insert_RecordCacheabilityNull_UnitTestExceptionMessage);
                 }
             }
         }

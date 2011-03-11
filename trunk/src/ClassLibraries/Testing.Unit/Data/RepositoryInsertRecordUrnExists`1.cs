@@ -13,14 +13,22 @@
         {
             AbsoluteUri urn = "urn://example.com/" + Guid.NewGuid();
 
-            var record = new Mock<IRecord<T>>()
+            var record = new Mock<IRecord<T>>();
+            record
+                .SetupGet(x => x.Cacheability)
+                .Returns("public");
+            record
                 .SetupProperty(x => x.Key);
             record
                 .SetupGet(x => x.Urn)
                 .Returns(urn);
             Record = record;
 
-            var duplicate = new Mock<IRecord<T>>()
+            var duplicate = new Mock<IRecord<T>>();
+            duplicate
+                .SetupGet(x => x.Cacheability)
+                .Returns("public");
+            record
                 .SetupProperty(x => x.Key);
             duplicate
                 .SetupGet(x => x.Urn)

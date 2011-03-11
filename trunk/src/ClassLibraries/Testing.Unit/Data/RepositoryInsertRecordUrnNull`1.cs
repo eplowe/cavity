@@ -11,7 +11,8 @@
     {
         public RepositoryInsertRecordUrnNull()
         {
-            var record = new Mock<IRecord<T>>()
+            var record = new Mock<IRecord<T>>();
+            record
                 .SetupProperty(x => x.Key);
             record
                 .SetupGet(x => x.Urn)

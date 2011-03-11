@@ -11,7 +11,11 @@
     {
         public RepositoryToUrnKey()
         {
-            var record = new Mock<IRecord<T>>()
+            var record = new Mock<IRecord<T>>();
+            record
+                .SetupGet(x => x.Cacheability)
+                .Returns("public");
+            record
                 .SetupProperty(x => x.Key);
             record
                 .SetupGet(x => x.Urn)
