@@ -189,6 +189,9 @@
   <data name="Repository_Exists_UrnNull_UnitTestExceptionMessage" xml:space="preserve">
     <value>Exists(...) should throw an ArgumentNullException when a record does not specify a URN.</value>
   </data>
+  <data name="Repository_Insert_RecordCacheabilityNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Insert(...) should throw an RepositoryException when a record does not specify cacheability.</value>
+  </data>
   <data name="Repository_Insert_RecordKeyExists_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(...) should throw an RepositoryException when an object with the key already exists.</value>
   </data>
@@ -203,6 +206,12 @@
   </data>
   <data name="Repository_Insert_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(...) should set the key of the returned record.</value>
+  </data>
+  <data name="Repository_Insert_ReturnsWithoutCreated_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Insert(...) should set the created date of the returned record.</value>
+  </data>
+  <data name="Repository_Insert_ReturnsWithoutModified_UnitTestExceptionMessage" xml:space="preserve">
+    <value>Insert(...) should set the modified date of the returned record.</value>
   </data>
   <data name="Repository_Match_ReturnsFalse_UnitTestExceptionMessage" xml:space="preserve">
     <value>Match(...) should return true when a matching record exists.</value>

@@ -7,30 +7,18 @@
     using Cavity.Tests;
     using Moq;
 
-    public sealed class RepositoryInsertRecordKeyExists<T> : IVerifyRepository<T>
+    public sealed class RepositoryInsertRecordKey<T> : IVerifyRepository<T>
     {
-        public RepositoryInsertRecordKeyExists()
+        public RepositoryInsertRecordKey()
         {
-            var key = AlphaDecimal.Random();
-
             var record = new Mock<IRecord<T>>();
             record
                 .SetupGet(x => x.Key)
-                .Returns(key);
+                .Returns(AlphaDecimal.Random());
             record
                 .SetupGet(x => x.Urn)
                 .Returns("urn://example.com/" + Guid.NewGuid());
             Record = record;
-
-            var duplicate = new Mock<IRecord<T>>();
-            duplicate
-                .SetupGet(x => x.Key)
-                .Returns(key);
-            duplicate
-                .SetupGet(x => x.Urn)
-                .Returns("urn://example.com/" + Guid.NewGuid());
-
-            Duplicate = duplicate;
         }
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is required for mocking.")]
@@ -48,19 +36,10 @@
 
             using (new TransactionScope())
             {
-                try
-                {
-                    repository.Insert(Record.Object);
-                }
-                catch (Exception exception)
-                {
-                    throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
-                }
-
                 RepositoryException expected = null;
                 try
                 {
-                    repository.Insert(Duplicate.Object);
+                    repository.Insert(Record.Object);
                 }
                 catch (RepositoryException exception)
                 {

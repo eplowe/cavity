@@ -277,6 +277,15 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when a record does not specify cacheability..
+        /// </summary>
+        internal static string Repository_Insert_RecordCacheabilityNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Insert_RecordCacheabilityNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when an object with the key already exists..
         /// </summary>
         internal static string Repository_Insert_RecordKeyExists_UnitTestExceptionMessage {
@@ -318,6 +327,24 @@ namespace Cavity.Properties {
         internal static string Repository_Insert_ReturnsIncorrectKey_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_Insert_ReturnsIncorrectKey_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert(...) should set the created date of the returned record..
+        /// </summary>
+        internal static string Repository_Insert_ReturnsWithoutCreated_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Insert_ReturnsWithoutCreated_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert(...) should set the modified date of the returned record..
+        /// </summary>
+        internal static string Repository_Insert_ReturnsWithoutModified_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Insert_ReturnsWithoutModified_UnitTestExceptionMessage", resourceCulture);
             }
         }
         

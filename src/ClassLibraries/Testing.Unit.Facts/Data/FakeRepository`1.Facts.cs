@@ -22,5 +22,11 @@
         {
             Assert.NotNull(new FakeRepository<int>());
         }
+
+        [Fact]
+        public void expectations()
+        {
+            new RepositoryExpectations<int>().VerifyAll<FakeRepository<int>>();
+        }
     }
 }

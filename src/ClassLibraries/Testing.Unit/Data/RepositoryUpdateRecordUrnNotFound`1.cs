@@ -11,13 +11,14 @@
     {
         public RepositoryUpdateRecordUrnNotFound()
         {
-            var key = AlphaDecimal.Random();
-
-            var record = new Mock<IRecord<T>>()
-                .SetupProperty(x => x.Urn);
+            var record = new Mock<IRecord<T>>();
             record
-                .SetupGet(x => x.Key)
-                .Returns(key);
+                .SetupGet(x => x.Cacheability)
+                .Returns("public");
+            record
+                .SetupProperty(x => x.Key);
+            record
+                .SetupProperty(x => x.Urn);
             record.Object.Urn = "urn://example.com/" + Guid.NewGuid();
             Record = record;
         }

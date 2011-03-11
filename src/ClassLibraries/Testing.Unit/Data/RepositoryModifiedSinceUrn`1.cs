@@ -11,12 +11,17 @@
     {
         public RepositoryModifiedSinceUrn()
         {
-            var record = new Mock<IRecord<T>>()
-                .SetupProperty(x => x.Key)
-                .SetupProperty(x => x.Modified);
+            var record = new Mock<IRecord<T>>();
+            record
+                .SetupGet(x => x.Cacheability)
+                .Returns("public");
             record
                 .SetupGet(x => x.Etag)
                 .Returns("\"abc\"");
+            record
+                .SetupProperty(x => x.Key);
+            record
+                .SetupProperty(x => x.Modified);
             record
                 .SetupGet(x => x.Urn)
                 .Returns("urn://example.com/" + Guid.NewGuid());

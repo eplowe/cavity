@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Data
 {
+    using System;
     using Xunit;
 
     public sealed class RepositoryExpectationsOfTFacts
@@ -25,7 +26,7 @@
         [Fact]
         public void op_VerifyAll()
         {
-            new RepositoryExpectations<int>().VerifyAll<FakeRepository<int>>();
+            Assert.Throws<NotImplementedException>(() => new RepositoryExpectations<int>().VerifyAll<DummyRepository<int>>());
         }
     }
 }

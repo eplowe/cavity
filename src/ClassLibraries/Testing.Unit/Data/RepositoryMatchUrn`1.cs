@@ -11,11 +11,15 @@
     {
         public RepositoryMatchUrn()
         {
-            var record = new Mock<IRecord<T>>()
-                .SetupProperty(x => x.Key);
+            var record = new Mock<IRecord<T>>();
+            record
+                .SetupGet(x => x.Cacheability)
+                .Returns("public");
             record
                 .SetupGet(x => x.Etag)
                 .Returns("\"abc\"");
+            record
+                .SetupProperty(x => x.Key);
             record
                 .SetupGet(x => x.Urn)
                 .Returns("urn://example.com/" + Guid.NewGuid());

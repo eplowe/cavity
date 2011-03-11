@@ -70,7 +70,17 @@
                 throw new ArgumentNullException("record");
             }
 
+            if (null == record.Cacheability)
+            {
+                throw new RepositoryException();
+            }
+
             if (null == record.Urn)
+            {
+                throw new RepositoryException();
+            }
+
+            if (record.Key.HasValue)
             {
                 throw new RepositoryException();
             }
@@ -80,17 +90,10 @@
                 throw new RepositoryException();
             }
 
-            if (!record.Key.HasValue)
-            {
-                record.Key = AlphaDecimal.Random();
-            }
-
-            if (null != Repository.Select(record.Key.Value))
-            {
-                throw new RepositoryException();
-            }
-
-            record.Modified = DateTime.UtcNow;
+            var date = DateTime.UtcNow;
+            record.Created = date;
+            record.Key = AlphaDecimal.Random();
+            record.Modified = date;
 
             Records.Add(record);
 

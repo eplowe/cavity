@@ -15,14 +15,20 @@
 
             var record = new Mock<IRecord<T>>();
             record
-                .SetupGet(x => x.Key)
-                .Returns(AlphaDecimal.Random());
+                .SetupGet(x => x.Cacheability)
+                .Returns("public");
+            record
+                .SetupProperty(x => x.Key);
             record
                 .SetupGet(x => x.Urn)
                 .Returns(urn);
             Record = record;
 
-            var record2 = new Mock<IRecord<T>>()
+            var record2 = new Mock<IRecord<T>>();
+            record2
+                .SetupGet(x => x.Cacheability)
+                .Returns("public");
+            record
                 .SetupProperty(x => x.Key);
             record2
                 .SetupGet(x => x.Urn)
