@@ -32,7 +32,7 @@
 
                 if (null == expected)
                 {
-                    throw new UnitTestException(Resources.Repository_ToKey_UrnNull_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_UrnNull_UnitTestExceptionMessage.FormatWith("ToKey"));
                 }
             }
         }

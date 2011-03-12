@@ -29,7 +29,7 @@
 
             if (null == expected)
             {
-                throw new UnitTestException(Resources.Repository_Select_UrnNull_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_UrnNull_UnitTestExceptionMessage.FormatWith("Select"));
             }
         }
     }

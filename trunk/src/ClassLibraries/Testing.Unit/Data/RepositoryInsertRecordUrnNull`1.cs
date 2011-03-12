@@ -43,7 +43,7 @@
                 }
                 catch (Exception exception)
                 {
-                    throw new UnitTestException(Resources.Repository_Insert_RecordUrnNull_UnitTestExceptionMessage, exception);
+                    throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
                 }
 
                 if (null == expected)

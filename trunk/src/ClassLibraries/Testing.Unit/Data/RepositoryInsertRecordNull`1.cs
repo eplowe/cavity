@@ -24,12 +24,12 @@
             }
             catch (Exception exception)
             {
-                throw new UnitTestException(Resources.Repository_Insert_RecordNull_UnitTestExceptionMessage, exception);
+                throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
             }
 
             if (null == expected)
             {
-                throw new UnitTestException(Resources.Repository_Insert_RecordNull_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_RecordNull_UnitTestExceptionMessage.FormatWith("Insert"));
             }
         }
     }
