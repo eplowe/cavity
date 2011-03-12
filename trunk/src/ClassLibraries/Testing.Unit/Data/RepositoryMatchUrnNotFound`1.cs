@@ -1,25 +1,21 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using System.Transactions;
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositoryMatchUrnNotFound<T> : IVerifyRepository<T>
+    public sealed class RepositoryMatchUrnNotFound<T> : VerifyRepositoryBase<T>
     {
-        public void Verify(IRepository<T> repository)
+        protected override void OnVerify(IRepository<T> repository)
         {
             if (null == repository)
             {
                 throw new ArgumentNullException("repository");
             }
 
-            using (new TransactionScope())
+            if (repository.Match("urn://example.com/" + Guid.NewGuid(), Guid.NewGuid().ToString()))
             {
-                if (repository.Match("urn://example.com/" + Guid.NewGuid(), Guid.NewGuid().ToString()))
-                {
-                    throw new UnitTestException(Resources.Repository_Match_ReturnsTrue_UnitTestExceptionMessage);
-                }
+                throw new UnitTestException(Resources.Repository_Match_ReturnsTrue_UnitTestExceptionMessage);
             }
         }
     }

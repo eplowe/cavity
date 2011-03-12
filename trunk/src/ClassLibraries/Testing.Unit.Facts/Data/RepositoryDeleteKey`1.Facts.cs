@@ -11,7 +11,7 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<RepositoryDeleteKey<int>>()
-                            .DerivesFrom<object>()
+                            .DerivesFrom<VerifyRepositoryBase<int>>()
                             .IsConcreteClass()
                             .IsSealed()
                             .HasDefaultConstructor()

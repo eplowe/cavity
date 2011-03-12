@@ -16,6 +16,11 @@
         {
             foreach (var type in assembly.GetTypes())
             {
+                if (type.IsAbstract)
+                {
+                    continue;
+                }
+
                 if (type.IsInterface)
                 {
                     continue;

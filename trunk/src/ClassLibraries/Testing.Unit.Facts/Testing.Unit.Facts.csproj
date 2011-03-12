@@ -79,6 +79,7 @@
     <Compile Include="Data\RepositoryUpsertRecordNull`1.Facts.cs" />
     <Compile Include="Data\RepositoryUpsertUpdateRecord`1.Facts.cs" />
     <Compile Include="Data\RepositoryUpsertInsertRecord`1.Facts.cs" />
+    <Compile Include="Data\VerifyRepositoryBase`1.Facts.cs" />
     <Compile Include="Fluent\ITestClassConstruction.Facts.cs" />
     <Compile Include="Fluent\ITestClassSealed.Facts.cs" />
     <Compile Include="Fluent\ITestClassStyle.Facts.cs" />
