@@ -15,7 +15,7 @@
 
             if (repository.Delete(AlphaDecimal.Random()))
             {
-                throw new UnitTestException(Resources.Repository_Delete_ReturnsTrue_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_ExpectWhenDoesNotExist_UnitTestExceptionMessage.FormatWith("Delete", "false"));
             }
         }
     }

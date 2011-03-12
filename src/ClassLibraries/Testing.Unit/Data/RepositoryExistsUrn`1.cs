@@ -20,7 +20,7 @@
                 return;
             }
 
-            throw new UnitTestException(Resources.Repository_Exists_ReturnsFalse_UnitTestExceptionMessage);
+            throw new UnitTestException(Resources.Repository_ExpectWhenExists_UnitTestExceptionMessage.FormatWith("Exists", "true"));
         }
     }
 }

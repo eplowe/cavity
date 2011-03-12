@@ -18,12 +18,12 @@
 
             if (null == key)
             {
-                throw new UnitTestException(Resources.Repository_ToKey_ReturnsNull_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_ExpectResult_UnitTestExceptionMessage.FormatWith("ToKey", "key"));
             }
 
             if (key != insert)
             {
-                throw new UnitTestException(Resources.Repository_ToKey_ReturnsIncorrectKey_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_ExpectCorrectValue_UnitTestExceptionMessage.FormatWith("ToKey", "key"));
             }
         }
     }

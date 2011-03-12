@@ -15,7 +15,7 @@
 
             if (repository.Exists("urn://example.com/" + Guid.NewGuid()))
             {
-                throw new UnitTestException(Resources.Repository_Exists_ReturnsTrue_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_ExpectWhenDoesNotExist_UnitTestExceptionMessage.FormatWith("Exists", "false"));
             }
         }
     }

@@ -15,7 +15,7 @@
 
             if (repository.Delete("urn://example.com/" + Guid.NewGuid()))
             {
-                throw new UnitTestException(Resources.Repository_Delete_ReturnsTrue_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_ExpectWhenDoesNotExist_UnitTestExceptionMessage.FormatWith("Delete", "false"));
             }
         }
     }

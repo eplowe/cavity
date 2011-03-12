@@ -23,17 +23,17 @@
 
             if (null == record)
             {
-                throw new UnitTestException(Resources.Repository_Select_ReturnsNull_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_ExpectResult_UnitTestExceptionMessage.FormatWith("Select", "record"));
             }
 
             if (key != record.Key)
             {
-                throw new UnitTestException(Resources.Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage.FormatWith("Select", "key"));
             }
 
             if (!Record.Object.Urn.Equals(record.Urn))
             {
-                throw new UnitTestException(Resources.Repository_Select_ReturnsIncorrectUrn_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage.FormatWith("Select", "URN"));
             }
 
             if (ReferenceEquals(Record.Object.Value, null))
@@ -44,13 +44,13 @@
                 }
                 else
                 {
-                    throw new UnitTestException(Resources.Repository_Select_ReturnsIncorrectValue_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage.FormatWith("Select", "value"));
                 }
             }
 
             if (!Record.Object.Value.Equals(record.Value))
             {
-                throw new UnitTestException(Resources.Repository_Select_ReturnsIncorrectValue_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage.FormatWith("Select", "value"));
             }
         }
     }

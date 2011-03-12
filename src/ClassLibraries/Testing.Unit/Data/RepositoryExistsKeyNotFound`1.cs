@@ -15,7 +15,7 @@
 
             if (repository.Exists(AlphaDecimal.Random()))
             {
-                throw new UnitTestException(Resources.Repository_Exists_ReturnsTrue_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_ExpectWhenDoesNotExist_UnitTestExceptionMessage.FormatWith("Exists", "false"));
             }
         }
     }

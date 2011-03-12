@@ -19,7 +19,7 @@
                 return;
             }
 
-            throw new UnitTestException(Resources.Repository_Update_ReturnsFalse_UnitTestExceptionMessage);
+            throw new UnitTestException(Resources.Repository_ExpectTrueWhenExistingRecord_UnitTestExceptionMessage.FormatWith("Update", "updated"));
         }
     }
 }

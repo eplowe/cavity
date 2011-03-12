@@ -51,12 +51,12 @@
 
                 if (null == urn)
                 {
-                    throw new UnitTestException(Resources.Repository_ToUrn_ReturnsNull_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_ExpectResult_UnitTestExceptionMessage.FormatWith("ToUrn", "URN"));
                 }
 
                 if (urn != insert)
                 {
-                    throw new UnitTestException(Resources.Repository_ToUrn_ReturnsIncorrectUrn_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_ExpectCorrectValue_UnitTestExceptionMessage.FormatWith("ToUrn", "URN"));
                 }
             }
         }
