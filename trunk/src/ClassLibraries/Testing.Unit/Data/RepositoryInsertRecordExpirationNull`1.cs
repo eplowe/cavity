@@ -53,7 +53,7 @@
 
                 if (null == expected)
                 {
-                    throw new UnitTestException(Resources.Repository_Insert_RecordExpirationNull_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_ExpectExceptionWhenRecordIncomplete_UnitTestExceptionMessage.FormatWith("Insert", "expiration"));
                 }
             }
         }

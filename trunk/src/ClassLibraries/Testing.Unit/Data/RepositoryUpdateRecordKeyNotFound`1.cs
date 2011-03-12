@@ -79,7 +79,7 @@
 
                 if (null == expected)
                 {
-                    throw new UnitTestException(Resources.Repository_Update_RecordKeyNotFound_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_ExpectExceptionWhenRecordKeyNotFound_UnitTestExceptionMessage.FormatWith("Update"));
                 }
             }
         }

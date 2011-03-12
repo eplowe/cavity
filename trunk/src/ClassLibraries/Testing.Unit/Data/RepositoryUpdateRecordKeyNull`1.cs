@@ -81,7 +81,7 @@
 
                 if (null == expected)
                 {
-                    throw new UnitTestException(Resources.Repository_Update_RecordKeyNull_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_ExpectExceptionWhenRecordIncomplete_UnitTestExceptionMessage.FormatWith("Update", "key"));
                 }
             }
         }

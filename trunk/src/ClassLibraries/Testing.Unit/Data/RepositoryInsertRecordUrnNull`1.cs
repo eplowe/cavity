@@ -48,7 +48,7 @@
 
                 if (null == expected)
                 {
-                    throw new UnitTestException(Resources.Repository_Insert_RecordUrnNull_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_ExpectExceptionWhenRecordIncomplete_UnitTestExceptionMessage.FormatWith("Insert", "URN"));
                 }
             }
         }

@@ -32,7 +32,7 @@
 
                 if (null == expected)
                 {
-                    throw new UnitTestException(Resources.Repository_RecordNull_UnitTestExceptionMessage.FormatWith("Upsert"));
+                    throw new UnitTestException(Resources.Repository_ExpectExceptionWhenRecordNull_UnitTestExceptionMessage.FormatWith("Upsert"));
                 }
             }
         }
