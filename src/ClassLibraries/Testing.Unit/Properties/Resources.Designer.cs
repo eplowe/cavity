@@ -241,15 +241,6 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete(...) should throw an ArgumentNullException when a record does not specify a URN..
-        /// </summary>
-        internal static string Repository_Delete_UrnNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Delete_UrnNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Exists(...) should return true when the record exists..
         /// </summary>
         internal static string Repository_Exists_ReturnsFalse_UnitTestExceptionMessage {
@@ -264,15 +255,6 @@ namespace Cavity.Properties {
         internal static string Repository_Exists_ReturnsTrue_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_Exists_ReturnsTrue_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Exists(...) should throw an ArgumentNullException when a record does not specify a URN..
-        /// </summary>
-        internal static string Repository_Exists_UrnNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Exists_UrnNull_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
@@ -300,15 +282,6 @@ namespace Cavity.Properties {
         internal static string Repository_Insert_RecordKeyExists_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_Insert_RecordKeyExists_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert(...) should throw an ArgumentNullException when a null record is specified..
-        /// </summary>
-        internal static string Repository_Insert_RecordNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Insert_RecordNull_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
@@ -385,15 +358,6 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Match(...) should throw an ArgumentNullException when a record does not specify a URN..
-        /// </summary>
-        internal static string Repository_Match_UrnNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Match_UrnNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ModifiedSince(...) should return true when the record has been modified since the specified date..
         /// </summary>
         internal static string Repository_ModifiedSince_ReturnsFalse_UnitTestExceptionMessage {
@@ -412,11 +376,11 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ModifiedSince(...) should throw an ArgumentNullException when a record does not specify a URN..
+        ///   Looks up a localized string similar to {0}(...) should throw an ArgumentNullException when a record is not specified..
         /// </summary>
-        internal static string Repository_ModifiedSince_UrnNull_UnitTestExceptionMessage {
+        internal static string Repository_RecordNull_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("Repository_ModifiedSince_UrnNull_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_RecordNull_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
@@ -466,15 +430,6 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select(...) should throw an ArgumentNullException when a null record is specified..
-        /// </summary>
-        internal static string Repository_Select_UrnNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Select_UrnNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ToKey(...) should return the correct key..
         /// </summary>
         internal static string Repository_ToKey_ReturnsIncorrectKey_UnitTestExceptionMessage {
@@ -498,15 +453,6 @@ namespace Cavity.Properties {
         internal static string Repository_ToKey_UrnNotFound_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_ToKey_UrnNotFound_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ToKey(...) should throw an ArgumentNullException when a record does not specify a URN..
-        /// </summary>
-        internal static string Repository_ToKey_UrnNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_ToKey_UrnNull_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
@@ -583,15 +529,6 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update(...) should throw an ArgumentNullException when a null record is specified..
-        /// </summary>
-        internal static string Repository_Update_RecordNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Update_RecordNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Update(...) should throw an RepositoryException when a record does not specify status..
         /// </summary>
         internal static string Repository_Update_RecordStatusNull_UnitTestExceptionMessage {
@@ -615,6 +552,15 @@ namespace Cavity.Properties {
         internal static string Repository_Update_ReturnsFalse_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_Update_ReturnsFalse_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}(...) should throw an ArgumentNullException when a URN is not specified..
+        /// </summary>
+        internal static string Repository_UrnNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_UrnNull_UnitTestExceptionMessage", resourceCulture);
             }
         }
         

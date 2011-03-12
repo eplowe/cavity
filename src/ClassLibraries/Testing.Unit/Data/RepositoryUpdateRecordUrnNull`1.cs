@@ -55,7 +55,7 @@
                 }
                 catch (Exception exception)
                 {
-                    throw new UnitTestException(Resources.Repository_Update_RecordUrnNull_UnitTestExceptionMessage, exception);
+                    throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
                 }
 
                 if (null == expected)

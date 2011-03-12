@@ -34,7 +34,7 @@
             }
             catch (Exception exception)
             {
-                throw new UnitTestException(Resources.Repository_Insert_RecordKeyExists_UnitTestExceptionMessage, exception);
+                throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
             }
 
             if (null == expected)

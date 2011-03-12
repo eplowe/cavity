@@ -24,12 +24,12 @@
             }
             catch (Exception exception)
             {
-                throw new UnitTestException(Resources.Repository_ModifiedSince_UrnNull_UnitTestExceptionMessage, exception);
+                throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
             }
 
             if (null == expected)
             {
-                throw new UnitTestException(Resources.Repository_ModifiedSince_UrnNull_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_UrnNull_UnitTestExceptionMessage.FormatWith("ModifiedSince"));
             }
         }
     }
