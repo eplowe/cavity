@@ -9,30 +9,15 @@
     {
         protected VerifyRepositoryBase()
         {
-            var record = new Mock<IRecord<T>>();
-            record
-                .SetupGet(x => x.Cacheability)
-                .Returns("public");
-            record
-                .SetupProperty(x => x.Created);
-            record
-                .SetupGet(x => x.Expiration)
-                .Returns("P1D");
-            record
-                .SetupProperty(x => x.Key);
-            record
-                .SetupProperty(x => x.Modified);
-            record
-                .SetupGet(x => x.Status)
-                .Returns(200);
-            record
-                .SetupGet(x => x.Urn)
-                .Returns("urn://example.com/" + Guid.NewGuid());
-            Record = record;
+            Record = NewRecord();
+            Record2 = NewRecord();
         }
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is required for mocking.")]
         public Mock<IRecord<T>> Record { get; set; }
+
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is required for mocking.")]
+        public Mock<IRecord<T>> Record2 { get; set; }
 
         public void Verify(IRepository<T> repository)
         {
@@ -43,5 +28,26 @@
         }
 
         protected abstract void OnVerify(IRepository<T> repository);
+
+        private static Mock<IRecord<T>> NewRecord()
+        {
+            var record = new Mock<IRecord<T>>()
+                .SetupProperty(x => x.Cacheability)
+                .SetupProperty(x => x.Created)
+                .SetupProperty(x => x.Etag)
+                .SetupProperty(x => x.Expiration)
+                .SetupProperty(x => x.Key)
+                .SetupProperty(x => x.Modified)
+                .SetupProperty(x => x.Status)
+                .SetupProperty(x => x.Urn);
+
+            record.Object.Cacheability = "public";
+            record.Object.Etag = "\"abc\"";
+            record.Object.Expiration = "P1D";
+            record.Object.Status = 200;
+            record.Object.Urn = "urn://example.com/" + Guid.NewGuid();
+
+            return record;
+        }
     }
 }

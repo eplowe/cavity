@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</ProjectGuid>
@@ -75,7 +75,6 @@
     <Compile Include="Data\RepositoryUpdateRecordKeyNull`1.cs" />
     <Compile Include="Data\RepositoryUpdateRecordNull`1.cs" />
     <Compile Include="Data\RepositoryUpdateRecordStatusNull`1.cs" />
-    <Compile Include="Data\RepositoryUpdateRecordUrnNotFound`1.cs" />
     <Compile Include="Data\RepositoryUpdateRecordUrnNull`1.cs" />
     <Compile Include="Data\RepositoryUpsertRecordNull`1.cs" />
     <Compile Include="Data\RepositoryUpsertUpdateRecord`1.cs" />

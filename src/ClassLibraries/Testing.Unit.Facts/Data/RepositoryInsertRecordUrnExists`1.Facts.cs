@@ -11,7 +11,7 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<RepositoryInsertRecordUrnExists<int>>()
-                            .DerivesFrom<object>()
+                            .DerivesFrom<VerifyRepositoryBase<int>>()
                             .IsConcreteClass()
                             .IsSealed()
                             .HasDefaultConstructor()
@@ -37,7 +37,7 @@
                 .Returns(obj.Record.Object)
                 .Verifiable();
             repository
-                .Setup(x => x.Insert(obj.Duplicate.Object))
+                .Setup(x => x.Insert(obj.Record2.Object))
                 .Throws(new RepositoryException())
                 .Verifiable();
 
@@ -63,8 +63,8 @@
                 .Returns(obj.Record.Object)
                 .Verifiable();
             repository
-                .Setup(x => x.Insert(obj.Duplicate.Object))
-                .Returns(obj.Duplicate.Object)
+                .Setup(x => x.Insert(obj.Record2.Object))
+                .Returns(obj.Record2.Object)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
@@ -83,7 +83,7 @@
                 .Returns(obj.Record.Object)
                 .Verifiable();
             repository
-                .Setup(x => x.Insert(obj.Duplicate.Object))
+                .Setup(x => x.Insert(obj.Record2.Object))
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 

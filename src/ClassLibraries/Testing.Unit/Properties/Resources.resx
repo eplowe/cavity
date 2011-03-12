@@ -178,10 +178,10 @@
     <value>{0}(...) should return the correct {1}.</value>
   </data>
   <data name="Repository_ExpectExceptionWhenRecordIncomplete_UnitTestExceptionMessage" xml:space="preserve">
-    <value>{0}(...) should throw an RepositoryException when the record does not specify {1}.</value>
+    <value>{0}(...) should throw a RepositoryException when the record does not specify {1}.</value>
   </data>
   <data name="Repository_ExpectExceptionWhenRecordKeyNotFound_UnitTestExceptionMessage" xml:space="preserve">
-    <value>{0}(...) should throw an RepositoryException when a record with the key does not exist.</value>
+    <value>{0}(...) should throw a RepositoryException when a record with the key does not exist.</value>
   </data>
   <data name="Repository_ExpectExceptionWhenRecordNull_UnitTestExceptionMessage" xml:space="preserve">
     <value>{0}(...) should throw an ArgumentNullException when a record is not specified.</value>
@@ -205,10 +205,10 @@
     <value>{0}(...) should return {1} when the record exists.</value>
   </data>
   <data name="Repository_Insert_RecordKeyExists_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Insert(...) should throw an RepositoryException when a record with the key already exists.</value>
+    <value>Insert(...) should throw a RepositoryException when a record with the key already exists.</value>
   </data>
   <data name="Repository_Insert_RecordUrnExists_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Insert(...) should throw an RepositoryException when a record with the URN already exists.</value>
+    <value>Insert(...) should throw a RepositoryException when a record with the URN already exists.</value>
   </data>
   <data name="Repository_Insert_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(...) should set the key of the returned record.</value>

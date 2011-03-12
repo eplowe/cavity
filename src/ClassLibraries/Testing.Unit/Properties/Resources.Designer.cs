@@ -241,7 +241,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}(...) should throw an RepositoryException when the record does not specify {1}..
+        ///   Looks up a localized string similar to {0}(...) should throw a RepositoryException when the record does not specify {1}..
         /// </summary>
         internal static string Repository_ExpectExceptionWhenRecordIncomplete_UnitTestExceptionMessage {
             get {
@@ -250,7 +250,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}(...) should throw an RepositoryException when a record with the key does not exist..
+        ///   Looks up a localized string similar to {0}(...) should throw a RepositoryException when a record with the key does not exist..
         /// </summary>
         internal static string Repository_ExpectExceptionWhenRecordKeyNotFound_UnitTestExceptionMessage {
             get {
@@ -322,7 +322,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when a record with the key already exists..
+        ///   Looks up a localized string similar to Insert(...) should throw a RepositoryException when a record with the key already exists..
         /// </summary>
         internal static string Repository_Insert_RecordKeyExists_UnitTestExceptionMessage {
             get {
@@ -331,7 +331,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when a record with the URN already exists..
+        ///   Looks up a localized string similar to Insert(...) should throw a RepositoryException when a record with the URN already exists..
         /// </summary>
         internal static string Repository_Insert_RecordUrnExists_UnitTestExceptionMessage {
             get {

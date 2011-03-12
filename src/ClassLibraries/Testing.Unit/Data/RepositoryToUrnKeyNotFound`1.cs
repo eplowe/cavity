@@ -1,27 +1,23 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using System.Transactions;
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositoryToUrnKeyNotFound<T> : IVerifyRepository<T>
+    public sealed class RepositoryToUrnKeyNotFound<T> : VerifyRepositoryBase<T>
     {
-        public void Verify(IRepository<T> repository)
+        protected override void OnVerify(IRepository<T> repository)
         {
             if (null == repository)
             {
                 throw new ArgumentNullException("repository");
             }
 
-            using (new TransactionScope())
-            {
-                var urn = repository.ToUrn(AlphaDecimal.Random());
+            var urn = repository.ToUrn(AlphaDecimal.Random());
 
-                if (null != urn)
-                {
-                    throw new UnitTestException(Resources.Repository_ExpectNullWhenRecordNotFound_UnitTestExceptionMessage.FormatWith("ToUrn", "key"));
-                }
+            if (null != urn)
+            {
+                throw new UnitTestException(Resources.Repository_ExpectNullWhenRecordNotFound_UnitTestExceptionMessage.FormatWith("ToUrn", "key"));
             }
         }
     }

@@ -1,39 +1,35 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using System.Transactions;
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositoryUpsertRecordNull<T> : IVerifyRepository<T>
+    public sealed class RepositoryUpsertRecordNull<T> : VerifyRepositoryBase<T>
     {
-        public void Verify(IRepository<T> repository)
+        protected override void OnVerify(IRepository<T> repository)
         {
             if (null == repository)
             {
                 throw new ArgumentNullException("repository");
             }
 
-            using (new TransactionScope())
+            ArgumentNullException expected = null;
+            try
             {
-                ArgumentNullException expected = null;
-                try
-                {
-                    repository.Upsert(null);
-                }
-                catch (ArgumentNullException exception)
-                {
-                    expected = exception;
-                }
-                catch (Exception exception)
-                {
-                    throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
-                }
+                repository.Upsert(null);
+            }
+            catch (ArgumentNullException exception)
+            {
+                expected = exception;
+            }
+            catch (Exception exception)
+            {
+                throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
+            }
 
-                if (null == expected)
-                {
-                    throw new UnitTestException(Resources.Repository_ExpectExceptionWhenRecordNull_UnitTestExceptionMessage.FormatWith("Upsert"));
-                }
+            if (null == expected)
+            {
+                throw new UnitTestException(Resources.Repository_ExpectExceptionWhenRecordNull_UnitTestExceptionMessage.FormatWith("Upsert"));
             }
         }
     }
