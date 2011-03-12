@@ -58,11 +58,6 @@
             return null != Repository.Select(key);
         }
 
-        bool IRepository<T>.Exists(XPathExpression xpath)
-        {
-            throw new NotImplementedException();
-        }
-
         IRecord<T> IRepository<T>.Insert(IRecord<T> record)
         {
             if (null == record)
@@ -152,9 +147,14 @@
                                .FirstOrDefault();
         }
 
-        IEnumerable<IRecord<T>> IRepository<T>.Query(XPathExpression xpath)
+        IEnumerable<IRecord<T>> IRepository<T>.Query(XPathExpression expression)
         {
-            throw new NotImplementedException();
+            if (null == expression)
+            {
+                throw new ArgumentNullException("expression");
+            }
+
+            return Records;
         }
 
         IRecord<T> IRepository<T>.Select(AbsoluteUri urn)
@@ -226,8 +226,14 @@
                 throw new RepositoryException();
             }
 
-            var existing = Repository.Select(record.Key.Value);
-            if (null == existing)
+            var keySelection = Repository.Select(record.Key.Value);
+            if (null == keySelection)
+            {
+                throw new RepositoryException();
+            }
+
+            var urnSelection = Repository.Select(record.Urn);
+            if (null != urnSelection && keySelection.Key != urnSelection.Key)
             {
                 throw new RepositoryException();
             }

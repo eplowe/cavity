@@ -81,22 +81,6 @@
         }
 
         [Fact]
-        public void op_Exists_XPathExpression()
-        {
-            var xpath = XPathExpression.Compile("//root");
-
-            var mock = new Mock<IRepository<int>>();
-            mock
-                .Setup(x => x.Exists(xpath))
-                .Returns(true)
-                .Verifiable();
-
-            Assert.True(mock.Object.Exists(xpath));
-
-            mock.VerifyAll();
-        }
-
-        [Fact]
         public void op_Insert_IRecord()
         {
             var expected = new Mock<IRecord<int>>().Object;

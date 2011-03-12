@@ -15,8 +15,6 @@
 
         bool Exists(AlphaDecimal key);
 
-        bool Exists(XPathExpression xpath);
-
         IRecord<T> Insert(IRecord<T> record);
 
         bool Match(AbsoluteUri urn,
@@ -32,7 +30,7 @@
                            DateTime value);
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This design is intentional.")]
-        IEnumerable<IRecord<T>> Query(XPathExpression xpath);
+        IEnumerable<IRecord<T>> Query(XPathExpression expression);
 
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Select", Justification = "The naming is intentional.")]
         IRecord<T> Select(AbsoluteUri urn);
