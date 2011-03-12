@@ -1,96 +1,45 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Transactions;
     using Cavity.Properties;
     using Cavity.Tests;
-    using Moq;
 
-    public sealed class RepositoryInsertRecordUrnExists<T> : IVerifyRepository<T>
+    public sealed class RepositoryInsertRecordUrnExists<T> : VerifyRepositoryBase<T>
     {
-        public RepositoryInsertRecordUrnExists()
-        {
-            AbsoluteUri urn = "urn://example.com/" + Guid.NewGuid();
-
-            var record = new Mock<IRecord<T>>();
-            record
-                .SetupGet(x => x.Cacheability)
-                .Returns("public");
-            record
-                .SetupGet(x => x.Expiration)
-                .Returns("P1D");
-            record
-                .SetupProperty(x => x.Key);
-            record
-                .SetupGet(x => x.Status)
-                .Returns(200);
-            record
-                .SetupGet(x => x.Urn)
-                .Returns(urn);
-            Record = record;
-
-            var duplicate = new Mock<IRecord<T>>();
-            duplicate
-                .SetupGet(x => x.Cacheability)
-                .Returns("public");
-            duplicate
-                .SetupGet(x => x.Expiration)
-                .Returns("P1D");
-            duplicate
-                .SetupProperty(x => x.Key);
-            duplicate
-                .SetupGet(x => x.Status)
-                .Returns(200);
-            duplicate
-                .SetupGet(x => x.Urn)
-                .Returns(urn);
-
-            Duplicate = duplicate;
-        }
-
-        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is required for mocking.")]
-        public Mock<IRecord<T>> Duplicate { get; set; }
-
-        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is required for mocking.")]
-        public Mock<IRecord<T>> Record { get; set; }
-
-        public void Verify(IRepository<T> repository)
+        protected override void OnVerify(IRepository<T> repository)
         {
             if (null == repository)
             {
                 throw new ArgumentNullException("repository");
             }
 
-            using (new TransactionScope())
+            try
             {
-                try
-                {
-                    repository.Insert(Record.Object);
-                }
-                catch (Exception exception)
-                {
-                    throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
-                }
+                repository.Insert(Record.Object);
+            }
+            catch (Exception exception)
+            {
+                throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
+            }
 
-                RepositoryException expected = null;
-                try
-                {
-                    repository.Insert(Duplicate.Object);
-                }
-                catch (RepositoryException exception)
-                {
-                    expected = exception;
-                }
-                catch (Exception exception)
-                {
-                    throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
-                }
+            RepositoryException expected = null;
+            try
+            {
+                Record2.Object.Urn = Record.Object.Urn;
+                repository.Insert(Record2.Object);
+            }
+            catch (RepositoryException exception)
+            {
+                expected = exception;
+            }
+            catch (Exception exception)
+            {
+                throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
+            }
 
-                if (null == expected)
-                {
-                    throw new UnitTestException(Resources.Repository_Insert_RecordUrnExists_UnitTestExceptionMessage);
-                }
+            if (null == expected)
+            {
+                throw new UnitTestException(Resources.Repository_Insert_RecordUrnExists_UnitTestExceptionMessage);
             }
         }
     }

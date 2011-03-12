@@ -1,10 +1,8 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using Cavity.Properties;
     using Cavity.Tests;
-    using Moq;
 
     public sealed class RepositoryInsertRecordKey<T> : VerifyRepositoryBase<T>
     {
@@ -12,9 +10,6 @@
         {
             Record.Object.Key = AlphaDecimal.Random();
         }
-
-        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is required for mocking.")]
-        public Mock<IRecord<T>> Duplicate { get; set; }
 
         protected override void OnVerify(IRepository<T> repository)
         {
