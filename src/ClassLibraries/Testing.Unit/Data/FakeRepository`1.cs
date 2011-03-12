@@ -2,17 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Xml;
     using System.Xml.XPath;
 
     public sealed class FakeRepository<T> : IRepository<T>
     {
         public FakeRepository()
         {
-            Records = new HashSet<IRecord<T>>();
+            Xml = new XmlDocument();
+            Xml.LoadXml("<repository />");
         }
-
-        private HashSet<IRecord<T>> Records { get; set; }
 
         private IRepository<T> Repository
         {
@@ -22,40 +21,26 @@
             }
         }
 
+        private XmlDocument Xml { get; set; }
+
         bool IRepository<T>.Delete(AbsoluteUri urn)
         {
-            var record = Repository.Select(urn);
-            if (null == record)
-            {
-                return false;
-            }
-
-            Records.Remove(record);
-
-            return true;
+            return Delete(Select(urn));
         }
 
         bool IRepository<T>.Delete(AlphaDecimal key)
         {
-            var record = Repository.Select(key);
-            if (null == record)
-            {
-                return false;
-            }
-
-            Records.Remove(record);
-
-            return true;
+            return Delete(Select(key));
         }
 
         bool IRepository<T>.Exists(AbsoluteUri urn)
         {
-            return null != Repository.Select(urn);
+            return null != Select(urn);
         }
 
         bool IRepository<T>.Exists(AlphaDecimal key)
         {
-            return null != Repository.Select(key);
+            return null != Select(key);
         }
 
         IRecord<T> IRepository<T>.Insert(IRecord<T> record)
@@ -90,19 +75,58 @@
                 throw new RepositoryException();
             }
 
-            if (null != Repository.Select(record.Urn))
+            if (null != Select(record.Urn))
             {
                 throw new RepositoryException();
             }
 
-            var date = DateTime.UtcNow;
-            record.Created = date;
-            record.Key = AlphaDecimal.Random();
-            record.Modified = date;
+            var date = DateTime.UtcNow.ToXmlString();
+            var key = AlphaDecimal.Random();
+            var node = Xml.CreateElement("object");
 
-            Records.Add(record);
+            ////record.Urn = new AbsoluteUri(record.Urn.ToString().Replace("{token}", token));
 
-            return record;
+            var attribute = Xml.CreateAttribute("cacheability");
+            attribute.Value = record.Cacheability;
+            node.Attributes.Append(attribute);
+
+            attribute = Xml.CreateAttribute("created");
+            attribute.Value = date;
+            node.Attributes.Append(attribute);
+
+            attribute = Xml.CreateAttribute("etag");
+            attribute.Value = record.Etag; //// MD5Hash.Compute(record.Entity);
+            node.Attributes.Append(attribute);
+
+            attribute = Xml.CreateAttribute("expiration");
+            attribute.Value = record.Expiration;
+            node.Attributes.Append(attribute);
+
+            attribute = Xml.CreateAttribute("key");
+            attribute.Value = key;
+            node.Attributes.Append(attribute);
+
+            attribute = Xml.CreateAttribute("modified");
+            attribute.Value = date;
+            node.Attributes.Append(attribute);
+
+            attribute = Xml.CreateAttribute("status");
+            attribute.Value = XmlConvert.ToString(record.Status.Value);
+            node.Attributes.Append(attribute);
+
+            attribute = Xml.CreateAttribute("urn");
+            attribute.Value = record.Urn;
+            node.Attributes.Append(attribute);
+
+            attribute = Xml.CreateAttribute("type");
+            attribute.Value = "{0}, {1}".FormatWith(record.GetType().FullName, record.GetType().Assembly.GetName().Name);
+            node.Attributes.Append(attribute);
+
+            node.InnerXml = record.Value.XmlSerialize().CreateNavigator().OuterXml;
+
+            Xml.DocumentElement.AppendChild(node);
+
+            return Repository.Select(key);
         }
 
         bool IRepository<T>.Match(AbsoluteUri urn,
@@ -113,17 +137,27 @@
                 throw new ArgumentNullException("urn");
             }
 
-            return null != Records
-                               .Where(x => x.Urn.Equals(urn) && x.Etag.Equals(etag))
-                               .FirstOrDefault();
+            var xpath = "{0}[@etag='{1}']".FormatWith(FormatXPath(urn), etag);
+            var nodes = Xml.SelectNodes(xpath);
+            if (null == nodes)
+            {
+                return false;
+            }
+
+            return 0 != nodes.Count;
         }
 
         bool IRepository<T>.Match(AlphaDecimal key,
                                   string etag)
         {
-            return null != Records
-                               .Where(x => x.Key.Equals(key) && x.Etag.Equals(etag))
-                               .FirstOrDefault();
+            var xpath = "{0}[@etag='{1}']".FormatWith(FormatXPath(key), etag);
+            var nodes = Xml.SelectNodes(xpath);
+            if (null == nodes)
+            {
+                return false;
+            }
+
+            return 0 != nodes.Count;
         }
 
         bool IRepository<T>.ModifiedSince(AbsoluteUri urn,
@@ -134,17 +168,31 @@
                 throw new ArgumentNullException("urn");
             }
 
-            return null != Records
-                               .Where(x => x.Urn.Equals(urn) && x.Modified > value)
-                               .FirstOrDefault();
+            var node = Select(urn);
+            if (null == node ||
+                null == node.Attributes)
+            {
+                return false;
+            }
+
+            var modified = XmlConvert.ToDateTime(node.Attributes["modified"].Value, XmlDateTimeSerializationMode.Utc);
+
+            return modified > value;
         }
 
         bool IRepository<T>.ModifiedSince(AlphaDecimal key,
                                           DateTime value)
         {
-            return null != Records
-                               .Where(x => x.Key.Equals(key) && x.Modified > value)
-                               .FirstOrDefault();
+            var node = Select(key);
+            if (null == node ||
+                null == node.Attributes)
+            {
+                return false;
+            }
+
+            var modified = XmlConvert.ToDateTime(node.Attributes["modified"].Value, XmlDateTimeSerializationMode.Utc);
+
+            return modified > value;
         }
 
         IEnumerable<IRecord<T>> IRepository<T>.Query(XPathExpression expression)
@@ -154,31 +202,54 @@
                 throw new ArgumentNullException("expression");
             }
 
-            return Records;
+            if (null == expression.Expression)
+            {
+                throw new ArgumentOutOfRangeException("expression");
+            }
+
+            var result = new List<IRecord<T>>();
+
+            var nodes = Xml.SelectNodes("/repository/object/node()");
+            if (null == nodes)
+            {
+                return result;
+            }
+
+            foreach (XmlNode node in nodes)
+            {
+                if (null == node.ParentNode)
+                {
+                    continue;
+                }
+
+                var selection = node.ParentNode.SelectNodes(expression.Expression);
+                if (null == selection)
+                {
+                    continue;
+                }
+
+                if (0 != selection.Count)
+                {
+                    result.Add(ToRecord(node.ParentNode));
+                }
+            }
+
+            return result;
         }
 
         IRecord<T> IRepository<T>.Select(AbsoluteUri urn)
         {
-            if (null == urn)
-            {
-                throw new ArgumentNullException("urn");
-            }
-
-            return Records
-                .Where(x => x.Urn.Equals(urn))
-                .FirstOrDefault();
+            return ToRecord(Select(urn));
         }
 
         IRecord<T> IRepository<T>.Select(AlphaDecimal key)
         {
-            return Records
-                .Where(x => x.Key.Equals(key))
-                .FirstOrDefault();
+            return ToRecord(Select(key));
         }
 
         AlphaDecimal? IRepository<T>.ToKey(AbsoluteUri urn)
         {
-            var record = Repository.Select(urn);
+            var record = ToRecord(Select(urn));
 
             return null == record
                        ? null
@@ -187,7 +258,7 @@
 
         AbsoluteUri IRepository<T>.ToUrn(AlphaDecimal key)
         {
-            var record = Repository.Select(key);
+            var record = ToRecord(Select(key));
 
             return null == record
                        ? null
@@ -233,12 +304,29 @@
             }
 
             var urnSelection = Repository.Select(record.Urn);
-            if (null != urnSelection && keySelection.Key != urnSelection.Key)
+            if (null != urnSelection &&
+                keySelection.Key != urnSelection.Key)
             {
                 throw new RepositoryException();
             }
 
-            return record;
+            var node = Select(record.Key.Value);
+            if (null == node)
+            {
+                return null;
+            }
+
+            node.Attributes["cacheability"].Value = record.Cacheability;
+            node.Attributes["etag"].Value = record.Etag; //// MD5Hash.Compute(record.Entity);
+            node.Attributes["expiration"].Value = record.Expiration;
+            node.Attributes["modified"].Value = DateTime.UtcNow.ToXmlString();
+            node.Attributes["status"].Value = XmlConvert.ToString(record.Status.Value);
+            node.Attributes["type"].Value = "{0}, {1}".FormatWith(record.GetType().FullName, record.GetType().Assembly.GetName().Name);
+            node.Attributes["urn"].Value = record.Urn;
+
+            node.InnerXml = record.Value.XmlSerialize().CreateNavigator().OuterXml;
+
+            return Repository.Select(record.Key.Value);
         }
 
         IRecord<T> IRepository<T>.Upsert(IRecord<T> record)
@@ -251,6 +339,74 @@
             return null == record.Key
                        ? Repository.Insert(record)
                        : Repository.Update(record);
+        }
+
+        private static bool Delete(XmlNode node)
+        {
+            if (null == node)
+            {
+                return false;
+            }
+
+            var parent = node.ParentNode;
+            if (null != parent)
+            {
+                parent.RemoveChild(node);
+                return true;
+            }
+
+            return false;
+        }
+
+        private static string FormatXPath(AbsoluteUri urn)
+        {
+            return "/repository/object[@urn='{0}']".FormatWith(urn);
+        }
+
+        private static string FormatXPath(AlphaDecimal key)
+        {
+            return "/repository/object[@key='{0}']".FormatWith(key);
+        }
+
+        private static IRecord<T> ToRecord(XmlNode node)
+        {
+            if (null == node)
+            {
+                return null;
+            }
+
+            if (null == node.Attributes)
+            {
+                return null;
+            }
+
+            return new Record<T>
+            {
+                Cacheability = node.Attributes["cacheability"].Value,
+                Created = XmlConvert.ToDateTime(node.Attributes["created"].Value, XmlDateTimeSerializationMode.Utc),
+                Etag = node.Attributes["etag"].Value,
+                Expiration = node.Attributes["expiration"].Value,
+                Key = AlphaDecimal.FromString(node.Attributes["key"].Value),
+                Modified = XmlConvert.ToDateTime(node.Attributes["modified"].Value, XmlDateTimeSerializationMode.Utc),
+                Status = XmlConvert.ToInt32(node.Attributes["status"].Value),
+                Urn = node.Attributes["urn"].Value,
+                Value = node.InnerXml.XmlDeserialize<T>()
+            };
+        }
+
+        private XmlNode Select(AbsoluteUri urn)
+        {
+            if (null == urn)
+            {
+                throw new ArgumentNullException("urn");
+            }
+
+            return Xml.SelectSingleNode(FormatXPath(urn));
+        }
+
+        private XmlNode Select(AlphaDecimal key)
+        {
+            return Xml.SelectSingleNode(FormatXPath(key));
         }
     }
 }

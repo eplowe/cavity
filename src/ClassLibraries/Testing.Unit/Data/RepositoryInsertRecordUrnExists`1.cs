@@ -15,7 +15,7 @@
 
             try
             {
-                repository.Insert(Record.Object);
+                repository.Insert(Record1);
             }
             catch (Exception exception)
             {
@@ -25,8 +25,8 @@
             RepositoryException expected = null;
             try
             {
-                Record2.Object.Urn = Record.Object.Urn;
-                repository.Insert(Record2.Object);
+                Record2.Urn = Record1.Urn;
+                repository.Insert(Record2);
             }
             catch (RepositoryException exception)
             {

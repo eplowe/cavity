@@ -8,7 +8,7 @@
     {
         public RepositoryInsertRecordUrnNull()
         {
-            Record.Object.Urn = null;
+            Record1.Urn = null;
         }
 
         protected override void OnVerify(IRepository<T> repository)
@@ -21,7 +21,7 @@
             RepositoryException expected = null;
             try
             {
-                repository.Insert(Record.Object);
+                repository.Insert(Record1);
             }
             catch (RepositoryException exception)
             {

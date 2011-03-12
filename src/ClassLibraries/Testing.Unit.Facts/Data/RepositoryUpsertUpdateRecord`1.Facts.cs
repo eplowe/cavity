@@ -30,16 +30,16 @@
         public void op_Verify_IRepository()
         {
             var obj = new RepositoryUpsertUpdateRecord<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            obj.Record1.Key = AlphaDecimal.Random();
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.Upsert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Upsert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
 
             obj.Verify(repository.Object);
@@ -57,15 +57,15 @@
         public void op_Verify_IRepository_whenFalse()
         {
             var obj = new RepositoryUpsertUpdateRecord<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            obj.Record1.Key = AlphaDecimal.Random();
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.Upsert(obj.Record.Object))
+                .Setup(x => x.Upsert(obj.Record1))
                 .Returns(new Mock<IRecord<int>>().Object)
                 .Verifiable();
 

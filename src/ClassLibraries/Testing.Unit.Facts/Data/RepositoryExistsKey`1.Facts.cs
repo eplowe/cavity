@@ -31,13 +31,18 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryExistsKey<int>();
-            obj.Record.Object.Key = key;
+            var obj = new RepositoryExistsKey<int>
+            {
+                Record1 =
+                    {
+                        Key = key
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
                 .Setup(x => x.Exists(key))
@@ -60,13 +65,18 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryExistsKey<int>();
-            obj.Record.Object.Key = key;
+            var obj = new RepositoryExistsKey<int>
+            {
+                Record1 =
+                    {
+                        Key = key
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
                 .Setup(x => x.Exists(key))
@@ -85,8 +95,8 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
 
             Assert.Throws<InvalidOperationException>(() => obj.Verify(repository.Object));

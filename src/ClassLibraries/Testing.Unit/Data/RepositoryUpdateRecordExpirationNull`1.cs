@@ -13,13 +13,13 @@
                 throw new ArgumentNullException("repository");
             }
 
-            Record2.Object.Key = repository.Insert(Record.Object).Key;
-            Record2.Object.Expiration = null;
+            Record2.Key = repository.Insert(Record1).Key;
+            Record2.Expiration = null;
 
             RepositoryException expected = null;
             try
             {
-                repository.Update(Record2.Object);
+                repository.Update(Record2);
             }
             catch (RepositoryException exception)
             {

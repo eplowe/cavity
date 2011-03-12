@@ -13,7 +13,7 @@
                 throw new ArgumentNullException("repository");
             }
 
-            var record = repository.Insert(Record.Object);
+            var record = repository.Insert(Record1);
             record.Urn = null;
 
             RepositoryException expected = null;

@@ -29,17 +29,22 @@
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryToKeyUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var obj = new RepositoryToKeyUrn<int>
+            {
+                Record1 =
+                    {
+                        Key = AlphaDecimal.Random()
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.ToKey(obj.Record.Object.Urn))
-                .Returns(obj.Record.Object.Key)
+                .Setup(x => x.ToKey(obj.Record1.Urn))
+                .Returns(obj.Record1.Key)
                 .Verifiable();
 
             obj.Verify(repository.Object);
@@ -56,16 +61,21 @@
         [Fact]
         public void op_Verify_IRepository_whenKeyIsDifferent()
         {
-            var obj = new RepositoryToKeyUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var obj = new RepositoryToKeyUrn<int>
+            {
+                Record1 =
+                    {
+                        Key = AlphaDecimal.Random()
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.ToKey(obj.Record.Object.Urn))
+                .Setup(x => x.ToKey(obj.Record1.Urn))
                 .Returns(AlphaDecimal.Random())
                 .Verifiable();
 
@@ -77,16 +87,21 @@
         [Fact]
         public void op_Verify_IRepository_whenNullIsReturned()
         {
-            var obj = new RepositoryToKeyUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var obj = new RepositoryToKeyUrn<int>
+            {
+                Record1 =
+                    {
+                        Key = AlphaDecimal.Random()
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.ToKey(obj.Record.Object.Urn))
+                .Setup(x => x.ToKey(obj.Record1.Urn))
                 .Returns(null as AlphaDecimal?)
                 .Verifiable();
 

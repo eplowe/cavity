@@ -33,7 +33,7 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
+                .Setup(x => x.Insert(obj.Record1))
                 .Throws(new RepositoryException())
                 .Verifiable();
 
@@ -55,8 +55,8 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
@@ -71,7 +71,7 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
+                .Setup(x => x.Insert(obj.Record1))
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 
@@ -87,7 +87,7 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
+                .Setup(x => x.Insert(obj.Record1))
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 

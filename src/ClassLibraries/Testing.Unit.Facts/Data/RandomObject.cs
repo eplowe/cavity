@@ -1,5 +1,7 @@
 ﻿namespace Cavity.Data
 {
+    using System;
+    using System.Xml;
     using System.Xml.Serialization;
 
     [XmlRoot("random")]
@@ -7,15 +9,15 @@
     {
         public RandomObject()
         {
-            Value = AlphaDecimal.Random();
+            Value = DateTime.UtcNow.Ticks;
         }
 
         [XmlAttribute("value")]
-        public AlphaDecimal Value { get; set; }
+        public long Value { get; set; }
 
         public override string ToString()
         {
-            return Value;
+            return XmlConvert.ToString(Value);
         }
     }
 }

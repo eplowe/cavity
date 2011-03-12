@@ -13,14 +13,14 @@
                 throw new ArgumentNullException("repository");
             }
 
-            repository.Insert(Record.Object);
+            Record1 = repository.Insert(Record1);
 
-            if (!Record.Object.Key.HasValue)
+            if (!Record1.Key.HasValue)
             {
                 throw new InvalidOperationException();
             }
 
-            if (repository.Match(Record.Object.Key.Value, Record.Object.Etag))
+            if (repository.Match(Record1.Key.Value, Record1.Etag))
             {
                 return;
             }

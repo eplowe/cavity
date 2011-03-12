@@ -29,15 +29,20 @@
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryUpsertInsertRecord<int>();
-            obj.Record.Object.Created = DateTime.UtcNow;
-            obj.Record.Object.Key = AlphaDecimal.Random();
-            obj.Record.Object.Modified = DateTime.UtcNow;
+            var obj = new RepositoryUpsertInsertRecord<int>
+            {
+                Record1 =
+                    {
+                        Created = DateTime.UtcNow,
+                        Key = AlphaDecimal.Random(),
+                        Modified = DateTime.UtcNow
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Upsert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Upsert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
 
             obj.Verify(repository.Object);
@@ -54,15 +59,20 @@
         [Fact]
         public void op_Verify_IRepository_whenCreatedIsNotSet()
         {
-            var obj = new RepositoryUpsertInsertRecord<int>();
-            obj.Record.Object.Created = null;
-            obj.Record.Object.Key = AlphaDecimal.Random();
-            obj.Record.Object.Modified = DateTime.UtcNow;
+            var obj = new RepositoryUpsertInsertRecord<int>
+            {
+                Record1 =
+                    {
+                        Created = null,
+                        Key = AlphaDecimal.Random(),
+                        Modified = DateTime.UtcNow
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Upsert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Upsert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
@@ -73,15 +83,20 @@
         [Fact]
         public void op_Verify_IRepository_whenKeyIsNotSet()
         {
-            var obj = new RepositoryUpsertInsertRecord<int>();
-            obj.Record.Object.Created = DateTime.UtcNow;
-            obj.Record.Object.Key = null;
-            obj.Record.Object.Modified = DateTime.UtcNow;
+            var obj = new RepositoryUpsertInsertRecord<int>
+            {
+                Record1 =
+                    {
+                        Created = DateTime.UtcNow,
+                        Key = null,
+                        Modified = DateTime.UtcNow
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Upsert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Upsert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
@@ -92,15 +107,20 @@
         [Fact]
         public void op_Verify_IRepository_whenModifiedIsNotSet()
         {
-            var obj = new RepositoryUpsertInsertRecord<int>();
-            obj.Record.Object.Created = DateTime.UtcNow;
-            obj.Record.Object.Key = AlphaDecimal.Random();
-            obj.Record.Object.Modified = null;
+            var obj = new RepositoryUpsertInsertRecord<int>
+            {
+                Record1 =
+                    {
+                        Created = DateTime.UtcNow,
+                        Key = AlphaDecimal.Random(),
+                        Modified = null
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Upsert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Upsert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));

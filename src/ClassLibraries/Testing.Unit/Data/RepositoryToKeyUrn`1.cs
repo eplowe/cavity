@@ -13,8 +13,8 @@
                 throw new ArgumentNullException("repository");
             }
 
-            var insert = repository.Insert(Record.Object).Key;
-            var key = repository.ToKey(Record.Object.Urn);
+            var insert = repository.Insert(Record1).Key;
+            var key = repository.ToKey(Record1.Urn);
 
             if (null == key)
             {

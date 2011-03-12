@@ -33,15 +33,15 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.ModifiedSince(obj.Record.Object.Urn, DateTime.MinValue))
+                .Setup(x => x.ModifiedSince(obj.Record1.Urn, DateTime.MinValue))
                 .Returns(true)
                 .Verifiable();
             repository
-                .Setup(x => x.ModifiedSince(obj.Record.Object.Urn, DateTime.MaxValue))
+                .Setup(x => x.ModifiedSince(obj.Record1.Urn, DateTime.MaxValue))
                 .Returns(false)
                 .Verifiable();
 
@@ -63,11 +63,11 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.ModifiedSince(obj.Record.Object.Urn, DateTime.MaxValue))
+                .Setup(x => x.ModifiedSince(obj.Record1.Urn, DateTime.MaxValue))
                 .Returns(true)
                 .Verifiable();
 
@@ -83,15 +83,15 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.ModifiedSince(obj.Record.Object.Urn, DateTime.MaxValue))
+                .Setup(x => x.ModifiedSince(obj.Record1.Urn, DateTime.MaxValue))
                 .Returns(false)
                 .Verifiable();
             repository
-                .Setup(x => x.ModifiedSince(obj.Record.Object.Urn, DateTime.MinValue))
+                .Setup(x => x.ModifiedSince(obj.Record1.Urn, DateTime.MinValue))
                 .Returns(false)
                 .Verifiable();
 

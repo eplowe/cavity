@@ -13,9 +13,9 @@
                 throw new ArgumentNullException("repository");
             }
 
-            repository.Insert(Record.Object);
+            repository.Insert(Record1);
 
-            if (repository.Exists(Record.Object.Urn))
+            if (repository.Exists(Record1.Urn))
             {
                 return;
             }

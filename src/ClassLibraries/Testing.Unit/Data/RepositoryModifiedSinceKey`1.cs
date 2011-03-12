@@ -13,19 +13,19 @@
                 throw new ArgumentNullException("repository");
             }
 
-            repository.Insert(Record.Object);
+            Record1 = repository.Insert(Record1);
 
-            if (!Record.Object.Key.HasValue)
+            if (!Record1.Key.HasValue)
             {
                 throw new InvalidOperationException();
             }
 
-            if (repository.ModifiedSince(Record.Object.Key.Value, DateTime.MaxValue))
+            if (repository.ModifiedSince(Record1.Key.Value, DateTime.MaxValue))
             {
                 throw new UnitTestException(Resources.Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage);
             }
 
-            if (repository.ModifiedSince(Record.Object.Key.Value, DateTime.MinValue))
+            if (repository.ModifiedSince(Record1.Key.Value, DateTime.MinValue))
             {
                 return;
             }

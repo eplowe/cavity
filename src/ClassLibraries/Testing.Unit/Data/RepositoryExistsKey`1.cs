@@ -13,13 +13,14 @@
                 throw new ArgumentNullException("repository");
             }
 
-            repository.Insert(Record.Object);
-            if (!Record.Object.Key.HasValue)
+            Record1 = repository.Insert(Record1);
+
+            if (!Record1.Key.HasValue)
             {
                 throw new InvalidOperationException();
             }
 
-            if (repository.Exists(Record.Object.Key.Value))
+            if (repository.Exists(Record1.Key.Value))
             {
                 return;
             }

@@ -13,8 +13,8 @@
                 throw new ArgumentNullException("repository");
             }
 
-            var key = repository.Insert(Record.Object).Key;
-            var record = repository.Select(Record.Object.Urn);
+            var key = repository.Insert(Record1).Key;
+            var record = repository.Select(Record1.Urn);
 
             if (null == record)
             {
@@ -26,12 +26,12 @@
                 throw new UnitTestException(Resources.Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage.FormatWith("Select", "key"));
             }
 
-            if (!Record.Object.Urn.Equals(record.Urn))
+            if (!Record1.Urn.Equals(record.Urn))
             {
                 throw new UnitTestException(Resources.Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage.FormatWith("Select", "URN"));
             }
 
-            if (ReferenceEquals(Record.Object.Value, null))
+            if (ReferenceEquals(Record1.Value, null))
             {
                 if (ReferenceEquals(record.Value, null))
                 {
@@ -43,7 +43,7 @@
                 }
             }
 
-            if (!Record.Object.Value.Equals(record.Value))
+            if (!Record1.Value.Equals(record.Value))
             {
                 throw new UnitTestException(Resources.Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage.FormatWith("Select", "value"));
             }
