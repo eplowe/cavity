@@ -243,8 +243,8 @@
             }
 
             return null == record.Key
-                ? Repository.Insert(record)
-                : Repository.Update(record);
+                       ? Repository.Insert(record)
+                       : Repository.Update(record);
         }
     }
 }

@@ -14,7 +14,8 @@
             }
 
             var record = repository.Insert(Record.Object);
-            if (record.Key == repository.Upsert(record).Key)
+            if (record.Key ==
+                repository.Upsert(record).Key)
             {
                 return;
             }
