@@ -26,7 +26,7 @@
             throw new NotImplementedException();
         }
 
-        public bool Exists(XPathExpression xpath)
+        public bool Exists(XPathExpression expression)
         {
             throw new NotImplementedException();
         }
@@ -60,7 +60,7 @@
             throw new NotImplementedException();
         }
 
-        public IEnumerable<IRecord<T>> Query(XPathExpression xpath)
+        public IEnumerable<IRecord<T>> Query(XPathExpression expression)
         {
             throw new NotImplementedException();
         }

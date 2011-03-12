@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</ProjectGuid>
@@ -59,6 +59,8 @@
     <Compile Include="Data\RepositoryModifiedSinceUrn`1.cs" />
     <Compile Include="Data\RepositoryModifiedSinceUrnNotFound`1.cs" />
     <Compile Include="Data\RepositoryModifiedSinceUrnNull`1.cs" />
+    <Compile Include="Data\RepositoryQueryExpression`1.cs" />
+    <Compile Include="Data\RepositoryQueryExpressionNull`1.cs" />
     <Compile Include="Data\RepositorySelectKey`1.cs" />
     <Compile Include="Data\RepositorySelectUrn`1.cs" />
     <Compile Include="Data\RepositorySelectUrnNotFound`1.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="Data\RepositoryUpdateRecordKeyNull`1.cs" />
     <Compile Include="Data\RepositoryUpdateRecordNull`1.cs" />
     <Compile Include="Data\RepositoryUpdateRecordStatusNull`1.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordUrnExists`1.cs" />
     <Compile Include="Data\RepositoryUpdateRecordUrnNull`1.cs" />
     <Compile Include="Data\RepositoryUpsertRecordNull`1.cs" />
     <Compile Include="Data\RepositoryUpsertUpdateRecord`1.cs" />

@@ -403,11 +403,38 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Query(...) returned an empty set when records were expected..
+        /// </summary>
+        internal static string Repository_QueryReturnsEmpty_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_QueryReturnsEmpty_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Query(...) should return an empty set rather than a null set..
+        /// </summary>
+        internal static string Repository_QueryReturnsNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_QueryReturnsNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unexpected exception was encountered..
         /// </summary>
         internal static string Repository_UnexpectedException_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_UnexpectedException_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update(...) should throw a RepositoryException when a different record with the URN already exists..
+        /// </summary>
+        internal static string Repository_Update_RecordUrnExists_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_Update_RecordUrnExists_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
