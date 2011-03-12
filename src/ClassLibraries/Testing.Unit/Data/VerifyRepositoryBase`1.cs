@@ -5,7 +5,7 @@
     using System.Transactions;
     using Moq;
 
-    public abstract class VerifyRepositoryBase<T> : IVerifyRepository<T>
+    public abstract class VerifyRepositoryBase<T> : IVerifyRepository<T> where T : new()
     {
         protected VerifyRepositoryBase()
         {
@@ -39,13 +39,15 @@
                 .SetupProperty(x => x.Key)
                 .SetupProperty(x => x.Modified)
                 .SetupProperty(x => x.Status)
-                .SetupProperty(x => x.Urn);
+                .SetupProperty(x => x.Urn)
+                .SetupProperty(x => x.Value);
 
             record.Object.Cacheability = "public";
             record.Object.Etag = "\"abc\"";
             record.Object.Expiration = "P1D";
             record.Object.Status = 200;
             record.Object.Urn = "urn://example.com/" + Guid.NewGuid();
+            record.Object.Value = Activator.CreateInstance<T>();
 
             return record;
         }

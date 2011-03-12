@@ -4,7 +4,7 @@
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositoryInsertRecordCacheabilityNull<T> : VerifyRepositoryBase<T>
+    public sealed class RepositoryInsertRecordCacheabilityNull<T> : VerifyRepositoryBase<T> where T : new()
     {
         public RepositoryInsertRecordCacheabilityNull()
         {
