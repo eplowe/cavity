@@ -183,23 +183,26 @@
   <data name="Repository_Exists_ReturnsTrue_UnitTestExceptionMessage" xml:space="preserve">
     <value>Exists(...) should return false when the record does not exist.</value>
   </data>
-  <data name="Repository_Insert_RecordCacheabilityNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Insert(...) should throw an RepositoryException when a record does not specify cacheability.</value>
+  <data name="Repository_ExpectExceptionWhenRecordIncomplete_UnitTestExceptionMessage" xml:space="preserve">
+    <value>{0}(...) should throw an RepositoryException when the record does not specify {1}.</value>
   </data>
-  <data name="Repository_Insert_RecordExpirationNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Insert(...) should throw an RepositoryException when a record does not specify expiration.</value>
+  <data name="Repository_ExpectExceptionWhenRecordKeyNotFound_UnitTestExceptionMessage" xml:space="preserve">
+    <value>{0}(...) should throw an RepositoryException when a record with the key does not exist.</value>
+  </data>
+  <data name="Repository_ExpectExceptionWhenRecordNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>{0}(...) should throw an ArgumentNullException when a record is not specified.</value>
+  </data>
+  <data name="Repository_ExpectExceptionWhenUrnNull_UnitTestExceptionMessage" xml:space="preserve">
+    <value>{0}(...) should throw an ArgumentNullException when a URN is not specified.</value>
+  </data>
+  <data name="Repository_ExpectNullWhenRecordNotFound_UnitTestExceptionMessage" xml:space="preserve">
+    <value>{0}(...) should return null when the {1} is not found.</value>
   </data>
   <data name="Repository_Insert_RecordKeyExists_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(...) should throw an RepositoryException when an object with the key already exists.</value>
   </data>
-  <data name="Repository_Insert_RecordStatusNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Insert(...) should throw an RepositoryException when a record does not specify status.</value>
-  </data>
   <data name="Repository_Insert_RecordUrnExists_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(...) should throw an RepositoryException when an record with the URN already exists.</value>
-  </data>
-  <data name="Repository_Insert_RecordUrnNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Insert(...) should throw an RepositoryException when a record does not specify a URN.</value>
   </data>
   <data name="Repository_Insert_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(...) should set the key of the returned record.</value>
@@ -222,9 +225,6 @@
   <data name="Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage" xml:space="preserve">
     <value>ModifiedSince(...) should return false when the record has not been modified since the specified date.</value>
   </data>
-  <data name="Repository_RecordNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>{0}(...) should throw an ArgumentNullException when a record is not specified.</value>
-  </data>
   <data name="Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
     <value>Select(...) should return a record with the correct key.</value>
   </data>
@@ -237,20 +237,11 @@
   <data name="Repository_Select_ReturnsNull_UnitTestExceptionMessage" xml:space="preserve">
     <value>Select(...) should return a record.</value>
   </data>
-  <data name="Repository_Select_UrnNotFound_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Select(...) should return null when the URN is not found.</value>
-  </data>
   <data name="Repository_ToKey_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
     <value>ToKey(...) should return the correct key.</value>
   </data>
   <data name="Repository_ToKey_ReturnsNull_UnitTestExceptionMessage" xml:space="preserve">
     <value>ToKey(...) should return a key.</value>
-  </data>
-  <data name="Repository_ToKey_UrnNotFound_UnitTestExceptionMessage" xml:space="preserve">
-    <value>ToKey(...) should return null when the URN is not found.</value>
-  </data>
-  <data name="Repository_ToUrn_KeyNotFound_UnitTestExceptionMessage" xml:space="preserve">
-    <value>ToUrn(...) should return null when the key is not found.</value>
   </data>
   <data name="Repository_ToUrn_ReturnsIncorrectUrn_UnitTestExceptionMessage" xml:space="preserve">
     <value>ToUrn(...) should return the correct URN.</value>
@@ -261,29 +252,8 @@
   <data name="Repository_UnexpectedException_UnitTestExceptionMessage" xml:space="preserve">
     <value>An unexpected exception was encountered.</value>
   </data>
-  <data name="Repository_Update_RecordCacheabilityNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Update(...) should throw an RepositoryException when a record does not specify cacheability.</value>
-  </data>
-  <data name="Repository_Update_RecordExpirationNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Update(...) should throw an RepositoryException when a record does not specify expiration.</value>
-  </data>
-  <data name="Repository_Update_RecordKeyNotFound_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Update(...) should throw an RepositoryException when a record with the key does not exist.</value>
-  </data>
-  <data name="Repository_Update_RecordKeyNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Update(...) should throw an RepositoryException when a record does not specify a key.</value>
-  </data>
-  <data name="Repository_Update_RecordStatusNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Update(...) should throw an RepositoryException when a record does not specify status.</value>
-  </data>
-  <data name="Repository_Update_RecordUrnNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Update(...) should throw an RepositoryException when a record does not specify a URN.</value>
-  </data>
   <data name="Repository_Update_ReturnsFalse_UnitTestExceptionMessage" xml:space="preserve">
     <value>Update(...) should return true when an existing record is updated.</value>
-  </data>
-  <data name="Repository_UrnNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>{0}(...) should throw an ArgumentNullException when a URN is not specified.</value>
   </data>
   <data name="SealedClassTestException_SealedMessage" xml:space="preserve">
     <value>{0} unexpectedly is a sealed class.</value>

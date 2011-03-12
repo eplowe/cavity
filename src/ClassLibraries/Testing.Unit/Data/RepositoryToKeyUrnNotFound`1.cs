@@ -17,7 +17,7 @@
 
             if (null != key)
             {
-                throw new UnitTestException(Resources.Repository_ToKey_UrnNotFound_UnitTestExceptionMessage);
+                throw new UnitTestException(Resources.Repository_ExpectNullWhenRecordNotFound_UnitTestExceptionMessage.FormatWith("ToKey", "URN"));
             }
         }
     }

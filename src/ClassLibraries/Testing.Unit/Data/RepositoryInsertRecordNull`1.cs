@@ -29,7 +29,7 @@
 
             if (null == expected)
             {
-                throw new UnitTestException(Resources.Repository_RecordNull_UnitTestExceptionMessage.FormatWith("Insert"));
+                throw new UnitTestException(Resources.Repository_ExpectExceptionWhenRecordNull_UnitTestExceptionMessage.FormatWith("Insert"));
             }
         }
     }

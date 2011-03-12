@@ -50,7 +50,7 @@
 
                 if (null == expected)
                 {
-                    throw new UnitTestException(Resources.Repository_Insert_RecordCacheabilityNull_UnitTestExceptionMessage);
+                    throw new UnitTestException(Resources.Repository_ExpectExceptionWhenRecordIncomplete_UnitTestExceptionMessage.FormatWith("Insert", "cacheability"));
                 }
             }
         }

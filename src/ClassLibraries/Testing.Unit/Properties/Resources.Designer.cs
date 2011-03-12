@@ -259,20 +259,47 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when a record does not specify cacheability..
+        ///   Looks up a localized string similar to {0}(...) should throw an RepositoryException when the record does not specify {1}..
         /// </summary>
-        internal static string Repository_Insert_RecordCacheabilityNull_UnitTestExceptionMessage {
+        internal static string Repository_ExpectExceptionWhenRecordIncomplete_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("Repository_Insert_RecordCacheabilityNull_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_ExpectExceptionWhenRecordIncomplete_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when a record does not specify expiration..
+        ///   Looks up a localized string similar to {0}(...) should throw an RepositoryException when a record with the key does not exist..
         /// </summary>
-        internal static string Repository_Insert_RecordExpirationNull_UnitTestExceptionMessage {
+        internal static string Repository_ExpectExceptionWhenRecordKeyNotFound_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("Repository_Insert_RecordExpirationNull_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_ExpectExceptionWhenRecordKeyNotFound_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}(...) should throw an ArgumentNullException when a record is not specified..
+        /// </summary>
+        internal static string Repository_ExpectExceptionWhenRecordNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ExpectExceptionWhenRecordNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}(...) should throw an ArgumentNullException when a URN is not specified..
+        /// </summary>
+        internal static string Repository_ExpectExceptionWhenUrnNull_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ExpectExceptionWhenUrnNull_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}(...) should return null when the {1} is not found..
+        /// </summary>
+        internal static string Repository_ExpectNullWhenRecordNotFound_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ExpectNullWhenRecordNotFound_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
@@ -286,29 +313,11 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when a record does not specify status..
-        /// </summary>
-        internal static string Repository_Insert_RecordStatusNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Insert_RecordStatusNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when an record with the URN already exists..
         /// </summary>
         internal static string Repository_Insert_RecordUrnExists_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_Insert_RecordUrnExists_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when a record does not specify a URN..
-        /// </summary>
-        internal static string Repository_Insert_RecordUrnNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Insert_RecordUrnNull_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
@@ -376,15 +385,6 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}(...) should throw an ArgumentNullException when a record is not specified..
-        /// </summary>
-        internal static string Repository_RecordNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_RecordNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select(...) should return a record with the correct key..
         /// </summary>
         internal static string Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage {
@@ -421,15 +421,6 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select(...) should return null when the URN is not found..
-        /// </summary>
-        internal static string Repository_Select_UrnNotFound_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Select_UrnNotFound_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ToKey(...) should return the correct key..
         /// </summary>
         internal static string Repository_ToKey_ReturnsIncorrectKey_UnitTestExceptionMessage {
@@ -444,24 +435,6 @@ namespace Cavity.Properties {
         internal static string Repository_ToKey_ReturnsNull_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_ToKey_ReturnsNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ToKey(...) should return null when the URN is not found..
-        /// </summary>
-        internal static string Repository_ToKey_UrnNotFound_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_ToKey_UrnNotFound_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ToUrn(...) should return null when the key is not found..
-        /// </summary>
-        internal static string Repository_ToUrn_KeyNotFound_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_ToUrn_KeyNotFound_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
@@ -493,74 +466,11 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update(...) should throw an RepositoryException when a record does not specify cacheability..
-        /// </summary>
-        internal static string Repository_Update_RecordCacheabilityNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Update_RecordCacheabilityNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update(...) should throw an RepositoryException when a record does not specify expiration..
-        /// </summary>
-        internal static string Repository_Update_RecordExpirationNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Update_RecordExpirationNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update(...) should throw an RepositoryException when a record with the key does not exist..
-        /// </summary>
-        internal static string Repository_Update_RecordKeyNotFound_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Update_RecordKeyNotFound_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update(...) should throw an RepositoryException when a record does not specify a key..
-        /// </summary>
-        internal static string Repository_Update_RecordKeyNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Update_RecordKeyNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update(...) should throw an RepositoryException when a record does not specify status..
-        /// </summary>
-        internal static string Repository_Update_RecordStatusNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Update_RecordStatusNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update(...) should throw an RepositoryException when a record does not specify a URN..
-        /// </summary>
-        internal static string Repository_Update_RecordUrnNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Update_RecordUrnNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Update(...) should return true when an existing record is updated..
         /// </summary>
         internal static string Repository_Update_ReturnsFalse_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_Update_ReturnsFalse_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0}(...) should throw an ArgumentNullException when a URN is not specified..
-        /// </summary>
-        internal static string Repository_UrnNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_UrnNull_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
