@@ -4,7 +4,7 @@
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositoryDeleteKey<T> : VerifyRepositoryBase<T>
+    public sealed class RepositoryDeleteKey<T> : VerifyRepositoryBase<T> where T : new()
     {
         protected override void OnVerify(IRepository<T> repository)
         {
