@@ -80,6 +80,7 @@
     <Compile Include="Data\RepositoryUpsertRecordNull`1.cs" />
     <Compile Include="Data\RepositoryUpsertUpdateRecord`1.cs" />
     <Compile Include="Data\RepositoryUpsertInsertRecord`1.cs" />
+    <Compile Include="Data\VerifyRepositoryBase`1.cs" />
     <Compile Include="Fluent\ITestClassConstruction.cs" />
     <Compile Include="Fluent\ITestClassSealed.cs" />
     <Compile Include="Fluent\ITestExpectation.cs" />

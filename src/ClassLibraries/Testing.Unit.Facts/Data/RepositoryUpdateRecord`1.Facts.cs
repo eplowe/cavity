@@ -11,7 +11,7 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<RepositoryUpdateRecord<int>>()
-                            .DerivesFrom<object>()
+                            .DerivesFrom<VerifyRepositoryBase<int>>()
                             .IsConcreteClass()
                             .IsSealed()
                             .HasDefaultConstructor()

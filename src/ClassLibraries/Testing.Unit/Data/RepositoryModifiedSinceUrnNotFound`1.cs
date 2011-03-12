@@ -1,25 +1,21 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using System.Transactions;
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositoryModifiedSinceUrnNotFound<T> : IVerifyRepository<T>
+    public sealed class RepositoryModifiedSinceUrnNotFound<T> : VerifyRepositoryBase<T>
     {
-        public void Verify(IRepository<T> repository)
+        protected override void OnVerify(IRepository<T> repository)
         {
             if (null == repository)
             {
                 throw new ArgumentNullException("repository");
             }
 
-            using (new TransactionScope())
+            if (repository.ModifiedSince("urn://example.com/" + Guid.NewGuid(), DateTime.MinValue))
             {
-                if (repository.ModifiedSince("urn://example.com/" + Guid.NewGuid(), DateTime.MinValue))
-                {
-                    throw new UnitTestException(Resources.Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage);
-                }
+                throw new UnitTestException(Resources.Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage);
             }
         }
     }
