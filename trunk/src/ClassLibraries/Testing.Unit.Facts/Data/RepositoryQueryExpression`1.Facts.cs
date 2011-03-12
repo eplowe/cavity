@@ -35,18 +35,18 @@
 
             var records = new[]
             {
-                obj.Record.Object,
-                obj.Record2.Object
+                obj.Record1,
+                obj.Record2
             };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.Insert(obj.Record2.Object))
-                .Returns(obj.Record2.Object)
+                .Setup(x => x.Insert(obj.Record2))
+                .Returns(obj.Record2)
                 .Verifiable();
             repository
                 .Setup(x => x.Query(It.IsAny<XPathExpression>()))
@@ -71,12 +71,12 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.Insert(obj.Record2.Object))
-                .Returns(obj.Record2.Object)
+                .Setup(x => x.Insert(obj.Record2))
+                .Returns(obj.Record2)
                 .Verifiable();
             repository
                 .Setup(x => x.Query(It.IsAny<XPathExpression>()))
@@ -97,12 +97,12 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.Insert(obj.Record2.Object))
-                .Returns(obj.Record2.Object)
+                .Setup(x => x.Insert(obj.Record2))
+                .Returns(obj.Record2)
                 .Verifiable();
             repository
                 .Setup(x => x.Query(It.IsAny<XPathExpression>()))

@@ -31,16 +31,21 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryMatchKey<int>();
-            obj.Record.Object.Key = key;
+            var obj = new RepositoryMatchKey<int>
+            {
+                Record1 =
+                    {
+                        Key = key
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.Match(key, obj.Record.Object.Etag))
+                .Setup(x => x.Match(key, obj.Record1.Etag))
                 .Returns(true)
                 .Verifiable();
 
@@ -60,16 +65,21 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryMatchKey<int>();
-            obj.Record.Object.Key = key;
+            var obj = new RepositoryMatchKey<int>
+            {
+                Record1 =
+                    {
+                        Key = key
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.Match(key, obj.Record.Object.Etag))
+                .Setup(x => x.Match(key, obj.Record1.Etag))
                 .Returns(false)
                 .Verifiable();
 
@@ -85,8 +95,8 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
 
             Assert.Throws<InvalidOperationException>(() => obj.Verify(repository.Object));

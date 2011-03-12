@@ -13,13 +13,13 @@
                 throw new ArgumentNullException("repository");
             }
 
-            repository.Insert(Record.Object);
+            repository.Insert(Record1);
 
             RepositoryException expected = null;
             try
             {
-                Record2.Object.Key = AlphaDecimal.Random();
-                repository.Update(Record2.Object);
+                Record2.Key = AlphaDecimal.Random();
+                repository.Update(Record2);
             }
             catch (RepositoryException exception)
             {

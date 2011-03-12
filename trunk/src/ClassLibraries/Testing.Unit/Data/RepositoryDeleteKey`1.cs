@@ -13,18 +13,19 @@
                 throw new ArgumentNullException("repository");
             }
 
-            repository.Insert(Record.Object);
-            if (!Record.Object.Key.HasValue)
+            Record1 = repository.Insert(Record1);
+
+            if (!Record1.Key.HasValue)
             {
                 throw new InvalidOperationException();
             }
 
-            if (!repository.Delete(Record.Object.Key.Value))
+            if (!repository.Delete(Record1.Key.Value))
             {
                 throw new UnitTestException(Resources.Repository_ExpectTrueWhenExistingRecord_UnitTestExceptionMessage.FormatWith("Delete", "deleted"));
             }
 
-            if (repository.Exists(Record.Object.Key.Value))
+            if (repository.Exists(Record1.Key.Value))
             {
                 throw new UnitTestException(Resources.Repository_ExpectWhenDoesNotExist_UnitTestExceptionMessage.FormatWith("Exists", "false"));
             }

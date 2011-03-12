@@ -13,7 +13,7 @@
                 throw new ArgumentNullException("repository");
             }
 
-            var record = repository.Insert(Record.Object);
+            var record = repository.Insert(Record1);
             if (!record.Key.HasValue)
             {
                 throw new UnitTestException(Resources.Repository_Insert_ReturnsIncorrectKey_UnitTestExceptionMessage);

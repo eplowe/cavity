@@ -13,12 +13,12 @@
                 throw new ArgumentNullException("repository");
             }
 
-            repository.Insert(Record.Object);
+            repository.Insert(Record1);
 
             RepositoryException expected = null;
             try
             {
-                repository.Update(Record2.Object);
+                repository.Update(Record2);
             }
             catch (RepositoryException exception)
             {

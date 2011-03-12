@@ -1,6 +1,5 @@
 ﻿namespace Cavity.Data
 {
-    using Moq;
     using Xunit;
 
     public sealed class VerifyRepositoryBaseOfTFacts
@@ -18,8 +17,8 @@
         [Fact]
         public void prop_Record()
         {
-            Assert.True(new PropertyExpectations<VerifyRepositoryBase<int>>(x => x.Record)
-                            .TypeIs<Mock<IRecord<int>>>()
+            Assert.True(new PropertyExpectations<VerifyRepositoryBase<int>>(x => x.Record1)
+                            .TypeIs<IRecord<int>>()
                             .Result);
         }
     }

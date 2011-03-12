@@ -5,9 +5,6 @@
     <AssemblyName>Cavity.Testing.Unit</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Moq" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-      <HintPath>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">

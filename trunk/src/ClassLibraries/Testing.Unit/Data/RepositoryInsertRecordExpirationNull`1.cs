@@ -8,7 +8,7 @@
     {
         public RepositoryInsertRecordExpirationNull()
         {
-            Record.Object.Expiration = null;
+            Record1.Expiration = null;
         }
 
         protected override void OnVerify(IRepository<T> repository)
@@ -21,7 +21,7 @@
             RepositoryException expected = null;
             try
             {
-                repository.Insert(Record.Object);
+                repository.Insert(Record1);
             }
             catch (RepositoryException exception)
             {

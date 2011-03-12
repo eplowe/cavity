@@ -29,16 +29,21 @@
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryMatchUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var obj = new RepositoryMatchUrn<int>
+            {
+                Record1 =
+                    {
+                        Key = AlphaDecimal.Random()
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.Match(obj.Record.Object.Urn, obj.Record.Object.Etag))
+                .Setup(x => x.Match(obj.Record1.Urn, obj.Record1.Etag))
                 .Returns(true)
                 .Verifiable();
 
@@ -56,16 +61,21 @@
         [Fact]
         public void op_Verify_IRepository_whenFalse()
         {
-            var obj = new RepositoryMatchUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var obj = new RepositoryMatchUrn<int>
+            {
+                Record1 =
+                    {
+                        Key = AlphaDecimal.Random()
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.Match(obj.Record.Object.Urn, obj.Record.Object.Etag))
+                .Setup(x => x.Match(obj.Record1.Urn, obj.Record1.Etag))
                 .Returns(false)
                 .Verifiable();
 

@@ -10,7 +10,9 @@
         {
             Assert.True(new TypeExpectations<Record<int>>()
                             .DerivesFrom<ValueObject<Record<int>>>()
-                            .IsAbstractBaseClass()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
                             .IsNotDecorated()
                             .Implements<IRecord<int>>()
                             .Result);

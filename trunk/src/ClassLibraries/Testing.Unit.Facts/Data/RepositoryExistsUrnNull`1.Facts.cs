@@ -33,7 +33,7 @@
         {
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Exists(null as AbsoluteUri))
+                .Setup(x => x.Exists(null))
                 .Throws(new ArgumentNullException())
                 .Verifiable();
 
@@ -53,7 +53,7 @@
         {
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Exists(null as AbsoluteUri))
+                .Setup(x => x.Exists(null))
                 .Returns(false)
                 .Verifiable();
 
@@ -67,7 +67,7 @@
         {
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Exists(null as AbsoluteUri))
+                .Setup(x => x.Exists(null))
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 

@@ -31,13 +31,18 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryModifiedSinceKey<int>();
-            obj.Record.Object.Key = key;
+            var obj = new RepositoryModifiedSinceKey<int>
+            {
+                Record1 =
+                    {
+                        Key = key
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
                 .Setup(x => x.ModifiedSince(key, DateTime.MaxValue))
@@ -66,8 +71,8 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
 
             Assert.Throws<InvalidOperationException>(() => obj.Verify(repository.Object));
@@ -80,13 +85,18 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryModifiedSinceKey<int>();
-            obj.Record.Object.Key = key;
+            var obj = new RepositoryModifiedSinceKey<int>
+            {
+                Record1 =
+                    {
+                        Key = key
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
                 .Setup(x => x.ModifiedSince(key, DateTime.MaxValue))
@@ -103,13 +113,18 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryModifiedSinceKey<int>();
-            obj.Record.Object.Key = key;
+            var obj = new RepositoryModifiedSinceKey<int>
+            {
+                Record1 =
+                    {
+                        Key = key
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
                 .Setup(x => x.ModifiedSince(key, DateTime.MaxValue))

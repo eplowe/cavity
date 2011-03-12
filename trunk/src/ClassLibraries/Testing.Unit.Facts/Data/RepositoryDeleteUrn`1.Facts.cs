@@ -29,20 +29,25 @@
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryDeleteUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var obj = new RepositoryDeleteUrn<int>
+            {
+                Record1 =
+                    {
+                        Key = AlphaDecimal.Random()
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.Delete(obj.Record.Object.Urn))
+                .Setup(x => x.Delete(obj.Record1.Urn))
                 .Returns(true)
                 .Verifiable();
             repository
-                .Setup(x => x.Exists(obj.Record.Object.Urn))
+                .Setup(x => x.Exists(obj.Record1.Urn))
                 .Returns(false)
                 .Verifiable();
 
@@ -60,20 +65,25 @@
         [Fact]
         public void op_Verify_IRepository_whenExists()
         {
-            var obj = new RepositoryDeleteUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var obj = new RepositoryDeleteUrn<int>
+            {
+                Record1 =
+                    {
+                        Key = AlphaDecimal.Random()
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.Delete(obj.Record.Object.Urn))
+                .Setup(x => x.Delete(obj.Record1.Urn))
                 .Returns(true)
                 .Verifiable();
             repository
-                .Setup(x => x.Exists(obj.Record.Object.Urn))
+                .Setup(x => x.Exists(obj.Record1.Urn))
                 .Returns(true)
                 .Verifiable();
 
@@ -85,16 +95,21 @@
         [Fact]
         public void op_Verify_IRepository_whenFalse()
         {
-            var obj = new RepositoryDeleteUrn<int>();
-            obj.Record.Object.Key = AlphaDecimal.Random();
+            var obj = new RepositoryDeleteUrn<int>
+            {
+                Record1 =
+                    {
+                        Key = AlphaDecimal.Random()
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
-                .Setup(x => x.Delete(obj.Record.Object.Urn))
+                .Setup(x => x.Delete(obj.Record1.Urn))
                 .Returns(false)
                 .Verifiable();
 

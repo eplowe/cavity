@@ -31,17 +31,22 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryToUrnKey<int>();
-            obj.Record.Object.Key = key;
+            var obj = new RepositoryToUrnKey<int>
+            {
+                Record1 =
+                    {
+                        Key = key
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
                 .Setup(x => x.ToUrn(key))
-                .Returns(obj.Record.Object.Urn)
+                .Returns(obj.Record1.Urn)
                 .Verifiable();
 
             obj.Verify(repository.Object);
@@ -62,8 +67,8 @@
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
 
             Assert.Throws<InvalidOperationException>(() => obj.Verify(repository.Object));
@@ -76,13 +81,18 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryToUrnKey<int>();
-            obj.Record.Object.Key = key;
+            var obj = new RepositoryToUrnKey<int>
+            {
+                Record1 =
+                    {
+                        Key = key
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
                 .Setup(x => x.ToUrn(key))
@@ -99,13 +109,18 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryToUrnKey<int>();
-            obj.Record.Object.Key = key;
+            var obj = new RepositoryToUrnKey<int>
+            {
+                Record1 =
+                    {
+                        Key = key
+                    }
+            };
 
             var repository = new Mock<IRepository<int>>();
             repository
-                .Setup(x => x.Insert(obj.Record.Object))
-                .Returns(obj.Record.Object)
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
                 .Verifiable();
             repository
                 .Setup(x => x.ToUrn(key))

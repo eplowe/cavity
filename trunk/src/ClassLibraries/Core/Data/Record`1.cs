@@ -3,9 +3,9 @@
     using System;
     using System.Xml.Serialization;
 
-    public abstract class Record<T> : ValueObject<Record<T>>, IRecord<T>
+    public sealed class Record<T> : ValueObject<Record<T>>, IRecord<T>
     {
-        protected Record()
+        public Record()
         {
             RegisterProperty(x => x.Cacheability);
             RegisterProperty(x => x.Created);
@@ -25,7 +25,7 @@
         [XmlIgnore]
         public DateTime? Created { get; set; }
 
-        public abstract string Entity { get; }
+        public string Entity { get; set; }
 
         [XmlIgnore]
         public string Etag { get; set; }

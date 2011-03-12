@@ -15,8 +15,8 @@
                 throw new ArgumentNullException("repository");
             }
 
-            repository.Insert(Record.Object);
-            repository.Insert(Record2.Object);
+            repository.Insert(Record1);
+            repository.Insert(Record2);
 
             var records = repository.Query(XPathExpression.Compile("/*"));
 
