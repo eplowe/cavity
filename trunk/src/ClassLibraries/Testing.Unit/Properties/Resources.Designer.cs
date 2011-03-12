@@ -223,38 +223,20 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete(...) should return true when an existing record is deleted..
+        ///   Looks up a localized string similar to {0}(...) should return a record with the correct {1}..
         /// </summary>
-        internal static string Repository_Delete_ReturnsFalse_UnitTestExceptionMessage {
+        internal static string Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("Repository_Delete_ReturnsFalse_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete(...) should return false when the record does not exist..
+        ///   Looks up a localized string similar to {0}(...) should return the correct {1}..
         /// </summary>
-        internal static string Repository_Delete_ReturnsTrue_UnitTestExceptionMessage {
+        internal static string Repository_ExpectCorrectValue_UnitTestExceptionMessage {
             get {
-                return ResourceManager.GetString("Repository_Delete_ReturnsTrue_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Exists(...) should return true when the record exists..
-        /// </summary>
-        internal static string Repository_Exists_ReturnsFalse_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Exists_ReturnsFalse_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Exists(...) should return false when the record does not exist..
-        /// </summary>
-        internal static string Repository_Exists_ReturnsTrue_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Exists_ReturnsTrue_UnitTestExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("Repository_ExpectCorrectValue_UnitTestExceptionMessage", resourceCulture);
             }
         }
         
@@ -304,7 +286,43 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when an object with the key already exists..
+        ///   Looks up a localized string similar to {0}(...) should return a {1}..
+        /// </summary>
+        internal static string Repository_ExpectResult_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ExpectResult_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}(...) should return true when an existing record is {1}..
+        /// </summary>
+        internal static string Repository_ExpectTrueWhenExistingRecord_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ExpectTrueWhenExistingRecord_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}(...) should return {1} when the record does not exist..
+        /// </summary>
+        internal static string Repository_ExpectWhenDoesNotExist_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ExpectWhenDoesNotExist_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}(...) should return {1} when the record exists..
+        /// </summary>
+        internal static string Repository_ExpectWhenExists_UnitTestExceptionMessage {
+            get {
+                return ResourceManager.GetString("Repository_ExpectWhenExists_UnitTestExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when a record with the key already exists..
         /// </summary>
         internal static string Repository_Insert_RecordKeyExists_UnitTestExceptionMessage {
             get {
@@ -313,7 +331,7 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when an record with the URN already exists..
+        ///   Looks up a localized string similar to Insert(...) should throw an RepositoryException when a record with the URN already exists..
         /// </summary>
         internal static string Repository_Insert_RecordUrnExists_UnitTestExceptionMessage {
             get {
@@ -385,92 +403,11 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select(...) should return a record with the correct key..
-        /// </summary>
-        internal static string Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select(...) should return a record with the correct URN..
-        /// </summary>
-        internal static string Repository_Select_ReturnsIncorrectUrn_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Select_ReturnsIncorrectUrn_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select(...) should return a record with the correct value..
-        /// </summary>
-        internal static string Repository_Select_ReturnsIncorrectValue_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Select_ReturnsIncorrectValue_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select(...) should return a record..
-        /// </summary>
-        internal static string Repository_Select_ReturnsNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Select_ReturnsNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ToKey(...) should return the correct key..
-        /// </summary>
-        internal static string Repository_ToKey_ReturnsIncorrectKey_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_ToKey_ReturnsIncorrectKey_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ToKey(...) should return a key..
-        /// </summary>
-        internal static string Repository_ToKey_ReturnsNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_ToKey_ReturnsNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ToUrn(...) should return the correct URN..
-        /// </summary>
-        internal static string Repository_ToUrn_ReturnsIncorrectUrn_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_ToUrn_ReturnsIncorrectUrn_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ToUrn(...) should return a URN..
-        /// </summary>
-        internal static string Repository_ToUrn_ReturnsNull_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_ToUrn_ReturnsNull_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An unexpected exception was encountered..
         /// </summary>
         internal static string Repository_UnexpectedException_UnitTestExceptionMessage {
             get {
                 return ResourceManager.GetString("Repository_UnexpectedException_UnitTestExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update(...) should return true when an existing record is updated..
-        /// </summary>
-        internal static string Repository_Update_ReturnsFalse_UnitTestExceptionMessage {
-            get {
-                return ResourceManager.GetString("Repository_Update_ReturnsFalse_UnitTestExceptionMessage", resourceCulture);
             }
         }
         

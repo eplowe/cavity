@@ -171,17 +171,11 @@
   <data name="PropertySetterTestException_Message" xml:space="preserve">
     <value>{0}.{1} did not throw the expected {2}.</value>
   </data>
-  <data name="Repository_Delete_ReturnsFalse_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Delete(...) should return true when an existing record is deleted.</value>
+  <data name="Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage" xml:space="preserve">
+    <value>{0}(...) should return a record with the correct {1}.</value>
   </data>
-  <data name="Repository_Delete_ReturnsTrue_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Delete(...) should return false when the record does not exist.</value>
-  </data>
-  <data name="Repository_Exists_ReturnsFalse_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Exists(...) should return true when the record exists.</value>
-  </data>
-  <data name="Repository_Exists_ReturnsTrue_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Exists(...) should return false when the record does not exist.</value>
+  <data name="Repository_ExpectCorrectValue_UnitTestExceptionMessage" xml:space="preserve">
+    <value>{0}(...) should return the correct {1}.</value>
   </data>
   <data name="Repository_ExpectExceptionWhenRecordIncomplete_UnitTestExceptionMessage" xml:space="preserve">
     <value>{0}(...) should throw an RepositoryException when the record does not specify {1}.</value>
@@ -198,11 +192,23 @@
   <data name="Repository_ExpectNullWhenRecordNotFound_UnitTestExceptionMessage" xml:space="preserve">
     <value>{0}(...) should return null when the {1} is not found.</value>
   </data>
+  <data name="Repository_ExpectResult_UnitTestExceptionMessage" xml:space="preserve">
+    <value>{0}(...) should return a {1}.</value>
+  </data>
+  <data name="Repository_ExpectTrueWhenExistingRecord_UnitTestExceptionMessage" xml:space="preserve">
+    <value>{0}(...) should return true when an existing record is {1}.</value>
+  </data>
+  <data name="Repository_ExpectWhenDoesNotExist_UnitTestExceptionMessage" xml:space="preserve">
+    <value>{0}(...) should return {1} when the record does not exist.</value>
+  </data>
+  <data name="Repository_ExpectWhenExists_UnitTestExceptionMessage" xml:space="preserve">
+    <value>{0}(...) should return {1} when the record exists.</value>
+  </data>
   <data name="Repository_Insert_RecordKeyExists_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Insert(...) should throw an RepositoryException when an object with the key already exists.</value>
+    <value>Insert(...) should throw an RepositoryException when a record with the key already exists.</value>
   </data>
   <data name="Repository_Insert_RecordUrnExists_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Insert(...) should throw an RepositoryException when an record with the URN already exists.</value>
+    <value>Insert(...) should throw an RepositoryException when a record with the URN already exists.</value>
   </data>
   <data name="Repository_Insert_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
     <value>Insert(...) should set the key of the returned record.</value>
@@ -225,35 +231,8 @@
   <data name="Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage" xml:space="preserve">
     <value>ModifiedSince(...) should return false when the record has not been modified since the specified date.</value>
   </data>
-  <data name="Repository_Select_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Select(...) should return a record with the correct key.</value>
-  </data>
-  <data name="Repository_Select_ReturnsIncorrectUrn_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Select(...) should return a record with the correct URN.</value>
-  </data>
-  <data name="Repository_Select_ReturnsIncorrectValue_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Select(...) should return a record with the correct value.</value>
-  </data>
-  <data name="Repository_Select_ReturnsNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Select(...) should return a record.</value>
-  </data>
-  <data name="Repository_ToKey_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
-    <value>ToKey(...) should return the correct key.</value>
-  </data>
-  <data name="Repository_ToKey_ReturnsNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>ToKey(...) should return a key.</value>
-  </data>
-  <data name="Repository_ToUrn_ReturnsIncorrectUrn_UnitTestExceptionMessage" xml:space="preserve">
-    <value>ToUrn(...) should return the correct URN.</value>
-  </data>
-  <data name="Repository_ToUrn_ReturnsNull_UnitTestExceptionMessage" xml:space="preserve">
-    <value>ToUrn(...) should return a URN.</value>
-  </data>
   <data name="Repository_UnexpectedException_UnitTestExceptionMessage" xml:space="preserve">
     <value>An unexpected exception was encountered.</value>
-  </data>
-  <data name="Repository_Update_ReturnsFalse_UnitTestExceptionMessage" xml:space="preserve">
-    <value>Update(...) should return true when an existing record is updated.</value>
   </data>
   <data name="SealedClassTestException_SealedMessage" xml:space="preserve">
     <value>{0} unexpectedly is a sealed class.</value>
