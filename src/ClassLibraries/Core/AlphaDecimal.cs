@@ -395,8 +395,8 @@
             return Value == other.Value;
         }
 
-#if !NET40
-        [System.Security.Permissions.SecurityPermission(System.Security.Permissions.SecurityAction.LinkDemand, Flags = System.Security.Permissions.SecurityPermissionFlag.SerializationFormatter)]
+#if NET20 || NET35
+        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
         void ISerializable.GetObjectData(SerializationInfo info,

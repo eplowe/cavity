@@ -55,6 +55,7 @@
     <Compile Include="IO\EncodedStringWriter.Facts.cs" />
     <Compile Include="IO\StreamWriterDictionary.Facts.cs" />
     <Compile Include="Net\CacheControl.Facts.cs" />
+    <Compile Include="Net\EntityTag.Facts.cs" />
     <Compile Include="Net\HttpHeader.Facts.cs" />
     <Compile Include="Net\IHttpHeader.Facts.cs" />
     <Compile Include="Net\Token.Facts.cs" />
@@ -91,7 +92,9 @@
       <Name>Testing.Unit</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Security\Cryptography\" />
+  </ItemGroup>
   <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
