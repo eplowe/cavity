@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System;
+    using Moq;
     using Xunit;
 
     public sealed class RecordOfTFacts
@@ -16,6 +17,54 @@
                             .IsNotDecorated()
                             .Implements<IRecord<int>>()
                             .Result);
+        }
+
+        [Fact]
+        public void op_ToEntity()
+        {
+            var obj = new Record<int>
+            {
+                Value = 123
+            };
+
+            const string expected = "123";
+            var actual = obj.ToEntity();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEntity_whenIEntity()
+        {
+            const string expected = "123";
+
+            var value = new Mock<IEntity>();
+            value
+                .Setup(x => x.ToEntity())
+                .Returns(expected)
+                .Verifiable();
+
+            var obj = new Record<IEntity>
+            {
+                Value = value.Object
+            };
+
+            var actual = obj.ToEntity();
+
+            Assert.Equal(expected, actual);
+
+            value.VerifyAll();
+        }
+
+        [Fact]
+        public void op_ToEntity_whenNullValue()
+        {
+            var obj = new Record<string>
+            {
+                Value = null
+            };
+
+            Assert.Null(obj.ToEntity());
         }
 
         [Fact]

@@ -8,8 +8,6 @@
 
         DateTime? Created { get; set; }
 
-        string Entity { get; }
-
         string Etag { get; set; }
 
         string Expiration { get; set; }
@@ -23,5 +21,7 @@
         AbsoluteUri Urn { get; set; }
 
         T Value { get; set; }
+
+        string ToEntity();
     }
 }
