@@ -17,7 +17,7 @@
             ArgumentNullException expected = null;
             try
             {
-                repository.Match(null, "\"abc\"");
+                repository.Match(null, "\"{0}\"".FormatWith(Guid.NewGuid()));
             }
             catch (ArgumentNullException exception)
             {

@@ -14,7 +14,7 @@
                 throw new ArgumentNullException("repository");
             }
 
-            if (repository.Match(AlphaDecimal.Random(), Guid.NewGuid().ToString()))
+            if (repository.Match(AlphaDecimal.Random(), "\"{0}\"".FormatWith(Guid.NewGuid())))
             {
                 throw new UnitTestException(Resources.Repository_Match_ReturnsTrue_UnitTestExceptionMessage);
             }

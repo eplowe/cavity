@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using Cavity.Net;
     using Cavity.Tests;
     using Moq;
     using Xunit;
@@ -33,7 +34,7 @@
         {
             var repository = new Mock<IRepository<RandomObject>>();
             repository
-                .Setup(x => x.Match(null, It.IsAny<string>()))
+                .Setup(x => x.Match(null, It.IsAny<EntityTag>()))
                 .Throws(new ArgumentNullException())
                 .Verifiable();
 
@@ -53,7 +54,7 @@
         {
             var repository = new Mock<IRepository<RandomObject>>();
             repository
-                .Setup(x => x.Match(null, It.IsAny<string>()))
+                .Setup(x => x.Match(null, It.IsAny<EntityTag>()))
                 .Returns(false)
                 .Verifiable();
 
@@ -67,7 +68,7 @@
         {
             var repository = new Mock<IRepository<RandomObject>>();
             repository
-                .Setup(x => x.Match(null, It.IsAny<string>()))
+                .Setup(x => x.Match(null, It.IsAny<EntityTag>()))
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 

@@ -34,7 +34,6 @@
             return new Record<T>
             {
                 Cacheability = "public",
-                Etag = "\"abc\"",
                 Expiration = "P1D",
                 Status = 200,
                 Urn = "urn://example.com/" + Guid.NewGuid(),

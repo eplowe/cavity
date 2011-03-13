@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Xml.XPath;
+    using Cavity.Net;
 
     public sealed class DummyRepository<T> : IRepository<T>
     {
@@ -37,13 +38,13 @@
         }
 
         public bool Match(AbsoluteUri urn,
-                          string etag)
+                          EntityTag etag)
         {
             throw new NotImplementedException();
         }
 
         public bool Match(AlphaDecimal key,
-                          string etag)
+                          EntityTag etag)
         {
             throw new NotImplementedException();
         }

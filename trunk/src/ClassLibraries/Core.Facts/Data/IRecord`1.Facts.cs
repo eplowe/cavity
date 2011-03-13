@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System;
+    using Cavity.Net;
     using Moq;
     using Xunit;
 
@@ -101,7 +102,7 @@
         [Fact]
         public void prop_Etag_get()
         {
-            const string expected = "\"xyz\"";
+            EntityTag expected = "\"xyz\"";
 
             var mock = new Mock<IRecord<int>>();
             mock
@@ -119,7 +120,7 @@
         [Fact]
         public void prop_Etag_set()
         {
-            const string value = "\"xyz\"";
+            EntityTag value = "\"xyz\"";
 
             var mock = new Mock<IRecord<int>>();
             mock

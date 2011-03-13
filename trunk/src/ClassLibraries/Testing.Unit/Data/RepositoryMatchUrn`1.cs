@@ -14,7 +14,7 @@
                 throw new ArgumentNullException("repository");
             }
 
-            repository.Insert(Record1);
+            Record1 = repository.Insert(Record1);
 
             if (repository.Match(Record1.Urn, Record1.Etag))
             {
