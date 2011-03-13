@@ -24,15 +24,15 @@
         }
 
         [Fact]
-        public void expectations_struct()
-        {
-            new RepositoryExpectations<int>().VerifyAll<FakeRepository<int>>();
-        }
-
-        [Fact]
         public void expectations_class()
         {
             new RepositoryExpectations<RandomObject>().VerifyAll<FakeRepository<RandomObject>>();
+        }
+
+        [Fact]
+        public void expectations_struct()
+        {
+            new RepositoryExpectations<int>().VerifyAll<FakeRepository<int>>();
         }
     }
 }

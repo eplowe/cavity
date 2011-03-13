@@ -4,7 +4,8 @@
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositoryUpdateRecordKeyNotFound<T> : VerifyRepositoryBase<T> where T : new()
+    public sealed class RepositoryUpdateRecordKeyNotFound<T> : VerifyRepositoryBase<T>
+        where T : new()
     {
         protected override void OnVerify(IRepository<T> repository)
         {

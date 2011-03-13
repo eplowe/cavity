@@ -4,7 +4,8 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Transactions;
 
-    public abstract class VerifyRepositoryBase<T> : IVerifyRepository<T> where T : new()
+    public abstract class VerifyRepositoryBase<T> : IVerifyRepository<T>
+        where T : new()
     {
         protected VerifyRepositoryBase()
         {

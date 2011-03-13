@@ -4,7 +4,8 @@
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositorySelectKey<T> : VerifyRepositoryBase<T> where T : new()
+    public sealed class RepositorySelectKey<T> : VerifyRepositoryBase<T>
+        where T : new()
     {
         protected override void OnVerify(IRepository<T> repository)
         {
@@ -26,7 +27,8 @@
                 throw new UnitTestException(Resources.Repository_ExpectResult_UnitTestExceptionMessage.FormatWith("Select", "record"));
             }
 
-            if (Record1.Key != record.Key)
+            if (Record1.Key !=
+                record.Key)
             {
                 throw new UnitTestException(Resources.Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage.FormatWith("Select", "key"));
             }
