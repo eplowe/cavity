@@ -31,7 +31,7 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryMatchKey<int>
+            var obj = new RepositoryMatchKey<RandomObject>
             {
                 Record1 =
                     {
@@ -39,7 +39,7 @@
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -65,7 +65,7 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositoryMatchKey<int>
+            var obj = new RepositoryMatchKey<RandomObject>
             {
                 Record1 =
                     {
@@ -73,7 +73,7 @@
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -91,9 +91,9 @@
         [Fact]
         public void op_Verify_IRepository_whenInvalidOperationException()
         {
-            var obj = new RepositoryMatchKey<int>();
+            var obj = new RepositoryMatchKey<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)

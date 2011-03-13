@@ -29,7 +29,7 @@
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryMatchUrn<int>
+            var obj = new RepositoryMatchUrn<RandomObject>
             {
                 Record1 =
                     {
@@ -37,7 +37,7 @@
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -61,7 +61,7 @@
         [Fact]
         public void op_Verify_IRepository_whenFalse()
         {
-            var obj = new RepositoryMatchUrn<int>
+            var obj = new RepositoryMatchUrn<RandomObject>
             {
                 Record1 =
                     {
@@ -69,7 +69,7 @@
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)

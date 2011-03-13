@@ -31,7 +31,7 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositorySelectKey<int>
+            var obj = new RepositorySelectKey<RandomObject>
             {
                 Record1 =
                     {
@@ -39,7 +39,7 @@
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -63,9 +63,9 @@
         [Fact]
         public void op_Verify_IRepository_whenInvalidOperationException()
         {
-            var obj = new RepositorySelectKey<int>();
+            var obj = new RepositorySelectKey<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -81,7 +81,7 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositorySelectKey<int>
+            var obj = new RepositorySelectKey<RandomObject>
             {
                 Record1 =
                     {
@@ -89,13 +89,13 @@
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
                 .Verifiable();
 
-            var record = new Mock<IRecord<int>>();
+            var record = new Mock<IRecord<RandomObject>>();
             record
                 .SetupGet(x => x.Key)
                 .Returns(AlphaDecimal.Random());
@@ -117,7 +117,7 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositorySelectKey<int>
+            var obj = new RepositorySelectKey<RandomObject>
             {
                 Record1 =
                     {
@@ -125,14 +125,14 @@
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
                 .Verifiable();
             repository
                 .Setup(x => x.Select(key))
-                .Returns(null as IRecord<int>)
+                .Returns(null as IRecord<RandomObject>)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
@@ -145,7 +145,7 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositorySelectKey<int>
+            var obj = new RepositorySelectKey<RandomObject>
             {
                 Record1 =
                     {
@@ -153,13 +153,13 @@
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
                 .Verifiable();
 
-            var record = new Mock<IRecord<int>>();
+            var record = new Mock<IRecord<RandomObject>>();
             record
                 .SetupGet(x => x.Key)
                 .Returns(obj.Record1.Key);
@@ -181,22 +181,21 @@
         {
             var key = AlphaDecimal.Random();
 
-            var obj = new RepositorySelectKey<int>
+            var obj = new RepositorySelectKey<RandomObject>
             {
                 Record1 =
                     {
-                        Key = key,
-                        Value = 123
+                        Key = key
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
                 .Verifiable();
 
-            var record = new Mock<IRecord<int>>();
+            var record = new Mock<IRecord<RandomObject>>();
             record
                 .SetupGet(x => x.Key)
                 .Returns(obj.Record1.Key);
@@ -205,7 +204,7 @@
                 .Returns(obj.Record1.Urn);
             record
                 .SetupGet(x => x.Value)
-                .Returns(456);
+                .Returns(new RandomObject());
             repository
                 .Setup(x => x.Select(key))
                 .Returns(record.Object)

@@ -29,9 +29,9 @@
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryUpdateRecordKeyNotFound<int>();
+            var obj = new RepositoryUpdateRecordKeyNotFound<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -55,9 +55,9 @@
         [Fact]
         public void op_Verify_IRepository_whenInvalidOperationException()
         {
-            var obj = new RepositoryUpdateRecordKeyNotFound<int>();
+            var obj = new RepositoryUpdateRecordKeyNotFound<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -75,16 +75,16 @@
         [Fact]
         public void op_Verify_IRepository_whenRepositoryExceptionNotThrown()
         {
-            var obj = new RepositoryUpdateRecordKeyNotFound<int>();
+            var obj = new RepositoryUpdateRecordKeyNotFound<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record2)
                 .Verifiable();
             repository
                 .Setup(x => x.Update(obj.Record2))
-                .Returns(new Mock<IRecord<int>>().Object)
+                .Returns(new Mock<IRecord<RandomObject>>().Object)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));

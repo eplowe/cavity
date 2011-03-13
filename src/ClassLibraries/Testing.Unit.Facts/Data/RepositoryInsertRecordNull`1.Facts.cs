@@ -31,13 +31,13 @@
         [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "This is only for testing purposes.")]
         public void op_Verify_IRepository()
         {
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(null))
                 .Throws(new ArgumentNullException())
                 .Verifiable();
 
-            new RepositoryInsertRecordNull<int>().Verify(repository.Object);
+            new RepositoryInsertRecordNull<RandomObject>().Verify(repository.Object);
 
             repository.VerifyAll();
         }
@@ -51,13 +51,13 @@
         [Fact]
         public void op_Verify_IRepository_whenExceptionIsNotThrown()
         {
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(null))
-                .Returns(null as IRecord<int>)
+                .Returns(null as IRecord<RandomObject>)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryInsertRecordNull<int>().Verify(repository.Object));
+            Assert.Throws<UnitTestException>(() => new RepositoryInsertRecordNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }
@@ -65,13 +65,13 @@
         [Fact]
         public void op_Verify_IRepository_whenExceptionIsUnexpectedlyThrown()
         {
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(null))
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryInsertRecordNull<int>().Verify(repository.Object));
+            Assert.Throws<UnitTestException>(() => new RepositoryInsertRecordNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

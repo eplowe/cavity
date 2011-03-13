@@ -29,9 +29,9 @@
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryModifiedSinceUrn<int>();
+            var obj = new RepositoryModifiedSinceUrn<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -59,9 +59,9 @@
         [Fact]
         public void op_Verify_IRepository_whenModifiedSinceMaxDate()
         {
-            var obj = new RepositoryModifiedSinceUrn<int>();
+            var obj = new RepositoryModifiedSinceUrn<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -79,9 +79,9 @@
         [Fact]
         public void op_Verify_IRepository_whenNotModifiedSinceMinDate()
         {
-            var obj = new RepositoryModifiedSinceUrn<int>();
+            var obj = new RepositoryModifiedSinceUrn<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)

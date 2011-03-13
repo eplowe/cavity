@@ -29,7 +29,7 @@
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryInsertRecord<int>
+            var obj = new RepositoryInsertRecord<RandomObject>
             {
                 Record1 =
                     {
@@ -39,7 +39,7 @@
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -59,7 +59,7 @@
         [Fact]
         public void op_Verify_IRepository_whenCreatedIsNotSet()
         {
-            var obj = new RepositoryInsertRecord<int>
+            var obj = new RepositoryInsertRecord<RandomObject>
             {
                 Record1 =
                     {
@@ -69,7 +69,7 @@
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -83,7 +83,7 @@
         [Fact]
         public void op_Verify_IRepository_whenKeyIsNotSet()
         {
-            var obj = new RepositoryInsertRecord<int>
+            var obj = new RepositoryInsertRecord<RandomObject>
             {
                 Record1 =
                     {
@@ -93,7 +93,7 @@
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -107,7 +107,7 @@
         [Fact]
         public void op_Verify_IRepository_whenModifiedIsNotSet()
         {
-            var obj = new RepositoryInsertRecord<int>
+            var obj = new RepositoryInsertRecord<RandomObject>
             {
                 Record1 =
                     {
@@ -117,7 +117,7 @@
                     }
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
