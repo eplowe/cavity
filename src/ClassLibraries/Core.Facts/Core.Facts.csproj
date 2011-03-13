@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{E912C668-ED80-471E-9E57-BDB10394E47B}</ProjectGuid>
@@ -59,6 +59,7 @@
     <Compile Include="Net\HttpHeader.Facts.cs" />
     <Compile Include="Net\IHttpHeader.Facts.cs" />
     <Compile Include="Net\Token.Facts.cs" />
+    <Compile Include="Security\Cryptography\MD5Hash.Facts.cs" />
     <Compile Include="Object.ExtensionMethods.Facts.cs" />
     <Compile Include="RelativeUri.Facts.cs" />
     <Compile Include="String.ExtensionMethods.Facts.cs" />
@@ -93,7 +94,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Security\Cryptography\" />
+    <Content Include="Security\Cryptography\empty.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Security\Cryptography\jigsaw.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
