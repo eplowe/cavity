@@ -4,7 +4,8 @@
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositoryExistsUrnNull<T> : VerifyRepositoryBase<T> where T : new()
+    public sealed class RepositoryExistsUrnNull<T> : VerifyRepositoryBase<T>
+        where T : new()
     {
         protected override void OnVerify(IRepository<T> repository)
         {
@@ -16,7 +17,7 @@
             ArgumentNullException expected = null;
             try
             {
-                repository.Exists(null as AbsoluteUri);
+                repository.Exists(null);
             }
             catch (ArgumentNullException exception)
             {

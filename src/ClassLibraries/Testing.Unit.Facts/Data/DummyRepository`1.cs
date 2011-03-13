@@ -6,6 +6,11 @@
 
     public sealed class DummyRepository<T> : IRepository<T>
     {
+        public bool Exists(XPathExpression expression)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Delete(AbsoluteUri urn)
         {
             throw new NotImplementedException();
@@ -22,11 +27,6 @@
         }
 
         public bool Exists(AlphaDecimal key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Exists(XPathExpression expression)
         {
             throw new NotImplementedException();
         }

@@ -4,7 +4,8 @@
     using Cavity.Properties;
     using Cavity.Tests;
 
-    public sealed class RepositoryInsertRecordKey<T> : VerifyRepositoryBase<T> where T : new()
+    public sealed class RepositoryInsertRecordKey<T> : VerifyRepositoryBase<T>
+        where T : new()
     {
         public RepositoryInsertRecordKey()
         {

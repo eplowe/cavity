@@ -65,30 +65,6 @@
         }
 
         [Fact]
-        public void op_Verify_IRepository_whenNullResults()
-        {
-            var obj = new RepositoryQueryExpression<int>();
-
-            var repository = new Mock<IRepository<int>>();
-            repository
-                .Setup(x => x.Insert(obj.Record1))
-                .Returns(obj.Record1)
-                .Verifiable();
-            repository
-                .Setup(x => x.Insert(obj.Record2))
-                .Returns(obj.Record2)
-                .Verifiable();
-            repository
-                .Setup(x => x.Query(It.IsAny<XPathExpression>()))
-                .Returns(null as IEnumerable<IRecord<int>>)
-                .Verifiable();
-
-            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
-
-            repository.VerifyAll();
-        }
-
-        [Fact]
         public void op_Verify_IRepository_whenEmptyResults()
         {
             var obj = new RepositoryQueryExpression<int>();
@@ -107,6 +83,30 @@
             repository
                 .Setup(x => x.Query(It.IsAny<XPathExpression>()))
                 .Returns(records)
+                .Verifiable();
+
+            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
+
+            repository.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Verify_IRepository_whenNullResults()
+        {
+            var obj = new RepositoryQueryExpression<int>();
+
+            var repository = new Mock<IRepository<int>>();
+            repository
+                .Setup(x => x.Insert(obj.Record1))
+                .Returns(obj.Record1)
+                .Verifiable();
+            repository
+                .Setup(x => x.Insert(obj.Record2))
+                .Returns(obj.Record2)
+                .Verifiable();
+            repository
+                .Setup(x => x.Query(It.IsAny<XPathExpression>()))
+                .Returns(null as IEnumerable<IRecord<int>>)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
