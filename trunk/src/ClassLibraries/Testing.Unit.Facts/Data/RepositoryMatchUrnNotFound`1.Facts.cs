@@ -31,13 +31,13 @@
         [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "This is only for testing purposes.")]
         public void op_Verify_IRepository()
         {
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Match(It.IsAny<AbsoluteUri>(), It.IsAny<string>()))
                 .Returns(false)
                 .Verifiable();
 
-            new RepositoryMatchUrnNotFound<int>().Verify(repository.Object);
+            new RepositoryMatchUrnNotFound<RandomObject>().Verify(repository.Object);
 
             repository.VerifyAll();
         }
@@ -51,13 +51,13 @@
         [Fact]
         public void op_Verify_IRepository_whenTrue()
         {
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Match(It.IsAny<AbsoluteUri>(), It.IsAny<string>()))
                 .Returns(true)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryMatchUrnNotFound<int>().Verify(repository.Object));
+            Assert.Throws<UnitTestException>(() => new RepositoryMatchUrnNotFound<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

@@ -31,7 +31,7 @@
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryQueryExpression<int>();
+            var obj = new RepositoryQueryExpression<RandomObject>();
 
             var records = new[]
             {
@@ -39,7 +39,7 @@
                 obj.Record2
             };
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -67,11 +67,11 @@
         [Fact]
         public void op_Verify_IRepository_whenEmptyResults()
         {
-            var obj = new RepositoryQueryExpression<int>();
+            var obj = new RepositoryQueryExpression<RandomObject>();
 
-            var records = new List<IRecord<int>>();
+            var records = new List<IRecord<RandomObject>>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -93,9 +93,9 @@
         [Fact]
         public void op_Verify_IRepository_whenNullResults()
         {
-            var obj = new RepositoryQueryExpression<int>();
+            var obj = new RepositoryQueryExpression<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -106,7 +106,7 @@
                 .Verifiable();
             repository
                 .Setup(x => x.Query(It.IsAny<XPathExpression>()))
-                .Returns(null as IEnumerable<IRecord<int>>)
+                .Returns(null as IEnumerable<IRecord<RandomObject>>)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));

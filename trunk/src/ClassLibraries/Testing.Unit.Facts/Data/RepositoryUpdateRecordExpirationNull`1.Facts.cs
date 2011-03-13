@@ -31,9 +31,9 @@
         [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "This is only for testing purposes.")]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryUpdateRecordExpirationNull<int>();
+            var obj = new RepositoryUpdateRecordExpirationNull<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -57,16 +57,16 @@
         [Fact]
         public void op_Verify_IRepository_whenExceptionIsNotThrown()
         {
-            var obj = new RepositoryUpdateRecordExpirationNull<int>();
+            var obj = new RepositoryUpdateRecordExpirationNull<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
                 .Verifiable();
             repository
                 .Setup(x => x.Update(obj.Record2))
-                .Returns(new Mock<IRecord<int>>().Object)
+                .Returns(new Mock<IRecord<RandomObject>>().Object)
                 .Verifiable();
 
             Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
@@ -77,9 +77,9 @@
         [Fact]
         public void op_Verify_IRepository_whenExceptionIsUnexpectedlyThrown()
         {
-            var obj = new RepositoryUpdateRecordExpirationNull<int>();
+            var obj = new RepositoryUpdateRecordExpirationNull<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)

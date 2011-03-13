@@ -32,13 +32,13 @@
         [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "This is only for testing purposes.")]
         public void op_Verify_IRepository()
         {
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Query(null))
                 .Throws(new ArgumentNullException())
                 .Verifiable();
 
-            new RepositoryQueryExpressionNull<int>().Verify(repository.Object);
+            new RepositoryQueryExpressionNull<RandomObject>().Verify(repository.Object);
 
             repository.VerifyAll();
         }
@@ -52,13 +52,13 @@
         [Fact]
         public void op_Verify_IRepository_whenExceptionIsNotThrown()
         {
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Query(null))
-                .Returns(null as IEnumerable<IRecord<int>>)
+                .Returns(null as IEnumerable<IRecord<RandomObject>>)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryQueryExpressionNull<int>().Verify(repository.Object));
+            Assert.Throws<UnitTestException>(() => new RepositoryQueryExpressionNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }
@@ -66,13 +66,13 @@
         [Fact]
         public void op_Verify_IRepository_whenExceptionIsUnexpectedlyThrown()
         {
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Query(null))
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryQueryExpressionNull<int>().Verify(repository.Object));
+            Assert.Throws<UnitTestException>(() => new RepositoryQueryExpressionNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

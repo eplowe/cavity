@@ -29,9 +29,9 @@
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryUpdateRecordUrnExists<int>();
+            var obj = new RepositoryUpdateRecordUrnExists<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -63,9 +63,9 @@
         [Fact]
         public void op_Verify_IRepository_whenRepositoryExceptionIsNotThrown()
         {
-            var obj = new RepositoryUpdateRecordUrnExists<int>();
+            var obj = new RepositoryUpdateRecordUrnExists<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -91,9 +91,9 @@
         [Fact]
         public void op_Verify_IRepository_whenUnexpectedExceptionIsThrownOnDuplicateRecord()
         {
-            var obj = new RepositoryUpdateRecordUrnExists<int>();
+            var obj = new RepositoryUpdateRecordUrnExists<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Returns(obj.Record1)
@@ -119,9 +119,9 @@
         [Fact]
         public void op_Verify_IRepository_whenUnexpectedExceptionIsThrownOnInitialRecord()
         {
-            var obj = new RepositoryUpdateRecordUrnExists<int>();
+            var obj = new RepositoryUpdateRecordUrnExists<RandomObject>();
 
-            var repository = new Mock<IRepository<int>>();
+            var repository = new Mock<IRepository<RandomObject>>();
             repository
                 .Setup(x => x.Insert(obj.Record1))
                 .Throws(new InvalidOperationException())
