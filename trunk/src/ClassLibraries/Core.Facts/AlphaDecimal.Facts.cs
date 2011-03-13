@@ -19,6 +19,7 @@
             Assert.True(new TypeExpectations<AlphaDecimal>()
                             .IsValueType()
                             .Implements<ISerializable>()
+                            .Implements<IConvertible>()
                             .Implements<IComparable>()
                             .Implements<IComparable<AlphaDecimal>>()
                             .Implements<IEquatable<AlphaDecimal>>()
