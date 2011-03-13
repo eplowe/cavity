@@ -4,6 +4,7 @@
     using System.IO;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
+    using Cavity.Security.Cryptography;
     using Xunit;
 
     public sealed class EntityTagFacts
@@ -120,6 +121,15 @@
             EntityTag empty = EmptyEtag;
 
             Assert.True(empty > jigsaw);
+        }
+
+        [Fact]
+        public void opImplicit_EntityTag_MD5Hash()
+        {
+            EntityTag expected = EmptyEtag;
+            EntityTag actual = MD5Hash.Compute(string.Empty);
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

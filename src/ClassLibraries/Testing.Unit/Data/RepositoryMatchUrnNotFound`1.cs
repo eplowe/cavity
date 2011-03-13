@@ -14,7 +14,7 @@
                 throw new ArgumentNullException("repository");
             }
 
-            if (repository.Match("urn://example.com/" + Guid.NewGuid(), Guid.NewGuid().ToString()))
+            if (repository.Match("urn://example.com/" + Guid.NewGuid(), "\"{0}\"".FormatWith(Guid.NewGuid())))
             {
                 throw new UnitTestException(Resources.Repository_Match_ReturnsTrue_UnitTestExceptionMessage);
             }

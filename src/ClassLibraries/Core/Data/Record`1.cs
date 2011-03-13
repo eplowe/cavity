@@ -2,6 +2,7 @@
 {
     using System;
     using System.Xml.Serialization;
+    using Cavity.Net;
 
     public sealed class Record<T> : ValueObject<Record<T>>, IRecord<T>
     {
@@ -24,7 +25,7 @@
         public DateTime? Created { get; set; }
 
         [XmlIgnore]
-        public string Etag { get; set; }
+        public EntityTag Etag { get; set; }
 
         [XmlIgnore]
         public string Expiration { get; set; }

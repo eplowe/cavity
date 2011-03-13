@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System;
+    using Cavity.Net;
     using Moq;
     using Xunit;
 
@@ -89,7 +90,7 @@
         public void prop_Etag()
         {
             Assert.True(new PropertyExpectations<Record<int>>(x => x.Etag)
-                            .TypeIs<string>()
+                            .TypeIs<EntityTag>()
                             .XmlIgnore()
                             .Result);
         }

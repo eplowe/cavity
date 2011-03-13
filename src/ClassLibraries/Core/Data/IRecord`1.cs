@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System;
+    using Cavity.Net;
 
     public interface IRecord<T>
     {
@@ -8,7 +9,7 @@
 
         DateTime? Created { get; set; }
 
-        string Etag { get; set; }
+        EntityTag Etag { get; set; }
 
         string Expiration { get; set; }
 

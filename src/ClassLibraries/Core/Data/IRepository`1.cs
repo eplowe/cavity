@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Xml.XPath;
+    using Cavity.Net;
 
     public interface IRepository<T>
     {
@@ -18,10 +19,10 @@
         IRecord<T> Insert(IRecord<T> record);
 
         bool Match(AbsoluteUri urn,
-                   string etag);
+                   EntityTag etag);
 
         bool Match(AlphaDecimal key,
-                   string etag);
+                   EntityTag etag);
 
         bool ModifiedSince(AbsoluteUri urn,
                            DateTime value);

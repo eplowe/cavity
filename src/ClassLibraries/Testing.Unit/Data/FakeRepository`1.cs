@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Xml;
     using System.Xml.XPath;
+    using Cavity.Net;
+    using Cavity.Security.Cryptography;
 
     public sealed class FakeRepository<T> : IRepository<T>
     {
@@ -95,7 +97,7 @@
             node.Attributes.Append(attribute);
 
             attribute = Xml.CreateAttribute("etag");
-            attribute.Value = record.Etag; //// MD5Hash.Compute(record.Entity);
+            attribute.Value = (EntityTag)MD5Hash.Compute(record.ToEntity());
             node.Attributes.Append(attribute);
 
             attribute = Xml.CreateAttribute("expiration");
@@ -130,7 +132,7 @@
         }
 
         bool IRepository<T>.Match(AbsoluteUri urn,
-                                  string etag)
+                                  EntityTag etag)
         {
             if (null == urn)
             {
@@ -148,7 +150,7 @@
         }
 
         bool IRepository<T>.Match(AlphaDecimal key,
-                                  string etag)
+                                  EntityTag etag)
         {
             var xpath = "{0}[@etag='{1}']".FormatWith(FormatXPath(key), etag);
             var nodes = Xml.SelectNodes(xpath);
@@ -317,7 +319,7 @@
             }
 
             node.Attributes["cacheability"].Value = record.Cacheability;
-            node.Attributes["etag"].Value = record.Etag; //// MD5Hash.Compute(record.Entity);
+            node.Attributes["etag"].Value = (EntityTag)MD5Hash.Compute(record.ToEntity());
             node.Attributes["expiration"].Value = record.Expiration;
             node.Attributes["modified"].Value = DateTime.UtcNow.ToXmlString();
             node.Attributes["status"].Value = XmlConvert.ToString(record.Status.Value);

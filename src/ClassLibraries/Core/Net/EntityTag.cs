@@ -6,6 +6,7 @@
     using System.Security.Permissions;
 #endif
     using Cavity.Properties;
+    using Cavity.Security.Cryptography;
 
     /// <summary>
     /// Represents an entity tag.
@@ -89,6 +90,11 @@
         public static implicit operator EntityTag(string value)
         {
             return new EntityTag(value);
+        }
+
+        public static implicit operator EntityTag(MD5Hash value)
+        {
+            return new EntityTag("\"{0}\"".FormatWith(value));
         }
 
         public static bool operator !=(EntityTag obj,
