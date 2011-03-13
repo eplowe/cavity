@@ -15,6 +15,24 @@
         }
 
         [Fact]
+        public void op_ToEntity()
+        {
+            const string expected = "123";
+
+            var mock = new Mock<IRecord<int>>();
+            mock
+                .Setup(x => x.ToEntity())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.ToEntity();
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
         public void prop_Cacheability_get()
         {
             const string expected = "public";
@@ -76,24 +94,6 @@
                 .Verifiable();
 
             mock.Object.Created = value;
-
-            mock.VerifyAll();
-        }
-
-        [Fact]
-        public void prop_Entity_get()
-        {
-            const string expected = "example: abc";
-
-            var mock = new Mock<IRecord<int>>();
-            mock
-                .SetupGet(x => x.Entity)
-                .Returns(expected)
-                .Verifiable();
-
-            var actual = mock.Object.Entity;
-
-            Assert.Equal(expected, actual);
 
             mock.VerifyAll();
         }

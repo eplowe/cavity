@@ -15,8 +15,6 @@
             RegisterProperty(x => x.Modified);
             RegisterProperty(x => x.Status);
             RegisterProperty(x => x.Urn);
-
-            RegisterProperty(x => x.Entity);
         }
 
         [XmlIgnore]
@@ -24,8 +22,6 @@
 
         [XmlIgnore]
         public DateTime? Created { get; set; }
-
-        public string Entity { get; set; }
 
         [XmlIgnore]
         public string Etag { get; set; }
@@ -47,5 +43,19 @@
 
         [XmlIgnore]
         public T Value { get; set; }
+
+        public string ToEntity()
+        {
+            if (ReferenceEquals(Value, null))
+            {
+                return null;
+            }
+
+            var value = Value as IEntity;
+
+            return ReferenceEquals(value, null)
+                       ? Value.ToString()
+                       : value.ToEntity();
+        }
     }
 }
