@@ -22,6 +22,10 @@
                                 WorkingFolder="$(ClassLibrariesPath)\Core.Facts\bin\$(BuildName)"
                                 Xml="$(TestResultsDirectory)\core_facts_xunit.xml" />
     <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
+                                Assembly="$(ClassLibrariesPath)\Data.FileSystem.Facts\bin\$(BuildName)\Cavity.Data.FileSystem.Facts.dll"
+                                WorkingFolder="$(ClassLibrariesPath)\Data.FileSystem.Facts\bin\$(BuildName)"
+                                Xml="$(TestResultsDirectory)\data_filesystem_facts_xunit.xml" />
+    <Xunit.Runner.MSBuild.xunit ContinueOnError="false"
                                 Assembly="$(ClassLibrariesPath)\Domain.Facts\bin\$(BuildName)\Cavity.Domain.Facts.dll"
                                 WorkingFolder="$(ClassLibrariesPath)\Domain.Facts\bin\$(BuildName)"
                                 Xml="$(TestResultsDirectory)\domain_facts_xunit.xml" />
