@@ -1,52 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<ProjectGuid>{D0299C27-537C-42CE-B313-9F4D34EF8395}</ProjectGuid>
-		<AssemblyName>Cavity.ServiceLocation.Autofac.Facts</AssemblyName>
-	</PropertyGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-		<Reference Include="Autofac">
-			<HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\Autofac.dll</HintPath>
-		</Reference>
-		<Reference Include="Autofac.Configuration">
-			<HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\Autofac.Configuration.dll</HintPath>
-		</Reference>
-		<Reference Include="AutofacContrib.CommonServiceLocator">
-			<HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\AutofacContrib.CommonServiceLocator.dll</HintPath>
-		</Reference>
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-		<Compile Include="Configuration\XmlServiceLocatorProvider.Facts.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Example\Example.csproj">
-			<Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
-			<Name>Example</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\ServiceLocation.Autofac\ServiceLocation.Autofac.csproj">
-			<Project>{6BCF22E0-E321-431B-AEE2-981A03C66E09}</Project>
-			<Name>ServiceLocation.Autofac</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\ServiceLocation\ServiceLocation.csproj">
-			<Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
-			<Name>ServiceLocation</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
-			<Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
-			<Name>Testing.Unit</Name>
-		</ProjectReference>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="app.config">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Include="autofac.config">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
-	<Import Project="$(SolutionDir)Build\Facts.Project"/>
-	<!--
+<Project ToolsVersion="4.0"
+         DefaultTargets="Build"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{D0299C27-537C-42CE-B313-9F4D34EF8395}</ProjectGuid>
+    <AssemblyName>Cavity.ServiceLocation.Autofac.Facts</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Reference Include="Autofac">
+      <HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="AutofacContrib.CommonServiceLocator">
+      <HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\AutofacContrib.CommonServiceLocator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Configuration\XmlServiceLocatorProvider.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Example\Example.csproj">
+      <Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
+      <Name>Example</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceLocation.Autofac\ServiceLocation.Autofac.csproj">
+      <Project>{6BCF22E0-E321-431B-AEE2-981A03C66E09}</Project>
+      <Name>ServiceLocation.Autofac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceLocation\ServiceLocation.csproj">
+      <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
+      <Name>ServiceLocation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
+      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
+      <Name>Testing.Unit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="autofac.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Build\Facts.Project" />
+  <!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

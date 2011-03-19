@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
   <PropertyGroup>
     <WebApplicationName>cavity.example.net</WebApplicationName>
     <WebApplicationPath>$(MSBuildProjectDirectory)\src\WebApplications\Http.Client.Server</WebApplicationPath>
   </PropertyGroup>
-
   <Target Name="Deploy">
     <ItemGroup>
       <WebApplication Include="/">
@@ -39,5 +37,4 @@
     <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="Start"
                                            Name="$(WebApplicationName)" />
   </Target>
-
 </Project>

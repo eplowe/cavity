@@ -85,6 +85,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "csproj", "csproj", "{26C322
 	ProjectSection(SolutionItems) = preProject
 		Build\Any.Project = Build\Any.Project
 		Build\AnyCPU.Project = Build\AnyCPU.Project
+		Build\Code.Project = Build\Code.Project
+		Build\Data.Project = Build\Data.Project
+		Build\Facts.Project = Build\Facts.Project
 		Build\x86.Project = Build\x86.Project
 	EndProjectSection
 EndProject

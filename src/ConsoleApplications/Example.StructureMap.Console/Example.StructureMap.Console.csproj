@@ -1,56 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<ProjectGuid>{440ACB41-EA41-4BC4-87BA-FB6498EBD909}</ProjectGuid>
-		<AssemblyName>Example.StructureMap.Console</AssemblyName>
-		<RootNamespace>Example</RootNamespace>
-		<OutputType>Exe</OutputType>
-	</PropertyGroup>
-	<ItemGroup>
-		<Content Include="$(TrunkDir)\lib\trove\Framework\v3.5\StructureMap.dll">
-			<Link>StructureMap.dll</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="$(TrunkDir)\lib\trove\Framework\v3.5\StructureMapAdapter.dll">
-			<Link>StructureMapAdapter.dll</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="..\..\ClassLibraries\ServiceLocation.StructureMap\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.ServiceLocation.StructureMap.dll">
-			<Link>Cavity.ServiceLocation.StructureMap.dll</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="Properties\Resources.Designer.cs">
-			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
-			<DependentUpon>Resources.resx</DependentUpon>
-		</Compile>
-		<Compile Include="Program.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<EmbeddedResource Include="Properties\Resources.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<None Include="app.config"/>
-		<None Include="StructureMap.config">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\..\ClassLibraries\Example\Example.csproj">
-			<Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
-			<Name>Example</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\..\ClassLibraries\ServiceLocation\ServiceLocation.csproj">
-			<Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
-			<Name>ServiceLocation</Name>
-		</ProjectReference>
-	</ItemGroup>
-	<Import Project="$(SolutionDir)Build\x86.Project"/>
-	<Import Project="$(SolutionDir)Build\Code.Project"/>
-	<!--
+<Project ToolsVersion="4.0"
+         DefaultTargets="Build"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{440ACB41-EA41-4BC4-87BA-FB6498EBD909}</ProjectGuid>
+    <AssemblyName>Example.StructureMap.Console</AssemblyName>
+    <RootNamespace>Example</RootNamespace>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="$(TrunkDir)\lib\trove\Framework\v3.5\StructureMap.dll">
+      <Link>StructureMap.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(TrunkDir)\lib\trove\Framework\v3.5\StructureMapAdapter.dll">
+      <Link>StructureMapAdapter.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\ClassLibraries\ServiceLocation.StructureMap\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.ServiceLocation.StructureMap.dll">
+      <Link>Cavity.ServiceLocation.StructureMap.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="StructureMap.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ClassLibraries\Example\Example.csproj">
+      <Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
+      <Name>Example</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClassLibraries\ServiceLocation\ServiceLocation.csproj">
+      <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
+      <Name>ServiceLocation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)Build\x86.Project" />
+  <Import Project="$(SolutionDir)Build\Code.Project" />
+  <!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

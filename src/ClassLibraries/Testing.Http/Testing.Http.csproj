@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<ProjectGuid>{AC90D9D3-8BF2-4B70-A11C-63893116EFE1}</ProjectGuid>
-		<AssemblyName>Cavity.Testing.Http</AssemblyName>
-	</PropertyGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-		<Compile Include="Net\HttpResponseContentTypeTest.cs"/>
-		<Compile Include="Net\HttpExpectations.cs"/>
-		<Compile Include="Net\HttpHeadTest.cs"/>
-		<Compile Include="Net\HttpRequestDefinition.cs"/>
-		<Compile Include="Net\HttpResponseCacheControlTest.cs"/>
-		<Compile Include="Net\HttpResponseContentLanguageTest.cs"/>
-		<Compile Include="Net\HttpResponseContentMD5Test.cs"/>
-		<Compile Include="Net\HttpResponseHeaderTest.cs"/>
-		<Compile Include="Net\HttpStatusCodeTest.cs"/>
-		<Compile Include="Net\HttpTestException.cs"/>
-		<Compile Include="Net\IHttpContent.cs"/>
-		<Compile Include="Net\IRequestAcceptContent.cs"/>
-		<Compile Include="Net\IRequestAcceptLanguage.cs"/>
-		<Compile Include="Net\IResponseContent.cs"/>
-		<Compile Include="Net\IRequestMethod.cs"/>
-		<Compile Include="Net\IResponseCacheConditionals.cs"/>
-		<Compile Include="Net\IResponseCacheControl.cs"/>
-		<Compile Include="Net\IResponseContentLanguage.cs"/>
-		<Compile Include="Net\IResponseContentMD5.cs"/>
-		<Compile Include="Net\IResponseHtml.cs"/>
-		<Compile Include="Net\IResponseStatus.cs"/>
-		<Compile Include="Net\IResponseXml.cs"/>
-		<Compile Include="Net\ITestHttp.cs"/>
-		<Compile Include="Net\ITestHttpExpectation.cs"/>
-		<Compile Include="Net\NoContentResponse.cs"/>
-		<Compile Include="Net\Response.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Core\Core.csproj">
-			<Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-			<Name>Core</Name>
-		</ProjectReference>
-	</ItemGroup>
-	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
-	<Import Project="$(SolutionDir)Build\Code.Project"/>
-	<!--
+<Project ToolsVersion="4.0"
+         DefaultTargets="Build"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{AC90D9D3-8BF2-4B70-A11C-63893116EFE1}</ProjectGuid>
+    <AssemblyName>Cavity.Testing.Http</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Net\HttpResponseContentTypeTest.cs" />
+    <Compile Include="Net\HttpExpectations.cs" />
+    <Compile Include="Net\HttpHeadTest.cs" />
+    <Compile Include="Net\HttpRequestDefinition.cs" />
+    <Compile Include="Net\HttpResponseCacheControlTest.cs" />
+    <Compile Include="Net\HttpResponseContentLanguageTest.cs" />
+    <Compile Include="Net\HttpResponseContentMD5Test.cs" />
+    <Compile Include="Net\HttpResponseHeaderTest.cs" />
+    <Compile Include="Net\HttpStatusCodeTest.cs" />
+    <Compile Include="Net\HttpTestException.cs" />
+    <Compile Include="Net\IHttpContent.cs" />
+    <Compile Include="Net\IRequestAcceptContent.cs" />
+    <Compile Include="Net\IRequestAcceptLanguage.cs" />
+    <Compile Include="Net\IResponseContent.cs" />
+    <Compile Include="Net\IRequestMethod.cs" />
+    <Compile Include="Net\IResponseCacheConditionals.cs" />
+    <Compile Include="Net\IResponseCacheControl.cs" />
+    <Compile Include="Net\IResponseContentLanguage.cs" />
+    <Compile Include="Net\IResponseContentMD5.cs" />
+    <Compile Include="Net\IResponseHtml.cs" />
+    <Compile Include="Net\IResponseStatus.cs" />
+    <Compile Include="Net\IResponseXml.cs" />
+    <Compile Include="Net\ITestHttp.cs" />
+    <Compile Include="Net\ITestHttpExpectation.cs" />
+    <Compile Include="Net\NoContentResponse.cs" />
+    <Compile Include="Net\Response.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Build\Code.Project" />
+  <!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

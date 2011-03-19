@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
   <PropertyGroup>
     <TroveDirectory>$(MSBuildProjectDirectory)\lib\trove\Framework\$(TargetFrameworkVersion)</TroveDirectory>
   </PropertyGroup>
-
   <Target Name="Trove">
     <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.dll"
           DestinationFolder="$(TroveDirectory)"
@@ -42,5 +40,4 @@
           OverwriteReadOnlyFiles="true"
           Condition=" '$(TargetFrameworkVersion)' != 'v2.0' " />
   </Target>
-
 </Project>

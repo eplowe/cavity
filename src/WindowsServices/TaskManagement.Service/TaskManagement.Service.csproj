@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="Prepare" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<ProjectGuid>{5033C424-2DB0-4171-82B6-AE08EE0D9FB4}</ProjectGuid>
-		<AssemblyName>Cavity.TaskManagement.Service</AssemblyName>
-		<OutputType>WinExe</OutputType>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="System.ServiceProcess"/>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="Program.cs"/>
-		<Compile Include="TaskManagementService.cs">
-			<SubType>Component</SubType>
-		</Compile>
-		<Compile Include="TaskManagementService.Designer.cs">
-			<DependentUpon>TaskManagementService.cs</DependentUpon>
-		</Compile>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="app.config"/>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\..\ClassLibraries\TaskManagement\TaskManagement.csproj">
-			<Project>{B3D39F6B-980E-4B0F-B58E-BF295A936B2C}</Project>
-			<Name>TaskManagement</Name>
-		</ProjectReference>
-	</ItemGroup>
-	<Import Project="$(SolutionDir)Build\x86.Project"/>
-	<Import Project="$(SolutionDir)Build\Code.Project"/>
-	<Import Project="$(SolutionDir)Build\Data.Project"/>
-	<!--
+<Project ToolsVersion="4.0"
+         DefaultTargets="Build"
+         InitialTargets="Prepare"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{5033C424-2DB0-4171-82B6-AE08EE0D9FB4}</ProjectGuid>
+    <AssemblyName>Cavity.TaskManagement.Service</AssemblyName>
+    <OutputType>WinExe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.ServiceProcess" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="TaskManagementService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TaskManagementService.Designer.cs">
+      <DependentUpon>TaskManagementService.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ClassLibraries\TaskManagement\TaskManagement.csproj">
+      <Project>{B3D39F6B-980E-4B0F-B58E-BF295A936B2C}</Project>
+      <Name>TaskManagement</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)Build\x86.Project" />
+  <Import Project="$(SolutionDir)Build\Code.Project" />
+  <Import Project="$(SolutionDir)Build\Data.Project" />
+  <!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

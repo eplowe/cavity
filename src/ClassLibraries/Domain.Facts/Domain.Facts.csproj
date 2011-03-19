@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<ProjectGuid>{8687E437-6EB9-4EB2-A8D1-A98E2C3971C3}</ProjectGuid>
-		<AssemblyName>Cavity.Domain.Facts</AssemblyName>
-	</PropertyGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-		<Compile Include="Collections\Generic\LevenshteinComparer.Derived.cs"/>
-		<Compile Include="Collections\Generic\INormalizationComparer.Facts.cs"/>
-		<Compile Include="Data\CsvLexiconStorage.Facts.cs"/>
-		<Compile Include="Data\IStoreLexicon.Facts.cs"/>
-		<Compile Include="Models\BritishPostcode.Facts.cs"/>
-		<Compile Include="Collections\Generic\LevenshteinComparer.Facts.cs"/>
-		<Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs"/>
-		<Compile Include="Models\LexicalItem.Facts.cs"/>
-		<Compile Include="Models\Lexicon.Facts.cs"/>
-		<Compile Include="Collections\Generic\NormalizationComparer.Facts.cs"/>
-		<Compile Include="Collections\Generic\SynonymCollection.Facts.cs"/>
-		<Compile Include="Models\Telephone.Facts.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Core\Core.csproj">
-			<Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-			<Name>Core</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\Domain\Domain.csproj">
-			<Project>{2494FF0C-7ABE-4F07-A66B-D209B061CD58}</Project>
-			<Name>Domain</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
-			<Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
-			<Name>Testing.Unit</Name>
-		</ProjectReference>
-	</ItemGroup>
-	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
-	<Import Project="$(SolutionDir)Build\Facts.Project"/>
-	<!--
+<Project ToolsVersion="4.0"
+         DefaultTargets="Build"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{8687E437-6EB9-4EB2-A8D1-A98E2C3971C3}</ProjectGuid>
+    <AssemblyName>Cavity.Domain.Facts</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Collections\Generic\LevenshteinComparer.Derived.cs" />
+    <Compile Include="Collections\Generic\INormalizationComparer.Facts.cs" />
+    <Compile Include="Data\CsvLexiconStorage.Facts.cs" />
+    <Compile Include="Data\IStoreLexicon.Facts.cs" />
+    <Compile Include="Models\BritishPostcode.Facts.cs" />
+    <Compile Include="Collections\Generic\LevenshteinComparer.Facts.cs" />
+    <Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs" />
+    <Compile Include="Models\LexicalItem.Facts.cs" />
+    <Compile Include="Models\Lexicon.Facts.cs" />
+    <Compile Include="Collections\Generic\NormalizationComparer.Facts.cs" />
+    <Compile Include="Collections\Generic\SynonymCollection.Facts.cs" />
+    <Compile Include="Models\Telephone.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{2494FF0C-7ABE-4F07-A66B-D209B061CD58}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
+      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
+      <Name>Testing.Unit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Build\Facts.Project" />
+  <!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
