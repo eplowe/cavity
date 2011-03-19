@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
   <PropertyGroup>
     <TestResultsDirectory>$(MSBuildProjectDirectory)\TestResults</TestResultsDirectory>
     <ClassLibrariesPath>$(MSBuildProjectDirectory)\src\ClassLibraries</ClassLibrariesPath>
     <ConsoleApplicationsPath>$(MSBuildProjectDirectory)\src\ConsoleApplications</ConsoleApplicationsPath>
   </PropertyGroup>
-
   <Target Name="Test"
           Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <RemoveDir Directories="$(TestResultsDirectory)"
@@ -81,5 +79,4 @@
     <RemoveDir Directories="$(TestResultsDirectory)"
                Condition="Exists('$(TestResultsDirectory)')" />
   </Target>
-
 </Project>

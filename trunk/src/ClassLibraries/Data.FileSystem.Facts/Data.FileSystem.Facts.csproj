@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0"
+         DefaultTargets="Build"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{9A669DC2-A0AE-490F-81BC-44CF53881124}</ProjectGuid>
     <AssemblyName>Cavity.Data.FileSystem.Facts</AssemblyName>
@@ -15,7 +17,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Build\Facts.Project"/>
+  <Import Project="$(SolutionDir)Build\Facts.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

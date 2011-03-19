@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<ProjectGuid>{2494FF0C-7ABE-4F07-A66B-D209B061CD58}</ProjectGuid>
-		<AssemblyName>Cavity.Domain</AssemblyName>
-	</PropertyGroup>
-	<ItemGroup>
-		<Compile Include="Collections\Generic\INormalizationComparer.cs"/>
-		<Compile Include="Collections\Generic\NormalizationComparer.cs"/>
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-		<Compile Include="Collections\Generic\LevenshteinComparer.cs"/>
-		<Compile Include="Collections\Generic\SynonymCollection.cs"/>
-		<Compile Include="Data\CsvLexiconStorage.cs"/>
-		<Compile Include="Data\IStoreLexicon.cs"/>
-		<Compile Include="Models\BritishPostcode.cs"/>
-		<Compile Include="Models\LexicalItem.cs"/>
-		<Compile Include="Models\Lexicon.cs"/>
-		<Compile Include="Models\Lexicon.String.ExtensionMethods.cs"/>
-		<Compile Include="Models\Telephone.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Core\Core.csproj">
-			<Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-			<Name>Core</Name>
-		</ProjectReference>
-	</ItemGroup>
-	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
-	<Import Project="$(SolutionDir)Build\Code.Project"/>
-	<!--
+<Project ToolsVersion="4.0"
+         DefaultTargets="Build"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{2494FF0C-7ABE-4F07-A66B-D209B061CD58}</ProjectGuid>
+    <AssemblyName>Cavity.Domain</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Collections\Generic\INormalizationComparer.cs" />
+    <Compile Include="Collections\Generic\NormalizationComparer.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Collections\Generic\LevenshteinComparer.cs" />
+    <Compile Include="Collections\Generic\SynonymCollection.cs" />
+    <Compile Include="Data\CsvLexiconStorage.cs" />
+    <Compile Include="Data\IStoreLexicon.cs" />
+    <Compile Include="Models\BritishPostcode.cs" />
+    <Compile Include="Models\LexicalItem.cs" />
+    <Compile Include="Models\Lexicon.cs" />
+    <Compile Include="Models\Lexicon.String.ExtensionMethods.cs" />
+    <Compile Include="Models\Telephone.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Build\Code.Project" />
+  <!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

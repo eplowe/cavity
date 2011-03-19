@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
   <PropertyGroup>
     <PublishDirectory>$(MSBuildProjectDirectory)\Publish</PublishDirectory>
     <ZipDirectory>$(MSBuildProjectDirectory)\zip</ZipDirectory>
   </PropertyGroup>
-
   <Target Name="Zip"
           Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <CallTarget Targets="Create Zip Folder" />
@@ -18,12 +16,10 @@
     <CallTarget Targets="Zip Unity Package" />
     <CallTarget Targets="Delete Publish Folder" />
   </Target>
-
   <Target Name="Create Zip Folder">
     <MakeDir Directories="$(ZipDirectory)"
              Condition="!Exists('$(ZipDirectory)')" />
   </Target>
-
   <Target Name="Zip Source"
           Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
     <MakeDir Directories="$(PublishDirectory)\Source"
@@ -45,7 +41,6 @@
     <RemoveDir Directories="$(PublishDirectory)\Source"
                Condition="Exists('$(PublishDirectory)\Source')" />
   </Target>
-
   <Target Name="Zip HTTP Client">
     <RemoveDir Directories="$(PublishDirectory)\Http.Client"
                Condition="Exists('$(PublishDirectory)\Http.Client')" />
@@ -68,7 +63,6 @@
     <RemoveDir Directories="$(PublishDirectory)\Http.Client"
                Condition="Exists('$(PublishDirectory)\Http.Client')" />
   </Target>
-
   <Target Name="Zip Unit Testing">
     <RemoveDir Directories="$(PublishDirectory)\Testing.Unit"
                Condition="Exists('$(PublishDirectory)\Testing.Unit')" />
@@ -91,7 +85,6 @@
     <RemoveDir Directories="$(PublishDirectory)\Testing.Unit"
                Condition="Exists('$(PublishDirectory)\Testing.Unit')" />
   </Target>
-
   <Target Name="Zip Autofac Package">
     <MakeDir Directories="$(PublishDirectory)\Autofac"
              Condition="!Exists('$(PublishDirectory)\Autofac')" />
@@ -123,7 +116,6 @@
     <RemoveDir Directories="$(PublishDirectory)\Autofac"
                Condition="Exists('$(PublishDirectory)\Autofac')" />
   </Target>
-
   <Target Name="Zip Castle Windsor Package">
     <MakeDir Directories="$(PublishDirectory)\CastleWindsor"
              Condition="!Exists('$(PublishDirectory)\CastleWindsor')" />
@@ -152,7 +144,6 @@
     <RemoveDir Directories="$(PublishDirectory)\CastleWindsor"
                Condition="Exists('$(PublishDirectory)\CastleWindsor')" />
   </Target>
-
   <Target Name="Zip StructureMap Package">
     <MakeDir Directories="$(PublishDirectory)\StructureMap"
              Condition="!Exists('$(PublishDirectory)\StructureMap')" />
@@ -181,7 +172,6 @@
     <RemoveDir Directories="$(PublishDirectory)\StructureMap"
                Condition="Exists('$(PublishDirectory)\StructureMap')" />
   </Target>
-
   <Target Name="Zip Unity Package">
     <MakeDir Directories="$(PublishDirectory)\Unity"
              Condition="!Exists('$(PublishDirectory)\Unity')" />
@@ -216,10 +206,8 @@
     <RemoveDir Directories="$(PublishDirectory)\Unity"
                Condition="Exists('$(PublishDirectory)\Unity')" />
   </Target>
-
   <Target Name="Delete Publish Folder">
     <RemoveDir Directories="$(PublishDirectory)"
                Condition="Exists('$(PublishDirectory)')" />
   </Target>
-
 </Project>

@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<ProjectGuid>{9A604E09-0CC1-4E81-9C4B-137DC35FDE7A}</ProjectGuid>
-		<AssemblyName>Cavity.TaskManagement.Facts</AssemblyName>
-	</PropertyGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-		<Compile Include="Models\ITask.Facts.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Core\Core.csproj">
-			<Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-			<Name>Core</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\TaskManagement\TaskManagement.csproj">
-			<Project>{B3D39F6B-980E-4B0F-B58E-BF295A936B2C}</Project>
-			<Name>TaskManagement</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
-			<Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
-			<Name>Testing.Unit</Name>
-		</ProjectReference>
-	</ItemGroup>
-	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
-	<Import Project="$(SolutionDir)Build\Data.Project"/>
-	<Import Project="$(SolutionDir)Build\Facts.Project"/>
-	<!--
+<Project ToolsVersion="4.0"
+         DefaultTargets="Build"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{9A604E09-0CC1-4E81-9C4B-137DC35FDE7A}</ProjectGuid>
+    <AssemblyName>Cavity.TaskManagement.Facts</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Models\ITask.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskManagement\TaskManagement.csproj">
+      <Project>{B3D39F6B-980E-4B0F-B58E-BF295A936B2C}</Project>
+      <Name>TaskManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
+      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
+      <Name>Testing.Unit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Build\Data.Project" />
+  <Import Project="$(SolutionDir)Build\Facts.Project" />
+  <!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

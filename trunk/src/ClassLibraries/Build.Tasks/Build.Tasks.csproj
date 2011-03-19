@@ -1,60 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<ProjectGuid>{0FF43960-7762-46A3-BA82-DBA2161DBAC9}</ProjectGuid>
-		<AssemblyName>Cavity.Build.Tasks</AssemblyName>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="Microsoft.Build.Framework"/>
-	</ItemGroup>
-	<Choose>
-		<When Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
-			<ItemGroup>
-				<Reference Include="Microsoft.Build.Utilities"/>
-			</ItemGroup>
-		</When>
-		<When Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
-			<ItemGroup>
-				<Reference Include="Microsoft.Build.Utilities.v3.5"/>
-			</ItemGroup>
-		</When>
-		<Otherwise>
-			<ItemGroup>
-				<Reference Include="Microsoft.Build.Utilities.v4.0"/>
-			</ItemGroup>
-		</Otherwise>
-	</Choose>
-	<ItemGroup>
-		<Compile Include="Properties\Resources.Designer.cs">
-			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
-			<DependentUpon>Resources.resx</DependentUpon>
-		</Compile>
-		<Compile Include="Build\CSharpProjectCompliance.cs"/>
-		<Compile Include="Build\LexiconTidy.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="Cavity.Build.Tasks.Targets">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<EmbeddedResource Include="Properties\Resources.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Core\Core.csproj">
-			<Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-			<Name>Core</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\Domain\Domain.csproj">
-			<Project>{2494FF0C-7ABE-4F07-A66B-D209B061CD58}</Project>
-			<Name>Domain</Name>
-		</ProjectReference>
-	</ItemGroup>
-	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
-	<Import Project="$(SolutionDir)Build\Code.Project"/>
-	<!--
+<Project ToolsVersion="4.0"
+         DefaultTargets="Build"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{0FF43960-7762-46A3-BA82-DBA2161DBAC9}</ProjectGuid>
+    <AssemblyName>Cavity.Build.Tasks</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
+  </ItemGroup>
+  <Choose>
+    <When Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
+      <ItemGroup>
+        <Reference Include="Microsoft.Build.Utilities" />
+      </ItemGroup>
+    </When>
+    <When Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
+      <ItemGroup>
+        <Reference Include="Microsoft.Build.Utilities.v3.5" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.Build.Utilities.v4.0" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Build\CSharpProjectCompliance.cs" />
+    <Compile Include="Build\LexiconTidy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Cavity.Build.Tasks.Targets">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{2494FF0C-7ABE-4F07-A66B-D209B061CD58}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Build\Code.Project" />
+  <!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

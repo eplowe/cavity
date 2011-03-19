@@ -1,81 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project InitialTargets="Prepare" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<Target Name="Prepare">
-		<ConvertToAbsolutePath Paths="$(TrunkDir)">
-			<Output TaskParameter="AbsolutePaths" PropertyName="TrunkDir"/>
-		</ConvertToAbsolutePath>
-	</Target>
-	<PropertyGroup>
-		<TrunkDir>$(SolutionDir)..</TrunkDir>
-		<TroveDir>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)</TroveDir>
-	</PropertyGroup>
-	<PropertyGroup>
-		<FileAlignment>512</FileAlignment>
-		<ProductVersion>8.0.30703</ProductVersion>
-		<SchemaVersion>2.0</SchemaVersion>
-	</PropertyGroup>
-	<PropertyGroup>
-		<AssemblyOriginatorKeyFile>$(SolutionDir)Build\Cavity.snk</AssemblyOriginatorKeyFile>
-		<OutputPath Condition=" '$(OutputPath)' == '' ">bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
-		<OutputType Condition=" '$(OutputType)' == '' ">Library</OutputType>
-		<RootNamespace Condition=" '$(RootNamespace)' == '' ">Cavity</RootNamespace>
-		<SignAssembly Condition=" '$(SignAssembly)' == '' ">true</SignAssembly>
-	</PropertyGroup>
-	<PropertyGroup>
-		<AppDesignerFolder>Properties</AppDesignerFolder>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.0</TargetFrameworkVersion>
-		<TargetFrameworkProfile/>
-	</PropertyGroup>
-	<PropertyGroup>
-		<ErrorReport>prompt</ErrorReport>
-		<RunCodeAnalysis>true</RunCodeAnalysis>
-		<StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
-		<DefineConstants>NET20</DefineConstants>
-		<TargetFrameworkVersionNumber>2.0</TargetFrameworkVersionNumber>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
-		<DefineConstants>NET35</DefineConstants>
-		<TargetFrameworkVersionNumber>3.5</TargetFrameworkVersionNumber>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
-		<DefineConstants>NET40</DefineConstants>
-		<TargetFrameworkVersionNumber>4.0</TargetFrameworkVersionNumber>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="System"/>
-		<Reference Include="System.Configuration"/>
-		<Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-		<Reference Include="System.Xml"/>
-		<Reference Include="Microsoft.Practices.ServiceLocation"/>
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
-		<Reference Include="System.Core"/>
-		<Reference Include="System.Xml.Linq"/>
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
-		<Reference Include="System.Numerics" />
-		<Reference Include="Microsoft.CSharp"/>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build\Version.cs">
-			<Link>Properties\Version.cs</Link>
-		</Compile>
-		<Compile Include="$(SolutionDir)Build\Cavity.cs">
-			<Link>Properties\Cavity.cs</Link>
-		</Compile>
-		<Compile Include="Properties\AssemblyInfo.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="$(SolutionDir)Build\Cavity.snk">
-			<Link>Properties\Cavity.snk</Link>
-		</None>
-	</ItemGroup>
-	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
-	<Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets"/>
-	<Import Project="Compliance.CSharp.targets"/>
+<Project InitialTargets="Prepare"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="Prepare">
+    <ConvertToAbsolutePath Paths="$(TrunkDir)">
+      <Output TaskParameter="AbsolutePaths"
+              PropertyName="TrunkDir" />
+    </ConvertToAbsolutePath>
+  </Target>
+  <PropertyGroup>
+    <TrunkDir>$(SolutionDir)..</TrunkDir>
+    <TroveDir>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)</TroveDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <FileAlignment>512</FileAlignment>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>$(SolutionDir)Build\Cavity.snk</AssemblyOriginatorKeyFile>
+    <OutputPath Condition=" '$(OutputPath)' == '' ">bin\$(Configuration) $(TargetFrameworkVersion)\</OutputPath>
+    <OutputType Condition=" '$(OutputType)' == '' ">Library</OutputType>
+    <RootNamespace Condition=" '$(RootNamespace)' == '' ">Cavity</RootNamespace>
+    <SignAssembly Condition=" '$(SignAssembly)' == '' ">true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ErrorReport>prompt</ErrorReport>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
+    <DefineConstants>NET20</DefineConstants>
+    <TargetFrameworkVersionNumber>2.0</TargetFrameworkVersionNumber>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
+    <DefineConstants>NET35</DefineConstants>
+    <TargetFrameworkVersionNumber>3.5</TargetFrameworkVersionNumber>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
+    <DefineConstants>NET40</DefineConstants>
+    <TargetFrameworkVersionNumber>4.0</TargetFrameworkVersionNumber>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.Practices.ServiceLocation" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Reference Include="System.Numerics" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(SolutionDir)Build\Version.cs">
+      <Link>Properties\Version.cs</Link>
+    </Compile>
+    <Compile Include="$(SolutionDir)Build\Cavity.cs">
+      <Link>Properties\Cavity.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(SolutionDir)Build\Cavity.snk">
+      <Link>Properties\Cavity.snk</Link>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets" />
+  <Import Project="Compliance.CSharp.targets" />
 </Project>

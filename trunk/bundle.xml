@@ -2,32 +2,26 @@
 <Project DefaultTargets="Run"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
          ToolsVersion="4.0">
-
   <ImportGroup>
     <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v2.0\MSBuild.Community.Tasks.Targets" />
     <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v3.5\MSBuild.ExtensionPack.tasks" />
   </ImportGroup>
-
   <ImportGroup>
     <Import Project="$(MSBuildProjectDirectory)\src\Build\Trove.xml" />
     <Import Project="$(MSBuildProjectDirectory)\src\Build\Versioning.xml" />
     <Import Project="$(MSBuildProjectDirectory)\src\Build\Zip.xml" />
   </ImportGroup>
-
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
     <BuildName>$(Configuration) $(TargetFrameworkVersion)</BuildName>
   </PropertyGroup>
-
   <PropertyGroup>
     <ClassLibrariesPath>$(MSBuildProjectDirectory)\src\ClassLibraries</ClassLibrariesPath>
     <ConsoleApplicationsPath>$(MSBuildProjectDirectory)\src\ConsoleApplications</ConsoleApplicationsPath>
   </PropertyGroup>
-
   <Target Name="Run">
     <CallTarget Targets="Versioning" />
     <CallTarget Targets="Trove" />
     <CallTarget Targets="Zip" />
   </Target>
-
 </Project>
