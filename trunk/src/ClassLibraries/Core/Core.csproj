@@ -5,12 +5,6 @@
     <AssemblyName>Cavity.Core</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
-    <Reference Include="System.Numerics" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="$(SolutionDir)Build\Version.cs">
       <Link>Properties\Version.cs</Link>
     </Compile>

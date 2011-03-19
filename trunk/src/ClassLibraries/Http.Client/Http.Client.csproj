@@ -5,9 +5,6 @@
     <AssemblyName>Cavity.Http.Client</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="$(SolutionDir)Build\Version.cs">
       <Link>Properties\Version.cs</Link>
     </Compile>

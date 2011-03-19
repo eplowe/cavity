@@ -6,9 +6,6 @@
     <CodeAnalysisRuleSet>$(SolutionDir)Build\Facts.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="Moq" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
       <HintPath>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)\Moq.dll</HintPath>
     </Reference>

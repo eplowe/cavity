@@ -13,9 +13,6 @@
       <HintPath>$(TrunkDir)\lib\trove\Framework\v2.0\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
-    <Reference Include="System.Numerics" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="$(SolutionDir)Build\Version.cs">
       <Link>Properties\Version.cs</Link>
