@@ -115,7 +115,6 @@
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Build\Code.Project"/>
   <!--

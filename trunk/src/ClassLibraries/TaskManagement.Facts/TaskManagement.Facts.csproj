@@ -4,12 +4,6 @@
 		<ProjectGuid>{9A604E09-0CC1-4E81-9C4B-137DC35FDE7A}</ProjectGuid>
 		<AssemblyName>Cavity.TaskManagement.Facts</AssemblyName>
 	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="System.Data"/>
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-		<Reference Include="System.Data.DataSetExtensions"/>
-	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Compile Include="Models\ITask.Facts.cs"/>
 	</ItemGroup>
@@ -28,6 +22,7 @@
 		</ProjectReference>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
+	<Import Project="$(SolutionDir)Build\Data.Project"/>
 	<Import Project="$(SolutionDir)Build\Facts.Project"/>
 	<!--
   <Target Name="BeforeBuild">

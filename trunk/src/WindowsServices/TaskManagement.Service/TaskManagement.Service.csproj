@@ -6,11 +6,7 @@
 		<OutputType>WinExe</OutputType>
 	</PropertyGroup>
 	<ItemGroup>
-		<Reference Include="System.Data"/>
 		<Reference Include="System.ServiceProcess"/>
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-		<Reference Include="System.Data.DataSetExtensions"/>
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="Program.cs"/>
@@ -32,6 +28,7 @@
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\x86.Project"/>
 	<Import Project="$(SolutionDir)Build\Code.Project"/>
+	<Import Project="$(SolutionDir)Build\Data.Project"/>
 	<!--
   <Target Name="BeforeBuild">
   </Target>
