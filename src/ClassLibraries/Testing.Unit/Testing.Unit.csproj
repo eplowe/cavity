@@ -7,9 +7,6 @@
   <ItemGroup>
     <Reference Include="System.Transactions" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
-    <Reference Include="System.Numerics" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="$(SolutionDir)Build\Version.cs">
       <Link>Properties\Version.cs</Link>

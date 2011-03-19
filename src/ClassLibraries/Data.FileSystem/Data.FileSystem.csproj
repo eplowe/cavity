@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{3BA291B3-9F79-45B2-BC10-115F8438562E}</ProjectGuid>
+    <AssemblyName>Cavity.Data.FileSystem</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(SolutionDir)Build\Version.cs">
+      <Link>Properties\Version.cs</Link>
+    </Compile>
+    <Compile Include="$(SolutionDir)Build\Cavity.cs">
+      <Link>Properties\Cavity.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(SolutionDir)Build\Cavity.snk">
+      <Link>Properties\Cavity.snk</Link>
+    </None>
+    <CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
+      <Link>Properties\Code.dictionary</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
