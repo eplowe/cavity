@@ -41,9 +41,6 @@
 		<Compile Include="Program.cs"/>
 	</ItemGroup>
 	<ItemGroup>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
-			<Link>Properties\Code.dictionary</Link>
-		</CodeAnalysisDictionary>
 		<EmbeddedResource Include="Properties\Resources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -81,6 +78,7 @@
 		</ProjectReference>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\x86.Project"/>
+	<Import Project="$(SolutionDir)Build\Code.Project"/>
 	<!--
   <Target Name="BeforeBuild">
   </Target>

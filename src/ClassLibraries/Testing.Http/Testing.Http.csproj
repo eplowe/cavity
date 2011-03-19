@@ -33,17 +33,13 @@
 		<Compile Include="Net\Response.cs"/>
 	</ItemGroup>
 	<ItemGroup>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
-			<Link>Properties\Code.dictionary</Link>
-		</CodeAnalysisDictionary>
-	</ItemGroup>
-	<ItemGroup>
 		<ProjectReference Include="..\Core\Core.csproj">
 			<Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
 			<Name>Core</Name>
 		</ProjectReference>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
+	<Import Project="$(SolutionDir)Build\Code.Project"/>
 	<!--
   <Target Name="BeforeBuild">
   </Target>

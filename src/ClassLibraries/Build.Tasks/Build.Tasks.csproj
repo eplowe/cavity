@@ -37,9 +37,6 @@
 		<None Include="Cavity.Build.Tasks.Targets">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
-			<Link>Properties\Code.dictionary</Link>
-		</CodeAnalysisDictionary>
 		<EmbeddedResource Include="Properties\Resources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -56,6 +53,7 @@
 		</ProjectReference>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
+	<Import Project="$(SolutionDir)Build\Code.Project"/>
 	<!--
   <Target Name="BeforeBuild">
   </Target>

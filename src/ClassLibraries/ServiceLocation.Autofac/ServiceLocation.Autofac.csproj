@@ -19,17 +19,13 @@
 		<Compile Include="Configuration\XmlServiceLocatorProvider.cs"/>
 	</ItemGroup>
 	<ItemGroup>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
-			<Link>Properties\Code.dictionary</Link>
-		</CodeAnalysisDictionary>
-	</ItemGroup>
-	<ItemGroup>
 		<ProjectReference Include="..\ServiceLocation\ServiceLocation.csproj">
 			<Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
 			<Name>ServiceLocation</Name>
 		</ProjectReference>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
+	<Import Project="$(SolutionDir)Build\Code.Project"/>
 	<!--
   <Target Name="BeforeBuild">
   </Target>

@@ -16,17 +16,13 @@
 	</Target>
 	
 	<Target Name="csproj : required settings" Condition="$(ProjectExt) == '.csproj'">
-		<!-- Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:ItemGroup/b:CodeAnalysisDictionary[@Include]/b:Link[text()])"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:ItemGroup/b:Compile[@Include='Properties\AssemblyInfo.cs'])"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:ItemGroup/b:Compile[@Include='%24(SolutionDir)Build\Cavity.cs']/b:Link[text()='Properties\Cavity.cs'])"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:ItemGroup/b:Compile[@Include='%24(SolutionDir)Build\Version.cs']/b:Link[text()='Properties\Version.cs'])"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:ItemGroup/b:None[@Include='%24(SolutionDir)Build\Cavity.snk']/b:Link[text()='Properties\Cavity.snk'])"/ -->
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:PropertyGroup/b:AssemblyName[text()])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:PropertyGroup/b:ProjectGuid[text()])"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=(count(//b:Import[@Project='%24(SolutionDir)Build\Code.Project']) + count(//b:Import[@Project='%24(SolutionDir)Build\Facts.Project']))"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=(count(//b:Import[@Project='%24(SolutionDir)Build\AnyCPU.Project']) + count(//b:Import[@Project='%24(SolutionDir)Build\x86.Project']))"/>
 	</Target>
 	
 	<Target Name="csproj : optional settings" Condition="$(ProjectExt) == '.csproj'">
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:CodeAnalysisRuleSet[text()='%24(SolutionDir)Build\Code.ruleset'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:OutputPath[text()='bin\%24(Configuration) %24(TargetFrameworkVersion)\'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:OutputType[text()='Library'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:RootNamespace[text()='Cavity'])"/>
@@ -34,20 +30,25 @@
 	</Target>
 	
 	<Target Name="csproj : shared settings" Condition="$(ProjectExt) == '.csproj'">
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:AppDesignerFolder)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:AssemblyOriginatorKeyFile)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:Configuration)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:ErrorReport)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:FileAlignment)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:ProductVersion)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:RunCodeAnalysis)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:SchemaVersion)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:StyleCopTreatErrorsAsWarnings)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:TargetFrameworkProfile)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:TargetFrameworkVersion)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:TargetFrameworkVersionNumber)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:TreatWarningsAsErrors)"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:PropertyGroup/b:WarningLevel)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:AppDesignerFolder)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:AssemblyOriginatorKeyFile)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:CodeAnalysisDictionary)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:Compile[@Include='Properties\AssemblyInfo.cs'])"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:Compile[@Include='%24(SolutionDir)Build\Cavity.cs'])"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:Compile[@Include='%24(SolutionDir)Build\Version.cs'])"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:Configuration)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ErrorReport)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:FileAlignment)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:None[@Include='%24(SolutionDir)Build\Cavity.snk'])"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:ProductVersion)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:RunCodeAnalysis)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:SchemaVersion)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:StyleCopTreatErrorsAsWarnings)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:TargetFrameworkProfile)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:TargetFrameworkVersion)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:TargetFrameworkVersionNumber)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:TreatWarningsAsErrors)"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="0=count(//b:WarningLevel)"/>
 	</Target>
 	
 	<Target Name="csproj : references" Condition="$(ProjectExt) == '.csproj'">

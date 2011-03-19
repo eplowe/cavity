@@ -28,7 +28,6 @@
 		<TargetFrameworkProfile/>
 	</PropertyGroup>
 	<PropertyGroup>
-		<CodeAnalysisRuleSet Condition=" '$(CodeAnalysisRuleSet)' == '' ">$(SolutionDir)Build\Code.ruleset</CodeAnalysisRuleSet>
 		<ErrorReport>prompt</ErrorReport>
 		<RunCodeAnalysis>true</RunCodeAnalysis>
 		<StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
