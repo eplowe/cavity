@@ -6,12 +6,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="Microsoft.Build.Framework"/>
-		<Reference Include="Moq" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-			<HintPath>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)\Moq.dll</HintPath>
-		</Reference>
-		<Reference Include="xunit">
-			<HintPath>$(TrunkDir)\lib\trove\Framework\v2.0\xunit.dll</HintPath>
-		</Reference>
 	</ItemGroup>
 	<Choose>
 		<When Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
