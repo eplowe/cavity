@@ -62,6 +62,20 @@
 		<Reference Include="System.Numerics" />
 		<Reference Include="Microsoft.CSharp"/>
 	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="$(SolutionDir)Build\Version.cs">
+			<Link>Properties\Version.cs</Link>
+		</Compile>
+		<Compile Include="$(SolutionDir)Build\Cavity.cs">
+			<Link>Properties\Cavity.cs</Link>
+		</Compile>
+		<Compile Include="Properties\AssemblyInfo.cs"/>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="$(SolutionDir)Build\Cavity.snk">
+			<Link>Properties\Cavity.snk</Link>
+		</None>
+	</ItemGroup>
 	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 	<Import Project="$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets"/>
 	<Import Project="Compliance.CSharp.targets"/>

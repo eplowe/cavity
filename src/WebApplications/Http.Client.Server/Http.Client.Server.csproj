@@ -30,16 +30,9 @@
 		<Reference Include="System.Data.DataSetExtensions"/>
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build\Version.cs">
-			<Link>Properties\Version.cs</Link>
-		</Compile>
-		<Compile Include="$(SolutionDir)Build\Cavity.cs">
-			<Link>Properties\Cavity.cs</Link>
-		</Compile>
 		<Compile Include="Global.asax.cs">
 			<DependentUpon>Global.asax</DependentUpon>
 		</Compile>
-		<Compile Include="Properties\AssemblyInfo.cs"/>
 	</ItemGroup>
 	<ItemGroup>
 		<Content Include="Global.asax"/>
@@ -63,17 +56,13 @@
 		<Folder Include="Scripts\"/>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="$(SolutionDir)Build\Cavity.snk">
-			<Link>Properties\Cavity.snk</Link>
-		</None>
 		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
 			<Link>Properties\Code.dictionary</Link>
 		</CodeAnalysisDictionary>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
 	<Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets"/>
-	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+	<!--
   <Target Name="BeforeBuild">
   </Target> -->
 	<Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

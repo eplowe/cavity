@@ -16,11 +16,11 @@
 	</Target>
 	
 	<Target Name="csproj : required settings" Condition="$(ProjectExt) == '.csproj'">
-		<!-- Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:ItemGroup/b:CodeAnalysisDictionary[@Include]/b:Link[text()])"/ -->
+		<!-- Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:ItemGroup/b:CodeAnalysisDictionary[@Include]/b:Link[text()])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:ItemGroup/b:Compile[@Include='Properties\AssemblyInfo.cs'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:ItemGroup/b:Compile[@Include='%24(SolutionDir)Build\Cavity.cs']/b:Link[text()='Properties\Cavity.cs'])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:ItemGroup/b:Compile[@Include='%24(SolutionDir)Build\Version.cs']/b:Link[text()='Properties\Version.cs'])"/>
-		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:ItemGroup/b:None[@Include='%24(SolutionDir)Build\Cavity.snk']/b:Link[text()='Properties\Cavity.snk'])"/>
+		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:ItemGroup/b:None[@Include='%24(SolutionDir)Build\Cavity.snk']/b:Link[text()='Properties\Cavity.snk'])"/ -->
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:PropertyGroup/b:AssemblyName[text()])"/>
 		<Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)" XPath="1=count(//b:PropertyGroup/b:ProjectGuid[text()])"/>
 	</Target>

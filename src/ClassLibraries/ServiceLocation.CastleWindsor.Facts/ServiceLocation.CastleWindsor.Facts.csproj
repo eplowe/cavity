@@ -19,15 +19,6 @@
 			<HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\CommonServiceLocator.WindsorAdapter.dll</HintPath>
 		</Reference>
 	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build\Version.cs">
-			<Link>Properties\Version.cs</Link>
-		</Compile>
-		<Compile Include="$(SolutionDir)Build\Cavity.cs">
-			<Link>Properties\Cavity.cs</Link>
-		</Compile>
-		<Compile Include="Properties\AssemblyInfo.cs"/>
-	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Compile Include="Configuration\XmlServiceLocatorProvider.Facts.cs"/>
 	</ItemGroup>
@@ -50,9 +41,6 @@
 		</ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="$(SolutionDir)Build\Cavity.snk">
-			<Link>Properties\Cavity.snk</Link>
-		</None>
 		<None Include="app.config">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -62,8 +50,7 @@
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
 	<Import Project="$(SolutionDir)Build\Facts.Project"/>
-	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+	<!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

@@ -5,13 +5,6 @@
 		<AssemblyName>Cavity.Domain</AssemblyName>
 	</PropertyGroup>
 	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build\Version.cs">
-			<Link>Properties\Version.cs</Link>
-		</Compile>
-		<Compile Include="$(SolutionDir)Build\Cavity.cs">
-			<Link>Properties\Cavity.cs</Link>
-		</Compile>
-		<Compile Include="Properties\AssemblyInfo.cs"/>
 		<Compile Include="Collections\Generic\INormalizationComparer.cs"/>
 		<Compile Include="Collections\Generic\NormalizationComparer.cs"/>
 	</ItemGroup>
@@ -36,13 +29,9 @@
 		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
 			<Link>Properties\Code.dictionary</Link>
 		</CodeAnalysisDictionary>
-		<None Include="$(SolutionDir)Build\Cavity.snk">
-			<Link>Properties\Cavity.snk</Link>
-		</None>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
-	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+	<!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

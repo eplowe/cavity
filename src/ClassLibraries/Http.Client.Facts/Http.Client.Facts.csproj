@@ -4,15 +4,6 @@
     <ProjectGuid>{0A237283-3525-405E-B571-79D40170C763}</ProjectGuid>
     <AssemblyName>Cavity.Http.Client.Facts</AssemblyName>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="$(SolutionDir)Build\Version.cs">
-      <Link>Properties\Version.cs</Link>
-    </Compile>
-    <Compile Include="$(SolutionDir)Build\Cavity.cs">
-      <Link>Properties\Cavity.cs</Link>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Net\HttpDate.Facts.cs" />
     <Compile Include="Net\HttpMessage.Derived.cs" />
@@ -41,11 +32,6 @@
     <Compile Include="Net\IUserAgent.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(SolutionDir)Build\Cavity.snk">
-      <Link>Properties\Cavity.snk</Link>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
       <Name>Core</Name>
@@ -61,8 +47,7 @@
   </ItemGroup>
   <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Build\Facts.Project"/>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+  <!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

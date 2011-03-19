@@ -13,13 +13,6 @@
 		<Reference Include="System.Data.DataSetExtensions"/>
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build\Version.cs">
-			<Link>Properties\Version.cs</Link>
-		</Compile>
-		<Compile Include="$(SolutionDir)Build\Cavity.cs">
-			<Link>Properties\Cavity.cs</Link>
-		</Compile>
-		<Compile Include="Properties\AssemblyInfo.cs"/>
 		<Compile Include="Program.cs"/>
 		<Compile Include="TaskManagementService.cs">
 			<SubType>Component</SubType>
@@ -29,9 +22,6 @@
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="$(SolutionDir)Build\Cavity.snk">
-			<Link>Properties\Cavity.snk</Link>
-		</None>
 		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
 			<Link>Properties\Code.dictionary</Link>
 		</CodeAnalysisDictionary>
@@ -44,8 +34,7 @@
 		</ProjectReference>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\x86.Project"/>
-	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+	<!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<ProjectGuid>{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}</ProjectGuid>
 		<AssemblyName>Cavity.Build.Tasks.Facts</AssemblyName>
-		<CodeAnalysisRuleSet>$(SolutionDir)Build\Facts.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="Microsoft.Build.Framework"/>
@@ -31,15 +30,6 @@
 			</ItemGroup>
 		</Otherwise>
 	</Choose>
-	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build\Version.cs">
-			<Link>Properties\Version.cs</Link>
-		</Compile>
-		<Compile Include="$(SolutionDir)Build\Cavity.cs">
-			<Link>Properties\Cavity.cs</Link>
-		</Compile>
-		<Compile Include="Properties\AssemblyInfo.cs"/>
-	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Compile Include="Build\CSharpProjectCompliance.Facts.cs"/>
 		<Compile Include="Build\LexiconTidy.Facts.cs"/>
@@ -63,15 +53,11 @@
 		</ProjectReference>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="$(SolutionDir)Build\Cavity.snk">
-			<Link>Properties\Cavity.snk</Link>
-		</None>
 		<EmbeddedResource Include="Build\CSharpProjectCompliance.xml"/>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
 	<Import Project="$(SolutionDir)Build\Facts.Project"/>
-	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+	<!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
