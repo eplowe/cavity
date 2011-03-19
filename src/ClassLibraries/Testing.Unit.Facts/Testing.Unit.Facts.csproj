@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0"
-         DefaultTargets="Build"
-         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{DEE68EFC-926D-4FBF-9ACB-E5539E2313E6}</ProjectGuid>
     <AssemblyName>Cavity.Testing.Unit.Facts</AssemblyName>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Data\RandomObject.cs" />
-  </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Data\DummyRepository`1.cs" />
     <Compile Include="Data\FakeRepository`1.Facts.cs" />
     <Compile Include="Data\IVerifyRepository`1.Facts.cs" />
+    <Compile Include="Data\RandomObject.Facts.cs" />
     <Compile Include="Data\RepositoryDeleteUrn`1.Facts.cs" />
     <Compile Include="Data\RepositoryDeleteUrnNotFound`1.Facts.cs" />
     <Compile Include="Data\RepositoryDeleteUrnNull`1.Facts.cs" />

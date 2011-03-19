@@ -38,31 +38,42 @@
                 return false;
             }
 
-#if !NET20
+#if NET20
+            var result = true;
+            foreach (var project in projects)
+            {
+                if (Execute(project))
+                {
+                    continue;
+                }
+
+                if (BuildEngine.ContinueOnError)
+                {
+                    result = false;
+                    continue;
+                }
+
+                return false;
+            }
+#else
             if (0 == projects.Count())
             {
                 Log.LogWarning(Resources.CSharpProjectCompliance_PathsEmpty_Message);
                 return false;
             }
-#endif
 
-#if NET20
             var result = true;
-            foreach (var project in projects)
+            foreach (var project in projects.Where(project => !Execute(project)))
             {
-                if (!Execute(project))
+                if (BuildEngine.ContinueOnError)
                 {
                     result = false;
+                    continue;
                 }
-            }
-#else
-            var result = false;
-            if (0 == projects.Where(project => !Execute(project)).Count())
-            {
-                result = true;
+
+                return false;
             }
 #endif
-
             return result;
         }
 
@@ -105,30 +116,6 @@
                              XPathNavigator navigator,
                              IXmlNamespaceResolver namespaces)
         {
-            ////var result = true;
-
-            ////foreach (var xpath in new[]
-            ////{
-            ////    "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])",
-            ////    "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:TreatWarningsAsErrors[text()='true'])])",
-            ////    "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:RunCodeAnalysis[text()='true'])])",
-            ////    "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:CodeAnalysisRuleSet[text()])])",
-            ////    "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:ErrorReport[text()='prompt'])])",
-            ////    "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:SignAssembly[text()])",
-            ////    "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:AssemblyOriginatorKeyFile[text()])",
-            ////    "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:AppDesignerFolder[text()='Properties'])",
-            ////    "1=count(/b:Project/b:PropertyGroup[not(@Condition)]/b:StyleCopTreatErrorsAsWarnings[text()='false'])",
-            ////    @"1=count(/b:Project/b:Import[@Project='$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.3\Microsoft.StyleCop.targets'])",
-            ////    @"1=count(/b:Project/b:ItemGroup/b:Compile[@Include='Properties\AssemblyInfo.cs'])",
-            ////    @"1=count(/b:Project/b:ItemGroup/b:Compile[@Include='..\..\Build.cs']/b:Link[text()='Properties\Build.cs'])",
-            ////    @"1=count(/b:Project/b:ItemGroup/b:CodeAnalysisDictionary[@Include]/b:Link[text()])"
-            ////})
-            ////{
-            ////    if (!Execute(file, navigator, namespaces, xpath))
-            ////    {
-            ////        result = false;
-            ////    }
-            ////}
 #if NET20
             if (!(bool)navigator.Evaluate(XPath, namespaces))
             {
@@ -142,7 +129,6 @@
                 return false;
             }
 #endif
-
             return true;
         }
     }

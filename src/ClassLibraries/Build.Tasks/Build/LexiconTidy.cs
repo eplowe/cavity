@@ -41,7 +41,19 @@
                 return false;
             }
 
-            return paths.All(Execute);
+            var result = true;
+            foreach (var path in paths.Where(path => !Execute(path)))
+            {
+                if (BuildEngine.ContinueOnError)
+                {
+                    result = false;
+                    continue;
+                }
+
+                return false;
+            }
+
+            return result;
         }
 
         private bool Execute(ITaskItem path)
