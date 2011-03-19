@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<CodeAnalysisRuleSet>$(SolutionDir)Build\Facts.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="Moq" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+			<HintPath>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)\Moq.dll</HintPath>
+		</Reference>
+		<Reference Include="xunit">
+			<HintPath>$(TrunkDir)\lib\trove\Framework\v2.0\xunit.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Facts.dictionary">
+			<Link>Properties\Facts.dictionary</Link>
+		</CodeAnalysisDictionary>
+	</ItemGroup>
+</Project>

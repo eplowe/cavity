@@ -3,16 +3,7 @@
 	<PropertyGroup>
 		<ProjectGuid>{D0299C27-537C-42CE-B313-9F4D34EF8395}</ProjectGuid>
 		<AssemblyName>Cavity.ServiceLocation.Autofac.Facts</AssemblyName>
-		<CodeAnalysisRuleSet>$(SolutionDir)Build\Facts.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="Moq" Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-			<HintPath>$(TrunkDir)\lib\trove\Framework\$(TargetFrameworkVersion)\Moq.dll</HintPath>
-		</Reference>
-		<Reference Include="xunit">
-			<HintPath>$(TrunkDir)\lib\trove\Framework\v2.0\xunit.dll</HintPath>
-		</Reference>
-	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Reference Include="Autofac">
 			<HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\Autofac.dll</HintPath>
@@ -35,11 +26,6 @@
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Compile Include="Configuration\XmlServiceLocatorProvider.Facts.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Facts.dictionary">
-			<Link>Properties\Facts.dictionary</Link>
-		</CodeAnalysisDictionary>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Example\Example.csproj">
@@ -71,6 +57,7 @@
 		</None>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
+	<Import Project="$(SolutionDir)Build\Facts.Project"/>
 	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

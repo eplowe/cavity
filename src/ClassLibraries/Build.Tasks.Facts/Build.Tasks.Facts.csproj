@@ -66,12 +66,10 @@
 		<None Include="$(SolutionDir)Build\Cavity.snk">
 			<Link>Properties\Cavity.snk</Link>
 		</None>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Facts.dictionary">
-			<Link>Properties\Facts.dictionary</Link>
-		</CodeAnalysisDictionary>
 		<EmbeddedResource Include="Build\CSharpProjectCompliance.xml"/>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
+	<Import Project="$(SolutionDir)Build\Facts.Project"/>
 	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
