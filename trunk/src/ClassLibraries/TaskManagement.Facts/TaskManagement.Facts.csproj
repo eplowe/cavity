@@ -10,22 +10,8 @@
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Reference Include="System.Data.DataSetExtensions"/>
 	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build\Version.cs">
-			<Link>Properties\Version.cs</Link>
-		</Compile>
-		<Compile Include="$(SolutionDir)Build\Cavity.cs">
-			<Link>Properties\Cavity.cs</Link>
-		</Compile>
-		<Compile Include="Properties\AssemblyInfo.cs"/>
-	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Compile Include="Models\ITask.Facts.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="$(SolutionDir)Build\Cavity.snk">
-			<Link>Properties\Cavity.snk</Link>
-		</None>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Core\Core.csproj">
@@ -43,8 +29,7 @@
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
 	<Import Project="$(SolutionDir)Build\Facts.Project"/>
-	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+	<!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

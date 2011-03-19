@@ -4,24 +4,10 @@
 		<ProjectGuid>{9E656B3A-FF1E-4CA4-8E6B-4BD7ADF1809F}</ProjectGuid>
 		<AssemblyName>Cavity.ServiceLocation.Facts</AssemblyName>
 	</PropertyGroup>
-	<ItemGroup>
-		<Compile Include="$(SolutionDir)Build\Version.cs">
-			<Link>Properties\Version.cs</Link>
-		</Compile>
-		<Compile Include="$(SolutionDir)Build\Cavity.cs">
-			<Link>Properties\Cavity.cs</Link>
-		</Compile>
-		<Compile Include="Properties\AssemblyInfo.cs"/>
-	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
 		<Compile Include="Configuration\ISetLocatorProvider.Dummy.cs"/>
 		<Compile Include="Configuration\ServiceLocation.Facts.cs"/>
 		<Compile Include="Configuration\ISetLocatorProvider.Facts.cs"/>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="$(SolutionDir)Build\Cavity.snk">
-			<Link>Properties\Cavity.snk</Link>
-		</None>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\ServiceLocation\ServiceLocation.csproj">
@@ -35,8 +21,7 @@
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
 	<Import Project="$(SolutionDir)Build\Facts.Project"/>
-	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+	<!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
