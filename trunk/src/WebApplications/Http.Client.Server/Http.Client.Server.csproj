@@ -55,12 +55,8 @@
 		<Folder Include="Models\"/>
 		<Folder Include="Scripts\"/>
 	</ItemGroup>
-	<ItemGroup>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
-			<Link>Properties\Code.dictionary</Link>
-		</CodeAnalysisDictionary>
-	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\AnyCPU.Project"/>
+	<Import Project="$(SolutionDir)Build\Code.Project"/>
 	<Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets"/>
 	<!--
   <Target Name="BeforeBuild">

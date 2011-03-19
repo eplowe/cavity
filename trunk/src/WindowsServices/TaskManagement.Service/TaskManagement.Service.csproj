@@ -22,9 +22,6 @@
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
-		<CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
-			<Link>Properties\Code.dictionary</Link>
-		</CodeAnalysisDictionary>
 		<None Include="app.config"/>
 	</ItemGroup>
 	<ItemGroup>
@@ -34,6 +31,7 @@
 		</ProjectReference>
 	</ItemGroup>
 	<Import Project="$(SolutionDir)Build\x86.Project"/>
+	<Import Project="$(SolutionDir)Build\Code.Project"/>
 	<!--
   <Target Name="BeforeBuild">
   </Target>

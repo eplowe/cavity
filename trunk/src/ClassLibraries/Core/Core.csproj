@@ -5,13 +5,13 @@
     <AssemblyName>Cavity.Core</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Data\IEntity.cs" />
-    <Compile Include="Security\Cryptography\MD5Hash.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Data\IEntity.cs" />
+    <Compile Include="Security\Cryptography\MD5Hash.cs" />
     <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
     <Compile Include="Configuration\ConfiguredDirectory.cs" />
     <Compile Include="Data\RepositoryException.cs" />
@@ -55,9 +55,6 @@
     <Compile Include="WhiteSpace.cs" />
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="$(SolutionDir)Build\Code.dictionary">
-      <Link>Properties\Code.dictionary</Link>
-    </CodeAnalysisDictionary>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -65,6 +62,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Build\Code.Project"/>
   <!--
   <Target Name="BeforeBuild">
   </Target>
