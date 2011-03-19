@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0"
-         DefaultTargets="Build"
-         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{9A669DC2-A0AE-490F-81BC-44CF53881124}</ProjectGuid>
     <AssemblyName>Cavity.Data.FileSystem.Facts</AssemblyName>
@@ -15,6 +13,17 @@
       <Project>{3BA291B3-9F79-45B2-BC10-115F8438562E}</Project>
       <Name>Data.FileSystem</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
+      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
+      <Name>Testing.Unit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Data\FileRepository`1.Facts.cs" />
+    <Compile Include="IO\RecordFile.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Build\Facts.Project" />
