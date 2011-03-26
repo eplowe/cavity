@@ -15,8 +15,10 @@
   </ImportGroup>
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v4.0</TargetFrameworkVersion>
     <BuildName>$(Configuration) $(TargetFrameworkVersion)</BuildName>
-  </PropertyGroup>
+  
+</PropertyGroup>
   <Target Name="Run">
     <CallTarget Targets="Clean" />
     <CallTarget Targets="Versioning" />
@@ -27,7 +29,7 @@
   <Target Name="Build">
     <MSBuild Projects="$(MSBuildProjectDirectory)\src\Cavity.sln"
              Targets="Rebuild"
-             Properties="Configuration=$(Configuration)">
+             Properties="Configuration=$(Configuration);TargetFrameworkVersion=$(TargetFrameworkVersion)">
       <Output TaskParameter="TargetOutputs"
               ItemName="CodeAssemblies" />
     </MSBuild>
