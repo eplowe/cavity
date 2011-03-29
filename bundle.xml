@@ -7,9 +7,8 @@
     <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v3.5\MSBuild.ExtensionPack.tasks" />
   </ImportGroup>
   <ImportGroup>
-    <Import Project="$(MSBuildProjectDirectory)\src\Build\Trove.xml" />
-    <Import Project="$(MSBuildProjectDirectory)\src\Build\Versioning.xml" />
-    <Import Project="$(MSBuildProjectDirectory)\src\Build\Zip.xml" />
+    <Import Project="$(MSBuildProjectDirectory)\msbuild\Trove.xml" />
+    <Import Project="$(MSBuildProjectDirectory)\msbuild\Zip.xml" />
   </ImportGroup>
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
@@ -20,7 +19,6 @@
     <ConsoleApplicationsPath>$(MSBuildProjectDirectory)\src\ConsoleApplications</ConsoleApplicationsPath>
   </PropertyGroup>
   <Target Name="Run">
-    <CallTarget Targets="Versioning" />
     <CallTarget Targets="Trove" />
     <CallTarget Targets="Zip" />
   </Target>

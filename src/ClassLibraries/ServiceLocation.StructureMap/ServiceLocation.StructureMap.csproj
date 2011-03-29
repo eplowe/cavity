@@ -1,20 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0"
          DefaultTargets="Build"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{229D1074-FFB5-46FA-A6E3-75007D98C19A}</ProjectGuid>
     <AssemblyName>Cavity.ServiceLocation.StructureMap</AssemblyName>
+    <RootNamespace>Cavity</RootNamespace>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Reference Include="StructureMap"
                Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' ">
-      <HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\StructureMap.dll</HintPath>
+      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="StructureMapAdapter"
                Condition=" '$(TargetFrameworkVersionNumber)' >= '3.5' ">
-      <HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\StructureMapAdapter.dll</HintPath>
+      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\StructureMapAdapter.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
@@ -26,8 +27,8 @@
       <Name>ServiceLocation</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Build\Code.Project" />
+  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Code.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

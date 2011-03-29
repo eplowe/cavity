@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0"
          DefaultTargets="Build"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -9,23 +9,23 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="$(TrunkDir)\lib\trove\Framework\v3.5\Castle.Core.dll">
+    <Content Include="$(TrunkDirectory)\lib\trove\Framework\v3.5\Castle.Core.dll">
       <Link>Castle.Core.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="$(TrunkDir)\lib\trove\Framework\v3.5\Castle.DynamicProxy2.dll">
+    <Content Include="$(TrunkDirectory)\lib\trove\Framework\v3.5\Castle.DynamicProxy2.dll">
       <Link>Castle.DynamicProxy2.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="$(TrunkDir)\lib\trove\Framework\v3.5\Castle.MicroKernel.dll">
+    <Content Include="$(TrunkDirectory)\lib\trove\Framework\v3.5\Castle.MicroKernel.dll">
       <Link>Castle.MicroKernel.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="$(TrunkDir)\lib\trove\Framework\v3.5\Castle.Windsor.dll">
+    <Content Include="$(TrunkDirectory)\lib\trove\Framework\v3.5\Castle.Windsor.dll">
       <Link>Castle.Windsor.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="$(TrunkDir)\lib\trove\Framework\v3.5\CommonServiceLocator.WindsorAdapter.dll">
+    <Content Include="$(TrunkDirectory)\lib\trove\Framework\v3.5\CommonServiceLocator.WindsorAdapter.dll">
       <Link>CommonServiceLocator.WindsorAdapter.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -79,8 +79,8 @@
       <Name>ServiceLocation</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Build\x86.Project" />
-  <Import Project="$(SolutionDir)Build\Code.Project" />
+  <Import Project="$(SolutionDir)Import\trove\x86.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Code.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

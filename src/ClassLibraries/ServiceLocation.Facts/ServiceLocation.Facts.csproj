@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0"
          DefaultTargets="Build"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{9E656B3A-FF1E-4CA4-8E6B-4BD7ADF1809F}</ProjectGuid>
     <AssemblyName>Cavity.ServiceLocation.Facts</AssemblyName>
+    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Configuration\ISetLocatorProvider.Dummy.cs" />
@@ -21,8 +22,8 @@
       <Name>Testing.Unit</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Build\Facts.Project" />
+  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("Cavity")]
 [assembly: AssemblyProduct("http://code.google.com/p/cavity/")]
-[assembly: AssemblyCopyright("Copyright © 2010 Alan Dean")]
+[assembly: AssemblyCopyright("Copyright © 2010 - 2011 Alan Dean")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en-GB")]

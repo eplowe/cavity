@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0"
          DefaultTargets="Build"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{4E862695-27DA-49EB-B567-586767F731BA}</ProjectGuid>
     <AssemblyName>Cavity.ServiceLocation.Unity</AssemblyName>
+    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Reference Include="Microsoft.Practices.Unity" />
@@ -19,8 +20,8 @@
       <Name>ServiceLocation</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Build\Code.Project" />
+  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Code.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

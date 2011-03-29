@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0"
          DefaultTargets="Build"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{D51419D9-47CB-480F-9BA1-5DA6585D73C7}</ProjectGuid>
     <AssemblyName>Cavity.Testing.Http.Facts</AssemblyName>
+    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Net\HttpResponseContentTypeTest.Facts.cs" />
@@ -48,8 +49,8 @@
       <Name>Testing.Unit</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Build\Facts.Project" />
+  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

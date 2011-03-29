@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0"
          DefaultTargets="Build"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</ProjectGuid>
     <AssemblyName>Cavity.ServiceLocation</AssemblyName>
+    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -21,8 +22,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Build\Code.Project" />
+  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Code.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>
