@@ -3,6 +3,7 @@
   <PropertyGroup>
     <ProjectGuid>{3BA291B3-9F79-45B2-BC10-115F8438562E}</ProjectGuid>
     <AssemblyName>Cavity.Data.FileSystem</AssemblyName>
+    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -17,8 +18,8 @@
   <ItemGroup>
     <Folder Include="Configuration\" />
   </ItemGroup>
-  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Build\Code.Project" />
+  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Code.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

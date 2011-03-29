@@ -1,24 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0"
          DefaultTargets="Build"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{7DD77C51-A1D5-486A-948A-20AA80C4D55E}</ProjectGuid>
     <AssemblyName>Cavity.ServiceLocation.CastleWindsor.Facts</AssemblyName>
+    <RootNamespace>Cavity</RootNamespace>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Reference Include="Castle.Core">
-      <HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\Castle.Core.dll</HintPath>
+      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.MicroKernel">
-      <HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\Castle.MicroKernel.dll</HintPath>
+      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\Castle.MicroKernel.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\Castle.Windsor.dll</HintPath>
+      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="CommonServiceLocator.WindsorAdapter">
-      <HintPath>$(TrunkDir)\lib\trove\Framework\v3.5\CommonServiceLocator.WindsorAdapter.dll</HintPath>
+      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\CommonServiceLocator.WindsorAdapter.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
@@ -50,8 +51,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Build\Facts.Project" />
+  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

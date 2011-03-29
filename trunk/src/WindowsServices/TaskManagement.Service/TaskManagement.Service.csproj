@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0"
          DefaultTargets="Build"
          InitialTargets="Prepare"
@@ -6,6 +6,7 @@
   <PropertyGroup>
     <ProjectGuid>{5033C424-2DB0-4171-82B6-AE08EE0D9FB4}</ProjectGuid>
     <AssemblyName>Cavity.TaskManagement.Service</AssemblyName>
+    <RootNamespace>Cavity</RootNamespace>
     <OutputType>WinExe</OutputType>
   </PropertyGroup>
   <ItemGroup>
@@ -29,9 +30,9 @@
       <Name>TaskManagement</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Build\x86.Project" />
-  <Import Project="$(SolutionDir)Build\Code.Project" />
-  <Import Project="$(SolutionDir)Build\Data.Project" />
+  <Import Project="$(SolutionDir)Import\trove\x86.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Code.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Data.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

@@ -3,35 +3,26 @@
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
          ToolsVersion="4.0">
   <ImportGroup>
-    <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v2.0\xunit.runner.msbuild.tasks.targets" />
     <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v2.0\MSBuild.Community.Tasks.Targets" />
     <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v3.5\MSBuild.ExtensionPack.tasks" />
   </ImportGroup>
   <ImportGroup>
-    <Import Project="$(MSBuildProjectDirectory)\src\Build\Clean.xml" />
-    <Import Project="$(MSBuildProjectDirectory)\src\Build\Deploy.xml" />
-    <Import Project="$(MSBuildProjectDirectory)\src\Build\Test.xml" />
-    <Import Project="$(MSBuildProjectDirectory)\src\Build\Versioning.xml" />
+    <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Build.xml" />
+    <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Clean.xml" />
+    <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Test.xml" />
+    <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Versioning.xml" />
+    <Import Project="$(MSBuildProjectDirectory)\msbuild\Deploy.xml" />
   </ImportGroup>
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
     <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v4.0</TargetFrameworkVersion>
     <BuildName>$(Configuration) $(TargetFrameworkVersion)</BuildName>
-  
-</PropertyGroup>
+  </PropertyGroup>
   <Target Name="Run">
     <CallTarget Targets="Clean" />
     <CallTarget Targets="Versioning" />
-    <CallTarget Targets="Build" />
+    <CallTarget Targets="Rebuild All" />
     <!-- CallTarget Targets="Deploy" Condition="'$(registry:HKEY_LOCAL_MACHINE\Software\Microsoft\InetStp@MajorVersion)'=='7'" / -->
     <CallTarget Targets="Test" />
-  </Target>
-  <Target Name="Build">
-    <MSBuild Projects="$(MSBuildProjectDirectory)\src\Cavity.sln"
-             Targets="Rebuild"
-             Properties="Configuration=$(Configuration);TargetFrameworkVersion=$(TargetFrameworkVersion)">
-      <Output TaskParameter="TargetOutputs"
-              ItemName="CodeAssemblies" />
-    </MSBuild>
   </Target>
 </Project>

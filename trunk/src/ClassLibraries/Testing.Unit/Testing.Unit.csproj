@@ -3,6 +3,7 @@
   <PropertyGroup>
     <ProjectGuid>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</ProjectGuid>
     <AssemblyName>Cavity.Testing.Unit</AssemblyName>
+    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Transactions" />
@@ -116,8 +117,8 @@
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Build\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Build\Code.Project" />
+  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Code.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>
