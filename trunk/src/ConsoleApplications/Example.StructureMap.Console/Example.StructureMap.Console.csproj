@@ -45,10 +45,6 @@
       <Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
       <Name>Example</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ClassLibraries\ServiceLocation\ServiceLocation.csproj">
-      <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
-      <Name>ServiceLocation</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\x86.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />
