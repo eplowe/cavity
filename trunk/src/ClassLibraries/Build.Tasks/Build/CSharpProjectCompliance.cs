@@ -65,6 +65,11 @@
             var result = true;
             foreach (var project in projects.Where(project => !Execute(project)))
             {
+                if (null == project)
+                {
+                    continue;
+                }
+
                 if (BuildEngine.ContinueOnError)
                 {
                     result = false;

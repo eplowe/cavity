@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0"
-         DefaultTargets="Build"
-         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{874C73B7-5FEE-4726-BCA1-344B75569B2C}</ProjectGuid>
     <AssemblyName>Example.Unity.Console</AssemblyName>
@@ -15,10 +13,6 @@
     </Content>
     <Content Include="$(TrunkDirectory)\lib\trove\Framework\v3.5\Microsoft.Practices.Unity.dll">
       <Link>Microsoft.Practices.Unity.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\ClassLibraries\ServiceLocation.Unity\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.ServiceLocation.Unity.dll">
-      <Link>Cavity.ServiceLocation.Unity.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -41,6 +35,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ClassLibraries\ServiceLocation\ServiceLocation.csproj">
+      <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
+      <Name>ServiceLocation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClassLibraries\ServiceLocation.Unity\ServiceLocation.Unity.csproj">
+      <Project>{4E862695-27DA-49EB-B567-586767F731BA}</Project>
+      <Name>ServiceLocation.Unity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ClassLibraries\Example\Example.csproj">
       <Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
       <Name>Example</Name>
