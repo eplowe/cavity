@@ -44,6 +44,11 @@
             var result = true;
             foreach (var path in paths.Where(path => !Execute(path)))
             {
+                if (null == path)
+                {
+                    continue;
+                }
+
                 if (BuildEngine.ContinueOnError)
                 {
                     result = false;

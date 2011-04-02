@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0"
-         DefaultTargets="Build"
-         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{440ACB41-EA41-4BC4-87BA-FB6498EBD909}</ProjectGuid>
     <AssemblyName>Example.StructureMap.Console</AssemblyName>
@@ -15,10 +13,6 @@
     </Content>
     <Content Include="$(TrunkDirectory)\lib\trove\Framework\v3.5\StructureMapAdapter.dll">
       <Link>StructureMapAdapter.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\ClassLibraries\ServiceLocation.StructureMap\bin\$(Configuration) $(TargetFrameworkVersion)\Cavity.ServiceLocation.StructureMap.dll">
-      <Link>Cavity.ServiceLocation.StructureMap.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -41,6 +35,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ClassLibraries\ServiceLocation\ServiceLocation.csproj">
+      <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
+      <Name>ServiceLocation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ClassLibraries\ServiceLocation.StructureMap\ServiceLocation.StructureMap.csproj">
+      <Project>{229D1074-FFB5-46FA-A6E3-75007D98C19A}</Project>
+      <Name>ServiceLocation.StructureMap</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ClassLibraries\Example\Example.csproj">
       <Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
       <Name>Example</Name>

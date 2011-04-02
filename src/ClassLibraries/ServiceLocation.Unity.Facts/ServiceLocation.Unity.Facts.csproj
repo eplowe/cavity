@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0"
-         DefaultTargets="Build"
-         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{F5C5643E-5457-4996-B0FB-7ADA360107B5}</ProjectGuid>
     <AssemblyName>Cavity.ServiceLocation.Unity.Facts</AssemblyName>
@@ -27,13 +25,13 @@
       <Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
       <Name>Example</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceLocation.Unity\ServiceLocation.Unity.csproj">
-      <Project>{4E862695-27DA-49EB-B567-586767F731BA}</Project>
-      <Name>ServiceLocation.Unity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ServiceLocation\ServiceLocation.csproj">
       <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
       <Name>ServiceLocation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceLocation.Unity\ServiceLocation.Unity.csproj">
+      <Project>{4E862695-27DA-49EB-B567-586767F731BA}</Project>
+      <Name>ServiceLocation.Unity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
       <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
