@@ -20,6 +20,7 @@
     <Compile Include="DateTime.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\IEntity.Facts.cs" />
+    <Compile Include="Data\IRecord.Facts.cs" />
     <Compile Include="Data\IRecord`1.Facts.cs" />
     <Compile Include="Data\IRepository`1.Facts.cs" />
     <Compile Include="Data\DataCollection.Facts.cs" />

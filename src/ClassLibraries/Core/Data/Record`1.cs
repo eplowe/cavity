@@ -2,6 +2,7 @@
 {
     using System;
     using System.Xml.Serialization;
+    using System.Xml.XPath;
     using Cavity.Net;
 
     public sealed class Record<T> : ValueObject<Record<T>>, IRecord<T>
@@ -57,6 +58,13 @@
             return ReferenceEquals(value, null)
                        ? Value.ToString()
                        : value.ToEntity();
+        }
+
+        public IXPathNavigable ToXml()
+        {
+            return ReferenceEquals(null, Value)
+                ? null
+                : Value.XmlSerialize();
         }
     }
 }
