@@ -30,26 +30,17 @@
             Assert.NotNull(new RecordFile());
         }
 
-        ////[Fact]
-        ////public void ctor_Record()
-        ////{
-        ////    var record = new Record<int>
-        ////    {
-        ////        Cacheability = "public",
-        ////        Created = DateTime.UtcNow,
-        ////        Etag = "123",
-        ////        Expiration = "P1D",
-        ////        Key = AlphaDecimal.Random(),
-        ////        Modified = DateTime.UtcNow,
-        ////        Status = 200,
-        ////        Urn = "urn://example.com/abc",
-        ////        Value = 123
-        ////    };
+        [Fact]
+        public void ctor_IRecord()
+        {
+            Assert.NotNull(new RecordFile(new Record<int>()));
+        }
 
-        ////    var obj = new RecordFile(record);
-
-        ////    Assert.NotNull(new RecordFile(record));
-        ////}
+        [Fact]
+        public void ctor_IRecordNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new RecordFile(null));
+        }
 
         [Fact]
         public void prop_Body()
@@ -71,12 +62,9 @@
         [Fact]
         public void op_ToString()
         {
-            var xml = new XmlDocument();
-            xml.LoadXml("<root />");
-
             var obj = new RecordFile
             {
-                Body = xml
+                Body = "<root />"
             };
             obj.Headers.Add("urn", "urn://example.com/abc");
             obj.Headers.Add("etag", "\"xyz\"");
@@ -107,6 +95,98 @@
             var actual = obj.ToString();
 
             Assert.Equal(expected.ToString(), actual);
+        }
+
+        [Fact]
+        public void op_ToString_whenRecord()
+        {
+            var key = AlphaDecimal.Random();
+            var record = new Record<int>
+            {
+                Cacheability = "public",
+                Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
+                Etag = "\"xyz\"",
+                Expiration = "P1D",
+                Key = key,
+                Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
+                Status = 200,
+                Urn = "urn://example.com/abc",
+                Value = 123
+            };
+
+            var obj = new RecordFile(record);
+
+            var expected = new StringBuilder();
+            expected.AppendLine("urn: urn://example.com/abc");
+            expected.AppendLine("key: " + key);
+            expected.AppendLine("etag: \"xyz\"");
+            expected.AppendLine("created: 1999-12-31T01:00:00Z");
+            expected.AppendLine("modified: 2001-12-31T01:00:00Z");
+            expected.AppendLine("cacheability: public");
+            expected.AppendLine("expiration: P1D");
+            expected.AppendLine("status: 200");
+            expected.AppendLine(string.Empty);
+            expected.Append("<int>123</int>");
+
+            var actual = obj.ToString();
+
+            Assert.Equal(expected.ToString(), actual);
+        }
+
+        [Fact]
+        public void op_ToString_whenRecordNullXml()
+        {
+            var key = AlphaDecimal.Random();
+            var record = new Record<string>
+            {
+                Cacheability = "public",
+                Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
+                Etag = "\"xyz\"",
+                Expiration = "P1D",
+                Key = key,
+                Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
+                Status = 200,
+                Urn = "urn://example.com/abc",
+                Value = null
+            };
+
+            var obj = new RecordFile(record);
+
+            var expected = new StringBuilder();
+            expected.AppendLine("urn: urn://example.com/abc");
+            expected.AppendLine("key: " + key);
+            expected.AppendLine("etag: \"xyz\"");
+            expected.AppendLine("created: 1999-12-31T01:00:00Z");
+            expected.AppendLine("modified: 2001-12-31T01:00:00Z");
+            expected.AppendLine("cacheability: public");
+            expected.AppendLine("expiration: P1D");
+            expected.AppendLine("status: 200");
+            expected.AppendLine(string.Empty);
+
+            var actual = obj.ToString();
+
+            Assert.Equal(expected.ToString(), actual);
+        }
+
+        [Fact]
+        public void op_ToXml()
+        {
+            const string expected = "<root />";
+
+            var obj = new RecordFile
+            {
+                Body = expected
+            };
+
+            var actual = obj.ToXml().CreateNavigator().OuterXml;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToXml_whenNullBody()
+        {
+            Assert.Null(new RecordFile().ToXml());
         }
     }
 }

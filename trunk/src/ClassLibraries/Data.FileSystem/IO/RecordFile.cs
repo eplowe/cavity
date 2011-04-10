@@ -1,8 +1,11 @@
 ﻿namespace Cavity.IO
 {
+    using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Xml;
     using System.Xml.XPath;
+    using Cavity.Data;
 
     public sealed class RecordFile
     {
@@ -11,7 +14,32 @@
             Headers = new Dictionary<string, string>();
         }
 
-        public IXPathNavigable Body { get; set; }
+        public RecordFile(IRecord record)
+            : this()
+        {
+            if (null == record)
+            {
+                throw new ArgumentNullException("record");
+            }
+
+            Headers["urn"] = record.Urn;
+            Headers["key"] = record.Key.HasValue ? record.Key.Value : string.Empty;
+            Headers["etag"] = record.Etag;
+            Headers["created"] = record.Created.ToXmlString();
+            Headers["modified"] = record.Modified.ToXmlString();
+            Headers["cacheability"] = record.Cacheability;
+            Headers["expiration"] = record.Expiration;
+            Headers["status"] = record.Status.HasValue ? record.Status.Value.ToXmlString() : string.Empty;
+            var xml = record.ToXml();
+            if (null == xml)
+            {
+                return;
+            }
+
+            Body = xml.CreateNavigator().OuterXml;
+        }
+        
+        public string Body { get; set; }
 
         public IDictionary<string, string> Headers { get; private set; }
 
@@ -26,10 +54,23 @@
             buffer.AppendLine(string.Empty);
             if (null != Body)
             {
-                buffer.Append(Body.CreateNavigator().OuterXml);
+                buffer.Append(Body);
             }
 
             return buffer.ToString();
+        }
+
+        public IXPathNavigable ToXml()
+        {
+            if (null == Body)
+            {
+                return null;
+            }
+
+            var xml = new XmlDocument();
+            xml.LoadXml(Body);
+
+            return xml;
         }
     }
 }

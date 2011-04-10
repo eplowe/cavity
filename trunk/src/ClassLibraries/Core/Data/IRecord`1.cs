@@ -1,28 +1,7 @@
 ﻿namespace Cavity.Data
 {
-    using System;
-    using Cavity.Net;
-
-    public interface IRecord<T>
+    public interface IRecord<T> : IRecord
     {
-        string Cacheability { get; set; }
-
-        DateTime? Created { get; set; }
-
-        EntityTag Etag { get; set; }
-
-        string Expiration { get; set; }
-
-        AlphaDecimal? Key { get; set; }
-
-        DateTime? Modified { get; set; }
-
-        int? Status { get; set; }
-
-        AbsoluteUri Urn { get; set; }
-
         T Value { get; set; }
-
-        string ToEntity();
     }
 }
