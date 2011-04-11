@@ -77,7 +77,7 @@
                 throw new RepositoryException();
             }
 
-            if (null != Select(record.Urn))
+            if (Repository.Exists(record.Urn))
             {
                 throw new RepositoryException();
             }

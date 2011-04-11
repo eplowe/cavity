@@ -1,6 +1,9 @@
 ﻿namespace Cavity
 {
     using System;
+#if !NET20
+    using System.IO;
+#endif
     using System.Runtime.Serialization;
 
 #if NET20 || NET35
@@ -134,6 +137,39 @@
             return Value.AbsoluteUri;
         }
 
+#if !NET20
+        public FileSystemInfo ToPath(FileSystemInfo root)
+        {
+            if (null == root)
+            {
+                throw new ArgumentNullException("root");
+            }
+
+            var path = ToString().Replace("%5C", "&bsol;");
+            if (path.Contains("://"))
+            {
+                path = path.Replace("://", @"\");
+            }
+            else
+            {
+                var index = path.IndexOf(':');
+                path = @"{0}\{1}".FormatWith(path.Substring(0, index), path.Substring(index + 1));
+            }
+
+            path = path
+                .Replace('/', '\\')
+                .Replace("*", "&ast;")
+                .Replace(":", "&colon;")
+                .Replace("%3E", "&gt;")
+                .Replace("%3C", "&lt;")
+                .Replace("?", "&quest;")
+                .Replace("%22", "&quot;")
+                .Replace("%7C", "&verbar;");
+
+            return new DirectoryInfo(Path.Combine(root.FullName, path));
+        }
+#endif
+
         public int CompareTo(object obj)
         {
             if (null == obj)
@@ -172,7 +208,6 @@
 #if NET20 || NET35
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
-
         void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {
