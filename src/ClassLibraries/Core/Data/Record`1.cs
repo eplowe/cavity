@@ -17,6 +17,7 @@
             RegisterProperty(x => x.Modified);
             RegisterProperty(x => x.Status);
             RegisterProperty(x => x.Urn);
+            RegisterProperty(x => x.Value);
         }
 
         [XmlIgnore]

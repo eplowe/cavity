@@ -1,7 +1,9 @@
 ﻿namespace Cavity
 {
     using System;
+#if !NET20
     using System.IO;
+#endif
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
     using Xunit;
@@ -651,5 +653,158 @@
 
             Assert.Equal(expected, actual);
         }
+
+#if !NET20
+        [Fact]
+        public void op_ToPath_FileSystemInfo()
+        {
+            AbsoluteUri obj = "http://example.com/foo/bar?x=1&y=2#fragment";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"http\example.com\foo\bar&quest;x=1&y=2#fragment"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfo_whenHttp()
+        {
+            AbsoluteUri obj = "http://example.com";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"http\example.com\"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfo_whenTel()
+        {
+            AbsoluteUri obj = "tel:+441234555666";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"tel\+441234555666"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfo_whenUrn()
+        {
+            AbsoluteUri obj = "urn://example.com";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"urn\example.com\"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfo_whenHttpPath()
+        {
+            AbsoluteUri obj = "http://example.com/foo/bar";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"http\example.com\foo\bar"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfo_whenHttpQuery()
+        {
+            AbsoluteUri obj = "http://example.com/foo/bar?x=1&y=2";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"http\example.com\foo\bar&quest;x=1&y=2"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfo_whenHttpQueryAsterix()
+        {
+            AbsoluteUri obj = "http://example.com/foo/bar?q=*";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"http\example.com\foo\bar&quest;q=&ast;"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfo_whenHttpQueryBackslash()
+        {
+            AbsoluteUri obj = @"http://example.com/foo/bar?q=a\b";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"http\example.com\foo\bar&quest;q=a&bsol;b"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfo_whenHttpQueryColon()
+        {
+            AbsoluteUri obj = "http://example.com/foo/bar?q=a:b";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"http\example.com\foo\bar&quest;q=a&colon;b"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfo_whenHttpQueryGreaterThan()
+        {
+            AbsoluteUri obj = "http://example.com/foo/bar?q=>5";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"http\example.com\foo\bar&quest;q=&gt;5"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfo_whenHttpQueryLesserThan()
+        {
+            AbsoluteUri obj = "http://example.com/foo/bar?q=<5";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"http\example.com\foo\bar&quest;q=&lt;5"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfo_whenHttpQueryQuote()
+        {
+            AbsoluteUri obj = "http://example.com/foo/bar?q=\"5\"";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"http\example.com\foo\bar&quest;q=&quot;5&quot;"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfo_whenHttpQueryVerticalBar()
+        {
+            AbsoluteUri obj = "http://example.com/foo/bar?q=4|5";
+
+            var expected = new DirectoryInfo(Path.Combine(Path.GetTempPath(), @"http\example.com\foo\bar&quest;q=4&verbar;5"));
+            var actual = obj.ToPath(new DirectoryInfo(Path.GetTempPath()));
+
+            Assert.Equal(expected.FullName, actual.FullName);
+        }
+
+        [Fact]
+        public void op_ToPath_FileSystemInfoNull()
+        {
+            AbsoluteUri obj = "http://example.com/";
+
+            Assert.Throws<ArgumentNullException>(() => obj.ToPath(null));
+        }
+#endif
     }
 }

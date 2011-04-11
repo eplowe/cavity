@@ -2,6 +2,8 @@
 {
     using System;
     using Cavity;
+    using Cavity.Configuration;
+    using Cavity.IO;
     using Xunit;
 
     public sealed class FileRepositoryFacts
@@ -28,7 +30,18 @@
         [Fact]
         public void expectations_class()
         {
-            ////new RepositoryExpectations<RandomObject>().VerifyAll<FileRepository<RandomObject>>();
+            try
+            {
+                using (var directory = new TempDirectory())
+                {
+                    FileRepositoryConfiguration.Mock = directory.Info;
+                    new RepositoryExpectations<RandomObject>().VerifyAll<FileRepository<RandomObject>>();
+                }
+            }
+            finally
+            {
+                FileRepositoryConfiguration.Mock = null;
+            }
         }
 
         [Fact]
