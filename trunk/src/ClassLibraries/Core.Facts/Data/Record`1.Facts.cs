@@ -35,31 +35,6 @@
         }
 
         [Fact]
-        public void op_ToXml()
-        {
-            var obj = new Record<int>
-            {
-                Value = 123
-            };
-
-            var expected = 123.XmlSerialize();
-            var actual = obj.ToXml();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_ToXml_whenNullValue()
-        {
-            var obj = new Record<string>
-            {
-                Value = null
-            };
-
-            Assert.Null(obj.ToXml());
-        }
-
-        [Fact]
         public void op_ToEntity_whenIEntity()
         {
             const string expected = "123";
@@ -91,6 +66,31 @@
             };
 
             Assert.Null(obj.ToEntity());
+        }
+
+        [Fact]
+        public void op_ToXml()
+        {
+            var obj = new Record<int>
+            {
+                Value = 123
+            };
+
+            var expected = 123.XmlSerialize();
+            var actual = obj.ToXml();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToXml_whenNullValue()
+        {
+            var obj = new Record<string>
+            {
+                Value = null
+            };
+
+            Assert.Null(obj.ToXml());
         }
 
         [Fact]

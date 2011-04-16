@@ -1,6 +1,5 @@
 ﻿namespace Cavity.Data
 {
-    using Cavity;
     using Cavity.Configuration;
     using Cavity.IO;
     using Xunit;

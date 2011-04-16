@@ -64,8 +64,8 @@
         public IXPathNavigable ToXml()
         {
             return ReferenceEquals(null, Value)
-                ? null
-                : Value.XmlSerialize();
+                       ? null
+                       : Value.XmlSerialize();
         }
     }
 }

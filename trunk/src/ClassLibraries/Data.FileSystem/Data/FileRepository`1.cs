@@ -293,8 +293,8 @@
 
             var dir = new DirectoryInfo(urn.ToPath(FileRepositoryConfiguration.Directory()).FullName);
             return dir.Exists
-                ? dir.GetFiles("*.record", SearchOption.TopDirectoryOnly).FirstOrDefault()
-                : null;
+                       ? dir.GetFiles("*.record", SearchOption.TopDirectoryOnly).FirstOrDefault()
+                       : null;
         }
 
         private static FileInfo GetFile(AlphaDecimal key)

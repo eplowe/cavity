@@ -1,8 +1,6 @@
 ﻿namespace Cavity.Data
 {
-    using System;
     using System.Xml;
-    using Cavity;
     using Xunit;
 
     public sealed class RandomObjectFacts
@@ -11,12 +9,12 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<RandomObject>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .XmlRoot("random")
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .XmlRoot("random")
+                            .Result);
         }
 
         [Fact]
@@ -35,9 +33,9 @@
         public void prop_Value()
         {
             Assert.True(new PropertyExpectations<RandomObject>(x => x.Value)
-                .TypeIs<long>()
-                .XmlAttribute("value")
-                .Result);
+                            .TypeIs<long>()
+                            .XmlAttribute("value")
+                            .Result);
         }
     }
 }

@@ -1,17 +1,16 @@
 ﻿namespace Cavity.Configuration
 {
-    using System;
     using System.Configuration;
     using System.IO;
     using System.Xml;
     using Cavity;
     using Cavity.IO;
     using Xunit;
-
+    
     public sealed class FileRepositoryConfigurationFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(new TypeExpectations<FileRepositoryConfiguration>()
                             .DerivesFrom<object>()
