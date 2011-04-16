@@ -6,6 +6,9 @@
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Diagnostics\IProcess.cs" />
+    <Compile Include="Diagnostics\ProcessFacade.cs" />
+    <Compile Include="Diagnostics\StandardProcess.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
