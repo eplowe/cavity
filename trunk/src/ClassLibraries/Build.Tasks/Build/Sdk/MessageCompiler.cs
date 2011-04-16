@@ -1,6 +1,13 @@
 ﻿namespace Cavity.Build.Sdk
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Linq;
+    using System.Text;
+    using Cavity.IO;
     using Cavity.Win32;
 
     public sealed class MessageCompiler
@@ -41,5 +48,82 @@
         }
 
         public FileInfo Location { get; private set; }
+
+        public string Output { get; private set; }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I do not want directories.")]
+        public MessageCompiler Compile(DirectoryInfo workingDirectory, IEnumerable<FileInfo> files)
+        {
+            if (null == workingDirectory)
+            {
+                throw new ArgumentNullException("workingDirectory");
+            }
+
+            if (null == files)
+            {
+                throw new ArgumentNullException("files");
+            }
+
+            using (var temp = new TempDirectory())
+            {
+                foreach (var file in files)
+                {
+                    var source = file.FullName;
+                    var destination = new FileInfo(Path.Combine(temp.Info.FullName, file.Name)).FullName;
+
+                    if (workingDirectory.Exists)
+                    {
+                        File.Copy(source, destination);
+                    }
+                }
+
+                using (var p = new Process
+                {
+                    StartInfo =
+                    {
+                        Arguments = ToArguments(ToFiles(files)),
+                        FileName = Location.FullName,
+                        RedirectStandardError = true,
+                        RedirectStandardOutput = true,
+                        UseShellExecute = false,
+                        WorkingDirectory = temp.Info.FullName
+                    }
+                })
+                {
+                    p.Start();
+                    using (var reader = p.StandardOutput)
+                    {
+                        Output = reader.ReadToEnd();
+                    }
+
+                    if (0 != p.ExitCode)
+                    {
+                        using (var reader = p.StandardError)
+                        {
+                            throw new InvalidOperationException(reader.ReadToEnd());
+                        }
+                    }
+                }
+            }
+
+            return this;
+        }
+
+        private static string ToArguments(IEnumerable<string> files)
+        {
+            var buffer = new StringBuilder();
+            buffer.Append("-u -U ");
+            foreach (var file in files)
+            {
+                buffer.Append(file);
+            }
+
+            return buffer.ToString();
+        }
+
+        private static IEnumerable<string> ToFiles(IEnumerable<FileInfo> files)
+        {
+            return files.Select(file => file.Name);
+        }
     }
 }
