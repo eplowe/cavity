@@ -1,47 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <TroveDirectory>$(MSBuildProjectDirectory)\lib\trove\Framework\$(TargetFrameworkVersion)</TroveDirectory>
-  </PropertyGroup>
   <Target Name="Trove">
-    <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.dll"
+    <ConvertToAbsolutePath Paths="..\..\trove\trunk\lib\trove\Framework\$(TargetFrameworkVersion)">
+        <Output TaskParameter="AbsolutePaths" PropertyName="TroveDirectory"/>
+    </ConvertToAbsolutePath>
+    <Copy Condition=" Exists('$(TroveDirectory)') "
+          SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.dll"
           DestinationFolder="$(TroveDirectory)"
           OverwriteReadOnlyFiles="true" />
-    <Copy SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.Targets"
+    <Copy Condition=" Exists('$(TroveDirectory)') "
+          SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.Targets"
           DestinationFolder="$(TroveDirectory)"
           OverwriteReadOnlyFiles="true" />
-    <Copy SourceFiles="$(ClassLibrariesPath)\Core\bin\$(BuildName)\Cavity.Core.dll"
+    <Copy Condition=" Exists('$(TroveDirectory)') "
+          SourceFiles="$(ClassLibrariesPath)\Core\bin\$(BuildName)\Cavity.Core.dll"
           DestinationFolder="$(TroveDirectory)"
           OverwriteReadOnlyFiles="true" />
-    <Copy SourceFiles="$(ClassLibrariesPath)\Data.FileSystem\bin\$(BuildName)\Cavity.Data.FileSystem.dll"
-          DestinationFolder="$(TroveDirectory)"
-          OverwriteReadOnlyFiles="true"
-          Condition=" '$(TargetFrameworkVersion)' != 'v2.0' " />
-    <Copy SourceFiles="$(ClassLibrariesPath)\Domain\bin\$(BuildName)\Cavity.Domain.dll"
+    <Copy Condition=" Exists('$(TroveDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
+          SourceFiles="$(ClassLibrariesPath)\Data.FileSystem\bin\$(BuildName)\Cavity.Data.FileSystem.dll"
           DestinationFolder="$(TroveDirectory)"
           OverwriteReadOnlyFiles="true" />
-    <Copy SourceFiles="$(ClassLibrariesPath)\ServiceLocation\bin\$(BuildName)\Cavity.ServiceLocation.dll"
+    <Copy Condition=" Exists('$(TroveDirectory)') "
+          SourceFiles="$(ClassLibrariesPath)\Domain\bin\$(BuildName)\Cavity.Domain.dll"
           DestinationFolder="$(TroveDirectory)"
           OverwriteReadOnlyFiles="true" />
-    <Copy SourceFiles="$(ClassLibrariesPath)\ServiceLocation.Autofac\bin\$(BuildName)\Cavity.ServiceLocation.Autofac.dll"
+    <Copy Condition=" Exists('$(TroveDirectory)') "
+          SourceFiles="$(ClassLibrariesPath)\ServiceLocation\bin\$(BuildName)\Cavity.ServiceLocation.dll"
           DestinationFolder="$(TroveDirectory)"
-          OverwriteReadOnlyFiles="true"
-          Condition=" '$(TargetFrameworkVersion)' != 'v2.0' " />
-    <Copy SourceFiles="$(ClassLibrariesPath)\ServiceLocation.CastleWindsor\bin\$(BuildName)\Cavity.ServiceLocation.CastleWindsor.dll"
+          OverwriteReadOnlyFiles="true" />
+    <Copy Condition=" Exists('$(TroveDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
+          SourceFiles="$(ClassLibrariesPath)\ServiceLocation.Autofac\bin\$(BuildName)\Cavity.ServiceLocation.Autofac.dll"
           DestinationFolder="$(TroveDirectory)"
-          OverwriteReadOnlyFiles="true"
-          Condition=" '$(TargetFrameworkVersion)' != 'v2.0' " />
-    <Copy SourceFiles="$(ClassLibrariesPath)\ServiceLocation.StructureMap\bin\$(BuildName)\Cavity.ServiceLocation.StructureMap.dll"
+          OverwriteReadOnlyFiles="true" />
+    <Copy Condition=" Exists('$(TroveDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
+          SourceFiles="$(ClassLibrariesPath)\ServiceLocation.CastleWindsor\bin\$(BuildName)\Cavity.ServiceLocation.CastleWindsor.dll"
           DestinationFolder="$(TroveDirectory)"
-          OverwriteReadOnlyFiles="true"
-          Condition=" '$(TargetFrameworkVersion)' != 'v2.0' " />
-    <Copy SourceFiles="$(ClassLibrariesPath)\ServiceLocation.Unity\bin\$(BuildName)\Cavity.ServiceLocation.Unity.dll"
+          OverwriteReadOnlyFiles="true" />
+    <Copy Condition=" Exists('$(TroveDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
+          SourceFiles="$(ClassLibrariesPath)\ServiceLocation.StructureMap\bin\$(BuildName)\Cavity.ServiceLocation.StructureMap.dll"
           DestinationFolder="$(TroveDirectory)"
-          OverwriteReadOnlyFiles="true"
-          Condition=" '$(TargetFrameworkVersion)' != 'v2.0' " />
-    <Copy SourceFiles="$(ClassLibrariesPath)\Testing.Unit\bin\$(BuildName)\Cavity.Testing.Unit.dll"
+          OverwriteReadOnlyFiles="true" />
+    <Copy Condition=" Exists('$(TroveDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
+          SourceFiles="$(ClassLibrariesPath)\ServiceLocation.Unity\bin\$(BuildName)\Cavity.ServiceLocation.Unity.dll"
           DestinationFolder="$(TroveDirectory)"
-          OverwriteReadOnlyFiles="true"
-          Condition=" '$(TargetFrameworkVersion)' != 'v2.0' " />
+          OverwriteReadOnlyFiles="true" />
+    <Copy Condition=" Exists('$(TroveDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
+          SourceFiles="$(ClassLibrariesPath)\Testing.Unit\bin\$(BuildName)\Cavity.Testing.Unit.dll"
+          DestinationFolder="$(TroveDirectory)"
+          OverwriteReadOnlyFiles="true" />
   </Target>
 </Project>

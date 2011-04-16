@@ -10,53 +10,56 @@ FOR /f "tokens=1-2 delims=/:" %%a IN ("%TIME%") DO (SET t=%%a%%b)
 
 SET utc=%y%-%m%-%d%+%t%
 
-MSBUILD build.xml ^
-/p:Configuration=Release ^
-/p:TargetFrameworkVersion=v2.0 ^
-/p:Versioning=Subversion ^
-/l:FileLogger,Microsoft.Build.Engine;logfile="%utc% build [v2.0].log";append=true;verbosity=diagnostic;encoding=utf-8
-
-PAUSE
-
-MSBUILD build.xml ^
-/p:Configuration=Release ^
-/p:TargetFrameworkVersion=v3.5 ^
-/p:Versioning=Subversion ^
-/l:FileLogger,Microsoft.Build.Engine;logfile="%utc% build [v3.5].log";append=true;verbosity=diagnostic;encoding=utf-8
-
-PAUSE
-
-MSBUILD build.xml ^
-/p:Configuration=Release ^
-/p:TargetFrameworkVersion=v4.0 ^
-/p:Versioning=Subversion ^
-/l:FileLogger,Microsoft.Build.Engine;logfile="%utc% build [v4.0].log";append=true;verbosity=diagnostic;encoding=utf-8
-
+SET bundle=false
 CHOICE /T 10 /D N /M "Do you want to bundle?"
-IF ERRORLEVEL == 2 GOTO END
+IF ERRORLEVEL == 2 GOTO v2.0
+SET bundle=true
 
-PAUSE
+:v2.0
+MSBUILD build.xml ^
+	/p:Configuration=Release ^
+	/p:TargetFrameworkVersion=v2.0 ^
+	/p:Versioning=Subversion ^
+	/l:FileLogger,Microsoft.Build.Engine;logfile="%utc% build [v2.0].log";append=true;verbosity=diagnostic;encoding=utf-8
 
-MSBUILD bundle.xml ^
-/p:Configuration=Release ^
-/p:TargetFrameworkVersion=v2.0 ^
-/p:Versioning=Subversion ^
-/l:FileLogger,Microsoft.Build.Engine;logfile="%utc% bundle [v2.0].log";append=true;verbosity=diagnostic;encoding=utf-8
-
-PAUSE
-
-MSBUILD bundle.xml ^
-/p:Configuration=Release ^
-/p:TargetFrameworkVersion=v3.5 ^
-/p:Versioning=Subversion ^
-/l:FileLogger,Microsoft.Build.Engine;logfile="%utc% bundle [v3.5].log";append=true;verbosity=diagnostic;encoding=utf-8
-
-PAUSE
+IF %bundle% == false GOTO v3.5
 
 MSBUILD bundle.xml ^
-/p:Configuration=Release ^
-/p:TargetFrameworkVersion=v4.0 ^
-/p:Versioning=Subversion ^
-/l:FileLogger,Microsoft.Build.Engine;logfile="%utc% bundle [v4.0].log";append=true;verbosity=diagnostic;encoding=utf-8
+	/p:Configuration=Release ^
+	/p:TargetFrameworkVersion=v2.0 ^
+	/p:Versioning=Subversion ^
+	/l:FileLogger,Microsoft.Build.Engine;logfile="%utc% bundle [v2.0].log";append=true;verbosity=diagnostic;encoding=utf-8
+
+:v3.5
+PAUSE
+MSBUILD build.xml ^
+	/p:Configuration=Release ^
+	/p:TargetFrameworkVersion=v3.5 ^
+	/p:Versioning=Subversion ^
+	/l:FileLogger,Microsoft.Build.Engine;logfile="%utc% build [v3.5].log";append=true;verbosity=diagnostic;encoding=utf-8
+
+IF %bundle% == false GOTO v4.0
+
+MSBUILD bundle.xml ^
+	/p:Configuration=Release ^
+	/p:TargetFrameworkVersion=v3.5 ^
+	/p:Versioning=Subversion ^
+	/l:FileLogger,Microsoft.Build.Engine;logfile="%utc% bundle [v3.5].log";append=true;verbosity=diagnostic;encoding=utf-8
+
+:v4.0
+PAUSE
+MSBUILD build.xml ^
+	/p:Configuration=Release ^
+	/p:TargetFrameworkVersion=v4.0 ^
+	/p:Versioning=Subversion ^
+	/l:FileLogger,Microsoft.Build.Engine;logfile="%utc% build [v4.0].log";append=true;verbosity=diagnostic;encoding=utf-8
+
+IF %bundle% == false GOTO END
+
+MSBUILD bundle.xml ^
+	/p:Configuration=Release ^
+	/p:TargetFrameworkVersion=v4.0 ^
+	/p:Versioning=Subversion ^
+	/l:FileLogger,Microsoft.Build.Engine;logfile="%utc% bundle [v4.0].log";append=true;verbosity=diagnostic;encoding=utf-8
 
 :END
