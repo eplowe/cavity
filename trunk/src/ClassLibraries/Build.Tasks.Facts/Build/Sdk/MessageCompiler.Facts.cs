@@ -1,5 +1,7 @@
 ﻿namespace Cavity.Build.Sdk
 {
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using Cavity;
     using Cavity.IO;
@@ -18,6 +20,34 @@
                 .NoDefaultConstructor()
                 .IsNotDecorated()
                 .Result);
+        }
+
+        [Fact]
+        public void op_Compile_DirectoryInfoNull_IEnumerableOfFileInfo()
+        {
+            var files = new List<FileInfo>
+            {
+                new FileInfo(@"C:\Temp\example.mc")
+            };
+
+            Assert.Throws<ArgumentNullException>(() => MessageCompiler.Current.Compile(null, files));
+        }
+
+        [Fact]
+        public void op_Compile_DirectoryInfoNull_IEnumerableOfFileInfoEmpty()
+        {
+            var files = new List<FileInfo>();
+            var workingDirectory = new DirectoryInfo(Path.GetTempPath());
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => MessageCompiler.Current.Compile(workingDirectory, files));
+        }
+
+        [Fact]
+        public void op_Compile_DirectoryInfo_IEnumerableOfFileInfoNull()
+        {
+            var workingDirectory = new DirectoryInfo(Path.GetTempPath());
+
+            Assert.Throws<ArgumentNullException>(() => MessageCompiler.Current.Compile(workingDirectory, null));
         }
 
         [Fact]

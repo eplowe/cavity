@@ -7,6 +7,7 @@
     using System.IO;
     using System.Linq;
     using System.Text;
+    using Cavity.Diagnostics;
     using Cavity.IO;
     using Cavity.Win32;
 
@@ -64,6 +65,11 @@
                 throw new ArgumentNullException("files");
             }
 
+            if (0 == files.Count())
+            {
+                throw new ArgumentOutOfRangeException("files");
+            }
+
             using (var temp = new TempDirectory())
             {
                 foreach (var file in files)
@@ -77,9 +83,9 @@
                     }
                 }
 
-                using (var p = new Process
+                using (var p = ProcessFacade.Current)
                 {
-                    StartInfo =
+                    p.StartInfo = new ProcessStartInfo
                     {
                         Arguments = ToArguments(ToFiles(files)),
                         FileName = Location.FullName,
@@ -87,9 +93,7 @@
                         RedirectStandardOutput = true,
                         UseShellExecute = false,
                         WorkingDirectory = temp.Info.FullName
-                    }
-                })
-                {
+                    };
                     p.Start();
                     using (var reader = p.StandardOutput)
                     {
@@ -105,6 +109,8 @@
                     }
                 }
             }
+
+            ////Output = string.Empty;
 
             return this;
         }
