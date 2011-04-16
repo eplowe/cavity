@@ -136,22 +136,20 @@
             }
 
             using (var stream = file.Open(FileMode.Create, FileAccess.Write, FileShare.Read))
+            using (var writer = new StreamWriter(stream))
             {
-                using (var writer = new StreamWriter(stream))
+                writer.WriteLine("urn: {0}".FormatWith(Headers["urn"]));
+                writer.WriteLine("key: {0}".FormatWith(Headers["key"]));
+                writer.WriteLine("etag: {0}".FormatWith(Headers["etag"]));
+                writer.WriteLine("created: {0}".FormatWith(Headers["created"]));
+                writer.WriteLine("modified: {0}".FormatWith(Headers["modified"]));
+                writer.WriteLine("cacheability: {0}".FormatWith(Headers["cacheability"]));
+                writer.WriteLine("expiration: {0}".FormatWith(Headers["expiration"]));
+                writer.WriteLine("status: {0}".FormatWith(Headers["status"]));
+                writer.WriteLine(string.Empty);
+                if (null != Body)
                 {
-                    writer.WriteLine("urn: {0}".FormatWith(Headers["urn"]));
-                    writer.WriteLine("key: {0}".FormatWith(Headers["key"]));
-                    writer.WriteLine("etag: {0}".FormatWith(Headers["etag"]));
-                    writer.WriteLine("created: {0}".FormatWith(Headers["created"]));
-                    writer.WriteLine("modified: {0}".FormatWith(Headers["modified"]));
-                    writer.WriteLine("cacheability: {0}".FormatWith(Headers["cacheability"]));
-                    writer.WriteLine("expiration: {0}".FormatWith(Headers["expiration"]));
-                    writer.WriteLine("status: {0}".FormatWith(Headers["status"]));
-                    writer.WriteLine(string.Empty);
-                    if (null != Body)
-                    {
-                        writer.Write(Body);
-                    }
+                    writer.Write(Body);
                 }
             }
 

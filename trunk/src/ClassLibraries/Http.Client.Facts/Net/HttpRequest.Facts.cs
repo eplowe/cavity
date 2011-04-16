@@ -138,15 +138,13 @@
         public void op_Read_TextReaderEmpty()
         {
             using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
             {
-                using (var writer = new StreamWriter(stream))
+                writer.Flush();
+                stream.Position = 0;
+                using (var reader = new StreamReader(stream))
                 {
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        Assert.Throws<ArgumentNullException>(() => new HttpRequest().Read(reader));
-                    }
+                    Assert.Throws<ArgumentNullException>(() => new HttpRequest().Read(reader));
                 }
             }
         }
@@ -166,20 +164,18 @@
             HttpHeader connection = "Connection: close";
 
             using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
             {
-                using (var writer = new StreamWriter(stream))
+                writer.WriteLine(requestLine);
+                writer.WriteLine(host);
+                writer.WriteLine(connection);
+                writer.WriteLine(string.Empty);
+                writer.WriteLine("body");
+                writer.Flush();
+                stream.Position = 0;
+                using (var reader = new StreamReader(stream))
                 {
-                    writer.WriteLine(requestLine);
-                    writer.WriteLine(host);
-                    writer.WriteLine(connection);
-                    writer.WriteLine(string.Empty);
-                    writer.WriteLine("body");
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        request.Read(reader);
-                    }
+                    request.Read(reader);
                 }
             }
 
@@ -213,22 +209,20 @@
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 using (var stream = new MemoryStream())
+                using (var writer = new StreamWriter(stream))
                 {
-                    using (var writer = new StreamWriter(stream))
+                    writer.WriteLine(requestLine);
+                    writer.WriteLine(contentLength);
+                    writer.WriteLine(contentType);
+                    writer.WriteLine(host);
+                    writer.WriteLine(connection);
+                    writer.WriteLine(string.Empty);
+                    writer.Write("text");
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
                     {
-                        writer.WriteLine(requestLine);
-                        writer.WriteLine(contentLength);
-                        writer.WriteLine(contentType);
-                        writer.WriteLine(host);
-                        writer.WriteLine(connection);
-                        writer.WriteLine(string.Empty);
-                        writer.Write("text");
-                        writer.Flush();
-                        stream.Position = 0;
-                        using (var reader = new StreamReader(stream))
-                        {
-                            request.Read(reader);
-                        }
+                        request.Read(reader);
                     }
                 }
 
@@ -317,16 +311,14 @@
             var obj = HttpRequest.FromString(expected.ToString());
 
             using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
             {
-                using (var writer = new StreamWriter(stream))
+                obj.Write(writer);
+                writer.Flush();
+                stream.Position = 0;
+                using (var reader = new StreamReader(stream))
                 {
-                    obj.Write(writer);
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        Assert.Equal(expected.ToString(), reader.ReadToEnd());
-                    }
+                    Assert.Equal(expected.ToString(), reader.ReadToEnd());
                 }
             }
         }
@@ -364,16 +356,14 @@
             }
 
             using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
             {
-                using (var writer = new StreamWriter(stream))
+                obj.Write(writer);
+                writer.Flush();
+                stream.Position = 0;
+                using (var reader = new StreamReader(stream))
                 {
-                    obj.Write(writer);
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        Assert.Equal(expected.ToString(), reader.ReadToEnd());
-                    }
+                    Assert.Equal(expected.ToString(), reader.ReadToEnd());
                 }
             }
         }

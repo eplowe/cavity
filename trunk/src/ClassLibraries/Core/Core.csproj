@@ -47,6 +47,8 @@
     <Compile Include="Net\IHttpHeader.cs" />
     <Compile Include="Net\IWebRequest.cs" />
     <Compile Include="Net\Token.cs" />
+    <Compile Include="Win32\FakeRegistry.cs" />
+    <Compile Include="Win32\RegistryFacade.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.cs" />
     <Compile Include="Char.ExtensionMethods.cs" />
     <Compile Include="DateTime.ExtensionMethods.cs" />

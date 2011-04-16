@@ -36,18 +36,16 @@
             HttpHeader connection = "Connection: close";
 
             using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
             {
-                using (var writer = new StreamWriter(stream))
+                writer.WriteLine(connection);
+                writer.WriteLine(string.Empty);
+                writer.WriteLine("body");
+                writer.Flush();
+                stream.Position = 0;
+                using (var reader = new StreamReader(stream))
                 {
-                    writer.WriteLine(connection);
-                    writer.WriteLine(string.Empty);
-                    writer.WriteLine("body");
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        message.Read(reader);
-                    }
+                    message.Read(reader);
                 }
             }
 
@@ -61,15 +59,13 @@
             HttpMessage message = new DerivedHttpMessage();
 
             using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
             {
-                using (var writer = new StreamWriter(stream))
+                writer.Flush();
+                stream.Position = 0;
+                using (var reader = new StreamReader(stream))
                 {
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        message.Read(reader);
-                    }
+                    message.Read(reader);
                 }
             }
 
@@ -99,16 +95,14 @@
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 using (var stream = new MemoryStream())
+                using (var writer = new StreamWriter(stream))
                 {
-                    using (var writer = new StreamWriter(stream))
+                    writer.WriteLine(expected);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
                     {
-                        writer.WriteLine(expected);
-                        writer.Flush();
-                        stream.Position = 0;
-                        using (var reader = new StreamReader(stream))
-                        {
-                            Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Read(reader));
-                        }
+                        Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Read(reader));
                     }
                 }
 
@@ -144,16 +138,14 @@
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 using (var stream = new MemoryStream())
+                using (var writer = new StreamWriter(stream))
                 {
-                    using (var writer = new StreamWriter(stream))
+                    writer.Write(expected);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
                     {
-                        writer.Write(expected);
-                        writer.Flush();
-                        stream.Position = 0;
-                        using (var reader = new StreamReader(stream))
-                        {
-                            obj.Read(reader);
-                        }
+                        obj.Read(reader);
                     }
                 }
 
@@ -193,16 +185,14 @@
                 ServiceLocator.SetLocatorProvider(() => locator.Object);
 
                 using (var stream = new MemoryStream())
+                using (var writer = new StreamWriter(stream))
                 {
-                    using (var writer = new StreamWriter(stream))
+                    writer.Write(expected);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
                     {
-                        writer.Write(expected);
-                        writer.Flush();
-                        stream.Position = 0;
-                        using (var reader = new StreamReader(stream))
-                        {
-                            obj.Read(reader);
-                        }
+                        obj.Read(reader);
                     }
                 }
 

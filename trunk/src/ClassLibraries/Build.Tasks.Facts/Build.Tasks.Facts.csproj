@@ -28,6 +28,8 @@
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Build\CSharpProjectCompliance.Facts.cs" />
     <Compile Include="Build\LexiconTidy.Facts.cs" />
+    <Compile Include="Build\MessageCompilation.Facts.cs" />
+    <Compile Include="Build\Sdk\MessageCompiler.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Build.Tasks\Build.Tasks.csproj">

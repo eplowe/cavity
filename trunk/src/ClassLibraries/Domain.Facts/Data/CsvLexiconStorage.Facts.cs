@@ -68,12 +68,10 @@
             using (var file = new TempFile())
             {
                 using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                using (var writer = new StreamWriter(stream))
                 {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.WriteLine("CANONICAL,SYNONYMS");
-                        writer.WriteLine("1,");
-                    }
+                    writer.WriteLine("CANONICAL,SYNONYMS");
+                    writer.WriteLine("1,");
                 }
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
@@ -108,12 +106,10 @@
             using (var file = new TempFile())
             {
                 using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                using (var writer = new StreamWriter(stream))
                 {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.WriteLine("CANONICAL,SYNONYMS");
-                        writer.WriteLine("1,One;Unit");
-                    }
+                    writer.WriteLine("CANONICAL,SYNONYMS");
+                    writer.WriteLine("1,One;Unit");
                 }
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
@@ -130,13 +126,11 @@
             using (var file = new TempFile())
             {
                 using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                using (var writer = new StreamWriter(stream))
                 {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.WriteLine("CANONICAL,SYNONYMS");
-                        writer.WriteLine("1,One");
-                        writer.WriteLine("1,Unit");
-                    }
+                    writer.WriteLine("CANONICAL,SYNONYMS");
+                    writer.WriteLine("1,One");
+                    writer.WriteLine("1,Unit");
                 }
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
@@ -155,12 +149,10 @@
             using (var file = new TempFile())
             {
                 using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                using (var writer = new StreamWriter(stream))
                 {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.WriteLine("CANONICAL,SYNONYMS");
-                        writer.WriteLine("1,One");
-                    }
+                    writer.WriteLine("CANONICAL,SYNONYMS");
+                    writer.WriteLine("1,One");
                 }
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
