@@ -355,18 +355,16 @@
             HttpHeader connection = "Connection: close";
 
             using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
             {
-                using (var writer = new StreamWriter(stream))
+                writer.WriteLine(connection);
+                writer.WriteLine(string.Empty);
+                writer.WriteLine("body");
+                writer.Flush();
+                stream.Position = 0;
+                using (var reader = new StreamReader(stream))
                 {
-                    writer.WriteLine(connection);
-                    writer.WriteLine(string.Empty);
-                    writer.WriteLine("body");
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        message.Read(reader);
-                    }
+                    message.Read(reader);
                 }
             }
 
@@ -380,15 +378,13 @@
             var obj = new HttpHeaderCollection();
 
             using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
             {
-                using (var writer = new StreamWriter(stream))
+                writer.Flush();
+                stream.Position = 0;
+                using (var reader = new StreamReader(stream))
                 {
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        obj.Read(reader);
-                    }
+                    obj.Read(reader);
                 }
             }
 
@@ -481,16 +477,14 @@
             };
 
             using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
             {
-                using (var writer = new StreamWriter(stream))
+                headers.Write(writer);
+                writer.Flush();
+                stream.Position = 0;
+                using (var reader = new StreamReader(stream))
                 {
-                    headers.Write(writer);
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        Assert.Equal("Connection: close" + Environment.NewLine, reader.ReadToEnd());
-                    }
+                    Assert.Equal("Connection: close" + Environment.NewLine, reader.ReadToEnd());
                 }
             }
         }
@@ -505,16 +499,14 @@
         public void op_Write_TextWriter_whenEmpty()
         {
             using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
             {
-                using (var writer = new StreamWriter(stream))
+                new HttpHeaderCollection().Write(writer);
+                writer.Flush();
+                stream.Position = 0;
+                using (var reader = new StreamReader(stream))
                 {
-                    new HttpHeaderCollection().Write(writer);
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new StreamReader(stream))
-                    {
-                        Assert.Equal(string.Empty, reader.ReadToEnd());
-                    }
+                    Assert.Equal(string.Empty, reader.ReadToEnd());
                 }
             }
         }

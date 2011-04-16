@@ -39,14 +39,10 @@
                     if (null != resource)
                     {
                         using (var reader = new StreamReader(resource))
+                        using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                        using (var writer = new StreamWriter(stream))
                         {
-                            using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
-                            {
-                                using (var writer = new StreamWriter(stream))
-                                {
-                                    writer.Write(reader.ReadToEnd());
-                                }
-                            }
+                            writer.Write(reader.ReadToEnd());
                         }
                     }
                 }
@@ -113,11 +109,9 @@
                             }
 
                             using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
+                            using (var writer = new StreamWriter(stream))
                             {
-                                using (var writer = new StreamWriter(stream))
-                                {
-                                    writer.Write(xml.OuterXml);
-                                }
+                                writer.Write(xml.OuterXml);
                             }
                         }
                     }

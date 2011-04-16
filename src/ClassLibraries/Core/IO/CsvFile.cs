@@ -29,19 +29,17 @@
         public IEnumerator<IDictionary<string, string>> GetEnumerator()
         {
             using (var stream = Info.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (var reader = new CsvStreamReader(stream))
             {
-                using (var reader = new CsvStreamReader(stream))
+                while (!reader.EndOfStream)
                 {
-                    while (!reader.EndOfStream)
+                    var entry = reader.ReadEntry();
+                    if (null == entry)
                     {
-                        var entry = reader.ReadEntry();
-                        if (null == entry)
-                        {
-                            break;
-                        }
-
-                        yield return entry;
+                        break;
                     }
+
+                    yield return entry;
                 }
             }
         }

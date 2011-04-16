@@ -34,6 +34,10 @@
     <Compile Include="Build\CSharpProjectCompliance.cs" />
     <Compile Include="Build\LexiconTidy.cs" />
   </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Build\MessageCompilation.cs" />
+    <Compile Include="Build\Sdk\MessageCompiler.cs" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Cavity.Build.Tasks.Targets">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

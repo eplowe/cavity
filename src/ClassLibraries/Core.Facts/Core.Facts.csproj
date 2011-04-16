@@ -47,6 +47,8 @@
     <Compile Include="ValueObject`1.Derived.cs" />
     <Compile Include="ValueObject`1.Facts.cs" />
     <Compile Include="WhiteSpace.Facts.cs" />
+    <Compile Include="Win32\FakeRegistry.Facts.cs" />
+    <Compile Include="Win32\RegistryFacade.Facts.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.Facts.cs" />
     <Compile Include="Xml\XmlNamespace.Facts.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.Facts.cs" />

@@ -32,11 +32,9 @@
         public void ctor_DirectoryInfo()
         {
             using (var directory = new TempDirectory())
+            using (var file = new TempFile(directory.Info))
             {
-                using (var file = new TempFile(directory.Info))
-                {
-                    Assert.NotNull(file);
-                }
+                Assert.NotNull(file);
             }
         }
 
