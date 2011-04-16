@@ -1,6 +1,5 @@
 ﻿namespace Cavity.Data
 {
-    using System;
     using Cavity;
     using Cavity.Configuration;
     using Cavity.IO;
@@ -47,7 +46,18 @@
         [Fact]
         public void expectations_struct()
         {
-            //// new RepositoryExpectations<int>().VerifyAll<FakeRepository<int>>();
+            try
+            {
+                using (var directory = new TempDirectory())
+                {
+                    FileRepositoryConfiguration.Mock = directory.Info;
+                    new RepositoryExpectations<int>().VerifyAll<FileRepository<int>>();
+                }
+            }
+            finally
+            {
+                FileRepositoryConfiguration.Mock = null;
+            }
         }
     }
 }
