@@ -6,7 +6,6 @@
     using System.Text;
     using System.Xml;
     using System.Xml.XPath;
-    using Cavity;
     using Cavity.Data;
 
     public sealed class RecordFile
@@ -109,22 +108,6 @@
             return result;
         }
 
-        public IRecord<T> ToRecord<T>()
-        {
-            return new Record<T>
-            {
-                Cacheability = Headers["cacheability"],
-                Created = XmlConvert.ToDateTime(Headers["created"], XmlDateTimeSerializationMode.Utc),
-                Etag = Headers["etag"],
-                Expiration = Headers["expiration"],
-                Key = AlphaDecimal.FromString(Headers["key"]),
-                Modified = XmlConvert.ToDateTime(Headers["modified"], XmlDateTimeSerializationMode.Utc),
-                Status = XmlConvert.ToInt32(Headers["status"]),
-                Urn = Headers["urn"],
-                Value = Body.XmlDeserialize<T>()
-            };
-        }
-
         public void Save(FileSystemInfo root)
         {
             if (null == root)
@@ -173,6 +156,22 @@
             }
 
             Location = file;
+        }
+
+        public IRecord<T> ToRecord<T>()
+        {
+            return new Record<T>
+            {
+                Cacheability = Headers["cacheability"],
+                Created = XmlConvert.ToDateTime(Headers["created"], XmlDateTimeSerializationMode.Utc),
+                Etag = Headers["etag"],
+                Expiration = Headers["expiration"],
+                Key = AlphaDecimal.FromString(Headers["key"]),
+                Modified = XmlConvert.ToDateTime(Headers["modified"], XmlDateTimeSerializationMode.Utc),
+                Status = XmlConvert.ToInt32(Headers["status"]),
+                Urn = Headers["urn"],
+                Value = Body.XmlDeserialize<T>()
+            };
         }
 
         public override string ToString()
