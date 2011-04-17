@@ -3,12 +3,12 @@
     using System.Collections.Generic;
     using Xunit;
 
-    public sealed class MessageCompilerFacts
+    public sealed class ResourceCompilerFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<MessageCompiler>()
+            Assert.True(new TypeExpectations<ResourceCompiler>()
                             .DerivesFrom<CompilerBase>()
                             .IsConcreteClass()
                             .IsSealed()
@@ -28,8 +28,8 @@
 
             using (new FakePlatformSdk())
             {
-                const string expected = "-u -U example.1 example.2";
-                var actual = MessageCompiler.Current.ToArguments(files);
+                const string expected = "-r example.1 example.2";
+                var actual = ResourceCompiler.Current.ToArguments(files);
 
                 Assert.Equal(expected, actual);
             }
@@ -40,7 +40,7 @@
         {
             using (new FakePlatformSdk())
             {
-                Assert.NotNull(MessageCompiler.Current);
+                Assert.NotNull(ResourceCompiler.Current);
             }
         }
     }
