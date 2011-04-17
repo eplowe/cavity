@@ -50,14 +50,12 @@
 
         public FileInfo Location { get; private set; }
 
-        public string Output { get; private set; }
-
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I do not want directories.")]
-        public MessageCompiler Compile(DirectoryInfo workingDirectory, IEnumerable<FileInfo> files)
+        public string Compile(DirectoryInfo outputPath, IEnumerable<FileInfo> files)
         {
-            if (null == workingDirectory)
+            if (null == outputPath)
             {
-                throw new ArgumentNullException("workingDirectory");
+                throw new ArgumentNullException("outputPath");
             }
 
             if (null == files)
@@ -70,6 +68,7 @@
                 throw new ArgumentOutOfRangeException("files");
             }
 
+            string result;
             using (var temp = new TempDirectory())
             {
                 foreach (var file in files)
@@ -77,7 +76,7 @@
                     var source = file.FullName;
                     var destination = new FileInfo(Path.Combine(temp.Info.FullName, file.Name)).FullName;
 
-                    if (workingDirectory.Exists)
+                    if (outputPath.Exists)
                     {
                         File.Copy(source, destination);
                     }
@@ -97,7 +96,7 @@
                     p.Start();
                     using (var reader = p.StandardOutput)
                     {
-                        Output = reader.ReadToEnd();
+                        result = reader.ReadToEnd();
                     }
 
                     if (0 != p.ExitCode)
@@ -110,9 +109,7 @@
                 }
             }
 
-            ////Output = string.Empty;
-
-            return this;
+            return result;
         }
 
         private static string ToArguments(IEnumerable<string> files)

@@ -21,7 +21,7 @@
             try
             {
                 var dir = new DirectoryInfo(WorkingDirectory);
-                var output = MessageCompiler.Current.Compile(dir, ToFiles(Files)).Output;
+                var output = MessageCompiler.Current.Compile(dir, ToFiles(Files));
                 Log.LogMessage(MessageImportance.Normal, output);
 
                 return true;
