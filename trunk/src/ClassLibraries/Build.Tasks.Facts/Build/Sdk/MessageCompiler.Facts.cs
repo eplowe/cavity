@@ -25,29 +25,89 @@
         [Fact]
         public void op_Compile_DirectoryInfoNull_IEnumerableOfFileInfo()
         {
-            var files = new List<FileInfo>
+            try
             {
-                new FileInfo(@"C:\Temp\example.mc")
-            };
+                using (var temp = new TempDirectory())
+                {
+                    RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows"]["CurrentVersion"] = "v00.00";
+                    RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v00.00"]["InstallationFolder"] = temp.Info.FullName;
+                    temp.Info.CreateSubdirectory("bin");
+                    var exe = new FileInfo(Path.Combine(temp.Info.FullName, @"bin\mc.exe"));
+                    using (var stream = exe.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+                    using (var writer = new StreamWriter(stream))
+                    {
+                        writer.WriteLine(string.Empty);
+                    }
 
-            Assert.Throws<ArgumentNullException>(() => MessageCompiler.Current.Compile(null, files));
+                    var files = new List<FileInfo>
+                    {
+                        new FileInfo(@"C:\Temp\example.mc")
+                    };
+
+                    Assert.Throws<ArgumentNullException>(() => MessageCompiler.Current.Compile(null, files));
+                }
+            }
+            finally
+            {
+                RegistryFacade.Reset();
+            }
         }
 
         [Fact]
         public void op_Compile_DirectoryInfoNull_IEnumerableOfFileInfoEmpty()
         {
-            var files = new List<FileInfo>();
-            var workingDirectory = new DirectoryInfo(Path.GetTempPath());
+            try
+            {
+                using (var temp = new TempDirectory())
+                {
+                    RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows"]["CurrentVersion"] = "v00.00";
+                    RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v00.00"]["InstallationFolder"] = temp.Info.FullName;
+                    temp.Info.CreateSubdirectory("bin");
+                    var exe = new FileInfo(Path.Combine(temp.Info.FullName, @"bin\mc.exe"));
+                    using (var stream = exe.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+                    using (var writer = new StreamWriter(stream))
+                    {
+                        writer.WriteLine(string.Empty);
+                    }
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => MessageCompiler.Current.Compile(workingDirectory, files));
+                    var files = new List<FileInfo>();
+                    var workingDirectory = new DirectoryInfo(Path.GetTempPath());
+
+                    Assert.Throws<ArgumentOutOfRangeException>(() => MessageCompiler.Current.Compile(workingDirectory, files));
+                }
+            }
+            finally
+            {
+                RegistryFacade.Reset();
+            }
         }
 
         [Fact]
         public void op_Compile_DirectoryInfo_IEnumerableOfFileInfoNull()
         {
-            var workingDirectory = new DirectoryInfo(Path.GetTempPath());
+            try
+            {
+                using (var temp = new TempDirectory())
+                {
+                    RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows"]["CurrentVersion"] = "v00.00";
+                    RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v00.00"]["InstallationFolder"] = temp.Info.FullName;
+                    temp.Info.CreateSubdirectory("bin");
+                    var exe = new FileInfo(Path.Combine(temp.Info.FullName, @"bin\mc.exe"));
+                    using (var stream = exe.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+                    using (var writer = new StreamWriter(stream))
+                    {
+                        writer.WriteLine(string.Empty);
+                    }
 
-            Assert.Throws<ArgumentNullException>(() => MessageCompiler.Current.Compile(workingDirectory, null));
+                    var workingDirectory = new DirectoryInfo(Path.GetTempPath());
+
+                    Assert.Throws<ArgumentNullException>(() => MessageCompiler.Current.Compile(workingDirectory, null));
+                }
+            }
+            finally
+            {
+                RegistryFacade.Reset();
+            }
         }
 
         [Fact]
