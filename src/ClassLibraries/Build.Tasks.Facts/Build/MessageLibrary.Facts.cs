@@ -38,25 +38,31 @@
                 {
                     var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
                     using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    using (var writer = new StreamWriter(stream))
                     {
-                        writer.WriteLine(string.Empty);
+                        using (var writer = new StreamWriter(stream))
+                        {
+                            writer.WriteLine(string.Empty);
+                        }
                     }
 
                     using (var workingDirectory = new TempDirectory())
                     {
                         using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.rc"))
                             .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        using (var writer = new StreamWriter(stream))
                         {
-                            writer.WriteLine(string.Empty);
+                            using (var writer = new StreamWriter(stream))
+                            {
+                                writer.WriteLine(string.Empty);
+                            }
                         }
 
                         using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.res"))
                             .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        using (var writer = new StreamWriter(stream))
                         {
-                            writer.WriteLine(string.Empty);
+                            using (var writer = new StreamWriter(stream))
+                            {
+                                writer.WriteLine(string.Empty);
+                            }
                         }
 
                         ProcessFacade.Mock = new FakeProcess();
@@ -91,25 +97,31 @@
                 {
                     var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
                     using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    using (var writer = new StreamWriter(stream))
                     {
-                        writer.WriteLine(string.Empty);
+                        using (var writer = new StreamWriter(stream))
+                        {
+                            writer.WriteLine(string.Empty);
+                        }
                     }
 
                     using (var workingDirectory = new TempDirectory())
                     {
                         using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.rc"))
                             .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        using (var writer = new StreamWriter(stream))
                         {
-                            writer.WriteLine(string.Empty);
+                            using (var writer = new StreamWriter(stream))
+                            {
+                                writer.WriteLine(string.Empty);
+                            }
                         }
 
                         using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.res"))
                             .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        using (var writer = new StreamWriter(stream))
                         {
-                            writer.WriteLine(string.Empty);
+                            using (var writer = new StreamWriter(stream))
+                            {
+                                writer.WriteLine(string.Empty);
+                            }
                         }
 
                         var process = new Mock<IProcess>();
@@ -169,25 +181,31 @@
                 {
                     var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
                     using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    using (var writer = new StreamWriter(stream))
                     {
-                        writer.WriteLine(string.Empty);
+                        using (var writer = new StreamWriter(stream))
+                        {
+                            writer.WriteLine(string.Empty);
+                        }
                     }
 
                     using (var workingDirectory = new TempDirectory())
                     {
                         using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.rc"))
                             .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        using (var writer = new StreamWriter(stream))
                         {
-                            writer.WriteLine(string.Empty);
+                            using (var writer = new StreamWriter(stream))
+                            {
+                                writer.WriteLine(string.Empty);
+                            }
                         }
 
                         using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.res"))
                             .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        using (var writer = new StreamWriter(stream))
                         {
-                            writer.WriteLine(string.Empty);
+                            using (var writer = new StreamWriter(stream))
+                            {
+                                writer.WriteLine(string.Empty);
+                            }
                         }
 
                         ProcessFacade.Mock = new FakeProcess();
@@ -222,25 +240,31 @@
                 {
                     var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
                     using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    using (var writer = new StreamWriter(stream))
                     {
-                        writer.WriteLine(string.Empty);
+                        using (var writer = new StreamWriter(stream))
+                        {
+                            writer.WriteLine(string.Empty);
+                        }
                     }
 
                     using (var workingDirectory = new TempDirectory())
                     {
                         using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.rc"))
                             .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        using (var writer = new StreamWriter(stream))
                         {
-                            writer.WriteLine(string.Empty);
+                            using (var writer = new StreamWriter(stream))
+                            {
+                                writer.WriteLine(string.Empty);
+                            }
                         }
 
                         using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.res"))
                             .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        using (var writer = new StreamWriter(stream))
                         {
-                            writer.WriteLine(string.Empty);
+                            using (var writer = new StreamWriter(stream))
+                            {
+                                writer.WriteLine(string.Empty);
+                            }
                         }
 
                         ProcessFacade.Mock = new FakeProcess();
@@ -274,9 +298,11 @@
                 {
                     var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
                     using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    using (var writer = new StreamWriter(stream))
                     {
-                        writer.WriteLine(string.Empty);
+                        using (var writer = new StreamWriter(stream))
+                        {
+                            writer.WriteLine(string.Empty);
+                        }
                     }
 
                     using (var workingDirectory = new TempDirectory())
@@ -316,9 +342,11 @@
                 {
                     var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
                     using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    using (var writer = new StreamWriter(stream))
                     {
-                        writer.WriteLine(string.Empty);
+                        using (var writer = new StreamWriter(stream))
+                        {
+                            writer.WriteLine(string.Empty);
+                        }
                     }
 
                     ProcessFacade.Mock = new FakeProcess();
@@ -328,9 +356,9 @@
                         BuildEngine = new Mock<IBuildEngine>().Object,
                         Output = Path.Combine(temp.Info.FullName, "example.dll"),
                         Files = new ITaskItem[]
-                            {
-                                new TaskItem(file.FullName)
-                            }
+                        {
+                            new TaskItem(file.FullName)
+                        }
                     };
 
                     Assert.Throws<ArgumentOutOfRangeException>(() => task.Execute());

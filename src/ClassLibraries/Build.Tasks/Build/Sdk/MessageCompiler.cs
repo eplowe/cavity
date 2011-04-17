@@ -20,10 +20,7 @@
         {
             get
             {
-                var exe = ToApplicationPath("MC.exe");
-                return exe.Exists
-                           ? new MessageCompiler(exe)
-                           : null;
+                return new MessageCompiler(ToApplicationPath("MC.exe"));
             }
         }
 

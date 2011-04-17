@@ -8,7 +8,6 @@
     using System.Linq;
     using System.Text;
     using Cavity.Diagnostics;
-    using Cavity.IO;
     using Cavity.Win32;
 
     public abstract class CompilerBase
@@ -63,7 +62,8 @@
             return exe.Exists ? exe : null;
         }
 
-        public static string ToArguments(string switches, IEnumerable<string> files)
+        public static string ToArguments(string switches,
+                                         IEnumerable<string> files)
         {
             if (null == files)
             {

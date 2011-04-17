@@ -45,13 +45,13 @@
 
         public ProcessStartInfo StartInfo { get; set; }
 
+        public void Dispose()
+        {
+        }
+
         public bool Start()
         {
             return true;
-        }
-
-        public void Dispose()
-        {
         }
     }
 }
