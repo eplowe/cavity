@@ -29,6 +29,7 @@
     <Compile Include="Build\CSharpProjectCompliance.Facts.cs" />
     <Compile Include="Build\LexiconTidy.Facts.cs" />
     <Compile Include="Build\MessageCompilation.Facts.cs" />
+    <Compile Include="Build\Sdk\FakePlatformSdk.cs" />
     <Compile Include="Build\Sdk\MessageCompiler.Facts.cs" />
   </ItemGroup>
   <ItemGroup>

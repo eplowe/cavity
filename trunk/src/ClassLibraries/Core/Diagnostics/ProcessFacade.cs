@@ -21,6 +21,11 @@
             {
                 return _mock;
             }
+
+            set
+            {
+                _mock = value;
+            }
         }
 
         public static void Reset()
