@@ -20,10 +20,7 @@
         {
             get
             {
-                var exe = ToApplicationPath("RC.exe");
-                return exe.Exists
-                           ? new ResourceCompiler(exe)
-                           : null;
+                return new ResourceCompiler(ToApplicationPath("RC.exe"));
             }
         }
 

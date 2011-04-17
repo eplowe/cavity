@@ -135,78 +135,6 @@
         }
 
         [Fact]
-        public void op_Compile_DirectoryInfo_IEnumerableOfFileInfo_whenToolName()
-        {
-            try
-            {
-                using (var temp = new TempDirectory())
-                {
-                    var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.file"));
-                    var files = new List<FileInfo>
-                    {
-                        file
-                    };
-
-                    using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    {
-                        using (var writer = new StreamWriter(stream))
-                        {
-                            writer.WriteLine(string.Empty);
-                        }
-                    }
-
-                    var process = new Mock<IProcess>();
-                    process
-                        .SetupProperty(x => x.StartInfo);
-                    process
-                        .Setup(x => x.Start())
-                        .Returns(true);
-
-                    using (var stream = new MemoryStream())
-                    {
-                        using (var writer = new StreamWriter(stream))
-                        {
-                            using (var reader = new StreamReader(stream))
-                            {
-                                const string expected = "example";
-                                writer.Write(expected);
-                                writer.Flush();
-                                stream.Position = 0;
-
-                                process
-                                    .SetupGet(x => x.StandardOutput)
-                                    .Returns(reader);
-
-                                ProcessFacade.Mock = process.Object;
-
-                                const string args = "/?";
-                                const string exe = "example.exe";
-                                var mock = new Mock<CompilerBase>(exe);
-                                mock
-                                    .Setup(x => x.ToArguments(It.IsAny<IEnumerable<string>>()))
-                                    .Returns(args);
-                                var actual = mock.Object.Compile(temp.Info, files);
-
-                                Assert.Equal(expected, actual);
-
-                                Assert.Equal(args, process.Object.StartInfo.Arguments);
-                                Assert.Equal(exe, process.Object.StartInfo.FileName);
-                                Assert.True(process.Object.StartInfo.RedirectStandardError);
-                                Assert.True(process.Object.StartInfo.RedirectStandardOutput);
-                                Assert.False(process.Object.StartInfo.UseShellExecute);
-                                Assert.Equal(temp.Info.FullName, process.Object.StartInfo.WorkingDirectory);
-                            }
-                        }
-                    }
-                }
-            }
-            finally
-            {
-                ProcessFacade.Reset();
-            }
-        }
-
-        [Fact]
         public void op_Compile_DirectoryInfo_IEnumerableOfFileInfoNull()
         {
             var outputPath = new DirectoryInfo(Path.GetTempPath());
@@ -303,92 +231,75 @@
         }
 
         [Fact]
-        public void op_ToArguments_string_IEnumerableOfString()
+        public void op_Compile_DirectoryInfo_IEnumerableOfFileInfo_whenToolName()
         {
-            var files = new List<string>
+            try
             {
-                "example.1",
-                "example.2"
-            };
+                using (var temp = new TempDirectory())
+                {
+                    var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.file"));
+                    var files = new List<FileInfo>
+                    {
+                        file
+                    };
 
-            using (new FakePlatformSdk())
-            {
-                const string expected = "-a -B example.1 example.2";
-                var actual = CompilerBase.ToArguments("-a -B", files);
+                    using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+                    {
+                        using (var writer = new StreamWriter(stream))
+                        {
+                            writer.WriteLine(string.Empty);
+                        }
+                    }
 
-                Assert.Equal(expected, actual);
+                    var process = new Mock<IProcess>();
+                    process
+                        .SetupProperty(x => x.StartInfo);
+                    process
+                        .Setup(x => x.Start())
+                        .Returns(true);
+
+                    using (var stream = new MemoryStream())
+                    {
+                        using (var writer = new StreamWriter(stream))
+                        {
+                            using (var reader = new StreamReader(stream))
+                            {
+                                const string expected = "example";
+                                writer.Write(expected);
+                                writer.Flush();
+                                stream.Position = 0;
+
+                                process
+                                    .SetupGet(x => x.StandardOutput)
+                                    .Returns(reader);
+
+                                ProcessFacade.Mock = process.Object;
+
+                                const string args = "/?";
+                                const string exe = "example.exe";
+                                var mock = new Mock<CompilerBase>(exe);
+                                mock
+                                    .Setup(x => x.ToArguments(It.IsAny<IEnumerable<string>>()))
+                                    .Returns(args);
+                                var actual = mock.Object.Compile(temp.Info, files);
+
+                                Assert.Equal(expected, actual);
+
+                                Assert.Equal(args, process.Object.StartInfo.Arguments);
+                                Assert.Equal(exe, process.Object.StartInfo.FileName);
+                                Assert.True(process.Object.StartInfo.RedirectStandardError);
+                                Assert.True(process.Object.StartInfo.RedirectStandardOutput);
+                                Assert.False(process.Object.StartInfo.UseShellExecute);
+                                Assert.Equal(temp.Info.FullName, process.Object.StartInfo.WorkingDirectory);
+                            }
+                        }
+                    }
+                }
             }
-        }
-
-        [Fact]
-        public void op_ToArguments_stringNull_IEnumerableOfString()
-        {
-            var files = new List<string>
+            finally
             {
-                "example.1",
-                "example.2"
-            };
-
-            using (new FakePlatformSdk())
-            {
-                const string expected = "example.1 example.2";
-                var actual = CompilerBase.ToArguments(null, files);
-
-                Assert.Equal(expected, actual);
+                ProcessFacade.Reset();
             }
-        }
-
-        [Fact]
-        public void op_ToArguments_stringEmpty_IEnumerableOfString()
-        {
-            var files = new List<string>
-            {
-                "example.1",
-                "example.2"
-            };
-
-            using (new FakePlatformSdk())
-            {
-                const string expected = "example.1 example.2";
-                var actual = CompilerBase.ToArguments(string.Empty, files);
-
-                Assert.Equal(expected, actual);
-            }
-        }
-
-        [Fact]
-        public void op_ToArguments_string_IEnumerableOfStringEmpty()
-        {
-            using (new FakePlatformSdk())
-            {
-                Assert.Throws<ArgumentOutOfRangeException>(() => CompilerBase.ToArguments("-a -B", new List<string>()));
-            }
-        }
-
-        [Fact]
-        public void op_ToArguments_string_IEnumerableOfStringNull()
-        {
-            using (new FakePlatformSdk())
-            {
-                Assert.Throws<ArgumentNullException>(() => CompilerBase.ToArguments("-a -B", null));
-            }
-        }
-
-        [Fact]
-        public void op_ToFileNames_IEnumerableOfFileInfo()
-        {
-            var files = new List<FileInfo>
-            {
-                new FileInfo(@"C:\example.file")
-            };
-
-            Assert.Equal("example.file", CompilerBase.ToFileNames(files).First());
-        }
-
-        [Fact]
-        public void op_ToFileNames_IEnumerableOfFileInfoNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => CompilerBase.ToFileNames(null));
         }
 
         [Fact]
@@ -401,15 +312,15 @@
         }
 
         [Fact]
-        public void op_ToApplicationPath_stringNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => CompilerBase.ToApplicationPath(null));
-        }
-
-        [Fact]
         public void op_ToApplicationPath_stringEmpty()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => CompilerBase.ToApplicationPath(string.Empty));
+        }
+
+        [Fact]
+        public void op_ToApplicationPath_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => CompilerBase.ToApplicationPath(null));
         }
 
         [Fact]
@@ -498,6 +409,95 @@
             {
                 RegistryFacade.Reset();
             }
+        }
+
+        [Fact]
+        public void op_ToArguments_stringEmpty_IEnumerableOfString()
+        {
+            var files = new List<string>
+            {
+                "example.1",
+                "example.2"
+            };
+
+            using (new FakePlatformSdk())
+            {
+                const string expected = "example.1 example.2";
+                var actual = CompilerBase.ToArguments(string.Empty, files);
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_ToArguments_stringNull_IEnumerableOfString()
+        {
+            var files = new List<string>
+            {
+                "example.1",
+                "example.2"
+            };
+
+            using (new FakePlatformSdk())
+            {
+                const string expected = "example.1 example.2";
+                var actual = CompilerBase.ToArguments(null, files);
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_ToArguments_string_IEnumerableOfString()
+        {
+            var files = new List<string>
+            {
+                "example.1",
+                "example.2"
+            };
+
+            using (new FakePlatformSdk())
+            {
+                const string expected = "-a -B example.1 example.2";
+                var actual = CompilerBase.ToArguments("-a -B", files);
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_ToArguments_string_IEnumerableOfStringEmpty()
+        {
+            using (new FakePlatformSdk())
+            {
+                Assert.Throws<ArgumentOutOfRangeException>(() => CompilerBase.ToArguments("-a -B", new List<string>()));
+            }
+        }
+
+        [Fact]
+        public void op_ToArguments_string_IEnumerableOfStringNull()
+        {
+            using (new FakePlatformSdk())
+            {
+                Assert.Throws<ArgumentNullException>(() => CompilerBase.ToArguments("-a -B", null));
+            }
+        }
+
+        [Fact]
+        public void op_ToFileNames_IEnumerableOfFileInfo()
+        {
+            var files = new List<FileInfo>
+            {
+                new FileInfo(@"C:\example.file")
+            };
+
+            Assert.Equal("example.file", CompilerBase.ToFileNames(files).First());
+        }
+
+        [Fact]
+        public void op_ToFileNames_IEnumerableOfFileInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => CompilerBase.ToFileNames(null));
         }
     }
 }
