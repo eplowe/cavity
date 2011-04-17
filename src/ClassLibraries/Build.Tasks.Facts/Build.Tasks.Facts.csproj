@@ -31,6 +31,7 @@
     <Compile Include="Build\MessageLibrary.Facts.cs" />
     <Compile Include="Build\Sdk\CompilerBase.Facts.cs" />
     <Compile Include="Build\Sdk\FakePlatformSdk.cs" />
+    <Compile Include="Build\Sdk\LinkCompiler.Facts.cs" />
     <Compile Include="Build\Sdk\MessageCompiler.Facts.cs" />
     <Compile Include="Build\Sdk\ResourceCompiler.Facts.cs" />
   </ItemGroup>
@@ -54,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Build\CSharpProjectCompliance.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Diagnostics\FakeProcess.cs" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />

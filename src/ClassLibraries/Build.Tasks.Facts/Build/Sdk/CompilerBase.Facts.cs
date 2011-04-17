@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.IO;
     using System.Linq;
     using Cavity.Diagnostics;
@@ -58,7 +59,7 @@
 
             var mock = new Mock<CompilerBase>(new FileInfo(@"C:\example.exe"));
 
-            Assert.Throws<FileNotFoundException>(() => mock.Object.Compile(outputPath, files));
+            Assert.Throws<Win32Exception>(() => mock.Object.Compile(outputPath, files));
         }
 
         [Fact]
@@ -66,8 +67,6 @@
         {
             try
             {
-                var outputPath = new DirectoryInfo(Path.GetTempPath());
-
                 using (var temp = new TempDirectory())
                 {
                     var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.file"));
@@ -114,7 +113,7 @@
                                 mock
                                     .Setup(x => x.ToArguments(It.IsAny<IEnumerable<string>>()))
                                     .Returns(args);
-                                var actual = mock.Object.Compile(outputPath, files);
+                                var actual = mock.Object.Compile(temp.Info, files);
 
                                 Assert.Equal(expected, actual);
 
@@ -123,7 +122,79 @@
                                 Assert.True(process.Object.StartInfo.RedirectStandardError);
                                 Assert.True(process.Object.StartInfo.RedirectStandardOutput);
                                 Assert.False(process.Object.StartInfo.UseShellExecute);
-                                Assert.False(new DirectoryInfo(process.Object.StartInfo.WorkingDirectory).Exists);
+                                Assert.Equal(temp.Info.FullName, process.Object.StartInfo.WorkingDirectory);
+                            }
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                ProcessFacade.Reset();
+            }
+        }
+
+        [Fact]
+        public void op_Compile_DirectoryInfo_IEnumerableOfFileInfo_whenToolName()
+        {
+            try
+            {
+                using (var temp = new TempDirectory())
+                {
+                    var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.file"));
+                    var files = new List<FileInfo>
+                    {
+                        file
+                    };
+
+                    using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+                    {
+                        using (var writer = new StreamWriter(stream))
+                        {
+                            writer.WriteLine(string.Empty);
+                        }
+                    }
+
+                    var process = new Mock<IProcess>();
+                    process
+                        .SetupProperty(x => x.StartInfo);
+                    process
+                        .Setup(x => x.Start())
+                        .Returns(true);
+
+                    using (var stream = new MemoryStream())
+                    {
+                        using (var writer = new StreamWriter(stream))
+                        {
+                            using (var reader = new StreamReader(stream))
+                            {
+                                const string expected = "example";
+                                writer.Write(expected);
+                                writer.Flush();
+                                stream.Position = 0;
+
+                                process
+                                    .SetupGet(x => x.StandardOutput)
+                                    .Returns(reader);
+
+                                ProcessFacade.Mock = process.Object;
+
+                                const string args = "/?";
+                                const string exe = "example.exe";
+                                var mock = new Mock<CompilerBase>(exe);
+                                mock
+                                    .Setup(x => x.ToArguments(It.IsAny<IEnumerable<string>>()))
+                                    .Returns(args);
+                                var actual = mock.Object.Compile(temp.Info, files);
+
+                                Assert.Equal(expected, actual);
+
+                                Assert.Equal(args, process.Object.StartInfo.Arguments);
+                                Assert.Equal(exe, process.Object.StartInfo.FileName);
+                                Assert.True(process.Object.StartInfo.RedirectStandardError);
+                                Assert.True(process.Object.StartInfo.RedirectStandardOutput);
+                                Assert.False(process.Object.StartInfo.UseShellExecute);
+                                Assert.Equal(temp.Info.FullName, process.Object.StartInfo.WorkingDirectory);
                             }
                         }
                     }

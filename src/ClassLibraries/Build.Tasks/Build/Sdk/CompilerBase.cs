@@ -18,7 +18,14 @@
             Location = location;
         }
 
-        public FileInfo Location { get; private set; }
+        protected CompilerBase(string toolName)
+        {
+            ToolName = toolName;
+        }
+
+        private FileInfo Location { get; set; }
+
+        private string ToolName { get; set; }
 
         public static FileInfo ToApplicationPath(string name)
         {
@@ -90,12 +97,12 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I do not want directories.")]
-        public string Compile(DirectoryInfo outputPath,
+        public string Compile(DirectoryInfo workingDirectory,
                               IEnumerable<FileInfo> files)
         {
-            if (null == outputPath)
+            if (null == workingDirectory)
             {
-                throw new ArgumentNullException("outputPath");
+                throw new ArgumentNullException("workingDirectory");
             }
 
             if (null == files)
@@ -109,42 +116,28 @@
             }
 
             string result;
-            using (var temp = new TempDirectory())
+            using (var p = ProcessFacade.Current)
             {
-                foreach (var file in files)
+                p.StartInfo = new ProcessStartInfo
                 {
-                    var source = file.FullName;
-                    var destination = new FileInfo(Path.Combine(temp.Info.FullName, file.Name)).FullName;
-
-                    if (outputPath.Exists)
-                    {
-                        File.Copy(source, destination);
-                    }
+                    Arguments = ToArguments(ToFileNames(files)),
+                    FileName = null == Location ? ToolName : Location.FullName,
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    WorkingDirectory = workingDirectory.FullName
+                };
+                p.Start();
+                using (var reader = p.StandardOutput)
+                {
+                    result = reader.ReadToEnd();
                 }
 
-                using (var p = ProcessFacade.Current)
+                if (0 != p.ExitCode)
                 {
-                    p.StartInfo = new ProcessStartInfo
+                    using (var reader = p.StandardError)
                     {
-                        Arguments = ToArguments(ToFileNames(files)),
-                        FileName = Location.FullName,
-                        RedirectStandardError = true,
-                        RedirectStandardOutput = true,
-                        UseShellExecute = false,
-                        WorkingDirectory = temp.Info.FullName
-                    };
-                    p.Start();
-                    using (var reader = p.StandardOutput)
-                    {
-                        result = reader.ReadToEnd();
-                    }
-
-                    if (0 != p.ExitCode)
-                    {
-                        using (var reader = p.StandardError)
-                        {
-                            throw new InvalidOperationException(reader.ReadToEnd());
-                        }
+                        throw new InvalidOperationException(reader.ReadToEnd());
                     }
                 }
             }
