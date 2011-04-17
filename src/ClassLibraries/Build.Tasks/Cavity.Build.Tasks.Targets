@@ -2,5 +2,5 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <UsingTask AssemblyFile="Cavity.Build.Tasks.dll" TaskName="Cavity.Build.CSharpProjectCompliance" />
   <UsingTask AssemblyFile="Cavity.Build.Tasks.dll" TaskName="Cavity.Build.LexiconTidy" />
-  <UsingTask AssemblyFile="Cavity.Build.Tasks.dll" TaskName="Cavity.Build.MessageCompilation" />
+  <UsingTask AssemblyFile="Cavity.Build.Tasks.dll" TaskName="Cavity.Build.MessageLibrary" />
 </Project>

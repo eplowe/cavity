@@ -8,7 +8,7 @@
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
 
-    public sealed class MessageCompilation : Task
+    public sealed class MessageLibrary : Task
     {
         [Required]
         public ITaskItem[] Files { get; set; }
