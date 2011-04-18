@@ -72,6 +72,7 @@
                             BuildEngine = new Mock<IBuildEngine>().Object,
                             WorkingDirectory = workingDirectory.Info.FullName,
                             FrameworkSdkBin = @"C:\",
+                            VCInstallDirectory = @"C:\",
                             Output = Path.Combine(workingDirectory.Info.FullName, "example.dll"),
                             Files = new ITaskItem[]
                             {
@@ -217,6 +218,7 @@
                             BuildEngine = new Mock<IBuildEngine>().Object,
                             WorkingDirectory = workingDirectory.Info.FullName,
                             FrameworkSdkBin = @"C:\",
+                            VCInstallDirectory = @"C:\",
                             Output = Path.Combine(Path.Combine(workingDirectory.Info.FullName, "bin"), "example.dll"),
                             Files = new ITaskItem[]
                             {
@@ -397,6 +399,15 @@
         public void prop_Output()
         {
             Assert.True(new PropertyExpectations<MessageLibrary>(p => p.Output)
+                            .IsAutoProperty<string>()
+                            .IsDecoratedWith<RequiredAttribute>()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_VCInstallDirectory()
+        {
+            Assert.True(new PropertyExpectations<MessageLibrary>(p => p.VCInstallDirectory)
                             .IsAutoProperty<string>()
                             .IsDecoratedWith<RequiredAttribute>()
                             .Result);

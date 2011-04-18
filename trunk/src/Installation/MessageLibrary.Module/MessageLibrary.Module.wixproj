@@ -36,7 +36,8 @@
     <MessageLibrary Files="@(MessageFiles)" 
                     Output="$(ProjectDir)bin\Cavity.EventLog.dll" 
                     WorkingDirectory="$(ProjectDir)obj"
-                    FrameworkSdkBin="$(FrameworkSDKRoot)bin" />
+                    FrameworkSdkBin="$(FrameworkSDKRoot)bin"
+                    VCInstallDirectory="$(VCINSTALLDIR)" />
   </Target>
   <Import Project="$(WixTargetsPath)" />
   <!--

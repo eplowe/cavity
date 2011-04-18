@@ -25,6 +25,9 @@
         public string Output { get; set; }
 
         [Required]
+        public string VCInstallDirectory { get; set; }
+
+        [Required]
         public string WorkingDirectory { get; set; }
 
         public override bool Execute()
@@ -118,9 +121,12 @@
                 output.Directory.Create();
             }
 
-            Log.LogMessage(MessageImportance.Low, Resources.MessageLibrary_Link, output.FullName);
-            var link = LinkCompiler.Current;
-            link.Out = output;
+            var path = new FileInfo(Path.Combine(VCInstallDirectory, "LINK.exe"));
+            Log.LogMessage(MessageImportance.Low, path.FullName);
+            var link = new LinkCompiler(path)
+            {
+                Out = output
+            };
 
             Log.LogMessage(
                 MessageImportance.Normal,

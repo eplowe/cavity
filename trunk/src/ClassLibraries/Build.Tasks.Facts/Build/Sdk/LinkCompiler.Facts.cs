@@ -19,10 +19,18 @@
         }
 
         [Fact]
+        public void ctor()
+        {
+            Assert.NotNull(new LinkCompiler(new FileInfo(@"C:\")));
+        }
+
+        [Fact]
         public void op_ToArguments_IEnumerableOfString()
         {
-            var obj = LinkCompiler.Current;
-            obj.Out = new FileInfo(Path.Combine(Path.GetTempPath(), "Example.dll"));
+            var obj = new LinkCompiler(new FileInfo(@"C:\"))
+            {
+                Out = new FileInfo(Path.Combine(Path.GetTempPath(), "Example.dll"))
+            };
 
             var files = new List<string>
             {
@@ -34,12 +42,6 @@
             var actual = obj.ToArguments(files);
 
             Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void prop_Current()
-        {
-            Assert.NotNull(LinkCompiler.Current);
         }
 
         [Fact]

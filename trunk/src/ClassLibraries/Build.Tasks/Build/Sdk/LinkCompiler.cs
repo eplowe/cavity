@@ -12,17 +12,9 @@
     /// </seealso>
     public sealed class LinkCompiler : CompilerBase
     {
-        private LinkCompiler(string location)
+        public LinkCompiler(FileInfo location)
             : base(location)
         {
-        }
-
-        public static LinkCompiler Current
-        {
-            get
-            {
-                return new LinkCompiler("LINK.exe");
-            }
         }
 
         public string Machine { get; set; }

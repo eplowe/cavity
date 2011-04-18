@@ -124,33 +124,6 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LINK out:{0}.
-        /// </summary>
-        internal static string MessageLibrary_Link {
-            get {
-                return ResourceManager.GetString("MessageLibrary_Link", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MC.
-        /// </summary>
-        internal static string MessageLibrary_MessageCompiler {
-            get {
-                return ResourceManager.GetString("MessageLibrary_MessageCompiler", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to RC.
-        /// </summary>
-        internal static string MessageLibrary_ResourceCompiler {
-            get {
-                return ResourceManager.GetString("MessageLibrary_ResourceCompiler", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This task is not supported on the current .NET Framework version..
         /// </summary>
         internal static string Unsupported_Framework_Version {
