@@ -128,9 +128,15 @@
                 Out = output
             };
 
+            var files = workingDirectory.GetFiles("*.res", SearchOption.TopDirectoryOnly);
+            foreach (var file in files)
+            {
+                Log.LogMessage(file.FullName);
+            }
+
             Log.LogMessage(
                 MessageImportance.Normal,
-                link.Compile(workingDirectory, workingDirectory.GetFiles("*.res", SearchOption.TopDirectoryOnly)));
+                link.Compile(workingDirectory, files));
         }
     }
 }
