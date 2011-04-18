@@ -4,8 +4,11 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using System.Text;
     using Cavity.Diagnostics;
     using Cavity.Win32;
@@ -45,7 +48,7 @@
                 return null;
             }
 
-            var installation = (string)RegistryFacade.GetValue(@"{0}\{1}".FormatWith(key, version), "InstallationFolder");
+            var installation = (string)RegistryFacade.GetValue(string.Format(CultureInfo.InvariantCulture, @"{0}\{1}", key, version), "InstallationFolder");
             if (null == installation)
             {
                 return null;
@@ -70,10 +73,12 @@
                 throw new ArgumentNullException("files");
             }
 
+#if !NET20
             if (0 == files.Count())
             {
                 throw new ArgumentOutOfRangeException("files");
             }
+#endif
 
             var buffer = new StringBuilder();
             if (null != switches)
@@ -93,7 +98,14 @@
 
         public static IEnumerable<string> ToFileNames(IEnumerable<FileInfo> files)
         {
+#if NET20
+            foreach (var file in files)
+            {
+                yield return file.Name;
+            }
+#else
             return files.Select(file => file.Name);
+#endif
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I do not want directories.")]
@@ -110,10 +122,12 @@
                 throw new ArgumentNullException("files");
             }
 
+#if !NET20
             if (0 == files.Count())
             {
                 throw new ArgumentOutOfRangeException("files");
             }
+#endif
 
             string result;
             using (var p = ProcessFacade.Current)
