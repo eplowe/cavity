@@ -7,7 +7,6 @@
     using System.Linq;
     using Cavity.Diagnostics;
     using Cavity.IO;
-    using Cavity.Win32;
     using Moq;
     using Xunit;
 
@@ -303,115 +302,6 @@
         }
 
         [Fact]
-        public void op_ToApplicationPath_string()
-        {
-            using (new FakePlatformSdk())
-            {
-                Assert.NotNull(CompilerBase.ToApplicationPath("mc.exe"));
-            }
-        }
-
-        [Fact]
-        public void op_ToApplicationPath_stringEmpty()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => CompilerBase.ToApplicationPath(string.Empty));
-        }
-
-        [Fact]
-        public void op_ToApplicationPath_stringNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => CompilerBase.ToApplicationPath(null));
-        }
-
-        [Fact]
-        public void op_ToApplicationPath_string_whenBinDirectoryMissing()
-        {
-            try
-            {
-                using (var temp = new TempDirectory())
-                {
-                    RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows"]["CurrentVersion"] = "v00.00";
-                    RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v00.00"]["InstallationFolder"] = temp.Info.FullName;
-
-                    Assert.Null(CompilerBase.ToApplicationPath("example.exe"));
-                }
-            }
-            finally
-            {
-                RegistryFacade.Reset();
-            }
-        }
-
-        [Fact]
-        public void op_ToApplicationPath_string_whenCurrentVersionMissing()
-        {
-            try
-            {
-                RegistryFacade.Fake["foo"]["bar"] = "example";
-
-                Assert.Null(CompilerBase.ToApplicationPath("example.exe"));
-            }
-            finally
-            {
-                RegistryFacade.Reset();
-            }
-        }
-
-        [Fact]
-        public void op_ToApplicationPath_string_whenExeFileMissing()
-        {
-            try
-            {
-                using (var temp = new TempDirectory())
-                {
-                    RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows"]["CurrentVersion"] = "v00.00";
-                    RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v00.00"]["InstallationFolder"] = temp.Info.FullName;
-                    temp.Info.CreateSubdirectory("bin");
-
-                    Assert.Null(CompilerBase.ToApplicationPath("example.exe"));
-                }
-            }
-            finally
-            {
-                RegistryFacade.Reset();
-            }
-        }
-
-        [Fact]
-        public void op_ToApplicationPath_string_whenInstallationFolderDirectoryMissing()
-        {
-            try
-            {
-                using (var temp = new TempDirectory())
-                {
-                    RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows"]["CurrentVersion"] = "v00.00";
-                    RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v00.00"]["InstallationFolder"] = temp.Info.FullName;
-                }
-
-                Assert.Null(CompilerBase.ToApplicationPath("example.exe"));
-            }
-            finally
-            {
-                RegistryFacade.Reset();
-            }
-        }
-
-        [Fact]
-        public void op_ToApplicationPath_string_whenInstallationFolderMissing()
-        {
-            try
-            {
-                RegistryFacade.Fake[@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows"]["CurrentVersion"] = "v00.00";
-
-                Assert.Null(CompilerBase.ToApplicationPath("example.exe"));
-            }
-            finally
-            {
-                RegistryFacade.Reset();
-            }
-        }
-
-        [Fact]
         public void op_ToArguments_stringEmpty_IEnumerableOfString()
         {
             var files = new List<string>
@@ -420,13 +310,10 @@
                 "example.2"
             };
 
-            using (new FakePlatformSdk())
-            {
-                const string expected = "example.1 example.2";
-                var actual = CompilerBase.ToArguments(string.Empty, files);
+            const string expected = "example.1 example.2";
+            var actual = CompilerBase.ToArguments(string.Empty, files);
 
-                Assert.Equal(expected, actual);
-            }
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -438,13 +325,10 @@
                 "example.2"
             };
 
-            using (new FakePlatformSdk())
-            {
-                const string expected = "example.1 example.2";
-                var actual = CompilerBase.ToArguments(null, files);
+            const string expected = "example.1 example.2";
+            var actual = CompilerBase.ToArguments(null, files);
 
-                Assert.Equal(expected, actual);
-            }
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -456,31 +340,22 @@
                 "example.2"
             };
 
-            using (new FakePlatformSdk())
-            {
-                const string expected = "-a -B example.1 example.2";
-                var actual = CompilerBase.ToArguments("-a -B", files);
+            const string expected = "-a -B example.1 example.2";
+            var actual = CompilerBase.ToArguments("-a -B", files);
 
-                Assert.Equal(expected, actual);
-            }
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void op_ToArguments_string_IEnumerableOfStringEmpty()
         {
-            using (new FakePlatformSdk())
-            {
-                Assert.Throws<ArgumentOutOfRangeException>(() => CompilerBase.ToArguments("-a -B", new List<string>()));
-            }
+            Assert.Throws<ArgumentOutOfRangeException>(() => CompilerBase.ToArguments("-a -B", new List<string>()));
         }
 
         [Fact]
         public void op_ToArguments_string_IEnumerableOfStringNull()
         {
-            using (new FakePlatformSdk())
-            {
-                Assert.Throws<ArgumentNullException>(() => CompilerBase.ToArguments("-a -B", null));
-            }
+            Assert.Throws<ArgumentNullException>(() => CompilerBase.ToArguments("-a -B", null));
         }
 
         [Fact]

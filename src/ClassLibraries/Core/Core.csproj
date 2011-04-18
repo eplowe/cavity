@@ -22,8 +22,6 @@
     <Compile Include="IO\TempDirectory.cs" />
     <Compile Include="IO\TempFile.cs" />
     <Compile Include="Security\Cryptography\MD5Hash.cs" />
-    <Compile Include="Win32\FakeRegistry.cs" />
-    <Compile Include="Win32\RegistryFacade.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.cs" />
     <Compile Include="Xml\XmlNamespace.cs" />
     <Compile Include="AbsoluteUri.cs" />

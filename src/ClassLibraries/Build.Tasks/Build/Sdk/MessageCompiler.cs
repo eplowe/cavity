@@ -11,17 +11,9 @@
     /// </seealso>
     public sealed class MessageCompiler : CompilerBase
     {
-        private MessageCompiler(FileInfo location)
+        public MessageCompiler(FileInfo location)
             : base(location)
         {
-        }
-
-        public static MessageCompiler Current
-        {
-            get
-            {
-                return new MessageCompiler(ToApplicationPath("MC.exe"));
-            }
         }
 
         public override string ToArguments(IEnumerable<string> files)

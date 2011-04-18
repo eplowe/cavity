@@ -19,6 +19,9 @@
         public ITaskItem[] Files { get; set; }
 
         [Required]
+        public string FrameworkSdkBin { get; set; }
+
+        [Required]
         public string Output { get; set; }
 
         [Required]
@@ -64,16 +67,20 @@
                 File.Copy(source, destination);
             }
 
+            var path = new FileInfo(Path.Combine(FrameworkSdkBin, "MC.exe"));
+            Log.LogMessage(MessageImportance.Low, path.FullName);
             Log.LogMessage(
                 MessageImportance.Normal,
-                MessageCompiler.Current.Compile(workingDirectory, workingDirectory.GetFiles("*.mc", SearchOption.TopDirectoryOnly)));
+                new MessageCompiler(path).Compile(workingDirectory, workingDirectory.GetFiles("*.mc", SearchOption.TopDirectoryOnly)));
         }
 
         private void CompileResources(DirectoryInfo workingDirectory)
         {
+            var path = new FileInfo(Path.Combine(FrameworkSdkBin, "RC.exe"));
+            Log.LogMessage(MessageImportance.Low, path.FullName);
             Log.LogMessage(
                 MessageImportance.Normal,
-                ResourceCompiler.Current.Compile(workingDirectory, workingDirectory.GetFiles("*.rc", SearchOption.TopDirectoryOnly)));
+                new ResourceCompiler(path).Compile(workingDirectory, workingDirectory.GetFiles("*.rc", SearchOption.TopDirectoryOnly)));
         }
 
         private bool Execute(DirectoryInfo workingDirectory)
@@ -111,6 +118,7 @@
                 output.Directory.Create();
             }
 
+            Log.LogMessage(MessageImportance.Low, Resources.MessageLibrary_Link, output.FullName);
             var link = LinkCompiler.Current;
             link.Out = output;
 
