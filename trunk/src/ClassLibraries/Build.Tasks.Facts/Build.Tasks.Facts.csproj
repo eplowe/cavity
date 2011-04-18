@@ -30,7 +30,6 @@
     <Compile Include="Build\LexiconTidy.Facts.cs" />
     <Compile Include="Build\MessageLibrary.Facts.cs" />
     <Compile Include="Build\Sdk\CompilerBase.Facts.cs" />
-    <Compile Include="Build\Sdk\FakePlatformSdk.cs" />
     <Compile Include="Build\Sdk\LinkCompiler.Facts.cs" />
     <Compile Include="Build\Sdk\MessageCompiler.Facts.cs" />
     <Compile Include="Build\Sdk\ResourceCompiler.Facts.cs" />

@@ -33,7 +33,10 @@
       <MessageFiles Include="$(ProjectDir)Cavity.EventLog.mc" />
     </ItemGroup>
     <RemoveDir Directories="$(ProjectDir)obj" />
-    <MessageLibrary Files="@(MessageFiles)" Output="$(ProjectDir)bin\Cavity.EventLog.dll" WorkingDirectory="$(ProjectDir)obj" />
+    <MessageLibrary Files="@(MessageFiles)" 
+                    Output="$(ProjectDir)bin\Cavity.EventLog.dll" 
+                    WorkingDirectory="$(ProjectDir)obj"
+                    FrameworkSdkBin="$(FrameworkSDKRoot)bin" />
   </Target>
   <Import Project="$(WixTargetsPath)" />
   <!--

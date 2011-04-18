@@ -4,14 +4,12 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
     using System.IO;
 #if !NET20
     using System.Linq;
 #endif
     using System.Text;
     using Cavity.Diagnostics;
-    using Cavity.Win32;
 
     public abstract class CompilerBase
     {
@@ -28,42 +26,6 @@
         private FileInfo Location { get; set; }
 
         private string ToolName { get; set; }
-
-        public static FileInfo ToApplicationPath(string name)
-        {
-            if (null == name)
-            {
-                throw new ArgumentNullException("name");
-            }
-
-            if (0 == name.Length)
-            {
-                throw new ArgumentOutOfRangeException("name");
-            }
-
-            const string key = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows";
-            var version = RegistryFacade.GetValue(key, "CurrentVersion");
-            if (null == version)
-            {
-                return null;
-            }
-
-            var installation = (string)RegistryFacade.GetValue(string.Format(CultureInfo.InvariantCulture, @"{0}\{1}", key, version), "InstallationFolder");
-            if (null == installation)
-            {
-                return null;
-            }
-
-            var bin = new DirectoryInfo(Path.Combine(installation, "Bin"));
-            if (!bin.Exists)
-            {
-                return null;
-            }
-
-            var exe = new FileInfo(Path.Combine(bin.FullName, name));
-
-            return exe.Exists ? exe : null;
-        }
 
         public static string ToArguments(string switches,
                                          IEnumerable<string> files)

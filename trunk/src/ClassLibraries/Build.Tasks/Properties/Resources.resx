@@ -138,6 +138,15 @@
   <data name="MessageLibrary_Compiled" xml:space="preserve">
     <value>Compiled {0}</value>
   </data>
+  <data name="MessageLibrary_Link" xml:space="preserve">
+    <value>LINK out:{0}</value>
+  </data>
+  <data name="MessageLibrary_MessageCompiler" xml:space="preserve">
+    <value>MC</value>
+  </data>
+  <data name="MessageLibrary_ResourceCompiler" xml:space="preserve">
+    <value>RC</value>
+  </data>
   <data name="Unsupported_Framework_Version" xml:space="preserve">
     <value>This task is not supported on the current .NET Framework version.</value>
   </data>

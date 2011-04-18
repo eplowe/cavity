@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Build.Sdk
 {
     using System.Collections.Generic;
+    using System.IO;
     using Xunit;
 
     public sealed class MessageCompilerFacts
@@ -18,6 +19,12 @@
         }
 
         [Fact]
+        public void ctor_FileInfo()
+        {
+            Assert.NotNull(new MessageCompiler(new FileInfo("MC.exe")));
+        }
+
+        [Fact]
         public void op_ToArguments_IEnumerableOfString()
         {
             var files = new List<string>
@@ -26,22 +33,10 @@
                 "example.2"
             };
 
-            using (new FakePlatformSdk())
-            {
-                const string expected = "-u -U example.1 example.2";
-                var actual = MessageCompiler.Current.ToArguments(files);
+            const string expected = "-u -U example.1 example.2";
+            var actual = new MessageCompiler(new FileInfo("MC.exe")).ToArguments(files);
 
-                Assert.Equal(expected, actual);
-            }
-        }
-
-        [Fact]
-        public void prop_Current()
-        {
-            using (new FakePlatformSdk())
-            {
-                Assert.NotNull(MessageCompiler.Current);
-            }
+            Assert.Equal(expected, actual);
         }
     }
 }
