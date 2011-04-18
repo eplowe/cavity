@@ -2,10 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using Cavity.Build.Sdk;
     using Cavity.IO;
+    using Cavity.Properties;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
 
@@ -35,7 +39,14 @@
 
         private static IEnumerable<FileInfo> ToFiles(IEnumerable<ITaskItem> files)
         {
+#if NET20
+            foreach (var file in files)
+            {
+                yield return new FileInfo(file.ItemSpec);
+            }
+#else
             return files.Select(file => new FileInfo(file.ItemSpec));
+#endif
         }
 
         private void CompileMessages(DirectoryInfo workingDirectory)
@@ -73,7 +84,11 @@
                 CompileResources(workingDirectory);
                 LinkResources(workingDirectory);
 
-                Log.LogMessage(MessageImportance.Normal, "Compiled {0}".FormatWith(Output));
+                var message = string.Format(
+                    CultureInfo.InvariantCulture,
+                    Resources.MessageLibrary_Compiled,
+                    Output);
+                Log.LogMessage(MessageImportance.Normal, message);
                 return true;
             }
             catch (InvalidOperationException exception)
