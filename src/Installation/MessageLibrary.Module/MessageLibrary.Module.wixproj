@@ -33,6 +33,7 @@
       <MessageFiles Include="$(ProjectDir)Cavity.EventLog.mc" />
     </ItemGroup>
     <RemoveDir Directories="$(ProjectDir)obj" />
+    <Message Text="VCINSTALLDIR = $(VCINSTALLDIR)"/>
     <MessageLibrary Files="@(MessageFiles)" 
                     Output="$(ProjectDir)bin\Cavity.EventLog.dll" 
                     WorkingDirectory="$(ProjectDir)obj"
