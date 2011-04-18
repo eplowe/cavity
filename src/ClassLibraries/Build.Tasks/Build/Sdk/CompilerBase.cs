@@ -18,14 +18,7 @@
             Location = location;
         }
 
-        protected CompilerBase(string toolName)
-        {
-            ToolName = toolName;
-        }
-
         private FileInfo Location { get; set; }
-
-        private string ToolName { get; set; }
 
         public static string ToArguments(string switches,
                                          IEnumerable<string> files)
@@ -97,7 +90,8 @@
                 p.StartInfo = new ProcessStartInfo
                 {
                     Arguments = ToArguments(ToFileNames(files)),
-                    FileName = null == Location ? ToolName : Location.FullName,
+                    CreateNoWindow = true,
+                    FileName = Location.FullName,
                     RedirectStandardError = true,
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
