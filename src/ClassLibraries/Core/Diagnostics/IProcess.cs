@@ -15,5 +15,7 @@
         ProcessStartInfo StartInfo { get; set; }
 
         bool Start();
+
+        bool WaitForExit(int milliseconds);
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace Cavity.Build
 {
-    using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Globalization;
     using System.IO;
 #if !NET20
@@ -43,7 +43,7 @@
             return Execute(new DirectoryInfo(WorkingDirectory));
         }
 
-        private static IEnumerable<FileInfo> ToFiles(IEnumerable<ITaskItem> files)
+        private static IEnumerable<FileInfo> ToFileInfo(IEnumerable<ITaskItem> files)
         {
 #if NET20
             foreach (var file in files)
@@ -62,7 +62,7 @@
                 workingDirectory.Create();
             }
 
-            foreach (var file in ToFiles(Files))
+            foreach (var file in ToFileInfo(Files))
             {
                 var source = file.FullName;
                 var destination = new FileInfo(Path.Combine(workingDirectory.FullName, file.Name)).FullName;
@@ -74,7 +74,7 @@
             Log.LogMessage(MessageImportance.Low, path.FullName);
             Log.LogMessage(
                 MessageImportance.Normal,
-                new MessageCompiler(path).Compile(workingDirectory, workingDirectory.GetFiles("*.mc", SearchOption.TopDirectoryOnly)));
+                new MessageCompiler(path).Compile(workingDirectory, GetFiles(workingDirectory, "*.mc")));
         }
 
         private void CompileResources(DirectoryInfo workingDirectory)
@@ -83,7 +83,7 @@
             Log.LogMessage(MessageImportance.Low, path.FullName);
             Log.LogMessage(
                 MessageImportance.Normal,
-                new ResourceCompiler(path).Compile(workingDirectory, workingDirectory.GetFiles("*.rc", SearchOption.TopDirectoryOnly)));
+                new ResourceCompiler(path).Compile(workingDirectory, GetFiles(workingDirectory, "*.rc")));
         }
 
         private bool Execute(DirectoryInfo workingDirectory)
@@ -101,11 +101,25 @@
                 Log.LogMessage(MessageImportance.Normal, message);
                 return true;
             }
-            catch (InvalidOperationException exception)
+            catch (Win32Exception exception)
             {
                 Log.LogError(exception.Message);
                 return false;
             }
+        }
+
+        private IEnumerable<FileInfo> GetFiles(DirectoryInfo workingDirectory, string searchPattern)
+        {
+            Log.LogMessage(MessageImportance.Low, searchPattern);
+
+            var files = workingDirectory.GetFiles(searchPattern, SearchOption.TopDirectoryOnly);
+
+            foreach (var file in files)
+            {
+                Log.LogMessage(MessageImportance.Low, file.FullName);
+            }
+
+            return files;
         }
 
         private void LinkResources(DirectoryInfo workingDirectory)
@@ -125,18 +139,14 @@
             Log.LogMessage(MessageImportance.Low, path.FullName);
             var link = new LinkCompiler(path)
             {
-                Out = output
+                Out = new FileInfo(Path.Combine(output.Directory.FullName, output.Name))
             };
-
-            var files = workingDirectory.GetFiles("*.res", SearchOption.TopDirectoryOnly);
-            foreach (var file in files)
-            {
-                Log.LogMessage(file.FullName);
-            }
 
             Log.LogMessage(
                 MessageImportance.Normal,
-                link.Compile(workingDirectory, files));
+                link.Compile(workingDirectory, GetFiles(workingDirectory, "*.res"), 9000));
+
+            link.Out.CopyTo(output.FullName);
         }
     }
 }

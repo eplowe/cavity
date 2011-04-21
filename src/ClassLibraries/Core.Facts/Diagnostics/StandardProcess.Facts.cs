@@ -106,5 +106,27 @@
                 Assert.Equal(expected, actual);
             }
         }
+
+        ////[Fact]
+        ////public void op_WaitForExit_int()
+        ////{
+        ////    using (var obj = new StandardProcess())
+        ////    {
+        ////        obj.StartInfo = new ProcessStartInfo
+        ////        {
+        ////            Arguments = string.Empty,
+        ////            FileName = "cmd.exe",
+        ////            RedirectStandardError = true,
+        ////            RedirectStandardOutput = true,
+        ////            UseShellExecute = false,
+        ////            WorkingDirectory = Path.GetTempPath()
+        ////        };
+
+        ////        const bool expected = true;
+        ////        var actual = obj.WaitForExit(1000);
+
+        ////        Assert.Equal(expected, actual);
+        ////    }
+        ////}
     }
 }

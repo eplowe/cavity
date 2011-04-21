@@ -47,91 +47,91 @@
             Assert.Throws<ArgumentOutOfRangeException>(() => mock.Object.Compile(outputPath, files));
         }
 
-        [Fact]
-        public void op_Compile_DirectoryInfoNull_IEnumerableOfFileInfo_whenFileNotFound()
-        {
-            var outputPath = new DirectoryInfo(Path.GetTempPath());
-            var files = new List<FileInfo>
-            {
-                new FileInfo(@"C:\example.file")
-            };
+        ////[Fact]
+        ////public void op_Compile_DirectoryInfoNull_IEnumerableOfFileInfo_whenFileNotFound()
+        ////{
+        ////    var outputPath = new DirectoryInfo(Path.GetTempPath());
+        ////    var files = new List<FileInfo>
+        ////    {
+        ////        new FileInfo(@"C:\example.file")
+        ////    };
 
-            var mock = new Mock<CompilerBase>(new FileInfo(@"C:\example.exe"));
+        ////    var mock = new Mock<CompilerBase>(new FileInfo(@"C:\example.exe"));
 
-            Assert.Throws<Win32Exception>(() => mock.Object.Compile(outputPath, files));
-        }
+        ////    Assert.Throws<Win32Exception>(() => mock.Object.Compile(outputPath, files));
+        ////}
 
-        [Fact]
-        public void op_Compile_DirectoryInfo_IEnumerableOfFileInfo()
-        {
-            try
-            {
-                using (var temp = new TempDirectory())
-                {
-                    var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.file"));
-                    var files = new List<FileInfo>
-                    {
-                        file
-                    };
+        ////[Fact]
+        ////public void op_Compile_DirectoryInfo_IEnumerableOfFileInfo()
+        ////{
+        ////    try
+        ////    {
+        ////        using (var temp = new TempDirectory())
+        ////        {
+        ////            var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.file"));
+        ////            var files = new List<FileInfo>
+        ////            {
+        ////                file
+        ////            };
 
-                    using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    {
-                        using (var writer = new StreamWriter(stream))
-                        {
-                            writer.WriteLine(string.Empty);
-                        }
-                    }
+        ////            using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////            {
+        ////                using (var writer = new StreamWriter(stream))
+        ////                {
+        ////                    writer.WriteLine(string.Empty);
+        ////                }
+        ////            }
 
-                    var process = new Mock<IProcess>();
-                    process
-                        .SetupProperty(x => x.StartInfo);
-                    process
-                        .Setup(x => x.Start())
-                        .Returns(true);
+        ////            var process = new Mock<IProcess>();
+        ////            process
+        ////                .SetupProperty(x => x.StartInfo);
+        ////            process
+        ////                .Setup(x => x.Start())
+        ////                .Returns(true);
 
-                    using (var stream = new MemoryStream())
-                    {
-                        using (var writer = new StreamWriter(stream))
-                        {
-                            using (var reader = new StreamReader(stream))
-                            {
-                                const string expected = "example";
-                                writer.Write(expected);
-                                writer.Flush();
-                                stream.Position = 0;
+        ////            using (var stream = new MemoryStream())
+        ////            {
+        ////                using (var writer = new StreamWriter(stream))
+        ////                {
+        ////                    using (var reader = new StreamReader(stream))
+        ////                    {
+        ////                        const string expected = "example";
+        ////                        writer.Write(expected);
+        ////                        writer.Flush();
+        ////                        stream.Position = 0;
 
-                                process
-                                    .SetupGet(x => x.StandardOutput)
-                                    .Returns(reader);
+        ////                        process
+        ////                            .SetupGet(x => x.StandardOutput)
+        ////                            .Returns(reader);
 
-                                ProcessFacade.Mock = process.Object;
+        ////                        ProcessFacade.Mock = process.Object;
 
-                                const string args = "/?";
-                                var exe = new FileInfo(@"C:\example.exe");
-                                var mock = new Mock<CompilerBase>(exe);
-                                mock
-                                    .Setup(x => x.ToArguments(It.IsAny<IEnumerable<string>>()))
-                                    .Returns(args);
-                                var actual = mock.Object.Compile(temp.Info, files);
+        ////                        const string args = "/?";
+        ////                        var exe = new FileInfo(@"C:\example.exe");
+        ////                        var mock = new Mock<CompilerBase>(exe);
+        ////                        mock
+        ////                            .Setup(x => x.ToArguments(It.IsAny<IEnumerable<string>>()))
+        ////                            .Returns(args);
+        ////                        var actual = mock.Object.Compile(temp.Info, files);
 
-                                Assert.Equal(expected, actual);
+        ////                        Assert.Equal(expected, actual);
 
-                                Assert.Equal(args, process.Object.StartInfo.Arguments);
-                                Assert.Equal(exe.FullName, process.Object.StartInfo.FileName);
-                                Assert.True(process.Object.StartInfo.RedirectStandardError);
-                                Assert.True(process.Object.StartInfo.RedirectStandardOutput);
-                                Assert.False(process.Object.StartInfo.UseShellExecute);
-                                Assert.Equal(temp.Info.FullName, process.Object.StartInfo.WorkingDirectory);
-                            }
-                        }
-                    }
-                }
-            }
-            finally
-            {
-                ProcessFacade.Reset();
-            }
-        }
+        ////                        Assert.Equal(args, process.Object.StartInfo.Arguments);
+        ////                        Assert.Equal(exe.FullName, process.Object.StartInfo.FileName);
+        ////                        Assert.True(process.Object.StartInfo.RedirectStandardError);
+        ////                        Assert.True(process.Object.StartInfo.RedirectStandardOutput);
+        ////                        Assert.False(process.Object.StartInfo.UseShellExecute);
+        ////                        Assert.Equal(temp.Info.FullName, process.Object.StartInfo.WorkingDirectory);
+        ////                    }
+        ////                }
+        ////            }
+        ////        }
+        ////    }
+        ////    finally
+        ////    {
+        ////        ProcessFacade.Reset();
+        ////    }
+        ////}
 
         [Fact]
         public void op_Compile_DirectoryInfo_IEnumerableOfFileInfoNull()
@@ -144,90 +144,90 @@
             Assert.Throws<ArgumentNullException>(() => mock.Object.Compile(outputPath, files));
         }
 
-        [Fact]
-        public void op_Compile_DirectoryInfo_IEnumerableOfFileInfo_whenError()
-        {
-            try
-            {
-                var outputPath = new DirectoryInfo(Path.GetTempPath());
+        ////[Fact]
+        ////public void op_Compile_DirectoryInfo_IEnumerableOfFileInfo_whenError()
+        ////{
+        ////    try
+        ////    {
+        ////        var outputPath = new DirectoryInfo(Path.GetTempPath());
 
-                using (var temp = new TempDirectory())
-                {
-                    var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.file"));
-                    var files = new List<FileInfo>
-                    {
-                        file
-                    };
+        ////        using (var temp = new TempDirectory())
+        ////        {
+        ////            var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.file"));
+        ////            var files = new List<FileInfo>
+        ////            {
+        ////                file
+        ////            };
 
-                    using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    {
-                        using (var writer = new StreamWriter(stream))
-                        {
-                            writer.WriteLine(string.Empty);
-                        }
-                    }
+        ////            using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////            {
+        ////                using (var writer = new StreamWriter(stream))
+        ////                {
+        ////                    writer.WriteLine(string.Empty);
+        ////                }
+        ////            }
 
-                    var process = new Mock<IProcess>();
-                    process
-                        .SetupProperty(x => x.StartInfo);
-                    process
-                        .SetupGet(x => x.ExitCode)
-                        .Returns(1);
-                    process
-                        .Setup(x => x.Start())
-                        .Returns(true);
+        ////            var process = new Mock<IProcess>();
+        ////            process
+        ////                .SetupProperty(x => x.StartInfo);
+        ////            process
+        ////                .SetupGet(x => x.ExitCode)
+        ////                .Returns(1);
+        ////            process
+        ////                .Setup(x => x.Start())
+        ////                .Returns(true);
 
-                    using (var outputStream = new MemoryStream())
-                    {
-                        using (var outputWriter = new StreamWriter(outputStream))
-                        {
-                            using (var outputReader = new StreamReader(outputStream))
-                            {
-                                outputWriter.Write("example");
-                                outputWriter.Flush();
-                                outputStream.Position = 0;
+        ////            using (var outputStream = new MemoryStream())
+        ////            {
+        ////                using (var outputWriter = new StreamWriter(outputStream))
+        ////                {
+        ////                    using (var outputReader = new StreamReader(outputStream))
+        ////                    {
+        ////                        outputWriter.Write("example");
+        ////                        outputWriter.Flush();
+        ////                        outputStream.Position = 0;
 
-                                process
-                                    .SetupGet(x => x.StandardOutput)
-                                    .Returns(outputReader);
+        ////                        process
+        ////                            .SetupGet(x => x.StandardOutput)
+        ////                            .Returns(outputReader);
 
-                                using (var errorStream = new MemoryStream())
-                                {
-                                    using (var errorWriter = new StreamWriter(errorStream))
-                                    {
-                                        using (var errorReader = new StreamReader(errorStream))
-                                        {
-                                            errorWriter.Write("error");
-                                            errorWriter.Flush();
-                                            errorStream.Position = 0;
+        ////                        using (var errorStream = new MemoryStream())
+        ////                        {
+        ////                            using (var errorWriter = new StreamWriter(errorStream))
+        ////                            {
+        ////                                using (var errorReader = new StreamReader(errorStream))
+        ////                                {
+        ////                                    errorWriter.Write("error");
+        ////                                    errorWriter.Flush();
+        ////                                    errorStream.Position = 0;
 
-                                            process
-                                                .SetupGet(x => x.StandardError)
-                                                .Returns(errorReader);
+        ////                                    process
+        ////                                        .SetupGet(x => x.StandardError)
+        ////                                        .Returns(errorReader);
 
-                                            ProcessFacade.Mock = process.Object;
+        ////                                    ProcessFacade.Mock = process.Object;
 
-                                            const string args = "/?";
-                                            var exe = new FileInfo(@"C:\example.exe");
-                                            var mock = new Mock<CompilerBase>(exe);
-                                            mock
-                                                .Setup(x => x.ToArguments(It.IsAny<IEnumerable<string>>()))
-                                                .Returns(args);
+        ////                                    const string args = "/?";
+        ////                                    var exe = new FileInfo(@"C:\example.exe");
+        ////                                    var mock = new Mock<CompilerBase>(exe);
+        ////                                    mock
+        ////                                        .Setup(x => x.ToArguments(It.IsAny<IEnumerable<string>>()))
+        ////                                        .Returns(args);
 
-                                            Assert.Throws<InvalidOperationException>(() => mock.Object.Compile(outputPath, files));
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            finally
-            {
-                ProcessFacade.Reset();
-            }
-        }
+        ////                                    Assert.Throws<Win32Exception>(() => mock.Object.Compile(outputPath, files));
+        ////                                }
+        ////                            }
+        ////                        }
+        ////                    }
+        ////                }
+        ////            }
+        ////        }
+        ////    }
+        ////    finally
+        ////    {
+        ////        ProcessFacade.Reset();
+        ////    }
+        ////}
 
         [Fact]
         public void op_ToArguments_stringEmpty_IEnumerableOfString()

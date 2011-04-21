@@ -68,6 +68,11 @@
             return Instance.Start();
         }
 
+        public bool WaitForExit(int milliseconds)
+        {
+            return Instance.WaitForExit(milliseconds);
+        }
+
         private void Dispose(bool disposing)
         {
             if (!Disposed)
