@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -62,10 +63,18 @@
             return files.Select(file => file.Name);
 #endif
         }
-
+        
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I do not want directories.")]
         public string Compile(DirectoryInfo workingDirectory,
                               IEnumerable<FileInfo> files)
+        {
+            return Compile(workingDirectory, files, 9000);
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I do not want directories.")]
+        public string Compile(DirectoryInfo workingDirectory,
+                              IEnumerable<FileInfo> files,
+                              int? wait)
         {
             if (null == workingDirectory)
             {
@@ -87,27 +96,40 @@
             string result;
             using (var p = ProcessFacade.Current)
             {
+                var args = ToArguments(ToFileNames(files));
                 p.StartInfo = new ProcessStartInfo
                 {
-                    Arguments = ToArguments(ToFileNames(files)),
+                    Arguments = args,
                     CreateNoWindow = true,
                     FileName = Location.FullName,
                     RedirectStandardError = true,
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
+                    WindowStyle = ProcessWindowStyle.Hidden,
                     WorkingDirectory = workingDirectory.FullName
                 };
-                p.Start();
-                using (var reader = p.StandardOutput)
+                if (wait.HasValue)
                 {
-                    result = reader.ReadToEnd();
+                    p.WaitForExit(wait.Value);
+                }
+                else
+                {
+                    p.Start();
                 }
 
                 if (0 != p.ExitCode)
                 {
+                    using (var reader = p.StandardOutput)
+                    {
+                        result = reader.ReadToEnd();
+                    }
+                }
+                else
+                {
                     using (var reader = p.StandardError)
                     {
-                        throw new InvalidOperationException(reader.ReadToEnd());
+                        var message = string.Concat(Location.FullName, ' ', args, Environment.NewLine, reader.ReadToEnd());
+                        throw new Win32Exception(message);
                     }
                 }
             }

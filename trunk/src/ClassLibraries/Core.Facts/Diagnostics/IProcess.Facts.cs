@@ -37,6 +37,24 @@
         }
 
         [Fact]
+        public void op_WaitForExit_int()
+        {
+            const bool expected = true;
+
+            var mock = new Mock<IProcess>();
+            mock
+                .Setup(x => x.WaitForExit(1000))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.WaitForExit(1000);
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
         public void prop_ExitCode_get()
         {
             const int expected = 123;

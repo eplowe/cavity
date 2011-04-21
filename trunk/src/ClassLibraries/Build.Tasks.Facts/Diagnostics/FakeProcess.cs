@@ -53,5 +53,10 @@
         {
             return true;
         }
+
+        public bool WaitForExit(int milliseconds)
+        {
+            return true;
+        }
     }
 }

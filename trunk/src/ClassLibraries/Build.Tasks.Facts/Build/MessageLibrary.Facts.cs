@@ -29,212 +29,212 @@
             Assert.NotNull(new MessageLibrary());
         }
 
-        [Fact]
-        public void op_Execute()
-        {
-            try
-            {
-                using (var temp = new TempDirectory())
-                {
-                    var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
-                    using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    {
-                        using (var writer = new StreamWriter(stream))
-                        {
-                            writer.WriteLine(string.Empty);
-                        }
-                    }
+        ////[Fact]
+        ////public void op_Execute()
+        ////{
+        ////    try
+        ////    {
+        ////        using (var temp = new TempDirectory())
+        ////        {
+        ////            var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
+        ////            using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////            {
+        ////                using (var writer = new StreamWriter(stream))
+        ////                {
+        ////                    writer.WriteLine(string.Empty);
+        ////                }
+        ////            }
 
-                    using (var workingDirectory = new TempDirectory())
-                    {
-                        using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.rc"))
-                            .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        {
-                            using (var writer = new StreamWriter(stream))
-                            {
-                                writer.WriteLine(string.Empty);
-                            }
-                        }
+        ////            using (var workingDirectory = new TempDirectory())
+        ////            {
+        ////                using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.rc"))
+        ////                    .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////                {
+        ////                    using (var writer = new StreamWriter(stream))
+        ////                    {
+        ////                        writer.WriteLine(string.Empty);
+        ////                    }
+        ////                }
 
-                        using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.res"))
-                            .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        {
-                            using (var writer = new StreamWriter(stream))
-                            {
-                                writer.WriteLine(string.Empty);
-                            }
-                        }
+        ////                using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.res"))
+        ////                    .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////                {
+        ////                    using (var writer = new StreamWriter(stream))
+        ////                    {
+        ////                        writer.WriteLine(string.Empty);
+        ////                    }
+        ////                }
 
-                        ProcessFacade.Mock = new FakeProcess();
+        ////                ProcessFacade.Mock = new FakeProcess();
 
-                        var task = new MessageLibrary
-                        {
-                            BuildEngine = new Mock<IBuildEngine>().Object,
-                            WorkingDirectory = workingDirectory.Info.FullName,
-                            FrameworkSdkBin = @"C:\",
-                            VCInstallDirectory = @"C:\",
-                            Output = Path.Combine(workingDirectory.Info.FullName, "example.dll"),
-                            Files = new ITaskItem[]
-                            {
-                                new TaskItem(file.FullName)
-                            }
-                        };
+        ////                var task = new MessageLibrary
+        ////                {
+        ////                    BuildEngine = new Mock<IBuildEngine>().Object,
+        ////                    WorkingDirectory = workingDirectory.Info.FullName,
+        ////                    FrameworkSdkBin = @"C:\",
+        ////                    VCInstallDirectory = @"C:\",
+        ////                    Output = Path.Combine(workingDirectory.Info.FullName, "example.dll"),
+        ////                    Files = new ITaskItem[]
+        ////                    {
+        ////                        new TaskItem(file.FullName)
+        ////                    }
+        ////                };
 
-                        Assert.True(task.Execute());
-                    }
-                }
-            }
-            finally
-            {
-                ProcessFacade.Reset();
-            }
-        }
+        ////                Assert.True(task.Execute());
+        ////            }
+        ////        }
+        ////    }
+        ////    finally
+        ////    {
+        ////        ProcessFacade.Reset();
+        ////    }
+        ////}
 
-        [Fact]
-        public void op_Execute_whenInvalidOperation()
-        {
-            try
-            {
-                using (var temp = new TempDirectory())
-                {
-                    var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
-                    using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    {
-                        using (var writer = new StreamWriter(stream))
-                        {
-                            writer.WriteLine(string.Empty);
-                        }
-                    }
+        ////[Fact]
+        ////public void op_Execute_whenInvalidOperation()
+        ////{
+        ////    try
+        ////    {
+        ////        using (var temp = new TempDirectory())
+        ////        {
+        ////            var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
+        ////            using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////            {
+        ////                using (var writer = new StreamWriter(stream))
+        ////                {
+        ////                    writer.WriteLine(string.Empty);
+        ////                }
+        ////            }
 
-                    using (var workingDirectory = new TempDirectory())
-                    {
-                        using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.rc"))
-                            .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        {
-                            using (var writer = new StreamWriter(stream))
-                            {
-                                writer.WriteLine(string.Empty);
-                            }
-                        }
+        ////            using (var workingDirectory = new TempDirectory())
+        ////            {
+        ////                using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.rc"))
+        ////                    .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////                {
+        ////                    using (var writer = new StreamWriter(stream))
+        ////                    {
+        ////                        writer.WriteLine(string.Empty);
+        ////                    }
+        ////                }
 
-                        using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.res"))
-                            .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        {
-                            using (var writer = new StreamWriter(stream))
-                            {
-                                writer.WriteLine(string.Empty);
-                            }
-                        }
+        ////                using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.res"))
+        ////                    .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////                {
+        ////                    using (var writer = new StreamWriter(stream))
+        ////                    {
+        ////                        writer.WriteLine(string.Empty);
+        ////                    }
+        ////                }
 
-                        var process = new Mock<IProcess>();
-                        process
-                            .SetupProperty(x => x.StartInfo);
-                        process
-                            .Setup(x => x.Start())
-                            .Returns(true);
+        ////                var process = new Mock<IProcess>();
+        ////                process
+        ////                    .SetupProperty(x => x.StartInfo);
+        ////                process
+        ////                    .Setup(x => x.Start())
+        ////                    .Returns(true);
 
-                        using (var stream = new MemoryStream())
-                        {
-                            using (var writer = new StreamWriter(stream))
-                            {
-                                using (var reader = new StreamReader(stream))
-                                {
-                                    const string expected = "example";
-                                    writer.Write(expected);
-                                    writer.Flush();
-                                    stream.Position = 0;
+        ////                using (var stream = new MemoryStream())
+        ////                {
+        ////                    using (var writer = new StreamWriter(stream))
+        ////                    {
+        ////                        using (var reader = new StreamReader(stream))
+        ////                        {
+        ////                            const string expected = "example";
+        ////                            writer.Write(expected);
+        ////                            writer.Flush();
+        ////                            stream.Position = 0;
 
-                                    process
-                                        .SetupGet(x => x.StandardOutput)
-                                        .Returns(reader);
+        ////                            process
+        ////                                .SetupGet(x => x.StandardOutput)
+        ////                                .Returns(reader);
 
-                                    ProcessFacade.Mock = process.Object;
+        ////                            ProcessFacade.Mock = process.Object;
 
-                                    var task = new MessageLibrary
-                                    {
-                                        BuildEngine = new Mock<IBuildEngine>().Object,
-                                        WorkingDirectory = workingDirectory.Info.FullName,
-                                        FrameworkSdkBin = @"C:\",
-                                        Output = Path.Combine(workingDirectory.Info.FullName, "example.dll"),
-                                        Files = new ITaskItem[]
-                                        {
-                                            new TaskItem(file.FullName)
-                                        }
-                                    };
+        ////                            var task = new MessageLibrary
+        ////                            {
+        ////                                BuildEngine = new Mock<IBuildEngine>().Object,
+        ////                                WorkingDirectory = workingDirectory.Info.FullName,
+        ////                                FrameworkSdkBin = @"C:\",
+        ////                                Output = Path.Combine(workingDirectory.Info.FullName, "example.dll"),
+        ////                                Files = new ITaskItem[]
+        ////                                {
+        ////                                    new TaskItem(file.FullName)
+        ////                                }
+        ////                            };
 
-                                    Assert.False(task.Execute());
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            finally
-            {
-                ProcessFacade.Reset();
-            }
-        }
+        ////                            Assert.False(task.Execute());
+        ////                        }
+        ////                    }
+        ////                }
+        ////            }
+        ////        }
+        ////    }
+        ////    finally
+        ////    {
+        ////        ProcessFacade.Reset();
+        ////    }
+        ////}
 
-        [Fact]
-        public void op_Execute_whenOutputDirectoryMissing()
-        {
-            try
-            {
-                using (var temp = new TempDirectory())
-                {
-                    var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
-                    using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    {
-                        using (var writer = new StreamWriter(stream))
-                        {
-                            writer.WriteLine(string.Empty);
-                        }
-                    }
+        ////[Fact]
+        ////public void op_Execute_whenOutputDirectoryMissing()
+        ////{
+        ////    try
+        ////    {
+        ////        using (var temp = new TempDirectory())
+        ////        {
+        ////            var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
+        ////            using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////            {
+        ////                using (var writer = new StreamWriter(stream))
+        ////                {
+        ////                    writer.WriteLine(string.Empty);
+        ////                }
+        ////            }
 
-                    using (var workingDirectory = new TempDirectory())
-                    {
-                        using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.rc"))
-                            .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        {
-                            using (var writer = new StreamWriter(stream))
-                            {
-                                writer.WriteLine(string.Empty);
-                            }
-                        }
+        ////            using (var workingDirectory = new TempDirectory())
+        ////            {
+        ////                using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.rc"))
+        ////                    .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////                {
+        ////                    using (var writer = new StreamWriter(stream))
+        ////                    {
+        ////                        writer.WriteLine(string.Empty);
+        ////                    }
+        ////                }
 
-                        using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.res"))
-                            .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                        {
-                            using (var writer = new StreamWriter(stream))
-                            {
-                                writer.WriteLine(string.Empty);
-                            }
-                        }
+        ////                using (var stream = new FileInfo(Path.Combine(workingDirectory.Info.FullName, "example.res"))
+        ////                    .Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////                {
+        ////                    using (var writer = new StreamWriter(stream))
+        ////                    {
+        ////                        writer.WriteLine(string.Empty);
+        ////                    }
+        ////                }
 
-                        ProcessFacade.Mock = new FakeProcess();
+        ////                ProcessFacade.Mock = new FakeProcess();
 
-                        var task = new MessageLibrary
-                        {
-                            BuildEngine = new Mock<IBuildEngine>().Object,
-                            WorkingDirectory = workingDirectory.Info.FullName,
-                            FrameworkSdkBin = @"C:\",
-                            VCInstallDirectory = @"C:\",
-                            Output = Path.Combine(Path.Combine(workingDirectory.Info.FullName, "bin"), "example.dll"),
-                            Files = new ITaskItem[]
-                            {
-                                new TaskItem(file.FullName)
-                            }
-                        };
+        ////                var task = new MessageLibrary
+        ////                {
+        ////                    BuildEngine = new Mock<IBuildEngine>().Object,
+        ////                    WorkingDirectory = workingDirectory.Info.FullName,
+        ////                    FrameworkSdkBin = @"C:\",
+        ////                    VCInstallDirectory = @"C:\",
+        ////                    Output = Path.Combine(Path.Combine(workingDirectory.Info.FullName, "bin"), "example.dll"),
+        ////                    Files = new ITaskItem[]
+        ////                    {
+        ////                        new TaskItem(file.FullName)
+        ////                    }
+        ////                };
 
-                        Assert.True(task.Execute());
-                    }
-                }
-            }
-            finally
-            {
-                ProcessFacade.Reset();
-            }
-        }
+        ////                Assert.True(task.Execute());
+        ////            }
+        ////        }
+        ////    }
+        ////    finally
+        ////    {
+        ////        ProcessFacade.Reset();
+        ////    }
+        ////}
 
         [Fact]
         public void op_Execute_whenOutputUnspecified()
@@ -294,88 +294,88 @@
             }
         }
 
-        [Fact]
-        public void op_Execute_whenWorkingFolderMissing()
-        {
-            try
-            {
-                using (var temp = new TempDirectory())
-                {
-                    var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
-                    using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    {
-                        using (var writer = new StreamWriter(stream))
-                        {
-                            writer.WriteLine(string.Empty);
-                        }
-                    }
+        ////[Fact]
+        ////public void op_Execute_whenWorkingFolderMissing()
+        ////{
+        ////    try
+        ////    {
+        ////        using (var temp = new TempDirectory())
+        ////        {
+        ////            var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
+        ////            using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////            {
+        ////                using (var writer = new StreamWriter(stream))
+        ////                {
+        ////                    writer.WriteLine(string.Empty);
+        ////                }
+        ////            }
 
-                    using (var workingDirectory = new TempDirectory())
-                    {
-                        workingDirectory.Info.Delete();
+        ////            using (var workingDirectory = new TempDirectory())
+        ////            {
+        ////                workingDirectory.Info.Delete();
 
-                        ProcessFacade.Mock = new FakeProcess();
+        ////                ProcessFacade.Mock = new FakeProcess();
 
-                        var task = new MessageLibrary
-                        {
-                            BuildEngine = new Mock<IBuildEngine>().Object,
-                            WorkingDirectory = workingDirectory.Info.FullName,
-                            FrameworkSdkBin = @"C:\",
-                            Output = Path.Combine(workingDirectory.Info.FullName, "example.dll"),
-                            Files = new ITaskItem[]
-                            {
-                                new TaskItem(file.FullName)
-                            }
-                        };
+        ////                var task = new MessageLibrary
+        ////                {
+        ////                    BuildEngine = new Mock<IBuildEngine>().Object,
+        ////                    WorkingDirectory = workingDirectory.Info.FullName,
+        ////                    FrameworkSdkBin = @"C:\",
+        ////                    Output = Path.Combine(workingDirectory.Info.FullName, "example.dll"),
+        ////                    Files = new ITaskItem[]
+        ////                    {
+        ////                        new TaskItem(file.FullName)
+        ////                    }
+        ////                };
 
-                        Assert.Throws<ArgumentOutOfRangeException>(() => task.Execute());
-                        Assert.True(workingDirectory.Info.Exists);
-                    }
-                }
-            }
-            finally
-            {
-                ProcessFacade.Reset();
-            }
-        }
+        ////                Assert.Throws<ArgumentOutOfRangeException>(() => task.Execute());
+        ////                Assert.True(workingDirectory.Info.Exists);
+        ////            }
+        ////        }
+        ////    }
+        ////    finally
+        ////    {
+        ////        ProcessFacade.Reset();
+        ////    }
+        ////}
 
-        [Fact]
-        public void op_Execute_whenWorkingFolderUnspecified()
-        {
-            try
-            {
-                using (var temp = new TempDirectory())
-                {
-                    var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
-                    using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
-                    {
-                        using (var writer = new StreamWriter(stream))
-                        {
-                            writer.WriteLine(string.Empty);
-                        }
-                    }
+        ////[Fact]
+        ////public void op_Execute_whenWorkingFolderUnspecified()
+        ////{
+        ////    try
+        ////    {
+        ////        using (var temp = new TempDirectory())
+        ////        {
+        ////            var file = new FileInfo(Path.Combine(temp.Info.FullName, "example.mc"));
+        ////            using (var stream = file.Open(FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite))
+        ////            {
+        ////                using (var writer = new StreamWriter(stream))
+        ////                {
+        ////                    writer.WriteLine(string.Empty);
+        ////                }
+        ////            }
 
-                    ProcessFacade.Mock = new FakeProcess();
+        ////            ProcessFacade.Mock = new FakeProcess();
 
-                    var task = new MessageLibrary
-                    {
-                        BuildEngine = new Mock<IBuildEngine>().Object,
-                        FrameworkSdkBin = @"C:\",
-                        Output = Path.Combine(temp.Info.FullName, "example.dll"),
-                        Files = new ITaskItem[]
-                        {
-                            new TaskItem(file.FullName)
-                        }
-                    };
+        ////            var task = new MessageLibrary
+        ////            {
+        ////                BuildEngine = new Mock<IBuildEngine>().Object,
+        ////                FrameworkSdkBin = @"C:\",
+        ////                Output = Path.Combine(temp.Info.FullName, "example.dll"),
+        ////                Files = new ITaskItem[]
+        ////                {
+        ////                    new TaskItem(file.FullName)
+        ////                }
+        ////            };
 
-                    Assert.Throws<ArgumentOutOfRangeException>(() => task.Execute());
-                }
-            }
-            finally
-            {
-                ProcessFacade.Reset();
-            }
-        }
+        ////            Assert.Throws<ArgumentOutOfRangeException>(() => task.Execute());
+        ////        }
+        ////    }
+        ////    finally
+        ////    {
+        ////        ProcessFacade.Reset();
+        ////    }
+        ////}
 
         [Fact]
         public void prop_Files()

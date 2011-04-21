@@ -34,6 +34,7 @@
     </ItemGroup>
     <RemoveDir Directories="$(ProjectDir)obj" />
     <Message Text="VCINSTALLDIR = $(VCINSTALLDIR)"/>
+    <Message Text="FrameworkSDKRoot = $(FrameworkSDKRoot)"/>
     <MessageLibrary Files="@(MessageFiles)" 
                     Output="$(ProjectDir)bin\Cavity.EventLog.dll" 
                     WorkingDirectory="$(ProjectDir)obj"
