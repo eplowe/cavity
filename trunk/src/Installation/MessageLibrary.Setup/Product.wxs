@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="6442166c-81bb-4117-bcfc-036f5dff277a"
+           Name="Cavity Message Libraries"
+           Language="1033"
+           Version="1.0.0.0"
+           Manufacturer="Cavity"
+           UpgradeCode="d3c6a801-9e05-4bd1-9c35-bc44c426d1c7">
+		<Package InstallerVersion="200"
+             InstallScope="perMachine"
+             Compressed="yes"
+             Description="Installs the Cavity message libraries." />
+
+		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLLOCATION" Name="MessageLibrary.Setup">
+          <Merge Id='MessageLibraryModule' Language='1033' SourceFile='Cavity.MessageLibrary.Module.msm' DiskId='1' />
+				</Directory>
+			</Directory>
+		</Directory>
+
+		<Feature Id="ProductFeature" Title="MessageLibrary.Setup" Level="1">
+			<ComponentGroupRef Id="Product.Generated" />
+      <MergeRef Id='MessageLibraryModule' />
+		</Feature>
+	</Product>
+</Wix>
