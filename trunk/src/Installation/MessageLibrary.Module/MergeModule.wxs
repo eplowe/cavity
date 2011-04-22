@@ -16,6 +16,9 @@
                 <File Id="Cavity.EventLog.lib"
                       Name="Cavity.EventLog.lib"
                       Source="obj\Cavity.EventLog.lib" />
+                <File Id="Cavity.MessageLibrary.Installer.dll"
+                      Name="Cavity.MessageLibrary.Installer.dll"
+                      Source="obj\Cavity.MessageLibrary.Installer.dll" />
               </Component>
             </Directory>
           </Directory>
