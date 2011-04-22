@@ -26,11 +26,14 @@
   <ItemGroup>
     <Compile Include="Product.wxs" />
   </ItemGroup>
-  <Target Name="Copy Module" BeforeTargets="Compile">
-    <Copy Condition=" Exists('$(SolutionDir)Installation\TaskManagement.EventLog.Module\bin\Cavity.TaskManagement.EventLog.msm') "
-          SourceFiles="$(SolutionDir)Installation\TaskManagement.EventLog.Module\bin\Cavity.TaskManagement.EventLog.msm"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="true" />
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <Target Name="Copy Libraries" BeforeTargets="Compile">
+    <Copy Condition=" Exists('$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib') " SourceFiles="$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib" DestinationFolder="obj" SkipUnchangedFiles="true" />
   </Target>
   <Import Project="$(WixTargetsPath)" />
   <!--

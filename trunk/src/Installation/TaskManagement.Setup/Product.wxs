@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
 	<Product Id="6442166c-81bb-4117-bcfc-036f5dff277a"
            Name="Cavity Task Management"
            Language="1033"
@@ -13,19 +13,36 @@
 
 		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
 
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="Common" Name="Common Files">
+          <Directory Id="CommonCompany" Name="Cavity">
+            <Directory Id="CommonTaskManagement" Name="Task Management">
+              <Component Id="EventLog"
+                         Guid="3c6164ee-6378-4681-b891-2b81c60db682">
+                <File Id="Messages"
+                      Name="Cavity.TaskManagement.EventLog.Messages.lib"
+                      Source="obj\Cavity.TaskManagement.EventLog.Messages.lib" />
+                <util:EventSource Log="Cavity"
+                                  Name="Task Management"
+                                  CategoryCount="2"
+                                  CategoryMessageFile="[#Messages]"
+                                  EventMessageFile="[#Messages]"
+                                  ParameterMessageFile="[#Messages]" />
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
 				<Directory Id="Company" Name="Cavity">
 					<Directory Id="INSTALLLOCATION" Name="Task Management">
-						<Merge Id="TaskManagementEventLogModule" Language="1033" SourceFile="Cavity.TaskManagement.EventLog.msm" DiskId="1" />
 					</Directory>
 				</Directory>
-			</Directory>
-		</Directory>
+      </Directory>
+    </Directory>
 
 		<Feature Id="ProductFeature" Title="Task Management Service" Level="1">
 			<ComponentGroupRef Id="Product.Generated" />
-			<MergeRef Id="TaskManagementEventLogModule" />
+      <ComponentRef Id="EventLog" />
 		</Feature>
 	</Product>
 </Wix>
