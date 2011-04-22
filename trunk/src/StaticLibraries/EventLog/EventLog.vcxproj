@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Compile" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <PropertyGroup>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ShowAllFiles>false</ShowAllFiles>
+    <LibraryName>Cavity.EventLog.lib</LibraryName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <BuildLog>
+      <Path>bin\$(MSBuildProjectName).log</Path>
+    </BuildLog>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <BuildLog>
+      <Path>bin\$(MSBuildProjectName).log</Path>
+    </BuildLog>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EventLog.mc" />
+  </ItemGroup>
+  <Target Name="Compile">
+    <MakeDir Condition=" !Exists('$(ProjectDir)obj') "
+             Directories="$(ProjectDir)obj" />
+    <Exec Command="&quot;$(FrameworkSdkDir)bin\MC&quot; -c -u -U &quot;$(ProjectDir)EventLog.mc&quot;"
+          WorkingDirectory="$(ProjectDir)obj" />
+    <Exec Command="&quot;$(FrameworkSdkDir)bin\RC&quot; -r &quot;$(ProjectDir)obj\EventLog.rc&quot;"
+          WorkingDirectory="$(ProjectDir)obj" />
+    <Exec Command="LINK -dll -noentry -machine:X86 -out:&quot;$(ProjectDir)obj\$(LibraryName)&quot; EventLog.res"
+          WorkingDirectory="$(ProjectDir)obj" />
+    <Copy SourceFiles="$(ProjectDir)obj\$(LibraryName)"
+          DestinationFolder="$(ProjectDir)bin"
+          OverwriteReadOnlyFiles="true" />
+  </Target>
+</Project>

@@ -26,11 +26,8 @@
     <Compile Include="Data\DataCollection.Facts.cs" />
     <Compile Include="Data\Record`1.Facts.cs" />
     <Compile Include="Data\RepositoryException.Facts.cs" />
-    <Compile Include="Diagnostics\ProcessFacade.Facts.cs" />
-    <Compile Include="Diagnostics\StandardProcess.Facts.cs" />
     <Compile Include="IO\TempDirectory.Facts.cs" />
     <Compile Include="IO\TempFile.Facts.cs" />
-    <Compile Include="Diagnostics\IProcess.Facts.cs" />
     <Compile Include="Linq\Enumerable.Facts.cs" />
     <Compile Include="TestException.Derived.cs" />
     <Compile Include="IO\CsvFile.Facts.cs" />
