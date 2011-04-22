@@ -31,13 +31,15 @@
   <ItemGroup>
     <None Include="EventLog.mc" />
   </ItemGroup>
-  <Target Name="Compile">
+  <Target Name="Compile" Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
     <MakeDir Condition=" !Exists('$(ProjectDir)obj') "
              Directories="$(ProjectDir)obj" />
+    <Message Text="FrameworkSdkDir = $(FrameworkSdkDir)" />
     <Exec Command="&quot;$(FrameworkSdkDir)bin\MC&quot; -c -u -U &quot;$(ProjectDir)EventLog.mc&quot;"
           WorkingDirectory="$(ProjectDir)obj" />
     <Exec Command="&quot;$(FrameworkSdkDir)bin\RC&quot; -r &quot;$(ProjectDir)obj\EventLog.rc&quot;"
           WorkingDirectory="$(ProjectDir)obj" />
+    <Message Text="VCINSTALLDIR = $(VCINSTALLDIR)" />
     <Exec Command="&quot;$(VCINSTALLDIR)bin\LINK&quot; -dll -noentry -machine:X86 -out:&quot;$(ProjectDir)obj\$(LibraryName)&quot; EventLog.res"
           WorkingDirectory="$(ProjectDir)obj" />
     <Copy SourceFiles="$(ProjectDir)obj\$(LibraryName)"

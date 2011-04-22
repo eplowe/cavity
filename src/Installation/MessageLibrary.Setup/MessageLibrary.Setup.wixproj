@@ -1,18 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Conditional" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <UsingTask AssemblyFile="..\..\..\lib\trove\Framework\$(TargetFrameworkVersion)\Cavity.Build.Tasks.dll" TaskName="Cavity.Build.MessageLibrary" />
   <Target Name="Conditional">
     <CallTarget Targets="Build" Condition=" '$(TargetFrameworkVersion)' == 'v4.0' " />
   </Target>
   <PropertyGroup>
-    <TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.0</TargetFrameworkVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.5</ProductVersion>
-    <ProjectGuid>{d199c30f-f8c1-471e-b82f-12af5554cc17}</ProjectGuid>
+    <ProjectGuid>{457910bd-90a1-420d-927a-a22091ccb8ad}</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>Cavity.MessageLibrary.Module</OutputName>
-    <OutputType>Module</OutputType>
+    <OutputName>Cavity.MessageLibrary</OutputName>
+    <OutputType>Package</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
   </PropertyGroup>
@@ -26,11 +24,11 @@
     <IntermediateOutputPath>obj\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MergeModule.wxs" />
+    <Compile Include="Product.wxs" />
   </ItemGroup>
-  <Target Name="Copy Library" BeforeTargets="Compile">
-    <Copy Condition=" Exists('$(SolutionDir)StaticLibraries\EventLog\bin\Cavity.EventLog.lib') "
-          SourceFiles="$(SolutionDir)StaticLibraries\EventLog\bin\Cavity.EventLog.lib"
+  <Target Name="Copy Module" BeforeTargets="Compile">
+    <Copy Condition=" Exists('$(SolutionDir)Installation\MessageLibrary.Module\bin\Cavity.MessageLibrary.Module.msm') "
+          SourceFiles="$(SolutionDir)Installation\MessageLibrary.Module\bin\Cavity.MessageLibrary.Module.msm"
           DestinationFolder="obj"
           SkipUnchangedFiles="true" />
   </Target>
