@@ -16,15 +16,15 @@
     /// </see>
     /// </remarks>
     [RunInstaller(true)]
-    public sealed class CavityEventSourceInstaller : Installer
+    public sealed class EventSourceInstaller : Installer
     {
-        public CavityEventSourceInstaller()
+        public EventSourceInstaller()
         {
-            var lib = Path.Combine(ProgramFiles32, @"Cavity\Messages\Cavity.EventLog.lib");
+            var lib = Path.Combine(ProgramFiles32, @"Common Files\Cavity\Task Management\Cavity.TaskManagement.EventLog.lib");
             var installer = new EventLogInstaller
             {
-                Source = "Task Management",
                 Log = "Cavity",
+                Source = "Task Management",
                 CategoryCount = 2,
                 CategoryResourceFile = lib,
                 MessageResourceFile = lib,
