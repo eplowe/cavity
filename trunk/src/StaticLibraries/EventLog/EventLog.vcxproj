@@ -31,7 +31,7 @@
   <ItemGroup>
     <None Include="EventLog.mc" />
   </ItemGroup>
-  <Target Name="Compile" Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
+  <Target Name="Compile" Condition=" '$(TargetFrameworkVersion)' == 'v4.0' or '$(TargetFrameworkVersion)' == '' ">
     <MakeDir Condition=" !Exists('$(ProjectDir)obj') "
              Directories="$(ProjectDir)obj" />
     <Message Text="FrameworkSdkDir = $(FrameworkSdkDir)" />

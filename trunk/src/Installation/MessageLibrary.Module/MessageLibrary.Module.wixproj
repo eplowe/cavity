@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Conditional" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <UsingTask AssemblyFile="..\..\..\lib\trove\Framework\$(TargetFrameworkVersion)\Cavity.Build.Tasks.dll" TaskName="Cavity.Build.MessageLibrary" />
   <Target Name="Conditional">
-    <CallTarget Targets="Build" Condition=" '$(TargetFrameworkVersion)' == 'v4.0' " />
+    <CallTarget Targets="Build" Condition=" '$(TargetFrameworkVersion)' == 'v4.0' or '$(TargetFrameworkVersion)' == '' " />
   </Target>
   <PropertyGroup>
     <TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.0</TargetFrameworkVersion>
