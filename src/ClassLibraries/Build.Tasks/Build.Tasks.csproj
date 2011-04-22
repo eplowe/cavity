@@ -33,11 +33,6 @@
     </Compile>
     <Compile Include="Build\CSharpProjectCompliance.cs" />
     <Compile Include="Build\LexiconTidy.cs" />
-    <Compile Include="Build\MessageLibrary.cs" />
-    <Compile Include="Build\Sdk\CompilerBase.cs" />
-    <Compile Include="Build\Sdk\LinkCompiler.cs" />
-    <Compile Include="Build\Sdk\MessageCompiler.cs" />
-    <Compile Include="Build\Sdk\ResourceCompiler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Cavity.Build.Tasks.Targets">
