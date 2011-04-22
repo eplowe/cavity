@@ -28,9 +28,13 @@
   <ItemGroup>
     <Compile Include="MergeModule.wxs" />
   </ItemGroup>
-  <Target Name="Copy Library" BeforeTargets="Compile">
+  <Target Name="Copy Libraries" BeforeTargets="Compile">
     <Copy Condition=" Exists('$(SolutionDir)StaticLibraries\EventLog\bin\Cavity.EventLog.lib') "
           SourceFiles="$(SolutionDir)StaticLibraries\EventLog\bin\Cavity.EventLog.lib"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="true" />
+    <Copy Condition=" Exists('$(SolutionDir)Installation\MessageLibrary.Installer\bin\Cavity.MessageLibrary.Installer.dll') "
+          SourceFiles="$(SolutionDir)Installation\MessageLibrary.Installer\bin\Cavity.MessageLibrary.Installer.dll"
           DestinationFolder="obj"
           SkipUnchangedFiles="true" />
   </Target>
