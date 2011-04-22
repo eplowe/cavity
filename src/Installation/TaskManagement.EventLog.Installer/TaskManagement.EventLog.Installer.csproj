@@ -2,12 +2,12 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{3D7BB358-0545-4CBF-9A89-7F0D35127A10}</ProjectGuid>
-    <AssemblyName>Cavity.MessageLibrary.Installer</AssemblyName>
+    <AssemblyName>Cavity.TaskManagement.EventLog.Installer</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
     <OutputPath>bin\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CavityEventSourceInstaller.cs">
+    <Compile Include="EventSourceInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>

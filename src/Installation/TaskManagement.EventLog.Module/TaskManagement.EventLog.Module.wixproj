@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Conditional" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask AssemblyFile="..\..\..\lib\trove\Framework\$(TargetFrameworkVersion)\Cavity.Build.Tasks.dll" TaskName="Cavity.Build.MessageLibrary" />
   <Target Name="Conditional">
     <CallTarget Targets="Build" Condition=" '$(TargetFrameworkVersion)' == 'v4.0' or '$(TargetFrameworkVersion)' == '' " />
   </Target>
   <PropertyGroup>
+    <TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.0</TargetFrameworkVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.5</ProductVersion>
-    <ProjectGuid>{457910bd-90a1-420d-927a-a22091ccb8ad}</ProjectGuid>
+    <ProjectGuid>{d199c30f-f8c1-471e-b82f-12af5554cc17}</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>Cavity.MessageLibrary</OutputName>
-    <OutputType>Package</OutputType>
+    <OutputName>Cavity.TaskManagement.EventLog</OutputName>
+    <OutputType>Module</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
   </PropertyGroup>
@@ -24,18 +26,20 @@
     <IntermediateOutputPath>obj\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Product.wxs" />
+    <Compile Include="MergeModule.wxs" />
   </ItemGroup>
-  <Target Name="Copy Module" BeforeTargets="Compile">
-    <Copy Condition=" Exists('$(SolutionDir)Installation\MessageLibrary.Module\bin\Cavity.MessageLibrary.Module.msm') "
-          SourceFiles="$(SolutionDir)Installation\MessageLibrary.Module\bin\Cavity.MessageLibrary.Module.msm"
+  <Target Name="Copy Libraries" BeforeTargets="Compile">
+    <Copy Condition=" Exists('$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib') "
+          SourceFiles="$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="true" />
+    <Copy Condition=" Exists('$(SolutionDir)Installation\TaskManagement.EventLog.Installer\bin\Cavity.TaskManagement.EventLog.Installer.dll') "
+          SourceFiles="$(SolutionDir)Installation\TaskManagement.EventLog.Installer\bin\Cavity.TaskManagement.EventLog.Installer.dll"
           DestinationFolder="obj"
           SkipUnchangedFiles="true" />
   </Target>
   <Import Project="$(WixTargetsPath)" />
   <!--
-	To modify your build process, add your task inside one of the targets below and uncomment it.
-	Other similar extension points exist, see Wix.targets.
 	<Target Name="BeforeBuild">
 	</Target>
 	<Target Name="AfterBuild">
