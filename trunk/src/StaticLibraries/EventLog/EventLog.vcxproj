@@ -38,7 +38,7 @@
           WorkingDirectory="$(ProjectDir)obj" />
     <Exec Command="&quot;$(FrameworkSdkDir)bin\RC&quot; -r &quot;$(ProjectDir)obj\EventLog.rc&quot;"
           WorkingDirectory="$(ProjectDir)obj" />
-    <Exec Command="LINK -dll -noentry -machine:X86 -out:&quot;$(ProjectDir)obj\$(LibraryName)&quot; EventLog.res"
+    <Exec Command="&quot;$(VCINSTALLDIR)bin\LINK&quot; -dll -noentry -machine:X86 -out:&quot;$(ProjectDir)obj\$(LibraryName)&quot; EventLog.res"
           WorkingDirectory="$(ProjectDir)obj" />
     <Copy SourceFiles="$(ProjectDir)obj\$(LibraryName)"
           DestinationFolder="$(ProjectDir)bin"
