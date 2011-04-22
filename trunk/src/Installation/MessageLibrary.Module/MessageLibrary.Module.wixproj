@@ -26,7 +26,8 @@
     <Compile Include="MergeModule.wxs" />
   </ItemGroup>
   <Target Name="Prepare">
-    <Copy SourceFiles="$(SolutionDir)StaticLibraries\EventLog\bin\Cavity.EventLog.lib"
+    <Copy Condition=" Exists('$(SolutionDir)StaticLibraries\EventLog\bin\Cavity.EventLog.lib') "
+          SourceFiles="$(SolutionDir)StaticLibraries\EventLog\bin\Cavity.EventLog.lib"
           DestinationFolder="obj"
           SkipUnchangedFiles="true" />
   </Target>
