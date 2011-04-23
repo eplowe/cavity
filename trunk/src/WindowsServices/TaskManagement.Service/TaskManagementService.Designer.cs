@@ -24,8 +24,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            // 
+            // TaskManagementService
+            // 
+            this.AutoLog = false;
+            this.CanPauseAndContinue = true;
+            this.CanShutdown = true;
             this.ServiceName = "TaskManagementService";
+
         }
 
         #endregion
