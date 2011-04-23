@@ -35,7 +35,7 @@
     <MakeDir Condition=" !Exists('$(ProjectDir)obj') "
              Directories="$(ProjectDir)obj" />
     <Message Text="FrameworkSdkDir = $(FrameworkSdkDir)" />
-    <Exec Command="&quot;$(FrameworkSdkDir)bin\MC&quot; -c -u -U &quot;$(ProjectDir)Messages.mc&quot;"
+    <Exec Command="&quot;$(FrameworkSdkDir)bin\MC&quot; -u -U &quot;$(ProjectDir)Messages.mc&quot;"
           WorkingDirectory="$(ProjectDir)obj" />
     <Exec Command="&quot;$(FrameworkSdkDir)bin\RC&quot; -r &quot;$(ProjectDir)obj\Messages.rc&quot;"
           WorkingDirectory="$(ProjectDir)obj" />

@@ -22,6 +22,16 @@
       <Name>Testing.Unit</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Diagnostics\TaskManagementEventLog.Facts.cs" />
+    <Compile Include="Models\TaskManager.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\lib\trove\Framework\v3.5\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+  </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Data.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />

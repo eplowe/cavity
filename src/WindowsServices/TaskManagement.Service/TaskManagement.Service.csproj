@@ -7,10 +7,18 @@
     <OutputType>WinExe</OutputType>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\lib\trove\Framework\v3.5\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System.ServiceProcess" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TaskManagementService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -19,13 +27,29 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="log4net.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ClassLibraries\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ClassLibraries\TaskManagement\TaskManagement.csproj">
       <Project>{B3D39F6B-980E-4B0F-B58E-BF295A936B2C}</Project>
       <Name>TaskManagement</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaskManagementService.resx">
+      <DependentUpon>TaskManagementService.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\x86.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />

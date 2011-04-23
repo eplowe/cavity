@@ -33,7 +33,7 @@
     </WixExtension>
   </ItemGroup>
   <Target Name="Copy Libraries" BeforeTargets="Compile">
-    <Copy Condition=" Exists('$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib') " SourceFiles="$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib" DestinationFolder="obj" SkipUnchangedFiles="true" />
+    <Copy Condition=" Exists('$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib') " SourceFiles="$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib" DestinationFolder="obj" />
   </Target>
   <Import Project="$(WixTargetsPath)" />
   <!--
