@@ -30,7 +30,7 @@
             this.AutoLog = false;
             this.CanPauseAndContinue = true;
             this.CanShutdown = true;
-            this.ServiceName = "TaskManagementService";
+            this.ServiceName = "CavityTaskManagement";
 
         }
 

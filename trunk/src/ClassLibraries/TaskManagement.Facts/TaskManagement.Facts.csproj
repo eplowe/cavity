@@ -32,6 +32,9 @@
     </Reference>
     <Reference Include="System.ServiceProcess" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\IManageTasks.Facts.cs" />
+  </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Data.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
