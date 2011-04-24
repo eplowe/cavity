@@ -21,97 +21,193 @@
         [Fact]
         public void op_FailureOnContinue_ExceptionNull()
         {
-            new TaskManagementEventLog().FailureOnContinue(null);
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.FailureOnContinue(null);
+                }
+            }
         }
 
         [Fact]
         public void op_FailureOnCustomCommand_ExceptionNull_int()
         {
-            new TaskManagementEventLog().FailureOnCustomCommand(null, 1);
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    new TaskManagementEventLog().FailureOnCustomCommand(null, 1);
+                }
+            }
         }
 
         [Fact]
         public void op_FailureOnPause_ExceptionNull()
         {
-            new TaskManagementEventLog().FailureOnPause(null);
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.FailureOnPause(null);
+                }
+            }
         }
 
         [Fact]
         public void op_FailureOnPowerEvent_ExceptionNull_PowerBroadcastStatus()
         {
-            new TaskManagementEventLog().FailureOnPowerEvent(null, PowerBroadcastStatus.BatteryLow);
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.FailureOnPowerEvent(null, PowerBroadcastStatus.BatteryLow);
+                }
+            }
         }
 
         [Fact]
         public void op_FailureOnSessionChange_ExceptionNull_SessionChangeDescription()
         {
-            new TaskManagementEventLog().FailureOnSessionChange(null, new SessionChangeDescription());
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.FailureOnSessionChange(null, new SessionChangeDescription());
+                }
+            }
         }
 
         [Fact]
         public void op_FailureOnShutdown_ExceptionNull()
         {
-            new TaskManagementEventLog().FailureOnShutdown(null);
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.FailureOnShutdown(null);
+                }
+            }
         }
 
         [Fact]
         public void op_FailureOnStart_ExceptionNull()
         {
-            new TaskManagementEventLog().FailureOnStart(null);
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.FailureOnStart(null);
+                }
+            }
         }
 
         [Fact]
         public void op_FailureOnStop_ExceptionNull()
         {
-            new TaskManagementEventLog().FailureOnStop(null);
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.FailureOnStop(null);
+                }
+            }
         }
 
         [Fact]
         public void op_SuccessOnContinue()
         {
-            new TaskManagementEventLog().SuccessOnContinue();
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.SuccessOnContinue();
+                }
+            }
         }
 
         [Fact]
         public void op_SuccessOnCustomCommand_int()
         {
-            new TaskManagementEventLog().SuccessOnCustomCommand(1);
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.SuccessOnCustomCommand(1);
+                }
+            }
         }
 
         [Fact]
         public void op_SuccessOnPause()
         {
-            new TaskManagementEventLog().SuccessOnPause();
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.SuccessOnPause();
+                }
+            }
         }
 
         [Fact]
         public void op_SuccessOnPowerEvent_PowerBroadcastStatus()
         {
-            new TaskManagementEventLog().SuccessOnPowerEvent(PowerBroadcastStatus.Suspend);
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.SuccessOnPowerEvent(PowerBroadcastStatus.Suspend);
+                }
+            }
         }
 
         [Fact]
         public void op_SuccessOnSessionChange_SessionChangeDescription()
         {
-            new TaskManagementEventLog().SuccessOnSessionChange(new SessionChangeDescription());
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.SuccessOnSessionChange(new SessionChangeDescription());
+                }
+            }
         }
 
         [Fact]
         public void op_SuccessOnShutdown()
         {
-            new TaskManagementEventLog().SuccessOnShutdown();
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.SuccessOnShutdown();
+                }
+            }
         }
 
         [Fact]
         public void op_SuccessOnStart()
         {
-            new TaskManagementEventLog().SuccessOnStart();
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.SuccessOnStart();
+                }
+            }
         }
 
         [Fact]
         public void op_SuccessOnStop()
         {
-            new TaskManagementEventLog().SuccessOnStop();
+            using (var obj = new TaskManagementEventLog())
+            {
+                if (obj.SourceExists())
+                {
+                    obj.SuccessOnStop();
+                }
+            }
         }
     }
 }
