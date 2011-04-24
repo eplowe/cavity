@@ -2,100 +2,74 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Reflection;
     using System.ServiceProcess;
     using log4net;
 
     public sealed class TaskManagementEventLog : EventLog
     {
+        [ThreadStatic]
+        private static readonly ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public TaskManagementEventLog()
             : base("Cavity", ".", "Task Management")
         {
-            Trace = LogManager.GetLogger(GetType());
         }
-
-        private ILog Trace { get; set; }
 
         public void FailureOnContinue(Exception exception)
         {
-            if (Trace.IsErrorEnabled)
-            {
-                Trace.Error(new StackFrame().GetMethod().Name, exception);
-            }
-
             WriteEvent(new EventInstance(0xC00003F7, 2, EventLogEntryType.Error));
+            LogException(new StackFrame(), exception);
         }
 
         public void FailureOnCustomCommand(Exception exception,
                                            int command)
         {
-            if (Trace.IsErrorEnabled)
-            {
-                Trace.Error(new StackFrame().GetMethod().Name, exception);
-            }
-
             WriteEvent(new EventInstance(0xC00003F8, 2, EventLogEntryType.Error), command);
+            LogException(new StackFrame(), exception);
         }
 
         public void FailureOnPause(Exception exception)
         {
-            if (Trace.IsErrorEnabled)
-            {
-                Trace.Error(new StackFrame().GetMethod().Name, exception);
-            }
-
             WriteEvent(new EventInstance(0xC00003F6, 2, EventLogEntryType.Error));
+            LogException(new StackFrame(), exception);
         }
 
         public void FailureOnPowerEvent(Exception exception,
                                         PowerBroadcastStatus powerStatus)
         {
-            if (Trace.IsErrorEnabled)
-            {
-                Trace.Error(new StackFrame().GetMethod().Name, exception);
-            }
-
             WriteEvent(new EventInstance(0xC00003F9, 2, EventLogEntryType.Error), powerStatus.ToString("G"));
+            LogException(new StackFrame(), exception);
         }
 
         public void FailureOnSessionChange(Exception exception,
                                            SessionChangeDescription changeDescription)
         {
-            if (Trace.IsErrorEnabled)
-            {
-                Trace.Error(new StackFrame().GetMethod().Name, exception);
-            }
-
             WriteEvent(new EventInstance(0xC00003FA, 2, EventLogEntryType.Error), changeDescription.Reason.ToString("G"));
+            LogException(new StackFrame(), exception);
         }
 
         public void FailureOnShutdown(Exception exception)
         {
-            if (Trace.IsErrorEnabled)
-            {
-                Trace.Error(new StackFrame().GetMethod().Name, exception);
-            }
-
             WriteEvent(new EventInstance(0xC00003F5, 2, EventLogEntryType.Error));
+            LogException(new StackFrame(), exception);
         }
 
         public void FailureOnStart(Exception exception)
         {
-            if (Trace.IsErrorEnabled)
-            {
-                Trace.Error(new StackFrame().GetMethod().Name, exception);
-            }
-
             WriteEvent(new EventInstance(0xC00003F3, 2, EventLogEntryType.Error));
+            LogException(new StackFrame(), exception);
         }
 
         public void FailureOnStop(Exception exception)
         {
-            if (Trace.IsErrorEnabled)
-            {
-                Trace.Error(new StackFrame().GetMethod().Name, exception);
-            }
-
             WriteEvent(new EventInstance(0xC00003F4, 2, EventLogEntryType.Error));
+            LogException(new StackFrame(), exception);
+        }
+
+        public void LoggingNotConfigured()
+        {
+            WriteEvent(new EventInstance(0x8000044C, 2, EventLogEntryType.Warning));
         }
 
         public void SuccessOnContinue()
@@ -136,6 +110,20 @@
         public void SuccessOnStop()
         {
             WriteEvent(new EventInstance(0x000003EA, 2));
+        }
+
+        private void LogException(StackFrame frame, Exception exception)
+        {
+            if (null == _log)
+            {
+                LoggingNotConfigured();
+                return;
+            }
+
+            if (_log.IsErrorEnabled)
+            {
+                _log.Error(frame.GetMethod().Name, exception);
+            }
         }
     }
 }

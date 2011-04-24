@@ -32,8 +32,43 @@
       <Name>WixUtilExtension</Name>
     </WixExtension>
   </ItemGroup>
+  <Choose>
+    <When Condition=" '$(TargetFrameworkVersion)' == '' ">
+      <PropertyGroup>
+        <ServiceOutputDirectory>$(SolutionDir)WindowsServices\TaskManagement.Service\bin\$(Configuration)\</ServiceOutputDirectory>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <ServiceOutputDirectory>$(SolutionDir)WindowsServices\TaskManagement.Service\bin\$(Configuration) $(TargetFrameworkVersion)\</ServiceOutputDirectory>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
   <Target Name="Copy Libraries" BeforeTargets="Compile">
-    <Copy Condition=" Exists('$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib') " SourceFiles="$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib" DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib') " 
+          SourceFiles="$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)Cavity.Core.dll') " 
+          SourceFiles="$(ServiceOutputDirectory)Cavity.Core.dll"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)Cavity.TaskManagement.dll') " 
+          SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.dll"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)Cavity.TaskManagement.Service.exe') " 
+          SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.Service.exe"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)Cavity.TaskManagement.Service.exe.config') " 
+          SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.Service.exe.config"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)log4net.dll') "
+          SourceFiles="$(ServiceOutputDirectory)log4net.dll"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)log4net.config') "
+          SourceFiles="$(ServiceOutputDirectory)log4net.config"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)Microsoft.Practices.ServiceLocation.dll') "
+          SourceFiles="$(ServiceOutputDirectory)Microsoft.Practices.ServiceLocation.dll"
+          DestinationFolder="obj" />
   </Target>
   <Import Project="$(WixTargetsPath)" />
   <!--
