@@ -16,6 +16,11 @@
         {
         }
 
+        public bool SourceExists()
+        {
+            return Exists(Log) && SourceExists(Source);
+        }
+
         public void FailureOnContinue(Exception exception)
         {
             WriteEvent(new EventInstance(0xC00003F7, 2, EventLogEntryType.Error));

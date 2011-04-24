@@ -6,6 +6,7 @@
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Models\IManageTasks.Facts.cs" />
     <Compile Include="Models\ITask.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -31,9 +32,6 @@
       <HintPath>..\..\..\lib\trove\Framework\v3.5\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceProcess" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Models\IManageTasks.Facts.cs" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Data.Project" />
