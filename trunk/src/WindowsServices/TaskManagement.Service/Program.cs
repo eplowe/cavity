@@ -13,7 +13,7 @@
         {
             log4net.Config.XmlConfigurator.Configure();
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
-            ConfigureServiceLocation();
+            Config.ExeSection<ServiceLocation>().Provider.Configure();
             ServiceBase.Run(new ServiceBase[]
             {
                 new TaskManagementService()
@@ -36,14 +36,6 @@
             {
                 LoggingSignature.Error(e.ExceptionObject as Exception);
             }
-        }
-
-        private static void ConfigureServiceLocation()
-        {
-            LoggingSignature.Debug();
-            var type = ConfigurationManager.AppSettings["serviceLocation"];
-            var locator = (ISetLocatorProvider)Activator.CreateInstance(Type.GetType(type), true);
-            locator.Configure();
         }
     }
 }

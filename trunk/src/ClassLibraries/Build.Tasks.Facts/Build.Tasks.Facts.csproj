@@ -50,9 +50,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Build\CSharpProjectCompliance.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Diagnostics\FakeProcess.cs" />
-  </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
   <!--

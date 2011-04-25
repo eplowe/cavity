@@ -24,7 +24,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Compile Include="Configuration\TaskManagementConfiguration.Facts.cs" />
+    <Compile Include="Configuration\TaskManagementSettings.Facts.cs" />
     <Compile Include="Diagnostics\TaskManagementEventLog.Facts.cs" />
     <Compile Include="Models\TaskManager.Facts.cs" />
   </ItemGroup>
