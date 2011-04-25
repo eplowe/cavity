@@ -5,9 +5,23 @@
     <AssemblyName>Cavity.TaskManagement.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' or '$(TargetFrameworkVersion)' == '' ">
+    <Compile Include="Configuration\TaskManagementExtension.Facts.cs" />
+    <Compile Include="Configuration\TaskManagementExtensionCollection.Facts.cs" />
+    <Compile Include="Configuration\TaskManagementSettings.Facts.cs" />
+    <Compile Include="Diagnostics\TaskManagementEventLog.Facts.cs" />
     <Compile Include="Models\IManageTasks.Facts.cs" />
     <Compile Include="Models\ITask.Facts.cs" />
+    <Compile Include="Models\TaskManager.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' or '$(TargetFrameworkVersion)' == '' ">
+    <Reference Include="log4net">
+      <HintPath>..\..\..\lib\trove\Framework\v3.5\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition">
+      <HintPath>..\..\..\lib\trove\Framework\v4.0\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -22,17 +36,6 @@
       <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
       <Name>Testing.Unit</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Compile Include="Configuration\TaskManagementSettings.Facts.cs" />
-    <Compile Include="Diagnostics\TaskManagementEventLog.Facts.cs" />
-    <Compile Include="Models\TaskManager.Facts.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\..\..\lib\trove\Framework\v3.5\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ServiceProcess" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Data.Project" />

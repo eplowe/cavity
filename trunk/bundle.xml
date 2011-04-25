@@ -17,6 +17,7 @@
   <PropertyGroup>
     <ClassLibrariesPath>$(MSBuildProjectDirectory)\src\ClassLibraries</ClassLibrariesPath>
     <ConsoleApplicationsPath>$(MSBuildProjectDirectory)\src\ConsoleApplications</ConsoleApplicationsPath>
+    <InstallationPath>$(MSBuildProjectDirectory)\src\Installation</InstallationPath>
   </PropertyGroup>
   <Target Name="Run">
     <CallTarget Targets="Trove" />
