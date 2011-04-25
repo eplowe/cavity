@@ -97,6 +97,12 @@
           SourceFiles="$(ServiceOutputDirectory)Microsoft.Practices.ServiceLocation.dll"
           DestinationFolder="obj" />
   </Target>
+  <Target Name="Clean Folders" AfterTargets="Clean">
+    <RemoveDir Condition="Exists('$(ProjectDir)bin')"
+               Directories="$(ProjectDir)bin" />
+    <RemoveDir Condition="Exists('$(ProjectDir)obj')"
+               Directories="$(ProjectDir)obj" />
+  </Target>
   <Import Project="$(WixTargetsPath)" />
   <!--
 	<Target Name="BeforeBuild">

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Configuration;
+    using System.Reflection;
     using System.ServiceProcess;
     using Cavity.Configuration;
     using Cavity.Diagnostics;
