@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using System.Xml;
+    using Cavity.Configuration;
     using Cavity.Diagnostics;
 
     public sealed class TaskManager : IManageTasks, IDisposable
@@ -11,6 +13,17 @@
         {
             LoggingSignature.Debug();
             Dispose(false);
+        }
+
+        private static long Period
+        {
+            get
+            {
+                var milliseconds = TaskManagementConfiguration.Exe.RefreshRate.TotalMilliseconds;
+                LoggingSignature.Debug(XmlConvert.ToString(milliseconds));
+
+                return Convert.ToInt64(milliseconds);
+            }
         }
 
         private bool Disposed { get; set; }
@@ -27,7 +40,7 @@
         void IManageTasks.Continue()
         {
             LoggingSignature.Debug();
-            Timer.Change(0, 5000);
+            Timer.Change(0, Period);
         }
 
         void IManageTasks.Pause()
@@ -45,7 +58,7 @@
         void IManageTasks.Start(IEnumerable<string> args)
         {
             LoggingSignature.Debug();
-            Timer = new Timer(TimerCallback, null, 0, 5000);
+            Timer = new Timer(TimerCallback, null, 0, Period);
         }
 
         void IManageTasks.Stop()

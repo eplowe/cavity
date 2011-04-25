@@ -46,4 +46,11 @@
           DestinationFolder="$(ProjectDir)bin"
           OverwriteReadOnlyFiles="true" />
   </Target>
+  <Target Name="Clean Folders" AfterTargets="Clean">
+    <RemoveDir Condition="Exists('$(ProjectDir)bin')"
+               Directories="$(ProjectDir)bin" />
+    <RemoveDir Condition="Exists('$(ProjectDir)obj')"
+               Directories="$(ProjectDir)obj"
+               ContinueOnError="true" />
+  </Target>
 </Project>
