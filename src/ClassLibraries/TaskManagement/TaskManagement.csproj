@@ -6,7 +6,7 @@
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Compile Include="Configuration\TaskManagementConfiguration.cs" />
+    <Compile Include="Configuration\TaskManagementSettings.cs" />
     <Compile Include="Diagnostics\LoggingSignature.cs" />
     <Compile Include="Models\ITask.cs" />
     <Compile Include="Models\TaskManager.cs" />

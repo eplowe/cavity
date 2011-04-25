@@ -3,14 +3,14 @@
     using System;
     using System.Configuration;
 
-    public sealed class TaskManagementConfiguration : ConfigurationSection
+    public sealed class TaskManagementSettings : ConfigurationSection
     {
         private static readonly ConfigurationProperty _refreshRate = new ConfigurationProperty("refreshRate",
                                                                                                typeof(TimeSpan),
                                                                                                TimeSpan.FromSeconds(1),
                                                                                                ConfigurationPropertyOptions.IsRequired);
 
-        public TaskManagementConfiguration()
+        public TaskManagementSettings()
         {
             Properties.Add(_refreshRate);
         }

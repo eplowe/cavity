@@ -12,7 +12,7 @@
         public static void Main()
         {
 #if !NET20
-            ServiceLocation.Settings().Configure();
+            Config.ExeSection<ServiceLocation>().Provider.Configure();
             if (null == ServiceLocator.Current.GetInstance<ITest>())
             {
                 throw new NotImplementedException(Resources.Test_Failed);

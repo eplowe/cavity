@@ -12,7 +12,7 @@
         public static void Main()
         {
 #if !NET20
-            ServiceLocation.Settings().Configure();
+            Config.ExeSection<ServiceLocation>().Provider.Configure();
             if (ServiceLocator.Current.GetInstance<ITest>().Test("value"))
             {
                 Console.WriteLine(Resources.Test_Passed);

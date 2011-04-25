@@ -1,64 +1,35 @@
 ﻿namespace Cavity.Configuration
 {
-    using System;
+    using System.ComponentModel;
     using System.Configuration;
-    using System.Xml;
-    using Cavity.Properties;
 
-    public sealed class ServiceLocation : IConfigurationSectionHandler
+    public sealed class ServiceLocation : ConfigurationSection
     {
-        public static ISetLocatorProvider Settings()
+        private static readonly TypeConverter _converter = new SetLocatorProviderConverter();
+        private static readonly ConfigurationValidatorBase _validator = new SetLocatorProvideValidator();
+        private static readonly ConfigurationProperty _provider = new ConfigurationProperty("type",
+                                                                                            typeof(ISetLocatorProvider),
+                                                                                            null,
+                                                                                            _converter,
+                                                                                            _validator,
+                                                                                            ConfigurationPropertyOptions.IsRequired);
+
+        public ServiceLocation()
         {
-            return Settings("serviceLocation");
+            Properties.Add(_provider);
         }
 
-        public static ISetLocatorProvider Settings(string sectionName)
+        public ISetLocatorProvider Provider
         {
-            return ConfigurationManager.GetSection(sectionName) as ISetLocatorProvider;
-        }
-
-        public object Create(object parent,
-                             object configContext,
-                             XmlNode section)
-        {
-            ISetLocatorProvider result;
-
-            try
+            get
             {
-                if (null == section)
-                {
-                    throw new XmlException(Resources.ServiceLocation_NullSectionMessage);
-                }
-
-                var attributes = section.Attributes;
-                if (null == attributes)
-                {
-                    throw new XmlException(Resources.ServiceLocation_TypeAttributeRequiredMessage);
-                }
-
-                var attribute = attributes["type"];
-                if (null == attribute)
-                {
-                    throw new XmlException(Resources.ServiceLocation_TypeAttributeRequiredMessage);
-                }
-
-                if (null == attribute.Value)
-                {
-                    throw new XmlException(Resources.ServiceLocation_TypeAttributeRequiredMessage);
-                }
-
-                result = Activator.CreateInstance(Type.GetType(attribute.Value), true) as ISetLocatorProvider;
-                if (null == result)
-                {
-                    throw new XmlException(Resources.ServiceLocation_TypeInterfaceRequiredMessage);
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new ConfigurationErrorsException(exception.Message, exception, section);
+                return (ISetLocatorProvider)this["type"];
             }
 
-            return result;
+            set
+            {
+                this["type"] = value;
+            }
         }
     }
 }

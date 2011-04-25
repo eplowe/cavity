@@ -5,12 +5,12 @@
     using Cavity;
     using Xunit;
 
-    public sealed class TaskManagementConfigurationFacts
+    public sealed class TaskManagementSettingsFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<TaskManagementConfiguration>()
+            Assert.True(new TypeExpectations<TaskManagementSettings>()
                 .DerivesFrom<ConfigurationSection>()
                 .IsConcreteClass()
                 .IsSealed()
@@ -22,13 +22,13 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new TaskManagementConfiguration());
+            Assert.NotNull(new TaskManagementSettings());
         }
 
         [Fact]
         public void prop_Value()
         {
-            Assert.True(new PropertyExpectations<TaskManagementConfiguration>(x => x.RefreshRate)
+            Assert.True(new PropertyExpectations<TaskManagementSettings>(x => x.RefreshRate)
                             .TypeIs<TimeSpan>()
                             .IsDecoratedWith<TimeSpanValidatorAttribute>()
                             .Result);

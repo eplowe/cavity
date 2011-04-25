@@ -64,6 +64,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ClassLibraries\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ClassLibraries\ServiceLocation\ServiceLocation.csproj">
       <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
       <Name>ServiceLocation</Name>
