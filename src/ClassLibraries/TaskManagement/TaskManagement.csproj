@@ -5,11 +5,29 @@
     <AssemblyName>Cavity.TaskManagement</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' or '$(TargetFrameworkVersion)' == '' ">
+    <Compile Include="Configuration\DirectoryInfoConverter.cs" />
+    <Compile Include="Configuration\DirectoryInfoValidator.cs" />
+    <Compile Include="Configuration\TaskManagementExtension.cs" />
+    <Compile Include="Configuration\TaskManagementExtensionCollection.cs" />
     <Compile Include="Configuration\TaskManagementSettings.cs" />
     <Compile Include="Diagnostics\LoggingSignature.cs" />
+    <Compile Include="Diagnostics\TaskManagementEventLog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\DebugTask.cs" />
     <Compile Include="Models\ITask.cs" />
     <Compile Include="Models\TaskManager.cs" />
+    <Compile Include="Models\IManageTasks.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' or '$(TargetFrameworkVersion)' == '' ">
+    <Reference Include="log4net">
+      <HintPath>..\..\..\lib\trove\Framework\v3.5\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition">
+      <HintPath>..\..\..\lib\trove\Framework\v4.0\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -17,19 +35,6 @@
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Diagnostics\TaskManagementEventLog.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Models\IManageTasks.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\..\..\lib\trove\Framework\v3.5\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ServiceProcess" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />
   <Import Project="$(SolutionDir)Import\trove\Data.Project" />

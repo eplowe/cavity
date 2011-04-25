@@ -2,9 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.Composition.Hosting;
     using System.Threading;
     using System.Xml;
     using Cavity.Configuration;
+    using Cavity.Data;
     using Cavity.Diagnostics;
 
     public sealed class TaskManager : IManageTasks, IDisposable
@@ -70,6 +72,23 @@
         private static void TimerCallback(object state)
         {
             LoggingSignature.Debug();
+            ExecuteTasks();
+        }
+
+        private static void ExecuteTasks()
+        {
+            LoggingSignature.Debug();
+            var aggregate = new AggregateCatalog();
+            foreach (TaskManagementExtension extension in Config.ExeSection<TaskManagementSettings>().Extensions)
+            {
+                var catalog = new DirectoryCatalog(extension.Directory.FullName);
+                aggregate.Catalogs.Add(catalog);
+            }
+
+            foreach (var export in new CompositionContainer(aggregate).GetExports<ITask>())
+            {
+                export.Value.Execute(new DataCollection());
+            }
         }
 
         private void Dispose(bool disposing)

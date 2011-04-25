@@ -9,22 +9,25 @@
     <RootNamespace>Cavity</RootNamespace>
     <OutputType>WinExe</OutputType>
   </PropertyGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' or '$(TargetFrameworkVersion)' == '' ">
     <Reference Include="log4net">
       <HintPath>..\..\..\lib\trove\Framework\v3.5\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition">
+      <HintPath>..\..\..\lib\trove\Framework\v4.0\System.ComponentModel.Composition.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.ServiceProcess" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Program.cs" />
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' or '$(TargetFrameworkVersion)' == '' ">
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="ServiceInstallation.cs">
       <SubType>Component</SubType>
     </Compile>
