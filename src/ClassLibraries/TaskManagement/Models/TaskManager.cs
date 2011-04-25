@@ -2,18 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Reflection;
     using System.Threading;
-    using log4net;
+    using Cavity.Diagnostics;
 
     public sealed class TaskManager : IManageTasks, IDisposable
     {
-        [ThreadStatic]
-        private static readonly ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
         ~TaskManager()
         {
+            LoggingSignature.Debug();
             Dispose(false);
         }
 
@@ -23,71 +19,49 @@
 
         public void Dispose()
         {
+            LoggingSignature.Debug();
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         void IManageTasks.Continue()
         {
-            if (_log.IsDebugEnabled)
-            {
-                _log.Debug(new StackFrame().GetMethod().Name);
-            }
-
-            Timer.Change(0, new TimeSpan(0, 0, 5).Milliseconds);
+            LoggingSignature.Debug();
+            Timer.Change(0, 5000);
         }
 
         void IManageTasks.Pause()
         {
-            if (_log.IsDebugEnabled)
-            {
-                _log.Debug(new StackFrame().GetMethod().Name);
-            }
-
+            LoggingSignature.Debug();
             Timer.Change(Timeout.Infinite, Timeout.Infinite);
         }
 
         void IManageTasks.Shutdown()
         {
-            if (_log.IsDebugEnabled)
-            {
-                _log.Debug(new StackFrame().GetMethod().Name);
-            }
-
+            LoggingSignature.Debug();
             Stop();
         }
 
         void IManageTasks.Start(IEnumerable<string> args)
         {
-            if (_log.IsDebugEnabled)
-            {
-                _log.Debug(new StackFrame().GetMethod().Name);
-            }
-
-            Timer = new Timer(TimerCallback, null, 0, new TimeSpan(0, 0, 5).Milliseconds);
+            LoggingSignature.Debug();
+            Timer = new Timer(TimerCallback, null, 0, 5000);
         }
 
         void IManageTasks.Stop()
         {
-            if (_log.IsDebugEnabled)
-            {
-                _log.Debug(new StackFrame().GetMethod().Name);
-            }
-
+            LoggingSignature.Debug();
             Stop();
         }
 
         private static void TimerCallback(object state)
         {
-            var log = LogManager.GetLogger(typeof(TaskManager));
-            if (log.IsDebugEnabled)
-            {
-                log.Debug(new StackFrame().GetMethod().Name);
-            }
+            LoggingSignature.Debug();
         }
 
         private void Dispose(bool disposing)
         {
+            LoggingSignature.Debug();
             if (!Disposed)
             {
                 if (disposing && null != Timer)
@@ -102,11 +76,7 @@
 
         private void Stop()
         {
-            if (_log.IsDebugEnabled)
-            {
-                _log.Debug(new StackFrame().GetMethod().Name);
-            }
-
+            LoggingSignature.Debug();
             if (null == Timer)
             {
                 return;

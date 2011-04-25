@@ -7,11 +7,13 @@
     using Cavity.Diagnostics;
     using Cavity.Models;
     using Cavity.Properties;
+    using Microsoft.Practices.ServiceLocation;
 
     internal partial class TaskManagementService : ServiceBase
     {
         public TaskManagementService()
         {
+            LoggingSignature.Debug();
             InitializeComponent();
         }
 
@@ -20,19 +22,18 @@
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to prevent exceptions leaking out.")]
         protected override void OnContinue()
         {
-            try
+            using (var eventLog = new TaskManagementEventLog())
             {
-                using (var log = new TaskManagementEventLog())
+                try
                 {
+                    LoggingSignature.Debug();
                     Manager.Continue();
-                    log.SuccessOnContinue();
+                    eventLog.SuccessOnContinue();
                 }
-            }
-            catch (Exception exception)
-            {
-                using (var log = new TaskManagementEventLog())
+                catch (Exception exception)
                 {
-                    log.FailureOnContinue(exception);
+                    eventLog.FailureOnContinue();
+                    LoggingSignature.Error(exception);
                 }
             }
         }
@@ -40,18 +41,20 @@
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to prevent exceptions leaking out.")]
         protected override void OnCustomCommand(int command)
         {
-            try
+            using (var eventLog = new TaskManagementEventLog())
             {
-                throw new NotSupportedException(string.Format(
-                    Thread.CurrentThread.CurrentUICulture,
-                    Resources.TaskManagementService_UnsupportedCustomCommand,
-                    command));
-            }
-            catch (Exception exception)
-            {
-                using (var log = new TaskManagementEventLog())
+                try
                 {
-                    log.FailureOnContinue(exception);
+                    LoggingSignature.Debug();
+                    throw new NotSupportedException(string.Format(
+                        Thread.CurrentThread.CurrentUICulture,
+                        Resources.TaskManagementService_UnsupportedCustomCommand,
+                        command));
+                }
+                catch (Exception exception)
+                {
+                    eventLog.FailureOnContinue();
+                    LoggingSignature.Error(exception);
                 }
             }
         }
@@ -59,19 +62,18 @@
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to prevent exceptions leaking out.")]
         protected override void OnPause()
         {
-            try
+            using (var eventLog = new TaskManagementEventLog())
             {
-                using (var log = new TaskManagementEventLog())
+                try
                 {
+                    LoggingSignature.Debug();
                     Manager.Pause();
-                    log.SuccessOnPause();
+                    eventLog.SuccessOnPause();
                 }
-            }
-            catch (Exception exception)
-            {
-                using (var log = new TaskManagementEventLog())
+                catch (Exception exception)
                 {
-                    log.FailureOnPause(exception);
+                    eventLog.FailureOnPause();
+                    LoggingSignature.Error(exception);
                 }
             }
         }
@@ -79,18 +81,20 @@
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to prevent exceptions leaking out.")]
         protected override bool OnPowerEvent(PowerBroadcastStatus powerStatus)
         {
-            try
+            using (var eventLog = new TaskManagementEventLog())
             {
-                throw new NotSupportedException(string.Format(
-                    Thread.CurrentThread.CurrentUICulture,
-                    Resources.TaskManagementService_UnsupportedPowerEvent,
-                    powerStatus.ToString("G")));
-            }
-            catch (Exception exception)
-            {
-                using (var log = new TaskManagementEventLog())
+                try
                 {
-                    log.FailureOnPowerEvent(exception, powerStatus);
+                    LoggingSignature.Debug();
+                    throw new NotSupportedException(string.Format(
+                        Thread.CurrentThread.CurrentUICulture,
+                        Resources.TaskManagementService_UnsupportedPowerEvent,
+                        powerStatus.ToString("G")));
+                }
+                catch (Exception exception)
+                {
+                    eventLog.FailureOnPowerEvent(powerStatus);
+                    LoggingSignature.Error(exception);
                 }
             }
 
@@ -100,18 +104,20 @@
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to prevent exceptions leaking out.")]
         protected override void OnSessionChange(SessionChangeDescription changeDescription)
         {
-            try
+            using (var eventLog = new TaskManagementEventLog())
             {
-                throw new NotSupportedException(string.Format(
-                    Thread.CurrentThread.CurrentUICulture,
-                    Resources.TaskManagementService_UnsupportedSessionChange,
-                    changeDescription.Reason.ToString("G")));
-            }
-            catch (Exception exception)
-            {
-                using (var log = new TaskManagementEventLog())
+                try
                 {
-                    log.FailureOnSessionChange(exception, changeDescription);
+                    LoggingSignature.Debug();
+                    throw new NotSupportedException(string.Format(
+                        Thread.CurrentThread.CurrentUICulture,
+                        Resources.TaskManagementService_UnsupportedSessionChange,
+                        changeDescription.Reason.ToString("G")));
+                }
+                catch (Exception exception)
+                {
+                    eventLog.FailureOnSessionChange(changeDescription);
+                    LoggingSignature.Error(exception);
                 }
             }
         }
@@ -119,20 +125,19 @@
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to prevent exceptions leaking out.")]
         protected override void OnShutdown()
         {
-            try
+            using (var eventLog = new TaskManagementEventLog())
             {
-                using (var log = new TaskManagementEventLog())
+                try
                 {
+                    LoggingSignature.Debug();
                     Manager.Shutdown();
                     Manager = null;
-                    log.SuccessOnShutdown();
+                    eventLog.SuccessOnShutdown();
                 }
-            }
-            catch (Exception exception)
-            {
-                using (var log = new TaskManagementEventLog())
+                catch (Exception exception)
                 {
-                    log.FailureOnShutdown(exception);
+                    eventLog.FailureOnShutdown();
+                    LoggingSignature.Error(exception);
                 }
             }
         }
@@ -140,20 +145,19 @@
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to prevent exceptions leaking out.")]
         protected override void OnStart(string[] args)
         {
-            try
+            using (var eventLog = new TaskManagementEventLog())
             {
-                using (var log = new TaskManagementEventLog())
+                try
                 {
-                    Manager = new TaskManager();
+                    LoggingSignature.Debug();
+                    Manager = ServiceLocator.Current.GetInstance<IManageTasks>();
                     Manager.Start(args);
-                    log.SuccessOnStart();
+                    eventLog.SuccessOnStart();
                 }
-            }
-            catch (Exception exception)
-            {
-                using (var log = new TaskManagementEventLog())
+                catch (Exception exception)
                 {
-                    log.FailureOnStart(exception);
+                    eventLog.FailureOnStart();
+                    LoggingSignature.Error(exception);
                 }
             }
         }
@@ -161,20 +165,19 @@
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to prevent exceptions leaking out.")]
         protected override void OnStop()
         {
-            try
+            using (var eventLog = new TaskManagementEventLog())
             {
-                using (var log = new TaskManagementEventLog())
+                try
                 {
+                    LoggingSignature.Debug();
                     Manager.Stop();
                     Manager = null;
-                    log.SuccessOnStop();
+                    eventLog.SuccessOnStop();
                 }
-            }
-            catch (Exception exception)
-            {
-                using (var log = new TaskManagementEventLog())
+                catch (Exception exception)
                 {
-                    log.FailureOnStop(exception);
+                    eventLog.FailureOnStop();
+                    LoggingSignature.Error(exception);
                 }
             }
         }

@@ -14,3 +14,5 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Task Management Service (Release)")]
 
 #endif
+
+[assembly:log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]

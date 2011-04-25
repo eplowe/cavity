@@ -19,97 +19,97 @@
         }
 
         [Fact]
-        public void op_FailureOnContinue_ExceptionNull()
+        public void op_FailureOnContinue()
         {
             using (var obj = new TaskManagementEventLog())
             {
                 if (obj.SourceExists())
                 {
-                    obj.FailureOnContinue(null);
+                    obj.FailureOnContinue();
                 }
             }
         }
 
         [Fact]
-        public void op_FailureOnCustomCommand_ExceptionNull_int()
+        public void op_FailureOnCustomCommand_int()
         {
             using (var obj = new TaskManagementEventLog())
             {
                 if (obj.SourceExists())
                 {
-                    new TaskManagementEventLog().FailureOnCustomCommand(null, 1);
+                    new TaskManagementEventLog().FailureOnCustomCommand(1);
                 }
             }
         }
 
         [Fact]
-        public void op_FailureOnPause_ExceptionNull()
+        public void op_FailureOnPause()
         {
             using (var obj = new TaskManagementEventLog())
             {
                 if (obj.SourceExists())
                 {
-                    obj.FailureOnPause(null);
+                    obj.FailureOnPause();
                 }
             }
         }
 
         [Fact]
-        public void op_FailureOnPowerEvent_ExceptionNull_PowerBroadcastStatus()
+        public void op_FailureOnPowerEvent_PowerBroadcastStatus()
         {
             using (var obj = new TaskManagementEventLog())
             {
                 if (obj.SourceExists())
                 {
-                    obj.FailureOnPowerEvent(null, PowerBroadcastStatus.BatteryLow);
+                    obj.FailureOnPowerEvent(PowerBroadcastStatus.BatteryLow);
                 }
             }
         }
 
         [Fact]
-        public void op_FailureOnSessionChange_ExceptionNull_SessionChangeDescription()
+        public void op_FailureOnSessionChange_SessionChangeDescription()
         {
             using (var obj = new TaskManagementEventLog())
             {
                 if (obj.SourceExists())
                 {
-                    obj.FailureOnSessionChange(null, new SessionChangeDescription());
+                    obj.FailureOnSessionChange(new SessionChangeDescription());
                 }
             }
         }
 
         [Fact]
-        public void op_FailureOnShutdown_ExceptionNull()
+        public void op_FailureOnShutdown()
         {
             using (var obj = new TaskManagementEventLog())
             {
                 if (obj.SourceExists())
                 {
-                    obj.FailureOnShutdown(null);
+                    obj.FailureOnShutdown();
                 }
             }
         }
 
         [Fact]
-        public void op_FailureOnStart_ExceptionNull()
+        public void op_FailureOnStart()
         {
             using (var obj = new TaskManagementEventLog())
             {
                 if (obj.SourceExists())
                 {
-                    obj.FailureOnStart(null);
+                    obj.FailureOnStart();
                 }
             }
         }
 
         [Fact]
-        public void op_FailureOnStop_ExceptionNull()
+        public void op_FailureOnStop()
         {
             using (var obj = new TaskManagementEventLog())
             {
                 if (obj.SourceExists())
                 {
-                    obj.FailureOnStop(null);
+                    obj.FailureOnStop();
                 }
             }
         }
