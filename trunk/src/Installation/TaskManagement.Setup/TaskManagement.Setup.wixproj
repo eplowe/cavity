@@ -35,21 +35,45 @@
   <Choose>
     <When Condition=" '$(TargetFrameworkVersion)' == '' ">
       <PropertyGroup>
-        <ServiceOutputDirectory>$(SolutionDir)WindowsServices\TaskManagement.Service\bin\$(Configuration)\</ServiceOutputDirectory>
+        <Bin>bin\$(Configuration)</Bin>
       </PropertyGroup>
     </When>
     <Otherwise>
       <PropertyGroup>
-        <ServiceOutputDirectory>$(SolutionDir)WindowsServices\TaskManagement.Service\bin\$(Configuration) $(TargetFrameworkVersion)\</ServiceOutputDirectory>
-      </PropertyGroup>
+        <Bin>bin\$(Configuration) $(TargetFrameworkVersion)</Bin>
+    </PropertyGroup>
     </Otherwise>
   </Choose>
+  <PropertyGroup>
+    <ServiceOutputDirectory>$(SolutionDir)WindowsServices\TaskManagement.Service\$(Bin)\</ServiceOutputDirectory>
+  </PropertyGroup>
   <Target Name="Copy Libraries" BeforeTargets="Compile">
     <Copy Condition=" Exists('$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib') " 
           SourceFiles="$(SolutionDir)StaticLibraries\TaskManagement.EventLog.Messages\bin\Cavity.TaskManagement.EventLog.Messages.lib"
           DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)Castle.Core.dll') "
+          SourceFiles="$(ServiceOutputDirectory)Castle.Core.dll"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)Castle.DynamicProxy2.dll') "
+          SourceFiles="$(ServiceOutputDirectory)Castle.DynamicProxy2.dll"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)Castle.MicroKernel.dll') "
+          SourceFiles="$(ServiceOutputDirectory)Castle.MicroKernel.dll"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)Castle.Windsor.dll') "
+          SourceFiles="$(ServiceOutputDirectory)Castle.Windsor.dll"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)castle.config') "
+          SourceFiles="$(ServiceOutputDirectory)castle.config"
+          DestinationFolder="obj" />
     <Copy Condition=" Exists('$(ServiceOutputDirectory)Cavity.Core.dll') " 
           SourceFiles="$(ServiceOutputDirectory)Cavity.Core.dll"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)Cavity.ServiceLocation.dll') "
+          SourceFiles="$(ServiceOutputDirectory)Cavity.ServiceLocation.dll"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)Cavity.ServiceLocation.CastleWindsor.dll') "
+          SourceFiles="$(ServiceOutputDirectory)Cavity.ServiceLocation.CastleWindsor.dll"
           DestinationFolder="obj" />
     <Copy Condition=" Exists('$(ServiceOutputDirectory)Cavity.TaskManagement.dll') " 
           SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.dll"
@@ -59,6 +83,9 @@
           DestinationFolder="obj" />
     <Copy Condition=" Exists('$(ServiceOutputDirectory)Cavity.TaskManagement.Service.exe.config') " 
           SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.Service.exe.config"
+          DestinationFolder="obj" />
+    <Copy Condition=" Exists('$(ServiceOutputDirectory)CommonServiceLocator.WindsorAdapter.dll') "
+          SourceFiles="$(ServiceOutputDirectory)CommonServiceLocator.WindsorAdapter.dll"
           DestinationFolder="obj" />
     <Copy Condition=" Exists('$(ServiceOutputDirectory)log4net.dll') "
           SourceFiles="$(ServiceOutputDirectory)log4net.dll"

@@ -6,7 +6,9 @@
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Diagnostics\LoggingSignature.cs" />
     <Compile Include="Models\ITask.cs" />
+    <Compile Include="Models\TaskManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -19,7 +21,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Models\IManageTasks.cs" />
-    <Compile Include="Models\TaskManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="log4net">
