@@ -19,7 +19,7 @@
         {
             get
             {
-                var milliseconds = TaskManagementConfiguration.Exe.RefreshRate.TotalMilliseconds;
+                var milliseconds = Config.ExeSection<TaskManagementConfiguration>().RefreshRate.TotalMilliseconds;
                 LoggingSignature.Debug(XmlConvert.ToString(milliseconds));
 
                 return Convert.ToInt64(milliseconds);
