@@ -51,13 +51,5 @@
           SourceFiles="$(ClassLibrariesPath)\Testing.Unit\bin\$(BuildName)\Cavity.Testing.Unit.dll"
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
-    <Copy Condition=" Exists('$(TroveLibDirectory)') and '$(TargetFrameworkVersion)' == 'v4.0' "
-          SourceFiles="$(ClassLibrariesPath)\TaskManagement\bin\$(BuildName)\Cavity.TaskManagement.dll"
-          DestinationFolder="$(TroveLibDirectory)"
-          OverwriteReadOnlyFiles="true" />
-    <Copy Condition=" Exists('$(TroveMsiDirectory)') and '$(TargetFrameworkVersion)' == 'v4.0' "
-          SourceFiles="$(InstallationPath)\TaskManagement.Setup\bin\Cavity.TaskManagement.msi"
-          DestinationFolder="$(TroveMsiDirectory)"
-          OverwriteReadOnlyFiles="true" />
   </Target>
 </Project>
