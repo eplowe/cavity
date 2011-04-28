@@ -72,10 +72,10 @@
         private static void TimerCallback(object state)
         {
             LoggingSignature.Debug();
-            ExecuteTasks();
+            RunTasks();
         }
 
-        private static void ExecuteTasks()
+        private static void RunTasks()
         {
             LoggingSignature.Debug();
             var aggregate = new AggregateCatalog();
@@ -87,7 +87,7 @@
 
             foreach (var export in new CompositionContainer(aggregate).GetExports<ITask>())
             {
-                export.Value.Execute(new DataCollection());
+                export.Value.Run();
             }
         }
 

@@ -15,21 +15,14 @@
         }
 
         [Fact]
-        public void op_Execute_DataCollection()
+        public void op_Run()
         {
-            var expected = new DataCollection();
-
-            var configuration = new DataCollection();
-
             var mock = new Mock<ITask>();
             mock
-                .Setup(x => x.Execute(configuration))
-                .Returns(expected)
+                .Setup(x => x.Run())
                 .Verifiable();
 
-            var actual = mock.Object.Execute(configuration);
-
-            Assert.Same(expected, actual);
+            mock.Object.Run();
 
             mock.VerifyAll();
         }
