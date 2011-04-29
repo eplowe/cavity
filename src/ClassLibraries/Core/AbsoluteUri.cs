@@ -1,10 +1,10 @@
 ﻿namespace Cavity
 {
     using System;
-#if !NET20
     using System.IO;
-#endif
     using System.Runtime.Serialization;
+#if !NET20
+#endif
 
 #if NET20 || NET35
     using System.Security.Permissions;
@@ -208,6 +208,7 @@
 #if NET20 || NET35
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
+
         void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {

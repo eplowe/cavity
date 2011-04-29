@@ -5,6 +5,7 @@
     using Cavity.Configuration;
     using Example.Properties;
     using Microsoft.Practices.ServiceLocation;
+
 #endif
 
     public static class Program

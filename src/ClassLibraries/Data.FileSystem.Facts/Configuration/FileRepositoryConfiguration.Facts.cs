@@ -3,10 +3,9 @@
     using System.Configuration;
     using System.IO;
     using System.Xml;
-    using Cavity;
     using Cavity.IO;
     using Xunit;
-    
+
     public sealed class FileRepositoryConfigurationFacts
     {
         [Fact]

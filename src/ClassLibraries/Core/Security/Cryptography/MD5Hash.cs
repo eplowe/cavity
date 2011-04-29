@@ -149,9 +149,11 @@
             }
 
             using (new StreamReader(content))
-            using (MD5 md5 = new MD5CryptoServiceProvider())
             {
-                return new MD5Hash(md5.ComputeHash(content));
+                using (MD5 md5 = new MD5CryptoServiceProvider())
+                {
+                    return new MD5Hash(md5.ComputeHash(content));
+                }
             }
         }
 
@@ -210,6 +212,7 @@
 #if NET20 || NET35
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
+
         void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {

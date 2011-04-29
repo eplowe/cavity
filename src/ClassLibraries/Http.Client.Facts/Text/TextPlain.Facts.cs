@@ -102,14 +102,16 @@
             IContent body;
 
             using (var stream = new MemoryStream())
-            using (var writer = new StreamWriter(stream))
             {
-                writer.Write("text");
-                writer.Flush();
-                stream.Position = 0;
-                using (var reader = new StreamReader(stream))
+                using (var writer = new StreamWriter(stream))
                 {
-                    body = new TextPlain().ToContent(reader);
+                    writer.Write("text");
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        body = new TextPlain().ToContent(reader);
+                    }
                 }
             }
 
@@ -122,13 +124,15 @@
             IContent body;
 
             using (var stream = new MemoryStream())
-            using (var writer = new StreamWriter(stream))
             {
-                writer.Flush();
-                stream.Position = 0;
-                using (var reader = new StreamReader(stream))
+                using (var writer = new StreamWriter(stream))
                 {
-                    body = new TextPlain().ToContent(reader);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        body = new TextPlain().ToContent(reader);
+                    }
                 }
             }
 
@@ -147,14 +151,16 @@
             IContent body;
 
             using (var stream = new MemoryStream())
-            using (var writer = new StreamWriter(stream))
             {
-                writer.Write(string.Empty);
-                writer.Flush();
-                stream.Position = 0;
-                using (var reader = new StreamReader(stream))
+                using (var writer = new StreamWriter(stream))
                 {
-                    body = new TextPlain().ToContent(reader);
+                    writer.Write(string.Empty);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        body = new TextPlain().ToContent(reader);
+                    }
                 }
             }
 
@@ -189,14 +195,16 @@
         public void op_Write_TextWriter_whenPost()
         {
             using (var stream = new MemoryStream())
-            using (var writer = new StreamWriter(stream))
             {
-                new TextPlain("value").Write(writer);
-                writer.Flush();
-                stream.Position = 0;
-                using (var reader = new StreamReader(stream))
+                using (var writer = new StreamWriter(stream))
                 {
-                    Assert.Equal("value", reader.ReadToEnd());
+                    new TextPlain("value").Write(writer);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        Assert.Equal("value", reader.ReadToEnd());
+                    }
                 }
             }
         }
