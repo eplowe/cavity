@@ -33,11 +33,13 @@
             using (var file = new TempFile())
             {
                 using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
-                using (var writer = new StreamWriter(stream))
                 {
-                    writer.WriteLine("CANONICAL,SYNONYMS");
-                    writer.WriteLine("1,One");
-                    writer.WriteLine("1,Unit");
+                    using (var writer = new StreamWriter(stream))
+                    {
+                        writer.WriteLine("CANONICAL,SYNONYMS");
+                        writer.WriteLine("1,One");
+                        writer.WriteLine("1,Unit");
+                    }
                 }
 
                 var obj = new LexiconTidy

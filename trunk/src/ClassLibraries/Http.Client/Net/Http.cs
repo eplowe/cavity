@@ -56,11 +56,13 @@
             IHttpResponse result;
 
             using (var stream = client.GetStream())
-            using (var writer = new StreamWriter(stream))
             {
-                request.Write(writer);
-                writer.Flush();
-                result = Read(stream);
+                using (var writer = new StreamWriter(stream))
+                {
+                    request.Write(writer);
+                    writer.Flush();
+                    result = Read(stream);
+                }
             }
 
             return result;

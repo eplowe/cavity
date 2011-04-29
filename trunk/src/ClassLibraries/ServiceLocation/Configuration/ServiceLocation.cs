@@ -6,13 +6,15 @@
     public sealed class ServiceLocation : ConfigurationSection
     {
         private static readonly TypeConverter _converter = new SetLocatorProviderConverter();
-        private static readonly ConfigurationValidatorBase _validator = new SetLocatorProvideValidator();
+
         private static readonly ConfigurationProperty _provider = new ConfigurationProperty("type",
                                                                                             typeof(ISetLocatorProvider),
                                                                                             null,
                                                                                             _converter,
                                                                                             _validator,
                                                                                             ConfigurationPropertyOptions.IsRequired);
+
+        private static readonly ConfigurationValidatorBase _validator = new SetLocatorProvideValidator();
 
         public ServiceLocation()
         {

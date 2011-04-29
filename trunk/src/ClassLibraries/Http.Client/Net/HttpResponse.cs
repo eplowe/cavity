@@ -49,14 +49,16 @@
             var result = new HttpResponse();
 
             using (var stream = new MemoryStream())
-            using (var writer = new StreamWriter(stream))
             {
-                writer.Write(value);
-                writer.Flush();
-                stream.Position = 0;
-                using (var reader = new StreamReader(stream))
+                using (var writer = new StreamWriter(stream))
                 {
-                    result.Read(reader);
+                    writer.Write(value);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new StreamReader(stream))
+                    {
+                        result.Read(reader);
+                    }
                 }
             }
 

@@ -1,12 +1,12 @@
 ﻿namespace Cavity
 {
     using System;
-#if !NET20
     using System.IO;
-#endif
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
     using Xunit;
+#if !NET20
+#endif
 
     public sealed class AbsoluteUriFacts
     {

@@ -60,18 +60,20 @@
             using (var file = new TempFile())
             {
                 using (var stream = file.Info.Open(FileMode.Truncate, FileAccess.Write, FileShare.Read))
-                using (var writer = new StreamWriter(stream))
                 {
-                    writer.WriteLine("urn: urn://example.com/abc");
-                    writer.WriteLine("key: " + key);
-                    writer.WriteLine("etag: \"xyz\"");
-                    writer.WriteLine("created: 1999-12-31T01:00:00Z");
-                    writer.WriteLine("modified: 2001-12-31T01:00:00Z");
-                    writer.WriteLine("cacheability: public");
-                    writer.WriteLine("expiration: P1D");
-                    writer.WriteLine("status: 200");
-                    writer.WriteLine(string.Empty);
-                    writer.Write("<int>123</int>");
+                    using (var writer = new StreamWriter(stream))
+                    {
+                        writer.WriteLine("urn: urn://example.com/abc");
+                        writer.WriteLine("key: " + key);
+                        writer.WriteLine("etag: \"xyz\"");
+                        writer.WriteLine("created: 1999-12-31T01:00:00Z");
+                        writer.WriteLine("modified: 2001-12-31T01:00:00Z");
+                        writer.WriteLine("cacheability: public");
+                        writer.WriteLine("expiration: P1D");
+                        writer.WriteLine("status: 200");
+                        writer.WriteLine(string.Empty);
+                        writer.Write("<int>123</int>");
+                    }
                 }
 
                 var actual = RecordFile.Load(file.Info).ToRecord<int>();
@@ -121,9 +123,11 @@
                 obj.Save(root.Info);
 
                 using (var stream = new FileInfo(obj.Location.FullName).Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                using (var reader = new StreamReader(stream))
                 {
-                    actual = reader.ReadToEnd();
+                    using (var reader = new StreamReader(stream))
+                    {
+                        actual = reader.ReadToEnd();
+                    }
                 }
             }
 

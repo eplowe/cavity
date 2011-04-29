@@ -273,13 +273,15 @@
             MD5Hash actual;
 
             using (var stream = new MemoryStream())
-            using (var writer = new StreamWriter(stream))
             {
-                writer.Write(JigsawHtml);
-                writer.Flush();
-                stream.Position = 0;
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(JigsawHtml);
+                    writer.Flush();
+                    stream.Position = 0;
 
-                actual = MD5Hash.Compute(stream);
+                    actual = MD5Hash.Compute(stream);
+                }
             }
 
             Assert.Equal(expected, actual);
