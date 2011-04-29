@@ -23,6 +23,10 @@
           SourceFiles="$(ClassLibrariesPath)\Data.FileSystem\bin\$(BuildName)\Cavity.Data.FileSystem.dll"
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
+    <Copy Condition=" Exists('$(TroveLibDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
+          SourceFiles="$(ClassLibrariesPath)\Diagnostics.Log4Net\bin\$(BuildName)\Cavity.Diagnostics.Log4Net.dll"
+          DestinationFolder="$(TroveLibDirectory)"
+          OverwriteReadOnlyFiles="true" />
     <Copy Condition=" Exists('$(TroveLibDirectory)') "
           SourceFiles="$(ClassLibrariesPath)\Domain\bin\$(BuildName)\Cavity.Domain.dll"
           DestinationFolder="$(TroveLibDirectory)"
