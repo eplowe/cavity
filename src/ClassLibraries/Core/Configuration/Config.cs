@@ -8,7 +8,11 @@
     {
         public static T ExeSection<T>() where T : ConfigurationSection, new()
         {
-            var assembly = Assembly.GetEntryAssembly();
+            return ExeSection<T>(Assembly.GetEntryAssembly());
+        }
+
+        public static T ExeSection<T>(Assembly assembly) where T : ConfigurationSection, new()
+        {
             if (null == assembly)
             {
                 return Activator.CreateInstance<T>();
