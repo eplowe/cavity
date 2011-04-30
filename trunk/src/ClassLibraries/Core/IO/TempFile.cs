@@ -37,9 +37,9 @@
 
         private void Dispose(bool disposing)
         {
-            if (!Disposed)
+            if (!Disposed && disposing)
             {
-                if (disposing && null != Info)
+                if (null != Info)
                 {
                     Info.Refresh();
                     if (Info.Exists)

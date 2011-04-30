@@ -106,14 +106,11 @@
 
         private void Dispose(bool disposing)
         {
-            if (!Disposed)
+            if (!Disposed && disposing)
             {
-                if (disposing)
+                foreach (var item in this.Where(x => null != x.Value))
                 {
-                    foreach (var item in this.Where(x => null != x.Value))
-                    {
-                        item.Value.Dispose();
-                    }
+                    item.Value.Dispose();
                 }
             }
 
