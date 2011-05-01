@@ -1,6 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
+    using System.Globalization;
     using Xunit;
 
     public sealed class DateTimeExtensionMethodsFacts
@@ -9,6 +10,26 @@
         public void a_definition()
         {
             Assert.True(typeof(DateTimeExtensionMethods).IsStatic());
+        }
+
+        [Fact]
+        public void op_ToFileName_DateTime()
+        {
+            var date = new DateTime(1999, 1, 31, 8, 1, 5, 123);
+            const string expected = "1999-01-31 08h01 05,123 GMT";
+            var actual = date.ToFileName();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToFileName_DateTime_whenDaylightSavings()
+        {
+            var date = new DateTime(1999, 6, 1, 20, 1, 5, 123);
+            const string expected = "1999-06-01 19h01 05,123 GMT";
+            var actual = date.ToFileName();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
