@@ -122,13 +122,7 @@
                 var obj = new RecordFile(record);
                 obj.Save(root.Info);
 
-                using (var stream = new FileInfo(obj.Location.FullName).Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                {
-                    using (var reader = new StreamReader(stream))
-                    {
-                        actual = reader.ReadToEnd();
-                    }
-                }
+                actual = new FileInfo(obj.Location.FullName).ReadToEnd();
             }
 
             Assert.Equal(expected.ToString(), actual);
