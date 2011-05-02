@@ -9,6 +9,7 @@
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Configuration\DirectoryInfoConverter.cs" />
     <Compile Include="Configuration\DirectoryInfoValidator.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -32,6 +33,14 @@
     <Compile Include="TestException.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="Commands\DirectoryCreateCommand.cs" />
+    <Compile Include="Transactions\EnlistmentIdentity.cs" />
+    <Compile Include="Transactions\DurableEnlistmentNotification.cs" />
+    <Compile Include="Transactions\Operation.cs" />
+    <Compile Include="Transactions\Recovery.cs" />
+    <Compile Include="Xml\Serialization\XmlSerializableCommandCollection.cs" />
+    <Compile Include="Xml\Serialization\IXmlSerializableCommand.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.cs" />
     <Compile Include="Configuration\ConfiguredList.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.cs" />
@@ -66,6 +75,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />
   <!--

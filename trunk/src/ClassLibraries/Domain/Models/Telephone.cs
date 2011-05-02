@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Models
 {
     using System;
+    using System.Diagnostics;
     using System.Linq;
+    using Cavity.Diagnostics;
 
     public sealed class Telephone : ComparableObject
     {
@@ -23,6 +25,7 @@
 
         public static Telephone FromString(string value)
         {
+            Trace.WriteIf(Tracing.Enabled, value);
             if (null == value)
             {
                 throw new ArgumentNullException("value");

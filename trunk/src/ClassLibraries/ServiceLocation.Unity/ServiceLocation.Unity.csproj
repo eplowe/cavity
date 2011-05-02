@@ -11,6 +11,7 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Configuration\XmlServiceLocatorProvider.cs" />
+    <Compile Include="Diagnostics\Tracing.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServiceLocation\ServiceLocation.csproj">

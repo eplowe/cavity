@@ -108,27 +108,6 @@
         }
 
         [Fact]
-        public void prop_AreaName()
-        {
-            Assert.True(new PropertyExpectations<BritishPostcode>(p => p.AreaName)
-                            .TypeIs<string>()
-                            .IsNotDecorated()
-                            .Result);
-        }
-
-        [Fact]
-        public void prop_AreaName_get()
-        {
-            Assert.Equal("Guildford", BritishPostcode.FromString("GU21").AreaName);
-        }
-
-        [Fact]
-        public void prop_AreaName_getZZ()
-        {
-            Assert.Null(BritishPostcode.FromString("ZZ99").AreaName);
-        }
-
-        [Fact]
         public void prop_District()
         {
             Assert.True(new PropertyExpectations<BritishPostcode>(p => p.District)

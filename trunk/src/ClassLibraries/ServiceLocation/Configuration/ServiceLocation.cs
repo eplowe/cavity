@@ -2,10 +2,14 @@
 {
     using System.ComponentModel;
     using System.Configuration;
+    using System.Diagnostics;
+    using Cavity.Diagnostics;
 
     public sealed class ServiceLocation : ConfigurationSection
     {
         private static readonly TypeConverter _converter = new SetLocatorProviderConverter();
+
+        private static readonly ConfigurationValidatorBase _validator = new SetLocatorProvideValidator();
 
         private static readonly ConfigurationProperty _provider = new ConfigurationProperty("type",
                                                                                             typeof(ISetLocatorProvider),
@@ -14,10 +18,9 @@
                                                                                             _validator,
                                                                                             ConfigurationPropertyOptions.IsRequired);
 
-        private static readonly ConfigurationValidatorBase _validator = new SetLocatorProvideValidator();
-
         public ServiceLocation()
         {
+            Trace.WriteIf(Tracing.Enabled, string.Empty);
             Properties.Add(_provider);
         }
 
