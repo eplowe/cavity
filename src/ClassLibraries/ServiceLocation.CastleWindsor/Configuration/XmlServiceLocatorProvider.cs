@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Configuration
 {
+    using System.Diagnostics;
     using Castle.Windsor;
     using Castle.Windsor.Configuration.Interpreters;
+    using Cavity.Diagnostics;
     using CommonServiceLocator.WindsorAdapter;
     using Microsoft.Practices.ServiceLocation;
 
@@ -9,6 +11,7 @@
     {
         public void Configure()
         {
+            Trace.WriteIf(Tracing.Enabled, string.Empty);
             var container = new WindsorContainer(new XmlInterpreter());
             ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
         }

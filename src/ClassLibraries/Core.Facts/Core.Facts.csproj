@@ -6,6 +6,15 @@
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Commands\DirectoryCreateCommand.Facts.cs" />
+    <Compile Include="Transactions\EnlistmentIdentity.Facts.cs" />
+    <Compile Include="Transactions\DurableEnlistmentNotification.Derived.cs" />
+    <Compile Include="Transactions\DurableEnlistmentNotification.Facts.cs" />
+    <Compile Include="Transactions\Operation.Facts.cs" />
+    <Compile Include="Transactions\Recovery.Facts.cs" />
+    <Compile Include="Xml\Serialization\XmlSerializableCommandCollection.Facts.cs" />
+    <Compile Include="Xml\Serialization\IXmlSerializableCommand.Facts.cs" />
+    <Compile Include="ICommand.Facts.cs" />
     <Compile Include="AbsoluteUri.Facts.cs" />
     <Compile Include="AlphaDecimal.Facts.cs" />
     <Compile Include="Char.ExtensionMethods.Facts.cs" />
