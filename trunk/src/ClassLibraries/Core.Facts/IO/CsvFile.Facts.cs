@@ -39,14 +39,8 @@
         {
             using (var file = new TempFile())
             {
-                using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
-                {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.WriteLine("name");
-                        writer.WriteLine("value");
-                    }
-                }
+                file.Info.AppendLine("name");
+                file.Info.AppendLine("value");
 
                 foreach (var item in new CsvFile(file.Info))
                 {
@@ -60,14 +54,7 @@
         {
             using (var file = new TempFile())
             {
-                using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
-                {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.WriteLine("name");
-                    }
-                }
-
+                file.Info.Append("name");
                 foreach (var item in new CsvFile(file.Info))
                 {
                     Assert.Equal("value", item["name"]);
@@ -80,15 +67,8 @@
         {
             using (var file = new TempFile())
             {
-                using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
-                {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.WriteLine("name");
-                        writer.WriteLine("value");
-                    }
-                }
-
+                file.Info.Append("name");
+                file.Info.Append("value");
                 IEnumerable enumerable = new CsvFile(file.Info);
                 foreach (var entry in enumerable.Cast<IDictionary<string, string>>())
                 {
