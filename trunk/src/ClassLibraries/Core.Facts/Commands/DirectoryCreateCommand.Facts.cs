@@ -3,7 +3,6 @@
     using System;
     using System.IO;
     using Cavity.IO;
-    using Cavity.Xml.Serialization;
     using Cavity.Xml.XPath;
     using Xunit;
 
@@ -18,7 +17,6 @@
                             .IsSealed()
                             .HasDefaultConstructor()
                             .XmlRoot("directory.create")
-                            .Implements<IXmlSerializableCommand>()
                             .Result);
         }
 
@@ -29,23 +27,73 @@
         }
 
         [Fact]
+        public void ctor_DirectoryInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.NotNull(new DirectoryCreateCommand(temp.Info));
+            }
+        }
+
+        [Fact]
+        public void ctor_DirectoryInfoNull()
+        {
+            Assert.NotNull(new DirectoryCreateCommand(null as DirectoryInfo));
+        }
+
+        [Fact]
+        public void ctor_DirectoryInfo_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.NotNull(new DirectoryCreateCommand(temp.Info, true));
+            }
+        }
+
+        [Fact]
+        public void ctor_bool()
+        {
+            Assert.NotNull(new DirectoryCreateCommand(true));
+        }
+
+        [Fact]
         public void ctor_string()
         {
             using (var temp = new TempDirectory())
             {
-                var path = temp.Info.FullName;
+                Assert.NotNull(new DirectoryCreateCommand(temp.Info.FullName));
+            }
+        }
 
-                Assert.Equal(path, new DirectoryCreateCommand(path).Path);
+        [Fact]
+        public void ctor_stringEmpty()
+        {
+            Assert.NotNull(new DirectoryCreateCommand(string.Empty));
+        }
+
+        [Fact]
+        public void ctor_stringNull()
+        {
+            Assert.NotNull(new DirectoryCreateCommand(null as string));
+        }
+
+        [Fact]
+        public void ctor_string_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.NotNull(new DirectoryCreateCommand(temp.Info.FullName, true));
             }
         }
 
         [Fact]
         public void deserialize()
         {
-            var obj = @"<directory.create path='C:\' undo='true' />".XmlDeserialize<DirectoryCreateCommand>();
+            var obj = @"<directory.create path='C:\' undo='true' unidirectional='true' />".XmlDeserialize<DirectoryCreateCommand>();
 
             Assert.Equal(@"C:\", obj.Path);
             Assert.True(obj.Undo);
+            Assert.True(obj.Unidirectional);
         }
 
         [Fact]
@@ -55,23 +103,7 @@
 
             Assert.Null(obj.Path);
             Assert.False(obj.Undo);
-        }
-
-        [Fact]
-        public void opExplicit_DirectoryCreateCommand_DirectoryInfo()
-        {
-            using (var temp = new TempDirectory())
-            {
-                var obj = (DirectoryCreateCommand)temp.Info;
-
-                Assert.Equal(temp.Info.FullName, obj.Path);
-            }
-        }
-
-        [Fact]
-        public void opExplicit_DirectoryCreateCommand_DirectoryInfoNull()
-        {
-            Assert.Null((DirectoryCreateCommand)(null as DirectoryInfo));
+            Assert.False(obj.Unidirectional);
         }
 
         [Fact]
@@ -109,23 +141,6 @@
         }
 
         [Fact]
-        public void op_FromDirectoryInfo_DirectoryInfo()
-        {
-            using (var temp = new TempDirectory())
-            {
-                var obj = DirectoryCreateCommand.FromDirectoryInfo(temp.Info);
-
-                Assert.Equal(temp.Info.FullName, obj.Path);
-            }
-        }
-
-        [Fact]
-        public void op_FromDirectoryInfo_DirectoryInfoNull()
-        {
-            Assert.Null(DirectoryCreateCommand.FromDirectoryInfo(null));
-        }
-
-        [Fact]
         public void op_GetSchema()
         {
             Assert.Throws<NotSupportedException>(() => new DirectoryCreateCommand().GetSchema());
@@ -149,7 +164,6 @@
                 };
 
                 Assert.True(obj.Act());
-
                 Assert.True(obj.Revert());
                 Assert.False(new DirectoryInfo(obj.Path).Exists);
             }
@@ -175,6 +189,23 @@
         }
 
         [Fact]
+        public void op_Revert_whenUnidirectional()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var obj = new DirectoryCreateCommand(true)
+                {
+                    Path = temp.Info.ToDirectory("example").FullName,
+                    Undo = true
+                };
+
+                Assert.True(obj.Act());
+                Assert.True(obj.Revert());
+                Assert.True(new DirectoryInfo(obj.Path).Exists);
+            }
+        }
+
+        [Fact]
         public void op_WriteXml_XmlWriterNull()
         {
             Assert.Throws<ArgumentNullException>(() => new DirectoryCreateCommand().WriteXml(null));
@@ -193,7 +224,7 @@
         public void prop_Undo()
         {
             Assert.True(new PropertyExpectations<DirectoryCreateCommand>(p => p.Undo)
-                            .IsAutoProperty<bool>()
+                            .TypeIs<bool>()
                             .IsNotDecorated()
                             .Result);
         }
@@ -215,7 +246,7 @@
             }
             else
             {
-                Assert.True(navigator.Evaluate<bool>(@"1 = count(/directory.create[@path='C:\'][@undo='true'])"));
+                Assert.True(navigator.Evaluate<bool>(@"1 = count(/directory.create[@path='C:\'][@undo='true'][@unidirectional='false'])"));
             }
         }
 

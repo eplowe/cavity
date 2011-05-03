@@ -31,6 +31,9 @@
     <Compile Include="TestException.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\FileMoveCommand.cs" />
+    <Compile Include="Commands\FileCopyCommand.cs" />
     <Compile Include="Configuration\DirectoryConfigurationElement.cs" />
     <Compile Include="Configuration\DirectoryConfigurationElementCollection.cs" />
     <Compile Include="Configuration\DirectoryInfoConverter.cs" />

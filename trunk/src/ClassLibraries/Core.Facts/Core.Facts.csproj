@@ -64,6 +64,9 @@
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.Facts.cs" />
     <Compile Include="Configuration\DirectoryConfigurationElement.Facts.cs" />
     <Compile Include="Configuration\DirectoryConfigurationElementCollection.Facts.cs" />
+    <Compile Include="Commands\Command.Facts.cs" />
+    <Compile Include="Commands\FileMoveCommand.Facts.cs" />
+    <Compile Include="Commands\FileCopyCommand.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

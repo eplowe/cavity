@@ -1,41 +1,51 @@
 ﻿namespace Cavity.Commands
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Xml;
-    using System.Xml.Schema;
     using System.Xml.Serialization;
-    using Cavity.Xml.Serialization;
 
     [XmlRoot("directory.create")]
-    public sealed class DirectoryCreateCommand : IXmlSerializableCommand
+    public sealed class DirectoryCreateCommand : Command
     {
         public DirectoryCreateCommand()
         {
         }
 
+        public DirectoryCreateCommand(bool unidirectional)
+            : base(unidirectional)
+        {
+        }
+
         public DirectoryCreateCommand(string path)
+            : base(false)
         {
             Path = path;
         }
 
+        public DirectoryCreateCommand(string path,
+                                      bool unidirectional)
+            : base(unidirectional)
+        {
+            Path = path;
+        }
+
+        public DirectoryCreateCommand(DirectoryInfo directory)
+            : base(false)
+        {
+            Path = null == directory ? null : directory.FullName;
+        }
+
+        public DirectoryCreateCommand(DirectoryInfo directory,
+                                      bool unidirectional)
+            : base(unidirectional)
+        {
+            Path = null == directory ? null : directory.FullName;
+        }
+
         public string Path { get; set; }
 
-        public bool Undo { get; set; }
-
-        public static explicit operator DirectoryCreateCommand(DirectoryInfo dir)
-        {
-            return FromDirectoryInfo(dir);
-        }
-
-        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
-        public static DirectoryCreateCommand FromDirectoryInfo(DirectoryInfo dir)
-        {
-            return (null == dir) ? null : new DirectoryCreateCommand(dir.FullName);
-        }
-
-        public bool Act()
+        public override bool Act()
         {
             var dir = new DirectoryInfo(Path);
             if (dir.Exists)
@@ -45,13 +55,25 @@
             else
             {
                 dir.Create();
-                Undo = true;
+                Undo = !Unidirectional;
             }
 
             return true;
         }
 
-        public bool Revert()
+        public override void ReadXml(XmlReader reader)
+        {
+            if (null == reader)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
+            Path = reader.GetAttribute("path");
+
+            base.ReadXml(reader);
+        }
+
+        public override bool Revert()
         {
             if (Undo)
             {
@@ -62,27 +84,7 @@
             return true;
         }
 
-        public XmlSchema GetSchema()
-        {
-            throw new NotSupportedException();
-        }
-
-        public void ReadXml(XmlReader reader)
-        {
-            if (null == reader)
-            {
-                throw new ArgumentNullException("reader");
-            }
-
-            Path = reader.GetAttribute("path");
-            var attribute = reader.GetAttribute("undo");
-            if (!string.IsNullOrEmpty(attribute))
-            {
-                Undo = XmlConvert.ToBoolean(attribute);
-            }
-        }
-
-        public void WriteXml(XmlWriter writer)
+        public override void WriteXml(XmlWriter writer)
         {
             if (null == writer)
             {
@@ -94,7 +96,7 @@
                 writer.WriteAttributeString("path", Path);
             }
 
-            writer.WriteAttributeString("undo", XmlConvert.ToString(Undo));
+            base.WriteXml(writer);
         }
     }
 }
