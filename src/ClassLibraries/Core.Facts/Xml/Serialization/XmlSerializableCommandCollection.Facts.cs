@@ -36,18 +36,19 @@
         {
             using (var temp = new TempDirectory())
             {
+                var example = temp.Info.ToDirectory("example");
                 var obj = ("<commands>" +
                            "<command i='1' type='Cavity.Commands.DirectoryCreateCommand, Cavity.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8'>" +
                            @"<directory.create path='{0}' undo='false' />".FormatWith(temp.Info.FullName) +
                            "</command>" +
                            "<command i='2' type='Cavity.Commands.DirectoryCreateCommand, Cavity.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8'>" +
-                           @"<directory.create path='{0}' undo='true' />".FormatWith(Path.Combine(temp.Info.FullName, "example")) +
+                           @"<directory.create path='{0}' undo='true' />".FormatWith(example.FullName) +
                            "</command>" +
                            "</commands>").XmlDeserialize<XmlSerializableCommandCollection>();
 
                 Assert.Equal(2, obj.Count);
                 Assert.Equal(temp.Info.FullName, ((DirectoryCreateCommand)obj.First()).Path);
-                Assert.Equal(Path.Combine(temp.Info.FullName, "example"), ((DirectoryCreateCommand)obj.Last()).Path);
+                Assert.Equal(example.FullName, ((DirectoryCreateCommand)obj.Last()).Path);
             }
         }
 

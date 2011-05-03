@@ -27,7 +27,7 @@
             {
                 using (var temp = new TempDirectory())
                 {
-                    Recovery.MasterDirectory = new DirectoryInfo(Path.Combine(temp.Info.FullName, "Recovery"));
+                    Recovery.MasterDirectory = temp.Info.ToDirectory("Recovery");
                     var operation = new Operation(Guid.NewGuid())
                     {
                         Info = Guid.NewGuid().ToString()
@@ -57,7 +57,7 @@
                 using (var temp = new TempDirectory())
                 {
                     var resourceManager = Guid.NewGuid();
-                    Recovery.MasterDirectory = new DirectoryInfo(Path.Combine(temp.Info.FullName, "Recovery"));
+                    Recovery.MasterDirectory = temp.Info.ToDirectory("Recovery");
                     var operation1 = new Operation(resourceManager)
                     {
                         Info = Guid.NewGuid().ToString()
@@ -92,7 +92,7 @@
             {
                 using (var temp = new TempDirectory())
                 {
-                    Recovery.MasterDirectory = new DirectoryInfo(Path.Combine(temp.Info.FullName, "Recovery"));
+                    Recovery.MasterDirectory = temp.Info.ToDirectory("Recovery");
                     var operation = new Operation(Guid.NewGuid())
                     {
                         Info = Guid.NewGuid().ToString()
@@ -127,7 +127,7 @@
                 using (var temp = new TempDirectory())
                 {
                     var resourceManager = Guid.NewGuid();
-                    Recovery.MasterDirectory = new DirectoryInfo(Path.Combine(temp.Info.FullName, "Recovery"));
+                    Recovery.MasterDirectory = temp.Info.ToDirectory("Recovery");
                     var operation = new Operation(resourceManager)
                     {
                         Info = Guid.NewGuid().ToString()
@@ -164,7 +164,7 @@
 
             var id = operation.Identity;
 
-            var expected = new FileInfo(Path.Combine(Recovery.MasterDirectory.FullName, @"{0}\{1}.xml".FormatWith(id.ResourceManager, id.Instance))).FullName;
+            var expected = Recovery.MasterDirectory.ToFile(@"{0}\{1}.xml".FormatWith(id.ResourceManager, id.Instance)).FullName;
             var actual = Recovery.ItemFile(operation).FullName;
 
             Assert.Equal(expected, actual);
@@ -192,7 +192,7 @@
 
             var id = operation.Identity;
 
-            var expected = new FileInfo(Path.Combine(Recovery.MasterDirectory.FullName, @"{0}\Example\{1}.xml".FormatWith(id.ResourceManager, id.Instance))).FullName;
+            var expected = Recovery.MasterDirectory.ToFile(@"{0}\Example\{1}.xml".FormatWith(id.ResourceManager, id.Instance)).FullName;
             var actual = Recovery.ItemFile(operation, "Example").FullName;
 
             Assert.Equal(expected, actual);
@@ -208,7 +208,7 @@
 
             var id = operation.Identity;
 
-            var expected = new FileInfo(Path.Combine(Recovery.MasterDirectory.FullName, @"{0}\{1}.xml".FormatWith(id.ResourceManager, id.Instance))).FullName;
+            var expected = Recovery.MasterDirectory.ToFile(@"{0}\{1}.xml".FormatWith(id.ResourceManager, id.Instance)).FullName;
             var actual = Recovery.ItemFile(operation, null).FullName;
 
             Assert.Equal(expected, actual);
@@ -224,7 +224,7 @@
 
             var id = operation.Identity;
 
-            var expected = new FileInfo(Path.Combine(Recovery.MasterDirectory.FullName, "{0}.master".FormatWith(id.ResourceManager))).FullName;
+            var expected = Recovery.MasterDirectory.ToFile("{0}.master".FormatWith(id.ResourceManager)).FullName;
             var actual = Recovery.MasterFile(operation).FullName;
 
             Assert.Equal(expected, actual);

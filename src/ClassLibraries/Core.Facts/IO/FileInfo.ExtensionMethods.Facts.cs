@@ -27,7 +27,7 @@
             const string expected = "example";
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.AppendLine(expected);
 
                 var actual = file.ReadToEnd();
@@ -42,7 +42,7 @@
             var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.AppendLine(expected);
 
                 var actual = file.ReadToEnd();
@@ -57,7 +57,7 @@
             var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.AppendLine(null);
 
                 var actual = file.ReadToEnd();
@@ -72,7 +72,7 @@
             const string expected = "example";
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(string.Empty);
                 file.AppendLine(expected);
 
@@ -94,7 +94,7 @@
             const string expected = "example";
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.Append(expected);
 
                 var actual = file.ReadToEnd();
@@ -109,7 +109,7 @@
             var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.Append(expected);
 
                 var actual = file.ReadToEnd();
@@ -124,7 +124,7 @@
             var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.Append(null);
 
                 var actual = file.ReadToEnd();
@@ -139,7 +139,7 @@
             const string expected = "example";
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(string.Empty);
                 file.Append(expected);
 
@@ -155,7 +155,7 @@
             var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew();
 
                 var actual = file.ReadToEnd();
@@ -182,7 +182,7 @@
             const string expected = "example";
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(expected);
 
                 var actual = file.ReadToEnd();
@@ -197,7 +197,7 @@
             var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(expected);
 
                 var actual = file.ReadToEnd();
@@ -212,7 +212,7 @@
             var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(null);
 
                 var actual = file.ReadToEnd();
@@ -226,7 +226,7 @@
         {
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(string.Empty);
 
                 Assert.Throws<IOException>(() => file.CreateNew("example"));
@@ -238,7 +238,7 @@
         {
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew();
 
                 Assert.Throws<IOException>(() => file.CreateNew());
@@ -269,7 +269,7 @@
 
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.Create(xml);
 
                 var actual = file.ReadToEnd();
@@ -283,7 +283,7 @@
         {
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
 
                 Assert.Throws<ArgumentNullException>(() => file.Create(null as IXPathNavigable));
             }
@@ -298,7 +298,7 @@
 
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(string.Empty);
                 file.Create(xml);
 
@@ -314,7 +314,7 @@
             const string expected = "example";
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.Create(expected);
 
                 var actual = file.ReadToEnd();
@@ -329,7 +329,7 @@
             var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.Create(expected);
 
                 var actual = file.ReadToEnd();
@@ -344,7 +344,7 @@
             var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.Create(null as string);
 
                 var actual = file.ReadToEnd();
@@ -359,7 +359,7 @@
             const string expected = "example";
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(string.Empty);
                 file.Create(expected);
 
@@ -375,7 +375,7 @@
             const string expected = "example";
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(expected);
 
                 foreach (var actual in file.Lines())
@@ -390,7 +390,7 @@
         {
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew();
 
                 Assert.Empty(file.Lines());
@@ -402,7 +402,7 @@
         {
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
 
                 Assert.Throws<FileNotFoundException>(() => file.Lines().ToArray());
             }
@@ -420,7 +420,7 @@
             const string expected = "example";
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(expected);
 
                 var actual = file.ReadToEnd();
@@ -434,7 +434,7 @@
         {
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 Assert.Throws<FileNotFoundException>(() => file.ReadToEnd());
             }
         }
@@ -457,7 +457,7 @@
             const string expected = "example";
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(string.Empty);
                 file.Truncate(expected);
 
@@ -473,7 +473,7 @@
             var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(string.Empty);
                 file.Truncate(expected);
 
@@ -489,7 +489,7 @@
             var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 file.CreateNew(string.Empty);
                 file.Truncate(null);
 
@@ -504,7 +504,7 @@
         {
             using (var temp = new TempDirectory())
             {
-                var file = new FileInfo(Path.Combine(temp.Info.FullName, Guid.NewGuid().ToString()));
+                var file = temp.Info.ToFile(Guid.NewGuid());
 
                 Assert.Throws<FileNotFoundException>(() => file.Truncate("example"));
             }

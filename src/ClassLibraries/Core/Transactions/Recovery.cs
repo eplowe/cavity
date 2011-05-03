@@ -53,7 +53,7 @@
                 throw new ArgumentNullException("operation");
             }
 
-            return new FileInfo(Path.Combine(ItemDirectory(operation, outcome).FullName, "{0}.xml".FormatWith(operation.Identity.Instance)));
+            return ItemDirectory(operation, outcome).ToFile("{0}.xml".FormatWith(operation.Identity.Instance));
         }
 
         public static FileInfo MasterFile(Operation operation)
@@ -64,7 +64,7 @@
                 throw new ArgumentNullException("operation");
             }
 
-            return new FileInfo(Path.Combine(MasterDirectory.FullName, "{0}.master".FormatWith(operation.Identity.ResourceManager)));
+            return MasterDirectory.ToFile("{0}.master".FormatWith(operation.Identity.ResourceManager));
         }
 
         [SuppressMessage("Microsoft.Reliability", "CA2002:DoNotLockOnObjectsWithWeakIdentity", Justification = "I want to lock across process boundaries.")]
@@ -126,9 +126,11 @@
         private static DirectoryInfo ItemDirectory(Operation operation,
                                                    string outcome)
         {
-            var dir = Path.Combine(MasterDirectory.FullName, operation.Identity.ResourceManager.ToString());
+            var dir = MasterDirectory.ToDirectory(operation.Identity.ResourceManager);
 
-            return new DirectoryInfo(string.IsNullOrEmpty(outcome) ? dir : Path.Combine(dir, outcome));
+            return string.IsNullOrEmpty(outcome)
+                       ? dir
+                       : dir.ToDirectory(outcome);
         }
 
         private static FileInfo Save(Operation operation,
@@ -145,7 +147,7 @@
             if (success.HasValue)
             {
                 var source = file.FullName;
-                file = new FileInfo(Path.Combine(ItemDirectory(operation, success.Value ? "Commit" : "Rollback").FullName, file.Name));
+                file = ItemDirectory(operation, success.Value ? "Commit" : "Rollback").ToFile(file.Name);
                 if (!file.Directory.Exists)
                 {
                     file.Directory.Create();

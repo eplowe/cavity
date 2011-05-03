@@ -36,6 +36,7 @@
     <Compile Include="Data\DataCollection.Facts.cs" />
     <Compile Include="Data\Record`1.Facts.cs" />
     <Compile Include="Data\RepositoryException.Facts.cs" />
+    <Compile Include="IO\DirectoryInfo.ExtensionMethods.Facts.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.Facts.cs" />
     <Compile Include="IO\TempDirectory.Facts.cs" />
     <Compile Include="IO\TempFile.Facts.cs" />

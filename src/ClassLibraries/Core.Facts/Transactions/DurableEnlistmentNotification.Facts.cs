@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Threading;
     using System.Transactions;
     using Cavity.Commands;
     using Cavity.IO;
@@ -49,8 +50,8 @@
             {
                 using (var temp = new TempDirectory())
                 {
-                    var path = Path.Combine(temp.Info.FullName, "example");
-                    Recovery.MasterDirectory = new DirectoryInfo(Path.Combine(temp.Info.FullName, "Recovery"));
+                    var path = temp.Info.ToDirectory("example").FullName;
+                    Recovery.MasterDirectory = temp.Info.ToDirectory("Recovery");
                     using (var scope = new TransactionScope())
                     {
                         var obj = new DerivedDurableEnlistmentNotification(Guid.NewGuid(), EnlistmentOptions.None);
@@ -60,6 +61,7 @@
                     }
 
                     Assert.True(new DirectoryInfo(path).Exists);
+                    Thread.Sleep(1000);
                 }
             }
             finally
@@ -78,8 +80,8 @@
             {
                 using (var temp = new TempDirectory())
                 {
-                    var path = Path.Combine(temp.Info.FullName, "example");
-                    Recovery.MasterDirectory = new DirectoryInfo(Path.Combine(temp.Info.FullName, "Recovery"));
+                    var path = temp.Info.ToDirectory("example").FullName;
+                    Recovery.MasterDirectory = temp.Info.ToDirectory("Recovery");
                     using (new TransactionScope())
                     {
                         var obj = new DerivedDurableEnlistmentNotification(Guid.NewGuid(), EnlistmentOptions.None);

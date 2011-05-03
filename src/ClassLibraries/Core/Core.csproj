@@ -33,6 +33,7 @@
     <Compile Include="TestException.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="IO\DirectoryInfo.ExtensionMethods.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Commands\DirectoryCreateCommand.cs" />
     <Compile Include="Transactions\EnlistmentIdentity.cs" />
@@ -49,9 +50,9 @@
     <Compile Include="Data\IRecord`1.cs" />
     <Compile Include="Data\IRepository`1.cs" />
     <Compile Include="Data\Record`1.cs" />
+    <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
     <Compile Include="IO\CsvFile.cs" />
     <Compile Include="IO\CsvStreamReader.cs" />
-    <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
     <Compile Include="IO\StreamWriterDictionary.cs" />
     <Compile Include="Linq\Enumerable.cs" />
     <Compile Include="Net\CacheControl.cs" />
