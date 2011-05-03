@@ -28,7 +28,7 @@
                                          object value,
                                          Type destinationType)
         {
-            throw new NotSupportedException();
+            return Convert.ToString(value, culture);
         }
     }
 }

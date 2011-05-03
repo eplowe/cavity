@@ -94,7 +94,9 @@
             var value = (object)123;
             var destinationType = typeof(string);
 
-            Assert.Throws<NotSupportedException>(() => new DirectoryInfoConverter().ConvertTo(context, culture, value, destinationType));
+            var actual = new DirectoryInfoConverter().ConvertTo(context, culture, value, destinationType);
+            
+            Assert.Equal("123", actual);
         }
     }
 }

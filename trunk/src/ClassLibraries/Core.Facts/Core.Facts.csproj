@@ -62,6 +62,8 @@
     <Compile Include="Xml\IXmlSerializerNamespaces.Facts.cs" />
     <Compile Include="Xml\XmlNamespace.Facts.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.Facts.cs" />
+    <Compile Include="Configuration\DirectoryConfigurationElement.Facts.cs" />
+    <Compile Include="Configuration\DirectoryConfigurationElementCollection.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

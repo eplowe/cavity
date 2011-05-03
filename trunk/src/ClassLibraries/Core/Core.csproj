@@ -7,8 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Configuration\Config.cs" />
-    <Compile Include="Configuration\DirectoryInfoConverter.cs" />
-    <Compile Include="Configuration\DirectoryInfoValidator.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -33,6 +31,10 @@
     <Compile Include="TestException.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Configuration\DirectoryConfigurationElement.cs" />
+    <Compile Include="Configuration\DirectoryConfigurationElementCollection.cs" />
+    <Compile Include="Configuration\DirectoryInfoConverter.cs" />
+    <Compile Include="Configuration\DirectoryInfoValidator.cs" />
     <Compile Include="IO\DirectoryInfo.ExtensionMethods.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Commands\DirectoryCreateCommand.cs" />

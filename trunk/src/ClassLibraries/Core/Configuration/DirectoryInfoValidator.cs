@@ -21,8 +21,7 @@
                 throw new ArgumentNullException("value");
             }
 
-            var directory = value as DirectoryInfo;
-            if (null == directory)
+            if (null == new DirectoryInfo((string)value))
             {
                 throw new ArgumentOutOfRangeException("value");
             }
