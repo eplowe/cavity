@@ -40,13 +40,7 @@
                     {
                         using (var reader = new StreamReader(resource))
                         {
-                            using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
-                            {
-                                using (var writer = new StreamWriter(stream))
-                                {
-                                    writer.Write(reader.ReadToEnd());
-                                }
-                            }
+                            file.Info.Append(reader.ReadToEnd());
                         }
                     }
                 }
@@ -112,13 +106,7 @@
                                 node.ParentNode.RemoveChild(node);
                             }
 
-                            using (var stream = file.Info.Open(FileMode.Append, FileAccess.Write, FileShare.None))
-                            {
-                                using (var writer = new StreamWriter(stream))
-                                {
-                                    writer.Write(xml.OuterXml);
-                                }
-                            }
+                            file.Info.Append(xml.OuterXml);
                         }
                     }
                 }

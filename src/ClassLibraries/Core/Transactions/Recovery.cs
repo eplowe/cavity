@@ -135,21 +135,13 @@
                                      bool? success)
         {
             Trace.WriteIf(Tracing.Enabled, string.Empty);
-            var xml = operation.XmlSerialize().CreateNavigator().OuterXml;
             var file = ItemFile(operation);
             if (!file.Directory.Exists)
             {
                 file.Directory.Create();
             }
 
-            using (var stream = file.Open(FileMode.Create, FileAccess.Write, FileShare.Read))
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Write(xml);
-                }
-            }
-
+            file.Create(operation.XmlSerialize());
             if (success.HasValue)
             {
                 var source = file.FullName;
