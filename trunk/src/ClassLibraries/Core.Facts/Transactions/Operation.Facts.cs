@@ -67,9 +67,9 @@
             {
                 using (var temp = new TempDirectory())
                 {
-                    Recovery.MasterDirectory = new DirectoryInfo(Path.Combine(temp.Info.FullName, "Recovery"));
-                    var path1 = Path.Combine(temp.Info.FullName, "1");
-                    var path2 = Path.Combine(path1, "2");
+                    Recovery.MasterDirectory = temp.Info.ToDirectory("Recovery");
+                    var path1 = temp.Info.ToDirectory("1").FullName;
+                    var path2 = temp.Info.ToDirectory("2").FullName;
                     var obj = new Operation(Guid.NewGuid())
                     {
                         Info = Guid.NewGuid().ToString()
@@ -112,9 +112,9 @@
             {
                 using (var temp = new TempDirectory())
                 {
-                    Recovery.MasterDirectory = new DirectoryInfo(Path.Combine(temp.Info.FullName, "Recovery"));
-                    var path1 = Path.Combine(temp.Info.FullName, "1");
-                    var path2 = Path.Combine(path1, "2");
+                    Recovery.MasterDirectory = temp.Info.ToDirectory("Recovery");
+                    var path1 = temp.Info.ToDirectory("1").FullName;
+                    var path2 = temp.Info.ToDirectory("1").ToDirectory("2").FullName;
                     var obj = new Operation(Guid.NewGuid())
                     {
                         Info = Guid.NewGuid().ToString()

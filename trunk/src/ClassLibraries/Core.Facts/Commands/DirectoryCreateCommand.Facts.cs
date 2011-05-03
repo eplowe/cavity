@@ -81,7 +81,7 @@
             {
                 var obj = new DirectoryCreateCommand
                 {
-                    Path = Path.Combine(temp.Info.FullName, "example"),
+                    Path = temp.Info.ToDirectory("example").FullName,
                     Undo = true
                 };
 
@@ -144,7 +144,7 @@
             {
                 var obj = new DirectoryCreateCommand
                 {
-                    Path = Path.Combine(temp.Info.FullName, "example"),
+                    Path = temp.Info.ToDirectory("example").FullName,
                     Undo = true
                 };
 
@@ -162,7 +162,7 @@
             {
                 var obj = new DirectoryCreateCommand
                 {
-                    Path = Path.Combine(temp.Info.FullName, "example"),
+                    Path = temp.Info.ToDirectory("example").FullName,
                     Undo = true
                 };
 
