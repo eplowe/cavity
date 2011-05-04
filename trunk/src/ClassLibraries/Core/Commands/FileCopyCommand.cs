@@ -19,7 +19,6 @@
 
         public FileCopyCommand(string source,
                                string destination)
-            : base(false)
         {
             Source = source;
             Destination = destination;
@@ -36,7 +35,6 @@
 
         public FileCopyCommand(FileInfo source,
                                FileInfo destination)
-            : base(false)
         {
             Source = null == source ? null : source.FullName;
             Destination = null == destination ? null : destination.FullName;
