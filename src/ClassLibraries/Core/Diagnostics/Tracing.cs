@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Diagnostics
 {
     using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
 
     internal static class Tracing
     {

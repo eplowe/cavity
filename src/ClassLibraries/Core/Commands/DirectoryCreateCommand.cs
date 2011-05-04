@@ -18,7 +18,6 @@
         }
 
         public DirectoryCreateCommand(string path)
-            : base(false)
         {
             Path = path;
         }
@@ -31,7 +30,6 @@
         }
 
         public DirectoryCreateCommand(DirectoryInfo directory)
-            : base(false)
         {
             Path = null == directory ? null : directory.FullName;
         }

@@ -12,7 +12,7 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<DirectoryCreateCommand>()
-                            .DerivesFrom<object>()
+                            .DerivesFrom<Command>()
                             .IsConcreteClass()
                             .IsSealed()
                             .HasDefaultConstructor()

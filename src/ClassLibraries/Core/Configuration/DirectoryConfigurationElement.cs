@@ -3,7 +3,9 @@
     using System;
     using System.ComponentModel;
     using System.Configuration;
+    using System.Diagnostics;
     using System.IO;
+    using Cavity.Diagnostics;
 
     public sealed class DirectoryConfigurationElement : ConfigurationElement
     {
@@ -20,6 +22,7 @@
 
         public DirectoryConfigurationElement()
         {
+            Trace.WriteIf(Tracing.Enabled, string.Empty);
             Properties.Add(_directory);
         }
 
@@ -33,6 +36,7 @@
         {
             get
             {
+                Trace.WriteIf(Tracing.Enabled, string.Empty);
                 return new DirectoryInfo((string)this["directory"]);
             }
 
@@ -43,6 +47,7 @@
                     throw new ArgumentNullException("value");
                 }
 
+                Trace.WriteIf(Tracing.Enabled, string.Empty);
                 this["directory"] = value.FullName;
             }
         }
