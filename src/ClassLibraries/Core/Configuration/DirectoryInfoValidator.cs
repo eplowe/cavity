@@ -25,7 +25,7 @@
                 throw new ArgumentNullException("value");
             }
 
-            if (null == new DirectoryInfo((string)value))
+            if (null == value as DirectoryInfo)
             {
                 throw new ArgumentOutOfRangeException("value");
             }
