@@ -37,7 +37,7 @@
             get
             {
                 Trace.WriteIf(Tracing.Enabled, string.Empty);
-                return new DirectoryInfo((string)this["directory"]);
+                return (DirectoryInfo)this["directory"];
             }
 
             set
@@ -48,7 +48,7 @@
                 }
 
                 Trace.WriteIf(Tracing.Enabled, string.Empty);
-                this["directory"] = value.FullName;
+                this["directory"] = value;
             }
         }
     }
