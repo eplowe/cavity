@@ -11,7 +11,7 @@
         protected DurableEnlistmentNotification(Guid resourceManager,
                                                 EnlistmentOptions enlistmentOptions)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Enabled, "resourceManager={0} enlistmentOptions={1}".FormatWith(resourceManager, enlistmentOptions.ToString("G")));
             Operation = new Operation(resourceManager);
             if (null == Transaction.Current)
             {
@@ -27,7 +27,7 @@
         public virtual void OnTransactionCompleted(object sender,
                                                    TransactionEventArgs e)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Enabled, "sender=\"{0}\" e.Transaction.TransactionInformation.DistributedIdentifier={1}".FormatWith(sender, null == e ? Guid.Empty : e.Transaction.TransactionInformation.DistributedIdentifier));
         }
 
         public virtual void Commit(Enlistment enlistment)
@@ -61,10 +61,12 @@
                     if (ConfigureOperation() &&
                         Operation.Do())
                     {
+                        Trace.WriteIf(Tracing.Enabled, "preparingEnlistment.Prepared()");
                         preparingEnlistment.Prepared();
                         return;
                     }
 
+                    Trace.WriteIf(Tracing.Enabled, "preparingEnlistment.ForceRollback()");
                     preparingEnlistment.ForceRollback();
                 }
                 catch (Exception exception)
@@ -82,6 +84,7 @@
             {
                 if (Operation.Undo())
                 {
+                    Trace.WriteIf(Tracing.Enabled, "Operation.Done(false)");
                     Operation.Done(false);
                 }
 

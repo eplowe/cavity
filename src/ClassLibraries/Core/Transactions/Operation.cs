@@ -13,13 +13,14 @@
     {
         public Operation()
         {
+            Trace.WriteIf(Tracing.Enabled, string.Empty);
             Commands = new XmlSerializableCommandCollection();
         }
 
         public Operation(Guid resourceManager)
             : this()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Enabled, "resourceManager={0}".FormatWith(resourceManager));
             Identity = new EnlistmentIdentity(resourceManager);
         }
 
@@ -35,12 +36,13 @@
 
         public bool Do()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Enabled, "Identity.ResourceManager={0}, Identity.Instance={1}".FormatWith(Identity.ResourceManager, Identity.Instance));
             if (null == Info)
             {
                 throw new InvalidOperationException();
             }
 
+            Trace.WriteIf(Tracing.Enabled, "Commands.Count={0}".FormatWith(Commands.Count));
             if (0 == Commands.Count)
             {
                 return true;
@@ -62,7 +64,7 @@
         {
             if (null != Info)
             {
-                Trace.WriteIf(Tracing.Enabled, string.Empty);
+                Trace.WriteIf(Tracing.Enabled, "Identity.ResourceManager={0}, Identity.Instance={1}".FormatWith(Identity.ResourceManager, Identity.Instance));
             }
 
             Recovery.Exclude(this, success);
@@ -70,12 +72,13 @@
 
         public bool Undo()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Enabled, "Identity.ResourceManager={0}, Identity.Instance={1}".FormatWith(Identity.ResourceManager, Identity.Instance));
             if (null == Info)
             {
                 throw new InvalidOperationException();
             }
 
+            Trace.WriteIf(Tracing.Enabled, "Commands.Count={0}".FormatWith(Commands.Count));
             if (0 == Commands.Count)
             {
                 return true;
