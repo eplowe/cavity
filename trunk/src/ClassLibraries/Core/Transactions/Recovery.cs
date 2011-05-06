@@ -11,6 +11,8 @@
 
     public static class Recovery
     {
+        private static readonly object _this = new object();
+
         private static DirectoryInfo _directory;
 
         public static DirectoryInfo MasterDirectory
@@ -67,7 +69,6 @@
             return MasterDirectory.ToFile("{0}.master".FormatWith(operation.Identity.ResourceManager));
         }
 
-        [SuppressMessage("Microsoft.Reliability", "CA2002:DoNotLockOnObjectsWithWeakIdentity", Justification = "I want to lock across process boundaries.")]
         private static void Amend(Operation operation,
                                   bool? success)
         {
@@ -82,7 +83,7 @@
                 Trace.WriteIf(Tracing.Enabled, string.Empty);
             }
 
-            lock (operation.Identity.ResourceManager.ToString())
+            lock (_this)
             {
                 var master = MasterFile(operation);
                 if (!master.Directory.Exists)
