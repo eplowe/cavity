@@ -2,9 +2,6 @@
 {
     using System;
     using System.IO;
-    using System.Linq;
-    using System.Xml;
-    using System.Xml.XPath;
     using Xunit;
 
     public sealed class DirectoryInfoExtensionMethodsFacts
@@ -29,9 +26,11 @@
                 const string name = "example";
 
                 var expected = Path.Combine(temp.Info.FullName, name);
-                var actual = temp.Info.ToDirectory(name).FullName;
 
-                Assert.Equal(expected, actual);
+                var actual = temp.Info.ToDirectory(name);
+
+                Assert.False(actual.Exists);
+                Assert.Equal(expected, actual.FullName);
             }
         }
 
@@ -41,6 +40,22 @@
             using (var temp = new TempDirectory())
             {
                 Assert.Throws<ArgumentNullException>(() => temp.Info.ToDirectory(null));
+            }
+        }
+
+        [Fact]
+        public void op_ToDirectory_DirectoryInfo_object_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string name = "example";
+
+                var expected = Path.Combine(temp.Info.FullName, name);
+
+                var actual = temp.Info.ToDirectory(name, true);
+
+                Assert.True(actual.Exists);
+                Assert.Equal(expected, actual.FullName);
             }
         }
 

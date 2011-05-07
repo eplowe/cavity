@@ -8,9 +8,24 @@
     {
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
         public static DirectoryInfo ToDirectory(this DirectoryInfo obj,
-                                         object name)
+                                                object name)
         {
-            return new DirectoryInfo(PathCombine(obj, name));
+            return obj.ToDirectory(name, false);
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+        public static DirectoryInfo ToDirectory(this DirectoryInfo obj,
+                                                object name,
+                                                bool create)
+        {
+            var dir = new DirectoryInfo(PathCombine(obj, name));
+            if (create && !dir.Exists)
+            {
+                dir.Create();
+                dir.Refresh();
+            }
+
+            return dir;
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
