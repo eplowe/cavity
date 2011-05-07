@@ -2,13 +2,54 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Diagnostics;
+    using System.Linq;
     using System.Xml;
     using System.Xml.Schema;
     using System.Xml.Serialization;
+    using Cavity.Diagnostics;
 
     [XmlRoot("commands")]
     public sealed class XmlSerializableCommandCollection : Collection<IXmlSerializableCommand>, IXmlSerializable
     {
+        public bool Do()
+        {
+            Trace.WriteIf(Tracing.Enabled, "Count={0}".FormatWith(Count));
+            if (0 == Count)
+            {
+                return true;
+            }
+
+            foreach (var command in this)
+            {
+                if (!command.Act())
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool Undo()
+        {
+            Trace.WriteIf(Tracing.Enabled, "Count={0}".FormatWith(Count));
+            if (0 == Count)
+            {
+                return true;
+            }
+
+            foreach (var command in this.Reverse())
+            {
+                if (!command.Revert())
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         XmlSchema IXmlSerializable.GetSchema()
         {
             throw new NotSupportedException();
