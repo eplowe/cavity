@@ -6,6 +6,7 @@
     using System.IO;
     using System.Linq;
     using System.Text;
+    using Cavity.Collections;
     using Cavity.Properties;
 
     public sealed class CsvStreamReader : StreamReader
@@ -54,9 +55,9 @@
 
         private List<string> Columns { get; set; }
 
-        public IDictionary<string, string> ReadEntry()
+        public KeyStringDictionary ReadEntry()
         {
-            var result = new Dictionary<string, string>();
+            var result = new KeyStringDictionary();
 
             if (null == Columns)
             {

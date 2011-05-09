@@ -6,13 +6,14 @@
     using System.Text;
     using System.Xml;
     using System.Xml.XPath;
+    using Cavity.Collections;
     using Cavity.Data;
 
     public sealed class RecordFile
     {
         public RecordFile()
         {
-            Headers = new Dictionary<string, string>
+            Headers = new KeyStringDictionary
             {
                 {
                     "urn", string.Empty
@@ -68,7 +69,7 @@
 
         public string Body { get; set; }
 
-        public IDictionary<string, string> Headers { get; private set; }
+        public KeyStringDictionary Headers { get; private set; }
 
         public FileSystemInfo Location { get; private set; }
 

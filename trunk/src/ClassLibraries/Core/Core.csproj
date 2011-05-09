@@ -6,7 +6,9 @@
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collections\KeyStringDictionary.cs" />
     <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Data\KeyStringPair.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
