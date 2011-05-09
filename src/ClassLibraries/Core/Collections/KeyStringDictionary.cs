@@ -1,0 +1,45 @@
+﻿namespace Cavity.Collections
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
+    using Cavity.Data;
+
+    [Serializable]
+    public sealed class KeyStringDictionary : Dictionary<string, string>, IEnumerable<KeyStringPair>
+    {
+        public KeyStringDictionary()
+        {
+        }
+
+        private KeyStringDictionary(SerializationInfo info,
+                                    StreamingContext context)
+            : base(info, context)
+        {
+        }
+
+        public void Add(KeyStringPair item)
+        {
+            Add(item.Key, item.Value);
+        }
+
+        public bool Contains(KeyStringPair item)
+        {
+            return (this as IDictionary<string, string>).Contains(new KeyValuePair<string, string>(item.Key, item.Value));
+        }
+
+        public bool Remove(KeyStringPair item)
+        {
+            return (this as IDictionary<string, string>).Remove(new KeyValuePair<string, string>(item.Key, item.Value));
+        }
+
+        public new IEnumerator<KeyStringPair> GetEnumerator()
+        {
+            var e = base.GetEnumerator();
+            while (e.MoveNext())
+            {
+                yield return new KeyStringPair(e.Current.Key, e.Current.Value);
+            }
+        }
+    }
+}

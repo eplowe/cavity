@@ -12,11 +12,11 @@
     using System.Xml.Serialization;
 
     [XmlRoot("data")]
-    public sealed class DataCollection : IEnumerable<KeyValuePair<string, string>>, IXmlSerializable
+    public sealed class DataCollection : IEnumerable<KeyStringPair>, IXmlSerializable
     {
         public DataCollection()
         {
-            Items = new Collection<KeyValuePair<string, string>>();
+            Items = new Collection<KeyStringPair>();
         }
 
         public int Count
@@ -27,9 +27,9 @@
             }
         }
 
-        private Collection<KeyValuePair<string, string>> Items { get; set; }
+        private Collection<KeyStringPair> Items { get; set; }
 
-        public KeyValuePair<string, string> this[int index]
+        public KeyStringPair this[int index]
         {
             get
             {
@@ -68,7 +68,7 @@
 
             set
             {
-                var removals = new Collection<KeyValuePair<string, string>>();
+                var removals = new Collection<KeyStringPair>();
 
                 foreach (var datum in Items.Where(datum => 0 == string.CompareOrdinal(name, datum.Key)))
                 {
@@ -82,13 +82,13 @@
 
                 if (null == value)
                 {
-                    Items.Add(new KeyValuePair<string, string>(name, value));
+                    Items.Add(new KeyStringPair(name, value));
                     return;
                 }
 
                 foreach (var part in value.Split(','))
                 {
-                    Items.Add(new KeyValuePair<string, string>(name, part));
+                    Items.Add(new KeyStringPair(name, part));
                 }
             }
         }
@@ -168,20 +168,20 @@
                 throw new ArgumentOutOfRangeException("name");
             }
 
-            Add(new KeyValuePair<string, string>(name, value));
+            Add(new KeyStringPair(name, value));
         }
 
-        public void Add(KeyValuePair<string, string> item)
+        public void Add(KeyStringPair item)
         {
             if (null == item.Value)
             {
-                Items.Add(new KeyValuePair<string, string>(item.Key, item.Value));
+                Items.Add(new KeyStringPair(item.Key, item.Value));
                 return;
             }
 
             foreach (var part in item.Value.Split(',', StringSplitOptions.None))
             {
-                Items.Add(new KeyValuePair<string, string>(item.Key, part));
+                Items.Add(new KeyStringPair(item.Key, part));
             }
         }
 
@@ -236,9 +236,9 @@
             return (Items as IEnumerable).GetEnumerator();
         }
 
-        IEnumerator<KeyValuePair<string, string>> IEnumerable<KeyValuePair<string, string>>.GetEnumerator()
+        IEnumerator<KeyStringPair> IEnumerable<KeyStringPair>.GetEnumerator()
         {
-            return (Items as IEnumerable<KeyValuePair<string, string>>).GetEnumerator();
+            return (Items as IEnumerable<KeyStringPair>).GetEnumerator();
         }
 
         XmlSchema IXmlSerializable.GetSchema()

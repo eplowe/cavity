@@ -67,6 +67,8 @@
     <Compile Include="Commands\Command.Facts.cs" />
     <Compile Include="Commands\FileMoveCommand.Facts.cs" />
     <Compile Include="Commands\FileCopyCommand.Facts.cs" />
+    <Compile Include="Collections\KeyStringDictionary.Facts.cs" />
+    <Compile Include="Data\KeyStringPair.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

@@ -5,6 +5,7 @@
     using System.IO;
     using System.Text;
     using System.Xml.XPath;
+    using Cavity.Collections;
     using Cavity.Data;
     using Xunit;
 
@@ -366,7 +367,7 @@
         public void prop_Header()
         {
             Assert.True(new PropertyExpectations<RecordFile>(x => x.Headers)
-                            .TypeIs<IDictionary<string, string>>()
+                            .TypeIs<KeyStringDictionary>()
                             .DefaultValueIsNotNull()
                             .Result);
         }

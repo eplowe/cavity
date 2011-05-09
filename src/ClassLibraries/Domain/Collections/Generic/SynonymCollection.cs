@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using Cavity.Data;
 
     public sealed class SynonymCollection : IEnumerable<string>
     {
@@ -17,7 +18,7 @@
 
         private SynonymCollection()
         {
-            Items = new List<KeyValuePair<string, string>>();
+            Items = new List<KeyStringPair>();
         }
 
         public int Count
@@ -46,11 +47,11 @@
             }
         }
 
-        private List<KeyValuePair<string, string>> Items { get; set; }
+        private List<KeyStringPair> Items { get; set; }
 
         public void Add(string value)
         {
-            Items.Add(new KeyValuePair<string, string>(value, Comparer.Normalize(value)));
+            Items.Add(new KeyStringPair(value, Comparer.Normalize(value)));
         }
 
         public void Clear()

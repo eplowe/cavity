@@ -149,9 +149,9 @@
             };
 
             const string expected = "abc";
-            var actual = obj.Spellings.Aggregate<string, string>(null,
-                                                                 (current,
-                                                                  spelling) => current + spelling);
+            var actual = obj
+                .Spellings
+                .Aggregate<string, string>(null, (current, spelling) => current + spelling);
 
             Assert.Equal(expected, actual);
         }

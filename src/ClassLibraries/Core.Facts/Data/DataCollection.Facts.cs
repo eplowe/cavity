@@ -4,43 +4,11 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.Specialized;
-    using System.Diagnostics.CodeAnalysis;
     using System.Xml.Serialization;
     using Xunit;
 
     public sealed class DataCollectionFacts
     {
-        [Fact]
-        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "Top", Justification = "This is a test of a generic type.")]
-        public void IEnumerableOfT_op_GetEnumerator()
-        {
-            Assert.IsAssignableFrom<IEnumerator<KeyValuePair<string, string>>>((new DataCollection() as IEnumerable<KeyValuePair<string, string>>).GetEnumerator());
-        }
-
-        [Fact]
-        public void IEnumerable_op_GetEnumerator()
-        {
-            Assert.IsAssignableFrom<IEnumerator>((new DataCollection() as IEnumerable).GetEnumerator());
-        }
-
-        [Fact]
-        public void IXmlSerializable_op_GetSchema()
-        {
-            Assert.Throws<NotSupportedException>(() => (new DataCollection() as IXmlSerializable).GetSchema());
-        }
-
-        [Fact]
-        public void IXmlSerializable_op_ReadXml_XmlReaderNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (new DataCollection() as IXmlSerializable).ReadXml(null));
-        }
-
-        [Fact]
-        public void IXmlSerializable_op_WriteXml_XmlWriterNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (new DataCollection() as IXmlSerializable).WriteXml(null));
-        }
-
         [Fact]
         public void a_definition()
         {
@@ -50,7 +18,7 @@
                             .IsSealed()
                             .HasDefaultConstructor()
                             .XmlRoot("data")
-                            .Implements<IEnumerable<KeyValuePair<string, string>>>()
+                            .Implements<IEnumerable<KeyStringPair>>()
                             .Implements<IXmlSerializable>()
                             .Result);
         }
@@ -118,7 +86,7 @@
                     }
             };
 
-            obj[1] = new KeyValuePair<string, string>("two", "2");
+            obj[1] = new KeyStringPair("two", "2");
 
             Assert.Equal("two", obj[1].Key);
             Assert.Equal("2", obj[1].Value);
@@ -134,7 +102,7 @@
                     }
             };
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => obj[1] = new KeyValuePair<string, string>("two", "2"));
+            Assert.Throws<ArgumentOutOfRangeException>(() => obj[1] = new KeyStringPair("two", "2"));
         }
 
         [Fact]
@@ -340,8 +308,8 @@
         {
             var expected = new DataCollection
             {
-                new KeyValuePair<string, string>("name1", "value1"),
-                new KeyValuePair<string, string>("name2", "value2")
+                new KeyStringPair("name1", "value1"),
+                new KeyStringPair("name2", "value2")
             };
 
             var actual = new DataCollection
@@ -613,6 +581,18 @@
         }
 
         [Fact]
+        public void op_GetEnumerator()
+        {
+            Assert.IsAssignableFrom<IEnumerator>((new DataCollection() as IEnumerable).GetEnumerator());
+        }
+
+        [Fact]
+        public void op_GetEnumeratorOfT()
+        {
+            Assert.IsAssignableFrom<IEnumerator<KeyStringPair>>((new DataCollection() as IEnumerable<KeyStringPair>).GetEnumerator());
+        }
+
+        [Fact]
         public void op_GetHashCode()
         {
             var obj = new DataCollection();
@@ -621,6 +601,18 @@
             var actual = obj.GetHashCode();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_GetSchema()
+        {
+            Assert.Throws<NotSupportedException>(() => (new DataCollection() as IXmlSerializable).GetSchema());
+        }
+
+        [Fact]
+        public void op_ReadXml_XmlReaderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (new DataCollection() as IXmlSerializable).ReadXml(null));
         }
 
         [Fact]
@@ -640,6 +632,12 @@
             var actual = obj.ToString();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_WriteXml_XmlWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (new DataCollection() as IXmlSerializable).WriteXml(null));
         }
 
         [Fact]

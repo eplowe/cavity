@@ -4,10 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using Cavity.Collections.Generic;
+    using Cavity.Data;
 
     public sealed class LexicalItem
     {
-        private KeyValuePair<string, string> _canonicalForm;
+        private KeyStringPair _canonicalForm;
 
         private INormalizationComparer _comparer;
 
@@ -44,7 +45,7 @@
                     throw new ArgumentOutOfRangeException("value");
                 }
 
-                _canonicalForm = new KeyValuePair<string, string>(value, Comparer.Normalize(value));
+                _canonicalForm = new KeyStringPair(value, Comparer.Normalize(value));
             }
         }
 
