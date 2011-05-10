@@ -83,7 +83,7 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This design is intentional.")]
-        public static void Save(IEnumerable<KeyValuePair<FileInfo, KeyStringDictionary>> data)
+        public static void Save(FileMode mode, IEnumerable<KeyValuePair<FileInfo, KeyStringDictionary>> data)
         {
             if (null == data)
             {
@@ -93,7 +93,7 @@
             using (var writers = new StreamWriterDictionary(Header(data.First().Value))
             {
                 Access = FileAccess.Write,
-                Mode = FileMode.Create,
+                Mode = mode,
                 Share = FileShare.Read
             })
             {
@@ -104,7 +104,7 @@
             }
         }
 
-        public void Save(IEnumerable<KeyStringDictionary> data)
+        public void Save(FileMode mode, IEnumerable<KeyStringDictionary> data)
         {
             if (null == data)
             {
@@ -127,7 +127,7 @@
                 Info.Directory.Create();
             }
 
-            using (var stream = Info.Open(FileMode.Create, FileAccess.Write, FileShare.Read))
+            using (var stream = Info.Open(mode, FileAccess.Write, FileShare.Read))
             {
                 using (var writer = new StreamWriter(stream))
                 {

@@ -140,7 +140,7 @@
         }
 
         [Fact]
-        public void op_Save_IEnumerableKeyStringDictionary()
+        public void op_Save_FileMode_IEnumerableKeyStringDictionary()
         {
             var data = new[]
             {
@@ -154,7 +154,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToDirectory("example").ToFile("test.csv");
-                new CsvFile(file).Save(data);
+                new CsvFile(file).Save(FileMode.Create, data);
 
                 var expected = "A,B{0}1,2{0}".FormatWith(Environment.NewLine);
                 var actual = file.ReadToEnd();
@@ -164,14 +164,14 @@
         }
 
         [Fact]
-        public void op_Save_IEnumerableKeyStringDictionaryEmpty()
+        public void op_Save_FileMode_IEnumerableKeyStringDictionaryEmpty()
         {
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile("test.csv");
                 file.CreateNew();
 
-                new CsvFile(file).Save(new List<KeyStringDictionary>());
+                new CsvFile(file).Save(FileMode.Create, new List<KeyStringDictionary>());
 
                 file.Refresh();
                 Assert.False(file.Exists);
@@ -179,18 +179,18 @@
         }
 
         [Fact]
-        public void op_Save_IEnumerableKeyStringDictionaryNull()
+        public void op_Save_FileMode_IEnumerableKeyStringDictionaryNull()
         {
             using (var temp = new TempDirectory())
             {
                 var obj = new CsvFile(temp.Info.ToDirectory("example").ToFile("test.csv"));
 
-                Assert.Throws<ArgumentNullException>(() => obj.Save(null as IEnumerable<KeyStringDictionary>));
+                Assert.Throws<ArgumentNullException>(() => obj.Save(FileMode.Create, null as IEnumerable<KeyStringDictionary>));
             }
         }
 
         [Fact]
-        public void op_Save_IEnumerableKeyValuePairFileInfoKeyStringDictionary()
+        public void op_Save_FileMode_IEnumerableKeyValuePairFileInfoKeyStringDictionary()
         {
             using (var temp = new TempDirectory())
             {
@@ -206,7 +206,7 @@
                     }
                 };
 
-                CsvFile.Save(data);
+                CsvFile.Save(FileMode.Create, data);
 
                 var expected = "A,B{0}1,2{0}".FormatWith(Environment.NewLine);
                 var actual = file.ReadToEnd();
