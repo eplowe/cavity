@@ -28,7 +28,7 @@
             {
                 message = string.IsNullOrEmpty(detailMessage)
                               ? message
-                              : "{0}{1}{2}".FormatWith(message, Environment.NewLine, detailMessage);
+                              : string.Format(CultureInfo.InvariantCulture, "{0}{1}{2}", message, Environment.NewLine, detailMessage);
                 log.WarnFormat("[Fail] {0}", message);
             }
         }
@@ -176,7 +176,8 @@
                                         string format,
                                         params object[] args)
         {
-            if (null == args || 0 == args.Length)
+            if (null == args ||
+                0 == args.Length)
             {
                 TraceEvent(eventCache, source, eventType, id);
             }
@@ -353,7 +354,12 @@
                     continue;
                 }
 
-                if (method.DeclaringType.Namespace.In("System.Diagnostics", "System.Threading"))
+                if ("System.Diagnostics" == method.DeclaringType.Namespace)
+                {
+                    continue;
+                }
+
+                if ("System.Threading" == method.DeclaringType.Namespace)
                 {
                     continue;
                 }
@@ -372,7 +378,8 @@
         private static bool TraceException(TraceEventType eventType,
                                            object datum)
         {
-            if (!eventType.In(TraceEventType.Critical, TraceEventType.Error))
+            if (TraceEventType.Critical != eventType &&
+                TraceEventType.Error != eventType)
             {
                 return false;
             }

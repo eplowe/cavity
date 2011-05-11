@@ -61,8 +61,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.StructureMap.Consol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Unity.Console", "ConsoleApplications\Example.Unity.Console\Example.Unity.Console.csproj", "{874C73B7-5FEE-4726-BCA1-344B75569B2C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web Applications", "Web Applications", "{60CB3FFB-0F18-4BCA-8CED-F38C7B2B78B9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.FileSystem", "ClassLibraries\Data.FileSystem\Data.FileSystem.csproj", "{3BA291B3-9F79-45B2-BC10-115F8438562E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.FileSystem.Facts", "ClassLibraries\Data.FileSystem.Facts\Data.FileSystem.Facts.csproj", "{9A669DC2-A0AE-490F-81BC-44CF53881124}"
