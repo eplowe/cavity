@@ -6,17 +6,18 @@
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Compile Include="Collections\Generic\LevenshteinComparer.Derived.cs" />
+    <Compile Include="Build\LexiconTidy.Facts.cs" />
     <Compile Include="Collections\Generic\INormalizationComparer.Facts.cs" />
+    <Compile Include="Collections\Generic\LevenshteinComparer.Derived.cs" />
+    <Compile Include="Collections\Generic\LevenshteinComparer.Facts.cs" />
+    <Compile Include="Collections\Generic\NormalizationComparer.Facts.cs" />
+    <Compile Include="Collections\Generic\SynonymCollection.Facts.cs" />
     <Compile Include="Data\CsvLexiconStorage.Facts.cs" />
     <Compile Include="Data\IStoreLexicon.Facts.cs" />
     <Compile Include="Models\BritishPostcode.Facts.cs" />
-    <Compile Include="Collections\Generic\LevenshteinComparer.Facts.cs" />
-    <Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Models\LexicalItem.Facts.cs" />
     <Compile Include="Models\Lexicon.Facts.cs" />
-    <Compile Include="Collections\Generic\NormalizationComparer.Facts.cs" />
-    <Compile Include="Collections\Generic\SynonymCollection.Facts.cs" />
+    <Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Models\Telephone.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +35,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Build.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
   <!--
   <Target Name="BeforeBuild">

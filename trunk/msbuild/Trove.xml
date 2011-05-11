@@ -32,6 +32,10 @@
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
     <Copy Condition=" Exists('$(TroveLibDirectory)') "
+          SourceFiles="$(ClassLibrariesPath)\Domain\bin\$(BuildName)\Cavity.Domain.Tasks.Targets"
+          DestinationFolder="$(TroveLibDirectory)"
+          OverwriteReadOnlyFiles="true" />
+    <Copy Condition=" Exists('$(TroveLibDirectory)') "
           SourceFiles="$(ClassLibrariesPath)\ServiceLocation\bin\$(BuildName)\Cavity.ServiceLocation.dll"
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />

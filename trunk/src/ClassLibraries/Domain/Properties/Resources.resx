@@ -117,16 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CSharpProjectCompliance_Execute_Message" xml:space="preserve">
-    <value>Compliance (.csproj) {0}</value>
-  </data>
-  <data name="CSharpProjectCompliance_PathsEmpty_Message" xml:space="preserve">
+  <data name="LexiconTidy_PathsEmpty_Message" xml:space="preserve">
     <value>No paths have been specified.</value>
   </data>
-  <data name="CSharpProjectCompliance_PathsNull_Message" xml:space="preserve">
+  <data name="LexiconTidy_PathsNull_Message" xml:space="preserve">
     <value>Paths have not been set.</value>
   </data>
-  <data name="CSharpProjectCompliance_XPath_Message" xml:space="preserve">
-    <value>{0} failed compliance: {1}</value>
+  <data name="Unsupported_Framework_Version" xml:space="preserve">
+    <value>This task is not supported on the current .NET Framework version.</value>
   </data>
 </root>

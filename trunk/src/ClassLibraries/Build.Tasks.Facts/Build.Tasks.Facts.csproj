@@ -5,29 +5,8 @@
     <AssemblyName>Cavity.Build.Tasks.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.Build.Framework" />
-  </ItemGroup>
-  <Choose>
-    <When Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
-      <ItemGroup>
-        <Reference Include="Microsoft.Build.Utilities" />
-      </ItemGroup>
-    </When>
-    <When Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
-      <ItemGroup>
-        <Reference Include="Microsoft.Build.Utilities.v3.5" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.Build.Utilities.v4.0" />
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Build\CSharpProjectCompliance.Facts.cs" />
-    <Compile Include="Build\LexiconTidy.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Build.Tasks\Build.Tasks.csproj">
@@ -38,10 +17,6 @@
       <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{2494FF0C-7ABE-4F07-A66B-D209B061CD58}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
       <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
       <Name>Testing.Unit</Name>
@@ -51,6 +26,7 @@
     <EmbeddedResource Include="Build\CSharpProjectCompliance.xml" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
+  <Import Project="$(SolutionDir)Import\trove\Build.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
   <!--
   <Target Name="BeforeBuild">
