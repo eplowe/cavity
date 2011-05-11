@@ -13,15 +13,8 @@
       <HintPath>..\..\..\lib\trove\Framework\v3.5\log4net.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />
-  <Import Project="$(SolutionDir)Import\trove\Data.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>
