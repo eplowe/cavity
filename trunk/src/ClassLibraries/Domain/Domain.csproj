@@ -34,7 +34,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Cavity.Domain.Tasks.Targets">
+    <None Include="Cavity.Domain.tasks">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

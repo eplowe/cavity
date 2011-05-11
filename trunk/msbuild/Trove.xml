@@ -8,11 +8,11 @@
         <Output TaskParameter="AbsolutePaths" PropertyName="TroveMsiDirectory"/>
     </ConvertToAbsolutePath>
     <Copy Condition=" Exists('$(TroveLibDirectory)') "
-          SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.dll"
+          SourceFiles="$(ClassLibrariesPath)\Build\bin\$(BuildName)\Cavity.Build.dll"
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
     <Copy Condition=" Exists('$(TroveLibDirectory)') "
-          SourceFiles="$(ClassLibrariesPath)\Build.Tasks\bin\$(BuildName)\Cavity.Build.Tasks.Targets"
+          SourceFiles="$(ClassLibrariesPath)\Build\bin\$(BuildName)\Cavity.Build.tasks"
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
     <Copy Condition=" Exists('$(TroveLibDirectory)') "
@@ -32,7 +32,7 @@
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
     <Copy Condition=" Exists('$(TroveLibDirectory)') "
-          SourceFiles="$(ClassLibrariesPath)\Domain\bin\$(BuildName)\Cavity.Domain.Tasks.Targets"
+          SourceFiles="$(ClassLibrariesPath)\Domain\bin\$(BuildName)\Cavity.Domain.tasks"
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
     <Copy Condition=" Exists('$(TroveLibDirectory)') "
