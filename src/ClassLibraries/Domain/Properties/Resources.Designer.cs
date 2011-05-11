@@ -61,38 +61,29 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Compliance (.csproj) {0}.
-        /// </summary>
-        internal static string CSharpProjectCompliance_Execute_Message {
-            get {
-                return ResourceManager.GetString("CSharpProjectCompliance_Execute_Message", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No paths have been specified..
         /// </summary>
-        internal static string CSharpProjectCompliance_PathsEmpty_Message {
+        internal static string LexiconTidy_PathsEmpty_Message {
             get {
-                return ResourceManager.GetString("CSharpProjectCompliance_PathsEmpty_Message", resourceCulture);
+                return ResourceManager.GetString("LexiconTidy_PathsEmpty_Message", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Paths have not been set..
         /// </summary>
-        internal static string CSharpProjectCompliance_PathsNull_Message {
+        internal static string LexiconTidy_PathsNull_Message {
             get {
-                return ResourceManager.GetString("CSharpProjectCompliance_PathsNull_Message", resourceCulture);
+                return ResourceManager.GetString("LexiconTidy_PathsNull_Message", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} failed compliance: {1}.
+        ///   Looks up a localized string similar to This task is not supported on the current .NET Framework version..
         /// </summary>
-        internal static string CSharpProjectCompliance_XPath_Message {
+        internal static string Unsupported_Framework_Version {
             get {
-                return ResourceManager.GetString("CSharpProjectCompliance_XPath_Message", resourceCulture);
+                return ResourceManager.GetString("Unsupported_Framework_Version", resourceCulture);
             }
         }
     }
