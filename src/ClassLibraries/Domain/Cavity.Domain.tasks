@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <UsingTask AssemblyFile="Cavity.Build.Tasks.dll" TaskName="Cavity.Build.CSharpProjectCompliance" />
+  <UsingTask AssemblyFile="Cavity.Domain.dll" TaskName="Cavity.Build.LexiconTidy" />
 </Project>

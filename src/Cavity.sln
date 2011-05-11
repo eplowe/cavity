@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Class Libraries", "Class Libraries", "{8953A4A0-B92A-4C85-A690-F9C9248DE52F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build.Tasks", "ClassLibraries\Build.Tasks\Build.Tasks.csproj", "{0FF43960-7762-46A3-BA82-DBA2161DBAC9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "ClassLibraries\Build\Build.csproj", "{0FF43960-7762-46A3-BA82-DBA2161DBAC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build.Tasks.Facts", "ClassLibraries\Build.Tasks.Facts\Build.Tasks.Facts.csproj", "{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build.Facts", "ClassLibraries\Build.Facts\Build.Facts.csproj", "{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "ClassLibraries\Core\Core.csproj", "{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}"
 EndProject

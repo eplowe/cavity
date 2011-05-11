@@ -2,16 +2,16 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}</ProjectGuid>
-    <AssemblyName>Cavity.Build.Tasks.Facts</AssemblyName>
+    <AssemblyName>Cavity.Build.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Build\CSharpProjectCompliance.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Build.Tasks\Build.Tasks.csproj">
+    <ProjectReference Include="..\Build\Build.csproj">
       <Project>{0FF43960-7762-46A3-BA82-DBA2161DBAC9}</Project>
-      <Name>Build.Tasks</Name>
+      <Name>Build</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
