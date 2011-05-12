@@ -62,29 +62,14 @@
                 return false;
             }
 
-            var result = true;
-            foreach (var project in projects.Where(project => !Execute(project)))
-            {
-                if (null == project)
-                {
-                    continue;
-                }
-
-                if (BuildEngine.ContinueOnError)
-                {
-                    result = false;
-                    continue;
-                }
-
-                return false;
-            }
+            var result = 0 == projects.Where(project => !Execute(project)).Count();
 #endif
             return result;
         }
 
         private bool Execute(ITaskItem path)
         {
-            return Execute(new FileInfo(path.ItemSpec));
+            return null == path || Execute(new FileInfo(path.ItemSpec));
         }
 
         private bool Execute(FileSystemInfo file)
