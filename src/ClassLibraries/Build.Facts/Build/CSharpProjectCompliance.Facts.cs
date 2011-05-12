@@ -60,6 +60,37 @@
         }
 
         [Fact]
+        public void op_Execute_IEnumerable_containingNullItem()
+        {
+            using (var file = new TempFile())
+            {
+                using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream(@"Cavity.Build.CSharpProjectCompliance.xml"))
+                {
+                    if (null != resource)
+                    {
+                        using (var reader = new StreamReader(resource))
+                        {
+                            file.Info.Append(reader.ReadToEnd());
+                        }
+                    }
+                }
+
+                var obj = new CSharpProjectCompliance
+                {
+                    BuildEngine = new Mock<IBuildEngine>().Object,
+                    Projects = new ITaskItem[]
+                    {
+                        new TaskItem(file.Info.FullName),
+                        null
+                    },
+                    XPath = "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])"
+                };
+
+                Assert.True(obj.Execute());
+            }
+        }
+
+        [Fact]
         public void op_Execute_IEnumerableEmpty()
         {
             var obj = new CSharpProjectCompliance
