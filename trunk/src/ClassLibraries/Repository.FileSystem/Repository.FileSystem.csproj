@@ -10,6 +10,10 @@
       <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{4CC10701-1DAB-4B0F-A755-9A5B72B2E6B1}</Project>
+      <Name>Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Configuration\FileRepositoryConfiguration.cs" />

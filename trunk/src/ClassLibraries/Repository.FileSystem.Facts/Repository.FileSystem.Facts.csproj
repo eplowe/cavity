@@ -14,6 +14,10 @@
       <Project>{3BA291B3-9F79-45B2-BC10-115F8438562E}</Project>
       <Name>Repository.FileSystem</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{4CC10701-1DAB-4B0F-A755-9A5B72B2E6B1}</Project>
+      <Name>Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
       <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
       <Name>Testing.Unit</Name>

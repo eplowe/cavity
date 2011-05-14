@@ -14,10 +14,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Data\IEntity.cs" />
     <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
     <Compile Include="Configuration\ConfiguredDirectory.cs" />
-    <Compile Include="Data\RepositoryException.cs" />
     <Compile Include="IO\EncodedStringWriter.cs" />
     <Compile Include="IO\TempDirectory.cs" />
     <Compile Include="IO\TempFile.cs" />
@@ -46,10 +44,6 @@
     <Compile Include="Configuration\ConfiguredList.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.cs" />
     <Compile Include="Data\DataCollection.cs" />
-    <Compile Include="Data\IRecord.cs" />
-    <Compile Include="Data\IRecord`1.cs" />
-    <Compile Include="Data\IRepository`1.cs" />
-    <Compile Include="Data\Record`1.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
     <Compile Include="IO\CsvFile.cs" />
     <Compile Include="IO\CsvStreamReader.cs" />

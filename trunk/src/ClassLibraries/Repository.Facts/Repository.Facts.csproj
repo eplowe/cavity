@@ -15,6 +15,14 @@
       <Name>Repository</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\IEntity.Facts.cs" />
+    <Compile Include="Data\IRecord.Facts.cs" />
+    <Compile Include="Data\IRecord`1.Facts.cs" />
+    <Compile Include="Data\IRepository`1.Facts.cs" />
+    <Compile Include="Data\Record`1.Facts.cs" />
+    <Compile Include="Data\RepositoryException.Facts.cs" />
+  </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
   <!--
