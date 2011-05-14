@@ -11,6 +11,14 @@
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\IEntity.cs" />
+    <Compile Include="Data\IRecord.cs" />
+    <Compile Include="Data\IRecord`1.cs" />
+    <Compile Include="Data\IRepository`1.cs" />
+    <Compile Include="Data\Record`1.cs" />
+    <Compile Include="Data\RepositoryException.cs" />
+  </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />
   <!--
