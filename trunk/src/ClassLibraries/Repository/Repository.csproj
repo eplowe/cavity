@@ -11,7 +11,7 @@
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Data\IEntity.cs" />
     <Compile Include="Data\IRecord.cs" />
     <Compile Include="Data\IRecord`1.cs" />
