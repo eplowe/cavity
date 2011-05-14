@@ -18,6 +18,10 @@
       <Project>{4CC10701-1DAB-4B0F-A755-9A5B72B2E6B1}</Project>
       <Name>Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Testing.Repository\Testing.Repository.csproj">
+      <Project>{45AF8676-DCF0-4AF1-9898-A4244E871370}</Project>
+      <Name>Testing.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
       <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
       <Name>Testing.Unit</Name>

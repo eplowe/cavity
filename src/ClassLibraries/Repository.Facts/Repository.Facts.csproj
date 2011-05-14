@@ -14,8 +14,12 @@
       <Project>{4CC10701-1DAB-4B0F-A755-9A5B72B2E6B1}</Project>
       <Name>Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
+      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
+      <Name>Testing.Unit</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Data\IEntity.Facts.cs" />
     <Compile Include="Data\IRecord.Facts.cs" />
     <Compile Include="Data\IRecord`1.Facts.cs" />
