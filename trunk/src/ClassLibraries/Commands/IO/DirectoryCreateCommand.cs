@@ -1,4 +1,4 @@
-﻿namespace Cavity.Commands
+﻿namespace Cavity.IO
 {
     using System;
     using System.Diagnostics;

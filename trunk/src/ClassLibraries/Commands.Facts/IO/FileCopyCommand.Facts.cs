@@ -1,8 +1,7 @@
-﻿namespace Cavity.Commands
+﻿namespace Cavity.IO
 {
     using System;
     using System.IO;
-    using Cavity.IO;
     using Cavity.Xml.XPath;
     using Xunit;
 

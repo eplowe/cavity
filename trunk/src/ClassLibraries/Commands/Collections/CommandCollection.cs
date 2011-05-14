@@ -1,4 +1,4 @@
-﻿namespace Cavity.Xml.Serialization
+﻿namespace Cavity.Collections
 {
     using System;
     using System.Collections.ObjectModel;
@@ -10,7 +10,7 @@
     using Cavity.Diagnostics;
 
     [XmlRoot("commands")]
-    public sealed class XmlSerializableCommandCollection : Collection<IXmlSerializableCommand>, IXmlSerializable
+    public sealed class CommandCollection : Collection<ICommand>, IXmlSerializable
     {
         public bool Do()
         {
@@ -86,7 +86,7 @@
                         throw new InvalidOperationException();
                     }
 
-                    Add((IXmlSerializableCommand)reader.ReadInnerXml().XmlDeserialize(Type.GetType(attribute)));
+                    Add((ICommand)reader.ReadInnerXml().XmlDeserialize(Type.GetType(attribute)));
                 }
             }
         }

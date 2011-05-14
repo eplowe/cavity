@@ -1,6 +1,5 @@
-﻿namespace Cavity.Commands
+﻿namespace Cavity
 {
-    using Cavity.Xml.Serialization;
     using Xunit;
 
     public sealed class CommandFacts
@@ -12,7 +11,7 @@
                             .DerivesFrom<object>()
                             .IsAbstractBaseClass()
                             .IsNotDecorated()
-                            .Implements<IXmlSerializableCommand>()
+                            .Implements<ICommand>()
                             .Result);
         }
 

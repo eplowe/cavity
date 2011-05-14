@@ -1,7 +1,6 @@
 ﻿namespace Cavity
 {
-    using System;
-    using Cavity;
+    using System.Xml.Serialization;
     using Moq;
     using Xunit;
 
@@ -12,6 +11,7 @@
         {
             Assert.True(new TypeExpectations<ICommand>()
                 .IsInterface()
+                .Implements<IXmlSerializable>()
                 .Result);
         }
 

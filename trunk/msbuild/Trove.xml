@@ -15,6 +15,10 @@
           SourceFiles="$(ClassLibrariesPath)\Build\bin\$(BuildName)\Cavity.Build.tasks"
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
+    <Copy Condition=" Exists('$(TroveLibDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
+          SourceFiles="$(ClassLibrariesPath)\Commands\bin\$(BuildName)\Cavity.Commands.dll"
+          DestinationFolder="$(TroveLibDirectory)"
+          OverwriteReadOnlyFiles="true" />
     <Copy Condition=" Exists('$(TroveLibDirectory)') "
           SourceFiles="$(ClassLibrariesPath)\Core\bin\$(BuildName)\Cavity.Core.dll"
           DestinationFolder="$(TroveLibDirectory)"
