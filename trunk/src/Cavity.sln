@@ -61,9 +61,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.StructureMap.Consol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Unity.Console", "ConsoleApplications\Example.Unity.Console\Example.Unity.Console.csproj", "{874C73B7-5FEE-4726-BCA1-344B75569B2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.FileSystem", "ClassLibraries\Data.FileSystem\Data.FileSystem.csproj", "{3BA291B3-9F79-45B2-BC10-115F8438562E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.FileSystem", "ClassLibraries\Repository.FileSystem\Repository.FileSystem.csproj", "{3BA291B3-9F79-45B2-BC10-115F8438562E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.FileSystem.Facts", "ClassLibraries\Data.FileSystem.Facts\Data.FileSystem.Facts.csproj", "{9A669DC2-A0AE-490F-81BC-44CF53881124}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.FileSystem.Facts", "ClassLibraries\Repository.FileSystem.Facts\Repository.FileSystem.Facts.csproj", "{9A669DC2-A0AE-490F-81BC-44CF53881124}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagnostics.Log4Net", "ClassLibraries\Diagnostics.Log4Net\Diagnostics.Log4Net.csproj", "{5960B260-2521-4C8A-BF81-F5BDBADC065D}"
 EndProject
