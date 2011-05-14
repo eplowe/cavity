@@ -6,10 +6,26 @@
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Commands\Commands.csproj">
+      <Project>{48DBDF62-091C-4CE9-9617-742D06326FA7}</Project>
+      <Name>Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
       <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
       <Name>Testing.Unit</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Collections\CommandCollection.Facts.cs" />
+    <Compile Include="IO\DirectoryCreateCommand.Facts.cs" />
+    <Compile Include="IO\FileCopyCommand.Facts.cs" />
+    <Compile Include="IO\FileMoveCommand.Facts.cs" />
+    <Compile Include="Command.Facts.cs" />
+    <Compile Include="ICommand.Facts.cs" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />

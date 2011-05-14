@@ -1,22 +1,20 @@
-﻿namespace Cavity.Xml.Serialization
+﻿namespace Cavity.Collections
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.IO;
     using System.Linq;
     using System.Xml.Serialization;
-    using Cavity.Commands;
     using Cavity.IO;
     using Cavity.Xml.XPath;
     using Xunit;
 
-    public sealed class XmlSerializableCommandCollectionFacts
+    public sealed class CommandCollectionFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<XmlSerializableCommandCollection>()
-                            .DerivesFrom<Collection<IXmlSerializableCommand>>()
+            Assert.True(new TypeExpectations<CommandCollection>()
+                            .DerivesFrom<Collection<ICommand>>()
                             .IsConcreteClass()
                             .IsSealed()
                             .HasDefaultConstructor()
@@ -28,7 +26,7 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new XmlSerializableCommandCollection());
+            Assert.NotNull(new CommandCollection());
         }
 
         [Fact]
@@ -38,13 +36,13 @@
             {
                 var example = temp.Info.ToDirectory("example");
                 var obj = ("<commands>" +
-                           "<command i='1' type='Cavity.Commands.DirectoryCreateCommand, Cavity.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8'>" +
+                           "<command i='1' type='Cavity.IO.DirectoryCreateCommand, Cavity.Commands, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8'>" +
                            @"<directory.create path='{0}' undo='false' />".FormatWith(temp.Info.FullName) +
                            "</command>" +
-                           "<command i='2' type='Cavity.Commands.DirectoryCreateCommand, Cavity.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8'>" +
+                           "<command i='2' type='Cavity.IO.DirectoryCreateCommand, Cavity.Commands, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8'>" +
                            @"<directory.create path='{0}' undo='true' />".FormatWith(example.FullName) +
                            "</command>" +
-                           "</commands>").XmlDeserialize<XmlSerializableCommandCollection>();
+                           "</commands>").XmlDeserialize<CommandCollection>();
 
                 Assert.Equal(2, obj.Count);
                 Assert.Equal(temp.Info.FullName, ((DirectoryCreateCommand)obj.First()).Path);
@@ -55,25 +53,25 @@
         [Fact]
         public void deserializeEmpty()
         {
-            Assert.NotNull("<commands />".XmlDeserialize<XmlSerializableCommandCollection>());
+            Assert.NotNull("<commands />".XmlDeserialize<CommandCollection>());
         }
 
         [Fact]
         public void op_GetSchema()
         {
-            Assert.Throws<NotSupportedException>(() => (new XmlSerializableCommandCollection() as IXmlSerializable).GetSchema());
+            Assert.Throws<NotSupportedException>(() => (new CommandCollection() as IXmlSerializable).GetSchema());
         }
 
         [Fact]
         public void op_ReadXml_XmlReaderNull()
         {
-            Assert.Throws<ArgumentNullException>(() => (new XmlSerializableCommandCollection() as IXmlSerializable).ReadXml(null));
+            Assert.Throws<ArgumentNullException>(() => (new CommandCollection() as IXmlSerializable).ReadXml(null));
         }
 
         [Fact]
         public void op_WriteXml_XmlWriterNull()
         {
-            Assert.Throws<ArgumentNullException>(() => (new XmlSerializableCommandCollection() as IXmlSerializable).WriteXml(null));
+            Assert.Throws<ArgumentNullException>(() => (new CommandCollection() as IXmlSerializable).WriteXml(null));
         }
 
         [Fact]
@@ -81,7 +79,7 @@
         {
             using (var temp = new TempDirectory())
             {
-                var obj = new XmlSerializableCommandCollection
+                var obj = new CommandCollection
                 {
                     new DirectoryCreateCommand(temp.Info.FullName)
                 };
@@ -97,7 +95,7 @@
         [Fact]
         public void serialize_whenEmpty()
         {
-            var obj = new XmlSerializableCommandCollection();
+            var obj = new CommandCollection();
 
             var navigator = obj.XmlSerialize().CreateNavigator();
 

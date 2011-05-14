@@ -1,6 +1,8 @@
 ﻿namespace Cavity
 {
-    public interface ICommand
+    using System.Xml.Serialization;
+
+    public interface ICommand : IXmlSerializable
     {
         bool Act();
 

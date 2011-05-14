@@ -1,11 +1,10 @@
-﻿namespace Cavity.Commands
+﻿namespace Cavity
 {
     using System;
     using System.Xml;
     using System.Xml.Schema;
-    using Cavity.Xml.Serialization;
 
-    public abstract class Command : IXmlSerializableCommand
+    public abstract class Command : ICommand
     {
         protected Command()
         {
