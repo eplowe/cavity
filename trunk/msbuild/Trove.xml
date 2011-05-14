@@ -64,6 +64,10 @@
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
     <Copy Condition=" Exists('$(TroveLibDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
+          SourceFiles="$(ClassLibrariesPath)\Testing.Repository\bin\$(BuildName)\Cavity.Testing.Repository.dll"
+          DestinationFolder="$(TroveLibDirectory)"
+          OverwriteReadOnlyFiles="true" />
+    <Copy Condition=" Exists('$(TroveLibDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
           SourceFiles="$(ClassLibrariesPath)\Testing.Unit\bin\$(BuildName)\Cavity.Testing.Unit.dll"
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
