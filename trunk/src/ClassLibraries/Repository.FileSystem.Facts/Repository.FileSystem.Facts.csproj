@@ -12,7 +12,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Repository.FileSystem\Repository.FileSystem.csproj">
       <Project>{3BA291B3-9F79-45B2-BC10-115F8438562E}</Project>
-      <Name>Data.FileSystem</Name>
+      <Name>Repository.FileSystem</Name>
     </ProjectReference>
     <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
       <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
