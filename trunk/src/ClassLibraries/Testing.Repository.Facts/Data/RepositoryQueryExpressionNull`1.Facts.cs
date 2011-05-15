@@ -58,7 +58,7 @@
                 .Returns(null as IEnumerable<IRecord<RandomObject>>)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryQueryExpressionNull<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryQueryExpressionNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }
@@ -72,7 +72,7 @@
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryQueryExpressionNull<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryQueryExpressionNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

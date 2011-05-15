@@ -81,6 +81,7 @@
     <Compile Include="Data\RepositoryUpsertRecordNull`1.Facts.cs" />
     <Compile Include="Data\RepositoryUpsertUpdateRecord`1.Facts.cs" />
     <Compile Include="Data\VerifyRepositoryBase`1.Facts.cs" />
+    <Compile Include="RepositoryTestException.Facts.cs" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using System;
+    using System.Globalization;
     using Cavity.Fluent;
     using Cavity.Properties;
 
@@ -19,14 +20,14 @@
             {
                 if (0 != typeof(T).GetInterfaces().Length)
                 {
-                    throw new UnitTestException(Resources.ImplementationTestException_UnexpectedMessage.FormatWith(typeof(T).Name));
+                    throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.ImplementationTestException_UnexpectedMessage, typeof(T).Name));
                 }
             }
             else
             {
                 if (!typeof(T).Implements(Interface))
                 {
-                    throw new UnitTestException(Resources.ImplementationTestException_NoneMessage.FormatWith(typeof(T).Name, Interface.Name));
+                    throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.ImplementationTestException_NoneMessage, typeof(T).Name, Interface.Name));
                 }
             }
 

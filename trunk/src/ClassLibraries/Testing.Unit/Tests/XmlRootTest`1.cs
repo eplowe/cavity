@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using System;
+    using System.Globalization;
     using System.Xml.Serialization;
     using Cavity.Fluent;
     using Cavity.Properties;
@@ -28,17 +29,17 @@
             var attribute = Attribute.GetCustomAttribute(typeof(T), typeof(XmlRootAttribute), false) as XmlRootAttribute;
             if (null == attribute)
             {
-                throw new UnitTestException(Resources.XmlRootDecorationTestException_UndecoratedMessage.FormatWith(typeof(T).Name));
+                throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.XmlRootDecorationTestException_UndecoratedMessage, typeof(T).Name));
             }
 
             if (ElementName != attribute.ElementName)
             {
-                throw new UnitTestException(Resources.XmlRootDecorationTestException_NameMessage.FormatWith(typeof(T).Name, ElementName));
+                throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.XmlRootDecorationTestException_NameMessage, typeof(T).Name, ElementName));
             }
 
             if (Namespace != attribute.Namespace)
             {
-                throw new UnitTestException(Resources.XmlRootDecorationTestException_NamespaceMessage.FormatWith(typeof(T).Name, ElementName, Namespace));
+                throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.XmlRootDecorationTestException_NamespaceMessage, typeof(T).Name, ElementName, Namespace));
             }
 
             return true;

@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Xml.XPath;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryQueryExpression<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -23,12 +22,12 @@
 
             if (null == records)
             {
-                throw new UnitTestException(Resources.Repository_QueryReturnsNull_UnitTestExceptionMessage);
+                throw new RepositoryTestException(Resources.Repository_QueryReturnsNull_ExceptionMessage);
             }
 
             if (0 == records.Count())
             {
-                throw new UnitTestException(Resources.Repository_QueryReturnsEmpty_UnitTestExceptionMessage);
+                throw new RepositoryTestException(Resources.Repository_QueryReturnsEmpty_ExceptionMessage);
             }
         }
     }

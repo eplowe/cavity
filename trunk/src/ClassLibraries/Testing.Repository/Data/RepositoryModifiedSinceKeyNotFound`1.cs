@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryModifiedSinceKeyNotFound<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -16,7 +15,7 @@
 
             if (repository.ModifiedSince(AlphaDecimal.Random(), DateTime.MinValue))
             {
-                throw new UnitTestException(Resources.Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage);
+                throw new RepositoryTestException(Resources.Repository_ModifiedSince_ReturnsTrue_ExceptionMessage);
             }
         }
     }

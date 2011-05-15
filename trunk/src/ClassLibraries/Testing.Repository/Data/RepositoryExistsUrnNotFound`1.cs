@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryExistsUrnNotFound<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -16,7 +15,7 @@
 
             if (repository.Exists("urn://example.com/" + Guid.NewGuid()))
             {
-                throw new UnitTestException(Resources.Repository_ExpectWhenDoesNotExist_UnitTestExceptionMessage.FormatWith("Exists", "false"));
+                throw new RepositoryTestException(Resources.Repository_ExpectWhenDoesNotExist_ExceptionMessage.FormatWith("Exists", "false"));
             }
         }
     }

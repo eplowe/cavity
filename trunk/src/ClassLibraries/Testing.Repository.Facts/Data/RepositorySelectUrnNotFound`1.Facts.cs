@@ -57,7 +57,7 @@
                 .Returns(new Mock<IRecord<RandomObject>>().Object)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositorySelectUrnNotFound<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositorySelectUrnNotFound<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

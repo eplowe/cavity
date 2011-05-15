@@ -71,7 +71,7 @@
                 .Returns(true)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
         }
@@ -95,7 +95,7 @@
                 .Returns(false)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
         }

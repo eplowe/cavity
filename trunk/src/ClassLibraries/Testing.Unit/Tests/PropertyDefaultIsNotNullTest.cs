@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using System;
+    using System.Globalization;
     using System.Reflection;
 
     public sealed class PropertyDefaultIsNotNullTest : PropertyTestBase
@@ -16,7 +17,7 @@
                 null,
                 Property.GetGetMethod(true).Invoke(Activator.CreateInstance(Property.ReflectedType, true), null)))
             {
-                throw new UnitTestException("{0}.{1} was unexpectedly null.".FormatWith(Property.ReflectedType.Name, Property.Name));
+                throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, "{0}.{1} was unexpectedly null.", Property.ReflectedType.Name, Property.Name));
             }
 
             return true;

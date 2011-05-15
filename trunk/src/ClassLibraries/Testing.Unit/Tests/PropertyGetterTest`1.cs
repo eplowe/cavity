@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Tests
 {
+    using System.Globalization;
     using System.Reflection;
     using Cavity.Properties;
 
@@ -19,7 +20,7 @@
                 return true;
             }
 
-            throw new UnitTestException(Resources.PropertyGetterTestOfTException_Message.FormatWith(Property.PropertyType, typeof(T)));
+            throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.PropertyGetterTestOfTException_Message, Property.PropertyType, typeof(T)));
         }
     }
 }

@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryUpdateRecordUrnExists<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -21,7 +20,7 @@
             }
             catch (Exception exception)
             {
-                throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
+                throw new RepositoryTestException(Resources.Repository_UnexpectedException_ExceptionMessage, exception);
             }
 
             RepositoryException expected = null;
@@ -37,12 +36,12 @@
             }
             catch (Exception exception)
             {
-                throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
+                throw new RepositoryTestException(Resources.Repository_UnexpectedException_ExceptionMessage, exception);
             }
 
             if (null == expected)
             {
-                throw new UnitTestException(Resources.Repository_Update_RecordUrnExists_UnitTestExceptionMessage);
+                throw new RepositoryTestException(Resources.Repository_Update_RecordUrnExists_ExceptionMessage);
             }
         }
     }

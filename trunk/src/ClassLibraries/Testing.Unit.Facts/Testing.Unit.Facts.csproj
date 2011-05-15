@@ -5,13 +5,16 @@
     <AssemblyName>Cavity.Testing.Unit.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup>
+    <ServiceLocation>false</ServiceLocation>
+  </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Fluent\ITestClassConstruction.Facts.cs" />
     <Compile Include="Fluent\ITestClassSealed.Facts.cs" />
     <Compile Include="Fluent\ITestClassStyle.Facts.cs" />
     <Compile Include="Fluent\ITestExpectation.Facts.cs" />
     <Compile Include="Fluent\ITestType.Facts.cs" />
-    <Compile Include="Tests\UnitTestException.Facts.cs" />
+    <Compile Include="UnitTestException.Facts.cs" />
     <Compile Include="TypeExpectations`1.Facts.cs" />
     <Compile Include="PropertyExpectations`1.Facts.cs" />
     <Compile Include="Tests\AbstractBaseClassTest`1.Facts.cs" />
@@ -56,10 +59,6 @@
     <Compile Include="Types\XmlSerializableClass1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
       <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
       <Name>Testing.Unit</Name>

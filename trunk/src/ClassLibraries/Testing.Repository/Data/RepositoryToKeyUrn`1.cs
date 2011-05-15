@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryToKeyUrn<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -19,12 +18,12 @@
 
             if (null == key)
             {
-                throw new UnitTestException(Resources.Repository_ExpectResult_UnitTestExceptionMessage.FormatWith("ToKey", "key"));
+                throw new RepositoryTestException(Resources.Repository_ExpectResult_ExceptionMessage.FormatWith("ToKey", "key"));
             }
 
             if (key != insert)
             {
-                throw new UnitTestException(Resources.Repository_ExpectCorrectValue_UnitTestExceptionMessage.FormatWith("ToKey", "key"));
+                throw new RepositoryTestException(Resources.Repository_ExpectCorrectValue_ExceptionMessage.FormatWith("ToKey", "key"));
             }
         }
     }

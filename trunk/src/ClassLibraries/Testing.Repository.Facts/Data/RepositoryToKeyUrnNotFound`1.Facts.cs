@@ -57,7 +57,7 @@
                 .Returns(AlphaDecimal.Random())
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryToKeyUrnNotFound<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryToKeyUrnNotFound<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

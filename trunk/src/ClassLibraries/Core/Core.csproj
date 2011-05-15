@@ -5,6 +5,9 @@
     <AssemblyName>Cavity.Core</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup>
+    <ServiceLocation>false</ServiceLocation>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Collections\KeyStringDictionary.cs" />
     <Compile Include="Configuration\Config.cs" />
@@ -27,7 +30,6 @@
     <Compile Include="CommentAttribute.cs" />
     <Compile Include="ComparableObject.cs" />
     <Compile Include="RelativeUri.cs" />
-    <Compile Include="TestException.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Configuration\DirectoryConfigurationElement.cs" />
@@ -36,10 +38,6 @@
     <Compile Include="Configuration\DirectoryInfoValidator.cs" />
     <Compile Include="IO\DirectoryInfo.ExtensionMethods.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
-    <Compile Include="Transactions\EnlistmentIdentity.cs" />
-    <Compile Include="Transactions\DurableEnlistmentNotification.cs" />
-    <Compile Include="Transactions\Operation.cs" />
-    <Compile Include="Transactions\Recovery.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.cs" />
     <Compile Include="Configuration\ConfiguredList.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.cs" />

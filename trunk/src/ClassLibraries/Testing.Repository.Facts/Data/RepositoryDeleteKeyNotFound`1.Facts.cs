@@ -57,7 +57,7 @@
                 .Returns(true)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryDeleteKeyNotFound<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryDeleteKeyNotFound<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

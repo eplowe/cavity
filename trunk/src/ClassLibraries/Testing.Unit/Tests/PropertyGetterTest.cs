@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using System;
+    using System.Globalization;
     using System.Reflection;
     using Cavity.Properties;
 
@@ -24,7 +25,7 @@
                 return true;
             }
 
-            throw new UnitTestException(Resources.PropertyGetterTestException_Message.FormatWith(Property.ReflectedType.Name, Property.Name));
+            throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.PropertyGetterTestException_Message, Property.ReflectedType.Name, Property.Name));
         }
     }
 }

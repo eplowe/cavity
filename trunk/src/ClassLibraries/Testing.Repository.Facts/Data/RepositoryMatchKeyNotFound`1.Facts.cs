@@ -58,7 +58,7 @@
                 .Returns(true)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryMatchKeyNotFound<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryMatchKeyNotFound<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

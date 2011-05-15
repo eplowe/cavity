@@ -5,6 +5,9 @@
     <AssemblyName>Cavity.Domain</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup>
+    <ServiceLocation>false</ServiceLocation>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Build\LexiconTidy.cs" />
     <Compile Include="Collections\Generic\INormalizationComparer.cs" />

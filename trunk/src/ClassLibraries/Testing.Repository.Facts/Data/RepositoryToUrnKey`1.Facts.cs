@@ -99,7 +99,7 @@
                 .Returns(null as AbsoluteUri)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
         }
@@ -127,7 +127,7 @@
                 .Returns("urn://example.com/" + Guid.NewGuid())
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
         }

@@ -59,6 +59,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\x86.Project" />
+  <Import Project="$(SolutionDir)Import\trove\App.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />
   <!--
   <Target Name="BeforeBuild">

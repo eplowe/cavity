@@ -57,7 +57,7 @@
                 .Returns(false)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryExistsUrnNull<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryExistsUrnNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }
@@ -71,7 +71,7 @@
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryExistsUrnNull<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryExistsUrnNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

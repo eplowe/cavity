@@ -5,7 +5,7 @@
     using System.Runtime.Serialization;
 
     [Serializable]
-    public sealed class HttpTestException : TestException
+    public sealed class HttpTestException : Exception
     {
         public HttpTestException()
         {

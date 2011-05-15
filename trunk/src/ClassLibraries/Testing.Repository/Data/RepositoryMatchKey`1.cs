@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryMatchKey<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -26,7 +25,7 @@
                 return;
             }
 
-            throw new UnitTestException(Resources.Repository_Match_ReturnsFalse_UnitTestExceptionMessage);
+            throw new RepositoryTestException(Resources.Repository_Match_ReturnsFalse_ExceptionMessage);
         }
     }
 }

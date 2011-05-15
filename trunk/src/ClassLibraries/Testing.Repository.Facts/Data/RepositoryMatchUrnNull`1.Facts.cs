@@ -58,7 +58,7 @@
                 .Returns(false)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryMatchUrnNull<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryMatchUrnNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }
@@ -72,7 +72,7 @@
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryMatchUrnNull<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryMatchUrnNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

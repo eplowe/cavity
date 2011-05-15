@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryDeleteKeyNotFound<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -16,7 +15,7 @@
 
             if (repository.Delete(AlphaDecimal.Random()))
             {
-                throw new UnitTestException(Resources.Repository_ExpectWhenDoesNotExist_UnitTestExceptionMessage.FormatWith("Delete", "false"));
+                throw new RepositoryTestException(Resources.Repository_ExpectWhenDoesNotExist_ExceptionMessage.FormatWith("Delete", "false"));
             }
         }
     }

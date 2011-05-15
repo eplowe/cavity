@@ -5,6 +5,23 @@
     <AssemblyName>Cavity.Transactions</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="Transactions\DurableEnlistmentNotification.cs" />
+    <Compile Include="Transactions\EnlistmentIdentity.cs" />
+    <Compile Include="Transactions\Operation.cs" />
+    <Compile Include="Transactions\Recovery.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Commands\Commands.csproj">
+      <Project>{48DBDF62-091C-4CE9-9617-742D06326FA7}</Project>
+      <Name>Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />
   <!--

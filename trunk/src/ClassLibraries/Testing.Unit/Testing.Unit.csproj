@@ -5,6 +5,9 @@
     <AssemblyName>Cavity.Testing.Unit</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup>
+    <ServiceLocation>false</ServiceLocation>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Transactions" />
   </ItemGroup>
@@ -21,7 +24,7 @@
     <Compile Include="Fluent\ITestExpectation.cs" />
     <Compile Include="Fluent\ITestType.cs" />
     <Compile Include="Fluent\ITestClassStyle.cs" />
-    <Compile Include="Tests\UnitTestException.cs" />
+    <Compile Include="UnitTestException.cs" />
     <Compile Include="TypeExpectations`1.cs" />
     <Compile Include="PropertyExpectations`1.cs" />
     <Compile Include="Tests\AbstractBaseClassTest`1.cs" />
@@ -54,12 +57,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />

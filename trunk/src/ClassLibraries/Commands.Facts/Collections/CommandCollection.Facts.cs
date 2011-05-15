@@ -36,10 +36,10 @@
             {
                 var example = temp.Info.ToDirectory("example");
                 var obj = ("<commands>" +
-                           "<command i='1' type='Cavity.IO.DirectoryCreateCommand, Cavity.Commands, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8'>" +
+                           "<command i='1' type='{0}'>".FormatWith(typeof(DirectoryCreateCommand).AssemblyQualifiedName) +
                            @"<directory.create path='{0}' undo='false' />".FormatWith(temp.Info.FullName) +
                            "</command>" +
-                           "<command i='2' type='Cavity.IO.DirectoryCreateCommand, Cavity.Commands, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8'>" +
+                           "<command i='1' type='{0}'>".FormatWith(typeof(DirectoryCreateCommand).AssemblyQualifiedName) +
                            @"<directory.create path='{0}' undo='true' />".FormatWith(example.FullName) +
                            "</command>" +
                            "</commands>").XmlDeserialize<CommandCollection>();

@@ -43,7 +43,7 @@
           SourceFiles="$(ClassLibrariesPath)\Repository.FileSystem\bin\$(BuildName)\Cavity.Repository.FileSystem.dll"
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
-    <Copy Condition=" Exists('$(TroveLibDirectory)') "
+    <Copy Condition=" Exists('$(TroveLibDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
           SourceFiles="$(ClassLibrariesPath)\ServiceLocation\bin\$(BuildName)\Cavity.ServiceLocation.dll"
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
@@ -69,6 +69,10 @@
           OverwriteReadOnlyFiles="true" />
     <Copy Condition=" Exists('$(TroveLibDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
           SourceFiles="$(ClassLibrariesPath)\Testing.Unit\bin\$(BuildName)\Cavity.Testing.Unit.dll"
+          DestinationFolder="$(TroveLibDirectory)"
+          OverwriteReadOnlyFiles="true" />
+    <Copy Condition=" Exists('$(TroveLibDirectory)') and '$(TargetFrameworkVersion)' != 'v2.0' "
+          SourceFiles="$(ClassLibrariesPath)\Transactions\bin\$(BuildName)\Cavity.Transactions.dll"
           DestinationFolder="$(TroveLibDirectory)"
           OverwriteReadOnlyFiles="true" />
   </Target>
