@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryToUrnKeyNotFound<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -18,7 +17,7 @@
 
             if (null != urn)
             {
-                throw new UnitTestException(Resources.Repository_ExpectNullWhenRecordNotFound_UnitTestExceptionMessage.FormatWith("ToUrn", "key"));
+                throw new RepositoryTestException(Resources.Repository_ExpectNullWhenRecordNotFound_ExceptionMessage.FormatWith("ToUrn", "key"));
             }
         }
     }

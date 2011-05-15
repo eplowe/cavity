@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryMatchKeyNotFound<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -16,7 +15,7 @@
 
             if (repository.Match(AlphaDecimal.Random(), "\"{0}\"".FormatWith(Guid.NewGuid())))
             {
-                throw new UnitTestException(Resources.Repository_Match_ReturnsTrue_UnitTestExceptionMessage);
+                throw new RepositoryTestException(Resources.Repository_Match_ReturnsTrue_ExceptionMessage);
             }
         }
     }

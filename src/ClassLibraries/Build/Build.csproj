@@ -5,6 +5,9 @@
     <AssemblyName>Cavity.Build</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup>
+    <ServiceLocation>false</ServiceLocation>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -21,12 +24,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />

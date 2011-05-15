@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.Linq;
     using System.Reflection;
     using Cavity.Properties;
@@ -23,14 +24,14 @@
             {
                 if (0 != Member.GetCustomAttributes(false).Where(x => !(x is SuppressMessageAttribute)).Count())
                 {
-                    throw new UnitTestException(Resources.DecorationTestException_UnexpectedMessage.FormatWith(Member.Name));
+                    throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.DecorationTestException_UnexpectedMessage, Member.Name));
                 }
             }
             else
             {
                 if (null == System.Attribute.GetCustomAttribute(Member, Attribute, false))
                 {
-                    throw new UnitTestException(Resources.DecorationTestException_MissingMessage.FormatWith(Member.Name, Attribute.Name));
+                    throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.DecorationTestException_MissingMessage, Member.Name, Attribute.Name));
                 }
             }
 

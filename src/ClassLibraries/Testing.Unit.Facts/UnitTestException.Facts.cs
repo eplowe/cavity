@@ -5,14 +5,16 @@
     using System.Runtime.Serialization.Formatters.Binary;
     using Xunit;
 
-    public sealed class TestExceptionFacts
+    public sealed class UnitTestExceptionFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<TestException>()
+            Assert.True(new TypeExpectations<UnitTestException>()
                             .DerivesFrom<Exception>()
-                            .IsAbstractBaseClass()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
                             .Serializable()
                             .Result);
         }
@@ -20,21 +22,21 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new DerivedTestException());
+            Assert.NotNull(new UnitTestException());
         }
 
         [Fact]
         public void ctor_SerializationInfo_StreamingContext()
         {
-            var expected = new DerivedTestException("test");
-            DerivedTestException actual;
+            var expected = new UnitTestException("test");
+            UnitTestException actual;
 
             using (var stream = new MemoryStream())
             {
                 var formatter = new BinaryFormatter();
-                formatter.Serialize(stream, new DerivedTestException("test"));
+                formatter.Serialize(stream, new UnitTestException("test"));
                 stream.Position = 0;
-                actual = (DerivedTestException)formatter.Deserialize(stream);
+                actual = (UnitTestException)formatter.Deserialize(stream);
             }
 
             Assert.Equal(expected.Message, actual.Message);
@@ -43,43 +45,43 @@
         [Fact]
         public void ctor_string()
         {
-            Assert.NotNull(new DerivedTestException("message"));
+            Assert.NotNull(new UnitTestException("message"));
         }
 
         [Fact]
         public void ctor_stringEmpty()
         {
-            Assert.NotNull(new DerivedTestException(string.Empty));
+            Assert.NotNull(new UnitTestException(string.Empty));
         }
 
         [Fact]
         public void ctor_stringEmpty_ExceptionNull()
         {
-            Assert.NotNull(new DerivedTestException(string.Empty, null));
+            Assert.NotNull(new UnitTestException(string.Empty, null));
         }
 
         [Fact]
         public void ctor_stringNull()
         {
-            Assert.NotNull(new DerivedTestException(null));
+            Assert.NotNull(new UnitTestException(null));
         }
 
         [Fact]
         public void ctor_stringNull_ExceptionNull()
         {
-            Assert.NotNull(new DerivedTestException(null, null));
+            Assert.NotNull(new UnitTestException(null, null));
         }
 
         [Fact]
         public void ctor_string_Exception()
         {
-            Assert.NotNull(new DerivedTestException("message", new InvalidOperationException()));
+            Assert.NotNull(new UnitTestException("message", new InvalidOperationException()));
         }
 
         [Fact]
         public void ctor_string_ExceptionNull()
         {
-            Assert.NotNull(new DerivedTestException("message", null));
+            Assert.NotNull(new UnitTestException("message", null));
         }
     }
 }

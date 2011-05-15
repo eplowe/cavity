@@ -57,7 +57,7 @@
                 .Returns(null as AlphaDecimal?)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryToKeyUrnNull<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryToKeyUrnNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }
@@ -71,7 +71,7 @@
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryToKeyUrnNull<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryToKeyUrnNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

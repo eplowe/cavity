@@ -57,7 +57,7 @@
                 .Returns(new Mock<IRecord<RandomObject>>().Object)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryUpdateRecordNull<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryUpdateRecordNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }
@@ -71,7 +71,7 @@
                 .Throws(new InvalidOperationException())
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryUpdateRecordNull<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryUpdateRecordNull<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

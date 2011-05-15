@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryExistsUrn<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -21,7 +20,7 @@
                 return;
             }
 
-            throw new UnitTestException(Resources.Repository_ExpectWhenExists_UnitTestExceptionMessage.FormatWith("Exists", "true"));
+            throw new RepositoryTestException(Resources.Repository_ExpectWhenExists_ExceptionMessage.FormatWith("Exists", "true"));
         }
     }
 }

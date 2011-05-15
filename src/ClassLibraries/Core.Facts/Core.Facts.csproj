@@ -6,11 +6,6 @@
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Compile Include="Transactions\EnlistmentIdentity.Facts.cs" />
-    <Compile Include="Transactions\DurableEnlistmentNotification.Derived.cs" />
-    <Compile Include="Transactions\DurableEnlistmentNotification.Facts.cs" />
-    <Compile Include="Transactions\Operation.Facts.cs" />
-    <Compile Include="Transactions\Recovery.Facts.cs" />
     <Compile Include="AbsoluteUri.Facts.cs" />
     <Compile Include="AlphaDecimal.Facts.cs" />
     <Compile Include="Char.ExtensionMethods.Facts.cs" />
@@ -31,7 +26,6 @@
     <Compile Include="IO\TempDirectory.Facts.cs" />
     <Compile Include="IO\TempFile.Facts.cs" />
     <Compile Include="Linq\Enumerable.Facts.cs" />
-    <Compile Include="TestException.Derived.cs" />
     <Compile Include="IO\CsvFile.Facts.cs" />
     <Compile Include="IO\CsvStreamReader.Facts.cs" />
     <Compile Include="IO\EncodedStringWriter.Facts.cs" />
@@ -45,7 +39,6 @@
     <Compile Include="Object.ExtensionMethods.Facts.cs" />
     <Compile Include="RelativeUri.Facts.cs" />
     <Compile Include="String.ExtensionMethods.Facts.cs" />
-    <Compile Include="TestException.Facts.cs" />
     <Compile Include="ValueObject`1.Derived.cs" />
     <Compile Include="ValueObject`1.Facts.cs" />
     <Compile Include="WhiteSpace.Facts.cs" />

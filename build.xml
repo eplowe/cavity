@@ -7,6 +7,7 @@
     <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v3.5\MSBuild.ExtensionPack.tasks" />
   </ImportGroup>
   <ImportGroup>
+    <Import Project="$(MSBuildProjectDirectory)\product.xml" />
     <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Build.xml" />
     <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Clean.xml" />
     <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Test.xml" />
@@ -18,9 +19,8 @@
     <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v4.0</TargetFrameworkVersion>
     <BuildName>$(Configuration) $(TargetFrameworkVersion)</BuildName>
   </PropertyGroup>
-  <Target Name="Run">
+  <Target Name="Run" DependsOnTargets="Versioning">
     <CallTarget Targets="Clean" />
-    <CallTarget Targets="Versioning" />
     <CallTarget Targets="Rebuild All" />
     <!-- CallTarget Targets="Deploy" Condition="'$(registry:HKEY_LOCAL_MACHINE\Software\Microsoft\InetStp@MajorVersion)'=='7'" / -->
     <CallTarget Targets="Test" />

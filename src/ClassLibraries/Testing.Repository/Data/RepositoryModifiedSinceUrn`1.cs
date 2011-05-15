@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryModifiedSinceUrn<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -18,7 +17,7 @@
 
             if (repository.ModifiedSince(Record1.Urn, DateTime.MaxValue))
             {
-                throw new UnitTestException(Resources.Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage);
+                throw new RepositoryTestException(Resources.Repository_ModifiedSince_ReturnsTrue_ExceptionMessage);
             }
 
             if (repository.ModifiedSince(Record1.Urn, DateTime.MinValue))
@@ -26,7 +25,7 @@
                 return;
             }
 
-            throw new UnitTestException(Resources.Repository_ModifiedSince_ReturnsFalse_UnitTestExceptionMessage);
+            throw new RepositoryTestException(Resources.Repository_ModifiedSince_ReturnsFalse_ExceptionMessage);
         }
     }
 }

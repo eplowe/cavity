@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using System;
+    using System.Globalization;
     using Cavity.Fluent;
     using Cavity.Properties;
 
@@ -20,7 +21,7 @@
                 return true;
             }
 
-            throw new UnitTestException(Resources.BaseClassTestException_Message.FormatWith(typeof(T).Name, Is.Name));
+            throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.BaseClassTestException_Message, typeof(T).Name, Is.Name));
         }
     }
 }

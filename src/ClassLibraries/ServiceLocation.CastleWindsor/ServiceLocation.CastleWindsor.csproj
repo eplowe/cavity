@@ -6,6 +6,11 @@
     <RootNamespace>Cavity</RootNamespace>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v2.0\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Reference Include="Castle.Core">
       <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\Castle.Core.dll</HintPath>

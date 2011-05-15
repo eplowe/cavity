@@ -11,7 +11,7 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpTestException>()
-                            .DerivesFrom<TestException>()
+                            .DerivesFrom<Exception>()
                             .IsConcreteClass()
                             .IsSealed()
                             .HasDefaultConstructor()

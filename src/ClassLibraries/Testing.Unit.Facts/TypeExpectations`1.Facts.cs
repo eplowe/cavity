@@ -129,7 +129,7 @@
         [Fact]
         public void prop_Result_whenIsDecoratedWithSerializableAttribute()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new TypeExpectations<TestException>()
+            Assert.Throws<ArgumentOutOfRangeException>(() => new TypeExpectations<UnitTestException>()
                                                                  .DerivesFrom<object>()
                                                                  .IsConcreteClass()
                                                                  .IsUnsealed()
@@ -165,9 +165,11 @@
         [Fact]
         public void prop_Result_whenSerializable()
         {
-            Assert.True(new TypeExpectations<TestException>()
+            Assert.True(new TypeExpectations<UnitTestException>()
                             .DerivesFrom<Exception>()
-                            .IsAbstractBaseClass()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
                             .Serializable()
                             .Result);
         }

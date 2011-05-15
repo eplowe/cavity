@@ -1,6 +1,7 @@
 namespace Cavity.Tests
 {
     using System;
+    using System.Globalization;
     using System.Reflection;
     using System.Xml.Serialization;
     using Cavity.Properties;
@@ -17,7 +18,7 @@ namespace Cavity.Tests
         {
             if (null == Attribute.GetCustomAttribute(Member, typeof(XmlNamespaceDeclarationsAttribute), false) as XmlNamespaceDeclarationsAttribute)
             {
-                throw new UnitTestException(Resources.XmlNamespaceDeclarationsDecorationTestException_Message.FormatWith(Member.Name));
+                throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.XmlNamespaceDeclarationsDecorationTestException_Message, Member.Name));
             }
 
             return true;

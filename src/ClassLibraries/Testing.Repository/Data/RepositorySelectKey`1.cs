@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositorySelectKey<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -24,18 +23,18 @@
 
             if (null == record)
             {
-                throw new UnitTestException(Resources.Repository_ExpectResult_UnitTestExceptionMessage.FormatWith("Select", "record"));
+                throw new RepositoryTestException(Resources.Repository_ExpectResult_ExceptionMessage.FormatWith("Select", "record"));
             }
 
             if (Record1.Key !=
                 record.Key)
             {
-                throw new UnitTestException(Resources.Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage.FormatWith("Select", "key"));
+                throw new RepositoryTestException(Resources.Repository_ExpectCorrectRecordValue_ExceptionMessage.FormatWith("Select", "key"));
             }
 
             if (!Record1.Urn.Equals(record.Urn))
             {
-                throw new UnitTestException(Resources.Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage.FormatWith("Select", "URN"));
+                throw new RepositoryTestException(Resources.Repository_ExpectCorrectRecordValue_ExceptionMessage.FormatWith("Select", "URN"));
             }
 
             if (ReferenceEquals(Record1.Value, null))
@@ -46,13 +45,13 @@
                 }
                 else
                 {
-                    throw new UnitTestException(Resources.Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage.FormatWith("Select", "value"));
+                    throw new RepositoryTestException(Resources.Repository_ExpectCorrectRecordValue_ExceptionMessage.FormatWith("Select", "value"));
                 }
             }
 
             if (!Record1.Value.Equals(record.Value))
             {
-                throw new UnitTestException(Resources.Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage.FormatWith("Select", "value"));
+                throw new RepositoryTestException(Resources.Repository_ExpectCorrectRecordValue_ExceptionMessage.FormatWith("Select", "value"));
             }
         }
     }

@@ -85,7 +85,7 @@
                 .Returns(records)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
         }
@@ -109,7 +109,7 @@
                 .Returns(null as IEnumerable<IRecord<RandomObject>>)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
         }

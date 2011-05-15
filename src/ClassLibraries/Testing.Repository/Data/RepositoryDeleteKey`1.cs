@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryDeleteKey<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -23,12 +22,12 @@
 
             if (!repository.Delete(Record1.Key.Value))
             {
-                throw new UnitTestException(Resources.Repository_ExpectTrueWhenExistingRecord_UnitTestExceptionMessage.FormatWith("Delete", "deleted"));
+                throw new RepositoryTestException(Resources.Repository_ExpectTrueWhenExistingRecord_ExceptionMessage.FormatWith("Delete", "deleted"));
             }
 
             if (repository.Exists(Record1.Key.Value))
             {
-                throw new UnitTestException(Resources.Repository_ExpectWhenDoesNotExist_UnitTestExceptionMessage.FormatWith("Exists", "false"));
+                throw new RepositoryTestException(Resources.Repository_ExpectWhenDoesNotExist_ExceptionMessage.FormatWith("Exists", "false"));
             }
         }
     }

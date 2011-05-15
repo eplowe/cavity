@@ -79,7 +79,7 @@
                 .Returns(AlphaDecimal.Random())
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
         }
@@ -105,7 +105,7 @@
                 .Returns(null as AlphaDecimal?)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => obj.Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => obj.Verify(repository.Object));
 
             repository.VerifyAll();
         }

@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryInsertRecord<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -17,17 +16,17 @@
             var record = repository.Insert(Record1);
             if (!record.Key.HasValue)
             {
-                throw new UnitTestException(Resources.Repository_Insert_ReturnsIncorrectKey_UnitTestExceptionMessage);
+                throw new RepositoryTestException(Resources.Repository_Insert_ReturnsIncorrectKey_ExceptionMessage);
             }
 
             if (!record.Created.HasValue)
             {
-                throw new UnitTestException(Resources.Repository_Insert_ReturnsWithoutCreated_UnitTestExceptionMessage);
+                throw new RepositoryTestException(Resources.Repository_Insert_ReturnsWithoutCreated_ExceptionMessage);
             }
 
             if (!record.Modified.HasValue)
             {
-                throw new UnitTestException(Resources.Repository_Insert_ReturnsWithoutModified_UnitTestExceptionMessage);
+                throw new RepositoryTestException(Resources.Repository_Insert_ReturnsWithoutModified_ExceptionMessage);
             }
         }
     }

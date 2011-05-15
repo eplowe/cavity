@@ -57,7 +57,7 @@
                 .Returns("urn://example.com/" + Guid.NewGuid())
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryToUrnKeyNotFound<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryToUrnKeyNotFound<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

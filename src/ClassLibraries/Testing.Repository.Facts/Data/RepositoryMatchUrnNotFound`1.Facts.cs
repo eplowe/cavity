@@ -58,7 +58,7 @@
                 .Returns(true)
                 .Verifiable();
 
-            Assert.Throws<UnitTestException>(() => new RepositoryMatchUrnNotFound<RandomObject>().Verify(repository.Object));
+            Assert.Throws<RepositoryTestException>(() => new RepositoryMatchUrnNotFound<RandomObject>().Verify(repository.Object));
 
             repository.VerifyAll();
         }

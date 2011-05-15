@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Tests
 {
+    using System.Globalization;
     using Cavity.Fluent;
     using Cavity.Properties;
 
@@ -9,7 +10,7 @@
         {
             if (typeof(T).IsAbstract)
             {
-                throw new UnitTestException(Resources.ConcreteClassTestException_Message.FormatWith(typeof(T).Name));
+                throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.ConcreteClassTestException_Message, typeof(T).Name));
             }
 
             return true;

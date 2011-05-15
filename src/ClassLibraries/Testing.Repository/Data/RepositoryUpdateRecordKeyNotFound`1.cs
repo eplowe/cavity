@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryUpdateRecordKeyNotFound<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -28,12 +27,12 @@
             }
             catch (Exception exception)
             {
-                throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
+                throw new RepositoryTestException(Resources.Repository_UnexpectedException_ExceptionMessage, exception);
             }
 
             if (null == expected)
             {
-                throw new UnitTestException(Resources.Repository_ExpectExceptionWhenRecordKeyNotFound_UnitTestExceptionMessage.FormatWith("Update"));
+                throw new RepositoryTestException(Resources.Repository_ExpectExceptionWhenRecordKeyNotFound_UnitTestExceptionMessage.FormatWith("Update"));
             }
         }
     }

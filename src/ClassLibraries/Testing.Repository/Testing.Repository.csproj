@@ -5,6 +5,9 @@
     <AssemblyName>Cavity.Testing.Repository</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup>
+    <ServiceLocation>false</ServiceLocation>
+  </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Data\FakeRepository`1.cs" />
     <Compile Include="Data\IVerifyRepository`1.cs" />
@@ -83,10 +86,9 @@
       <Project>{4CC10701-1DAB-4B0F-A755-9A5B72B2E6B1}</Project>
       <Name>Repository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
-      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
-      <Name>Testing.Unit</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="RepositoryTestException.cs" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />

@@ -2,7 +2,6 @@
 {
     using System;
     using Cavity.Properties;
-    using Cavity.Tests;
 
     public sealed class RepositoryQueryExpressionNull<T> : VerifyRepositoryBase<T>
         where T : new()
@@ -25,12 +24,12 @@
             }
             catch (Exception exception)
             {
-                throw new UnitTestException(Resources.Repository_UnexpectedException_UnitTestExceptionMessage, exception);
+                throw new RepositoryTestException(Resources.Repository_UnexpectedException_ExceptionMessage, exception);
             }
 
             if (null == expected)
             {
-                throw new UnitTestException(Resources.Repository_ExpectExceptionWhenUrnNull_UnitTestExceptionMessage.FormatWith("Query"));
+                throw new RepositoryTestException(Resources.Repository_ExpectExceptionWhenUrnNull_ExceptionMessage.FormatWith("Query"));
             }
         }
     }

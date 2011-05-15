@@ -117,76 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Repository_ExpectCorrectRecordValue_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_ExpectCorrectRecordValue_ExceptionMessage" xml:space="preserve">
     <value>{0}(...) should return a record with the correct {1}.</value>
   </data>
-  <data name="Repository_ExpectCorrectValue_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_ExpectCorrectValue_ExceptionMessage" xml:space="preserve">
     <value>{0}(...) should return the correct {1}.</value>
   </data>
-  <data name="Repository_ExpectExceptionWhenRecordIncomplete_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_ExpectExceptionWhenRecordIncomplete_ExceptionMessage" xml:space="preserve">
     <value>{0}(...) should throw a RepositoryException when the record does not specify {1}.</value>
   </data>
   <data name="Repository_ExpectExceptionWhenRecordKeyNotFound_UnitTestExceptionMessage" xml:space="preserve">
     <value>{0}(...) should throw a RepositoryException when a record with the key does not exist.</value>
   </data>
-  <data name="Repository_ExpectExceptionWhenRecordNull_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_ExpectExceptionWhenRecordNull_ExceptionMessage" xml:space="preserve">
     <value>{0}(...) should throw an ArgumentNullException when a record is not specified.</value>
   </data>
-  <data name="Repository_ExpectExceptionWhenUrnNull_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_ExpectExceptionWhenUrnNull_ExceptionMessage" xml:space="preserve">
     <value>{0}(...) should throw an ArgumentNullException when a URN is not specified.</value>
   </data>
-  <data name="Repository_ExpectNullWhenRecordNotFound_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_ExpectNullWhenRecordNotFound_ExceptionMessage" xml:space="preserve">
     <value>{0}(...) should return null when the {1} is not found.</value>
   </data>
-  <data name="Repository_ExpectResult_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_ExpectResult_ExceptionMessage" xml:space="preserve">
     <value>{0}(...) should return a {1}.</value>
   </data>
-  <data name="Repository_ExpectTrueWhenExistingRecord_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_ExpectTrueWhenExistingRecord_ExceptionMessage" xml:space="preserve">
     <value>{0}(...) should return true when an existing record is {1}.</value>
   </data>
-  <data name="Repository_ExpectWhenDoesNotExist_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_ExpectWhenDoesNotExist_ExceptionMessage" xml:space="preserve">
     <value>{0}(...) should return {1} when the record does not exist.</value>
   </data>
-  <data name="Repository_ExpectWhenExists_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_ExpectWhenExists_ExceptionMessage" xml:space="preserve">
     <value>{0}(...) should return {1} when the record exists.</value>
   </data>
-  <data name="Repository_Insert_RecordKeyExists_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_Insert_RecordKeyExists_ExceptionMessage" xml:space="preserve">
     <value>Insert(...) should throw a RepositoryException when a record with the key already exists.</value>
   </data>
-  <data name="Repository_Insert_RecordUrnExists_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_Insert_RecordUrnExists_ExceptionMessage" xml:space="preserve">
     <value>Insert(...) should throw a RepositoryException when a record with the URN already exists.</value>
   </data>
-  <data name="Repository_Insert_ReturnsIncorrectKey_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_Insert_ReturnsIncorrectKey_ExceptionMessage" xml:space="preserve">
     <value>Insert(...) should set the key of the returned record.</value>
   </data>
-  <data name="Repository_Insert_ReturnsWithoutCreated_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_Insert_ReturnsWithoutCreated_ExceptionMessage" xml:space="preserve">
     <value>Insert(...) should set the created date of the returned record.</value>
   </data>
-  <data name="Repository_Insert_ReturnsWithoutModified_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_Insert_ReturnsWithoutModified_ExceptionMessage" xml:space="preserve">
     <value>Insert(...) should set the modified date of the returned record.</value>
   </data>
-  <data name="Repository_Match_ReturnsFalse_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_Match_ReturnsFalse_ExceptionMessage" xml:space="preserve">
     <value>Match(...) should return true when a matching record exists.</value>
   </data>
-  <data name="Repository_Match_ReturnsTrue_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_Match_ReturnsTrue_ExceptionMessage" xml:space="preserve">
     <value>Match(...) should return false when no matching record exists.</value>
   </data>
-  <data name="Repository_ModifiedSince_ReturnsFalse_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_ModifiedSince_ReturnsFalse_ExceptionMessage" xml:space="preserve">
     <value>ModifiedSince(...) should return true when the record has been modified since the specified date.</value>
   </data>
-  <data name="Repository_ModifiedSince_ReturnsTrue_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_ModifiedSince_ReturnsTrue_ExceptionMessage" xml:space="preserve">
     <value>ModifiedSince(...) should return false when the record has not been modified since the specified date.</value>
   </data>
-  <data name="Repository_QueryReturnsEmpty_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_QueryReturnsEmpty_ExceptionMessage" xml:space="preserve">
     <value>Query(...) returned an empty set when records were expected.</value>
   </data>
-  <data name="Repository_QueryReturnsNull_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_QueryReturnsNull_ExceptionMessage" xml:space="preserve">
     <value>Query(...) should return an empty set rather than a null set.</value>
   </data>
-  <data name="Repository_UnexpectedException_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_UnexpectedException_ExceptionMessage" xml:space="preserve">
     <value>An unexpected exception was encountered.</value>
   </data>
-  <data name="Repository_Update_RecordUrnExists_UnitTestExceptionMessage" xml:space="preserve">
+  <data name="Repository_Update_RecordUrnExists_ExceptionMessage" xml:space="preserve">
     <value>Update(...) should throw a RepositoryException when a different record with the URN already exists.</value>
   </data>
 </root>
