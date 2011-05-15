@@ -22,6 +22,7 @@
 
             foreach (var command in this)
             {
+                CommandCounter.Increment();
                 if (!command.Act())
                 {
                     return false;
@@ -41,6 +42,7 @@
 
             foreach (var command in this.Reverse())
             {
+                CommandCounter.Increment();
                 if (!command.Revert())
                 {
                     return false;
