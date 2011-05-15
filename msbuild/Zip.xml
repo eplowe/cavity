@@ -317,28 +317,28 @@
                                       ExcludeFolders=".svn;_svn;obj;bin;PrecompiledWeb"
                                       ExcludeFiles="*.suo;*.csproj.user;*.vs10x;StyleCop.Cache"
                                       NoJobHeader="true" />
-    <Delete Files="$(ZipDirectory)\Cavity Source.zip"
-            Condition="Exists('$(ZipDirectory)\Cavity Source.zip')" />
+    <Delete Files="$(ZipDirectory)\Cavity [Source].zip"
+            Condition="Exists('$(ZipDirectory)\Cavity [Source].zip')" />
     <ItemGroup>
       <SourceFiles Include="$(PublishDirectory)\Source\**\*.*" />
     </ItemGroup>
     <MSBuild.Community.Tasks.Zip Files="@(SourceFiles)"
                                  WorkingDirectory="$(PublishDirectory)\Source"
-                                 ZipFileName="$(ZipDirectory)\Cavity Source.zip"
+                                 ZipFileName="$(ZipDirectory)\Cavity [Source].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(PublishDirectory)\Source"
                Condition="Exists('$(PublishDirectory)\Source')" />
   </Target>
   <Target Name="Publish Binaries to Zip Folder">
     <MakeDir Directories="$(ZipDirectory)" Condition="!Exists('$(ZipDirectory)')" />
-    <Delete Files="$(ZipDirectory)\Cavity Binaries [Framework $(TargetFrameworkVersion)].zip"
-            Condition="Exists('$(ZipDirectory)\Cavity Binaries [Framework $(TargetFrameworkVersion)].zip')" />
+    <Delete Files="$(ZipDirectory)\Cavity [Framework $(TargetFrameworkVersion)].zip"
+            Condition="Exists('$(ZipDirectory)\Cavity [Framework $(TargetFrameworkVersion)].zip')" />
     <ItemGroup>
       <BinariesFiles Include="$(PublishDirectory)\Binaries\**\*.*" />
     </ItemGroup>
     <MSBuild.Community.Tasks.Zip Files="@(BinariesFiles)"
                                  WorkingDirectory="$(PublishDirectory)\Binaries"
-                                 ZipFileName="$(ZipDirectory)\Cavity Binaries [Framework $(TargetFrameworkVersion)].zip"
+                                 ZipFileName="$(ZipDirectory)\Cavity [Framework $(TargetFrameworkVersion)].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(PublishDirectory)" Condition="Exists('$(PublishDirectory)')" />
   </Target>
