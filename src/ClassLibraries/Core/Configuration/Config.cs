@@ -1,8 +1,13 @@
 ﻿namespace Cavity.Configuration
 {
     using System;
+    using System.Collections.Generic;
     using System.Configuration;
     using System.Diagnostics;
+    using System.IO;
+#if !NET20
+    using System.Linq;
+#endif
     using System.Reflection;
 #if !NET20
     using Cavity.Diagnostics;
@@ -10,6 +15,10 @@
 
     public static class Config
     {
+#if !NET20
+        private static HashSet<ConfigXml> _xml;
+#endif
+
         public static T ExeSection<T>() where T : ConfigurationSection, new()
         {
 #if !NET20
@@ -50,5 +59,44 @@
 
             return Activator.CreateInstance<T>();
         }
+
+#if !NET20
+        public static T Xml<T>(Assembly assembly) where T : new()
+        {
+            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            if (null == assembly)
+            {
+                throw new ArgumentNullException("assembly");
+            }
+
+            return Xml<T>(new FileInfo(assembly.Location + ".xml"));
+        }
+
+        public static T Xml<T>(FileInfo file) where T : new()
+        {
+            Trace.WriteIf(Tracing.Enabled, string.Empty);
+
+            if (null == file)
+            {
+                throw new ArgumentNullException("file");
+            }
+
+            if (null == _xml)
+            {
+                _xml = new HashSet<ConfigXml>();
+            }
+
+            _xml.RemoveWhere(x => x.Changed);
+            var xml = _xml.Where(x => string.Equals(x.Info.FullName, file.FullName, StringComparison.OrdinalIgnoreCase))
+                .FirstOrDefault();
+            if (null == xml)
+            {
+                xml = ConfigXml.Load<T>(file);
+                _xml.Add(xml);
+            }
+
+            return (T)xml.Value;
+        }
+#endif
     }
 }

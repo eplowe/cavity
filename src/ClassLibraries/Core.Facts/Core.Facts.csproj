@@ -49,6 +49,8 @@
     <Compile Include="Configuration\DirectoryConfigurationElementCollection.Facts.cs" />
     <Compile Include="Collections\KeyStringDictionary.Facts.cs" />
     <Compile Include="Data\KeyStringPair.Facts.cs" />
+    <Compile Include="Configuration\Config.Facts.cs" />
+    <Compile Include="Configuration\ConfigXml.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
