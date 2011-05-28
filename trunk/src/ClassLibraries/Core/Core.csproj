@@ -32,6 +32,7 @@
     <Compile Include="RelativeUri.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Compile Include="Configuration\ConfigXml.cs" />
     <Compile Include="Configuration\DirectoryConfigurationElement.cs" />
     <Compile Include="Configuration\DirectoryConfigurationElementCollection.cs" />
     <Compile Include="Configuration\DirectoryInfoConverter.cs" />
