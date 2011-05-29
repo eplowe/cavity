@@ -45,7 +45,7 @@
         [Fact]
         public void op_Xml_Assembly()
         {
-            var file = new FileInfo(GetType().Assembly.Location + ".xml");
+            var file = new FileInfo(typeof(DataCollection).Assembly.Location + ".xml");
             try
             {
                 var expected = new DataCollection
@@ -55,7 +55,7 @@
                         }
                 };
                 file.Create(expected.XmlSerialize());
-                var actual = Config.Xml<DataCollection>(GetType().Assembly);
+                var actual = Config.Xml<DataCollection>(typeof(DataCollection).Assembly);
 
                 Assert.Equal(expected, actual);
             }
