@@ -29,6 +29,15 @@
         }
 
         [Fact]
+        public void ctor_DirectoryInfo()
+        {
+            using (var directory = new TempDirectory(new DirectoryInfo("C:\\").Root))
+            {
+                Assert.NotNull(directory);
+            }
+        }
+
+        [Fact]
         public void op_Dispose()
         {
             TempDirectory directory = null;

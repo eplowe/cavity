@@ -6,8 +6,18 @@
     public sealed class TempDirectory : IDisposable
     {
         public TempDirectory()
+            : this(new DirectoryInfo(Path.GetTempPath()))
         {
-            Info = new DirectoryInfo(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString()));
+        }
+
+        public TempDirectory(DirectoryInfo dir)
+        {
+            if (null == dir)
+            {
+                throw new ArgumentNullException("dir");
+            }
+
+            Info = new DirectoryInfo(Path.Combine(dir.FullName, Guid.NewGuid().ToString()));
             Info.Create();
         }
 
