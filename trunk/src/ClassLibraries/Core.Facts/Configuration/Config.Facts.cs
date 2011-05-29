@@ -16,6 +16,33 @@
         }
 
         [Fact]
+        public void op_Xml()
+        {
+            var file = new FileInfo(typeof(DataCollection).Assembly.Location + ".xml");
+            try
+            {
+                var expected = new DataCollection
+                {
+                    {
+                        "foo", "bar"
+                        }
+                };
+                file.Create(expected.XmlSerialize());
+                var actual = Config.Xml<DataCollection>();
+
+                Assert.Equal(expected, actual);
+            }
+            finally
+            {
+                file.Refresh();
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+            }
+        }
+
+        [Fact]
         public void op_Xml_Assembly()
         {
             var file = new FileInfo(GetType().Assembly.Location + ".xml");

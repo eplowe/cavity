@@ -61,6 +61,12 @@
         }
 
 #if !NET20
+        public static T Xml<T>() where T : new()
+        {
+            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            return Xml<T>(typeof(T).Assembly);
+        }
+
         public static T Xml<T>(Assembly assembly) where T : new()
         {
             Trace.WriteIf(Tracing.Enabled, string.Empty);
