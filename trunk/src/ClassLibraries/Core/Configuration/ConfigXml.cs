@@ -41,6 +41,7 @@
                 throw new ArgumentNullException("file");
             }
 
+            Trace.WriteIf(Tracing.Enabled, "file.FullName=\"{0}\"".FormatWith(file.FullName));
             return new ConfigXml(file)
             {
                 Value = file.Exists
