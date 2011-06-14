@@ -60,6 +60,36 @@
             return Activator.CreateInstance<T>();
         }
 
+        public static T Section<T>(string sectionName) where T : ConfigurationSection, new()
+        {
+            if (null == sectionName)
+            {
+                throw new ArgumentNullException("sectionName");
+            }
+
+            if (0 == sectionName.Length)
+            {
+                throw new ArgumentOutOfRangeException("sectionName");
+            }
+
+            return ConfigurationManager.GetSection(sectionName) as T;
+        }
+
+        public static T SectionHandler<T>(string sectionName) where T : IConfigurationSectionHandler
+        {
+            if (null == sectionName)
+            {
+                throw new ArgumentNullException("sectionName");
+            }
+
+            if (0 == sectionName.Length)
+            {
+                throw new ArgumentOutOfRangeException("sectionName");
+            }
+
+            return (T)ConfigurationManager.GetSection(sectionName);
+        }
+
 #if !NET20
         public static T Xml<T>() where T : new()
         {
