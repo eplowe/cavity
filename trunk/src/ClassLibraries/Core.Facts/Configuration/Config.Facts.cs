@@ -16,6 +16,48 @@
         }
 
         [Fact]
+        public void op_SectionHandler_string()
+        {
+            Assert.NotNull(Config.SectionHandler<DummyConfigurationSectionHandler>("dummy.handler"));
+        }
+
+        [Fact]
+        public void op_SectionHandler_stringEmpty()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Config.SectionHandler<DummyConfigurationSectionHandler>(string.Empty));
+        }
+
+        [Fact]
+        public void op_SectionHandler_stringMissing()
+        {
+            Assert.Null(Config.SectionHandler<DummyConfigurationSectionHandler>("missing"));
+        }
+
+        [Fact]
+        public void op_SectionHandler_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => Config.SectionHandler<DummyConfigurationSectionHandler>(null));
+        }
+
+        [Fact]
+        public void op_Section_string()
+        {
+            Assert.NotNull(Config.Section<DummyConfigurationSection>("dummy.section"));
+        }
+
+        [Fact]
+        public void op_Section_stringEmpty()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Config.Section<DummyConfigurationSection>(string.Empty));
+        }
+
+        [Fact]
+        public void op_Section_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => Config.Section<DummyConfigurationSection>(null));
+        }
+
+        [Fact]
         public void op_Xml()
         {
             var file = new FileInfo(typeof(DataCollection).Assembly.Location + ".xml");
