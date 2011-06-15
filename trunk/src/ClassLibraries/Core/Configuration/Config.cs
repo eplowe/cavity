@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Configuration;
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
 #if !NET20
     using System.Linq;
@@ -15,15 +16,27 @@
 
     public static class Config
     {
+        private static readonly Dictionary<Type, object> _types = new Dictionary<Type, object>();
 #if !NET20
         private static HashSet<ConfigXml> _xml;
 #endif
+
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "This design is intentional.")]
+        public static void Clear<T>()
+        {
+            _types.Remove(typeof(T));
+        }
 
         public static T ExeSection<T>() where T : ConfigurationSection, new()
         {
 #if !NET20
             Trace.WriteIf(Tracing.Enabled, string.Empty);
 #endif
+            if (_types.ContainsKey(typeof(T)))
+            {
+                return (T)_types[typeof(T)];
+            }
+
             return ExeSection<T>(Assembly.GetEntryAssembly());
         }
 
@@ -34,7 +47,12 @@
 #endif
             if (null == assembly)
             {
-                return Activator.CreateInstance<T>();
+                throw new ArgumentNullException("assembly");
+            }
+
+            if (_types.ContainsKey(typeof(T)))
+            {
+                return (T)_types[typeof(T)];
             }
 
             var fileMap = new ExeConfigurationFileMap
@@ -72,6 +90,11 @@
                 throw new ArgumentOutOfRangeException("sectionName");
             }
 
+            if (_types.ContainsKey(typeof(T)))
+            {
+                return (T)_types[typeof(T)];
+            }
+
             return ConfigurationManager.GetSection(sectionName) as T;
         }
 
@@ -87,13 +110,29 @@
                 throw new ArgumentOutOfRangeException("sectionName");
             }
 
+            if (_types.ContainsKey(typeof(T)))
+            {
+                return (T)_types[typeof(T)];
+            }
+
             return (T)ConfigurationManager.GetSection(sectionName);
+        }
+
+        public static void Set<T>(T obj)
+        {
+            Clear<T>();
+            _types.Add(typeof(T), obj);
         }
 
 #if !NET20
         public static T Xml<T>() where T : new()
         {
             Trace.WriteIf(Tracing.Enabled, string.Empty);
+            if (_types.ContainsKey(typeof(T)))
+            {
+                return (T)_types[typeof(T)];
+            }
+
             return Xml<T>(typeof(T).Assembly);
         }
 
@@ -105,6 +144,11 @@
                 throw new ArgumentNullException("assembly");
             }
 
+            if (_types.ContainsKey(typeof(T)))
+            {
+                return (T)_types[typeof(T)];
+            }
+
             return Xml<T>(new FileInfo(assembly.Location + ".xml"));
         }
 
@@ -114,6 +158,11 @@
             if (null == file)
             {
                 throw new ArgumentNullException("file");
+            }
+
+            if (_types.ContainsKey(typeof(T)))
+            {
+                return (T)_types[typeof(T)];
             }
 
             _xml = _xml ?? new HashSet<ConfigXml>();
