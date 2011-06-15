@@ -61,21 +61,24 @@
             };
 
             var config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
-            foreach (ConfigurationSectionGroup group in config.SectionGroups)
+            var section = Section<T>(config.Sections);
+            if (null != section)
             {
-                foreach (var item in group.Sections)
-                {
-                    var section = item as T;
-                    if (null == section)
-                    {
-                        continue;
-                    }
-
-                    return section;
-                }
+                return section;
             }
 
-            return Activator.CreateInstance<T>();
+            foreach (ConfigurationSectionGroup group in config.SectionGroups)
+            {
+                section = Section<T>(group.Sections);
+                if (null == section)
+                {
+                    continue;
+                }
+
+                return section;
+            }
+
+            return default(T);
         }
 
         public static T Section<T>(string sectionName) where T : ConfigurationSection, new()
@@ -179,5 +182,21 @@
             return (T)xml.Value;
         }
 #endif
+
+        private static T Section<T>(ConfigurationSectionCollection sections) where T : ConfigurationSection
+        {
+            foreach (var item in sections)
+            {
+                var section = item as T;
+                if (null == section)
+                {
+                    continue;
+                }
+
+                return section;
+            }
+
+            return default(T);
+        }
     }
 }
