@@ -24,11 +24,9 @@
     <Compile Include="IO\DirectoryCreateCommand.Facts.cs" />
     <Compile Include="IO\FileCopyCommand.Facts.cs" />
     <Compile Include="IO\FileMoveCommand.Facts.cs" />
+    <Compile Include="Command.Derived.cs" />
     <Compile Include="Command.Facts.cs" />
     <Compile Include="ICommand.Facts.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Command.Derived.cs" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />

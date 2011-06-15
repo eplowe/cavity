@@ -16,6 +16,12 @@
         }
 
         [Fact]
+        public void op_Clear()
+        {
+            Config.Clear<DummyConfigurationSection>();
+        }
+
+        [Fact]
         public void op_SectionHandler_string()
         {
             Assert.NotNull(Config.SectionHandler<DummyConfigurationSectionHandler>("dummy.handler"));
@@ -55,6 +61,44 @@
         public void op_Section_stringNull()
         {
             Assert.Throws<ArgumentNullException>(() => Config.Section<DummyConfigurationSection>(null));
+        }
+
+        [Fact]
+        public void op_Set_T_whenConfigurationSection()
+        {
+            try
+            {
+                var expected = new DummyConfigurationSection();
+                using (var temp = new TempDirectory())
+                {
+                    Config.Set(expected);
+                    Assert.Same(expected, Config.ExeSection<DummyConfigurationSection>());
+                    Assert.Same(expected, Config.ExeSection<DummyConfigurationSection>(GetType().Assembly));
+                    Assert.Same(expected, Config.Section<DummyConfigurationSection>("example"));
+                    Assert.Same(expected, Config.Xml<DummyConfigurationSection>());
+                    Assert.Same(expected, Config.Xml<DummyConfigurationSection>(GetType().Assembly));
+                    Assert.Same(expected, Config.Xml<DummyConfigurationSection>(temp.Info.ToFile("example.xml")));
+                }
+            }
+            finally
+            {
+                Config.Clear<DummyConfigurationSection>();
+            }
+        }
+
+        [Fact]
+        public void op_Set_T_whenConfigurationSectionHandler()
+        {
+            try
+            {
+                var expected = new DummyConfigurationSectionHandler();
+                Config.Set(expected);
+                Assert.Same(expected, Config.SectionHandler<DummyConfigurationSectionHandler>("example"));
+            }
+            finally
+            {
+                Config.Clear<DummyConfigurationSectionHandler>();
+            }
         }
 
         [Fact]
