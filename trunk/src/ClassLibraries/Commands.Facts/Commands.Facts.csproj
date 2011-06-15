@@ -27,6 +27,9 @@
     <Compile Include="Command.Facts.cs" />
     <Compile Include="ICommand.Facts.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Command.Derived.cs" />
+  </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
   <!--
