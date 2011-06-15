@@ -111,19 +111,15 @@
         public static T Xml<T>(FileInfo file) where T : new()
         {
             Trace.WriteIf(Tracing.Enabled, string.Empty);
-
             if (null == file)
             {
                 throw new ArgumentNullException("file");
             }
 
-            if (null == _xml)
-            {
-                _xml = new HashSet<ConfigXml>();
-            }
-
+            _xml = _xml ?? new HashSet<ConfigXml>();
             _xml.RemoveWhere(x => x.Changed);
-            var xml = _xml.Where(x => string.Equals(x.Info.FullName, file.FullName, StringComparison.OrdinalIgnoreCase))
+            var xml = _xml
+                .Where(x => string.Equals(x.Info.FullName, file.FullName, StringComparison.OrdinalIgnoreCase))
                 .FirstOrDefault();
             if (null == xml)
             {
