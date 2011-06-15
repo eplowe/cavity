@@ -22,9 +22,39 @@
         }
 
         [Fact]
+        public void op_ExeSection()
+        {
+            Assert.Throws<ArgumentNullException>(() => Config.ExeSection<DummyConfigurationSection>());
+        }
+
+        [Fact]
+        public void op_ExeSection_Assembly()
+        {
+            Assert.NotNull(Config.ExeSection<DummyConfigurationSection>(GetType().Assembly));
+        }
+
+        [Fact]
+        public void op_ExeSection_AssemblyNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => Config.ExeSection<DummyConfigurationSection>(null));
+        }
+
+        [Fact]
+        public void op_ExeSection_Assembly_whenNotConfigured()
+        {
+            Assert.Null(Config.ExeSection<Dummy3ConfigurationSection>(GetType().Assembly));
+        }
+
+        [Fact]
+        public void op_ExeSection_Assembly_whenSectionGroup()
+        {
+            Assert.NotNull(Config.ExeSection<Dummy2ConfigurationSection>(GetType().Assembly));
+        }
+
+        [Fact]
         public void op_SectionHandler_string()
         {
-            Assert.NotNull(Config.SectionHandler<DummyConfigurationSectionHandler>("dummy.handler"));
+            Assert.NotNull(Config.SectionHandler<DummyConfigurationSectionHandler>("example/dummy.handler"));
         }
 
         [Fact]
@@ -61,6 +91,12 @@
         public void op_Section_stringNull()
         {
             Assert.Throws<ArgumentNullException>(() => Config.Section<DummyConfigurationSection>(null));
+        }
+
+        [Fact]
+        public void op_Section_string_whenNotConfigured()
+        {
+            Assert.Null(Config.Section<DummyConfigurationSection>("missing"));
         }
 
         [Fact]

@@ -53,10 +53,7 @@
     <Compile Include="Configuration\ConfigXml.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -79,6 +76,8 @@
   <ItemGroup>
     <Compile Include="Configuration\ConfigurationSectionHandler.Dummy.cs" />
     <Compile Include="Configuration\ConfigurationSection.Dummy.cs" />
+    <Compile Include="Configuration\ConfigurationSection.Dummy2.cs" />
+    <Compile Include="Configuration\ConfigurationSection.Dummy3.cs" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
