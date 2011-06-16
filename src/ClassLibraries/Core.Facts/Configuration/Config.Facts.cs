@@ -54,7 +54,7 @@
         [Fact]
         public void op_SectionHandler_string()
         {
-            Assert.NotNull(Config.SectionHandler<DummyConfigurationSectionHandler>("example/dummy.handler"));
+            Assert.NotNull(Config.SectionHandler<DummyConfigurationSectionHandler>("facts/dummy.handler"));
         }
 
         [Fact]
@@ -78,7 +78,7 @@
         [Fact]
         public void op_Section_string()
         {
-            Assert.NotNull(Config.Section<DummyConfigurationSection>("dummy.section"));
+            Assert.NotNull(Config.Section<DummyConfigurationSection>("dummy"));
         }
 
         [Fact]

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Configuration
 {
     using System;
+    using System.IO;
     using Cavity.Data;
     using Cavity.IO;
     using Xunit;
@@ -17,6 +18,66 @@
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Result);
+        }
+
+        [Fact]
+        public void op_OnChanged()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.xml");
+                var expected = new DataCollection
+                {
+                    {
+                        "foo", "bar"
+                        }
+                };
+
+                file.Create(expected.XmlSerialize());
+                var actual = ConfigXml.Load<DataCollection>(file);
+                file.Create(expected.XmlSerialize());
+
+                Assert.Equal(expected, actual.Value);
+            }
+        }
+
+        [Fact]
+        public void op_OnCreated()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.xml");
+                var expected = new DataCollection
+                {
+                    {
+                        "foo", "bar"
+                        }
+                };
+
+                ConfigXml.Load<DataCollection>(file);
+                file.Create(expected.XmlSerialize());
+            }
+        }
+
+        [Fact]
+        public void op_OnRenamed()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.xml");
+                var expected = new DataCollection
+                {
+                    {
+                        "foo", "bar"
+                        }
+                };
+
+                file.Create(expected.XmlSerialize());
+                var actual = ConfigXml.Load<DataCollection>(file);
+                file.MoveTo(temp.Info.ToFile("renamed.xml").FullName);
+
+                Assert.Equal(expected, actual.Value);
+            }
         }
 
         [Fact]
@@ -59,6 +120,15 @@
         {
             Assert.True(new PropertyExpectations<ConfigXml>(x => x.Changed)
                             .TypeIs<bool>()
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_Info()
+        {
+            Assert.True(new PropertyExpectations<ConfigXml>(x => x.Info)
+                            .TypeIs<FileInfo>()
                             .IsNotDecorated()
                             .Result);
         }

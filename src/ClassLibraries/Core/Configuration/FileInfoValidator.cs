@@ -6,12 +6,12 @@
     using System.IO;
     using Cavity.Diagnostics;
 
-    public sealed class DirectoryInfoValidator : ConfigurationValidatorBase
+    public sealed class FileInfoValidator : ConfigurationValidatorBase
     {
         public override bool CanValidate(Type type)
         {
             Trace.WriteIf(Tracing.Enabled, string.Empty);
-            return typeof(DirectoryInfo).Equals(type);
+            return typeof(FileInfo).Equals(type);
         }
 
         public override void Validate(object value)
@@ -22,7 +22,7 @@
                 throw new ArgumentNullException("value");
             }
 
-            if (null == value as DirectoryInfo)
+            if (null == value as FileInfo)
             {
                 throw new ArgumentOutOfRangeException("value");
             }
