@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Configuration;
+    using System.IO;
 
     public sealed class DirectoryConfigurationElementCollection : ConfigurationElementCollection, ICollection<DirectoryConfigurationElement>
     {
@@ -30,11 +31,24 @@
             }
         }
 
-        public bool Contains(string path)
+        public void Add(string name,
+                        DirectoryInfo directory)
         {
-            foreach (var item in this)
+            BaseAdd(new DirectoryConfigurationElement(name, directory));
+        }
+
+        public bool Contains(string name,
+                             FileSystemInfo directory)
+        {
+            if (null == directory)
             {
-                if (item.Directory.FullName.Equals(path))
+                throw new ArgumentNullException("directory");
+            }
+
+            foreach (var element in this)
+            {
+                if (string.Equals(element.Name, name, StringComparison.Ordinal) &&
+                    string.Equals(element.Directory.FullName, directory.FullName, StringComparison.OrdinalIgnoreCase))
                 {
                     return true;
                 }

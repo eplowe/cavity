@@ -3,7 +3,6 @@
     using System.Configuration;
     using System.IO;
     using System.Linq;
-    using Cavity;
     using Xunit;
 
     public sealed class FileConfigurationElementCollectionFacts
@@ -27,14 +26,28 @@
         }
 
         [Fact]
-        public void op_Add_PackageManagementPickup()
+        public void op_Add_FileConfigurationElement()
         {
-            var pickup = new FileConfigurationElement
+            var element = new FileConfigurationElement
             {
+                Name = "example",
                 File = new FileInfo(@"C:\example.txt")
             };
 
-            new FileConfigurationElementCollection().Add(pickup);
+            new FileConfigurationElementCollection().Add(element);
+        }
+
+        [Fact]
+        public void op_Add_string_FileInfo()
+        {
+            var obj = new FileConfigurationElementCollection
+            {
+                {
+                    "C", new FileInfo(@"C:\")
+                    }
+            };
+
+            Assert.True(obj.Contains("C", new FileInfo(@"C:\")));
         }
 
         [Fact]
@@ -44,6 +57,7 @@
             {
                 new FileConfigurationElement
                 {
+                    Name = "example",
                     File = new FileInfo(@"C:\example.txt")
                 }
             };
@@ -54,43 +68,53 @@
         }
 
         [Fact]
-        public void op_Contains_PackageManagementPickup()
+        public void op_Contains_FileConfigurationElement()
         {
-            var pickup = new FileConfigurationElement
+            var element = new FileConfigurationElement
             {
+                Name = "example",
                 File = new FileInfo(@"C:\example.txt")
             };
             var obj = new FileConfigurationElementCollection
             {
-                pickup
+                element
             };
 
-            Assert.True(obj.Contains(pickup));
+            Assert.True(obj.Contains(element));
         }
 
         [Fact]
-        public void op_Contains_string()
+        public void op_Contains_stringMissing_FileInfo()
         {
-            var dir = new FileInfo(@"C:\example.txt");
             var obj = new FileConfigurationElementCollection
             {
                 new FileConfigurationElement
                 {
-                    File = dir
+                    Name = "foo",
+                    File = new FileInfo(@"C:\example.txt")
                 }
             };
 
-            Assert.True(obj.Contains(dir.FullName));
+            Assert.False(obj.Contains("bar", new FileInfo(@"C:\example.txt")));
         }
 
         [Fact]
-        public void op_Contains_stringNull()
+        public void op_Contains_string_FileInfo()
         {
-            Assert.False(new FileConfigurationElementCollection().Contains(null as string));
+            var obj = new FileConfigurationElementCollection
+            {
+                new FileConfigurationElement
+                {
+                    Name = "example",
+                    File = new FileInfo(@"C:\example.txt")
+                }
+            };
+
+            Assert.True(obj.Contains("example", new FileInfo(@"C:\example.txt")));
         }
 
         [Fact]
-        public void op_CopyTo_PackageManagementPickup_int()
+        public void op_CopyTo_FileConfigurationElement_int()
         {
             var expected = new FileConfigurationElement
             {
@@ -116,9 +140,9 @@
         }
 
         [Fact]
-        public void op_Remove_PackageManagementPickup()
+        public void op_Remove_FileConfigurationElement()
         {
-            var pickup = new FileConfigurationElement
+            var element = new FileConfigurationElement
             {
                 Name = "C",
                 File = new FileInfo(@"C:\example.txt")
@@ -130,23 +154,24 @@
                     Name = "D",
                     File = new FileInfo(@"D:\example.txt")
                 },
-                pickup
+                element
             };
 
-            Assert.True(obj.Remove(pickup));
-            Assert.False(obj.Contains(pickup));
+            Assert.True(obj.Remove(element));
+            Assert.False(obj.Contains(element));
         }
 
         [Fact]
-        public void op_Remove_PackageManagementPickup_whenEmpty()
+        public void op_Remove_FileConfigurationElement_whenEmpty()
         {
-            var pickup = new FileConfigurationElement
+            var element = new FileConfigurationElement
             {
+                Name = "example",
                 File = new FileInfo(@"C:\example.txt")
             };
             var obj = new FileConfigurationElementCollection();
 
-            Assert.False(obj.Remove(pickup));
+            Assert.False(obj.Remove(element));
         }
 
         [Fact]

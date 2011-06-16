@@ -12,10 +12,16 @@
             Assert.True(new TypeExpectations<PathConfigurationSection>()
                             .DerivesFrom<ConfigurationSection>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .HasDefaultConstructor()
                             .IsNotDecorated()
                             .Result);
+        }
+
+        [Fact]
+        public void config()
+        {
+            Assert.NotNull(Config.ExeSection<DerivedPathConfigurationSection>(GetType().Assembly));
         }
 
         [Fact]

@@ -4,7 +4,7 @@
     using System.Configuration;
     using System.IO;
 
-    public sealed class PathConfigurationSection : ConfigurationSection
+    public class PathConfigurationSection : ConfigurationSection
     {
         [ConfigurationProperty("directories", IsRequired = false, IsDefaultCollection = true)]
         public DirectoryConfigurationElementCollection Directories

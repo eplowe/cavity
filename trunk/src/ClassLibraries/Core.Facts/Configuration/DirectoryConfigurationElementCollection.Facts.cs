@@ -1,9 +1,9 @@
 ﻿namespace Cavity.Configuration
 {
+    using System;
     using System.Configuration;
     using System.IO;
     using System.Linq;
-    using Cavity;
     using Xunit;
 
     public sealed class DirectoryConfigurationElementCollectionFacts
@@ -27,14 +27,37 @@
         }
 
         [Fact]
-        public void op_Add_PackageManagementPickup()
+        public void op_Add_DirectoryConfigurationElement()
         {
-            var pickup = new DirectoryConfigurationElement
+            var element = new DirectoryConfigurationElement
             {
                 Directory = new DirectoryInfo(@"C:\")
             };
+            var obj = new DirectoryConfigurationElementCollection
+            {
+                element
+            };
 
-            new DirectoryConfigurationElementCollection().Add(pickup);
+            Assert.True(obj.Contains(element));
+        }
+
+        [Fact]
+        public void op_Add_DirectoryConfigurationElementNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new DirectoryConfigurationElementCollection().Add(null));
+        }
+
+        [Fact]
+        public void op_Add_string_DirectoryInfo()
+        {
+            var obj = new DirectoryConfigurationElementCollection
+            {
+                {
+                    "C", new DirectoryInfo(@"C:\")
+                    }
+            };
+
+            Assert.True(obj.Contains("C", new DirectoryInfo(@"C:\")));
         }
 
         [Fact]
@@ -54,43 +77,58 @@
         }
 
         [Fact]
-        public void op_Contains_PackageManagementPickup()
+        public void op_Contains_DirectoryConfigurationElement()
         {
-            var pickup = new DirectoryConfigurationElement
+            var element = new DirectoryConfigurationElement
             {
                 Directory = new DirectoryInfo(@"C:\")
             };
             var obj = new DirectoryConfigurationElementCollection
             {
-                pickup
+                element
             };
 
-            Assert.True(obj.Contains(pickup));
+            Assert.True(obj.Contains(element));
         }
 
         [Fact]
-        public void op_Contains_string()
+        public void op_Contains_stringMissing_DirectoryInfo()
         {
-            var dir = new DirectoryInfo(@"C:\");
             var obj = new DirectoryConfigurationElementCollection
             {
                 new DirectoryConfigurationElement
                 {
-                    Directory = dir
+                    Name = "C",
+                    Directory = new DirectoryInfo(@"C:\")
                 }
             };
 
-            Assert.True(obj.Contains(dir.FullName));
+            Assert.False(obj.Contains("D", new DirectoryInfo(@"C:\")));
         }
 
         [Fact]
-        public void op_Contains_stringNull()
+        public void op_Contains_string_DirectoryInfo()
         {
-            Assert.False(new DirectoryConfigurationElementCollection().Contains(null as string));
+            var obj = new DirectoryConfigurationElementCollection
+            {
+                new DirectoryConfigurationElement
+                {
+                    Name = "C",
+                    Directory = new DirectoryInfo(@"C:\")
+                }
+            };
+
+            Assert.True(obj.Contains("C", new DirectoryInfo(@"C:\")));
         }
 
         [Fact]
-        public void op_CopyTo_PackageManagementPickup_int()
+        public void op_Contains_string_DirectoryInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new DirectoryConfigurationElementCollection().Contains("C", null));
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryConfigurationElement_int()
         {
             var expected = new DirectoryConfigurationElement
             {
@@ -116,9 +154,9 @@
         }
 
         [Fact]
-        public void op_Remove_PackageManagementPickup()
+        public void op_Remove_DirectoryConfigurationElement()
         {
-            var pickup = new DirectoryConfigurationElement
+            var element = new DirectoryConfigurationElement
             {
                 Name = "C",
                 Directory = new DirectoryInfo(@"C:\")
@@ -130,23 +168,23 @@
                     Name = "D",
                     Directory = new DirectoryInfo(@"D:\")
                 },
-                pickup
+                element
             };
 
-            Assert.True(obj.Remove(pickup));
-            Assert.False(obj.Contains(pickup));
+            Assert.True(obj.Remove(element));
+            Assert.False(obj.Contains(element));
         }
 
         [Fact]
-        public void op_Remove_PackageManagementPickup_whenEmpty()
+        public void op_Remove_DirectoryConfigurationElement_whenEmpty()
         {
-            var pickup = new DirectoryConfigurationElement
+            var element = new DirectoryConfigurationElement
             {
                 Directory = new DirectoryInfo(@"C:\")
             };
             var obj = new DirectoryConfigurationElementCollection();
 
-            Assert.False(obj.Remove(pickup));
+            Assert.False(obj.Remove(element));
         }
 
         [Fact]
