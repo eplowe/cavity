@@ -24,11 +24,11 @@
             Watcher.Renamed += OnRenamed;
         }
 
-        public bool Changed { get; set; }
+        public bool Changed { get; private set; }
 
-        public FileInfo Info { get; set; }
+        public FileInfo Info { get; private set; }
 
-        public object Value { get; set; }
+        public object Value { get; private set; }
 
         private FileSystemWatcher Watcher { get; set; }
 

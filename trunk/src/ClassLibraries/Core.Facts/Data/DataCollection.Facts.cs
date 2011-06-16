@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Xml.Serialization;
+    using Cavity.Xml.XPath;
     using Xunit;
 
     public sealed class DataCollectionFacts
@@ -660,9 +661,7 @@
                     }
             };
 
-            // ReSharper disable PossibleNullReferenceException
-            Assert.True((bool)obj.XmlSerialize().CreateNavigator().Evaluate("1=count(/data/value[@name='foo'][text()='bar'])"));
-            // ReSharper restore PossibleNullReferenceException
+            Assert.True(obj.XmlSerialize().CreateNavigator().Evaluate<bool>("1=count(/data/value[@name='foo'][text()='bar'])"));
         }
     }
 }

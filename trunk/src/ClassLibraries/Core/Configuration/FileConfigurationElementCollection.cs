@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Configuration;
 
-    public sealed class DirectoryConfigurationElementCollection : ConfigurationElementCollection, ICollection<DirectoryConfigurationElement>
+    public sealed class FileConfigurationElementCollection : ConfigurationElementCollection, ICollection<FileConfigurationElement>
     {
         public override ConfigurationElementCollectionType CollectionType
         {
@@ -26,7 +26,7 @@
         {
             get
             {
-                return "directories";
+                return "files";
             }
         }
 
@@ -34,7 +34,7 @@
         {
             foreach (var item in this)
             {
-                if (item.Directory.FullName.Equals(path))
+                if (item.File.FullName.Equals(path))
                 {
                     return true;
                 }
@@ -43,7 +43,7 @@
             return false;
         }
 
-        public void Add(DirectoryConfigurationElement item)
+        public void Add(FileConfigurationElement item)
         {
             BaseAdd(item);
         }
@@ -53,7 +53,7 @@
             BaseClear();
         }
 
-        public bool Contains(DirectoryConfigurationElement item)
+        public bool Contains(FileConfigurationElement item)
         {
             foreach (var element in this)
             {
@@ -66,13 +66,13 @@
             return false;
         }
 
-        public void CopyTo(DirectoryConfigurationElement[] array,
+        public void CopyTo(FileConfigurationElement[] array,
                            int arrayIndex)
         {
             base.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(DirectoryConfigurationElement item)
+        public bool Remove(FileConfigurationElement item)
         {
             for (var i = 0; i < Count; i++)
             {
@@ -88,13 +88,13 @@
             return false;
         }
 
-        public new IEnumerator<DirectoryConfigurationElement> GetEnumerator()
+        public new IEnumerator<FileConfigurationElement> GetEnumerator()
         {
-            var list = new List<DirectoryConfigurationElement>();
+            var list = new List<FileConfigurationElement>();
             var enumerator = base.GetEnumerator();
             while (enumerator.MoveNext())
             {
-                var item = enumerator.Current as DirectoryConfigurationElement;
+                var item = enumerator.Current as FileConfigurationElement;
                 list.Add(item);
             }
 
@@ -103,7 +103,7 @@
 
         protected override ConfigurationElement CreateNewElement()
         {
-            return new DirectoryConfigurationElement();
+            return new FileConfigurationElement();
         }
 
         protected override object GetElementKey(ConfigurationElement element)
@@ -113,7 +113,7 @@
                 throw new ArgumentNullException("element");
             }
 
-            var extension = element as DirectoryConfigurationElement;
+            var extension = element as FileConfigurationElement;
             if (null == extension)
             {
                 throw new ArgumentOutOfRangeException("element");

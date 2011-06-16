@@ -12,6 +12,7 @@
     <Compile Include="Build\LexiconTidy.cs" />
     <Compile Include="Collections\Generic\INormalizationComparer.cs" />
     <Compile Include="Collections\Generic\NormalizationComparer.cs" />
+    <Compile Include="Models\List.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -19,6 +19,7 @@
     <Compile Include="Models\Lexicon.Facts.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Models\Telephone.Facts.cs" />
+    <Compile Include="Models\List.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
