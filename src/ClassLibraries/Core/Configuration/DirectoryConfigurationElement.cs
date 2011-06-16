@@ -11,8 +11,6 @@
     {
         private static readonly TypeConverter _converter = new DirectoryInfoConverter();
 
-        private static readonly ConfigurationValidatorBase _validator = new DirectoryInfoValidator();
-
         private static readonly ConfigurationProperty _directory = new ConfigurationProperty("directory",
                                                                                              typeof(DirectoryInfo),
                                                                                              null,
@@ -20,30 +18,20 @@
                                                                                              _validator,
                                                                                              ConfigurationPropertyOptions.IsRequired);
 
+        private static readonly ConfigurationValidatorBase _validator = new DirectoryInfoValidator();
+
         public DirectoryConfigurationElement()
         {
             Trace.WriteIf(Tracing.Enabled, string.Empty);
             Properties.Add(_directory);
         }
 
-        public DirectoryConfigurationElement(DirectoryInfo directory)
+        public DirectoryConfigurationElement(string name,
+                                             DirectoryInfo directory)
             : this()
         {
+            Name = name;
             Directory = directory;
-        }
-
-        [ConfigurationProperty("name", IsRequired = true)]
-        public string Name
-        {
-            get
-            {
-                return (string)this["name"];
-            }
-
-            set
-            {
-                this["name"] = value;
-            }
         }
 
         public DirectoryInfo Directory
@@ -63,6 +51,20 @@
 
                 Trace.WriteIf(Tracing.Enabled, string.Empty);
                 this["directory"] = value;
+            }
+        }
+
+        [ConfigurationProperty("name", IsRequired = true)]
+        public string Name
+        {
+            get
+            {
+                return (string)this["name"];
+            }
+
+            set
+            {
+                this["name"] = value;
             }
         }
     }

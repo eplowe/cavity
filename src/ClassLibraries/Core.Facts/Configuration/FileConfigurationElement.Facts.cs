@@ -2,7 +2,6 @@
 {
     using System.Configuration;
     using System.IO;
-    using Cavity;
     using Cavity.IO;
     using Xunit;
 
@@ -27,21 +26,12 @@
         }
 
         [Fact]
-        public void ctor_FileInfo()
+        public void ctor_string_FileInfo()
         {
             using (var temp = new TempFile())
             {
-                Assert.NotNull(new FileConfigurationElement(temp.Info));
+                Assert.NotNull(new FileConfigurationElement("temp", temp.Info));
             }
-        }
-
-        [Fact]
-        public void prop_Name()
-        {
-            Assert.True(new PropertyExpectations<FileConfigurationElement>(p => p.Name)
-                            .TypeIs<string>()
-                            .IsDecoratedWith<ConfigurationPropertyAttribute>()
-                            .Result);
         }
 
         [Fact]
@@ -53,6 +43,15 @@
                             .ArgumentNullException()
                             .Set(new FileInfo("C:\\example.txt"))
                             .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_Name()
+        {
+            Assert.True(new PropertyExpectations<FileConfigurationElement>(p => p.Name)
+                            .TypeIs<string>()
+                            .IsDecoratedWith<ConfigurationPropertyAttribute>()
                             .Result);
         }
     }

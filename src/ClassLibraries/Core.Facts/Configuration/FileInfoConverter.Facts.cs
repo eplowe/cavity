@@ -95,7 +95,7 @@
             var destinationType = typeof(string);
 
             var actual = new FileInfoConverter().ConvertTo(context, culture, value, destinationType);
-            
+
             Assert.Equal("123", actual);
         }
     }

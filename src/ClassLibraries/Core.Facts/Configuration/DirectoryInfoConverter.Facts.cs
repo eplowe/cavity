@@ -95,7 +95,7 @@
             var destinationType = typeof(string);
 
             var actual = new DirectoryInfoConverter().ConvertTo(context, culture, value, destinationType);
-            
+
             Assert.Equal("123", actual);
         }
     }

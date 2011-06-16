@@ -1,9 +1,7 @@
 ﻿namespace Cavity.Configuration
 {
-    using System;
     using System.Configuration;
     using System.IO;
-    using Cavity;
     using Cavity.IO;
     using Xunit;
 
@@ -28,21 +26,12 @@
         }
 
         [Fact]
-        public void ctor_DirectoryInfo()
+        public void ctor_string_DirectoryInfo()
         {
             using (var temp = new TempDirectory())
             {
-                Assert.NotNull(new DirectoryConfigurationElement(temp.Info));
+                Assert.NotNull(new DirectoryConfigurationElement("temp", temp.Info));
             }
-        }
-
-        [Fact]
-        public void prop_Name()
-        {
-            Assert.True(new PropertyExpectations<DirectoryConfigurationElement>(p => p.Name)
-                            .TypeIs<string>()
-                            .IsDecoratedWith<ConfigurationPropertyAttribute>()
-                            .Result);
         }
 
         [Fact]
@@ -54,6 +43,15 @@
                             .ArgumentNullException()
                             .Set(new DirectoryInfo("C:\\"))
                             .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_Name()
+        {
+            Assert.True(new PropertyExpectations<DirectoryConfigurationElement>(p => p.Name)
+                            .IsAutoProperty(string.Empty)
+                            .IsDecoratedWith<ConfigurationPropertyAttribute>()
                             .Result);
         }
     }
