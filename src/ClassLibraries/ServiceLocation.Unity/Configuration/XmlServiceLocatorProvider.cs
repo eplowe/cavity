@@ -13,7 +13,7 @@
         [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Disposing the container tears down the configuration.")]
         public void Configure()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             IUnityContainer container = new UnityContainer();
             ((UnityConfigurationSection)ConfigurationManager.GetSection("unity")).Configure(container, "container");
 

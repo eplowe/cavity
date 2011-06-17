@@ -20,7 +20,7 @@
 
         public ServiceLocation()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Properties.Add(_provider);
         }
 

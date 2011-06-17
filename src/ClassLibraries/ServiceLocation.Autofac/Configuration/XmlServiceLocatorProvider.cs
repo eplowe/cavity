@@ -11,7 +11,7 @@
     {
         public void Configure()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             var builder = new ContainerBuilder();
             builder.RegisterModule(new ConfigurationSettingsReader());
             var locator = new AutofacServiceLocator(builder.Build());

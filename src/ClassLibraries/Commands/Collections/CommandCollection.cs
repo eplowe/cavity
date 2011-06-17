@@ -14,7 +14,7 @@
     {
         public bool Do()
         {
-            Trace.WriteIf(Tracing.Enabled, "Count={0}".FormatWith(Count));
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "Count={0}".FormatWith(Count));
             if (0 == Count)
             {
                 return true;
@@ -34,7 +34,7 @@
 
         public bool Undo()
         {
-            Trace.WriteIf(Tracing.Enabled, "Count={0}".FormatWith(Count));
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "Count={0}".FormatWith(Count));
             if (0 == Count)
             {
                 return true;

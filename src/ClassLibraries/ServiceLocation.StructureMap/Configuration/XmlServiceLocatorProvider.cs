@@ -10,7 +10,7 @@
     {
         public void Configure()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             ObjectFactory.Initialize(x => x.UseDefaultStructureMapConfigFile = true);
 
             ServiceLocator.SetLocatorProvider(() => new StructureMapServiceLocator(ObjectFactory.Container));

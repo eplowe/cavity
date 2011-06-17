@@ -10,9 +10,7 @@
     using System.Linq;
 #endif
     using System.Reflection;
-#if !NET20
     using Cavity.Diagnostics;
-#endif
 
     public static class Config
     {
@@ -24,14 +22,13 @@
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "This design is intentional.")]
         public static void Clear<T>()
         {
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             _types.Remove(typeof(T));
         }
 
         public static T ExeSection<T>() where T : ConfigurationSection, new()
         {
-#if !NET20
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
-#endif
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (_types.ContainsKey(typeof(T)))
             {
                 return (T)_types[typeof(T)];
@@ -42,9 +39,7 @@
 
         public static T ExeSection<T>(Assembly assembly) where T : ConfigurationSection, new()
         {
-#if !NET20
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
-#endif
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == assembly)
             {
                 throw new ArgumentNullException("assembly");
@@ -83,6 +78,7 @@
 
         public static T Section<T>(string sectionName) where T : ConfigurationSection, new()
         {
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == sectionName)
             {
                 throw new ArgumentNullException("sectionName");
@@ -103,6 +99,7 @@
 
         public static T SectionHandler<T>(string sectionName) where T : IConfigurationSectionHandler
         {
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == sectionName)
             {
                 throw new ArgumentNullException("sectionName");
@@ -130,7 +127,7 @@
 #if !NET20
         public static T Xml<T>() where T : new()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (_types.ContainsKey(typeof(T)))
             {
                 return (T)_types[typeof(T)];
@@ -141,7 +138,7 @@
 
         public static T Xml<T>(Assembly assembly) where T : new()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == assembly)
             {
                 throw new ArgumentNullException("assembly");
@@ -157,7 +154,7 @@
 
         public static T Xml<T>(FileInfo file) where T : new()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == file)
             {
                 throw new ArgumentNullException("file");
@@ -185,6 +182,7 @@
 
         private static T Section<T>(ConfigurationSectionCollection sections) where T : ConfigurationSection
         {
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             foreach (var item in sections)
             {
                 var section = item as T;

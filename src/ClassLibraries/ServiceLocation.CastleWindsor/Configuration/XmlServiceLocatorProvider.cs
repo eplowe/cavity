@@ -11,7 +11,7 @@
     {
         public void Configure()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             var container = new WindsorContainer(new XmlInterpreter());
             ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
         }

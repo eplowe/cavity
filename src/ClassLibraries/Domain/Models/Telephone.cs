@@ -25,7 +25,7 @@
 
         public static Telephone FromString(string value)
         {
-            Trace.WriteIf(Tracing.Enabled, value);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, value);
             if (null == value)
             {
                 throw new ArgumentNullException("value");

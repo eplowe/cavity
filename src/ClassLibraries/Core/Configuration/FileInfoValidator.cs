@@ -10,13 +10,13 @@
     {
         public override bool CanValidate(Type type)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             return typeof(FileInfo).Equals(type);
         }
 
         public override void Validate(object value)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == value)
             {
                 throw new ArgumentNullException("value");
