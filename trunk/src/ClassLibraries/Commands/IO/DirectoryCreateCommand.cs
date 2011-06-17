@@ -12,18 +12,18 @@
     {
         public DirectoryCreateCommand()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
         }
 
         public DirectoryCreateCommand(bool unidirectional)
             : base(unidirectional)
         {
-            Trace.WriteIf(Tracing.Enabled, "unidirectional={0}".FormatWith(unidirectional));
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "unidirectional={0}".FormatWith(unidirectional));
         }
 
         public DirectoryCreateCommand(string path)
         {
-            Trace.WriteIf(Tracing.Enabled, "path=\"{0}\"".FormatWith(path));
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "path=\"{0}\"".FormatWith(path));
             Path = path;
         }
 
@@ -31,14 +31,14 @@
                                       bool unidirectional)
             : base(unidirectional)
         {
-            Trace.WriteIf(Tracing.Enabled, "path=\"{0}\" unidirectional={1}".FormatWith(path, unidirectional));
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "path=\"{0}\" unidirectional={1}".FormatWith(path, unidirectional));
             Path = path;
         }
 
         public DirectoryCreateCommand(DirectoryInfo directory)
         {
             Path = null == directory ? null : directory.FullName;
-            Trace.WriteIf(Tracing.Enabled, "directory.FullName=\"{0}\"".FormatWith(Path));
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "directory.FullName=\"{0}\"".FormatWith(Path));
         }
 
         public DirectoryCreateCommand(DirectoryInfo directory,
@@ -46,14 +46,14 @@
             : base(unidirectional)
         {
             Path = null == directory ? null : directory.FullName;
-            Trace.WriteIf(Tracing.Enabled, "directory.FullName=\"{0}\" unidirectional={1}".FormatWith(Path, unidirectional));
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "directory.FullName=\"{0}\" unidirectional={1}".FormatWith(Path, unidirectional));
         }
 
         public string Path { get; set; }
 
         public override bool Act()
         {
-            Trace.WriteIf(Tracing.Enabled, "Path=\"{0}\" Unidirectional={1}".FormatWith(Path, Unidirectional));
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "Path=\"{0}\" Unidirectional={1}".FormatWith(Path, Unidirectional));
             var dir = new DirectoryInfo(Path);
             if (dir.Exists)
             {
@@ -82,7 +82,7 @@
 
         public override bool Revert()
         {
-            Trace.WriteIf(Tracing.Enabled, "Undo={0} Path=\"{1}\"".FormatWith(Undo, Path));
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "Undo={0} Path=\"{1}\"".FormatWith(Undo, Path));
             if (Undo)
             {
                 var dir = new DirectoryInfo(Path);

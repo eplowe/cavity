@@ -31,13 +31,13 @@
         public static void Exclude(Operation operation,
                                    bool rollback)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Amend(operation, rollback);
         }
 
         public static void Include(Operation operation)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Amend(operation, null);
         }
 
@@ -49,7 +49,7 @@
         public static FileInfo ItemFile(Operation operation,
                                         string outcome)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == operation)
             {
                 throw new ArgumentNullException("operation");
@@ -60,7 +60,7 @@
 
         public static FileInfo MasterFile(Operation operation)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == operation)
             {
                 throw new ArgumentNullException("operation");
@@ -72,7 +72,7 @@
         private static void Amend(Operation operation,
                                   bool? success)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == operation)
             {
                 throw new ArgumentNullException("operation");
@@ -80,7 +80,7 @@
 
             if (null == _directory)
             {
-                Trace.WriteIf(Tracing.Enabled, string.Empty);
+                Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             }
 
             lock (_this)
@@ -137,7 +137,7 @@
         private static FileInfo Save(Operation operation,
                                      bool? success)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             var file = ItemFile(operation);
             if (!file.Directory.Exists)
             {

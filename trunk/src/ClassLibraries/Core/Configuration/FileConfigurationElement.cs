@@ -22,7 +22,7 @@
 
         public FileConfigurationElement()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Properties.Add(_file);
         }
 
@@ -38,7 +38,7 @@
         {
             get
             {
-                Trace.WriteIf(Tracing.Enabled, string.Empty);
+                Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
                 return (FileInfo)this["file"];
             }
 
@@ -49,7 +49,7 @@
                     throw new ArgumentNullException("value");
                 }
 
-                Trace.WriteIf(Tracing.Enabled, string.Empty);
+                Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
                 this["file"] = value;
             }
         }

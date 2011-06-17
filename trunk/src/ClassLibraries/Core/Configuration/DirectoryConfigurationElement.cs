@@ -22,7 +22,7 @@
 
         public DirectoryConfigurationElement()
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Properties.Add(_directory);
         }
 
@@ -38,7 +38,7 @@
         {
             get
             {
-                Trace.WriteIf(Tracing.Enabled, string.Empty);
+                Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
                 return (DirectoryInfo)this["directory"];
             }
 
@@ -49,7 +49,7 @@
                     throw new ArgumentNullException("value");
                 }
 
-                Trace.WriteIf(Tracing.Enabled, string.Empty);
+                Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
                 this["directory"] = value;
             }
         }

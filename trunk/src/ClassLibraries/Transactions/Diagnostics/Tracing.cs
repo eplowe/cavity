@@ -4,11 +4,11 @@
 
     internal static class Tracing
     {
-        internal static bool Enabled
+        internal static TraceSwitch Is
         {
             get
             {
-                return new BooleanSwitch("Cavity.Transactions", string.Empty).Enabled;
+                return new TraceSwitch("Cavity.Transactions", string.Empty);
             }
         }
     }

@@ -11,7 +11,7 @@
     {
         private ConfigXml(FileInfo file)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Info = file;
             Watcher = new FileSystemWatcher(file.Directory.FullName, file.Name)
             {
@@ -35,13 +35,13 @@
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "This design is intentional.")]
         public static ConfigXml Load<T>(FileInfo file)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == file)
             {
                 throw new ArgumentNullException("file");
             }
 
-            Trace.WriteIf(Tracing.Enabled, "file.FullName=\"{0}\"".FormatWith(file.FullName));
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "file.FullName=\"{0}\"".FormatWith(file.FullName));
             return new ConfigXml(file)
             {
                 Value = file.Exists
@@ -53,28 +53,28 @@
         private void OnChanged(object source,
                                FileSystemEventArgs e)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
 
         private void OnCreated(object source,
                                FileSystemEventArgs e)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
 
         private void OnDeleted(object source,
                                FileSystemEventArgs e)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
 
         private void OnRenamed(object source,
                                RenamedEventArgs e)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
     }

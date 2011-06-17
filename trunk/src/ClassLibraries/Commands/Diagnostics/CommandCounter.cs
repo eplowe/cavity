@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Diagnostics
 {
+    using System;
     using System.Diagnostics;
 
     public static class CommandCounter
@@ -8,7 +9,22 @@
 
         private const string Counter = "Commands/sec";
 
-        private static readonly bool _exists = PerformanceCounterCategory.CounterExists(Counter, Category);
+        private static readonly bool _exists = CounterExists;
+
+        private static bool CounterExists
+        {
+            get
+            {
+                try
+                {
+                    return PerformanceCounterCategory.CounterExists(Counter, Category);
+                }
+                catch (InvalidOperationException)
+                {
+                    return false;
+                }
+            }
+        }
 
         public static void Increment()
         {

@@ -11,7 +11,7 @@
         protected DurableEnlistmentNotification(Guid resourceManager,
                                                 EnlistmentOptions enlistmentOptions)
         {
-            Trace.WriteIf(Tracing.Enabled, "resourceManager={0} enlistmentOptions={1}".FormatWith(resourceManager, enlistmentOptions.ToString("G")));
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "resourceManager={0} enlistmentOptions={1}".FormatWith(resourceManager, enlistmentOptions.ToString("G")));
             Operation = new Operation(resourceManager);
             if (null == Transaction.Current)
             {
@@ -27,12 +27,12 @@
         public virtual void OnTransactionCompleted(object sender,
                                                    TransactionEventArgs e)
         {
-            Trace.WriteIf(Tracing.Enabled, "sender=\"{0}\" e.Transaction.TransactionInformation.DistributedIdentifier={1}".FormatWith(sender, null == e ? Guid.Empty : e.Transaction.TransactionInformation.DistributedIdentifier));
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "sender=\"{0}\" e.Transaction.TransactionInformation.DistributedIdentifier={1}".FormatWith(sender, null == e ? Guid.Empty : e.Transaction.TransactionInformation.DistributedIdentifier));
         }
 
         public virtual void Commit(Enlistment enlistment)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null != enlistment)
             {
                 Operation.Done(true);
@@ -42,7 +42,7 @@
 
         public virtual void InDoubt(Enlistment enlistment)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null != enlistment)
             {
                 enlistment.Done();
@@ -52,7 +52,7 @@
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Don't let exceptions leak out of the Prepare method.")]
         public virtual void Prepare(PreparingEnlistment preparingEnlistment)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null != preparingEnlistment)
             {
                 try
@@ -61,12 +61,12 @@
                     if (ConfigureOperation() &&
                         Operation.Do())
                     {
-                        Trace.WriteIf(Tracing.Enabled, "preparingEnlistment.Prepared()");
+                        Trace.WriteIf(Tracing.Is.TraceVerbose, "preparingEnlistment.Prepared()");
                         preparingEnlistment.Prepared();
                         return;
                     }
 
-                    Trace.WriteIf(Tracing.Enabled, "preparingEnlistment.ForceRollback()");
+                    Trace.WriteIf(Tracing.Is.TraceVerbose, "preparingEnlistment.ForceRollback()");
                     preparingEnlistment.ForceRollback();
                 }
                 catch (Exception exception)
@@ -79,12 +79,12 @@
 
         public virtual void Rollback(Enlistment enlistment)
         {
-            Trace.WriteIf(Tracing.Enabled, string.Empty);
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null != enlistment)
             {
                 if (Operation.Undo())
                 {
-                    Trace.WriteIf(Tracing.Enabled, "Operation.Done(false)");
+                    Trace.WriteIf(Tracing.Is.TraceVerbose, "Operation.Done(false)");
                     Operation.Done(false);
                 }
 
