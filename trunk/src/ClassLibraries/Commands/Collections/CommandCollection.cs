@@ -3,7 +3,9 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Diagnostics;
+#if !NET20
     using System.Linq;
+#endif
     using System.Xml;
     using System.Xml.Schema;
     using System.Xml.Serialization;
@@ -14,7 +16,9 @@
     {
         public bool Do()
         {
+#if !NET20
             Trace.WriteIf(Tracing.Is.TraceVerbose, "Count={0}".FormatWith(Count));
+#endif
             if (0 == Count)
             {
                 return true;
@@ -34,12 +38,25 @@
 
         public bool Undo()
         {
+#if !NET20
             Trace.WriteIf(Tracing.Is.TraceVerbose, "Count={0}".FormatWith(Count));
+#endif
             if (0 == Count)
             {
                 return true;
             }
 
+#if NET20
+            for (var i = 0; i < Count; i++)
+            {
+                var command = this[Count - 1 - i];
+                CommandCounter.Increment();
+                if (!command.Revert())
+                {
+                    return false;
+                }
+            }
+#else
             foreach (var command in this.Reverse())
             {
                 CommandCounter.Increment();
@@ -48,6 +65,7 @@
                     return false;
                 }
             }
+#endif
 
             return true;
         }
@@ -87,8 +105,12 @@
                     {
                         throw new InvalidOperationException();
                     }
-
+                    
+#if NET20
+                    Add((ICommand)StringExtensionMethods.XmlDeserialize(reader.ReadInnerXml(), Type.GetType(attribute)));
+#else
                     Add((ICommand)reader.ReadInnerXml().XmlDeserialize(Type.GetType(attribute)));
+#endif
                 }
             }
         }
@@ -104,7 +126,11 @@
             {
                 writer.WriteStartElement("command");
                 writer.WriteAttributeString("type", item.GetType().AssemblyQualifiedName);
+#if NET20
+                writer.WriteRaw(ObjectExtensionMethods.XmlSerialize(item).CreateNavigator().OuterXml);
+#else
                 writer.WriteRaw(item.XmlSerialize().CreateNavigator().OuterXml);
+#endif
                 writer.WriteEndElement();
             }
         }

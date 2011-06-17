@@ -9,6 +9,7 @@
     <ServiceLocation>false</ServiceLocation>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
     <Compile Include="Collections\KeyStringDictionary.cs" />
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Configuration\DirectoryConfigurationElement.cs" />
@@ -21,7 +22,7 @@
     <Compile Include="Configuration\FileConfigurationElement.cs" />
     <Compile Include="Configuration\PathConfigurationSection.cs" />
     <Compile Include="Data\KeyStringPair.cs" />
-    <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
+    <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="IO\EncodedStringWriter.cs" />
     <Compile Include="IO\TempDirectory.cs" />
     <Compile Include="IO\TempFile.cs" />
@@ -32,8 +33,9 @@
     <Compile Include="AlphaDecimal.cs" />
     <Compile Include="CommentAttribute.cs" />
     <Compile Include="ComparableObject.cs" />
+    <Compile Include="Object.ExtensionMethods.cs" />
     <Compile Include="RelativeUri.cs" />
-    <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="String.ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Configuration\ConfigXml.cs" />
@@ -56,8 +58,6 @@
     <Compile Include="Char.ExtensionMethods.cs" />
     <Compile Include="DateTime.ExtensionMethods.cs" />
     <Compile Include="Generic.ExtensionMethods.cs" />
-    <Compile Include="Object.ExtensionMethods.cs" />
-    <Compile Include="String.ExtensionMethods.cs" />
     <Compile Include="ValueObject`1.cs" />
     <Compile Include="WhiteSpace.cs" />
   </ItemGroup>

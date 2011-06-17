@@ -18,14 +18,18 @@
         public FileMoveCommand(bool unidirectional)
             : base(unidirectional)
         {
+#if !NET20
             Trace.WriteIf(Tracing.Is.TraceVerbose, "unidirectional={0}".FormatWith(unidirectional));
+#endif
         }
 
         public FileMoveCommand(string source,
                                string destination)
             : base(false)
         {
+#if !NET20
             Trace.WriteIf(Tracing.Is.TraceVerbose, "source=\"{0}\" destination=\"{1}\"".FormatWith(source, destination));
+#endif
             Source = source;
             Destination = destination;
         }
@@ -35,7 +39,9 @@
                                bool unidirectional)
             : base(unidirectional)
         {
+#if !NET20
             Trace.WriteIf(Tracing.Is.TraceVerbose, "source=\"{0}\" destination=\"{1}\" unidirectional={2}".FormatWith(source, destination, unidirectional));
+#endif
             Source = source;
             Destination = destination;
         }
@@ -46,7 +52,9 @@
         {
             Source = null == source ? null : source.FullName;
             Destination = null == destination ? null : destination.FullName;
+#if !NET20
             Trace.WriteIf(Tracing.Is.TraceVerbose, "source.FullName=\"{0}\" destination.FullName=\"{1}\"".FormatWith(Source, Destination));
+#endif
         }
 
         public FileMoveCommand(FileInfo source,
@@ -56,7 +64,9 @@
         {
             Source = null == source ? null : source.FullName;
             Destination = null == destination ? null : destination.FullName;
+#if !NET20
             Trace.WriteIf(Tracing.Is.TraceVerbose, "source.FullName=\"{0}\" destination.FullName=\"{1}\" unidirectional={2}".FormatWith(Source, Destination, unidirectional));
+#endif
         }
 
         public string Destination { get; set; }
@@ -65,7 +75,9 @@
 
         public override bool Act()
         {
+#if !NET20
             Trace.WriteIf(Tracing.Is.TraceVerbose, "Source=\"{0}\" Destination=\"{1}\" Unidirectional={2}".FormatWith(Source, Destination, Unidirectional));
+#endif
             File.Move(Source, Destination);
             Undo = !Unidirectional;
 
@@ -87,7 +99,9 @@
 
         public override bool Revert()
         {
+#if !NET20
             Trace.WriteIf(Tracing.Is.TraceVerbose, "Undo={0} Destination=\"{1}\" Source=\"{2}\"".FormatWith(Undo, Destination, Source));
+#endif
             if (Undo)
             {
                 File.Move(Destination, Source);
