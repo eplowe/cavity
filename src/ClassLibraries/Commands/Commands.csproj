@@ -5,8 +5,9 @@
     <AssemblyName>Cavity.Commands</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  <ItemGroup>
     <Compile Include="Collections\CommandCollection.cs" />
+    <Compile Include="Diagnostics\CommandCounter.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="IO\DirectoryCreateCommand.cs" />
     <Compile Include="IO\FileCopyCommand.cs" />
@@ -14,14 +15,13 @@
     <Compile Include="Command.cs" />
     <Compile Include="ICommand.cs" />
   </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
       <Name>Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Diagnostics\CommandCounter.cs" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />

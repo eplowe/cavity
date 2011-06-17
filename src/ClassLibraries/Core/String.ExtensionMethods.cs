@@ -4,7 +4,9 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using System.Runtime.Serialization.Formatters.Soap;
     using System.Text;
     using System.Threading;
@@ -12,6 +14,7 @@
 
     public static class StringExtensionMethods
     {
+#if !NET20
         public static bool Contains(this string obj,
                                     string value,
                                     StringComparison comparisonType)
@@ -412,15 +415,25 @@
 
             return info.ToTitleCase(obj.ToLowerInvariant());
         }
+#endif
 
+#if NET20
+        public static T XmlDeserialize<T>(string xml)
+#else
         public static T XmlDeserialize<T>(this string xml)
+#endif
         {
             return (T)XmlDeserialize(xml, typeof(T));
         }
 
+#if NET20
+        public static object XmlDeserialize(string xml,
+                                            Type type)
+#else
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
         public static object XmlDeserialize(this string xml,
                                             Type type)
+#endif
         {
             if (null == xml)
             {

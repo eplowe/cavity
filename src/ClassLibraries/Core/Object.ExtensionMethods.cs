@@ -4,7 +4,9 @@ namespace Cavity
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using System.Runtime.Serialization.Formatters.Soap;
     using System.Text;
     using System.Xml;
@@ -16,6 +18,7 @@ namespace Cavity
 
     public static class ObjectExtensionMethods
     {
+#if !NET20
         public static bool EqualsOneOf<T>(this T obj,
                                           params T[] args)
         {
@@ -100,9 +103,14 @@ namespace Cavity
 
             return value.ToString();
         }
+#endif
 
+#if NET20
+        public static IXPathNavigable XmlSerialize(object value)
+#else
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
         public static IXPathNavigable XmlSerialize(this object value)
+#endif
         {
             if (null == value)
             {
