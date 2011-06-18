@@ -4,7 +4,9 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using System.Text;
     using Cavity.Collections;
     using Cavity.Properties;
@@ -32,7 +34,11 @@
                 throw new ArgumentNullException("columns");
             }
 
+#if NET20
+            if (0 == IEnumerableExtensionMethods.Count(columns))
+#else
             if (0 == columns.Count())
+#endif
             {
                 throw new ArgumentOutOfRangeException("columns");
             }
@@ -82,7 +88,11 @@
                 if (Columns.Count !=
                     entry.Count)
                 {
+#if NET20
+                    throw new FormatException(StringExtensionMethods.FormatWith(Resources.CsvStreamReader_ReadEntry_FormatException, LineNumber));
+#else
                     throw new FormatException(Resources.CsvStreamReader_ReadEntry_FormatException.FormatWith(LineNumber));
+#endif
                 }
 
                 for (var i = 0; i < Columns.Count; i++)

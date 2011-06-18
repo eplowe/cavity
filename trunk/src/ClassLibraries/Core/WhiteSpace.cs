@@ -4,7 +4,7 @@
 
     public static class WhiteSpace
     {
-        private static readonly HashSet<char> _characters = new HashSet<char>
+        private static readonly List<char> _characters = new List<char>
         {
             '\u0009',
             //// HT (Horizontal Tab)
@@ -70,7 +70,7 @@
             //// Zero Width No-Break Space
         };
 
-        public static HashSet<char> Characters
+        public static IList<char> Characters
         {
             get
             {

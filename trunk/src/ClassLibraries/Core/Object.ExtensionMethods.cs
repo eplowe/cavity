@@ -18,16 +18,48 @@ namespace Cavity
 
     public static class ObjectExtensionMethods
     {
-#if !NET20
+#if NET20
+        public static bool EqualsOneOf<T>(T obj,
+                                          params T[] args)
+#else
         public static bool EqualsOneOf<T>(this T obj,
                                           params T[] args)
+#endif
         {
+#if NET20
+            if (null == args)
+            {
+                throw new ArgumentNullException("args");
+            }
+
+            if (0 == args.Length)
+            {
+                return false;
+            }
+
+            foreach (var arg in args)
+            {
+                if (arg.Equals(obj))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+#else
             return args.Contains(obj);
+#endif
         }
 
+#if NET20
+        public static bool IsBoundedBy<T>(T obj,
+                                          T lower,
+                                          T upper)
+#else
         public static bool IsBoundedBy<T>(this T obj,
                                           T lower,
                                           T upper)
+#endif
             where T : IComparable<T>
         {
             if (ReferenceEquals(null, upper))
@@ -48,7 +80,11 @@ namespace Cavity
             return -1 < obj.CompareTo(lower) && 1 > obj.CompareTo(upper);
         }
 
+#if NET20
+        public static string ToXmlString(object value)
+#else
         public static string ToXmlString(this object value)
+#endif
         {
             if (null == value)
             {
@@ -71,10 +107,12 @@ namespace Cavity
                 return XmlConvert.ToString((DateTime)value, XmlDateTimeSerializationMode.Utc);
             }
 
+#if !NET20
             if (value is DateTimeOffset)
             {
                 return XmlConvert.ToString((DateTimeOffset)value);
             }
+#endif
 
             if (value is decimal)
             {
@@ -103,7 +141,6 @@ namespace Cavity
 
             return value.ToString();
         }
-#endif
 
 #if NET20
         public static IXPathNavigable XmlSerialize(object value)

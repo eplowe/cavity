@@ -4,9 +4,9 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
+    using Cavity.Collections;
     using Cavity.Collections.Generic;
     using Cavity.IO;
-    using Cavity.Linq;
     using Cavity.Models;
 
     public sealed class CsvLexiconStorage : IStoreLexicon

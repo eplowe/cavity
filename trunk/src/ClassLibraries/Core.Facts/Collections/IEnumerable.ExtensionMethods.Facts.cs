@@ -13,6 +13,42 @@
         }
 
         [Fact]
+        public void op_Concat_IEnumerableStringEmpty_char()
+        {
+            var array = new string[]
+            {
+            };
+
+            var expected = string.Empty;
+            var actual = array.Concat(',');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Concat_IEnumerableStringNull_char()
+        {
+            string expected = null;
+            var actual = (null as IEnumerable<string>).Concat(',');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Concat_IEnumerableString_char()
+        {
+            var array = new[]
+            {
+                "a", "b", "c"
+            };
+
+            const string expected = "a,b,c";
+            var actual = array.Concat(',');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_IsEmpty_IEnumerable()
         {
             var obj = new List<string>

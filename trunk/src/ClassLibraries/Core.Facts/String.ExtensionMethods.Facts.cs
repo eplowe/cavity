@@ -25,6 +25,54 @@
         }
 
         [Fact]
+        public void op_IsNullOrEmpty_stringNull()
+        {
+            Assert.True((null as string).IsNullOrEmpty());
+        }
+
+        [Fact]
+        public void op_IsNullOrEmpty_stringEmpty()
+        {
+            Assert.True(string.Empty.IsNullOrEmpty());
+        }
+
+        [Fact]
+        public void op_IsNullOrEmpty_stringWhiteSpace()
+        {
+            Assert.False("     ".IsNullOrEmpty());
+        }
+
+        [Fact]
+        public void op_IsNullOrEmpty_string()
+        {
+            Assert.False(" example ".IsNullOrEmpty());
+        }
+
+        [Fact]
+        public void op_IsNullOrWhiteSpace_stringNull()
+        {
+            Assert.True((null as string).IsNullOrWhiteSpace());
+        }
+
+        [Fact]
+        public void op_IsNullOrWhiteSpace_stringEmpty()
+        {
+            Assert.True(string.Empty.IsNullOrWhiteSpace());
+        }
+
+        [Fact]
+        public void op_IsNullOrWhiteSpace_stringWhiteSpace()
+        {
+            Assert.True("     ".IsNullOrWhiteSpace());
+        }
+
+        [Fact]
+        public void op_IsNullOrWhiteSpace_string()
+        {
+            Assert.False(" example ".IsNullOrWhiteSpace());
+        }
+
+        [Fact]
         public void op_Contains_string_StringComparison()
         {
             Assert.True("abc".Contains("B", StringComparison.OrdinalIgnoreCase));
@@ -769,9 +817,15 @@
         }
 
         [Fact]
+        public void op_SameIndexesOfEach_string_charsEmpty()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => "Example".SameIndexesOfEach());
+        }
+
+        [Fact]
         public void op_SameIndexesOfEach_string_charsNull()
         {
-            Assert.True("Example".SameIndexesOfEach());
+            Assert.Throws<ArgumentNullException>(() => "Example".SameIndexesOfEach(null));
         }
 
         [Fact]
@@ -833,9 +887,15 @@
         }
 
         [Fact]
+        public void op_StartsOrEndsWith_string_charsEmpty()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => "Abba".StartsOrEndsWith());
+        }
+
+        [Fact]
         public void op_StartsOrEndsWith_string_charsNull()
         {
-            Assert.False("Abba".StartsOrEndsWith());
+            Assert.Throws<ArgumentNullException>(() => "Abba".StartsOrEndsWith(null));
         }
 
         [Fact]

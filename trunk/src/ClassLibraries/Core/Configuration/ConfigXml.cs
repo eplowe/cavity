@@ -41,12 +41,20 @@
                 throw new ArgumentNullException("file");
             }
 
+#if !NET20
             Trace.WriteIf(Tracing.Is.TraceVerbose, "file.FullName=\"{0}\"".FormatWith(file.FullName));
+#endif
             return new ConfigXml(file)
             {
+#if NET20
+                Value = file.Exists
+                            ? StringExtensionMethods.XmlDeserialize<T>(FileInfoExtensionMethods.ReadToEnd(file))
+                            : default(T)
+#else
                 Value = file.Exists
                             ? file.ReadToEnd().XmlDeserialize<T>()
                             : default(T)
+#endif
             };
         }
 

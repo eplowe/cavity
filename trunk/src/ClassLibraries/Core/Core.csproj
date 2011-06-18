@@ -11,7 +11,9 @@
   <ItemGroup>
     <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
     <Compile Include="Collections\KeyStringDictionary.cs" />
+    <Compile Include="Collections\IEnumerable.ExtensionMethods.cs" />
     <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configuration\ConfigXml.cs" />
     <Compile Include="Configuration\DirectoryConfigurationElement.cs" />
     <Compile Include="Configuration\DirectoryConfigurationElementCollection.cs" />
     <Compile Include="Configuration\DirectoryInfoConverter.cs" />
@@ -21,45 +23,42 @@
     <Compile Include="Configuration\FileConfigurationElementCollection.cs" />
     <Compile Include="Configuration\FileConfigurationElement.cs" />
     <Compile Include="Configuration\PathConfigurationSection.cs" />
-    <Compile Include="Data\KeyStringPair.cs" />
-    <Compile Include="Diagnostics\Tracing.cs" />
-    <Compile Include="IO\EncodedStringWriter.cs" />
-    <Compile Include="IO\TempDirectory.cs" />
-    <Compile Include="IO\TempFile.cs" />
-    <Compile Include="Security\Cryptography\MD5Hash.cs" />
-    <Compile Include="Xml\IXmlSerializerNamespaces.cs" />
-    <Compile Include="Xml\XmlNamespace.cs" />
-    <Compile Include="AbsoluteUri.cs" />
-    <Compile Include="AlphaDecimal.cs" />
-    <Compile Include="CommentAttribute.cs" />
-    <Compile Include="ComparableObject.cs" />
-    <Compile Include="Object.ExtensionMethods.cs" />
-    <Compile Include="RelativeUri.cs" />
-    <Compile Include="String.ExtensionMethods.cs" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Compile Include="Configuration\ConfigXml.cs" />
-    <Compile Include="IO\DirectoryInfo.ExtensionMethods.cs" />
-    <Compile Include="Collections\IEnumerable.ExtensionMethods.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.cs" />
     <Compile Include="Data\DataCollection.cs" />
+    <Compile Include="Data\KeyStringPair.cs" />
+    <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="IO\DirectoryInfo.ExtensionMethods.cs" />
+    <Compile Include="IO\EncodedStringWriter.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
     <Compile Include="IO\CsvFile.cs" />
     <Compile Include="IO\CsvStreamReader.cs" />
     <Compile Include="IO\StreamWriterDictionary.cs" />
-    <Compile Include="Linq\Enumerable.cs" />
+    <Compile Include="IO\TempDirectory.cs" />
+    <Compile Include="IO\TempFile.cs" />
+    <Compile Include="Security\Cryptography\MD5Hash.cs" />
+    <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.cs" />
+    <Compile Include="Xml\IXmlSerializerNamespaces.cs" />
+    <Compile Include="Xml\XmlNamespace.cs" />
+    <Compile Include="AbsoluteUri.cs" />
+    <Compile Include="AlphaDecimal.cs" />
+    <Compile Include="Char.ExtensionMethods.cs" />
+    <Compile Include="DateTime.ExtensionMethods.cs" />
+    <Compile Include="CommentAttribute.cs" />
+    <Compile Include="ComparableObject.cs" />
+    <Compile Include="Generic.ExtensionMethods.cs" />
+    <Compile Include="Object.ExtensionMethods.cs" />
+    <Compile Include="RelativeUri.cs" />
+    <Compile Include="String.ExtensionMethods.cs" />
+    <Compile Include="WhiteSpace.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Net\CacheControl.cs" />
     <Compile Include="Net\EntityTag.cs" />
     <Compile Include="Net\HttpHeader.cs" />
     <Compile Include="Net\IHttpHeader.cs" />
     <Compile Include="Net\IWebRequest.cs" />
     <Compile Include="Net\Token.cs" />
-    <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.cs" />
-    <Compile Include="Char.ExtensionMethods.cs" />
-    <Compile Include="DateTime.ExtensionMethods.cs" />
-    <Compile Include="Generic.ExtensionMethods.cs" />
     <Compile Include="ValueObject`1.cs" />
-    <Compile Include="WhiteSpace.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -73,6 +72,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Linq\" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />

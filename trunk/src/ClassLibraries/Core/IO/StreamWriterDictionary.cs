@@ -4,7 +4,9 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using System.Runtime.Serialization;
     using System.Security.Permissions;
     using System.Text;
@@ -108,8 +110,19 @@
         {
             if (!Disposed && disposing)
             {
+#if NET20
+                foreach (var item in this)
+#else
                 foreach (var item in this.Where(x => null != x.Value))
+#endif
                 {
+#if NET20
+                    if (null == item.Value)
+                    {
+                        continue;
+                    }
+#endif
+
                     item.Value.Dispose();
                 }
             }

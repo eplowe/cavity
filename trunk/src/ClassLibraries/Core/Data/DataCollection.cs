@@ -5,7 +5,9 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
+#if !NET20
     using System.Linq;
+#endif
     using System.Text;
     using System.Xml;
     using System.Xml.Schema;
@@ -48,8 +50,19 @@
             {
                 StringBuilder buffer = null;
 
+#if NET20
+                foreach (var datum in this)
+#else
                 foreach (var datum in this.Where(datum => 0 == string.CompareOrdinal(name, datum.Key)))
+#endif
                 {
+#if NET20
+                    if (0 != string.CompareOrdinal(name, datum.Key))
+                    {
+                        continue;
+                    }
+#endif
+
                     if (null == buffer)
                     {
                         buffer = new StringBuilder();
@@ -70,8 +83,19 @@
             {
                 var removals = new Collection<KeyStringPair>();
 
+#if NET20
+                foreach (var datum in Items)
+#else
                 foreach (var datum in Items.Where(datum => 0 == string.CompareOrdinal(name, datum.Key)))
+#endif
                 {
+#if NET20
+                    if (0 != string.CompareOrdinal(name, datum.Key))
+                    {
+                        continue;
+                    }
+#endif
+
                     removals.Add(datum);
                 }
 
@@ -133,7 +157,11 @@
                     continue;
                 }
 
+#if NET20
+                foreach (var part in StringExtensionMethods.Split(value, ',', StringSplitOptions.RemoveEmptyEntries))
+#else
                 foreach (var part in value.Split(',', StringSplitOptions.RemoveEmptyEntries))
+#endif
                 {
                     result.Add(form.Keys[i], part);
                 }
@@ -179,7 +207,11 @@
                 return;
             }
 
+#if NET20
+            foreach (var part in StringExtensionMethods.Split(item.Value, ',', StringSplitOptions.None))
+#else
             foreach (var part in item.Value.Split(',', StringSplitOptions.None))
+#endif
             {
                 Items.Add(new KeyStringPair(item.Key, part));
             }
@@ -187,15 +219,40 @@
 
         public bool Contains(string name)
         {
+#if NET20
+            foreach (var item in Items)
+            {
+                if (item.Key.Equals(name, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+#else
             return 0 != Items.Where(x => x.Key.Equals(name, StringComparison.OrdinalIgnoreCase))
                             .Count();
+#endif
         }
 
         public bool Contains(string name,
                              string value)
         {
+#if NET20
+            foreach (var item in Items)
+            {
+                if (item.Key.Equals(name, StringComparison.OrdinalIgnoreCase) &&
+                    item.Value.Equals(value, StringComparison.Ordinal))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+#else
             return 0 != Items.Where(x => x.Key.Equals(name, StringComparison.OrdinalIgnoreCase) && x.Value.Equals(value, StringComparison.Ordinal))
                             .Count();
+#endif
         }
 
         public override bool Equals(object obj)
@@ -216,9 +273,26 @@
                 return false;
             }
 
+#if NET20
+            if (Items.Count != cast.Items.Count)
+            {
+                return false;
+            }
+
+            foreach (var item in Items)
+            {
+                if (!cast.Items.Contains(item))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+#else
             return Items.Count == cast.Items.Count
                        ? Items.All(datum => cast.Items.Contains(datum))
                        : false;
+#endif
         }
 
         public override int GetHashCode()
@@ -228,7 +302,11 @@
 
         public override string ToString()
         {
+#if NET20
+            return ObjectExtensionMethods.XmlSerialize(this).CreateNavigator().OuterXml;
+#else
             return this.XmlSerialize().CreateNavigator().OuterXml;
+#endif
         }
 
         IEnumerator IEnumerable.GetEnumerator()
