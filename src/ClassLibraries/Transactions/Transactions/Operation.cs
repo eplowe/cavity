@@ -9,7 +9,7 @@
     using Cavity.Diagnostics;
 
     [XmlRoot("operation")]
-    public sealed class Operation
+    public class Operation
     {
         public Operation()
         {
@@ -29,12 +29,13 @@
         public CommandCollection Commands { get; set; }
 
         [XmlIgnore]
-        public EnlistmentIdentity Identity { get; private set; }
+        public EnlistmentIdentity Identity { get; protected set; }
 
         [XmlAttribute("info")]
         public string Info { get; set; }
 
-        public bool Do()
+        [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Do", Justification = "This naming is intentional.")]
+        public virtual bool Do()
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, "Identity.ResourceManager={0}, Identity.Instance={1}".FormatWith(Identity.ResourceManager, Identity.Instance));
             if (null == Info)
@@ -60,7 +61,7 @@
             return true;
         }
 
-        public void Done(bool success)
+        public virtual void Done(bool success)
         {
             if (null != Info)
             {
@@ -70,7 +71,7 @@
             Recovery.Exclude(this, success);
         }
 
-        public bool Undo()
+        public virtual bool Undo()
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, "Identity.ResourceManager={0}, Identity.Instance={1}".FormatWith(Identity.ResourceManager, Identity.Instance));
             if (null == Info)

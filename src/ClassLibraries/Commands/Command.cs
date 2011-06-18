@@ -23,7 +23,7 @@
 
         public abstract bool Revert();
 
-        public XmlSchema GetSchema()
+        public virtual XmlSchema GetSchema()
         {
             throw new NotSupportedException();
         }

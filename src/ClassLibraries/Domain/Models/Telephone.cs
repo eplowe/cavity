@@ -11,6 +11,7 @@
     {
         private Telephone()
         {
+            // TODO: convert into a value type
         }
 
         private Telephone(string number)

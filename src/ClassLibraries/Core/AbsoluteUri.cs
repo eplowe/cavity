@@ -1,17 +1,16 @@
 ﻿namespace Cavity
 {
     using System;
-    using System.IO;
-    using System.Runtime.Serialization;
 #if !NET20
+    using System.IO;
 #endif
-
+    using System.Runtime.Serialization;
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
 
     [Serializable]
-    public sealed class AbsoluteUri : IComparable, IComparable<AbsoluteUri>, IEquatable<AbsoluteUri>, ISerializable
+    public class AbsoluteUri : IComparable, IComparable<AbsoluteUri>, IEquatable<AbsoluteUri>, ISerializable
     {
         private Uri _value;
 
@@ -25,13 +24,16 @@
             Value = value;
         }
 
-        private AbsoluteUri(SerializationInfo info,
+        protected AbsoluteUri(SerializationInfo info,
                             StreamingContext context)
         {
-            _value = new Uri(info.GetString("_value"), UriKind.Absolute);
+            if (null != info)
+            {
+                _value = new Uri(info.GetString("_value"), UriKind.Absolute);
+            }
         }
 
-        private Uri Value
+        protected Uri Value
         {
             get
             {
@@ -138,7 +140,7 @@
         }
 
 #if !NET20
-        public FileSystemInfo ToPath(FileSystemInfo root)
+        public virtual FileSystemInfo ToPath(FileSystemInfo root)
         {
             if (null == root)
             {
@@ -170,7 +172,7 @@
         }
 #endif
 
-        public int CompareTo(object obj)
+        public virtual int CompareTo(object obj)
         {
             if (null == obj)
             {
@@ -186,14 +188,14 @@
             return string.CompareOrdinal(Value.AbsoluteUri, cast.Value.AbsoluteUri);
         }
 
-        public int CompareTo(AbsoluteUri other)
+        public virtual int CompareTo(AbsoluteUri other)
         {
             return null == other
                        ? 1
                        : string.CompareOrdinal(Value.AbsoluteUri, other.Value.AbsoluteUri);
         }
 
-        public bool Equals(AbsoluteUri other)
+        public virtual bool Equals(AbsoluteUri other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -208,9 +210,8 @@
 #if NET20 || NET35
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
-
-        void ISerializable.GetObjectData(SerializationInfo info,
-                                         StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info,
+                                          StreamingContext context)
         {
             if (null == info)
             {

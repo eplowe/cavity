@@ -3,6 +3,7 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
 #if !NET20
     using System.Linq;
 #endif
@@ -12,9 +13,10 @@
     using Cavity.Diagnostics;
 
     [XmlRoot("commands")]
-    public sealed class CommandCollection : Collection<ICommand>, IXmlSerializable
+    public class CommandCollection : Collection<ICommand>, IXmlSerializable
     {
-        public bool Do()
+        [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Do", Justification = "This naming is intentional.")]
+        public virtual bool Do()
         {
 #if !NET20
             Trace.WriteIf(Tracing.Is.TraceVerbose, "Count={0}".FormatWith(Count));
@@ -36,46 +38,12 @@
             return true;
         }
 
-        public bool Undo()
-        {
-#if !NET20
-            Trace.WriteIf(Tracing.Is.TraceVerbose, "Count={0}".FormatWith(Count));
-#endif
-            if (0 == Count)
-            {
-                return true;
-            }
-
-#if NET20
-            for (var i = 0; i < Count; i++)
-            {
-                var command = this[Count - 1 - i];
-                CommandCounter.Increment();
-                if (!command.Revert())
-                {
-                    return false;
-                }
-            }
-#else
-            foreach (var command in this.Reverse())
-            {
-                CommandCounter.Increment();
-                if (!command.Revert())
-                {
-                    return false;
-                }
-            }
-#endif
-
-            return true;
-        }
-
-        XmlSchema IXmlSerializable.GetSchema()
+        public virtual XmlSchema GetSchema()
         {
             throw new NotSupportedException();
         }
 
-        void IXmlSerializable.ReadXml(XmlReader reader)
+        public virtual void ReadXml(XmlReader reader)
         {
             if (null == reader)
             {
@@ -115,7 +83,41 @@
             }
         }
 
-        void IXmlSerializable.WriteXml(XmlWriter writer)
+        public virtual bool Undo()
+        {
+#if !NET20
+            Trace.WriteIf(Tracing.Is.TraceVerbose, "Count={0}".FormatWith(Count));
+#endif
+            if (0 == Count)
+            {
+                return true;
+            }
+
+#if NET20
+            for (var i = 0; i < Count; i++)
+            {
+                var command = this[Count - 1 - i];
+                CommandCounter.Increment();
+                if (!command.Revert())
+                {
+                    return false;
+                }
+            }
+#else
+            foreach (var command in this.Reverse())
+            {
+                CommandCounter.Increment();
+                if (!command.Revert())
+                {
+                    return false;
+                }
+            }
+#endif
+
+            return true;
+        }
+
+        public virtual void WriteXml(XmlWriter writer)
         {
             if (null == writer)
             {

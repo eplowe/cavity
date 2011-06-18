@@ -3,7 +3,7 @@
     using System;
     using System.IO;
 
-    public sealed class TempFile : IDisposable
+    public class TempFile : IDisposable
     {
         public TempFile()
         {
@@ -25,7 +25,7 @@
             Dispose(false);
         }
 
-        public FileInfo Info { get; private set; }
+        public FileInfo Info { get; protected set; }
 
         private bool Disposed { get; set; }
 
@@ -35,7 +35,7 @@
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (!Disposed && disposing)
             {

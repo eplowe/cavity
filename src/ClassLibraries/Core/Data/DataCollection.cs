@@ -14,7 +14,7 @@
     using System.Xml.Serialization;
 
     [XmlRoot("data")]
-    public sealed class DataCollection : IEnumerable<KeyStringPair>, IXmlSerializable
+    public class DataCollection : IEnumerable<KeyStringPair>, IXmlSerializable
     {
         public DataCollection()
         {
@@ -31,7 +31,7 @@
 
         private Collection<KeyStringPair> Items { get; set; }
 
-        public KeyStringPair this[int index]
+        public virtual KeyStringPair this[int index]
         {
             get
             {
@@ -44,7 +44,7 @@
             }
         }
 
-        public string this[string name]
+        public virtual string this[string name]
         {
             get
             {
@@ -170,7 +170,7 @@
             return result;
         }
 
-        public void Add(DataCollection data)
+        public virtual void Add(DataCollection data)
         {
             if (null == data)
             {
@@ -183,8 +183,8 @@
             }
         }
 
-        public void Add(string name,
-                        string value)
+        public virtual void Add(string name,
+                                string value)
         {
             if (null == name)
             {
@@ -199,7 +199,7 @@
             Add(new KeyStringPair(name, value));
         }
 
-        public void Add(KeyStringPair item)
+        public virtual void Add(KeyStringPair item)
         {
             if (null == item.Value)
             {
@@ -217,7 +217,7 @@
             }
         }
 
-        public bool Contains(string name)
+        public virtual bool Contains(string name)
         {
 #if NET20
             foreach (var item in Items)
@@ -235,8 +235,8 @@
 #endif
         }
 
-        public bool Contains(string name,
-                             string value)
+        public virtual bool Contains(string name,
+                                     string value)
         {
 #if NET20
             foreach (var item in Items)
@@ -295,36 +295,22 @@
 #endif
         }
 
+        public virtual IEnumerator<KeyStringPair> GetEnumerator()
+        {
+            return (Items as IEnumerable<KeyStringPair>).GetEnumerator();
+        }
+
         public override int GetHashCode()
         {
             return ToString().GetHashCode();
         }
 
-        public override string ToString()
-        {
-#if NET20
-            return ObjectExtensionMethods.XmlSerialize(this).CreateNavigator().OuterXml;
-#else
-            return this.XmlSerialize().CreateNavigator().OuterXml;
-#endif
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return (Items as IEnumerable).GetEnumerator();
-        }
-
-        IEnumerator<KeyStringPair> IEnumerable<KeyStringPair>.GetEnumerator()
-        {
-            return (Items as IEnumerable<KeyStringPair>).GetEnumerator();
-        }
-
-        XmlSchema IXmlSerializable.GetSchema()
+        public virtual XmlSchema GetSchema()
         {
             throw new NotSupportedException();
         }
 
-        void IXmlSerializable.ReadXml(XmlReader reader)
+        public virtual void ReadXml(XmlReader reader)
         {
             if (null == reader)
             {
@@ -354,7 +340,16 @@
             }
         }
 
-        void IXmlSerializable.WriteXml(XmlWriter writer)
+        public override string ToString()
+        {
+#if NET20
+            return ObjectExtensionMethods.XmlSerialize(this).CreateNavigator().OuterXml;
+#else
+            return this.XmlSerialize().CreateNavigator().OuterXml;
+#endif
+        }
+
+        public virtual void WriteXml(XmlWriter writer)
         {
             if (null == writer)
             {
@@ -368,6 +363,11 @@
                 writer.WriteString(datum.Value);
                 writer.WriteEndElement();
             }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

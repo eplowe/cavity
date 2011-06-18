@@ -6,7 +6,7 @@
     using System.Globalization;
     using log4net;
 
-    public sealed class Log4NetTraceListener : TraceListener
+    public class Log4NetTraceListener : TraceListener
     {
         public override void Fail(string message)
         {

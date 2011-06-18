@@ -12,7 +12,7 @@
     using System.Text;
 
     [Serializable]
-    public sealed class StreamWriterDictionary : Dictionary<string, StreamWriter>, IDisposable
+    public class StreamWriterDictionary : Dictionary<string, StreamWriter>, IDisposable
     {
         public StreamWriterDictionary()
         {
@@ -27,7 +27,7 @@
             FirstLine = firstLine;
         }
 
-        private StreamWriterDictionary(SerializationInfo info,
+        protected StreamWriterDictionary(SerializationInfo info,
                                        StreamingContext context)
             : base(info, context)
         {
@@ -55,17 +55,17 @@
             base.GetObjectData(info, context);
         }
 
-        public StreamWriter Item(FileInfo file)
+        public virtual StreamWriter Item(FileInfo file)
         {
             return Item(file, FirstLine);
         }
 
-        public StreamWriter Item(string fileName)
+        public virtual StreamWriter Item(string fileName)
         {
             return Item(fileName, Mode, Access, Share);
         }
 
-        public StreamWriter Item(string fileName,
+        public virtual StreamWriter Item(string fileName,
                                  FileMode mode,
                                  FileAccess access,
                                  FileShare share)
@@ -74,7 +74,7 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Only files are supported.")]
-        public StreamWriter Item(FileInfo file,
+        public virtual StreamWriter Item(FileInfo file,
                                  string firstLine)
         {
             if (null == file)
@@ -85,13 +85,13 @@
             return Item(file.FullName, firstLine, Mode, Access, Share);
         }
 
-        public StreamWriter Item(string fileName,
+        public virtual StreamWriter Item(string fileName,
                                  string firstLine)
         {
             return Item(fileName, firstLine, Mode, Access, Share);
         }
 
-        public StreamWriter Item(string fileName,
+        public virtual StreamWriter Item(string fileName,
                                  string firstLine,
                                  FileMode mode,
                                  FileAccess access,
@@ -106,7 +106,7 @@
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (!Disposed && disposing)
             {

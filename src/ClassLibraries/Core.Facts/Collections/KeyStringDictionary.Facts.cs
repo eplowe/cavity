@@ -12,7 +12,7 @@
             Assert.True(new TypeExpectations<KeyStringDictionary>()
                             .DerivesFrom<Dictionary<string, string>>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .HasDefaultConstructor()
                             .Serializable()
                             .Result);

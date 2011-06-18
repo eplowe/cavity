@@ -15,7 +15,7 @@
             Assert.True(new TypeExpectations<LexiconTidy>()
                             .DerivesFrom<Task>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .HasDefaultConstructor()
                             .IsNotDecorated()
                             .Result);

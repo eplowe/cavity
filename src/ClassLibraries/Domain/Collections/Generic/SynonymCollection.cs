@@ -3,12 +3,13 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 #if !NET20
     using System.Linq;
 #endif
     using Cavity.Data;
 
-    public sealed class SynonymCollection : IEnumerable<string>
+    public class SynonymCollection : IEnumerable<string>
     {
         private INormalizationComparer _comparer;
 
@@ -20,7 +21,7 @@
 
         private SynonymCollection()
         {
-            Items = new List<KeyStringPair>();
+            Items = new Collection<KeyStringPair>();
         }
 
         public int Count
@@ -31,7 +32,7 @@
             }
         }
 
-        private INormalizationComparer Comparer
+        protected INormalizationComparer Comparer
         {
             get
             {
@@ -49,19 +50,19 @@
             }
         }
 
-        private List<KeyStringPair> Items { get; set; }
+        protected Collection<KeyStringPair> Items { get; private set; }
 
-        public void Add(string value)
+        public virtual void Add(string value)
         {
             Items.Add(new KeyStringPair(value, Comparer.Normalize(value)));
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             Items.Clear();
         }
 
-        public bool Contains(string value)
+        public virtual bool Contains(string value)
         {
 #if NET20
             foreach (var item in Items)
@@ -78,14 +79,7 @@
 #endif
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            IEnumerable<string> obj = this;
-
-            return obj.GetEnumerator();
-        }
-
-        IEnumerator<string> IEnumerable<string>.GetEnumerator()
+        public virtual IEnumerator<string> GetEnumerator()
         {
 #if NET20
             foreach (var item in Items)
@@ -95,6 +89,11 @@
 #else
             return Items.Select(item => item.Key).GetEnumerator();
 #endif
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

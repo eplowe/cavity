@@ -14,7 +14,7 @@
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
 
-    public sealed class LexiconTidy : Task
+    public class LexiconTidy : Task
     {
         [Required]
         public ITaskItem[] Paths { get; set; }
@@ -22,6 +22,26 @@
         public override bool Execute()
         {
             return Execute(Paths);
+        }
+
+        protected virtual bool Execute(FileInfo file)
+        {
+            if (null != file)
+            {
+                file.Refresh();
+                if (file.Exists)
+                {
+                    var lexicon = new CsvLexiconStorage(file).Load(NormalizationComparer.OrdinalIgnoreCase);
+                    file.Delete();
+                    lexicon.Save();
+                    Log.LogMessage(file.FullName);
+                    return true;
+                }
+
+                Log.LogWarning(file.FullName);
+            }
+
+            return false;
         }
 
         private bool Execute(IEnumerable<ITaskItem> paths)
@@ -76,22 +96,6 @@
         private bool Execute(ITaskItem path)
         {
             return Execute(new FileInfo(path.ItemSpec));
-        }
-
-        private bool Execute(FileInfo file)
-        {
-            file.Refresh();
-            if (file.Exists)
-            {
-                var lexicon = new CsvLexiconStorage(file).Load(NormalizationComparer.OrdinalIgnoreCase);
-                file.Delete();
-                lexicon.Save();
-                Log.LogMessage(file.FullName);
-                return true;
-            }
-
-            Log.LogWarning(file.FullName);
-            return false;
         }
     }
 }

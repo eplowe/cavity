@@ -12,7 +12,7 @@
             Assert.True(new TypeExpectations<TempDirectory>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .HasDefaultConstructor()
                             .IsNotDecorated()
                             .Implements<IDisposable>()

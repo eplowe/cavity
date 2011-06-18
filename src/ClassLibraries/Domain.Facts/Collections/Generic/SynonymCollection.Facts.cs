@@ -13,7 +13,7 @@
             Assert.True(new TypeExpectations<SynonymCollection>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Implements<IEnumerable<string>>()

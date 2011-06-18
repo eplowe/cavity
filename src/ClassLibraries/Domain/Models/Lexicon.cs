@@ -11,7 +11,7 @@
     using Cavity.Collections.Generic;
     using Cavity.Data;
 
-    public sealed class Lexicon
+    public class Lexicon
     {
         private readonly List<LexicalItem> _items;
 
@@ -41,7 +41,7 @@
 
         public IStoreLexicon Storage { get; set; }
 
-        private INormalizationComparer Comparer
+        protected INormalizationComparer Comparer
         {
             get
             {
@@ -59,7 +59,7 @@
             }
         }
 
-        public LexicalItem this[string spelling]
+        public virtual LexicalItem this[string spelling]
         {
             get
             {
@@ -84,7 +84,7 @@
             }
         }
 
-        public LexicalItem Add(string value)
+        public virtual LexicalItem Add(string value)
         {
             var item = this[value];
             if (null != item)
@@ -99,7 +99,7 @@
             return item;
         }
 
-        public bool Contains(string value)
+        public virtual bool Contains(string value)
         {
 #if NET20
             foreach (var item in Items)
@@ -116,12 +116,12 @@
 #endif
         }
 
-        public void Delete()
+        public virtual void Delete()
         {
             Delete(Storage);
         }
 
-        public void Delete(IStoreLexicon storage)
+        public virtual void Delete(IStoreLexicon storage)
         {
             if (null == storage)
             {
@@ -133,21 +133,21 @@
         }
 
 #if !NET20
-        public void Invoke(Func<string, string> function)
+        public virtual void Invoke(Func<string, string> func)
         {
-            if (null == function)
+            if (null == func)
             {
-                throw new ArgumentNullException("function");
+                throw new ArgumentNullException("func");
             }
 
             foreach (var item in Items)
             {
-                item.Invoke(function);
+                item.Invoke(func);
             }
         }
 
 #endif
-        public void Remove(IEnumerable<LexicalItem> items)
+        public virtual void Remove(IEnumerable<LexicalItem> items)
         {
             if (null == items)
             {
@@ -178,12 +178,12 @@
             }
         }
 
-        public void Save()
+        public virtual void Save()
         {
             Save(Storage);
         }
 
-        public void Save(IStoreLexicon storage)
+        public virtual void Save(IStoreLexicon storage)
         {
             if (null == storage)
             {
@@ -194,7 +194,7 @@
             Storage.Save(this);
         }
 
-        public string ToCanonicalForm(string value)
+        public virtual string ToCanonicalForm(string value)
         {
 #if NET20
             foreach (var item in Items)

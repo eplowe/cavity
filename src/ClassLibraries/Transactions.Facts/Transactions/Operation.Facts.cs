@@ -17,7 +17,7 @@
 ////            Assert.True(new TypeExpectations<Operation>()
 ////                            .DerivesFrom<object>()
 ////                            .IsConcreteClass()
-////                            .IsSealed()
+////                            .IsUnsealed()
 ////                            .HasDefaultConstructor()
 ////                            .XmlRoot("operation")
 ////                            .Result);

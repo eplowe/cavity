@@ -16,7 +16,7 @@
             Assert.True(new TypeExpectations<Lexicon>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .Result);
         }

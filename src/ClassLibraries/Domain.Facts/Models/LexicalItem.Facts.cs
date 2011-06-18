@@ -13,7 +13,7 @@
             Assert.True(new TypeExpectations<LexicalItem>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Result);

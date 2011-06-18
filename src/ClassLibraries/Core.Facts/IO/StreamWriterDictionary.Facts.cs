@@ -16,7 +16,7 @@
             Assert.True(new TypeExpectations<StreamWriterDictionary>()
                             .DerivesFrom<Dictionary<string, StreamWriter>>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .HasDefaultConstructor()
                             .Serializable()
                             .Implements<IDisposable>()

@@ -17,10 +17,22 @@
             Assert.True(new TypeExpectations<List>()
                             .DerivesFrom<List<string>>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .HasDefaultConstructor()
                             .XmlRoot("list")
                             .Result);
+        }
+
+        [Fact]
+        public void config()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.xml");
+                file.Create("<list><item>example</item></list>");
+
+                Assert.Equal("example", Config.Xml<List>(file).First());
+            }
         }
 
         [Fact]
@@ -48,6 +60,18 @@
         }
 
         [Fact]
+        public void op_AsEnumerable_ofString()
+        {
+            const string expected = "example";
+            var obj = new List
+            {
+                expected
+            };
+
+            Assert.Equal(expected, obj.AsEnumerable().First());
+        }
+
+        [Fact]
         public void op_GetSchema()
         {
             Assert.Throws<NotSupportedException>(() => (new List() as IXmlSerializable).GetSchema());
@@ -60,18 +84,18 @@
         }
 
         [Fact]
-        public void op_To_whenBoolean()
+        public void op_ToEnumerable_ofBoolean()
         {
             var obj = new List
             {
                 "true"
             };
 
-            Assert.True(obj.To<bool>().First());
+            Assert.True(obj.ToEnumerable<bool>().First());
         }
 
         [Fact]
-        public void op_To_whenDateTime()
+        public void op_ToEnumerable_ofDateTime()
         {
             var expected = DateTime.UtcNow;
             var obj = new List
@@ -79,18 +103,18 @@
                 expected.ToXmlString()
             };
 
-            Assert.Equal(expected, obj.To<DateTime>().First().ToUniversalTime());
+            Assert.Equal(expected, obj.ToEnumerable<DateTime>().First().ToUniversalTime());
         }
 
         [Fact]
-        public void op_To_whenInt32()
+        public void op_ToEnumerable_ofInt32()
         {
             var obj = new List
             {
                 "123"
             };
 
-            Assert.Equal(123, obj.To<int>().First());
+            Assert.Equal(123, obj.ToEnumerable<int>().First());
         }
 
         [Fact]
@@ -108,18 +132,6 @@
             };
 
             Assert.True(obj.XmlSerialize().CreateNavigator().Evaluate<bool>("1=count(/list/item[text()='example'])"));
-        }
-
-        [Fact]
-        public void config()
-        {
-            using (var temp = new TempDirectory())
-            {
-                var file = temp.Info.ToFile("example.xml");
-                file.Create("<list><item>example</item></list>");
-
-                Assert.Equal("example", Config.Xml<List>(file).First());
-            }
         }
     }
 }

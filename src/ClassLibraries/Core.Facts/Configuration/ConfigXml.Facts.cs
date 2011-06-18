@@ -14,7 +14,7 @@
             Assert.True(new TypeExpectations<ConfigXml>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Result);

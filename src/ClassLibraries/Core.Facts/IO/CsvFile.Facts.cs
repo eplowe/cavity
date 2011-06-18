@@ -17,7 +17,7 @@
             Assert.True(new TypeExpectations<CsvFile>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Implements<IEnumerable<KeyStringDictionary>>()

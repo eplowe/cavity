@@ -8,7 +8,7 @@
     using Cavity.Collections.Generic;
     using Cavity.Data;
 
-    public sealed class LexicalItem
+    public class LexicalItem
     {
         private KeyStringPair _canonicalForm;
 
@@ -67,9 +67,9 @@
             }
         }
 
-        public SynonymCollection Synonyms { get; private set; }
+        public SynonymCollection Synonyms { get; protected set; }
 
-        private INormalizationComparer Comparer
+        protected INormalizationComparer Comparer
         {
             get
             {
@@ -87,7 +87,7 @@
             }
         }
 
-        public bool Contains(string value)
+        public virtual bool Contains(string value)
         {
             var x = _canonicalForm.Value;
             var y = Comparer.Normalize(value);
@@ -96,19 +96,19 @@
         }
 
 #if !NET20
-        public void Invoke(Func<string, string> function)
+        public virtual void Invoke(Func<string, string> func)
         {
-            if (null == function)
+            if (null == func)
             {
-                throw new ArgumentNullException("function");
+                throw new ArgumentNullException("func");
             }
 
-            CanonicalForm = function.Invoke(CanonicalForm);
+            CanonicalForm = func.Invoke(CanonicalForm);
             var synonyms = Synonyms.ToList();
             Synonyms.Clear();
             foreach (var synonym in synonyms.OrderBy(x => x))
             {
-                Synonyms.Add(function.Invoke(synonym));
+                Synonyms.Add(func.Invoke(synonym));
             }
         }
 #endif

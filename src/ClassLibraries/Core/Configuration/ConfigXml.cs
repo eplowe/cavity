@@ -7,7 +7,7 @@
     using Cavity.Diagnostics;
     using Cavity.IO;
 
-    public sealed class ConfigXml
+    public class ConfigXml
     {
         private ConfigXml(FileInfo file)
         {
@@ -24,11 +24,11 @@
             Watcher.Renamed += OnRenamed;
         }
 
-        public bool Changed { get; private set; }
+        public bool Changed { get; protected set; }
 
-        public FileInfo Info { get; private set; }
+        public FileInfo Info { get; protected set; }
 
-        public object Value { get; private set; }
+        public object Value { get; protected set; }
 
         private FileSystemWatcher Watcher { get; set; }
 
@@ -58,29 +58,29 @@
             };
         }
 
-        private void OnChanged(object source,
-                               FileSystemEventArgs e)
+        protected virtual void OnChanged(object source,
+                                         FileSystemEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
 
-        private void OnCreated(object source,
-                               FileSystemEventArgs e)
+        protected virtual void OnCreated(object source,
+                                         FileSystemEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
 
-        private void OnDeleted(object source,
-                               FileSystemEventArgs e)
+        protected virtual void OnDeleted(object source,
+                                         FileSystemEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
 
-        private void OnRenamed(object source,
-                               RenamedEventArgs e)
+        protected virtual void OnRenamed(object source,
+                                         RenamedEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;

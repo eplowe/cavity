@@ -15,7 +15,7 @@
             Assert.True(new TypeExpectations<Log4NetTraceListener>()
                 .DerivesFrom<TraceListener>()
                 .IsConcreteClass()
-                .IsSealed()
+                .IsUnsealed()
                 .HasDefaultConstructor()
                 .IsNotDecorated()
                 .Result);

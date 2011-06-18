@@ -17,7 +17,7 @@
             Assert.True(new TypeExpectations<CommandCollection>()
                             .DerivesFrom<Collection<ICommand>>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .HasDefaultConstructor()
                             .XmlRoot("commands")
                             .Implements<IXmlSerializable>()

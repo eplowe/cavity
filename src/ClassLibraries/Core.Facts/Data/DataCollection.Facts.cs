@@ -16,7 +16,7 @@
             Assert.True(new TypeExpectations<DataCollection>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .HasDefaultConstructor()
                             .XmlRoot("data")
                             .Implements<IEnumerable<KeyStringPair>>()

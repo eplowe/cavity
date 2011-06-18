@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public sealed class NormalizationComparer : INormalizationComparer
+    public class NormalizationComparer : INormalizationComparer
     {
         private static readonly NormalizationComparer _currentCulture = new NormalizationComparer(StringComparer.CurrentCulture);
 
@@ -75,13 +75,13 @@
             }
         }
 
-        int IComparer<string>.Compare(string x,
-                                      string y)
+        public virtual int Compare(string x,
+                                   string y)
         {
             return Comparer.Compare(x, y);
         }
 
-        string INormalizationComparer.Normalize(string value)
+        public virtual string Normalize(string value)
         {
             if (string.IsNullOrEmpty(value))
             {
