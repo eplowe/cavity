@@ -2,7 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+#if !NET20
     using System.Linq;
+#endif
+#if NET20
+    using Cavity.Collections;
+#endif
     using Cavity.Collections.Generic;
     using Cavity.Data;
 
@@ -63,7 +68,19 @@
                     throw new ArgumentNullException("spelling");
                 }
 
-                return Items.Where(x => x.Contains(spelling)).FirstOrDefault();
+#if NET20
+                foreach (var item in Items)
+                {
+                    if (item.Contains(spelling))
+                    {
+                        return item;
+                    }
+                }
+
+                return null;
+#else
+                return Items.Where(item => item.Contains(spelling)).FirstOrDefault();
+#endif
             }
         }
 
@@ -84,7 +101,19 @@
 
         public bool Contains(string value)
         {
+#if NET20
+            foreach (var item in Items)
+            {
+                if (item.Contains(value))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+#else
             return Items.Any(item => item.Contains(value));
+#endif
         }
 
         public void Delete()
@@ -103,6 +132,7 @@
             Storage.Delete(this);
         }
 
+#if !NET20
         public void Invoke(Func<string, string> function)
         {
             if (null == function)
@@ -116,6 +146,7 @@
             }
         }
 
+#endif
         public void Remove(IEnumerable<LexicalItem> items)
         {
             if (null == items)
@@ -123,12 +154,16 @@
                 throw new ArgumentNullException("items");
             }
 
+#if NET20
+            if (0 == IEnumerableExtensionMethods.Count(items))
+#else
             if (0 == items.Count())
+#endif
             {
                 return;
             }
 
-            foreach (var item in items.ToList())
+            foreach (var item in items)
             {
                 foreach (var spelling in item.Spellings)
                 {
@@ -161,9 +196,23 @@
 
         public string ToCanonicalForm(string value)
         {
+#if NET20
+            foreach (var item in Items)
+            {
+                if (!item.Contains(value))
+                {
+                    continue;
+                }
+
+                return item.CanonicalForm;
+            }
+
+            return null;
+#else
             return (from item in Items
                     where item.Contains(value)
                     select item.CanonicalForm).FirstOrDefault();
+#endif
         }
     }
 }

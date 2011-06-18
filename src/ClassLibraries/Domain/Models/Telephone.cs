@@ -2,7 +2,9 @@
 {
     using System;
     using System.Diagnostics;
+#if !NET20
     using System.Linq;
+#endif
     using Cavity.Diagnostics;
 
     public sealed class Telephone : ComparableObject
@@ -36,7 +38,21 @@
                 return new Telephone();
             }
 
+#if NET20
+            var number = string.Empty;
+            foreach (var c in value)
+            {
+                if (!char.IsDigit(c))
+                {
+                    continue;
+                }
+
+                number += c;
+            }
+#else
             var number = new string(value.AsEnumerable().Where(c => char.IsDigit(c)).ToArray());
+#endif
+
             if (2 > number.Length)
             {
                 return new Telephone();

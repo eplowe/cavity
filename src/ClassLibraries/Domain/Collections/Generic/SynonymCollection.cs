@@ -3,7 +3,9 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+#if !NET20
     using System.Linq;
+#endif
     using Cavity.Data;
 
     public sealed class SynonymCollection : IEnumerable<string>
@@ -61,7 +63,19 @@
 
         public bool Contains(string value)
         {
+#if NET20
+            foreach (var item in Items)
+            {
+                if (0 == Comparer.Compare(item.Value, value))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+#else
             return Items.Any(item => 0 == Comparer.Compare(item.Value, value));
+#endif
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -73,7 +87,14 @@
 
         IEnumerator<string> IEnumerable<string>.GetEnumerator()
         {
+#if NET20
+            foreach (var item in Items)
+            {
+                yield return item.Key;
+            }
+#else
             return Items.Select(item => item.Key).GetEnumerator();
+#endif
         }
     }
 }

@@ -11,22 +11,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\SetLocatorProviderConverter.cs" />
-    <Compile Include="Configuration\SetLocatorProvideValidator.cs" />
-    <Compile Include="Diagnostics\Tracing.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Configuration\ServiceLocation.cs" />
     <Compile Include="Configuration\ISetLocatorProvider.cs" />
+    <Compile Include="Configuration\SetLocatorProviderConverter.cs" />
+    <Compile Include="Configuration\SetLocatorProviderValidator.cs" />
+    <Compile Include="Configuration\ServiceLocation.cs" />
+    <Compile Include="Diagnostics\Tracing.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />

@@ -34,7 +34,11 @@
                 return 0;
             }
 
+#if NET20
+            return (threshold + 1) > StringExtensionMethods.LevenshteinDistance(x, y)
+#else
             return (threshold + 1) > x.LevenshteinDistance(y)
+#endif
                        ? 0
                        : string.Compare(x, y, StringComparison.OrdinalIgnoreCase);
         }
@@ -51,10 +55,17 @@
                 return string.Empty;
             }
 
+#if NET20
+            value = StringExtensionMethods.ReplaceAllWith(value, string.Empty, StringComparison.Ordinal, ".", "'");
+            value = StringExtensionMethods.ReplaceAllWith(value, " ", StringComparison.Ordinal, "-", ",");
+            value = StringExtensionMethods.Replace(value, " & ", " and ", StringComparison.Ordinal);
+            return value
+#else
             return value
                 .ReplaceAllWith(string.Empty, StringComparison.Ordinal, ".", "'")
                 .ReplaceAllWith(" ", StringComparison.Ordinal, "-", ",")
                 .Replace(" & ", " and ", StringComparison.Ordinal)
+#endif
                 .ToUpperInvariant()
                 .Trim();
         }

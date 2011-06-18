@@ -4,8 +4,13 @@
 
     public static class LexiconStringExtensionMethods
     {
+#if NET20
+        public static string RemoveMatch(string value,
+                                         Lexicon lexicon)
+#else
         public static string RemoveMatch(this string value,
                                          Lexicon lexicon)
+#endif
         {
             if (null == value)
             {
