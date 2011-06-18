@@ -89,9 +89,7 @@
   <ItemGroup>
     <Compile Include="Configuration\PathConfigurationSection.Derived.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Linq\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
   <!--
