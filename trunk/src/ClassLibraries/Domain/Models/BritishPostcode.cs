@@ -12,6 +12,7 @@
     {
         private BritishPostcode()
         {
+            // TODO: convert into a value type
         }
 
         private BritishPostcode(string area,

@@ -13,7 +13,7 @@
             Assert.True(new TypeExpectations<NormalizationComparer>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Implements<INormalizationComparer>()

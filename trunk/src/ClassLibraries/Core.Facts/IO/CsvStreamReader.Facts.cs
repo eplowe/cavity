@@ -13,7 +13,7 @@
             Assert.True(new TypeExpectations<CsvStreamReader>()
                             .DerivesFrom<StreamReader>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Result);

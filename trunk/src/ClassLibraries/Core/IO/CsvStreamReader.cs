@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 #if !NET20
@@ -11,7 +12,7 @@
     using Cavity.Collections;
     using Cavity.Properties;
 
-    public sealed class CsvStreamReader : StreamReader
+    public class CsvStreamReader : StreamReader
     {
         public CsvStreamReader(Stream stream)
             : base(stream)
@@ -43,7 +44,7 @@
                 throw new ArgumentOutOfRangeException("columns");
             }
 
-            Columns = new List<string>();
+            Columns = new Collection<string>();
             foreach (var header in columns)
             {
                 Columns.Add(header);
@@ -51,24 +52,24 @@
             }
         }
 
-        public int EntryNumber { get; private set; }
+        public int EntryNumber { get; protected set; }
 
-        public string Header { get; private set; }
+        public string Header { get; protected set; }
 
-        public string Line { get; private set; }
+        public string Line { get; protected set; }
 
-        public int LineNumber { get; private set; }
+        public int LineNumber { get; protected set; }
 
-        private List<string> Columns { get; set; }
+        protected Collection<string> Columns { get; private set; }
 
-        public KeyStringDictionary ReadEntry()
+        public virtual KeyStringDictionary ReadEntry()
         {
             var result = new KeyStringDictionary();
 
             if (null == Columns)
             {
-                Columns = new List<string>();
-                foreach (var heading in Next())
+                Columns = new Collection<string>();
+                foreach (var heading in NextLine())
                 {
                     Columns.Add(heading);
                 }
@@ -76,7 +77,7 @@
                 Header = Line;
             }
 
-            var entry = Next();
+            var entry = NextLine();
             if (null == entry)
             {
                 return null;
@@ -104,36 +105,7 @@
             return result;
         }
 
-        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
-        private static IEnumerable<string> ParseHeader(string header)
-        {
-            if (null == header)
-            {
-                throw new ArgumentNullException("header");
-            }
-
-            if (0 == header.Length)
-            {
-                throw new ArgumentOutOfRangeException("header");
-            }
-
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.WriteLine(header);
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new CsvStreamReader(stream))
-                    {
-                        reader.ReadEntry();
-                        return reader.Columns;
-                    }
-                }
-            }
-        }
-
-        private IList<string> Next()
+        protected virtual IList<string> NextLine()
         {
             Line = null;
             while (!EndOfStream)
@@ -149,7 +121,7 @@
             return Parse(Line);
         }
 
-        private IList<string> Parse(string line)
+        protected virtual IList<string> Parse(string line)
         {
             if (string.IsNullOrEmpty(line))
             {
@@ -222,6 +194,35 @@
             result.Add(trim ? buffer.ToString().Trim() : buffer.ToString());
 
             return result;
+        }
+
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
+        private static IEnumerable<string> ParseHeader(string header)
+        {
+            if (null == header)
+            {
+                throw new ArgumentNullException("header");
+            }
+
+            if (0 == header.Length)
+            {
+                throw new ArgumentOutOfRangeException("header");
+            }
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine(header);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new CsvStreamReader(stream))
+                    {
+                        reader.ReadEntry();
+                        return reader.Columns;
+                    }
+                }
+            }
         }
     }
 }

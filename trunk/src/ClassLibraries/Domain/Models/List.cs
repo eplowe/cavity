@@ -3,28 +3,24 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+#if !NET20
+    using System.Linq;
+#endif
     using System.Xml;
     using System.Xml.Schema;
     using System.Xml.Serialization;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
     [XmlRoot("list")]
-    public sealed class List : List<string>, IXmlSerializable
+    public class List : List<string>, IXmlSerializable
     {
-        public IEnumerable<T> To<T>()
-        {
-            foreach (var item in this)
-            {
-                yield return (T)Convert.ChangeType(item, typeof(T));
-            }
-        }
-
-        XmlSchema IXmlSerializable.GetSchema()
+        public virtual XmlSchema GetSchema()
         {
             throw new NotSupportedException();
         }
 
-        void IXmlSerializable.ReadXml(XmlReader reader)
+        public virtual void ReadXml(XmlReader reader)
         {
             if (null == reader)
             {
@@ -54,7 +50,19 @@
             }
         }
 
-        void IXmlSerializable.WriteXml(XmlWriter writer)
+        public virtual IEnumerable<T> ToEnumerable<T>()
+        {
+#if NET20
+            foreach (var item in this)
+            {
+                yield return (T)Convert.ChangeType(item, typeof(T), CultureInfo.InvariantCulture);
+            }
+#else
+            return this.Select(item => (T)Convert.ChangeType(item, typeof(T), CultureInfo.InvariantCulture));
+#endif
+        }
+
+        public virtual void WriteXml(XmlWriter writer)
         {
             if (null == writer)
             {

@@ -16,7 +16,7 @@
             Assert.True(new TypeExpectations<CsvLexiconStorage>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Implements<IStoreLexicon>()

@@ -16,7 +16,7 @@
     using Cavity.IO;
     using Cavity.Models;
 
-    public sealed class CsvLexiconStorage : IStoreLexicon
+    public class CsvLexiconStorage : IStoreLexicon
     {
         private FileInfo _location;
 
@@ -52,7 +52,7 @@
             }
         }
 
-        public void Delete(Lexicon lexicon)
+        public virtual void Delete(Lexicon lexicon)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == lexicon)
@@ -67,7 +67,7 @@
             }
         }
 
-        public Lexicon Load(INormalizationComparer comparer)
+        public virtual Lexicon Load(INormalizationComparer comparer)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             var result = new Lexicon(comparer)
@@ -93,7 +93,7 @@
         }
 
         [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "I trust the using statement.")]
-        public void Save(Lexicon lexicon)
+        public virtual void Save(Lexicon lexicon)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == lexicon)

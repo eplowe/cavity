@@ -13,7 +13,7 @@
             _dictionary = new Dictionary<TKey, TValue>();
         }
 
-        public TValue this[TKey key]
+        public virtual TValue this[TKey key]
         {
             get
             {

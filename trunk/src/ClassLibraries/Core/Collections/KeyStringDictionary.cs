@@ -6,29 +6,29 @@
     using Cavity.Data;
 
     [Serializable]
-    public sealed class KeyStringDictionary : Dictionary<string, string>, IEnumerable<KeyStringPair>
+    public class KeyStringDictionary : Dictionary<string, string>, IEnumerable<KeyStringPair>
     {
         public KeyStringDictionary()
         {
         }
 
-        private KeyStringDictionary(SerializationInfo info,
+        protected KeyStringDictionary(SerializationInfo info,
                                     StreamingContext context)
             : base(info, context)
         {
         }
 
-        public void Add(KeyStringPair item)
+        public virtual void Add(KeyStringPair item)
         {
             Add(item.Key, item.Value);
         }
 
-        public bool Contains(KeyStringPair item)
+        public virtual bool Contains(KeyStringPair item)
         {
             return (this as IDictionary<string, string>).Contains(new KeyValuePair<string, string>(item.Key, item.Value));
         }
 
-        public bool Remove(KeyStringPair item)
+        public virtual bool Remove(KeyStringPair item)
         {
             return (this as IDictionary<string, string>).Remove(new KeyValuePair<string, string>(item.Key, item.Value));
         }

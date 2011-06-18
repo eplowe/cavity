@@ -14,7 +14,7 @@
             Assert.True(new TypeExpectations<RelativeUri>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .Serializable()
                             .Implements<IComparable>()

@@ -13,7 +13,7 @@
     using Cavity.Data;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't a collection.")]
-    public sealed class CsvFile : IEnumerable<KeyStringDictionary>
+    public class CsvFile : IEnumerable<KeyStringDictionary>
     {
         public CsvFile(string path)
             : this(new FileInfo(path))
@@ -30,7 +30,7 @@
             Info = info;
         }
 
-        public FileInfo Info { get; private set; }
+        public FileInfo Info { get; protected set; }
 
         public static string Header(KeyStringDictionary data)
         {
@@ -124,7 +124,7 @@
             }
         }
 
-        public void Save(FileMode mode, IEnumerable<KeyStringDictionary> data)
+        public virtual void Save(FileMode mode, IEnumerable<KeyStringDictionary> data)
         {
             if (null == data)
             {

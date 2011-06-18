@@ -3,7 +3,7 @@
     using System;
     using System.IO;
 
-    public sealed class TempDirectory : IDisposable
+    public class TempDirectory : IDisposable
     {
         public TempDirectory()
             : this(new DirectoryInfo(Path.GetTempPath()))
@@ -26,7 +26,7 @@
             Dispose(false);
         }
 
-        public DirectoryInfo Info { get; private set; }
+        public DirectoryInfo Info { get; protected set; }
 
         private bool Disposed { get; set; }
 
@@ -36,24 +36,7 @@
             GC.SuppressFinalize(this);
         }
 
-        private static void DeleteSubdirectories(DirectoryInfo directory)
-        {
-            foreach (var subdirectory in directory.GetDirectories())
-            {
-                DeleteSubdirectories(subdirectory);
-                subdirectory.Delete();
-            }
-        }
-
-        private void DeleteFiles()
-        {
-            foreach (var file in Info.GetFiles("*", SearchOption.AllDirectories))
-            {
-                file.Delete();
-            }
-        }
-
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (!Disposed && disposing)
             {
@@ -72,6 +55,23 @@
             }
 
             Disposed = true;
+        }
+
+        private static void DeleteSubdirectories(DirectoryInfo directory)
+        {
+            foreach (var subdirectory in directory.GetDirectories())
+            {
+                DeleteSubdirectories(subdirectory);
+                subdirectory.Delete();
+            }
+        }
+
+        private void DeleteFiles()
+        {
+            foreach (var file in Info.GetFiles("*", SearchOption.AllDirectories))
+            {
+                file.Delete();
+            }
         }
     }
 }

@@ -2,13 +2,12 @@
 {
     using System;
     using System.Runtime.Serialization;
-
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
 
     [Serializable]
-    public sealed class RelativeUri : IComparable, IComparable<RelativeUri>, IEquatable<RelativeUri>, ISerializable
+    public class RelativeUri : IComparable, IComparable<RelativeUri>, IEquatable<RelativeUri>, ISerializable
     {
         private Uri _value;
 
@@ -22,10 +21,13 @@
             Value = value;
         }
 
-        private RelativeUri(SerializationInfo info,
+        protected RelativeUri(SerializationInfo info,
                             StreamingContext context)
         {
-            _value = new Uri(info.GetString("_value"), UriKind.Relative);
+            if (null != info)
+            {
+                _value = new Uri(info.GetString("_value"), UriKind.Relative);
+            }
         }
 
         public int Length
@@ -36,7 +38,7 @@
             }
         }
 
-        private Uri Value
+        protected Uri Value
         {
             get
             {
@@ -142,7 +144,7 @@
             return Value.OriginalString;
         }
 
-        public int CompareTo(object obj)
+        public virtual int CompareTo(object obj)
         {
             if (null == obj)
             {
@@ -158,14 +160,14 @@
             return string.CompareOrdinal(Value.OriginalString, cast.Value.OriginalString);
         }
 
-        public int CompareTo(RelativeUri other)
+        public virtual int CompareTo(RelativeUri other)
         {
             return null == other
                        ? 1
                        : string.CompareOrdinal(Value.OriginalString, other.Value.OriginalString);
         }
 
-        public bool Equals(RelativeUri other)
+        public virtual bool Equals(RelativeUri other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -180,9 +182,8 @@
 #if NET20 || NET35
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
-
-        void ISerializable.GetObjectData(SerializationInfo info,
-                                         StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info,
+                                          StreamingContext context)
         {
             if (null == info)
             {
