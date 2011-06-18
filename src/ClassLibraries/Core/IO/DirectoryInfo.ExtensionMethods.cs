@@ -7,16 +7,27 @@
     public static class DirectoryInfoExtensionMethods
     {
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static DirectoryInfo ToDirectory(DirectoryInfo obj,
+                                                object name)
+#else
         public static DirectoryInfo ToDirectory(this DirectoryInfo obj,
                                                 object name)
+#endif
         {
-            return obj.ToDirectory(name, false);
+            return ToDirectory(obj, name, false);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static DirectoryInfo ToDirectory(DirectoryInfo obj,
+                                                object name,
+                                                bool create)
+#else
         public static DirectoryInfo ToDirectory(this DirectoryInfo obj,
                                                 object name,
                                                 bool create)
+#endif
         {
             var dir = new DirectoryInfo(PathCombine(obj, name));
             if (create && !dir.Exists)
@@ -29,13 +40,18 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static FileInfo ToFile(DirectoryInfo obj,
+                                      object name)
+#else
         public static FileInfo ToFile(this DirectoryInfo obj,
                                       object name)
+#endif
         {
             return new FileInfo(PathCombine(obj, name));
         }
 
-        private static string PathCombine(this FileSystemInfo obj,
+        private static string PathCombine(FileSystemInfo obj,
                                           object name)
         {
             if (null == obj)

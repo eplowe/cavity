@@ -23,7 +23,6 @@
     <Compile Include="IO\FileInfo.ExtensionMethods.Facts.cs" />
     <Compile Include="IO\TempDirectory.Facts.cs" />
     <Compile Include="IO\TempFile.Facts.cs" />
-    <Compile Include="Linq\Enumerable.Facts.cs" />
     <Compile Include="IO\CsvFile.Facts.cs" />
     <Compile Include="IO\CsvStreamReader.Facts.cs" />
     <Compile Include="IO\EncodedStringWriter.Facts.cs" />
@@ -89,6 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\PathConfigurationSection.Derived.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Linq\" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />

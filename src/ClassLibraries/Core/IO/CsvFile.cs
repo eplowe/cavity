@@ -5,7 +5,9 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using System.Text;
     using Cavity.Collections;
     using Cavity.Data;
@@ -50,7 +52,11 @@
                     buffer.Append(',');
                 }
 
+#if NET20
+                buffer.Append(DataStringExtensionMethods.FormatCommaSeparatedValue(item.Key));
+#else
                 buffer.Append(item.Key.FormatCommaSeparatedValue());
+#endif
             }
 
             return buffer.ToString();
@@ -76,7 +82,11 @@
                     buffer.Append(',');
                 }
 
+#if NET20
+                buffer.Append(DataStringExtensionMethods.FormatCommaSeparatedValue(item.Value));
+#else
                 buffer.Append(item.Value.FormatCommaSeparatedValue());
+#endif
             }
 
             return buffer.ToString();
@@ -90,7 +100,17 @@
                 throw new ArgumentNullException("data");
             }
 
-            using (var writers = new StreamWriterDictionary(Header(data.First().Value))
+#if NET20
+            KeyStringDictionary line = null;
+            foreach (var item in data)
+            {
+                line = item.Value;
+                break;
+            }
+#else
+            var line = data.First().Value;
+#endif
+            using (var writers = new StreamWriterDictionary(Header(line))
             {
                 Access = FileAccess.Write,
                 Mode = mode,
@@ -112,7 +132,11 @@
             }
 
             Info.Refresh();
+#if NET20
+            if (0 == IEnumerableExtensionMethods.Count(data))
+#else
             if (0 == data.Count())
+#endif
             {
                 if (Info.Exists)
                 {
@@ -127,11 +151,21 @@
                 Info.Directory.Create();
             }
 
+#if NET20
+            KeyStringDictionary line = null;
+            foreach (var item in data)
+            {
+                line = item;
+                break;
+            }
+#else
+            var line = data.First();
+#endif
             using (var stream = Info.Open(mode, FileAccess.Write, FileShare.Read))
             {
                 using (var writer = new StreamWriter(stream))
                 {
-                    writer.WriteLine(Header(data.First()));
+                    writer.WriteLine(Header(line));
                     foreach (var item in data)
                     {
                         writer.WriteLine(Line(item));

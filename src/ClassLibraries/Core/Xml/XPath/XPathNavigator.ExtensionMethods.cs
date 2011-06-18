@@ -8,15 +8,26 @@
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Justification = "Following the Microsoft naming convention.")]
     public static class XPathNavigatorExtensionMethods
     {
+#if NET20
+        public static T Evaluate<T>(XPathNavigator obj,
+                                    string xpath)
+#else
         public static T Evaluate<T>(this XPathNavigator obj,
                                     string xpath)
+#endif
         {
-            return obj.Evaluate<T>(xpath, null);
+            return Evaluate<T>(obj, xpath, null);
         }
 
+#if NET20
+        public static T Evaluate<T>(XPathNavigator obj,
+                                    string xpath,
+                                    IXmlNamespaceResolver namespaces)
+#else
         public static T Evaluate<T>(this XPathNavigator obj,
                                     string xpath,
                                     IXmlNamespaceResolver namespaces)
+#endif
         {
             if (null == obj)
             {

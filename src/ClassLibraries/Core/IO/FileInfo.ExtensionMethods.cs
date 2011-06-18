@@ -8,8 +8,13 @@
 
     public static class FileInfoExtensionMethods
     {
+#if NET20
+        public static void Append(FileInfo obj,
+                                  string value)
+#else
         public static void Append(this FileInfo obj,
                                   string value)
+#endif
         {
             if (null == obj)
             {
@@ -28,8 +33,13 @@
             }
         }
 
+#if NET20
+        public static void AppendLine(FileInfo obj,
+                                      string value)
+#else
         public static void AppendLine(this FileInfo obj,
                                       string value)
+#endif
         {
             if (null == obj)
             {
@@ -45,8 +55,13 @@
             }
         }
 
+#if NET20
+        public static void Create(FileInfo obj,
+                                  string value)
+#else
         public static void Create(this FileInfo obj,
                                   string value)
+#endif
         {
             if (null == obj)
             {
@@ -65,8 +80,13 @@
             }
         }
 
+#if NET20
+        public static void Create(FileInfo obj,
+                                  IXPathNavigable xml)
+#else
         public static void Create(this FileInfo obj,
                                   IXPathNavigable xml)
+#endif
         {
             if (null == obj)
             {
@@ -78,18 +98,27 @@
                 throw new ArgumentNullException("xml");
             }
 
-            obj.Create(xml.CreateNavigator().OuterXml);
+            Create(obj, xml.CreateNavigator().OuterXml);
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix", Justification = "This naming is intentional")]
+#if NET20
+        public static void CreateNew(FileInfo obj)
+#else
         public static void CreateNew(this FileInfo obj)
+#endif
         {
-            obj.CreateNew(null);
+            CreateNew(obj, null);
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix", Justification = "This naming is intentional")]
+#if NET20
+        public static void CreateNew(FileInfo obj,
+                                     string value)
+#else
         public static void CreateNew(this FileInfo obj,
                                      string value)
+#endif
         {
             if (null == obj)
             {
@@ -108,7 +137,11 @@
             }
         }
 
+#if NET20
+        public static IEnumerable<string> Lines(FileInfo obj)
+#else
         public static IEnumerable<string> Lines(this FileInfo obj)
+#endif
         {
             if (null == obj)
             {
@@ -128,7 +161,11 @@
             }
         }
 
+#if NET20
+        public static string ReadToEnd(FileInfo obj)
+#else
         public static string ReadToEnd(this FileInfo obj)
+#endif
         {
             if (null == obj)
             {
@@ -144,8 +181,13 @@
             }
         }
 
+#if NET20
+        public static void Truncate(FileInfo obj,
+                                    string value)
+#else
         public static void Truncate(this FileInfo obj,
                                     string value)
+#endif
         {
             if (null == obj)
             {

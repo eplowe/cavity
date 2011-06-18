@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Configuration
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Configuration;
     using System.Diagnostics;
@@ -15,7 +16,9 @@
     public static class Config
     {
         private static readonly Dictionary<Type, object> _types = new Dictionary<Type, object>();
-#if !NET20
+#if NET20
+        private static List<ConfigXml> _xml;
+#else
         private static HashSet<ConfigXml> _xml;
 #endif
 
@@ -124,7 +127,6 @@
             _types.Add(typeof(T), obj);
         }
 
-#if !NET20
         public static T Xml<T>() where T : new()
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
@@ -165,11 +167,34 @@
                 return (T)_types[typeof(T)];
             }
 
+#if NET20
+            _xml = _xml ?? new List<ConfigXml>();
+            var count = _xml.Count;
+            for (var i = 0; i < count; i++)
+            {
+                var item = _xml[count - 1 - i];
+                if (item.Changed)
+                {
+                    _xml.Remove(item);
+                }
+            }
+
+            ConfigXml xml = null;
+            foreach (var item in _xml)
+            {
+                if (string.Equals(item.Info.FullName, file.FullName, StringComparison.OrdinalIgnoreCase))
+                {
+                    xml = item;
+                    break;
+                }
+            }
+#else
             _xml = _xml ?? new HashSet<ConfigXml>();
             _xml.RemoveWhere(x => x.Changed);
             var xml = _xml
                 .Where(x => string.Equals(x.Info.FullName, file.FullName, StringComparison.OrdinalIgnoreCase))
                 .FirstOrDefault();
+#endif
             if (null == xml)
             {
                 xml = ConfigXml.Load<T>(file);
@@ -178,11 +203,15 @@
 
             return (T)xml.Value;
         }
-#endif
 
+#if NET20
         private static T Section<T>(ConfigurationSectionCollection sections) where T : ConfigurationSection
+#else
+        private static T Section<T>(IEnumerable sections) where T : ConfigurationSection
+#endif
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
+#if NET20
             foreach (var item in sections)
             {
                 var section = item as T;
@@ -195,6 +224,9 @@
             }
 
             return default(T);
+#else
+            return sections.OfType<T>().FirstOrDefault();
+#endif
         }
     }
 }
