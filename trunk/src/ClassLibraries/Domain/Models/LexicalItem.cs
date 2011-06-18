@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+#if !NET20
     using System.Linq;
+#endif
     using Cavity.Collections.Generic;
     using Cavity.Data;
 
@@ -93,6 +95,7 @@
             return 0 == Comparer.Compare(x, y) || Synonyms.Contains(y);
         }
 
+#if !NET20
         public void Invoke(Func<string, string> function)
         {
             if (null == function)
@@ -101,7 +104,6 @@
             }
 
             CanonicalForm = function.Invoke(CanonicalForm);
-
             var synonyms = Synonyms.ToList();
             Synonyms.Clear();
             foreach (var synonym in synonyms.OrderBy(x => x))
@@ -109,5 +111,6 @@
                 Synonyms.Add(function.Invoke(synonym));
             }
         }
+#endif
     }
 }

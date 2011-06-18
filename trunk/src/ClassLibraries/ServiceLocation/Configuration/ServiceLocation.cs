@@ -9,7 +9,7 @@
     {
         private static readonly TypeConverter _converter = new SetLocatorProviderConverter();
 
-        private static readonly ConfigurationValidatorBase _validator = new SetLocatorProvideValidator();
+        private static readonly ConfigurationValidatorBase _validator = new SetLocatorProviderValidator();
 
         private static readonly ConfigurationProperty _provider = new ConfigurationProperty("type",
                                                                                             typeof(ISetLocatorProvider),

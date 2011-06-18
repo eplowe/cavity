@@ -1,12 +1,15 @@
 ﻿namespace Cavity.Build
 {
-#if !NET20
     using System.Collections.Generic;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
+#if NET20
+    using Cavity.Collections;
+#endif
     using Cavity.Collections.Generic;
     using Cavity.Data;
-#endif
     using Cavity.Properties;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
@@ -18,15 +21,9 @@
 
         public override bool Execute()
         {
-#if NET20
-            Log.LogError(Resources.Unsupported_Framework_Version);
-            return false;
-#else
             return Execute(Paths);
-#endif
         }
 
-#if !NET20
         private bool Execute(IEnumerable<ITaskItem> paths)
         {
             if (null == paths)
@@ -35,15 +32,30 @@
                 return false;
             }
 
+#if NET20
+            if (0 == IEnumerableExtensionMethods.Count(paths))
+#else
             if (0 == paths.Count())
+#endif
             {
                 Log.LogWarning(Resources.LexiconTidy_PathsEmpty_Message);
                 return false;
             }
 
             var result = true;
+#if NET20
+            foreach (var path in paths)
+#else
             foreach (var path in paths.Where(path => !Execute(path)))
+#endif
             {
+#if NET20
+                if (Execute(path))
+                {
+                    continue;
+                }
+#endif
+
                 if (null == path)
                 {
                     continue;
@@ -81,6 +93,5 @@
             Log.LogWarning(file.FullName);
             return false;
         }
-#endif
     }
 }

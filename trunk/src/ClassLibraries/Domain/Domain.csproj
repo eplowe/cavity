@@ -11,25 +11,20 @@
   <ItemGroup>
     <Compile Include="Build\LexiconTidy.cs" />
     <Compile Include="Collections\Generic\INormalizationComparer.cs" />
-    <Compile Include="Collections\Generic\NormalizationComparer.cs" />
-    <Compile Include="Models\List.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Collections\Generic\LevenshteinComparer.cs" />
+    <Compile Include="Collections\Generic\NormalizationComparer.cs" />
     <Compile Include="Collections\Generic\SynonymCollection.cs" />
     <Compile Include="Data\CsvLexiconStorage.cs" />
     <Compile Include="Data\IStoreLexicon.cs" />
+    <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Models\BritishPostcode.cs" />
     <Compile Include="Models\LexicalItem.cs" />
     <Compile Include="Models\Lexicon.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.cs" />
+    <Compile Include="Models\List.cs" />
     <Compile Include="Models\Telephone.cs" />
-    <Compile Include="Diagnostics\Tracing.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -47,6 +42,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />

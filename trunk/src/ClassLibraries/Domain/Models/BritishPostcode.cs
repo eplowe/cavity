@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+#if !NET20
     using System.Linq;
+#endif
     using Cavity.Diagnostics;
 
     public sealed class BritishPostcode : ComparableObject
@@ -82,20 +84,46 @@
 
         private static string ToArea(IEnumerable<char> value)
         {
+#if NET20
+            var result = string.Empty;
+            foreach (var c in value)
+            {
+                if (c >= 'A' && c <= 'Z')
+                {
+                    result += c;
+                }
+                else
+                {
+                    return result;
+                }
+            }
+
+            return result;
+#else
             return value
                 .TakeWhile(c => c >= 'A' && c <= 'Z')
-                .Aggregate<char, string>(null,
-                                         (current,
-                                          c) => current + c);
+                .Aggregate<char, string>(null, (current, c) => current + c);
+#endif
         }
 
         private static string ToSector(IEnumerable<char> value)
         {
+#if NET20
+            var result = string.Empty;
+            foreach (var c in value)
+            {
+                if (c >= '0' && c <= '9')
+                {
+                    result += c;
+                }
+            }
+
+            return result;
+#else
             return value
                 .Where(c => c >= '0' && c <= '9')
-                .Aggregate<char, string>(null,
-                                         (current,
-                                          c) => current + c);
+                .Aggregate<char, string>(null, (current, c) => current + c);
+#endif
         }
     }
 }

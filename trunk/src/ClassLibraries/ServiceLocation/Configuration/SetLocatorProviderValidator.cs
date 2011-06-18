@@ -3,7 +3,7 @@
     using System;
     using System.Configuration;
 
-    public sealed class SetLocatorProvideValidator : ConfigurationValidatorBase
+    public sealed class SetLocatorProviderValidator : ConfigurationValidatorBase
     {
         public override bool CanValidate(Type type)
         {
