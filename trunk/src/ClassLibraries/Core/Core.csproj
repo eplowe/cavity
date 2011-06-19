@@ -27,7 +27,6 @@
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\KeyStringPair.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
-    <Compile Include="DisposableObject.cs" />
     <Compile Include="IO\DirectoryInfo.ExtensionMethods.cs" />
     <Compile Include="IO\EncodedStringWriter.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
@@ -43,9 +42,10 @@
     <Compile Include="AbsoluteUri.cs" />
     <Compile Include="AlphaDecimal.cs" />
     <Compile Include="Char.ExtensionMethods.cs" />
-    <Compile Include="DateTime.ExtensionMethods.cs" />
     <Compile Include="CommentAttribute.cs" />
     <Compile Include="ComparableObject.cs" />
+    <Compile Include="DateTime.ExtensionMethods.cs" />
+    <Compile Include="DisposableObject.cs" />
     <Compile Include="Generic.ExtensionMethods.cs" />
     <Compile Include="Object.ExtensionMethods.cs" />
     <Compile Include="RelativeUri.cs" />
@@ -62,6 +62,7 @@
     <Compile Include="ValueObject`1.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' and '$(TargetFrameworkVersion)' != 'v3.5' ">
+    <Compile Include="Dynamic\DynamicData.cs" />
     <Compile Include="Threading\IThreadedObject.cs" />
     <Compile Include="Threading\ThreadedObject.cs" />
   </ItemGroup>
@@ -78,7 +79,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Code.Project" />
   <!--
