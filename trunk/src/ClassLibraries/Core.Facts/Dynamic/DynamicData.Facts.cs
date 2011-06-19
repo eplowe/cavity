@@ -44,7 +44,7 @@
         {
             dynamic obj = new DynamicData();
 
-            Assert.Throws<KeyNotFoundException>(() => obj.Example);
+            Assert.Null(obj.Example);
         }
 
         [Fact]

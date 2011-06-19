@@ -25,7 +25,8 @@
                 throw new ArgumentNullException("binder");
             }
 
-            result = _data[binder.Name];
+            result = _data.ContainsKey(binder.Name) ? _data[binder.Name] : null;
+
             return true;
         }
 
