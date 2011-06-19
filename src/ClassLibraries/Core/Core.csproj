@@ -27,6 +27,7 @@
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\KeyStringPair.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="DisposableObject.cs" />
     <Compile Include="IO\DirectoryInfo.ExtensionMethods.cs" />
     <Compile Include="IO\EncodedStringWriter.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
@@ -59,6 +60,10 @@
     <Compile Include="Net\IWebRequest.cs" />
     <Compile Include="Net\Token.cs" />
     <Compile Include="ValueObject`1.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' and '$(TargetFrameworkVersion)' != 'v3.5' ">
+    <Compile Include="Threading\IThreadedObject.cs" />
+    <Compile Include="Threading\ThreadedObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
