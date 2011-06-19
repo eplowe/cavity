@@ -58,6 +58,14 @@
     <Compile Include="Configuration\FileConfigurationElement.Facts.cs" />
     <Compile Include="Configuration\DirectoryInfoValidator.Facts.cs" />
     <Compile Include="Configuration\PathConfigurationSection.Facts.cs" />
+    <Compile Include="Configuration\PathConfigurationSection.Derived.cs" />
+    <Compile Include="DisposableObject.Derived.cs" />
+    <Compile Include="DisposableObject.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' and '$(TargetFrameworkVersion)' != 'v3.5' ">
+    <Compile Include="Threading\ThreadedObject.Derived.cs" />
+    <Compile Include="Threading\IThreadedObject.Facts.cs" />
+    <Compile Include="Threading\ThreadedObject.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -86,10 +94,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Configuration\PathConfigurationSection.Derived.cs" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
   <!--
