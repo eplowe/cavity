@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Collections
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
 #if NET20
@@ -91,5 +92,47 @@
             return null == obj || !obj.Cast<object>().Any();
         }
 #endif
+        
+#if NET20
+        public static Queue<T> ToQueue<T>(IEnumerable<T> obj)
+#else
+        public static Queue<T> ToQueue<T>(this IEnumerable<T> obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            var result = new Queue<T>();
+
+            foreach (var item in obj)
+            {
+                result.Enqueue(item);
+            }
+
+            return result;
+        }
+
+#if NET20
+        public static Stack<T> ToStack<T>(IEnumerable<T> obj)
+#else
+        public static Stack<T> ToStack<T>(this IEnumerable<T> obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            var result = new Stack<T>();
+
+            foreach (var item in obj)
+            {
+                result.Push(item);
+            }
+
+            return result;
+        }
     }
 }
