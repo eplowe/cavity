@@ -21,9 +21,25 @@
                                     char separator)
 #endif
         {
+            return Concat(source, separator.ToString());
+        }
+
+#if NET20
+        public static string Concat(IEnumerable<string> source,
+                                    string separator)
+#else
+        public static string Concat(this IEnumerable<string> source,
+                                    string separator)
+#endif
+        {
             if (null == source)
             {
                 return null;
+            }
+
+            if (null == separator)
+            {
+                throw new ArgumentNullException("separator");
             }
 
 #if NET20
@@ -69,7 +85,7 @@
 #endif
 
 #if NET20
-        public static bool IsNullOrEmpty(IEnumerable obj)
+        public static bool IsEmpty(IEnumerable obj)
         {
             if (null == obj)
             {
@@ -87,7 +103,7 @@
             return true;
         }
 #else
-        public static bool IsNullOrEmpty(this IEnumerable obj)
+        public static bool IsEmpty(this IEnumerable obj)
         {
             return null == obj || !obj.Cast<object>().Any();
         }

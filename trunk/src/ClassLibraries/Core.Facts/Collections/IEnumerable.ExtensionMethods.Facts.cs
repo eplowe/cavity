@@ -50,28 +50,89 @@
         }
 
         [Fact]
-        public void op_IsNullOrEmpty_IEnumerable()
+        public void op_Concat_IEnumerableStringEmpty_string()
+        {
+            var array = new string[]
+            {
+            };
+
+            var expected = string.Empty;
+            var actual = array.Concat(", ");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Concat_IEnumerableStringNull_string()
+        {
+            string expected = null;
+            var actual = (null as IEnumerable<string>).Concat(", ");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Concat_IEnumerableString_string()
+        {
+            var array = new[]
+            {
+                "a", "b", "c"
+            };
+
+            const string expected = "a, b, c";
+            var actual = array.Concat(", ");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Concat_IEnumerableString_stringEmpty()
+        {
+            var array = new[]
+            {
+                "a", "b", "c"
+            };
+
+            const string expected = "abc";
+            var actual = array.Concat(string.Empty);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Concat_IEnumerableString_stringNull()
+        {
+            var array = new[]
+            {
+                "a", "b", "c"
+            };
+
+            Assert.Throws<ArgumentNullException>(() => array.Concat(null as string));
+        }
+
+        [Fact]
+        public void op_IsEmpty_IEnumerable()
         {
             var obj = new List<string>
             {
                 "item"
             };
 
-            Assert.False(obj.IsNullOrEmpty());
+            Assert.False(obj.IsEmpty());
         }
 
         [Fact]
-        public void op_IsNullOrEmpty_IEnumerableEmpty()
+        public void op_IsEmpty_IEnumerableEmpty()
         {
             var obj = new List<string>();
 
-            Assert.True(obj.IsNullOrEmpty());
+            Assert.True(obj.IsEmpty());
         }
 
         [Fact]
-        public void op_IsNullOrEmpty_IEnumerableNull()
+        public void op_IsEmpty_IEnumerableNull()
         {
-            Assert.True((null as IEnumerable).IsNullOrEmpty());
+            Assert.True((null as IEnumerable).IsEmpty());
         }
 
         [Fact]
