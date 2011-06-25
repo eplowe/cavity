@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Net
 {
     using System;
+#if !NET20
     using System.Linq;
+#endif
 
     public sealed class HttpMethod : ComparableObject
     {

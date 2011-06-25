@@ -18,7 +18,7 @@
     /// <remarks>
     /// This is an internal DSL which employs method chaining to build a set of expectations.
     /// When <see cref="P:Cavity.PropertyExpectations`1.Result"/> is invoked, all the expectations are verified;
-    /// if any expectations are not met, a <see cref="T:Cavity.TestException"/> is thrown.
+    /// if any expectations are not met, a <see cref="T:Cavity.UnitTestException"/> is thrown.
     /// </remarks>
     /// <seealso href="http://code.google.com/p/cavity/wiki/PropertyExpectations">Guide to asserting expectations about properties.</seealso>
     public sealed class PropertyExpectations<T>

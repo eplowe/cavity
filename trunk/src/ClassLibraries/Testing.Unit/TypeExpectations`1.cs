@@ -17,7 +17,7 @@
     /// <remarks>
     /// This is an internal DSL which employs method chaining to build a set of expectations.
     /// When <see cref="P:Cavity.Fluent.ITestType.Result"/> is invoked, all the expectations are verified;
-    /// if any expectations are not met, a <see cref="T:Cavity.TestException"/> is thrown.
+    /// if any expectations are not met, a <see cref="T:Cavity.UnitTestException"/> is thrown.
     /// </remarks>
     /// <seealso href="http://code.google.com/p/cavity/wiki/TypeExpectations">Guide to asserting expectations about types.</seealso>
     public sealed class TypeExpectations<T> : ITestClassStyle,

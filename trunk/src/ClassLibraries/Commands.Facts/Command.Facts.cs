@@ -31,21 +31,12 @@
         }
 
         [Fact]
-        public void prop_Undo()
+        public void deserialize()
         {
-            Assert.True(new PropertyExpectations<Command>(p => p.Undo)
-                            .TypeIs<bool>()
-                            .IsNotDecorated()
-                            .Result);
-        }
+            var obj = "<command undo='true' unidirectional='true' />".XmlDeserialize<DerivedCommand>();
 
-        [Fact]
-        public void prop_Unidirectional()
-        {
-            Assert.True(new PropertyExpectations<Command>(p => p.Unidirectional)
-                            .TypeIs<bool>()
-                            .IsNotDecorated()
-                            .Result);
+            Assert.True(obj.Undo);
+            Assert.True(obj.Unidirectional);
         }
 
         [Fact]
@@ -67,6 +58,24 @@
         }
 
         [Fact]
+        public void prop_Undo()
+        {
+            Assert.True(new PropertyExpectations<Command>(p => p.Undo)
+                            .TypeIs<bool>()
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_Unidirectional()
+        {
+            Assert.True(new PropertyExpectations<Command>(p => p.Unidirectional)
+                            .TypeIs<bool>()
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
         public void serialize()
         {
             var obj = new DerivedCommand(true);
@@ -76,15 +85,6 @@
             Assert.True(navigator.Evaluate<bool>("1 = count(/command)"));
             const string xpath = "1 = count(command[@undo='false'][@unidirectional='true'])";
             Assert.True(navigator.Evaluate<bool>(xpath));
-        }
-
-        [Fact]
-        public void deserialize()
-        {
-            var obj = "<command undo='true' unidirectional='true' />".XmlDeserialize<DerivedCommand>();
-
-            Assert.True(obj.Undo);
-            Assert.True(obj.Unidirectional);
         }
     }
 }

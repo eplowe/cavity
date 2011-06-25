@@ -11,14 +11,14 @@
     {
         private static readonly TypeConverter _converter = new FileInfoConverter();
 
+        private static readonly ConfigurationValidatorBase _validator = new FileInfoValidator();
+
         private static readonly ConfigurationProperty _file = new ConfigurationProperty("file",
                                                                                         typeof(FileInfo),
                                                                                         null,
                                                                                         _converter,
                                                                                         _validator,
                                                                                         ConfigurationPropertyOptions.IsRequired);
-
-        private static readonly ConfigurationValidatorBase _validator = new FileInfoValidator();
 
         public FileConfigurationElement()
         {

@@ -27,10 +27,32 @@
         }
 
         [Fact]
+        public void op_Concat_IEnumerableStringEmpty_string()
+        {
+            var array = new string[]
+            {
+            };
+
+            var expected = string.Empty;
+            var actual = array.Concat(", ");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_Concat_IEnumerableStringNull_char()
         {
             string expected = null;
             var actual = (null as IEnumerable<string>).Concat(',');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Concat_IEnumerableStringNull_string()
+        {
+            string expected = null;
+            var actual = (null as IEnumerable<string>).Concat(", ");
 
             Assert.Equal(expected, actual);
         }
@@ -45,28 +67,6 @@
 
             const string expected = "a,b,c";
             var actual = array.Concat(',');
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Concat_IEnumerableStringEmpty_string()
-        {
-            var array = new string[]
-            {
-            };
-
-            var expected = string.Empty;
-            var actual = array.Concat(", ");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Concat_IEnumerableStringNull_string()
-        {
-            string expected = null;
-            var actual = (null as IEnumerable<string>).Concat(", ");
 
             Assert.Equal(expected, actual);
         }
@@ -107,7 +107,7 @@
                 "a", "b", "c"
             };
 
-            Assert.Throws<ArgumentNullException>(() => array.Concat(null as string));
+            Assert.Throws<ArgumentNullException>(() => array.Concat(null));
         }
 
         [Fact]

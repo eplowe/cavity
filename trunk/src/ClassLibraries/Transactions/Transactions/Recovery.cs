@@ -4,7 +4,9 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using Cavity.Diagnostics;
     using Cavity.IO;
 

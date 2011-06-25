@@ -16,6 +16,7 @@
     public static class Config
     {
         private static readonly Dictionary<Type, object> _types = new Dictionary<Type, object>();
+
 #if NET20
         private static List<ConfigXml> _xml;
 #else

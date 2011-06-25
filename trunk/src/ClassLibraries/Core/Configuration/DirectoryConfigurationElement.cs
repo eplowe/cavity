@@ -11,14 +11,14 @@
     {
         private static readonly TypeConverter _converter = new DirectoryInfoConverter();
 
+        private static readonly ConfigurationValidatorBase _validator = new DirectoryInfoValidator();
+
         private static readonly ConfigurationProperty _directory = new ConfigurationProperty("directory",
                                                                                              typeof(DirectoryInfo),
                                                                                              null,
                                                                                              _converter,
                                                                                              _validator,
                                                                                              ConfigurationPropertyOptions.IsRequired);
-
-        private static readonly ConfigurationValidatorBase _validator = new DirectoryInfoValidator();
 
         public DirectoryConfigurationElement()
         {

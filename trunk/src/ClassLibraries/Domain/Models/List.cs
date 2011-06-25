@@ -15,6 +15,18 @@
     [XmlRoot("list")]
     public class List : List<string>, IXmlSerializable
     {
+        public virtual IEnumerable<T> ToEnumerable<T>()
+        {
+#if NET20
+            foreach (var item in this)
+            {
+                yield return (T)Convert.ChangeType(item, typeof(T), CultureInfo.InvariantCulture);
+            }
+#else
+            return this.Select(item => (T)Convert.ChangeType(item, typeof(T), CultureInfo.InvariantCulture));
+#endif
+        }
+
         public virtual XmlSchema GetSchema()
         {
             throw new NotSupportedException();
@@ -48,18 +60,6 @@
                     Add(reader.ReadString());
                 }
             }
-        }
-
-        public virtual IEnumerable<T> ToEnumerable<T>()
-        {
-#if NET20
-            foreach (var item in this)
-            {
-                yield return (T)Convert.ChangeType(item, typeof(T), CultureInfo.InvariantCulture);
-            }
-#else
-            return this.Select(item => (T)Convert.ChangeType(item, typeof(T), CultureInfo.InvariantCulture));
-#endif
         }
 
         public virtual void WriteXml(XmlWriter writer)

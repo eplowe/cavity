@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Data
 {
     using System;
+#if !NET20
     using System.Linq;
+#endif
     using System.Xml.XPath;
     using Cavity.Properties;
 

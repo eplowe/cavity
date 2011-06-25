@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Net
 {
     using System;
+#if !NET20
     using System.Linq;
+#endif
     using System.Net;
 
     public sealed class HttpResponseContentLanguageTest : ITestHttpExpectation

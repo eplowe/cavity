@@ -1,7 +1,6 @@
 ﻿namespace Cavity
 {
     using System;
-    using System.Globalization;
     using Xunit;
 
     public sealed class DateTimeExtensionMethodsFacts

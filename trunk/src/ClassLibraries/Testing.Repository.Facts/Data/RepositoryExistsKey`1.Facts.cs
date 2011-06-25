@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using Cavity.Tests;
     using Moq;
     using Xunit;
 

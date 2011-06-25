@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using Cavity.Tests;
     using Moq;
     using Xunit;
 
@@ -29,8 +28,13 @@
         [Fact]
         public void op_Verify_IRepository()
         {
-            var obj = new RepositoryUpsertUpdateRecord<RandomObject>();
-            obj.Record1.Key = AlphaDecimal.Random();
+            var obj = new RepositoryUpsertUpdateRecord<RandomObject>
+            {
+                Record1 =
+                    {
+                        Key = AlphaDecimal.Random()
+                    }
+            };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository
@@ -56,8 +60,13 @@
         [Fact]
         public void op_Verify_IRepository_whenFalse()
         {
-            var obj = new RepositoryUpsertUpdateRecord<RandomObject>();
-            obj.Record1.Key = AlphaDecimal.Random();
+            var obj = new RepositoryUpsertUpdateRecord<RandomObject>
+            {
+                Record1 =
+                    {
+                        Key = AlphaDecimal.Random()
+                    }
+            };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository

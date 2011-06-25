@@ -60,6 +60,31 @@
         }
 
         [Fact]
+        public void op_Execute_IEnumerableEmpty()
+        {
+            var obj = new CSharpProjectCompliance
+            {
+                BuildEngine = new Mock<IBuildEngine>().Object,
+                Projects = new ITaskItem[]
+                {
+                }
+            };
+
+            Assert.False(obj.Execute());
+        }
+
+        [Fact]
+        public void op_Execute_IEnumerableNull()
+        {
+            var obj = new CSharpProjectCompliance
+            {
+                BuildEngine = new Mock<IBuildEngine>().Object
+            };
+
+            Assert.False(obj.Execute());
+        }
+
+        [Fact]
         public void op_Execute_IEnumerable_containingNullItem()
         {
             using (var file = new TempFile())
@@ -88,31 +113,6 @@
 
                 Assert.True(obj.Execute());
             }
-        }
-
-        [Fact]
-        public void op_Execute_IEnumerableEmpty()
-        {
-            var obj = new CSharpProjectCompliance
-            {
-                BuildEngine = new Mock<IBuildEngine>().Object,
-                Projects = new ITaskItem[]
-                {
-                }
-            };
-
-            Assert.False(obj.Execute());
-        }
-
-        [Fact]
-        public void op_Execute_IEnumerableNull()
-        {
-            var obj = new CSharpProjectCompliance
-            {
-                BuildEngine = new Mock<IBuildEngine>().Object
-            };
-
-            Assert.False(obj.Execute());
         }
 
         [Fact]

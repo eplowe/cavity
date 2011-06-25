@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading;
-    using Cavity;
     using Moq;
     using Xunit;
 
