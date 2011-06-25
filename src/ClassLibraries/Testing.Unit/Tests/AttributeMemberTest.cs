@@ -3,7 +3,9 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
+#if !NET20
     using System.Linq;
+#endif
     using System.Reflection;
     using Cavity.Properties;
 

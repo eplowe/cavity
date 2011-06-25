@@ -108,7 +108,7 @@
             return null == obj || !obj.Cast<object>().Any();
         }
 #endif
-        
+
 #if NET20
         public static Queue<T> ToQueue<T>(IEnumerable<T> obj)
 #else

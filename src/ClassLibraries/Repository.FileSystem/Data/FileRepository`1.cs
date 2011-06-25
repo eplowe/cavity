@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using System.Xml.XPath;
     using Cavity.Configuration;
     using Cavity.IO;
@@ -160,7 +162,7 @@
             var files = FileRepositoryConfiguration
                 .Directory()
                 .GetFiles("*.record", SearchOption.AllDirectories);
-
+            
             foreach (var file in files)
             {
                 var obj = RecordFile.Load(file);

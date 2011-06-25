@@ -3,7 +3,6 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using Cavity.Net;
-    using Cavity.Tests;
     using Moq;
     using Xunit;
 

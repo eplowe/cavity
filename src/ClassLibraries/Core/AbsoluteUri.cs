@@ -1,9 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
-#if !NET20
     using System.IO;
-#endif
     using System.Runtime.Serialization;
 #if NET20 || NET35
     using System.Security.Permissions;
@@ -25,7 +23,7 @@
         }
 
         protected AbsoluteUri(SerializationInfo info,
-                            StreamingContext context)
+                              StreamingContext context)
         {
             if (null != info)
             {
@@ -210,6 +208,7 @@
 #if NET20 || NET35
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
+
         public virtual void GetObjectData(SerializationInfo info,
                                           StreamingContext context)
         {

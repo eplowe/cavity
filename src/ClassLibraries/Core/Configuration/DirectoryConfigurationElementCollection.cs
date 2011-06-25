@@ -4,6 +4,9 @@
     using System.Collections.Generic;
     using System.Configuration;
     using System.IO;
+#if !NET20
+    using System.Linq;
+#endif
 
     public sealed class DirectoryConfigurationElementCollection : ConfigurationElementCollection, ICollection<DirectoryConfigurationElement>
     {
@@ -45,6 +48,7 @@
                 throw new ArgumentNullException("directory");
             }
 
+#if NET20
             foreach (var element in this)
             {
                 if (string.Equals(element.Name, name, StringComparison.Ordinal) &&
@@ -55,6 +59,10 @@
             }
 
             return false;
+#else
+            return this.Any(element => string.Equals(element.Name, name, StringComparison.Ordinal) &&
+                                       string.Equals(element.Directory.FullName, directory.FullName, StringComparison.OrdinalIgnoreCase));
+#endif
         }
 
         public void Add(DirectoryConfigurationElement item)
@@ -69,6 +77,7 @@
 
         public bool Contains(DirectoryConfigurationElement item)
         {
+#if NET20
             foreach (var element in this)
             {
                 if (ReferenceEquals(element, item))
@@ -78,6 +87,9 @@
             }
 
             return false;
+#else
+            return this.Any(element => ReferenceEquals(element, item));
+#endif
         }
 
         public void CopyTo(DirectoryConfigurationElement[] array,

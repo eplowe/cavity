@@ -2,7 +2,6 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Cavity.Tests;
     using Moq;
     using Xunit;
 

@@ -10,9 +10,9 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<ICommand>()
-                .IsInterface()
-                .Implements<IXmlSerializable>()
-                .Result);
+                            .IsInterface()
+                            .Implements<IXmlSerializable>()
+                            .Result);
         }
 
         [Fact]

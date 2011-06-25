@@ -93,7 +93,8 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This design is intentional.")]
-        public static void Save(FileMode mode, IEnumerable<KeyValuePair<FileInfo, KeyStringDictionary>> data)
+        public static void Save(FileMode mode,
+                                IEnumerable<KeyValuePair<FileInfo, KeyStringDictionary>> data)
         {
             if (null == data)
             {
@@ -124,7 +125,8 @@
             }
         }
 
-        public virtual void Save(FileMode mode, IEnumerable<KeyStringDictionary> data)
+        public virtual void Save(FileMode mode,
+                                 IEnumerable<KeyStringDictionary> data)
         {
             if (null == data)
             {

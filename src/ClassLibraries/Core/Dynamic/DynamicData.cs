@@ -4,40 +4,42 @@
     using System.Collections.Generic;
     using System.Dynamic;
 
-    public sealed class DynamicData : DynamicObject
+    public class DynamicData : DynamicObject
     {
-        private readonly Dictionary<string, object> _data;
-
         public DynamicData()
         {
-            _data = new Dictionary<string, object>();
+            Data = new Dictionary<string, object>();
         }
+
+        protected Dictionary<string, object> Data { get; private set; }
 
         public override IEnumerable<string> GetDynamicMemberNames()
         {
-            return _data.Keys;
+            return Data.Keys;
         }
 
-        public override bool TryGetMember(GetMemberBinder binder, out object result)
+        public override bool TryGetMember(GetMemberBinder binder,
+                                          out object result)
         {
             if (null == binder)
             {
                 throw new ArgumentNullException("binder");
             }
 
-            result = _data.ContainsKey(binder.Name) ? _data[binder.Name] : null;
+            result = Data.ContainsKey(binder.Name) ? Data[binder.Name] : null;
 
             return true;
         }
 
-        public override bool TrySetMember(SetMemberBinder binder, object value)
+        public override bool TrySetMember(SetMemberBinder binder,
+                                          object value)
         {
             if (null == binder)
             {
                 throw new ArgumentNullException("binder");
             }
 
-            _data[binder.Name] = value;
+            Data[binder.Name] = value;
             return true;
         }
     }

@@ -16,13 +16,13 @@
         }
 
         public RepositoryTestException(string message,
-                                 Exception innerException)
+                                       Exception innerException)
             : base(message, innerException)
         {
         }
 
         private RepositoryTestException(SerializationInfo info,
-                                  StreamingContext context)
+                                        StreamingContext context)
             : base(info, context)
         {
         }

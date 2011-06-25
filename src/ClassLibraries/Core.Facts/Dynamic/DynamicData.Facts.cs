@@ -1,9 +1,7 @@
 ﻿namespace Cavity.Dynamic
 {
     using System;
-    using System.Collections.Generic;
     using System.Dynamic;
-    using Cavity;
     using Xunit;
 
     public sealed class DynamicDataFacts
@@ -12,18 +10,30 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<DynamicData>()
-                .DerivesFrom<DynamicObject>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<DynamicObject>()
+                            .IsConcreteClass()
+                            .IsUnsealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void ctor()
         {
             Assert.NotNull(new DynamicData());
+        }
+
+        [Fact]
+        public void derived()
+        {
+            const string expected = "bar";
+
+            dynamic obj = new DerivedDynamicData();
+
+            var actual = obj.Foo;
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

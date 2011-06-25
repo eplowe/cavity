@@ -3,7 +3,9 @@
     using System;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+#if !NET20
     using System.Linq;
+#endif
     using System.Xml.Serialization;
     using Cavity.Collections;
     using Cavity.Diagnostics;

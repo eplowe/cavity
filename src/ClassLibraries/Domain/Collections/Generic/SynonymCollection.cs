@@ -79,6 +79,11 @@
 #endif
         }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
         public virtual IEnumerator<string> GetEnumerator()
         {
 #if NET20
@@ -89,11 +94,6 @@
 #else
             return Items.Select(item => item.Key).GetEnumerator();
 #endif
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

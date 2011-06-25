@@ -22,7 +22,7 @@
         }
 
         protected RelativeUri(SerializationInfo info,
-                            StreamingContext context)
+                              StreamingContext context)
         {
             if (null != info)
             {
@@ -182,6 +182,7 @@
 #if NET20 || NET35
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
+
         public virtual void GetObjectData(SerializationInfo info,
                                           StreamingContext context)
         {

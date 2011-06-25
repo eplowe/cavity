@@ -21,21 +21,18 @@
             : this()
         {
             Comparer = comparer;
-            _items = new List<LexicalItem>();
         }
 
         private Lexicon()
         {
+            _items = new List<LexicalItem>();
         }
 
         public IEnumerable<LexicalItem> Items
         {
             get
             {
-                foreach (var item in _items)
-                {
-                    yield return item;
-                }
+                return _items;
             }
         }
 
@@ -131,8 +128,8 @@
             Storage = storage;
             Storage.Delete(this);
         }
-
 #if !NET20
+
         public virtual void Invoke(Func<string, string> func)
         {
             if (null == func)
@@ -145,8 +142,8 @@
                 item.Invoke(func);
             }
         }
-
 #endif
+
         public virtual void Remove(IEnumerable<LexicalItem> items)
         {
             if (null == items)

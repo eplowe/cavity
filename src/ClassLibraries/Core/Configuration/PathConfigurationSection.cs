@@ -3,6 +3,9 @@
     using System;
     using System.Configuration;
     using System.IO;
+#if !NET20
+    using System.Linq;
+#endif
 
     public class PathConfigurationSection : ConfigurationSection
     {
@@ -36,6 +39,7 @@
                 throw new ArgumentOutOfRangeException("name");
             }
 
+#if NET20
             foreach (var item in Directories)
             {
                 if (item.Name.Equals(name, StringComparison.Ordinal))
@@ -45,6 +49,11 @@
             }
 
             return null;
+#else
+            return (from item in Directories
+                    where item.Name.Equals(name, StringComparison.Ordinal)
+                    select item.Directory).FirstOrDefault();
+#endif
         }
 
         public FileInfo File(string name)
@@ -59,6 +68,7 @@
                 throw new ArgumentOutOfRangeException("name");
             }
 
+#if NET20
             foreach (var item in Files)
             {
                 if (item.Name.Equals(name, StringComparison.Ordinal))
@@ -68,6 +78,11 @@
             }
 
             return null;
+#else
+            return (from item in Files
+                    where item.Name.Equals(name, StringComparison.Ordinal)
+                    select item.File).FirstOrDefault();
+#endif
         }
     }
 }

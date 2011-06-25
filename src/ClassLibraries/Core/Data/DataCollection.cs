@@ -295,14 +295,28 @@
 #endif
         }
 
-        public virtual IEnumerator<KeyStringPair> GetEnumerator()
-        {
-            return (Items as IEnumerable<KeyStringPair>).GetEnumerator();
-        }
-
         public override int GetHashCode()
         {
             return ToString().GetHashCode();
+        }
+
+        public override string ToString()
+        {
+#if NET20
+            return ObjectExtensionMethods.XmlSerialize(this).CreateNavigator().OuterXml;
+#else
+            return this.XmlSerialize().CreateNavigator().OuterXml;
+#endif
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public virtual IEnumerator<KeyStringPair> GetEnumerator()
+        {
+            return (Items as IEnumerable<KeyStringPair>).GetEnumerator();
         }
 
         public virtual XmlSchema GetSchema()
@@ -340,15 +354,6 @@
             }
         }
 
-        public override string ToString()
-        {
-#if NET20
-            return ObjectExtensionMethods.XmlSerialize(this).CreateNavigator().OuterXml;
-#else
-            return this.XmlSerialize().CreateNavigator().OuterXml;
-#endif
-        }
-
         public virtual void WriteXml(XmlWriter writer)
         {
             if (null == writer)
@@ -363,11 +368,6 @@
                 writer.WriteString(datum.Value);
                 writer.WriteEndElement();
             }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

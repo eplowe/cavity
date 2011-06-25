@@ -6,7 +6,9 @@
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using System.Net.Mime;
     using System.Text;
     using Cavity.Net.Mime;

@@ -125,12 +125,6 @@
         }
 
         [Fact]
-        public void op_WriteXml_XmlWriterNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (new CommandCollection() as IXmlSerializable).WriteXml(null));
-        }
-
-        [Fact]
         public void op_Undo()
         {
             Assert.True(new CommandCollection().Undo());
@@ -164,6 +158,12 @@
             };
 
             Assert.True(obj.Undo());
+        }
+
+        [Fact]
+        public void op_WriteXml_XmlWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (new CommandCollection() as IXmlSerializable).WriteXml(null));
         }
 
         [Fact]

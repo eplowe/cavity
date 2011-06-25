@@ -1,10 +1,6 @@
 ﻿namespace Cavity.Diagnostics
 {
-    using System;
     using System.Diagnostics;
-    using Cavity;
-    using log4net;
-    using log4net.Core;
     using Xunit;
 
     public sealed class Log4NetTraceListenerFacts
@@ -13,12 +9,12 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<Log4NetTraceListener>()
-                .DerivesFrom<TraceListener>()
-                .IsConcreteClass()
-                .IsUnsealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<TraceListener>()
+                            .IsConcreteClass()
+                            .IsUnsealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]

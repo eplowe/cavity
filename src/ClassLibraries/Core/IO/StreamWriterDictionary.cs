@@ -28,7 +28,7 @@
         }
 
         protected StreamWriterDictionary(SerializationInfo info,
-                                       StreamingContext context)
+                                         StreamingContext context)
             : base(info, context)
         {
         }
@@ -66,16 +66,16 @@
         }
 
         public virtual StreamWriter Item(string fileName,
-                                 FileMode mode,
-                                 FileAccess access,
-                                 FileShare share)
+                                         FileMode mode,
+                                         FileAccess access,
+                                         FileShare share)
         {
             return Item(fileName, FirstLine, mode, access, share);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Only files are supported.")]
         public virtual StreamWriter Item(FileInfo file,
-                                 string firstLine)
+                                         string firstLine)
         {
             if (null == file)
             {
@@ -86,16 +86,16 @@
         }
 
         public virtual StreamWriter Item(string fileName,
-                                 string firstLine)
+                                         string firstLine)
         {
             return Item(fileName, firstLine, Mode, Access, Share);
         }
 
         public virtual StreamWriter Item(string fileName,
-                                 string firstLine,
-                                 FileMode mode,
-                                 FileAccess access,
-                                 FileShare share)
+                                         string firstLine,
+                                         FileMode mode,
+                                         FileAccess access,
+                                         FileShare share)
         {
             return Item(new FileInfo(fileName), firstLine, mode, access, share);
         }
