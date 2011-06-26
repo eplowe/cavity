@@ -14,6 +14,7 @@
                             .IsSealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
+                            .Implements<IAddressLine>()
                             .Result);
         }
 
@@ -70,23 +71,40 @@
         [Fact]
         public void op_FromString_string_whenLondonWC()
         {
-            var obj = BritishPostcode.FromString("WC1A 2HR");
+            const string original = "WC1A 2HR";
+            var obj = BritishPostcode.FromString(original);
 
             Assert.Equal("WC", obj.Area);
             Assert.Equal("WC1A", obj.District);
             Assert.Equal("WC1A 2", obj.Sector);
             Assert.Equal("WC1A 2HR", obj.Unit);
+            Assert.Equal(original, (obj as IAddressLine).Original);
         }
 
         [Fact]
         public void op_FromString_string_whenOnlyDistrict()
         {
-            var obj = BritishPostcode.FromString("GU21");
+            const string original = "GU21";
+            var obj = BritishPostcode.FromString(original);
 
             Assert.Equal("GU", obj.Area);
             Assert.Equal("GU21", obj.District);
             Assert.Null(obj.Sector);
             Assert.Null(obj.Unit);
+            Assert.Equal(original, (obj as IAddressLine).Original);
+        }
+
+        [Fact]
+        public void op_FromString_string_whenThreeParts()
+        {
+            const string original = "GU21 4XG BB";
+            var obj = BritishPostcode.FromString(original);
+
+            Assert.Null(obj.Area);
+            Assert.Null(obj.District);
+            Assert.Null(obj.Sector);
+            Assert.Null(obj.Unit);
+            Assert.Equal(original, (obj as IAddressLine).Original);
         }
 
         [Fact]
@@ -117,6 +135,16 @@
         }
 
         [Fact]
+        public void prop_Original()
+        {
+            const string expected = "aa1 2zz";
+            IAddressLine obj = BritishPostcode.FromString(expected);
+            var actual = obj.Original;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void prop_Sector()
         {
             Assert.True(new PropertyExpectations<BritishPostcode>(p => p.Sector)
@@ -132,6 +160,16 @@
                             .TypeIs<string>()
                             .IsNotDecorated()
                             .Result);
+        }
+
+        [Fact]
+        public void prop_Value()
+        {
+            const string expected = "AA1 2ZZ";
+            IAddressLine obj = BritishPostcode.FromString(expected);
+            var actual = obj.Value;
+
+            Assert.Equal(expected, actual);
         }
     }
 }
