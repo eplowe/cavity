@@ -8,11 +8,12 @@
 #endif
     using Cavity.Diagnostics;
 
-    public sealed class BritishPostcode : ComparableObject
+    public sealed class BritishPostcode : ComparableObject, IAddressLine
     {
+        private string _original;
+
         private BritishPostcode()
         {
-            // TODO: convert into a value type
         }
 
         private BritishPostcode(string area,
@@ -40,6 +41,26 @@
 
         public string Unit { get; set; }
 
+        string IAddressLine.Original
+        {
+            get
+            {
+                return _original;
+            }
+        }
+
+#if NET40
+        dynamic IAddressLine.Value
+#else
+        object IAddressLine.Value
+#endif
+        {
+            get
+            {
+                return ToString();
+            }
+        }
+
         public static implicit operator BritishPostcode(string value)
         {
             return ReferenceEquals(null, value) ? null : FromString(value);
@@ -53,28 +74,41 @@
                 throw new ArgumentNullException("value");
             }
 
+            var orginal = value;
+            value = value.Trim().ToUpperInvariant();
             if (0 == value.Length)
             {
-                return new BritishPostcode();
+                return new BritishPostcode
+                {
+                    _original = orginal
+                };
             }
 
-            value = value.Trim().ToUpperInvariant();
             var parts = value.Split(' ');
             var area = ToArea(parts[0]);
             switch (parts.Length)
             {
                 case 1:
-                    return new BritishPostcode(area, parts[0]);
+                    return new BritishPostcode(area, parts[0])
+                    {
+                        _original = orginal
+                    };
 
                 case 2:
                     return new BritishPostcode(
                         area,
                         parts[0],
                         string.Concat(parts[0], ' ', ToSector(parts[1])),
-                        value);
+                        value)
+                    {
+                        _original = orginal
+                    };
 
                 default:
-                    return new BritishPostcode();
+                    return new BritishPostcode
+                    {
+                        _original = orginal
+                    };
             }
         }
 

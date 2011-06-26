@@ -61,6 +61,7 @@
     <Compile Include="Configuration\PathConfigurationSection.Derived.cs" />
     <Compile Include="DisposableObject.Derived.cs" />
     <Compile Include="DisposableObject.Facts.cs" />
+    <Compile Include="Collections\Generic\Tree`1.Facts.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' and '$(TargetFrameworkVersion)' != 'v3.5' ">
     <Compile Include="Dynamic\DynamicData.Derived.cs" />

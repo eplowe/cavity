@@ -697,6 +697,27 @@
         }
 
 #if NET20
+        public static int? TryToInt32(string obj)
+#else
+        public static int? TryToInt32(this string obj)
+#endif
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return null;
+            }
+
+            int result;
+
+            if (int.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out result))
+            {
+                return result;
+            }
+
+            return null;
+        }
+
+#if NET20
         public static T XmlDeserialize<T>(string xml)
 #else
         public static T XmlDeserialize<T>(this string xml)

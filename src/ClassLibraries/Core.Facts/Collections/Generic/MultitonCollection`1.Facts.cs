@@ -5,7 +5,7 @@
     using System.Linq;
     using Xunit;
 
-    public sealed class MultitonCollectionFacts
+    public sealed class MultitonCollectionOfTFacts
     {
         [Fact]
         public void a_definition()

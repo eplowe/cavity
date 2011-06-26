@@ -20,6 +20,19 @@
     <Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Models\Telephone.Facts.cs" />
     <Compile Include="Models\List.Facts.cs" />
+    <Compile Include="Models\Address.Facts.cs" />
+    <Compile Include="Models\Building.Facts.cs" />
+    <Compile Include="Models\AddressNumber.Facts.cs" />
+    <Compile Include="Models\AddressLine.Facts.cs" />
+    <Compile Include="Models\IRenderAddress.Facts.cs" />
+    <Compile Include="Models\DeliveryPoint.Facts.cs" />
+    <Compile Include="Models\Door.Facts.cs" />
+    <Compile Include="Models\IAddressLine.Facts.cs" />
+    <Compile Include="Models\IParseAddressLine.Facts.cs" />
+    <Compile Include="Models\Thoroughfare.Facts.cs" />
+    <Compile Include="Models\AddressRenderer.Facts.cs" />
+    <Compile Include="Models\Region.Facts.cs" />
+    <Compile Include="Models\Locality.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

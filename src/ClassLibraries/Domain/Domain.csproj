@@ -17,7 +17,19 @@
     <Compile Include="Data\CsvLexiconStorage.cs" />
     <Compile Include="Data\IStoreLexicon.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\BritishPostcode.cs" />
+    <Compile Include="Models\Building.cs" />
+    <Compile Include="Models\AddressNumber.cs" />
+    <Compile Include="Models\AddressLine.cs" />
+    <Compile Include="Models\AddressRenderer.cs" />
+    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\Locality.cs" />
+    <Compile Include="Models\IRenderAddress.cs" />
+    <Compile Include="Models\IAddressLine.cs" />
+    <Compile Include="Models\DeliveryPoint.cs" />
+    <Compile Include="Models\Door.cs" />
+    <Compile Include="Models\IParseAddressLine.cs" />
     <Compile Include="Models\LexicalItem.cs" />
     <Compile Include="Models\Lexicon.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.cs" />
@@ -44,6 +56,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Thoroughfare.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

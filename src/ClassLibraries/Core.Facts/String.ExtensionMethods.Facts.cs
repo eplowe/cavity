@@ -953,6 +953,33 @@
         }
 
         [Fact]
+        public void op_TryToInt32_string()
+        {
+            const int expected = 123;
+            var actual = "123".TryToInt32();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToInt32_stringEmpty()
+        {
+            Assert.Null(string.Empty.TryToInt32());
+        }
+
+        [Fact]
+        public void op_TryToInt32_stringExample()
+        {
+            Assert.Null("example".TryToInt32());
+        }
+
+        [Fact]
+        public void op_TryToInt32_stringNull()
+        {
+            Assert.Null((null as string).TryToInt32());
+        }
+
+        [Fact]
         public void op_XmlDeserializeOfT_string()
         {
             var expected = new DateTime(2009, 04, 25);
