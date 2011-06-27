@@ -4,12 +4,12 @@
     using Moq;
     using Xunit;
 
-    public sealed class IRenderAddressFacts
+    public sealed class IFormatAddressFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<IRenderAddress>()
+            Assert.True(new TypeExpectations<IFormatAddress>()
                             .IsInterface()
                             .Result);
         }
@@ -19,7 +19,7 @@
         {
             const string expected = "example";
             var address = new Mock<IEnumerable<IAddressLine>>().Object;
-            var obj = new Mock<IRenderAddress>();
+            var obj = new Mock<IFormatAddress>();
             obj
                 .Setup(x => x.ToString(address))
                 .Returns(expected)

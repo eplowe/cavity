@@ -12,20 +12,12 @@
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
     public class Address : IEnumerable<IAddressLine>
     {
-        public Address(IRenderAddress renderer)
+        public Address()
         {
             Lines = new Collection<IAddressLine>();
-            Renderer = renderer;
-        }
-
-        public Address()
-            : this(AddressRenderer.Default)
-        {
         }
 
         protected Collection<IAddressLine> Lines { get; private set; }
-
-        private IRenderAddress Renderer { get; set; }
 
         public virtual void Add(IAddressLine item)
         {
@@ -53,11 +45,6 @@
 #else
             return Lines.FirstOrDefault(line => typeof(T).Equals(line.GetType()));
 #endif
-        }
-
-        public override string ToString()
-        {
-            return Renderer.ToString(this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

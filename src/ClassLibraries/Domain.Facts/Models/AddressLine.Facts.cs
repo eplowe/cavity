@@ -16,18 +16,9 @@
         }
 
         [Fact]
-        public void prop_Original()
-        {
-            Assert.NotNull(new PropertyExpectations<AddressLine>(x => x.Original)
-                               .TypeIs<string>()
-                               .IsNotDecorated()
-                               .Result);
-        }
-
-        [Fact]
         public void prop_Value()
         {
-            Assert.NotNull(new PropertyExpectations<AddressLine>(x => x.Value)
+            Assert.NotNull(new PropertyExpectations<AddressLine>(x => x.Data)
 #if NET40
                                .TypeIs<dynamic>()
 #else

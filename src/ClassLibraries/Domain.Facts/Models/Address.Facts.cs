@@ -89,47 +89,5 @@
 
             Assert.Null(obj.Line<Building>());
         }
-
-        [Fact]
-        public void op_ToString()
-        {
-            const string expected = "example";
-            var renderer = new Mock<IRenderAddress>();
-            renderer
-                .Setup(x => x.ToString(It.IsAny<Address>()))
-                .Returns(expected)
-                .Verifiable();
-            var obj = new Address(renderer.Object);
-
-            Assert.Equal(expected, obj.ToString());
-        }
-
-        [Fact]
-        public void op_ToString_whenDefaultRenderer()
-        {
-            const string expected = "Flat A, 123";
-            var obj = new Address
-            {
-                new Building
-                {
-                    Original = "123"
-                },
-                new Door
-                {
-                    Original = "Flat A"
-                }
-            };
-
-            Assert.Equal(expected, obj.ToString());
-        }
-
-        [Fact]
-        public void op_ToString_whenDefaultRenderer_andEmpty()
-        {
-            var expected = string.Empty;
-            var obj = new Address();
-
-            Assert.Equal(expected, obj.ToString());
-        }
     }
 }

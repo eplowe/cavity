@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Models
 {
+    using System;
 #if NET40
     using Cavity.Dynamic;
 #endif
@@ -9,16 +10,19 @@
         protected AddressLine()
         {
 #if NET40
-            Value = new DynamicData();
+            Data = new DynamicData();
 #endif
         }
 
-        public string Original { get; set; }
-
 #if NET40
-        public dynamic Value { get; set; }
+        public dynamic Data { get; protected set; }
 #else
-        public object Value { get; set; }
+        public object Data { get; protected set; }
 #endif
+
+        public virtual string ToString(IFormatAddress renderer)
+        {
+            throw new NotSupportedException();
+        }
     }
 }
