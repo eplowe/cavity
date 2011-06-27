@@ -14,6 +14,12 @@
             Children = new Collection<Tree<T>>();
         }
 
+        public Tree(T value)
+            : this()
+        {
+            Value = value;
+        }
+
         public int Count
         {
             get
@@ -28,43 +34,48 @@
 
         private Collection<Tree<T>> Children { get; set; }
 
-        public Tree<T> Add(Tree<T> item)
+        public virtual Tree<T> Add(T child)
         {
-            if (null == item)
-            {
-                throw new ArgumentNullException("item");
-            }
-
-            item.Parent = this;
-            Children.Add(item);
-
-            return item;
+            return Add(new Tree<T>(child));
         }
 
-        public void Clear()
+        public virtual Tree<T> Add(Tree<T> child)
+        {
+            if (null == child)
+            {
+                throw new ArgumentNullException("child");
+            }
+
+            child.Parent = this;
+            Children.Add(child);
+
+            return child;
+        }
+
+        public virtual void Clear()
         {
             Children.Clear();
         }
 
-        public bool Contains(Tree<T> item)
+        public virtual bool Contains(Tree<T> child)
         {
-            if (null == item)
+            if (null == child)
             {
-                throw new ArgumentNullException("item");
+                throw new ArgumentNullException("child");
             }
 
-            return Children.Contains(item);
+            return Children.Contains(child);
         }
 
-        public void Remove(Tree<T> item)
+        public virtual void Remove(Tree<T> child)
         {
-            if (null == item)
+            if (null == child)
             {
-                throw new ArgumentNullException("item");
+                throw new ArgumentNullException("child");
             }
 
-            item.Parent = null;
-            Children.Remove(item);
+            child.Parent = null;
+            Children.Remove(child);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

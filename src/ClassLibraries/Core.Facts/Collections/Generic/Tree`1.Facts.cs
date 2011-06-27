@@ -24,6 +24,27 @@
         }
 
         [Fact]
+        public void ctor_T()
+        {
+            Assert.NotNull(new Tree<int>(123));
+        }
+
+        [Fact]
+        public void op_Add_T()
+        {
+            var obj = new Tree<string>();
+
+            const string expected = "example";
+            var actual = obj.Add(expected);
+
+            Assert.Same(expected, actual.Value);
+            Assert.Same(obj, actual.Parent);
+            Assert.Empty(actual);
+            Assert.NotEmpty(obj);
+            Assert.Equal(1, obj.Count);
+        }
+
+        [Fact]
         public void op_Add_Tree()
         {
             var obj = new Tree<int>();

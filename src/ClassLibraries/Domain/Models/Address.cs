@@ -27,7 +27,7 @@
 
         private IRenderAddress Renderer { get; set; }
 
-        public void Add(IAddressLine item)
+        public virtual void Add(IAddressLine item)
         {
             if (null == item)
             {
@@ -37,13 +37,8 @@
             Lines.Add(item);
         }
 
-        public IEnumerator<IAddressLine> GetEnumerator()
-        {
-            return Lines.GetEnumerator();
-        }
-
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "This design is intentional.")]
-        public IAddressLine Line<T>()
+        public virtual IAddressLine Line<T>()
         {
 #if NET20
             foreach (var line in Lines)
@@ -68,6 +63,11 @@
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public IEnumerator<IAddressLine> GetEnumerator()
+        {
+            return Lines.GetEnumerator();
         }
     }
 }
