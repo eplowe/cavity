@@ -10,8 +10,6 @@
 
     public sealed class BritishPostcode : ComparableObject, IAddressLine
     {
-        private string _original;
-
         private BritishPostcode()
         {
         }
@@ -41,18 +39,10 @@
 
         public string Unit { get; set; }
 
-        string IAddressLine.Original
-        {
-            get
-            {
-                return _original;
-            }
-        }
-
 #if NET40
-        dynamic IAddressLine.Value
+        dynamic IAddressLine.Data
 #else
-        object IAddressLine.Value
+        object IAddressLine.Data
 #endif
         {
             get
@@ -74,14 +64,10 @@
                 throw new ArgumentNullException("value");
             }
 
-            var orginal = value;
             value = value.Trim().ToUpperInvariant();
             if (0 == value.Length)
             {
-                return new BritishPostcode
-                {
-                    _original = orginal
-                };
+                return new BritishPostcode();
             }
 
             var parts = value.Split(' ');
@@ -89,32 +75,28 @@
             switch (parts.Length)
             {
                 case 1:
-                    return new BritishPostcode(area, parts[0])
-                    {
-                        _original = orginal
-                    };
+                    return new BritishPostcode(area, parts[0]);
 
                 case 2:
                     return new BritishPostcode(
                         area,
                         parts[0],
                         string.Concat(parts[0], ' ', ToSector(parts[1])),
-                        value)
-                    {
-                        _original = orginal
-                    };
+                        value);
 
                 default:
-                    return new BritishPostcode
-                    {
-                        _original = orginal
-                    };
+                    return new BritishPostcode();
             }
         }
 
         public override string ToString()
         {
             return Unit ?? string.Empty;
+        }
+
+        public string ToString(IFormatAddress renderer)
+        {
+            throw new NotSupportedException();
         }
 
         private static string ToArea(IEnumerable<char> value)

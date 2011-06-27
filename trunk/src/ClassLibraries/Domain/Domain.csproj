@@ -22,10 +22,9 @@
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\AddressNumber.cs" />
     <Compile Include="Models\AddressLine.cs" />
-    <Compile Include="Models\AddressRenderer.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Locality.cs" />
-    <Compile Include="Models\IRenderAddress.cs" />
+    <Compile Include="Models\IFormatAddress.cs" />
     <Compile Include="Models\IAddressLine.cs" />
     <Compile Include="Models\DeliveryPoint.cs" />
     <Compile Include="Models\Door.cs" />

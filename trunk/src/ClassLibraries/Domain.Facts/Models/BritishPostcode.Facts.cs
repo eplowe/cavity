@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Models
 {
     using System;
+    using Moq;
     using Xunit;
 
     public sealed class BritishPostcodeFacts
@@ -78,7 +79,6 @@
             Assert.Equal("WC1A", obj.District);
             Assert.Equal("WC1A 2", obj.Sector);
             Assert.Equal("WC1A 2HR", obj.Unit);
-            Assert.Equal(original, (obj as IAddressLine).Original);
         }
 
         [Fact]
@@ -91,7 +91,6 @@
             Assert.Equal("GU21", obj.District);
             Assert.Null(obj.Sector);
             Assert.Null(obj.Unit);
-            Assert.Equal(original, (obj as IAddressLine).Original);
         }
 
         [Fact]
@@ -104,7 +103,6 @@
             Assert.Null(obj.District);
             Assert.Null(obj.Sector);
             Assert.Null(obj.Unit);
-            Assert.Equal(original, (obj as IAddressLine).Original);
         }
 
         [Fact]
@@ -114,6 +112,23 @@
             var actual = BritishPostcode.FromString(expected).ToString();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToString_IFormatAddress()
+        {
+            var obj = BritishPostcode.FromString("GU21 4XG");
+            var renderer = new Mock<IFormatAddress>().Object;
+
+            Assert.Throws<NotSupportedException>(() => obj.ToString(renderer));
+        }
+
+        [Fact]
+        public void op_ToString_IFormatAddressNull()
+        {
+            var obj = BritishPostcode.FromString("GU21 4XG");
+
+            Assert.Throws<NotSupportedException>(() => obj.ToString(null));
         }
 
         [Fact]
@@ -132,16 +147,6 @@
                             .TypeIs<string>()
                             .IsNotDecorated()
                             .Result);
-        }
-
-        [Fact]
-        public void prop_Original()
-        {
-            const string expected = "aa1 2zz";
-            IAddressLine obj = BritishPostcode.FromString(expected);
-            var actual = obj.Original;
-
-            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -167,7 +172,7 @@
         {
             const string expected = "AA1 2ZZ";
             IAddressLine obj = BritishPostcode.FromString(expected);
-            var actual = obj.Value;
+            var actual = obj.Data;
 
             Assert.Equal(expected, actual);
         }

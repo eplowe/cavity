@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface IRenderAddress
+    public interface IFormatAddress
     {
         string ToString(IEnumerable<IAddressLine> address);
     }

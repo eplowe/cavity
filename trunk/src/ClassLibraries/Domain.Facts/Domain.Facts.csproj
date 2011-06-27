@@ -30,7 +30,6 @@
     <Compile Include="Models\IAddressLine.Facts.cs" />
     <Compile Include="Models\IParseAddressLine.Facts.cs" />
     <Compile Include="Models\Thoroughfare.Facts.cs" />
-    <Compile Include="Models\AddressRenderer.Facts.cs" />
     <Compile Include="Models\Region.Facts.cs" />
     <Compile Include="Models\Locality.Facts.cs" />
   </ItemGroup>

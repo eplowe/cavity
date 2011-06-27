@@ -14,35 +14,37 @@
         }
 
         [Fact]
-        public void prop_Original()
+        public void prop_Data()
         {
-            const string expected = "example";
+            var expected = new object();
             var obj = new Mock<IAddressLine>();
             obj
-                .SetupGet(x => x.Original)
+                .SetupGet(x => x.Data)
                 .Returns(expected)
                 .Verifiable();
 
-            var actual = obj.Object.Original;
+            var actual = obj.Object.Data;
 
-            Assert.Equal(expected, actual);
+            Assert.Same(expected, actual);
 
             obj.VerifyAll();
         }
 
         [Fact]
-        public void prop_Value()
+        public void op_ToString_IFormatAddress()
         {
-            var expected = new object();
+            const string expected = "example";
+
+            var renderer = new Mock<IFormatAddress>().Object;
             var obj = new Mock<IAddressLine>();
             obj
-                .SetupGet(x => x.Value)
+                .Setup(x => x.ToString(renderer))
                 .Returns(expected)
                 .Verifiable();
 
-            var actual = obj.Object.Value;
+            var actual = obj.Object.ToString(renderer);
 
-            Assert.Same(expected, actual);
+            Assert.Equal(expected, actual);
 
             obj.VerifyAll();
         }

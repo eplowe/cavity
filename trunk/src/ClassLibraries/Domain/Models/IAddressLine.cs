@@ -2,12 +2,12 @@
 {
     public interface IAddressLine
     {
-        string Original { get; }
-
 #if NET40
-        dynamic Value { get; }
+        dynamic Data { get; }
 #else
-        object Value { get; }
+        object Data { get; }
 #endif
+
+        string ToString(IFormatAddress renderer);
     }
 }
