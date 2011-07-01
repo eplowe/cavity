@@ -162,7 +162,7 @@
             var files = FileRepositoryConfiguration
                 .Directory()
                 .GetFiles("*.record", SearchOption.AllDirectories);
-            
+
             foreach (var file in files)
             {
                 var obj = RecordFile.Load(file);

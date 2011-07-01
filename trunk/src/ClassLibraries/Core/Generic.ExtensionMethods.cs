@@ -2,6 +2,7 @@
 {
 #if !NET20
     using System.Linq;
+
 #endif
 
     public static class GenericExtensionMethods

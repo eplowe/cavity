@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Configuration
 {
     using System;
-    using System.ComponentModel;
     using System.Configuration;
     using System.Diagnostics;
     using System.IO;
@@ -9,15 +8,11 @@
 
     public sealed class DirectoryConfigurationElement : ConfigurationElement
     {
-        private static readonly TypeConverter _converter = new DirectoryInfoConverter();
-
-        private static readonly ConfigurationValidatorBase _validator = new DirectoryInfoValidator();
-
         private static readonly ConfigurationProperty _directory = new ConfigurationProperty("directory",
                                                                                              typeof(DirectoryInfo),
                                                                                              null,
-                                                                                             _converter,
-                                                                                             _validator,
+                                                                                             new DirectoryInfoConverter(),
+                                                                                             new DirectoryInfoValidator(),
                                                                                              ConfigurationPropertyOptions.IsRequired);
 
         public DirectoryConfigurationElement()

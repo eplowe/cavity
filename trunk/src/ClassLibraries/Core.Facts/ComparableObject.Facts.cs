@@ -19,7 +19,7 @@ namespace Cavity
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new ComparableObjectDerived() as ComparableObject);
+            Assert.IsAssignableFrom<ComparableObject>(new ComparableObjectDerived());
         }
 
         [Fact]

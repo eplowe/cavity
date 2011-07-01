@@ -128,8 +128,8 @@
             Storage = storage;
             Storage.Delete(this);
         }
-#if !NET20
 
+#if !NET20
         public virtual void Invoke(Func<string, string> func)
         {
             if (null == func)
@@ -142,8 +142,8 @@
                 item.Invoke(func);
             }
         }
-#endif
 
+#endif
         public virtual void Remove(IEnumerable<LexicalItem> items)
         {
             if (null == items)

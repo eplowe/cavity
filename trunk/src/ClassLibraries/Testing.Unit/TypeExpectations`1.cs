@@ -39,7 +39,7 @@
         /// <value>
         /// Returns <see langword="true" /> if all the expectations were met.
         /// </value>
-        /// <exception cref="T:Cavity.TestException">Thrown when an expectation is not met.</exception>
+        /// <exception cref="T:Cavity.UnitTestException">Thrown when an expectation is not met.</exception>
         bool ITestType.Result
         {
             get

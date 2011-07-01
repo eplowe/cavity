@@ -119,7 +119,7 @@
 #else
             return value
                 .TakeWhile(c => c >= 'A' && c <= 'Z')
-                .Aggregate<char, string>(null, (current, c) => current + c);
+                .Aggregate<char, string>(null, (x, c) => x + c);
 #endif
         }
 
@@ -139,7 +139,7 @@
 #else
             return value
                 .Where(c => c >= '0' && c <= '9')
-                .Aggregate<char, string>(null, (current, c) => current + c);
+                .Aggregate<char, string>(null, (x, c) => x + c);
 #endif
         }
     }

@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using System.Runtime.Serialization;
+
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
@@ -65,9 +66,7 @@
         public static bool operator >(AbsoluteUri obj,
                                       AbsoluteUri comparand)
         {
-            return ReferenceEquals(null, obj)
-                       ? false
-                       : 0 < obj.CompareTo(comparand);
+            return !ReferenceEquals(null, obj) && 0 < obj.CompareTo(comparand);
         }
 
         public static implicit operator string(AbsoluteUri uri)

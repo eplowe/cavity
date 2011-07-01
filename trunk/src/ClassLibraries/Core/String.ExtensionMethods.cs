@@ -519,7 +519,7 @@
 
             return obj;
 #else
-            return args.Aggregate(obj, (current, arg) => current.Replace(arg, newValue, comparisonType));
+            return args.Aggregate(obj, (x, arg) => x.Replace(arg, newValue, comparisonType));
 #endif
         }
 

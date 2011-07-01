@@ -14,23 +14,6 @@
         }
 
         [Fact]
-        public void prop_Data()
-        {
-            var expected = new object();
-            var obj = new Mock<IAddressLine>();
-            obj
-                .SetupGet(x => x.Data)
-                .Returns(expected)
-                .Verifiable();
-
-            var actual = obj.Object.Data;
-
-            Assert.Same(expected, actual);
-
-            obj.VerifyAll();
-        }
-
-        [Fact]
         public void op_ToString_IFormatAddress()
         {
             const string expected = "example";
@@ -45,6 +28,23 @@
             var actual = obj.Object.ToString(renderer);
 
             Assert.Equal(expected, actual);
+
+            obj.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Data()
+        {
+            var expected = new object();
+            var obj = new Mock<IAddressLine>();
+            obj
+                .SetupGet(x => x.Data)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = obj.Object.Data;
+
+            Assert.Same(expected, actual);
 
             obj.VerifyAll();
         }

@@ -3,10 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-#if !NET20
     using System.Linq;
-#endif
-    using Moq;
     using Xunit;
 
     public sealed class AddressFacts

@@ -26,7 +26,7 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new DerivedHttpMessage() as HttpMessage);
+            Assert.IsAssignableFrom<HttpMessage>(new DerivedHttpMessage());
         }
 
         [Fact]
