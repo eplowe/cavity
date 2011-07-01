@@ -47,9 +47,7 @@
         [Fact]
         public void opImplicit_RequestLine_stringNull()
         {
-            RequestLine obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((RequestLine)null);
         }
 
         [Fact]

@@ -130,7 +130,7 @@
                 urn.ToPath(root).FullName,
                 "{0}.record".FormatWith(Headers["key"])));
 
-            if (!file.Directory.Exists)
+            if (null != file.Directory && !file.Directory.Exists)
             {
                 file.Directory.Create();
             }

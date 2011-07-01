@@ -199,9 +199,7 @@
                 return false;
             }
 
-            return ReferenceEquals(this, other)
-                       ? true
-                       : 0 == CompareTo(other);
+            return ReferenceEquals(this, other) || 0 == CompareTo(other);
         }
 
 #if NET20 || NET35

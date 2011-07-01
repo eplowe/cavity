@@ -152,14 +152,6 @@
             }
 
 #if NET20
-            if (0 == IEnumerableExtensionMethods.Count(items))
-#else
-            if (0 == items.Count())
-#endif
-            {
-                return;
-            }
-
             foreach (var item in items)
             {
                 foreach (var spelling in item.Spellings)
@@ -173,6 +165,14 @@
                     _items.Remove(match);
                 }
             }
+#else
+            foreach (var match in items.SelectMany(item => item.Spellings
+                                                               .Select(x => this[x])
+                                                               .Where(match => null != match)))
+            {
+                _items.Remove(match);
+            }
+#endif
         }
 
         public virtual void Save()

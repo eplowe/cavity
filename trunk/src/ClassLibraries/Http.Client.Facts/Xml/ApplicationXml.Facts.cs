@@ -63,9 +63,7 @@
         [Fact]
         public void opImplicit_ApplicationXml_stringNull()
         {
-            ApplicationXml obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((ApplicationXml)null);
         }
 
         [Fact]

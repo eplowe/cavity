@@ -35,9 +35,7 @@
         [Fact]
         public void opImplicit_StatusLine_stringNull()
         {
-            StatusLine obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((StatusLine)null);
         }
 
         [Fact]

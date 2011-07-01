@@ -31,10 +31,9 @@
         [Fact]
         public void op_CanConvertFrom_ITypeDescriptorContextNull_TypeString()
         {
-            ITypeDescriptorContext context = null;
             var sourceType = typeof(string);
 
-            Assert.True(new FileInfoConverter().CanConvertFrom(context, sourceType));
+            Assert.True(new FileInfoConverter().CanConvertFrom(null, sourceType));
         }
 
         [Fact]
@@ -67,7 +66,7 @@
                 var actual = (FileInfo)new FileInfoConverter().ConvertFrom(context, culture, value);
                 if (null == actual)
                 {
-                    Assert.NotNull(actual);
+                    Assert.NotNull(null);
                 }
                 else
                 {

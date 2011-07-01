@@ -2,6 +2,9 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+#if !NET20
+    using System.Linq;
+#endif
     using System.Reflection;
 
     public sealed class RepositoryExpectations<T>
@@ -15,6 +18,7 @@
 
         private static void VerifyAll<TRepository>(Assembly assembly) where TRepository : IRepository<T>
         {
+#if NET20
             foreach (var type in assembly.GetTypes())
             {
                 if (type.IsAbstract)
@@ -38,6 +42,14 @@
                     obj.Verify(Activator.CreateInstance<TRepository>());
                 }
             }
+#else
+            foreach (var obj in assembly.GetTypes()
+                .Where(x => !x.IsAbstract && !x.IsInterface && null != x.GetInterface(typeof(IVerifyRepository<T>).Name))
+                .Select(type => Activator.CreateInstance(type.MakeGenericType(typeof(T)))).OfType<IVerifyRepository<T>>())
+            {
+                obj.Verify(Activator.CreateInstance<TRepository>());
+            }
+#endif
         }
     }
 }

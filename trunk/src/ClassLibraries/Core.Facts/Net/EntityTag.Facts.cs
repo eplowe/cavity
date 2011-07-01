@@ -185,9 +185,7 @@
         [Fact]
         public void op_CompareTo_objectNull()
         {
-            object value = null;
-
-            Assert.Throws<ArgumentNullException>(() => new EntityTag().CompareTo(value));
+            Assert.Throws<ArgumentNullException>(() => new EntityTag().CompareTo(null as object));
         }
 
         [Fact]
@@ -252,9 +250,7 @@
         [Fact]
         public void op_Equals_objectNull()
         {
-            object other = null;
-
-            Assert.False(new EntityTag().Equals(other));
+            Assert.False(new EntityTag().Equals(null as object));
         }
 
         [Fact]
@@ -282,7 +278,9 @@
 
             ISerializable value = (EntityTag)JigsawEtag;
 
+// ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => value.GetObjectData(null, context));
+// ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]

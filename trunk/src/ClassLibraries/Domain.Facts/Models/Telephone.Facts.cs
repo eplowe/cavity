@@ -38,9 +38,7 @@
         [Fact]
         public void opImplicit_Telephone_stringNull()
         {
-            Telephone obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((Telephone)null);
         }
 
         [Fact]

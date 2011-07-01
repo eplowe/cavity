@@ -116,17 +116,6 @@
         }
 
         [Fact]
-        public void opExplicit_RelativeUri_UriNull()
-        {
-            Uri value = null;
-
-            RelativeUri expected = null;
-            RelativeUri actual = value;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void opExplicit_RelativeUri_UriRelative()
         {
             var expected = new RelativeUri("/");
@@ -154,17 +143,6 @@
         }
 
         [Fact]
-        public void opExplicit_RelativeUri_stringNull()
-        {
-            string value = null;
-
-            RelativeUri expected = null;
-            RelativeUri actual = value;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void opExplicit_Uri_RelativeUri()
         {
             var expected = new Uri("/", UriKind.Relative);
@@ -174,28 +152,10 @@
         }
 
         [Fact]
-        public void opExplicit_Uri_RelativeUriNull()
-        {
-            Uri expected = null;
-            Uri actual = null as RelativeUri;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void opExplicit_string_RelativeUri()
         {
             const string expected = "/";
             string actual = new RelativeUri(expected);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opExplicit_string_RelativeUriNull()
-        {
-            string expected = null;
-            string actual = null as RelativeUri;
 
             Assert.Equal(expected, actual);
         }
@@ -212,19 +172,9 @@
         [Fact]
         public void opGreaterThan_RelativeUriNull_RelativeUri()
         {
-            RelativeUri obj = null;
             var comparand = new RelativeUri("/");
 
-            Assert.False(obj > comparand);
-        }
-
-        [Fact]
-        public void opGreaterThan_RelativeUriNull_RelativeUriNull()
-        {
-            RelativeUri obj = null;
-            RelativeUri comparand = null;
-
-            Assert.False(obj > comparand);
+            Assert.False(null > comparand);
         }
 
         [Fact]
@@ -249,26 +199,14 @@
         public void opGreaterThan_RelativeUri_RelativeUriNull()
         {
             var obj = new RelativeUri("/");
-            RelativeUri comparand = null;
 
-            Assert.True(obj > comparand);
+            Assert.True(obj > null);
         }
 
         [Fact]
         public void opImplicit_RelativeUri_UriAbsolute()
         {
             Assert.Throws<UriFormatException>(() => (RelativeUri)new Uri("http://example.com/"));
-        }
-
-        [Fact]
-        public void opImplicit_RelativeUri_UriNull()
-        {
-            Uri value = null;
-
-            RelativeUri expected = null;
-            RelativeUri actual = value;
-
-            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -299,17 +237,6 @@
         }
 
         [Fact]
-        public void opImplicit_RelativeUri_stringNull()
-        {
-            string value = null;
-
-            RelativeUri expected = null;
-            RelativeUri actual = value;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void opImplicit_Uri_RelativeUri()
         {
             var expected = new Uri("/", UriKind.Relative);
@@ -319,28 +246,10 @@
         }
 
         [Fact]
-        public void opImplicit_Uri_RelativeUriNull()
-        {
-            Uri expected = null;
-            Uri actual = null as RelativeUri;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void opImplicit_string_RelativeUri()
         {
             const string expected = "/";
             string actual = new RelativeUri(expected);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opImplicit_string_RelativeUriNull()
-        {
-            string expected = null;
-            string actual = null as RelativeUri;
 
             Assert.Equal(expected, actual);
         }
@@ -384,19 +293,9 @@
         [Fact]
         public void opLesserThan_RelativeUriNull_RelativeUri()
         {
-            RelativeUri obj = null;
             var comparand = new RelativeUri("/");
 
-            Assert.True(obj < comparand);
-        }
-
-        [Fact]
-        public void opLesserThan_RelativeUriNull_RelativeUriNull()
-        {
-            RelativeUri obj = null;
-            RelativeUri comparand = null;
-
-            Assert.False(obj < comparand);
+            Assert.True(null < comparand);
         }
 
         [Fact]
@@ -421,9 +320,8 @@
         public void opLesserThan_RelativeUri_RelativeUriNull()
         {
             var obj = new RelativeUri("/");
-            RelativeUri comparand = null;
 
-            Assert.False(obj < comparand);
+            Assert.False(obj < null);
         }
 
         [Fact]
@@ -631,7 +529,9 @@
         {
             var context = new StreamingContext(StreamingContextStates.All);
 
+// ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => (new RelativeUri("/") as ISerializable).GetObjectData(null, context));
+// ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]

@@ -471,7 +471,7 @@
             var value = new Guid("f71ae311-462f-4f65-a704-8eb9fe49a679");
 
             AlphaDecimal expected = new BigInteger(value.ToByteArray());
-            AlphaDecimal actual = AlphaDecimal.FromString("779q4dambvi6xhpfak8ne5ekx");
+            var actual = AlphaDecimal.FromString("779q4dambvi6xhpfak8ne5ekx");
 
             Assert.Equal(expected, actual);
         }
@@ -508,7 +508,9 @@
 
             ISerializable value = (AlphaDecimal)123;
 
+// ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => value.GetObjectData(null, context));
+// ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]

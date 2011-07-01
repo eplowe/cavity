@@ -157,9 +157,7 @@
         [Fact]
         public void op_CompareTo_objectNull()
         {
-            object value = null;
-
-            Assert.Throws<ArgumentNullException>(() => new MD5Hash().CompareTo(value));
+            Assert.Throws<ArgumentNullException>(() => new MD5Hash().CompareTo(null as object));
         }
 
         [Fact]
@@ -396,9 +394,7 @@
         [Fact]
         public void op_Equals_objectNull()
         {
-            object other = null;
-
-            Assert.False(new MD5Hash().Equals(other));
+            Assert.False(new MD5Hash().Equals(null as object));
         }
 
         [Fact]
@@ -426,7 +422,9 @@
 
             ISerializable value = (MD5Hash)Convert.FromBase64String(JigsawHash);
 
+// ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => value.GetObjectData(null, context));
+// ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]

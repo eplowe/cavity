@@ -32,16 +32,14 @@
         [Fact]
         public void prop_Expected()
         {
-            object expected = true;
-
             var obj = new PropertyGetterTest(null, false)
             {
-                Expected = expected
+                Expected = true
             };
 
-            var actual = obj.Expected;
+            var actual = (bool)obj.Expected;
 
-            Assert.Same(expected, actual);
+            Assert.True(actual);
         }
     }
 }

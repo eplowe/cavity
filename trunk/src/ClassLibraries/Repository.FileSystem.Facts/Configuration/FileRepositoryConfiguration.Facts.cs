@@ -39,7 +39,7 @@
 
             if (null == actual)
             {
-                Assert.NotNull(actual);
+                Assert.NotNull(null);
             }
             else
             {
@@ -74,7 +74,7 @@
 
             if (null == actual)
             {
-                Assert.NotNull(actual);
+                Assert.NotNull(null);
             }
             else
             {

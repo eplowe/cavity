@@ -4,6 +4,7 @@
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
+    using System.Linq;
     using log4net;
 
     public class Log4NetTraceListener : TraceListener
@@ -64,6 +65,7 @@
                 return;
             }
 
+#if NET20
             foreach (var datum in data)
             {
                 if (TraceException(eventType, datum))
@@ -81,6 +83,20 @@
                                datum
                            });
             }
+#else
+            foreach (var datum in data.Where(x => !TraceException(eventType, x)))
+            {
+                TraceEvent(eventCache,
+                           source,
+                           eventType,
+                           id,
+                           "{0}",
+                           new[]
+                           {
+                               datum
+                           });
+            }
+#endif
         }
 
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Temporary")]
@@ -162,13 +178,11 @@
                     }
 
                     break;
-
-                default:
-                    break;
             }
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Temporary")]
+        [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Argument cannot be null")]
+        [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "5", Justification = "Argument cannot be null")]
         public override void TraceEvent(TraceEventCache eventCache,
                                         string source,
                                         TraceEventType eventType,
@@ -176,8 +190,7 @@
                                         string format,
                                         params object[] args)
         {
-            if (null == args ||
-                0 == args.Length)
+            if (0 == args.Length)
             {
                 TraceEvent(eventCache, source, eventType, id);
             }
@@ -236,9 +249,6 @@
                         }
 
                         log.WarnFormat(CultureInfo.CurrentCulture, format, args);
-                        break;
-
-                    default:
                         break;
                 }
             }

@@ -41,9 +41,7 @@
         [Fact]
         public void opImplicit_HttpVersion_stringNull()
         {
-            HttpVersion obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((HttpVersion)null);
         }
 
         [Fact]

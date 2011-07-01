@@ -60,9 +60,7 @@
         [Fact]
         public void opImplicit_HttpHeader_stringNull()
         {
-            HttpHeader obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((HttpHeader)null);
         }
 
         [Fact]

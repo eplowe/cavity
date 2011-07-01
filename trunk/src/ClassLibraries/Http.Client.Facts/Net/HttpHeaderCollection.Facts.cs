@@ -69,9 +69,7 @@
         [Fact]
         public void opImplicit_HttpHeaderCollection_stringNull()
         {
-            HttpHeaderCollection obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((HttpHeaderCollection)null);
         }
 
         [Fact]

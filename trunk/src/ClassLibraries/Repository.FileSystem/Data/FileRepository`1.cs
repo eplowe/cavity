@@ -126,9 +126,7 @@
                 return false;
             }
 
-            return record.Modified.HasValue
-                       ? record.Modified.Value > value
-                       : false;
+            return record.Modified.HasValue && record.Modified.Value > value;
         }
 
         bool IRepository<T>.ModifiedSince(AlphaDecimal key,
@@ -140,9 +138,7 @@
                 return false;
             }
 
-            return record.Modified.HasValue
-                       ? record.Modified.Value > value
-                       : false;
+            return record.Modified.HasValue && record.Modified.Value > value;
         }
 
         IEnumerable<IRecord<T>> IRepository<T>.Query(XPathExpression expression)
@@ -157,12 +153,11 @@
                 throw new ArgumentOutOfRangeException("expression");
             }
 
-            var result = new List<IRecord<T>>();
-
             var files = FileRepositoryConfiguration
                 .Directory()
                 .GetFiles("*.record", SearchOption.AllDirectories);
 
+#if NET20
             foreach (var file in files)
             {
                 var obj = RecordFile.Load(file);
@@ -179,6 +174,15 @@
             }
 
             return result;
+#else
+            return (from file in files
+                    select RecordFile.Load(file)
+                        into obj
+                        where !string.IsNullOrEmpty(obj.Body)
+                        let selection = obj.ToXml().CreateNavigator().Select(expression.Expression)
+                        where 0 != selection.Count
+                        select obj.ToRecord<T>()).ToList();
+#endif
         }
 
         IRecord<T> IRepository<T>.Select(AbsoluteUri urn)

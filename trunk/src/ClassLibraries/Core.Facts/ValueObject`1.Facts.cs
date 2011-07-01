@@ -69,13 +69,12 @@ namespace Cavity
         [Fact]
         public void opGreater_ValueObjectOfTNull_ValueObjectOfT()
         {
-            ValueObjectDerived operand1 = null;
             var operand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
 
-            Assert.False(operand1 > operand2);
+            Assert.False(null > operand2);
         }
 
         [Fact]
@@ -85,9 +84,8 @@ namespace Cavity
             {
                 Int32Property = 123
             };
-            ValueObjectDerived operand2 = null;
 
-            Assert.True(operand1 > operand2);
+            Assert.True(operand1 > null);
         }
 
         [Fact]
@@ -130,15 +128,6 @@ namespace Cavity
             };
 
             Assert.True(operand1 > operand2);
-        }
-
-        [Fact]
-        public void opImplicit_stringNull_ValueObjectOfT()
-        {
-            string expected = null;
-            string actual = null as ValueObjectDerived;
-
-            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -199,13 +188,12 @@ namespace Cavity
         [Fact]
         public void opLesser_ValueObjectOfTNull_ValueObjectOfT()
         {
-            ValueObjectDerived operand1 = null;
             var operand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
 
-            Assert.True(operand1 < operand2);
+            Assert.True(null < operand2);
         }
 
         [Fact]
@@ -215,9 +203,8 @@ namespace Cavity
             {
                 Int32Property = 123
             };
-            ValueObjectDerived operand2 = null;
 
-            Assert.False(operand1 < operand2);
+            Assert.False(operand1 < null);
         }
 
         [Fact]
@@ -368,13 +355,12 @@ namespace Cavity
         [Fact]
         public void op_Compare_ValueObjectOfTNull_ValueObjectOfT()
         {
-            ValueObjectDerived comparand1 = null;
             var comparand2 = new ValueObjectDerived
             {
                 Int32Property = 123
             };
 
-            Assert.True(ValueObjectDerived.Compare(comparand1, comparand2) < 0);
+            Assert.True(ValueObjectDerived.Compare(null, comparand2) < 0);
         }
 
         [Fact]
@@ -384,9 +370,8 @@ namespace Cavity
             {
                 Int32Property = 123
             };
-            ValueObjectDerived comparand2 = null;
 
-            Assert.True(ValueObjectDerived.Compare(comparand1, comparand2) > 0);
+            Assert.True(ValueObjectDerived.Compare(comparand1, null) > 0);
         }
 
         [Fact]
@@ -518,7 +503,7 @@ namespace Cavity
         [Fact]
         public void op_GetHashCode()
         {
-            Assert.NotEqual(0, new ValueObjectDerived().GetHashCode());
+            Assert.Equal(0, new ValueObjectDerived().GetHashCode());
         }
 
         [Fact]

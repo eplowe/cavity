@@ -41,9 +41,7 @@
         [Fact]
         public void opImplicit_BritishPostcode_stringNull()
         {
-            BritishPostcode obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((BritishPostcode)null);
         }
 
         [Fact]

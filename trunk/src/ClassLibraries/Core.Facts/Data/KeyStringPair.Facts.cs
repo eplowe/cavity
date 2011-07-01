@@ -144,7 +144,9 @@
 
             ISerializable value = new KeyStringPair();
 
+// ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => value.GetObjectData(null, context));
+// ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]

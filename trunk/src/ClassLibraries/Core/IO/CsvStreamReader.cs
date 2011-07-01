@@ -5,9 +5,6 @@
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-#if !NET20
-    using System.Linq;
-#endif
     using System.Text;
     using Cavity.Collections;
     using Cavity.Properties;
@@ -35,20 +32,16 @@
                 throw new ArgumentNullException("columns");
             }
 
-#if NET20
-            if (0 == IEnumerableExtensionMethods.Count(columns))
-#else
-            if (0 == columns.Count())
-#endif
-            {
-                throw new ArgumentOutOfRangeException("columns");
-            }
-
             Columns = new Collection<string>();
             foreach (var header in columns)
             {
                 Columns.Add(header);
                 Header += (string.IsNullOrEmpty(Header) ? string.Empty : ",") + header;
+            }
+
+            if (0 == Columns.Count)
+            {
+                throw new ArgumentOutOfRangeException("columns");
             }
         }
 

@@ -67,9 +67,7 @@
         [Fact]
         public void opImplicit_TextPlain_stringNull()
         {
-            TextPlain obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((TextPlain)null);
         }
 
         [Fact]

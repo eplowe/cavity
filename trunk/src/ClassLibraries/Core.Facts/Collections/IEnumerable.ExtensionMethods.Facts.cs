@@ -42,19 +42,17 @@
         [Fact]
         public void op_Concat_IEnumerableStringNull_char()
         {
-            string expected = null;
             var actual = (null as IEnumerable<string>).Concat(',');
 
-            Assert.Equal(expected, actual);
+            Assert.Equal(null, actual);
         }
 
         [Fact]
         public void op_Concat_IEnumerableStringNull_string()
         {
-            string expected = null;
             var actual = (null as IEnumerable<string>).Concat(", ");
 
-            Assert.Equal(expected, actual);
+            Assert.Equal(null, actual);
         }
 
         [Fact]
