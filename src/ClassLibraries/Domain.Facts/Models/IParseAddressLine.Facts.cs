@@ -1,7 +1,5 @@
 ﻿namespace Cavity.Models
 {
-    using System;
-    using Cavity;
     using Moq;
     using Xunit;
 
@@ -11,8 +9,8 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<IParseAddressLine>()
-                .IsInterface()
-                .Result);
+                            .IsInterface()
+                            .Result);
         }
 
         [Fact]

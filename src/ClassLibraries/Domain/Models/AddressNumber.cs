@@ -83,8 +83,8 @@
             right = comparand2.Parts.Value.TryToInt32();
 #endif
             return left.HasValue && right.HasValue
-                          ? left.Value - right.Value
-                          : string.Compare(comparand1.Parts.Value, comparand2.Parts.Value, StringComparison.Ordinal);
+                       ? left.Value - right.Value
+                       : string.Compare(comparand1.Parts.Value, comparand2.Parts.Value, StringComparison.Ordinal);
         }
 
         public static AddressNumber FromString(string expression)

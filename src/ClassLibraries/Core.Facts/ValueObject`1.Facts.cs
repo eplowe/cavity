@@ -21,7 +21,7 @@ namespace Cavity
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new ValueObjectDerived() as ValueObject<ValueObjectDerived>);
+            Assert.IsAssignableFrom<ValueObject<ValueObjectDerived>>(new ValueObjectDerived());
         }
 
         [Fact]

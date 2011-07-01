@@ -3,9 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-#if !NET20
     using System.Linq;
-#endif
     using System.Net;
     using Moq;
     using Xunit;

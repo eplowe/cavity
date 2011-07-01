@@ -203,7 +203,7 @@
                             new KeyStringPair("A", "1"),
                             new KeyStringPair("B", "2")
                         }
-                    }
+                        }
                 };
 
                 CsvFile.Save(FileMode.Create, data);

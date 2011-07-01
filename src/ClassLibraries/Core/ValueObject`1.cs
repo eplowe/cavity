@@ -3,12 +3,12 @@ namespace Cavity
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-#if !NET20
     using System.Linq;
-#endif
     using System.Linq.Expressions;
     using System.Reflection;
     using System.Text;
+#if !NET20
+#endif
 
     public abstract class ValueObject<T> : IComparable, IEquatable<T>
         where T : ValueObject<T>
