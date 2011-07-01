@@ -53,9 +53,7 @@
         [Fact]
         public void opImplicit_HttpMethod_stringNull()
         {
-            HttpMethod obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((HttpMethod)null);
         }
 
         [Fact]

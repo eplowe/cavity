@@ -51,9 +51,7 @@
         [Fact]
         public void opImplicit_HttpRequest_stringNull()
         {
-            HttpRequest obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((HttpRequest)null);
         }
 
         [Fact]

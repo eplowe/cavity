@@ -51,7 +51,7 @@
                 number += c;
             }
 #else
-            var number = new string(value.AsEnumerable().Where(c => char.IsDigit(c)).ToArray());
+            var number = new string(value.AsEnumerable().Where(char.IsDigit).ToArray());
 #endif
 
             if (2 > number.Length)

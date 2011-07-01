@@ -61,15 +61,13 @@
         {
             var expected = new Mock<IResponseXml>().Object;
 
-            XmlNamespace[] namespaces = null;
-
             var mock = new Mock<IResponseXml>();
             mock
-                .Setup(x => x.Evaluate(double.Epsilon, "/x", namespaces))
+                .Setup(x => x.Evaluate(double.Epsilon, "/x", (XmlNamespace[])null))
                 .Returns(expected)
                 .Verifiable();
 
-            var actual = mock.Object.Evaluate(double.Epsilon, "/x", namespaces);
+            var actual = mock.Object.Evaluate(double.Epsilon, "/x", (XmlNamespace[])null);
 
             Assert.Same(expected, actual);
 

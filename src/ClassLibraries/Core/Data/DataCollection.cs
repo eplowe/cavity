@@ -106,7 +106,7 @@
 
                 if (null == value)
                 {
-                    Items.Add(new KeyStringPair(name, value));
+                    Items.Add(new KeyStringPair(name, null));
                     return;
                 }
 
@@ -289,9 +289,7 @@
 
             return true;
 #else
-            return Items.Count == cast.Items.Count
-                       ? Items.All(datum => cast.Items.Contains(datum))
-                       : false;
+            return Items.Count == cast.Items.Count && Items.All(datum => cast.Items.Contains(datum));
 #endif
         }
 

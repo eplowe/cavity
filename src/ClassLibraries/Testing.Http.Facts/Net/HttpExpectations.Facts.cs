@@ -259,7 +259,7 @@
 
             var actual = (HttpResponseCacheControlTest)obj
                                                            .Expectations
-                                                           .Where(x => typeof(HttpResponseCacheControlTest) == x.GetType())
+                                                           .Where(x => x is HttpResponseCacheControlTest)
                                                            .First();
 
             Assert.Equal(expected, actual.Expected);
@@ -279,7 +279,7 @@
 
             var actual = (HttpResponseCacheControlTest)obj
                                                            .Expectations
-                                                           .Where(x => typeof(HttpResponseCacheControlTest) == x.GetType())
+                                                           .Where(x => x is HttpResponseCacheControlTest)
                                                            .First();
 
             Assert.Equal(expected, actual.Expected);
@@ -299,7 +299,7 @@
 
             var actual = (HttpResponseCacheControlTest)obj
                                                            .Expectations
-                                                           .Where(x => typeof(HttpResponseCacheControlTest) == x.GetType())
+                                                           .Where(x => x is HttpResponseCacheControlTest)
                                                            .First();
 
             Assert.Equal(expected, actual.Expected);
@@ -319,7 +319,7 @@
 
             var actual = (HttpResponseCacheControlTest)obj
                                                            .Expectations
-                                                           .Where(x => typeof(HttpResponseCacheControlTest) == x.GetType())
+                                                           .Where(x => x is HttpResponseCacheControlTest)
                                                            .First();
 
             Assert.Equal(expected, actual.Expected);
@@ -352,7 +352,7 @@
 
             var actual = (HttpResponseContentLanguageTest)obj
                                                               .Expectations
-                                                              .Where(x => typeof(HttpResponseContentLanguageTest) == x.GetType())
+                                                              .Where(x => x is HttpResponseContentLanguageTest)
                                                               .First();
 
             Assert.Equal(expected, actual.Expected);
@@ -373,7 +373,7 @@
             const string expected = "en";
             var actual = (HttpResponseContentLanguageTest)obj
                                                               .Expectations
-                                                              .Where(x => typeof(HttpResponseContentLanguageTest) == x.GetType())
+                                                              .Where(x => x is HttpResponseContentLanguageTest)
                                                               .First();
 
             Assert.Equal(expected, actual.Expected);
@@ -394,7 +394,7 @@
 
             Assert.NotNull(obj
                                .Expectations
-                               .Where(x => typeof(HttpResponseContentMD5Test) == x.GetType())
+                               .Where(x => x is HttpResponseContentMD5Test)
                                .FirstOrDefault());
         }
 
@@ -489,7 +489,7 @@
 
             var actual = (HttpStatusCodeTest)obj
                                                  .Expectations
-                                                 .Where(x => typeof(HttpStatusCodeTest) == x.GetType())
+                                                 .Where(x => x is HttpStatusCodeTest)
                                                  .First();
 
             Assert.Equal(expected, actual.Expected);
@@ -509,7 +509,7 @@
             const HttpResponseHeader expected = HttpResponseHeader.ETag;
             var actual = (HttpResponseHeaderTest)obj
                                                      .Expectations
-                                                     .Where(x => typeof(HttpResponseHeaderTest) == x.GetType())
+                                                     .Where(x => x is HttpResponseHeaderTest)
                                                      .First();
 
             Assert.Equal(expected, actual.Expected);
@@ -529,7 +529,7 @@
             const HttpResponseHeader expected = HttpResponseHeader.Expires;
             var actual = (HttpResponseHeaderTest)obj
                                                      .Expectations
-                                                     .Where(x => typeof(HttpResponseHeaderTest) == x.GetType())
+                                                     .Where(x => x is HttpResponseHeaderTest)
                                                      .First();
 
             Assert.Equal(expected, actual.Expected);
@@ -549,7 +549,7 @@
             const HttpResponseHeader expected = HttpResponseHeader.LastModified;
             var actual = (HttpResponseHeaderTest)obj
                                                      .Expectations
-                                                     .Where(x => typeof(HttpResponseHeaderTest) == x.GetType())
+                                                     .Where(x => x is HttpResponseHeaderTest)
                                                      .First();
 
             Assert.Equal(expected, actual.Expected);

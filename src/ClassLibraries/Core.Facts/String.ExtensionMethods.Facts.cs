@@ -530,10 +530,7 @@
         [Fact]
         public void op_RemoveDefiniteArticle_stringNull()
         {
-            string expected = null;
-            var actual = (null as string).RemoveDefiniteArticle();
-
-            Assert.Equal(expected, actual);
+            Assert.Null((null as string).RemoveDefiniteArticle());
         }
 
         [Fact]
@@ -548,10 +545,7 @@
         [Fact]
         public void op_RemoveFromEnd_stringNull_string_StringComparison()
         {
-            string expected = null;
-            var actual = (null as string).RemoveFromEnd("example", StringComparison.Ordinal);
-
-            Assert.Equal(expected, actual);
+            Assert.Null((null as string).RemoveFromEnd("example", StringComparison.Ordinal));
         }
 
         [Fact]
@@ -587,10 +581,7 @@
         [Fact]
         public void op_RemoveFromStart_stringNull_string_StringComparison()
         {
-            string expected = null;
-            var actual = (null as string).RemoveFromStart("example", StringComparison.Ordinal);
-
-            Assert.Equal(expected, actual);
+            Assert.Null((null as string).RemoveFromStart("example", StringComparison.Ordinal));
         }
 
         [Fact]
@@ -626,10 +617,7 @@
         [Fact]
         public void op_ReplaceAllWith_stringNull_string_StringComparison_strings()
         {
-            string expected = null;
-            var actual = expected.ReplaceAllWith("-", StringComparison.OrdinalIgnoreCase, "a", "B", "c");
-
-            Assert.Equal(expected, actual);
+            Assert.Null((null as string).ReplaceAllWith("-", StringComparison.OrdinalIgnoreCase, "a", "B", "c"));
         }
 
         [Fact]

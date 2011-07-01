@@ -119,17 +119,6 @@
         }
 
         [Fact]
-        public void opExplicit_AbsoluteUri_UriNull()
-        {
-            Uri value = null;
-
-            AbsoluteUri expected = null;
-            AbsoluteUri actual = value;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void opExplicit_AbsoluteUri_UriRelative()
         {
             Assert.Throws<UriFormatException>(() => (AbsoluteUri)new Uri("/", UriKind.Relative));
@@ -151,17 +140,6 @@
         }
 
         [Fact]
-        public void opExplicit_AbsoluteUri_stringNull()
-        {
-            string value = null;
-
-            AbsoluteUri expected = null;
-            AbsoluteUri actual = value;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void opExplicit_Uri_AbsoluteUri()
         {
             var expected = new Uri("http://example.com/");
@@ -171,28 +149,10 @@
         }
 
         [Fact]
-        public void opExplicit_Uri_AbsoluteUriNull()
-        {
-            Uri expected = null;
-            Uri actual = null as AbsoluteUri;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void opExplicit_string_AbsoluteUri()
         {
             const string expected = "http://example.com/";
             string actual = new AbsoluteUri(expected);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opExplicit_string_AbsoluteUriNull()
-        {
-            string expected = null;
-            string actual = null as AbsoluteUri;
 
             Assert.Equal(expected, actual);
         }
@@ -209,19 +169,9 @@
         [Fact]
         public void opGreaterThan_AbsoluteUriNull_AbsoluteUri()
         {
-            AbsoluteUri obj = null;
             var comparand = new AbsoluteUri("http://example.com/");
 
-            Assert.False(obj > comparand);
-        }
-
-        [Fact]
-        public void opGreaterThan_AbsoluteUriNull_AbsoluteUriNull()
-        {
-            AbsoluteUri obj = null;
-            AbsoluteUri comparand = null;
-
-            Assert.False(obj > comparand);
+            Assert.False(null > comparand);
         }
 
         [Fact]
@@ -246,9 +196,8 @@
         public void opGreaterThan_AbsoluteUri_AbsoluteUriNull()
         {
             var obj = new AbsoluteUri("http://example.com/");
-            AbsoluteUri comparand = null;
 
-            Assert.True(obj > comparand);
+            Assert.True(obj > null);
         }
 
         [Fact]
@@ -256,17 +205,6 @@
         {
             var expected = new AbsoluteUri("http://example.com/");
             AbsoluteUri actual = new Uri("http://example.com/");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opImplicit_AbsoluteUri_UriNull()
-        {
-            Uri value = null;
-
-            AbsoluteUri expected = null;
-            AbsoluteUri actual = value;
 
             Assert.Equal(expected, actual);
         }
@@ -293,17 +231,6 @@
         }
 
         [Fact]
-        public void opImplicit_AbsoluteUri_stringNull()
-        {
-            string value = null;
-
-            AbsoluteUri expected = null;
-            AbsoluteUri actual = value;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void opImplicit_Uri_AbsoluteUri()
         {
             var expected = new Uri("http://example.com/");
@@ -313,28 +240,10 @@
         }
 
         [Fact]
-        public void opImplicit_Uri_AbsoluteUriNull()
-        {
-            Uri expected = null;
-            Uri actual = null as AbsoluteUri;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void opImplicit_string_AbsoluteUri()
         {
             const string expected = "http://example.com/";
             string actual = new AbsoluteUri(expected);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opImplicit_string_AbsoluteUriNull()
-        {
-            string expected = null;
-            string actual = null as AbsoluteUri;
 
             Assert.Equal(expected, actual);
         }
@@ -378,19 +287,9 @@
         [Fact]
         public void opLesserThan_AbsoluteUriNull_AbsoluteUri()
         {
-            AbsoluteUri obj = null;
             var comparand = new AbsoluteUri("http://example.com/");
 
-            Assert.True(obj < comparand);
-        }
-
-        [Fact]
-        public void opLesserThan_AbsoluteUriNull_AbsoluteUriNull()
-        {
-            AbsoluteUri obj = null;
-            AbsoluteUri comparand = null;
-
-            Assert.False(obj < comparand);
+            Assert.True(null < comparand);
         }
 
         [Fact]
@@ -415,9 +314,8 @@
         public void opLesserThan_AbsoluteUri_AbsoluteUriNull()
         {
             var obj = new AbsoluteUri("http://example.com/");
-            AbsoluteUri comparand = null;
 
-            Assert.False(obj < comparand);
+            Assert.False(obj < null);
         }
 
         [Fact]
@@ -625,7 +523,9 @@
         {
             var context = new StreamingContext(StreamingContextStates.All);
 
+// ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => (new AbsoluteUri("http://example.com/") as ISerializable).GetObjectData(null, context));
+// ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]

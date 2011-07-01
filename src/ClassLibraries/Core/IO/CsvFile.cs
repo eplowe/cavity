@@ -5,9 +5,6 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-#if !NET20
-    using System.Linq;
-#endif
     using System.Text;
     using Cavity.Collections;
     using Cavity.Data;
@@ -101,17 +98,8 @@
                 throw new ArgumentNullException("data");
             }
 
-#if NET20
-            KeyStringDictionary line = null;
-            foreach (var item in data)
-            {
-                line = item.Value;
-                break;
-            }
-#else
-            var line = data.First().Value;
-#endif
-            using (var writers = new StreamWriterDictionary(Header(line))
+            var count = 0;
+            using (var writers = new StreamWriterDictionary
             {
                 Access = FileAccess.Write,
                 Mode = mode,
@@ -120,7 +108,13 @@
             {
                 foreach (var item in data)
                 {
+                    if (0 == count)
+                    {
+                        writers.FirstLine = Header(item.Value);
+                    }
+
                     writers.Item(item.Key).WriteLine(Line(item.Value));
+                    count++;
                 }
             }
         }
@@ -134,45 +128,33 @@
             }
 
             Info.Refresh();
-#if NET20
-            if (0 == IEnumerableExtensionMethods.Count(data))
-#else
-            if (0 == data.Count())
-#endif
-            {
-                if (Info.Exists)
-                {
-                    Info.Delete();
-                }
-
-                return;
-            }
-
-            if (!Info.Directory.Exists)
+            if (null != Info.Directory && !Info.Directory.Exists)
             {
                 Info.Directory.Create();
             }
 
-#if NET20
-            KeyStringDictionary line = null;
-            foreach (var item in data)
-            {
-                line = item;
-                break;
-            }
-#else
-            var line = data.First();
-#endif
+            var count = 0;
             using (var stream = Info.Open(mode, FileAccess.Write, FileShare.Read))
             {
                 using (var writer = new StreamWriter(stream))
                 {
-                    writer.WriteLine(Header(line));
-                    foreach (var item in data)
+                    foreach (var line in data)
                     {
-                        writer.WriteLine(Line(item));
+                        if (0 == count)
+                        {
+                            writer.WriteLine(Header(line));
+                        }
+
+                        writer.WriteLine(Line(line));
+                        count++;
                     }
                 }
+            }
+
+            Info.Refresh();
+            if (0 == count && Info.Exists)
+            {
+                Info.Delete();
             }
         }
 

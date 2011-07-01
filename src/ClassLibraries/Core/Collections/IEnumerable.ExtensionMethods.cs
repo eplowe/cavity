@@ -42,15 +42,6 @@
                 throw new ArgumentNullException("separator");
             }
 
-#if NET20
-            if (0 == Count(source))
-#else
-            if (0 == source.Count())
-#endif
-            {
-                return string.Empty;
-            }
-
             var buffer = new StringBuilder();
             foreach (var item in source)
             {

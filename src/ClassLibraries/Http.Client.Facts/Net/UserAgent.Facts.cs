@@ -64,9 +64,7 @@
         [Fact]
         public void opImplicit_UserAgent_stringNull()
         {
-            UserAgent obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((UserAgent)null);
         }
 
         [Fact]

@@ -16,11 +16,14 @@
                                            CultureInfo culture,
                                            object value)
         {
-            var type = value as string;
-            if (null != type)
+            var name = value as string;
+            if (null != name)
             {
-                var provider = (ISetLocatorProvider)Activator.CreateInstance(Type.GetType(type), true);
-                return provider;
+                var type = Type.GetType(name);
+                if (null != type)
+                {
+                    return Activator.CreateInstance(type, true);
+                }
             }
 
             return base.ConvertFrom(context, culture, value);

@@ -40,7 +40,9 @@
         [Fact]
         public void op_Validate_ObjectNull()
         {
+// ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => new DirectoryInfoValidator().Validate(null));
+// ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]

@@ -73,9 +73,7 @@
         public static bool operator >(RelativeUri obj,
                                       RelativeUri comparand)
         {
-            return ReferenceEquals(null, obj)
-                       ? false
-                       : 0 < obj.CompareTo(comparand);
+            return !ReferenceEquals(null, obj) && 0 < obj.CompareTo(comparand);
         }
 
         public static implicit operator string(RelativeUri uri)
@@ -175,9 +173,7 @@
                 return false;
             }
 
-            return ReferenceEquals(this, other)
-                       ? true
-                       : 0 == CompareTo(other);
+            return ReferenceEquals(this, other) || 0 == CompareTo(other);
         }
 
 #if NET20 || NET35

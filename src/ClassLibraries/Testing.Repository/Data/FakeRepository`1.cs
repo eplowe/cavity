@@ -2,6 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+#if !NET20
+    using System.Linq;
+#endif
     using System.Xml;
     using System.Xml.XPath;
     using Cavity.Net;
@@ -113,7 +116,11 @@
             node.Attributes.Append(attribute);
 
             attribute = Xml.CreateAttribute("status");
-            attribute.Value = XmlConvert.ToString(record.Status.Value);
+            if (record.Status != null)
+            {
+                attribute.Value = XmlConvert.ToString(record.Status.Value);
+            }
+
             node.Attributes.Append(attribute);
 
             attribute = Xml.CreateAttribute("urn");
@@ -126,7 +133,10 @@
 
             node.InnerXml = record.Value.XmlSerialize().CreateNavigator().OuterXml;
 
-            Xml.DocumentElement.AppendChild(node);
+            if (Xml.DocumentElement != null)
+            {
+                Xml.DocumentElement.AppendChild(node);
+            }
 
             return Repository.Select(key);
         }
@@ -217,6 +227,7 @@
                 return result;
             }
 
+#if NET20
             foreach (XmlNode node in nodes)
             {
                 if (null == node.ParentNode)
@@ -235,6 +246,16 @@
                     result.Add(ToRecord(node.ParentNode));
                 }
             }
+#else
+            result.AddRange(from XmlNode node in nodes
+                            let parent = node.ParentNode
+                            where parent != null
+                            where null != parent
+                            let selection = parent.SelectNodes(expression.Expression)
+                            where null != selection
+                            where 0 != selection.Count
+                            select ToRecord(parent));
+#endif
 
             return result;
         }
@@ -318,17 +339,26 @@
                 return null;
             }
 
-            node.Attributes["cacheability"].Value = record.Cacheability;
-            node.Attributes["etag"].Value = (EntityTag)MD5Hash.Compute(record.ToEntity());
-            node.Attributes["expiration"].Value = record.Expiration;
-            node.Attributes["modified"].Value = DateTime.UtcNow.ToXmlString();
-            node.Attributes["status"].Value = XmlConvert.ToString(record.Status.Value);
-            node.Attributes["type"].Value = "{0}, {1}".FormatWith(record.GetType().FullName, record.GetType().Assembly.GetName().Name);
-            node.Attributes["urn"].Value = record.Urn;
+            if (node.Attributes != null)
+            {
+                node.Attributes["cacheability"].Value = record.Cacheability;
+                node.Attributes["etag"].Value = (EntityTag)MD5Hash.Compute(record.ToEntity());
+                node.Attributes["expiration"].Value = record.Expiration;
+                node.Attributes["modified"].Value = DateTime.UtcNow.ToXmlString();
+                if (record.Status != null)
+                {
+                    node.Attributes["status"].Value = XmlConvert.ToString(record.Status.Value);
+                }
+
+                node.Attributes["type"].Value = "{0}, {1}".FormatWith(record.GetType().FullName, record.GetType().Assembly.GetName().Name);
+                node.Attributes["urn"].Value = record.Urn;
+            }
 
             node.InnerXml = record.Value.XmlSerialize().CreateNavigator().OuterXml;
 
-            return Repository.Select(record.Key.Value);
+            return record.Key != null
+                ? Repository.Select(record.Key.Value)
+                : null;
         }
 
         IRecord<T> IRepository<T>.Upsert(IRecord<T> record)

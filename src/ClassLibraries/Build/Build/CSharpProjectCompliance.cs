@@ -53,14 +53,9 @@
                 return false;
             }
 #else
-            if (0 == projects.Count())
-            {
-                Log.LogWarning(Resources.CSharpProjectCompliance_PathsEmpty_Message);
-                return false;
-            }
-
             var result = 0 == projects.Where(project => !Execute(project)).Count();
 #endif
+
             return result;
         }
 
@@ -103,7 +98,8 @@
                              XPathNavigator navigator,
                              IXmlNamespaceResolver namespaces)
         {
-            if (!(bool)navigator.Evaluate(XPath, namespaces))
+            var o = navigator.Evaluate(XPath, namespaces);
+            if (o != null && !(bool)o)
             {
                 Log.LogError(Resources.CSharpProjectCompliance_XPath_Message, file, XPath);
                 return false;

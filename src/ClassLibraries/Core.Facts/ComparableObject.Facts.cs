@@ -52,19 +52,17 @@ namespace Cavity
         [Fact]
         public void opGreater_ValueObjectOfTNull_ValueObjectOfT()
         {
-            ComparableObjectDerived operand1 = null;
             var operand2 = new ComparableObjectDerived("value");
 
-            Assert.False(operand1 > operand2);
+            Assert.False(null > operand2);
         }
 
         [Fact]
         public void opGreater_ValueObjectOfT_ValueObjectOfTNull()
         {
             var operand1 = new ComparableObjectDerived("value");
-            ComparableObjectDerived operand2 = null;
 
-            Assert.True(operand1 > operand2);
+            Assert.True(operand1 > null);
         }
 
         [Fact]
@@ -92,15 +90,6 @@ namespace Cavity
             var operand2 = new ComparableObjectDerived("bar");
 
             Assert.True(operand1 > operand2);
-        }
-
-        [Fact]
-        public void opImplicit_stringNull_ValueObjectOfT()
-        {
-            string expected = null;
-            string actual = null as ComparableObjectDerived;
-
-            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -142,19 +131,17 @@ namespace Cavity
         [Fact]
         public void opLesser_ValueObjectOfTNull_ValueObjectOfT()
         {
-            ComparableObjectDerived operand1 = null;
             var operand2 = new ComparableObjectDerived("value");
 
-            Assert.True(operand1 < operand2);
+            Assert.True(null < operand2);
         }
 
         [Fact]
         public void opLesser_ValueObjectOfT_ValueObjectOfTNull()
         {
             var operand1 = new ComparableObjectDerived("value");
-            ComparableObjectDerived operand2 = null;
 
-            Assert.False(operand1 < operand2);
+            Assert.False(operand1 < null);
         }
 
         [Fact]
@@ -254,19 +241,17 @@ namespace Cavity
         [Fact]
         public void op_Compare_ValueObjectOfTNull_ValueObjectOfT()
         {
-            ComparableObjectDerived comparand1 = null;
             var comparand2 = new ComparableObjectDerived("value");
 
-            Assert.True(ComparableObject.Compare(comparand1, comparand2) < 0);
+            Assert.True(ComparableObject.Compare(null, comparand2) < 0);
         }
 
         [Fact]
         public void op_Compare_ValueObjectOfT_ValueObjectOfTNull()
         {
             var comparand1 = new ComparableObjectDerived("value");
-            ComparableObjectDerived comparand2 = null;
 
-            Assert.True(ComparableObject.Compare(comparand1, comparand2) > 0);
+            Assert.True(ComparableObject.Compare(comparand1, null) > 0);
         }
 
         [Fact]

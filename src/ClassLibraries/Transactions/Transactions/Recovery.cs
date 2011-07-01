@@ -4,9 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
-#if !NET20
     using System.Linq;
-#endif
     using Cavity.Diagnostics;
     using Cavity.IO;
 
@@ -87,7 +85,7 @@
             lock (_this)
             {
                 var master = MasterFile(operation);
-                if (!master.Directory.Exists)
+                if (null != master.Directory && !master.Directory.Exists)
                 {
                     master.Directory.Create();
                 }
@@ -98,12 +96,10 @@
                 {
                     foreach (var line in master
                         .Lines()
-                        .Where(x => !string.IsNullOrEmpty(x) && !x.Equals(file.FullName, StringComparison.OrdinalIgnoreCase)))
+                        .Where(x => !string.IsNullOrEmpty(x) && !x.Equals(file.FullName, StringComparison.OrdinalIgnoreCase))
+                        .Where(line => !items.Contains(line)))
                     {
-                        if (!items.Contains(line))
-                        {
-                            items.Add(line);
-                        }
+                        items.Add(line);
                     }
                 }
 
@@ -140,7 +136,7 @@
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             var file = ItemFile(operation);
-            if (!file.Directory.Exists)
+            if (null != file.Directory && !file.Directory.Exists)
             {
                 file.Directory.Create();
             }
@@ -150,7 +146,7 @@
             {
                 var source = file.FullName;
                 file = ItemDirectory(operation, success.Value ? "Commit" : "Rollback").ToFile(file.Name);
-                if (!file.Directory.Exists)
+                if (null != file.Directory && !file.Directory.Exists)
                 {
                     file.Directory.Create();
                 }

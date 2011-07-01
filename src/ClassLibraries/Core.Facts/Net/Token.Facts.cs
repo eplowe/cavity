@@ -53,9 +53,7 @@
         [Fact]
         public void opImplicit_Token_stringNull()
         {
-            Token obj = null as string;
-
-            Assert.Null(obj);
+            Assert.Null((Token)null);
         }
 
         [Fact]

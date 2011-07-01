@@ -7,8 +7,6 @@ namespace Cavity
     using System.Linq.Expressions;
     using System.Reflection;
     using System.Text;
-#if !NET20
-#endif
 
     public abstract class ValueObject<T> : IComparable, IEquatable<T>
         where T : ValueObject<T>
@@ -74,14 +72,10 @@ namespace Cavity
 
         public override int GetHashCode()
         {
-            var result = base.GetHashCode();
-
             return Properties
                 .Select(property => property.GetValue(this, null))
                 .Where(value => null != value)
-                .Aggregate(result,
-                           (current,
-                            value) => current ^ value.GetHashCode());
+                .Aggregate(0, (x, value) => x ^ value.GetHashCode());
         }
 
         public override string ToString()

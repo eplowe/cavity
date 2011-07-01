@@ -65,7 +65,7 @@
                 }
             };
 
-            Assert.False(obj.Execute());
+            Assert.True(obj.Execute());
         }
 
         [Fact]

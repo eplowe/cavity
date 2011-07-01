@@ -33,11 +33,13 @@
         public virtual void Commit(Enlistment enlistment)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
-            if (null != enlistment)
+            if (null == enlistment)
             {
-                Operation.Done(true);
-                enlistment.Done();
+                return;
             }
+
+            Operation.Done(true);
+            enlistment.Done();
         }
 
         public virtual void InDoubt(Enlistment enlistment)
@@ -53,43 +55,47 @@
         public virtual void Prepare(PreparingEnlistment preparingEnlistment)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
-            if (null != preparingEnlistment)
+            if (null == preparingEnlistment)
             {
-                try
-                {
-                    Operation.Info = Convert.ToBase64String(preparingEnlistment.RecoveryInformation());
-                    if (ConfigureOperation() &&
-                        Operation.Do())
-                    {
-                        Trace.WriteIf(Tracing.Is.TraceVerbose, "preparingEnlistment.Prepared()");
-                        preparingEnlistment.Prepared();
-                        return;
-                    }
+                return;
+            }
 
-                    Trace.WriteIf(Tracing.Is.TraceVerbose, "preparingEnlistment.ForceRollback()");
-                    preparingEnlistment.ForceRollback();
-                }
-                catch (Exception exception)
+            try
+            {
+                Operation.Info = Convert.ToBase64String(preparingEnlistment.RecoveryInformation());
+                if (ConfigureOperation() &&
+                    Operation.Do())
                 {
-                    Trace.TraceError("{0}", exception);
-                    preparingEnlistment.ForceRollback(exception);
+                    Trace.WriteIf(Tracing.Is.TraceVerbose, "preparingEnlistment.Prepared()");
+                    preparingEnlistment.Prepared();
+                    return;
                 }
+
+                Trace.WriteIf(Tracing.Is.TraceVerbose, "preparingEnlistment.ForceRollback()");
+                preparingEnlistment.ForceRollback();
+            }
+            catch (Exception exception)
+            {
+                Trace.TraceError("{0}", exception);
+                preparingEnlistment.ForceRollback(exception);
             }
         }
 
         public virtual void Rollback(Enlistment enlistment)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
-            if (null != enlistment)
+            if (null == enlistment)
             {
-                if (Operation.Undo())
-                {
-                    Trace.WriteIf(Tracing.Is.TraceVerbose, "Operation.Done(false)");
-                    Operation.Done(false);
-                }
-
-                enlistment.Done();
+                return;
             }
+
+            if (Operation.Undo())
+            {
+                Trace.WriteIf(Tracing.Is.TraceVerbose, "Operation.Done(false)");
+                Operation.Done(false);
+            }
+
+            enlistment.Done();
         }
 
         protected abstract bool ConfigureOperation();

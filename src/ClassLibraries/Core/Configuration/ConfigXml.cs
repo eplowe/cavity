@@ -12,6 +12,16 @@
         private ConfigXml(FileInfo file)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
+            if (null == file)
+            {
+                return;
+            }
+
+            if (null == file.Directory)
+            {
+                return;
+            }
+
             Info = file;
             Watcher = new FileSystemWatcher(file.Directory.FullName, file.Name)
             {

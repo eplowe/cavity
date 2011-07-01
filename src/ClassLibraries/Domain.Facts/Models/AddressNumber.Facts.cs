@@ -355,14 +355,6 @@
         }
 
         [Fact]
-        public void op_Equals_object_this()
-        {
-            var value = new AddressNumber("123", "A");
-
-            Assert.True(value.Equals(value));
-        }
-
-        [Fact]
         public void op_FromString_string()
         {
             var expected = new AddressNumber("123", "A");

@@ -53,28 +53,13 @@
             }
 
 #if NET20
-            if (0 == IEnumerableExtensionMethods.Count(paths))
-#else
-            if (0 == paths.Count())
-#endif
-            {
-                Log.LogWarning(Resources.LexiconTidy_PathsEmpty_Message);
-                return false;
-            }
-
             var result = true;
-#if NET20
             foreach (var path in paths)
-#else
-            foreach (var path in paths.Where(path => !Execute(path)))
-#endif
             {
-#if NET20
                 if (Execute(path))
                 {
                     continue;
                 }
-#endif
 
                 if (null == path)
                 {
@@ -91,6 +76,9 @@
             }
 
             return result;
+#else
+            return !paths.Any(path => BuildEngine.ContinueOnError || !Execute(path));
+#endif
         }
 
         private bool Execute(ITaskItem path)
