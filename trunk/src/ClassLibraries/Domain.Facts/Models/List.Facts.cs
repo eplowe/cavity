@@ -20,6 +20,7 @@
                             .IsUnsealed()
                             .HasDefaultConstructor()
                             .XmlRoot("list")
+                            .Implements<IXmlSerializable>()
                             .Result);
         }
 

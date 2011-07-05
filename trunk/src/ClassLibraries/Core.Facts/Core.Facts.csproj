@@ -14,7 +14,9 @@
     <Compile Include="ComparableObject.Derived.cs" />
     <Compile Include="ComparableObject.Facts.cs" />
     <Compile Include="Configuration\DirectoryInfoConverter.Facts.cs" />
+    <Compile Include="Collections\Generic\Tree`1.Facts.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.Facts.cs" />
+    <Compile Include="Collections\TranslationDictionary`1.Facts.cs" />
     <Compile Include="Generic.ExtensionMethods.Facts.cs" />
     <Compile Include="DateTime.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\Data.String.ExtensionMethods.Facts.cs" />
@@ -59,9 +61,10 @@
     <Compile Include="Configuration\DirectoryInfoValidator.Facts.cs" />
     <Compile Include="Configuration\PathConfigurationSection.Facts.cs" />
     <Compile Include="Configuration\PathConfigurationSection.Derived.cs" />
+    <Compile Include="Globalization\Language.Facts.cs" />
+    <Compile Include="Globalization\Translation`1.Facts.cs" />
     <Compile Include="DisposableObject.Derived.cs" />
     <Compile Include="DisposableObject.Facts.cs" />
-    <Compile Include="Collections\Generic\Tree`1.Facts.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' and '$(TargetFrameworkVersion)' != 'v3.5' ">
     <Compile Include="Dynamic\DynamicData.Derived.cs" />
