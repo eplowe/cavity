@@ -9,6 +9,7 @@
     <ServiceLocation>false</ServiceLocation>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collections\TranslationDictionary`1.cs" />
     <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
     <Compile Include="Collections\Generic\Tree`1.cs" />
     <Compile Include="Collections\KeyStringDictionary.cs" />
@@ -28,6 +29,8 @@
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\KeyStringPair.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="Globalization\Language.cs" />
+    <Compile Include="Globalization\Translation`1.cs" />
     <Compile Include="IO\DirectoryInfo.ExtensionMethods.cs" />
     <Compile Include="IO\EncodedStringWriter.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
