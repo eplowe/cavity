@@ -1,4 +1,4 @@
-﻿namespace Cavity
+ namespace Cavity
 {
     using System;
     using System.Linq;
@@ -13,7 +13,7 @@
         /// <param name="type">The type to assess.</param>
         /// <param name="interface">The expected interface type.</param>
         /// <returns>
-        /// An indicator if the <paramref name="type"/> is a static class
+        /// An indicator if the <paramref name="type"/>
         /// implements the specified <paramref name="interface"/>.
         /// </returns>
         /// <seealso href="http://msdn.microsoft.com/library/87d83y5b">interface (C# Reference)</seealso>
