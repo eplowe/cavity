@@ -11,8 +11,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Reference Include="Microsoft.Practices.Unity" />
-    <Reference Include="Microsoft.Practices.Unity.Configuration" />
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Configuration\XmlServiceLocatorProvider.cs" />
