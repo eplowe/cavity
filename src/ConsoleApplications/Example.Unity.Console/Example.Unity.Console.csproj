@@ -7,12 +7,12 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="$(TrunkDirectory)\lib\trove\Framework\v3.5\Microsoft.Practices.Unity.Configuration.dll">
-      <Link>Microsoft.Practices.Unity.Configuration.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="$(TrunkDirectory)\lib\trove\Framework\v3.5\Microsoft.Practices.Unity.dll">
       <Link>Microsoft.Practices.Unity.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(TrunkDirectory)\lib\trove\Framework\v3.5\Microsoft.Practices.Unity.Configuration.dll">
+      <Link>Microsoft.Practices.Unity.Configuration.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
