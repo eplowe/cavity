@@ -41,10 +41,6 @@
       <Project>{DAA78F38-1405-4971-AB8D-1D42FD41B848}</Project>
       <Name>ServiceLocation.CastleWindsor</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
-      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
-      <Name>Testing.Unit</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
