@@ -18,10 +18,6 @@
       <Project>{45AF8676-DCF0-4AF1-9898-A4244E871370}</Project>
       <Name>Testing.Repository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
-      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
-      <Name>Testing.Unit</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
     <Compile Include="Data\DummyRepository`1.cs" />

@@ -20,10 +20,6 @@
       <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
       <Name>ServiceLocation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
-      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
-      <Name>Testing.Unit</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Facts.Project" />

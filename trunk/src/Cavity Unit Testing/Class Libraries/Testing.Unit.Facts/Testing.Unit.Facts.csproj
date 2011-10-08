@@ -8,7 +8,7 @@
   <PropertyGroup>
     <ServiceLocation>false</ServiceLocation>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Fluent\ITestClassConstruction.Facts.cs" />
     <Compile Include="Fluent\ITestClassSealed.Facts.cs" />
     <Compile Include="Fluent\ITestClassStyle.Facts.cs" />
@@ -64,8 +64,19 @@
       <Name>Testing.Unit</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
+  <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit">
+      <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

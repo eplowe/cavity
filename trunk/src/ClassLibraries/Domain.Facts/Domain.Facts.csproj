@@ -42,10 +42,6 @@
       <Project>{2494FF0C-7ABE-4F07-A66B-D209B061CD58}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
-      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
-      <Name>Testing.Unit</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
   <Import Project="$(SolutionDir)Import\trove\Build.Project" />

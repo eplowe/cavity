@@ -87,10 +87,6 @@
       <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
-      <Project>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</Project>
-      <Name>Testing.Unit</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Security\Cryptography\empty.html">
