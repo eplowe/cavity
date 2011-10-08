@@ -13,7 +13,7 @@
         }
 
         protected TranslationDictionary(SerializationInfo info,
-                                      StreamingContext context)
+                                        StreamingContext context)
             : base(info, context)
         {
         }

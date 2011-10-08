@@ -36,27 +36,7 @@
                 throw new ArgumentNullException("data");
             }
 
-            if (0 == data.Count)
-            {
-                throw new ArgumentOutOfRangeException("data");
-            }
-
-            var buffer = new StringBuilder();
-            foreach (var item in data)
-            {
-                if (0 != buffer.Length)
-                {
-                    buffer.Append(',');
-                }
-
-#if NET20
-                buffer.Append(DataStringExtensionMethods.FormatCommaSeparatedValue(item.Key));
-#else
-                buffer.Append(item.Key.FormatCommaSeparatedValue());
-#endif
-            }
-
-            return buffer.ToString();
+            return Line(data.Keys);
         }
 
         public static string Line(KeyStringDictionary data)
@@ -66,24 +46,36 @@
                 throw new ArgumentNullException("data");
             }
 
-            if (0 == data.Count)
+            return Line(data.Values);
+        }
+
+        public static string Line(IEnumerable<string> data)
+        {
+            if (null == data)
             {
-                throw new ArgumentOutOfRangeException("data");
+                throw new ArgumentNullException("data");
             }
 
             var buffer = new StringBuilder();
+            var i = 0;
             foreach (var item in data)
             {
-                if (0 != buffer.Length)
+                if (0 != i)
                 {
                     buffer.Append(',');
                 }
 
 #if NET20
-                buffer.Append(DataStringExtensionMethods.FormatCommaSeparatedValue(item.Value));
+                buffer.Append(DataStringExtensionMethods.FormatCommaSeparatedValue(item));
 #else
-                buffer.Append(item.Value.FormatCommaSeparatedValue());
+                buffer.Append(item.FormatCommaSeparatedValue());
 #endif
+                i++;
+            }
+
+            if (0 == i)
+            {
+                throw new ArgumentOutOfRangeException("data");
             }
 
             return buffer.ToString();
