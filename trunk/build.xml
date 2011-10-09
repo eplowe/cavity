@@ -3,26 +3,35 @@
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
          ToolsVersion="4.0">
   <ImportGroup>
-    <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v2.0\MSBuild.Community.Tasks.Targets" />
-    <Import Project="$(MSBuildProjectDirectory)\lib\trove\Framework\v3.5\MSBuild.ExtensionPack.tasks" />
+    <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+    <Import Project="$(MSBuildExtensionsPath)\ExtensionPack\4.0\MSBuild.ExtensionPack.tasks"/>
+    <Import Project="$(MSBuildExtensionsPath)\Cavity\Build.xml" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity\Clean.xml" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity\Versioning.xml" />
   </ImportGroup>
   <ImportGroup>
+<!--
     <Import Project="$(MSBuildProjectDirectory)\product.xml" />
-    <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Build.xml" />
     <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Clean.xml" />
     <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Test.xml" />
     <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Versioning.xml" />
     <Import Project="$(MSBuildProjectDirectory)\msbuild\Deploy.xml" />
+-->
   </ImportGroup>
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
     <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v4.0</TargetFrameworkVersion>
     <BuildName>$(Configuration) $(TargetFrameworkVersion)</BuildName>
   </PropertyGroup>
+<!--
   <Target Name="Run" DependsOnTargets="Versioning">
+-->
+  <Target Name="Run">
     <CallTarget Targets="Clean" />
     <CallTarget Targets="Rebuild All" />
-    <!-- CallTarget Targets="Deploy" Condition="'$(registry:HKEY_LOCAL_MACHINE\Software\Microsoft\InetStp@MajorVersion)'=='7'" / -->
+<!--
+    <CallTarget Targets="Deploy" Condition="'$(registry:HKEY_LOCAL_MACHINE\Software\Microsoft\InetStp@MajorVersion)'=='7'" />
     <CallTarget Targets="Test" />
+-->
   </Target>
 </Project>
