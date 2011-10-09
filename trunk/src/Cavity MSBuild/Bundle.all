@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <BundleFiles Include="$(MSBuildProjectDirectory)\**\*.bundle" />
+    <NuSpecFiles Include="$(MSBuildProjectDirectory)\**\*.nuspec" />
+  </ItemGroup>
+  <PropertyGroup>
+    <BundleDirectory>$(MSBuildProjectDirectory)\bundles</BundleDirectory>
+  </PropertyGroup>
+  <Target Name="Bundle">
+    <MakeDir Directories="$(BundleDirectory)"
+             Condition="!Exists('$(BundleDirectory)')" />
+    <MSBuild Projects="%(BundleFiles.Identity)"
+             Properties="$(MSBuildProperties)" />
+    <ItemGroup>
+      <ZipFiles Include="$(MSBuildProjectDirectory)\src\**\*.lib.zip" />
+      <ZipFiles Include="$(MSBuildProjectDirectory)\src\**\*.src.zip" />
+    </ItemGroup>
+    <Move SourceFiles="%(ZipFiles.Identity)"
+          DestinationFolder="$(BundleDirectory)" />
+    <CallTarget Targets="NuGet" />
+  </Target>
+  <Target Name="NuGet">
+    <Exec Command="nuget pack &quot;%(NuSpecFiles.Identity)&quot;"
+          WorkingDirectory="$(BundleDirectory)" />
+  </Target>
+</Project>

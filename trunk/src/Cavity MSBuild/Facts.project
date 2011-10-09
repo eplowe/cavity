@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <CodeAnalysisRuleSet Condition="Exists('$(MSBuildExtensionsPath)\Cavity\Facts.ruleset')">$(MSBuildExtensionsPath)\Cavity\Facts.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Condition="Exists('$(MSBuildExtensionsPath)\Cavity\Facts.dictionary')"
+                            Include="$(MSBuildExtensionsPath)\Cavity\Facts.dictionary">
+      <Link>Properties\Facts.dictionary</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <!--
+  <ItemGroup>
+    <Reference Include="xunit">
+      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v2.0\xunit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+    <Reference Include="Moq">
+      <HintPath>$(TrunkDirectory)\lib\trove\Framework\$(TargetFrameworkVersion)\Moq.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  -->
+</Project>

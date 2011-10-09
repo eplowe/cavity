@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <SolutionFiles Include="$(MSBuildProjectDirectory)\**\*.sln" />
+  </ItemGroup>
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
+    <net20 Condition="'$(net20)'==''">true</net20>
+    <net35 Condition="'$(net35)'==''">true</net35>
+    <net40 Condition="'$(net40)'==''">true</net40>
+  </PropertyGroup>
+  <Target Name="Build">
+    <MSBuild Condition="'$(net20)'=='true'"
+             Projects="%(SolutionFiles.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v2.0" />
+    <MSBuild Condition="'$(net35)'=='true'"
+             Projects="%(SolutionFiles.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v3.5" />
+    <MSBuild Condition="'$(net40)'=='true'"
+             Projects="%(SolutionFiles.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v4.0" />
+  </Target>
+</Project>

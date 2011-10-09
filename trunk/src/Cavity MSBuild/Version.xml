@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup>
+    <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+  </ImportGroup>
+  <PropertyGroup>
+    <MajorVersion Condition="'$(MajorVersion)'==''">0</MajorVersion>
+    <MinorVersion Condition="'$(MinorVersion)'==''">0</MinorVersion>
+    <BuildVersion Condition="'$(BuildVersion)'==''">0</BuildVersion>
+    <Revision Condition="'$(Revision)'==''">0</Revision>
+  </PropertyGroup>
+  <ItemGroup>
+    <NuSpecFiles Include="$(MSBuildProjectDirectory)\**\*.nuspec" />
+  </ItemGroup>
+  <Target Name="Version" DependsOnTargets="Subversion">
+    <CallTarget Targets="NuSpec" />
+    <CallTarget Targets="Version XML" />
+  </Target>
+  <Target Name="Subversion"
+          Condition="'$(RevisionSource)'=='Subversion'">
+    <MSBuild.Community.Tasks.Subversion.SvnVersion LocalPath=".">
+      <Output TaskParameter="Revision"
+              PropertyName="Revision" />
+    </MSBuild.Community.Tasks.Subversion.SvnVersion>
+    <AssemblyInfo CodeLanguage="CS"
+                  OutputFile="$(MSBuildProjectDirectory)\Version.cs"
+                  AssemblyVersion="$(MajorVersion).$(MinorVersion).0.0"
+                  AssemblyFileVersion="$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)"
+                  AssemblyInformationalVersion="$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)" />
+  </Target>
+  <Target Name="NuSpec">
+    <MSBuild.Community.Tasks.XmlUpdate Prefix="n"
+                                       Namespace="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd"
+                                       XmlFileName="%(NuSpecFiles.Identity)"
+                                       XPath="/n:package/n:metadata/n:version"
+                                       Value="$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)" />
+  </Target>
+  <Target Name="Version XML">
+    <MSBuild.Community.Tasks.XmlUpdate Prefix="m"
+                                       Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
+                                       XmlFileName="$(MSBuildProjectDirectory)\Version.xml"
+                                       XPath="/m:Project/m:PropertyGroup/m:MajorVersion"
+                                       Value="$(MajorVersion)" />
+    <MSBuild.Community.Tasks.XmlUpdate Prefix="m"
+                                       Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
+                                       XmlFileName="$(MSBuildProjectDirectory)\Version.xml"
+                                       XPath="/m:Project/m:PropertyGroup/m:MinorVersion"
+                                       Value="$(MinorVersion)" />
+    <MSBuild.Community.Tasks.XmlUpdate Prefix="m"
+                                       Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
+                                       XmlFileName="$(MSBuildProjectDirectory)\Version.xml"
+                                       XPath="/m:Project/m:PropertyGroup/m:BuildVersion"
+                                       Value="$(BuildVersion)" />
+    <MSBuild.Community.Tasks.XmlUpdate Prefix="m"
+                                       Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
+                                       XmlFileName="$(MSBuildProjectDirectory)\Version.xml"
+                                       XPath="/m:Project/m:PropertyGroup/m:Revision"
+                                       Value="$(Revision)" />
+    <MSBuild.Community.Tasks.XmlUpdate Prefix="m"
+                                       Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
+                                       XmlFileName="$(MSBuildProjectDirectory)\Version.xml"
+                                       XPath="/m:Project/m:PropertyGroup/m:FullVersion"
+                                       Value="$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)" />
+  </Target>
+</Project>
