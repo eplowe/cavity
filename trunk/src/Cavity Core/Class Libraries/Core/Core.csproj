@@ -56,7 +56,7 @@
     <Compile Include="String.ExtensionMethods.cs" />
     <Compile Include="WhiteSpace.cs" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Net\CacheControl.cs" />
     <Compile Include="Net\EntityTag.cs" />
     <Compile Include="Net\HttpHeader.cs" />
@@ -65,7 +65,7 @@
     <Compile Include="Net\Token.cs" />
     <Compile Include="ValueObject`1.cs" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' and '$(TargetFrameworkVersion)' != 'v3.5' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Dynamic\DynamicData.cs" />
     <Compile Include="Threading\IThreadedObject.cs" />
     <Compile Include="Threading\ThreadedObject.cs" />
@@ -83,8 +83,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Import\trove\Code.Project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>
