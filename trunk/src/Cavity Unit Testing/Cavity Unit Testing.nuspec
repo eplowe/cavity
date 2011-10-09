@@ -1,8 +1,8 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Testing.Unit</id>
-    <version>1.1</version>
+    <version>1.1.0.398</version>
     <title>Cavity Unit Testing</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,7 +17,7 @@
     <tags>TDD</tags>
   </metadata>
   <files>
-    <file src="bin\net35\Cavity.Testing.Unit.dll" target="lib\net35\Cavity.Testing.Unit.dll" />
-    <file src="bin\net40\Cavity.Testing.Unit.dll" target="lib\net40\Cavity.Testing.Unit.dll" />
+    <file src="lib\net35\Cavity.Testing.Unit.dll" target="lib\net35\Cavity.Testing.Unit.dll" />
+    <file src="lib\net40\Cavity.Testing.Unit.dll" target="lib\net40\Cavity.Testing.Unit.dll" />
   </files>
 </package>
