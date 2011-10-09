@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>Antlr</Word>
+      <Word>Autofac</Word>
+      <Word>Ciloci</Word>
+      <Word>Contrib</Word>
+      <Word>ctor</Word>
+      <Word>Iesi</Word>
+      <Word>Lite</Word>
+      <Word>Lucene</Word>
+      <Word>Mef</Word>
+      <Word>Moq</Word>
+      <Word>Newtonsoft</Word>
+      <Word>Nini</Word>
+      <Word>Ninject</Word>
+      <Word>Watin</Word>
+    </Recognized>
+  </Words>
+</Dictionary>
