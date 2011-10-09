@@ -12,10 +12,13 @@
     <ZipDirectory>$(MSBuildProjectDirectory)\..\zip</ZipDirectory>
   </PropertyGroup>
   <Target Name="Run">
+    <ItemGroup>
+      <UnwantedZipFiles Include="$(MSBuildProjectDirectory)\*.zip" />
+    </ItemGroup>
+    <Delete Files="%(UnwantedZipFiles.Identity)" />
     <CallTarget Targets="Copy Output" />
     <CallTarget Targets="Zip Output" />
     <CallTarget Targets="Zip Source" />
-    <!-- CallTarget Targets="Zip Zip" / -->
   </Target>
   <Target Name="Copy Output">
     <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Testing.Unit\bin\Release net35\Cavity.Testing.Unit.dll"
@@ -38,14 +41,12 @@
     </ItemGroup>
     <MSBuild.Community.Tasks.Zip Files="@(OutputFiles)"
                                  WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Testing.Unit.$(FullVersion) [lib].zip"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Testing.Unit.$(FullVersion).lib.zip"
                                  ZipLevel="9" />
+    <RemoveDir Directories="$(ZipDirectory)"
+               Condition="Exists('$(ZipDirectory)')" />
   </Target>
   <Target Name="Zip Source">
-    <ItemGroup>
-      <UnwantedZipFiles Include="$(MSBuildProjectDirectory)\*.zip" />
-    </ItemGroup>
-    <Delete Files="%(UnwantedZipFiles.Identity)" />
     <RemoveDir Directories="$(ZipDirectory)"
                Condition="Exists('$(ZipDirectory)')" />
     <MakeDir Directories="$(ZipDirectory)"
@@ -53,7 +54,7 @@
     <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(MSBuildProjectDirectory)"
                                       DestinationFolder="$(ZipDirectory)"
                                       Mirror="true"
-                                      ExcludeFolders="lib;.svn;_svn;obj;bin;PrecompiledWeb"
+                                      ExcludeFolders=".svn;_svn;obj;bin;PrecompiledWeb"
                                       ExcludeFiles="*.suo;*.csproj.user;*.vs10x;StyleCop.Cache"
                                       NoJobHeader="true" />
     <ItemGroup>
@@ -61,20 +62,9 @@
     </ItemGroup>
     <MSBuild.Community.Tasks.Zip Files="@(SourceFiles)"
                                  WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Testing.Unit.$(FullVersion) [src].zip"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Testing.Unit.$(FullVersion).src.zip"
                                  ZipLevel="9" />
-    <RemoveDir Directories="$(SourceDirectory)"
-               Condition="Exists('$(SourceDirectory)')" />
+    <RemoveDir Directories="$(ZipDirectory)"
+               Condition="Exists('$(ZipDirectory)')" />
   </Target>
-  <!-- Target Name="Zip Zip">
-    <ItemGroup>
-      <ZipFiles Include="$(MSBuildProjectDirectory)\*.zip" />
-    </ItemGroup>
-    <MSBuild.Community.Tasks.Zip Files="@(ZipFiles)"
-                                 WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Testing.Unit.$(FullVersion).zip"
-                                 ZipLevel="9" />
-    <Delete Files="$(MSBuildProjectDirectory)\lib.zip" />
-    <Delete Files="$(MSBuildProjectDirectory)\src.zip" />
-  </Target -->
 </Project>
