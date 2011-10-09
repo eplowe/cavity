@@ -21,9 +21,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Build\CSharpProjectCompliance.xml" />
   </ItemGroup>
-  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Import\trove\Build.Project" />
-  <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.Project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Build.Project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

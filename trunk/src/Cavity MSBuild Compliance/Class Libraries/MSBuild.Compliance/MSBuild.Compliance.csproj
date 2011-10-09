@@ -12,7 +12,7 @@
     <Compile Include="Build\CSharpProjectCompliance.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Cavity.Build.tasks">
+    <None Include="Cavity.MSBuild.Compliance.tasks">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -29,9 +29,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Import\trove\Code.Project" />
-  <Import Project="$(SolutionDir)Import\trove\Build.Project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.Project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.Project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Build.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>
