@@ -5,7 +5,7 @@
     <AssemblyName>Cavity.Core.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="AbsoluteUri.Facts.cs" />
     <Compile Include="AlphaDecimal.Facts.cs" />
     <Compile Include="Char.ExtensionMethods.Facts.cs" />
@@ -66,7 +66,7 @@
     <Compile Include="DisposableObject.Derived.cs" />
     <Compile Include="DisposableObject.Facts.cs" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' and '$(TargetFrameworkVersion)' != 'v3.5' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Dynamic\DynamicData.Derived.cs" />
     <Compile Include="Dynamic\DynamicData.Facts.cs" />
     <Compile Include="Threading\ThreadedObject.Derived.cs" />
@@ -96,8 +96,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>
