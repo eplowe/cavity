@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Run"
-         xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="Run"
          ToolsVersion="4.0">
   <ImportGroup>
+<!--
     <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
     <Import Project="$(MSBuildExtensionsPath)\ExtensionPack\4.0\MSBuild.ExtensionPack.tasks"/>
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\Build.xml" />
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\Clean.xml" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Versioning.xml" />
+-->
+    <Import Project="$(MSBuildExtensionsPath)\Cavity\Clean.all" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity\Version.all" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity\Build.all" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.test" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity\Bundle.all" />
   </ImportGroup>
   <ImportGroup>
 <!--
@@ -16,19 +21,20 @@
     <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Test.xml" />
     <Import Project="$(MSBuildProjectDirectory)\msbuild\trove\Versioning.xml" />
     <Import Project="$(MSBuildProjectDirectory)\msbuild\Deploy.xml" />
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v4.0</TargetFrameworkVersion>
+    <BuildName>$(Configuration) $(TargetFrameworkVersion)</BuildName>
 -->
   </ImportGroup>
   <PropertyGroup>
-    <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
-    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)'==''">v4.0</TargetFrameworkVersion>
-    <BuildName>$(Configuration) $(TargetFrameworkVersion)</BuildName>
+    <net20>true</net20>
+    <net35>true</net35>
+    <net40>true</net40>
   </PropertyGroup>
-<!--
-  <Target Name="Run" DependsOnTargets="Versioning">
--->
-  <Target Name="Run">
+  <Target Name="Run" DependsOnTargets="Version">
     <CallTarget Targets="Clean" />
-    <CallTarget Targets="Rebuild All" />
+    <CallTarget Targets="Build" />
+    <CallTarget Targets="Test Facts" />
+    <CallTarget Targets="Bundle" />
 <!--
     <CallTarget Targets="Deploy" Condition="'$(registry:HKEY_LOCAL_MACHINE\Software\Microsoft\InetStp@MajorVersion)'=='7'" />
     <CallTarget Targets="Test" />

@@ -5,7 +5,7 @@
     <AssemblyName>Cavity.Diagnostics.Log4Net</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Diagnostics\Log4NetTraceListener.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -16,13 +16,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <!--
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Reference Include="log4net">
-      <HintPath>..\..\..\lib\trove\Framework\v3.5\log4net.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  -->
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <!--

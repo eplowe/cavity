@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="Run"
+         ToolsVersion="4.0">
+  <ImportGroup>
+    <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+  </ImportGroup>
+  <ImportGroup>
+    <Import Project="$(MSBuildProjectDirectory)\Version.xml" />
+  </ImportGroup>
+  <PropertyGroup>
+    <ZipDirectory>$(MSBuildProjectDirectory)\..\zip</ZipDirectory>
+  </PropertyGroup>
+  <Target Name="Run">
+    <CallTarget Targets="Copy Output" />
+    <CallTarget Targets="Zip Output" />
+    <CallTarget Targets="Zip Source" />
+    <!-- CallTarget Targets="Zip Zip" / -->
+  </Target>
+  <Target Name="Copy Output">
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Testing.Unit\bin\Release net35\Cavity.Testing.Unit.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\lib\net35" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Testing.Unit\bin\Release net40\Cavity.Testing.Unit.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\lib\net40" />
+  </Target>
+  <Target Name="Zip Output">
+    <RemoveDir Directories="$(ZipDirectory)"
+               Condition="Exists('$(ZipDirectory)')" />
+    <MakeDir Directories="$(ZipDirectory)"
+             Condition="!Exists('$(ZipDirectory)')" />
+    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(MSBuildProjectDirectory)\lib"
+                                      DestinationFolder="$(ZipDirectory)"
+                                      Mirror="true"
+                                      ExcludeFolders=".svn;_svn"
+                                      NoJobHeader="true" />
+    <ItemGroup>
+      <OutputFiles Include="$(ZipDirectory)\**\*.*" />
+    </ItemGroup>
+    <MSBuild.Community.Tasks.Zip Files="@(OutputFiles)"
+                                 WorkingDirectory="$(MSBuildProjectDirectory)"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Testing.Unit.$(FullVersion) [lib].zip"
+                                 ZipLevel="9" />
+  </Target>
+  <Target Name="Zip Source">
+    <ItemGroup>
+      <UnwantedZipFiles Include="$(MSBuildProjectDirectory)\*.zip" />
+    </ItemGroup>
+    <Delete Files="%(UnwantedZipFiles.Identity)" />
+    <RemoveDir Directories="$(ZipDirectory)"
+               Condition="Exists('$(ZipDirectory)')" />
+    <MakeDir Directories="$(ZipDirectory)"
+             Condition="!Exists('$(ZipDirectory)')" />
+    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(MSBuildProjectDirectory)"
+                                      DestinationFolder="$(ZipDirectory)"
+                                      Mirror="true"
+                                      ExcludeFolders="lib;.svn;_svn;obj;bin;PrecompiledWeb"
+                                      ExcludeFiles="*.suo;*.csproj.user;*.vs10x;StyleCop.Cache"
+                                      NoJobHeader="true" />
+    <ItemGroup>
+      <SourceFiles Include="$(ZipDirectory)\**\*.*" />
+    </ItemGroup>
+    <MSBuild.Community.Tasks.Zip Files="@(SourceFiles)"
+                                 WorkingDirectory="$(MSBuildProjectDirectory)"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Testing.Unit.$(FullVersion) [src].zip"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(SourceDirectory)"
+               Condition="Exists('$(SourceDirectory)')" />
+  </Target>
+  <!-- Target Name="Zip Zip">
+    <ItemGroup>
+      <ZipFiles Include="$(MSBuildProjectDirectory)\*.zip" />
+    </ItemGroup>
+    <MSBuild.Community.Tasks.Zip Files="@(ZipFiles)"
+                                 WorkingDirectory="$(MSBuildProjectDirectory)"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Testing.Unit.$(FullVersion).zip"
+                                 ZipLevel="9" />
+    <Delete Files="$(MSBuildProjectDirectory)\lib.zip" />
+    <Delete Files="$(MSBuildProjectDirectory)\src.zip" />
+  </Target -->
+</Project>
