@@ -1,0 +1,10 @@
+To build the source code, please install:
+
+NuGet
+	http://nuget.org/
+
+MSBuild Community Tasks
+	http://msbuildtasks.tigris.org/
+
+MSBuild Extension Pack
+	http://msbuildextensionpack.codeplex.com/
