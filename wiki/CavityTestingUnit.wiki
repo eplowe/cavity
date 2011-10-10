@@ -1,7 +1,9 @@
 #summary Cavity Unit Testing
 #labels Featured,Phase-Implementation
 
-= Guide to asserting expectations about properties =
+http://nuget.org/List/Packages/Cavity.Testing.Unit
+
+== Guide to asserting expectations about properties ==
 
 * Asserting an auto-implemented property *
 
@@ -58,7 +60,7 @@
         }
 }}}
 
-= Guide to asserting expectations about types =
+== Guide to asserting expectations about types ==
 
 * Asserting an interface *
 
