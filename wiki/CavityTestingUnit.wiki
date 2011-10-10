@@ -1,6 +1,8 @@
 #summary Cavity Unit Testing
 #labels Featured,Phase-Implementation
 
+== NuGet Package ==
+
 http://nuget.org/List/Packages/Cavity.Testing.Unit
 
 == Guide to asserting expectations about properties ==
