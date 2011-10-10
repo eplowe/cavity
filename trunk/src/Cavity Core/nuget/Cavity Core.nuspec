@@ -1,23 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>Cavity.Testing.Unit</id>
-    <version>1.1.0.403</version>
-    <title>Cavity Unit Testing</title>
+    <id>Cavity.Core</id>
+    <version>1.1.0.402</version>
+    <title>Cavity Core</title>
     <authors>Alan Dean</authors>
     <owners />
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <projectUrl>http://code.google.com/p/cavity/</projectUrl>
     <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>Fluent API for asserting types and properties.</description>
+    <description>The core Cavity library.</description>
     <summary />
     <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
     <language />
-    <tags>TDD</tags>
+    <tags>
+    </tags>
   </metadata>
   <files>
-    <file src="lib\net35\Cavity.Testing.Unit.dll" target="lib\net35\Cavity.Testing.Unit.dll" />
-    <file src="lib\net40\Cavity.Testing.Unit.dll" target="lib\net40\Cavity.Testing.Unit.dll" />
+    <file src="lib\net20\Cavity.Core.dll" target="lib\net20\Cavity.Core.dll" />
+    <file src="lib\net35\Cavity.Core.dll" target="lib\net35\Cavity.Core.dll" />
+    <file src="lib\net40\Cavity.Core.dll" target="lib\net40\Cavity.Core.dll" />
   </files>
 </package>

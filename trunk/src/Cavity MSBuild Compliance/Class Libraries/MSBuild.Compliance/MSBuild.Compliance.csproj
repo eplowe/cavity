@@ -31,7 +31,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.Project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.Project" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Build.Project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\MSBuild.Project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>
