@@ -3,8 +3,8 @@
          DefaultTargets="Run"
          ToolsVersion="4.0">
   <ImportGroup>
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\Clean.all" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Version.all" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity\Clean.all" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Build.all" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.test" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Bundle.all" />
