@@ -11,4 +11,4 @@ This package should only be installed to an application project such as a Web Ap
 
 The package configures a custom trace listener which directs logging to log4net.
 
-The purpose is to abstract away the specific configuration of a logging provider by allowing all tracing to be implemented by using [http://msdn.microsoft.com/library/system.diagnostics.trace System.Diagnostics.Trace] or [http://msdn.microsoft.com/library/system.diagnostics.debug System.Diagnostics.Debug].
+The purpose is to abstract away the invocation of a specific logging provider by allowing all tracing to be implemented by using [http://msdn.microsoft.com/library/system.diagnostics.trace System.Diagnostics.Trace] or [http://msdn.microsoft.com/library/system.diagnostics.debug System.Diagnostics.Debug].
