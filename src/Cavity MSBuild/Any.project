@@ -28,17 +28,17 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
     <TargetFrameworkVersionName>net20</TargetFrameworkVersionName>
-    <DefineConstants>net20;$(DefineConstants)</DefineConstants>
+    <DefineConstants>NET20;$(DefineConstants)</DefineConstants>
     <TargetFrameworkVersionNumber>2.0</TargetFrameworkVersionNumber>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
     <TargetFrameworkVersionName>net35</TargetFrameworkVersionName>
-    <DefineConstants>net35;$(DefineConstants)</DefineConstants>
+    <DefineConstants>NET35;$(DefineConstants)</DefineConstants>
     <TargetFrameworkVersionNumber>3.5</TargetFrameworkVersionNumber>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
     <TargetFrameworkVersionName>net40</TargetFrameworkVersionName>
-    <DefineConstants>net40;$(DefineConstants)</DefineConstants>
+    <DefineConstants>NET40;$(DefineConstants)</DefineConstants>
     <TargetFrameworkVersionNumber>4.0</TargetFrameworkVersionNumber>
   </PropertyGroup>
   <PropertyGroup>
