@@ -1,4 +1,4 @@
-#summary A trace listener for log4net, allowing provider-agnostic tracing
+#summary Fluent API for asserting types and properties
 #labels Phase-Implementation
 
 == !NuGet Package ==
