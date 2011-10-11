@@ -1,5 +1,5 @@
 #summary Guide to asserting expectations about properties.
-#labels Featured,Phase-Implementation
+#labels Phase-Implementation
 
 * Asserting an auto-implemented property *
 
