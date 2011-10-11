@@ -5,38 +5,44 @@
     <AssemblyName>Cavity.ServiceLocation.Autofac.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v2.0\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Reference Include="Autofac">
-      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Configuration">
-      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\Autofac.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="AutofacContrib.CommonServiceLocator">
-      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\AutofacContrib.CommonServiceLocator.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Configuration\XmlServiceLocatorProvider.Facts.cs" />
+    <Compile Include="Examples\ITest.cs" />
+    <Compile Include="Examples\Tester.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Example\Example.csproj">
-      <Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
-      <Name>Example</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServiceLocation\ServiceLocation.csproj">
-      <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
-      <Name>ServiceLocation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ServiceLocation.Autofac\ServiceLocation.Autofac.csproj">
       <Project>{6BCF22E0-E321-431B-AEE2-981A03C66E09}</Project>
       <Name>ServiceLocation.Autofac</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="xunit">
+      <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.2.4.5.724\lib\NET40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\..\packages\Autofac.2.4.5.724\lib\NET40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="AutofacContrib.CommonServiceLocator">
+      <HintPath>..\..\packages\Autofac.CommonServiceLocator.2.4.5.724\lib\NET40\AutofacContrib.CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.ServiceLocation">
+      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\net40\Cavity.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Testing.Unit">
+      <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\net40\Cavity.Testing.Unit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -45,9 +51,10 @@
     <None Include="autofac.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>
