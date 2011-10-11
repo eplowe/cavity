@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="Run"
+         ToolsVersion="4.0">
+  <ImportGroup>
+    <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+  </ImportGroup>
+  <ImportGroup>
+    <Import Project="$(MSBuildProjectDirectory)\Version.xml" />
+  </ImportGroup>
+  <PropertyGroup>
+    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\src</ZipSrcDirectory>
+  </PropertyGroup>
+  <Target Name="Run">
+    <ItemGroup>
+      <UnwantedZipFiles Include="$(MSBuildProjectDirectory)\*.zip" />
+    </ItemGroup>
+    <Delete Files="%(UnwantedZipFiles.Identity)" />
+    <CallTarget Targets="Copy Output" />
+    <CallTarget Targets="Zip Source" />
+  </Target>
+  <Target Name="Copy Output">
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\MSBuild.Compliance\bin\Release net40\Cavity.MSBuild.Compliance.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\..\Cavity MSBuild\net40" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\MSBuild.Compliance\bin\Release net40\Cavity.MSBuild.Compliance.tasks"
+          DestinationFolder="$(MSBuildProjectDirectory)\..\Cavity MSBuild\net40" />
+  </Target>
+  <Target Name="Zip Source">
+    <RemoveDir Directories="$(ZipSrcDirectory)"
+               Condition="Exists('$(ZipSrcDirectory)')" />
+    <MakeDir Directories="$(ZipSrcDirectory)"
+             Condition="!Exists('$(ZipSrcDirectory)')" />
+    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(MSBuildProjectDirectory)"
+                                      DestinationFolder="$(ZipSrcDirectory)"
+                                      Mirror="true"
+                                      ExcludeFolders=".svn;_svn;obj;bin;PrecompiledWeb"
+                                      ExcludeFiles="*.suo;*.csproj.user;*.vs10x;StyleCop.Cache"
+                                      NoJobHeader="true" />
+    <ItemGroup>
+      <SourceFiles Include="$(ZipSrcDirectory)\**\*.*" />
+    </ItemGroup>
+    <MSBuild.Community.Tasks.Zip Files="@(SourceFiles)"
+                                 WorkingDirectory="$(MSBuildProjectDirectory)"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.MSBuild.Compliance.$(FullVersion).src.zip"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(ZipSrcDirectory)"
+               Condition="Exists('$(ZipSrcDirectory)')" />
+  </Target>
+</Project>
