@@ -14,7 +14,7 @@
     <summary />
     <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
     <language />
-    <tags>Diagnostics</tags>
+    <tags>IoC</tags>
     <releaseNotes />
     <dependencies>
       <dependency id="Autofac.CommonServiceLocator" version="2.4.5.724" />
