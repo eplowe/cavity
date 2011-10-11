@@ -25,70 +25,70 @@ _Extension Methods_
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Char.ExtensionMethods.cs char]
 
-* !IsWhiteSpace()
+ * !IsWhiteSpace()
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/DateTime.ExtensionMethods.cs DateTime]
 
-* !ToFileName()
+ * !ToFileName()
 
-* !ToLocalTime()
+ * !ToLocalTime()
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Generic.ExtensionMethods.cs Generic]
 
-* {{{In<T>()}}}
+ * `In<T>()`
 
-* !EqualsOneOf<T>()
+ * !EqualsOneOf<T>()
 
-* !IsBoundedBy<T>()
+ * !IsBoundedBy<T>()
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Object.ExtensionMethods.cs object]
 
-* !ToXmlString()
+ * !ToXmlString()
 
-* !XmlSerialize()
+ * !XmlSerialize()
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/String.ExtensionMethods.cs string]
 
-* Contains()
+ * Contains()
 
-* !IsNullOrWhiteSpace()
+ * !IsNullOrWhiteSpace()
 
-* !EndsWithAny()
+ * !EndsWithAny()
 
-* !EqualsAny()
+ * !EqualsAny()
 
-* !FormatWith()
+ * !FormatWith()
 
-* !LevenshteinDistance()
+ * !LevenshteinDistance()
 
-* !NormalizeWhiteSpace()
+ * !NormalizeWhiteSpace()
 
-* !RemoveAny()
+ * !RemoveAny()
 
-* !RemoveAnyDigits()
+ * !RemoveAnyDigits()
 
-* !RemoveAnyWhiteSpace()
+ * !RemoveAnyWhiteSpace()
 
-* !RemoveDefiniteArticle()
+ * !RemoveDefiniteArticle()
 
-* !RemoveFromEnd()
+ * !RemoveFromEnd()
 
-* !RemoveFromStart()
+ * !RemoveFromStart()
 
-* Replace()
+ * Replace()
 
-* !ReplaceAllWith()
+ * !ReplaceAllWith()
 
-* !SameIndexesOfEach()
+ * !SameIndexesOfEach()
 
-* Split()
+ * Split()
 
-* !StartsOrEndsWith()
+ * !StartsOrEndsWith()
 
-* !StartsWithAny()
+ * !StartsWithAny()
 
-* !ToTitleCase()
+ * !ToTitleCase()
 
-* !TryToInt32()
+ * !TryToInt32()
 
-* !XmlDeserialize<T>()
+ * !XmlDeserialize<T>()
