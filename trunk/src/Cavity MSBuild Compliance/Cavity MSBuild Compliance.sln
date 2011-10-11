@@ -1,7 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSBuild.Compliance", "Class Libraries\MSBuild.Compliance\MSBuild.Compliance.csproj", "{0FF43960-7762-46A3-BA82-DBA2161DBAC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSBuild.Compliance.Facts", "Class Libraries\MSBuild.Compliance.Facts\MSBuild.Compliance.Facts.csproj", "{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FF43960-7762-46A3-BA82-DBA2161DBAC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF43960-7762-46A3-BA82-DBA2161DBAC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FF43960-7762-46A3-BA82-DBA2161DBAC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF43960-7762-46A3-BA82-DBA2161DBAC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

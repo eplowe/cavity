@@ -28,7 +28,8 @@
                   AssemblyFileVersion="$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)"
                   AssemblyInformationalVersion="$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)" />
   </Target>
-  <Target Name="NuSpec">
+  <Target Name="NuSpec"
+  	      Condition=" '$(NuSpecFiles)' != '' ">
     <MSBuild.Community.Tasks.XmlUpdate Prefix="n"
                                        Namespace="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd"
                                        XmlFileName="%(NuSpecFiles.Identity)"

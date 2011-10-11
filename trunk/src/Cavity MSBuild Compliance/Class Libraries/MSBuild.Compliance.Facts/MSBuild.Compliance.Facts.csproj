@@ -2,24 +2,39 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}</ProjectGuid>
-    <AssemblyName>Cavity.Build.Facts</AssemblyName>
+    <AssemblyName>Cavity.MSBuild.Compliance.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Build\CSharpProjectCompliance.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Build\Build.csproj">
+    <ProjectReference Include="..\MSBuild.Compliance\MSBuild.Compliance.csproj">
       <Project>{0FF43960-7762-46A3-BA82-DBA2161DBAC9}</Project>
       <Name>Build</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</Project>
-      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Build\CSharpProjectCompliance.xml" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.402\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Testing.Unit">
+      <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.400\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.0.10827\lib\$(TargetFrameworkVersionName)\Moq.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="xunit">
+      <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.Project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.Project" />

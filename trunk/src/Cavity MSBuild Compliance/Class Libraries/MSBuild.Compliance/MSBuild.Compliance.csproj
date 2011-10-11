@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{0FF43960-7762-46A3-BA82-DBA2161DBAC9}</ProjectGuid>
-    <AssemblyName>Cavity.Build</AssemblyName>
+    <AssemblyName>Cavity.MSBuild.Compliance</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
