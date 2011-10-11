@@ -95,7 +95,5 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Condition="Exists('$(MSBuildExtensionsPath)\StyleCop\v4.6\StyleCop.targets')"
           Project="$(MSBuildExtensionsPath)\StyleCop\v4.6\StyleCop.targets" />
-<!--
-  <Import Project="Compliance.CSharp.targets" />
--->
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\net40\Cavity.MSBuild.Compliance.targets" />
 </Project>

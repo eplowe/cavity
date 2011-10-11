@@ -12,7 +12,7 @@
     <Compile Include="Build\CSharpProjectCompliance.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Cavity.MSBuild.Compliance.tasks">
+    <None Include="Cavity.MSBuild.Compliance.targets">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
