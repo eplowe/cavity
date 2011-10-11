@@ -1,4 +1,4 @@
-#summary Cavity Unit Testing
+#summary A trace listener for log4net, allowing provider-agnostic tracing
 #labels Phase-Implementation
 
 == !NuGet Package ==
