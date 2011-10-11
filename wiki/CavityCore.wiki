@@ -21,7 +21,7 @@ http://nuget.org/List/Packages/Cavity.Core
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/ValueObject%601.cs ValueObject<T>]
 
-=== Extension Methods ===
+_Extension Methods_
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Char.ExtensionMethods.cs char]
 
@@ -32,3 +32,63 @@ http://nuget.org/List/Packages/Cavity.Core
 * !ToFileName()
 
 * !ToLocalTime()
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Generic.ExtensionMethods.cs Generic]
+
+* In<T>()
+
+* EqualsOneOf<T>()
+
+* IsBoundedBy<T>()
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Object.ExtensionMethods.cs object]
+
+* ToXmlString()
+
+* XmlSerialize()
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/String.ExtensionMethods.cs string]
+
+* Contains()
+
+* IsNullOrWhiteSpace()
+
+* EndsWithAny()
+
+* EqualsAny()
+
+* FormatWith()
+
+* LevenshteinDistance()
+
+* NormalizeWhiteSpace()
+
+* RemoveAny()
+
+* RemoveAnyDigits()
+
+* RemoveAnyWhiteSpace()
+
+* RemoveDefiniteArticle()
+
+* RemoveFromEnd()
+
+* RemoveFromStart()
+
+* Replace()
+
+* ReplaceAllWith()
+
+* SameIndexesOfEach()
+
+* Split()
+
+* StartsOrEndsWith()
+
+* StartsWithAny()
+
+* ToTitleCase()
+
+* TryToInt32()
+
+* XmlDeserialize<T>()
