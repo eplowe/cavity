@@ -35,7 +35,7 @@ _Extension Methods_
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Generic.ExtensionMethods.cs Generic]
 
-* !In<T>()
+* {{{In<T>()}}}
 
 * !EqualsOneOf<T>()
 
