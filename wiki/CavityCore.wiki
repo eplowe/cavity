@@ -1,0 +1,18 @@
+#summary The core Cavity library
+#labels Phase-Implementation
+
+== !NuGet Package ==
+
+http://nuget.org/List/Packages/Cavity.Core
+
+== Types ==
+
+*using Cavity*
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/AbsoluteUri.cs AbsoluteUri]
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/AlphaDecimal.cs AlphaDecimal]
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/CommentAttribute.cs CommentAttribute]
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/ComparableObject.cs ComparableObject]
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/DisposableObject.cs DisposableObject]
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/RelativeUri.cs RelativeUri]
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/ValueObject%601.cs ValueObject<T>]
