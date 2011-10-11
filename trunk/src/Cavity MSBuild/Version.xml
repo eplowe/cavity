@@ -11,6 +11,7 @@
   </PropertyGroup>
   <ItemGroup>
     <NuSpecFiles Include="$(MSBuildProjectDirectory)\**\*.nuspec" />
+    <VersionCsFiles Include="$(MSBuildProjectDirectory)\**\Version.cs" />
   </ItemGroup>
   <Target Name="Version" DependsOnTargets="Subversion">
     <CallTarget Targets="NuSpec" />
@@ -23,7 +24,7 @@
               PropertyName="Revision" />
     </MSBuild.Community.Tasks.Subversion.SvnVersion>
     <AssemblyInfo CodeLanguage="CS"
-                  OutputFile="$(MSBuildProjectDirectory)\Version.cs"
+                  OutputFile="%(VersionCsFiles.Identity)"
                   AssemblyVersion="$(MajorVersion).$(MinorVersion).0.0"
                   AssemblyFileVersion="$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)"
                   AssemblyInformationalVersion="$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)" />
@@ -38,27 +39,27 @@
   <Target Name="Version XML">
     <MSBuild.Community.Tasks.XmlUpdate Prefix="m"
                                        Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
-                                       XmlFileName="$(MSBuildProjectDirectory)\Version.xml"
+                                       XmlFileName="$(MSBuildProjectDirectory)\version.xml"
                                        XPath="/m:Project/m:PropertyGroup/m:MajorVersion"
                                        Value="$(MajorVersion)" />
     <MSBuild.Community.Tasks.XmlUpdate Prefix="m"
                                        Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
-                                       XmlFileName="$(MSBuildProjectDirectory)\Version.xml"
+                                       XmlFileName="$(MSBuildProjectDirectory)\version.xml"
                                        XPath="/m:Project/m:PropertyGroup/m:MinorVersion"
                                        Value="$(MinorVersion)" />
     <MSBuild.Community.Tasks.XmlUpdate Prefix="m"
                                        Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
-                                       XmlFileName="$(MSBuildProjectDirectory)\Version.xml"
+                                       XmlFileName="$(MSBuildProjectDirectory)\version.xml"
                                        XPath="/m:Project/m:PropertyGroup/m:BuildVersion"
                                        Value="$(BuildVersion)" />
     <MSBuild.Community.Tasks.XmlUpdate Prefix="m"
                                        Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
-                                       XmlFileName="$(MSBuildProjectDirectory)\Version.xml"
+                                       XmlFileName="$(MSBuildProjectDirectory)\version.xml"
                                        XPath="/m:Project/m:PropertyGroup/m:Revision"
                                        Value="$(Revision)" />
     <MSBuild.Community.Tasks.XmlUpdate Prefix="m"
                                        Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
-                                       XmlFileName="$(MSBuildProjectDirectory)\Version.xml"
+                                       XmlFileName="$(MSBuildProjectDirectory)\version.xml"
                                        XPath="/m:Project/m:PropertyGroup/m:FullVersion"
                                        Value="$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)" />
   </Target>

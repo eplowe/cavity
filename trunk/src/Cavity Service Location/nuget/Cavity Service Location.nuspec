@@ -2,19 +2,20 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.ServiceLocation</id>
-    <version>1.1.0.437</version>
+    <version>1.1.0.438</version>
     <title>Cavity Service Location</title>
     <authors>Alan Dean</authors>
     <owners />
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <projectUrl>http://code.google.com/p/cavity/</projectUrl>
     <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides a shared interface and handler to support XML configuration of IoC containers and service locators. It is for use in conjuntion with the CommonServiceLocator, although there is no direct dependency.</description>
     <summary>Supports XML configuration of IoC containers and service locators.</summary>
     <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
     <language />
     <tags>IoC</tags>
+    <releaseNotes>Switched off license acceptance dialog.</releaseNotes>
   </metadata>
   <files>
     <file src="lib\net20\Cavity.ServiceLocation.dll" target="lib\net20\Cavity.ServiceLocation.dll" />
