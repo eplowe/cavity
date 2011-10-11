@@ -92,3 +92,23 @@ _Extension Methods_
  * `TryToInt32()`
 
  * `XmlDeserialize<T>()`
+
+== using Cavity.Collections ==
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Collections/KeyStringDictionary.cs KeyStringDictionary]
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Collections/TranslationDictionary%601.cs TranslationDictionary<T>]
+
+_Extension Methods_
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Collections/IEnumerable.ExtensionMethods.cs IEnumerable]
+
+ * `Concat()`
+
+ * `Count()`
+
+ * `IsEmpty()`
+
+ * `ToQueue<T>()`
+
+ * `ToStack<T>()`
