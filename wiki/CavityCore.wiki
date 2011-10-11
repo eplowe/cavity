@@ -5,9 +5,7 @@
 
 http://nuget.org/List/Packages/Cavity.Core
 
-== Types ==
-
-*using Cavity*
+== using Cavity ==
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/AbsoluteUri.cs AbsoluteUri]
 
@@ -22,3 +20,12 @@ http://nuget.org/List/Packages/Cavity.Core
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/RelativeUri.cs RelativeUri]
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/ValueObject%601.cs ValueObject<T>]
+
+=== Extension Methods ===
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Char.ExtensionMethods.cs char]
+* IsWhiteSpace()
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/DateTime.ExtensionMethods.cs DateTime]
+* ToFileName()
+* ToLocalTime()
