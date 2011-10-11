@@ -112,3 +112,9 @@ _Extension Methods_
  * `ToQueue<T>()`
 
  * `ToStack<T>()`
+
+== using Cavity.Collections.Generic ==
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Collections/Generic/MultitonCollection%601.cs MultitonCollection<T>]
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Collections/Generic/Tree%601.cs Tree<T>]
