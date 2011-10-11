@@ -5,9 +5,6 @@
   <ImportGroup>
     <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
   </ImportGroup>
-  <ImportGroup>
-    <Import Project="$(MSBuildProjectDirectory)\Version.xml" />
-  </ImportGroup>
   <PropertyGroup>
     <ZipLibDirectory>$(MSBuildProjectDirectory)\..\lib</ZipLibDirectory>
     <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\src</ZipSrcDirectory>
@@ -44,7 +41,7 @@
     </ItemGroup>
     <MSBuild.Community.Tasks.Zip Files="@(OutputFiles)"
                                  WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Core.$(FullVersion).lib.zip"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Core [lib].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipLibDirectory)"
                Condition="Exists('$(ZipLibDirectory)')" />
@@ -65,7 +62,7 @@
     </ItemGroup>
     <MSBuild.Community.Tasks.Zip Files="@(SourceFiles)"
                                  WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Core.$(FullVersion).src.zip"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Core [src].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipSrcDirectory)"
                Condition="Exists('$(ZipSrcDirectory)')" />

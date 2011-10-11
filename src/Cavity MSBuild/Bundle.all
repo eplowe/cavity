@@ -13,8 +13,8 @@
     <MSBuild Projects="%(BundleFiles.Identity)"
              Properties="$(MSBuildProperties)" />
     <ItemGroup>
-      <ZipFiles Include="$(MSBuildProjectDirectory)\src\**\*.lib.zip" />
-      <ZipFiles Include="$(MSBuildProjectDirectory)\src\**\*.src.zip" />
+      <ZipFiles Include="$(MSBuildProjectDirectory)\src\**\* [lib].zip" />
+      <ZipFiles Include="$(MSBuildProjectDirectory)\src\**\* [src].zip" />
     </ItemGroup>
     <Move SourceFiles="%(ZipFiles.Identity)"
           DestinationFolder="$(BundleDirectory)" />
