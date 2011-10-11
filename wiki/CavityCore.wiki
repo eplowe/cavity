@@ -24,8 +24,10 @@ http://nuget.org/List/Packages/Cavity.Core
 === Extension Methods ===
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Char.ExtensionMethods.cs char]
+
 * !IsWhiteSpace()
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/DateTime.ExtensionMethods.cs DateTime]
+
 * !ToFileName()
 * !ToLocalTime()
