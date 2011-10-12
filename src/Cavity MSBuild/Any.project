@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-<!--
-  <Target Name="Prepare">
-    <ConvertToAbsolutePath Paths="$(TrunkDirectory)">
-      <Output TaskParameter="AbsolutePaths" PropertyName="TrunkDirectory" />
-    </ConvertToAbsolutePath>
-  </Target>
-  <PropertyGroup>
-    <TrunkDirectory>$(SolutionDir)..</TrunkDirectory>
-  </PropertyGroup>
--->
   <PropertyGroup>
     <FileAlignment>512</FileAlignment>
     <ProductVersion>8.0.30703</ProductVersion>

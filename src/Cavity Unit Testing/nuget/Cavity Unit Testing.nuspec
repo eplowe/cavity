@@ -15,7 +15,7 @@
     <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
     <language />
     <tags>TDD</tags>
-    <releaseNotes>Switched off license acceptance dialog.</releaseNotes>
+    <releaseNotes />
   </metadata>
   <files>
     <file src="lib\net35\Cavity.Testing.Unit.dll" target="lib\net35\Cavity.Testing.Unit.dll" />

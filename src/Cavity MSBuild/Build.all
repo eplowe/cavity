@@ -10,15 +10,15 @@
     <net40 Condition="'$(net40)'==''">true</net40>
   </PropertyGroup>
   <Target Name="Build">
-    <MSBuild Condition="'$(net20)'=='true'"
+    <MSBuild Condition=" '$(net20)'=='true' "
              Projects="%(SolutionFiles.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v2.0" />
-    <MSBuild Condition="'$(net35)'=='true'"
+    <MSBuild Condition=" '$(net35)'=='true' "
              Projects="%(SolutionFiles.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v3.5" />
-    <MSBuild Condition="'$(net40)'=='true'"
+    <MSBuild Condition=" '$(net40)'=='true' "
              Projects="%(SolutionFiles.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v4.0" />
