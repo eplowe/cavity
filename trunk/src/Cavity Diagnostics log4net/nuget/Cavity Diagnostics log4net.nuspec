@@ -15,7 +15,7 @@
     <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
     <language />
     <tags>Diagnostics</tags>
-    <releaseNotes>Switched off license acceptance dialog.</releaseNotes>
+    <releaseNotes />
     <dependencies>
       <dependency id="log4net" version="1.2.10" />
     </dependencies>
