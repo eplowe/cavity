@@ -414,6 +414,13 @@ var example = Config.Xml<Example>();
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Configuration/PathConfigurationSection.cs PathConfigurationSection]
 
+{{{
+var paths = Config.ExeSection<PathConfigurationSection>(GetType().Assembly);
+
+DirectoryInfo temp = paths.Directory("temp");
+FileInfo example = paths.File("example");
+}}}
+
 app.config
 {{{
 <?xml version="1.0" encoding="utf-8"?>
@@ -437,11 +444,4 @@ paths.config
     <add name="example" file="C:\example.txt" />
   </files>
 </paths>
-}}}
-
-{{{
-var paths = Config.ExeSection<PathConfigurationSection>(GetType().Assembly);
-
-DirectoryInfo temp = paths.Directory("temp");
-FileInfo example = paths.File("example");
 }}}
