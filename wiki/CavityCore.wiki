@@ -519,21 +519,21 @@ _Extension Methods_
  * `ToDirectory()`
 
 {{{
-DirectoryInfo directory = new DirectoryInfo(@"C:\")
+DirectoryInfo directory = new DirectoryInfo("C:\\")
     .ToDirectory("Example", true);
 }}}
 
  * `ToFile()`
 
 {{{
-FileInfo file = new DirectoryInfo(@"C:\")
+FileInfo file = new DirectoryInfo("C:\\")
     .ToFile("Example.txt");
 }}}
 
  * `Append()`
 
 {{{
-new DirectoryInfo(@"C:\")
+new DirectoryInfo("C:\\")
     .ToFile("Example.txt")
     .Append("text");
 }}}
@@ -541,7 +541,7 @@ new DirectoryInfo(@"C:\")
  * `AppendLine()`
 
 {{{
-new DirectoryInfo(@"C:\")
+new DirectoryInfo("C:\\")
     .ToFile("Example.txt")
     .AppendLine("text");
 }}}
@@ -549,13 +549,13 @@ new DirectoryInfo(@"C:\")
  * `Create()`
 
 {{{
-new DirectoryInfo(@"C:\")
+new DirectoryInfo("C:\\")
     .ToFile("Example.txt")
     .Create("text");
 }}}
 
 {{{
-new DirectoryInfo(@"C:\")
+new DirectoryInfo("C:\\")
     .ToFile("Example.xml")
     .Create(new Example().XmlSerialize());
 }}}
@@ -563,13 +563,13 @@ new DirectoryInfo(@"C:\")
  * `CreateNew()`
 
 {{{
-new DirectoryInfo(@"C:\")
+new DirectoryInfo("C:\\")
     .ToFile("Example.txt")
     .CreateNew();
 }}}
 
 {{{
-new DirectoryInfo(@"C:\")
+new DirectoryInfo("C:\\")
     .ToFile("Example.txt")
     .CreateNew("text");
 }}}
@@ -577,7 +577,8 @@ new DirectoryInfo(@"C:\")
  * `Lines()`
 
 {{{
-var file = new DirectoryInfo(@"C:\").ToFile("Example.txt");
+var file = new DirectoryInfo("C:\\")
+    .ToFile("Example.txt");
 foreach (var line in file.Lines())
 {
 }
@@ -586,7 +587,7 @@ foreach (var line in file.Lines())
  * `ReadToEnd()`
 
 {{{
-var text = new DirectoryInfo(@"C:\")
+var text = new DirectoryInfo("C:\\")
     .ToFile("Example.txt")
     .ReadToEnd();
 }}}
@@ -594,7 +595,7 @@ var text = new DirectoryInfo(@"C:\")
  * `Truncate()`
 
 {{{
-new DirectoryInfo(@"C:\")
+new DirectoryInfo("C:\\")
     .ToFile("Example.txt")
     .Truncate("text");
 }}}
