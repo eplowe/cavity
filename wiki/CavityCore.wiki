@@ -331,16 +331,49 @@ _Extension Methods_
 
  * `Concat()`
 
- * `Count()`
+{{{
+var letters = new[]
+{
+    "a", "b", "c"
+};
+
+string value = letters.Concat(" or ");
+}}}
 
  * `IsEmpty()`
 
+{{{
+if (new List<int>().IsEmpty())
+{
+}
+}}}
+
  * `ToQueue<T>()`
+
+{{{
+Queue<int> value = new List<int>().ToQueue();
+}}}
 
  * `ToStack<T>()`
 
-== using Cavity.Collections.Generic ==
+{{{
+Stack<int> value = new List<int>().ToStack();
+}}}
+
+== using Cavity.Collections.Generic _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Core%2FClass%20Libraries%2FCore.Facts%2FCollections%2FGeneric Facts]_ ==
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Collections/Generic/MultitonCollection%601.cs MultitonCollection<T>]
 
+{{{
+var multiton = new MultitonCollection<int, MultitonCollection<string, Example>>();
+
+multiton[123]["abc"] = new Example();
+}}}
+
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Collections/Generic/Tree%601.cs Tree<T>]
+
+{{{
+var tree = new Tree<int>(123);
+
+tree.Add(456).Add(new Tree<int>(789));
+}}}
