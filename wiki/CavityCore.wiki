@@ -301,11 +301,29 @@ int? value = "123".TryToInt32();
 var value = "<example />".XmlDeserialize<Example>();
 }}}
 
-== using Cavity.Collections ==
+== using Cavity.Collections _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Core%2FClass%20Libraries%2FCore.Facts%2FCollections Facts]_ ==
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Collections/KeyStringDictionary.cs KeyStringDictionary]
 
+{{{
+var dictionary = new KeyStringDictionary
+{
+    new KeyStringPair("key", "value")
+};
+}}}
+
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Collections/TranslationDictionary%601.cs TranslationDictionary<T>]
+
+{{{
+var translations = new TranslationDictionary<string>
+{
+    new Translation<string>("Autumn", "en-GB"),
+    new Translation<string>("Fall", "en-US"),
+    new Translation<string>("l'Automne", "fr-FR")
+};
+
+string value = translations[Thread.CurrentThread.CurrentUICulture];
+}}}
 
 _Extension Methods_
 
