@@ -412,4 +412,36 @@ IConfigurationSectionHandler settings = Config.SectionHandler<MyConfigurationSec
 var example = Config.Xml<Example>();
 }}}
 
-[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Configuration/ConfigXml.cs ConfigXml]
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Configuration/PathConfigurationSection.cs PathConfigurationSection]
+
+app.config
+{{{
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="paths"
+             type="Cavity.Configuration.PathConfigurationSection, Cavity.Core" />
+  </configSections>
+  <paths configSource="paths.config" />
+</configuration>
+}}}
+
+paths.config
+{{{
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+  <directories>
+    <add name="temp" directory="C:\Temp" />
+  </directories>
+  <files>
+    <add name="example" file="C:\example.txt" />
+  </files>
+</paths>
+}}}
+
+{{{
+var paths = Config.ExeSection<PathConfigurationSection>(GetType().Assembly);
+
+DirectoryInfo temp = paths.Directory("temp");
+FileInfo example = paths.File("example");
+}}}
