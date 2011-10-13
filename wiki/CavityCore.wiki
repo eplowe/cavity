@@ -244,7 +244,7 @@ string value = "+4402012341234".RemoveFromStart("+44", StringComparison.Ordinal)
  * `Replace()`
 
 {{{
-string value = "a to b to c".Replace("->", " to ", StringComparison.OrdinalIgnoreCase);
+string value = "a->b->c".Replace("->", " to ", StringComparison.OrdinalIgnoreCase);
 }}}
 
  * `ReplaceAllWith()`
