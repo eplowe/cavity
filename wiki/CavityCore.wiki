@@ -22,7 +22,7 @@ var token = AlphaDecimal.Random();
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/CommentAttribute.cs CommentAttribute]
 
 {{{
-[Comment("This is an example")]
+[Comment("Comment on a class")]
 class Example
 {
     [Comment("Comment on a property")]
@@ -177,11 +177,33 @@ if ("example".EndsWithAny(StringComparison.OrdinalIgnoreCase, "this", "or", "tha
 
  * `EqualsAny()`
 
+{{{
+if ("fish".EqualsAny(StringComparison.Ordinal, "cat", "dog"))
+{
+}
+}}}
+
  * `FormatWith()`
+
+{{{
+var value = "{0:0,0} units of {1} sold.".FormatWith(12345, "stuff");
+}}}
 
  * `LevenshteinDistance()`
 
+{{{
+if (2 > "Ant".LevenshteinDistance("Aunt"))
+{
+}
+}}}
+
  * `NormalizeWhiteSpace()`
+
+{{{
+var nbsp = '\u00A0'.ToString(); // No-Break Space
+
+var normal = nbsp.NormalizeWhiteSpace();
+}}}
 
  * `RemoveAny()`
 
