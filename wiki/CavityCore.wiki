@@ -63,7 +63,23 @@ class Example : DisposableObject
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/RelativeUri.cs RelativeUri]
 
+{{{
+RelativeUri uri = "/index.html";
+}}}
+
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/ValueObject%601.cs ValueObject<T>]
+
+{{{
+class Example : ValueObject<Example>
+{
+    public Example()
+    {
+        RegisterProperty(x => x.Value);
+    }
+
+    public int Value { get; set; }
+}
+}}}
 
 _Extension Methods_
 
