@@ -315,14 +315,14 @@ var dictionary = new KeyStringDictionary
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Collections/TranslationDictionary%601.cs TranslationDictionary<T>]
 
 {{{
-var translations = new TranslationDictionary<string>
+var autumn = new TranslationDictionary<string>
 {
     new Translation<string>("Autumn", "en-GB"),
     new Translation<string>("Fall", "en-US"),
     new Translation<string>("l'Automne", "fr-FR")
 };
 
-string value = translations[Thread.CurrentThread.CurrentUICulture];
+string value = autumn[Thread.CurrentThread.CurrentUICulture];
 }}}
 
 _Extension Methods_
