@@ -377,3 +377,39 @@ var tree = new Tree<int>(123);
 
 tree.Add(456).Add(new Tree<int>(789));
 }}}
+
+== using Cavity.Configuration _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Core%2FClass%20Libraries%2FCore.Facts%2FConfiguration Facts]_ ==
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Configuration/Config.cs Config]
+
+{{{
+try
+{
+    var mock = new Mock<MyConfigurationSection>();
+    Config.Set(mock);
+
+    // test code here
+}
+finally
+{
+    Config.Clear<MyConfigurationSection>();
+}
+}}}
+
+{{{
+var settings = Config.ExeSection<MyConfigurationSection>());
+}}}
+
+{{{
+var settings = Config.Section<MyConfigurationSection>("example"));
+}}}
+
+{{{
+IConfigurationSectionHandler settings = Config.SectionHandler<MyConfigurationSectionHandler>("example"));
+}}}
+
+{{{
+var example = Config.Xml<Example>();
+}}}
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Configuration/ConfigXml.cs ConfigXml]
