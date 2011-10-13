@@ -415,7 +415,7 @@ var example = Config.Xml<Example>();
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Configuration/PathConfigurationSection.cs PathConfigurationSection]
 
 {{{
-var paths = Config.ExeSection<PathConfigurationSection>(GetType().Assembly);
+var paths = Config.ExeSection<PathConfigurationSection>();
 
 DirectoryInfo temp = paths.Directory("temp");
 FileInfo example = paths.File("example");
