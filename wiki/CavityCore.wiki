@@ -599,3 +599,46 @@ new DirectoryInfo("C:\\")
     .ToFile("Example.txt")
     .Truncate("text");
 }}}
+
+== using Cavity.Security.Cryptography _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Core%2FClass%20Libraries%2FCore.Facts%2FSecurity%2FCryptography Facts]_ ==
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Security/Cryptography/MD5Hash.cs MD5Hash]
+
+{{{
+MD5Hash value = MD5Hash.Compute("example");
+}}}
+
+{{{
+MD5Hash value = MD5Hash.Compute(new Uri("http://jigsaw.w3.org/HTTP/h-content-md5.html"));
+}}}
+
+{{{
+MD5Hash value = MD5Hash.Compute(new FileInfo("jigsaw.html"));
+}}}
+
+== using Cavity.Xml.XPath _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Core%2FClass%20Libraries%2FCore.Facts%2FXml%2FXPath Facts]_ ==
+
+_Extension Methods_
+
+ * `Evaluate<T>()`
+
+{{{
+var xml = new XmlDocument();
+xml.LoadXml("<foo>bar</foo>");
+
+if (xml.CreateNavigator().Evaluate<bool>("1=count(/foo[text()='bar'])"))
+{
+}
+}}}
+
+{{{
+var xml = new XmlDocument();
+xml.LoadXml("<foo xmlns='urn:example'>bar</foo>");
+
+var namespaces = new XmlNamespaceManager(xml.NameTable);
+namespaces.AddNamespace("x", "urn:example");
+
+if (xml.CreateNavigator().Evaluate<bool>("1=count(/x:foo[text()='bar'])"))
+{
+}
+}}}
