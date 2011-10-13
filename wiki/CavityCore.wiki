@@ -139,15 +139,41 @@ if (2.IsBoundedBy(1, 3))
 
  * `ToXmlString()`
 
+{{{
+var value = DateTime.UtcNow.ToXmlString();
+}}}
+
  * `XmlSerialize()`
+
+{{{
+var xml = new Example().XmlSerialize();
+}}}
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/String.ExtensionMethods.cs string]
 
  * `Contains()`
 
+{{{
+if ("abc".Contains("B", StringComparison.OrdinalIgnoreCase))
+{
+}
+}}}
+
  * `IsNullOrWhiteSpace()`
 
+{{{
+if ("  ".IsNullOrWhiteSpace())
+{
+}
+}}}
+
  * `EndsWithAny()`
+
+{{{
+if ("example".EndsWithAny(StringComparison.OrdinalIgnoreCase, "this", "or", "that"))
+{
+}
+}}}
 
  * `EqualsAny()`
 
