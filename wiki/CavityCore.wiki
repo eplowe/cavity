@@ -87,19 +87,53 @@ _Extension Methods_
 
  * `IsWhiteSpace()`
 
+{{{
+if (' '.IsWhiteSpace())
+{
+}
+}}}
+
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/DateTime.ExtensionMethods.cs DateTime]
 
  * `ToFileName()`
 
+{{{
+var file = new FileInfo(DateTime.UtcNow.ToFileName());
+}}}
+
  * `ToLocalTime()`
+
+{{{
+var pst = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
+
+var local = DateTime.UtcNow.ToLocalTime(pst);
+}}}
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Generic.ExtensionMethods.cs Generic]
 
  * `In<T>()`
 
+{{{
+if ('a'.In('a', 'b', 'c'))
+{
+}
+}}}
+
  * `EqualsOneOf<T>()`
 
+{{{
+if (0.EqualsOneOf(1, 2, 3))
+{
+}
+}}}
+
  * `IsBoundedBy<T>()`
+
+{{{
+if (2.IsBoundedBy(1, 3))
+{
+}
+}}}
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Object.ExtensionMethods.cs object]
 
