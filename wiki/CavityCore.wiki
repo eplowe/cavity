@@ -5,12 +5,12 @@
 
 http://nuget.org/List/Packages/Cavity.Core
 
-== using Cavity ==
+== using Cavity _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Core%2FClass%20Libraries%2FCore.Facts Facts]_ ==
 
-[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/AbsoluteUri.cs AbsoluteUri]
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/AbsoluteUri.cs AbsoluteUri] 
 
 {{{
-var uri = new AbsoluteUri("http://example.com/");
+AbsoluteUri uri = "http://example.com";
 }}}
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/AlphaDecimal.cs AlphaDecimal]
@@ -37,7 +37,29 @@ class Example
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/ComparableObject.cs ComparableObject]
 
+{{{
+class Example : ComparableObject
+{
+    public int Value { get; set; }
+
+    public override string ToString()
+    {
+        return Value.ToString();
+    }
+}
+}}}
+
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/DisposableObject.cs DisposableObject]
+
+{{{
+class Example : DisposableObject
+{
+    protected override void OnDispose()
+    {
+        // dispose unmanaged resources
+    }
+}
+}}}
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/RelativeUri.cs RelativeUri]
 
