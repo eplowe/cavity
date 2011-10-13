@@ -9,9 +9,31 @@ http://nuget.org/List/Packages/Cavity.Core
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/AbsoluteUri.cs AbsoluteUri]
 
+{{{
+var uri = new AbsoluteUri("http://example.com/");
+}}}
+
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/AlphaDecimal.cs AlphaDecimal]
 
+{{{
+var token = AlphaDecimal.Random();
+}}}
+
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/CommentAttribute.cs CommentAttribute]
+
+{{{
+[Comment("This is an example")]
+class Example
+{
+    [Comment("Comment on a property")]
+    int Foo { get; set; }
+
+    [Comment("Comment on a method")]
+    void Bar()
+    {
+    }
+}
+}}}
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/ComparableObject.cs ComparableObject]
 
