@@ -1,6 +1,6 @@
 ﻿namespace Cavity.Configuration
 {
-    using Example;
+    using Cavity.Examples;
     using Microsoft.Practices.ServiceLocation;
     using Xunit;
 

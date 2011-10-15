@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Cavity.ServiceLocation.CastleWindsor</id>
+    <version>1.1.0.471</version>
+    <title>Cavity Service Location (Castle Windsor)</title>
+    <authors>Alan Dean</authors>
+    <owners />
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://code.google.com/p/cavity/</projectUrl>
+    <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides a Castle Windsor XML configuration of the common service locator.</description>
+    <summary />
+    <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
+    <language />
+    <tags>IoC</tags>
+    <releaseNotes />
+    <dependencies>
+      <dependency id="Cavity.ServiceLocation" version="1.1.0.438" />
+      <dependency id="Cavity.Core" version="1.1.0.438" />
+      <dependency id="CommonServiceLocator.WindsorAdapter" version="1.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework="net40" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="content\app.config.transform" target="content\app.config.transform" />
+    <file src="content\web.config.transform" target="content\web.config.transform" />
+    <file src="content\castle.config.transform" target="content\castle.config.transform" />
+    <file src="lib\net40\Cavity.ServiceLocation.CastleWindsor.dll" target="lib\net40\Cavity.ServiceLocation.CastleWindsor.dll" />
+    <file src="tools\Install.ps1" target="tools\Install.ps1" />
+  </files>
+</package>

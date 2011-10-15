@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <autofac defaultAssembly="">
   <components>
-    <!-- component type="Namespace.ClassName"
+    <!--
+    <component type="Namespace.ClassName"
                service="Namespace.InterfaceName">
       <parameters>
         <parameter name="ConstructorParameterName"
                    value="example" />
       </parameters>
-    </component -->
+    </component>
+    -->
   </components>
 </autofac>
