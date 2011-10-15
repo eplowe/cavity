@@ -1,4 +1,4 @@
-﻿namespace Cavity.IO
+﻿namespace Cavity.Data
 {
     using System;
     using System.Collections.Generic;
