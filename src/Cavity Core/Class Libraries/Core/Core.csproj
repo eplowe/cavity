@@ -34,8 +34,6 @@
     <Compile Include="IO\DirectoryInfo.ExtensionMethods.cs" />
     <Compile Include="IO\EncodedStringWriter.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
-    <Compile Include="IO\CsvFile.cs" />
-    <Compile Include="IO\CsvStreamReader.cs" />
     <Compile Include="IO\StreamWriterDictionary.cs" />
     <Compile Include="IO\TempDirectory.cs" />
     <Compile Include="IO\TempFile.cs" />

@@ -4,82 +4,16 @@ namespace Cavity
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
-#if !NET20
-    using System.Linq;
-#endif
     using System.Runtime.Serialization.Formatters.Soap;
     using System.Text;
     using System.Xml;
     using System.Xml.Serialization;
     using System.Xml.XPath;
     using Cavity.IO;
-    using Cavity.Properties;
     using Cavity.Xml;
 
     public static class ObjectExtensionMethods
     {
-#if NET20
-        public static bool EqualsOneOf<T>(T obj,
-                                          params T[] args)
-#else
-        public static bool EqualsOneOf<T>(this T obj,
-                                          params T[] args)
-#endif
-        {
-#if NET20
-            if (null == args)
-            {
-                throw new ArgumentNullException("args");
-            }
-
-            if (0 == args.Length)
-            {
-                return false;
-            }
-
-            foreach (var arg in args)
-            {
-                if (arg.Equals(obj))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-#else
-            return args.Contains(obj);
-#endif
-        }
-
-#if NET20
-        public static bool IsBoundedBy<T>(T obj,
-                                          T lower,
-                                          T upper)
-#else
-        public static bool IsBoundedBy<T>(this T obj,
-                                          T lower,
-                                          T upper)
-#endif
-            where T : IComparable<T>
-        {
-            if (ReferenceEquals(null, upper))
-            {
-                throw new ArgumentNullException("upper");
-            }
-
-            if (1 > upper.CompareTo(lower))
-            {
-                throw new ArgumentException(Resources.ObjectExtensionMethods_IsBoundedBy_Message);
-            }
-
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            return -1 < obj.CompareTo(lower) && 1 > obj.CompareTo(upper);
-        }
-
 #if NET20
         public static string ToXmlString(object value)
 #else
