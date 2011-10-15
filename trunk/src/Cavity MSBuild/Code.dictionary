@@ -2,9 +2,10 @@
 <Dictionary>
   <Words>
     <Recognized>
-    	<Word>Levenshtein</Word>
-    	<Word>Multiton</Word>
-    	<Word>xpath</Word>
+      <Word>Autofac</Word>
+      <Word>Levenshtein</Word>
+      <Word>Multiton</Word>
+      <Word>xpath</Word>
     </Recognized>
   </Words>
 </Dictionary>
