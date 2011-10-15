@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Xml;
     using Xunit;
 
     public sealed class StringExtensionMethodsFacts
@@ -914,6 +915,168 @@
         public void op_StartsWithAny_string_StringComparison_stringsNull()
         {
             Assert.False("cat".StartsWithAny(StringComparison.Ordinal, null as string[]));
+        }
+
+        [Fact]
+        public void op_ToOfBoolean_string()
+        {
+            const bool expected = true;
+            var actual = expected.ToXmlString().To<bool>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfByte_string()
+        {
+            const byte expected = 1;
+            var actual = expected.ToXmlString().To<byte>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfChar_string()
+        {
+            const char expected = 'a';
+            var actual = expected.ToXmlString().To<char>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfDateTime_string()
+        {
+            var expected = DateTime.UtcNow;
+            var actual = expected.ToXmlString().To<DateTime>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfDateTimeOffset_string()
+        {
+            var expected = DateTimeOffset.Now;
+            var actual = expected.ToXmlString().To<DateTimeOffset>();
+            
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfDecimal_string()
+        {
+            const decimal expected = 123.45m;
+            var actual = XmlConvert.ToString(expected).To<decimal>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfDouble_string()
+        {
+            const double expected = 123.45f;
+            var actual = XmlConvert.ToString(expected).To<double>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfGuid_string()
+        {
+            var expected = Guid.NewGuid();
+            var actual = XmlConvert.ToString(expected).To<Guid>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfInt16_string()
+        {
+            const short expected = 123;
+            var actual = XmlConvert.ToString(expected).To<short>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfInt32_string()
+        {
+            const int expected = 123;
+            var actual = XmlConvert.ToString(expected).To<int>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfInt64_string()
+        {
+            const long expected = 123;
+            var actual = XmlConvert.ToString(expected).To<long>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfSByte_string()
+        {
+            const sbyte expected = 123;
+            var actual = XmlConvert.ToString(expected).To<sbyte>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfSingle_string()
+        {
+            const float expected = 123.45f;
+            var actual = XmlConvert.ToString(expected).To<float>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfString_string()
+        {
+            const string expected = "value";
+            var actual = expected.To<string>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfTimeSpan_string()
+        {
+            var expected = new TimeSpan(1, 2, 3, 4);
+            var actual = XmlConvert.ToString(expected).To<TimeSpan>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfUInt16_string()
+        {
+            const ushort expected = 123;
+            var actual = XmlConvert.ToString(expected).To<ushort>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfUInt32_string()
+        {
+            const uint expected = 123;
+            var actual = XmlConvert.ToString(expected).To<uint>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfUInt64_string()
+        {
+            const ulong expected = 123;
+            var actual = XmlConvert.ToString(expected).To<ulong>();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

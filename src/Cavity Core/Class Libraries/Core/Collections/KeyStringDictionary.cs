@@ -41,5 +41,14 @@
                 yield return new KeyStringPair(e.Current.Key, e.Current.Value);
             }
         }
+
+        public virtual T Value<T>(string key)
+        {
+#if NET20
+            return StringExtensionMethods.To<T>(this[key]);
+#else
+            return this[key].To<T>();
+#endif
+        }
     }
 }
