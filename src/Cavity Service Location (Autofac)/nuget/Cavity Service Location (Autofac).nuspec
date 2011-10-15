@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.ServiceLocation.Autofac</id>
-    <version>1.1.0.444</version>
+    <version>1.1.0.471</version>
     <title>Cavity Service Location (Autofac)</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -18,8 +18,8 @@
     <releaseNotes />
     <dependencies>
       <dependency id="Autofac.CommonServiceLocator" version="2.4.5.724" />
-      <dependency id="Cavity.ServiceLocation" version="1.1.0.438" />
       <dependency id="Cavity.Core" version="1.1.0.438" />
+      <dependency id="Cavity.ServiceLocation" version="1.1.0.438" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Configuration" targetFramework="net40" />
@@ -27,8 +27,8 @@
   </metadata>
   <files>
     <file src="content\app.config.transform" target="content\app.config.transform" />
-    <file src="content\autofac.config.transform" target="content\autofac.config.transform" />
     <file src="content\web.config.transform" target="content\web.config.transform" />
+    <file src="content\autofac.config.transform" target="content\autofac.config.transform" />
     <file src="lib\net40\Cavity.ServiceLocation.Autofac.dll" target="lib\net40\Cavity.ServiceLocation.Autofac.dll" />
     <file src="tools\Install.ps1" target="tools\Install.ps1" />
   </files>

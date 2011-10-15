@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.CastleWindsor", "Class Libraries\ServiceLocation.CastleWindsor\ServiceLocation.CastleWindsor.csproj", "{DAA78F38-1405-4971-AB8D-1D42FD41B848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.CastleWindsor.Facts", "Class Libraries\ServiceLocation.CastleWindsor.Facts\ServiceLocation.CastleWindsor.Facts.csproj", "{7DD77C51-A1D5-486A-948A-20AA80C4D55E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAA78F38-1405-4971-AB8D-1D42FD41B848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAA78F38-1405-4971-AB8D-1D42FD41B848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAA78F38-1405-4971-AB8D-1D42FD41B848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAA78F38-1405-4971-AB8D-1D42FD41B848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD77C51-A1D5-486A-948A-20AA80C4D55E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD77C51-A1D5-486A-948A-20AA80C4D55E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD77C51-A1D5-486A-948A-20AA80C4D55E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD77C51-A1D5-486A-948A-20AA80C4D55E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
