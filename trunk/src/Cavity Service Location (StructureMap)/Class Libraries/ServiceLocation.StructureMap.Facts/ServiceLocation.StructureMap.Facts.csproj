@@ -6,46 +6,55 @@
     <RootNamespace>Cavity</RootNamespace>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v2.0\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Reference Include="StructureMap">
-      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMapAdapter">
-      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\StructureMapAdapter.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Configuration\XmlServiceLocatorProvider.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
     <None Include="StructureMap.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Example\Example.csproj">
-      <Project>{B7D55FAC-47D6-45E4-8352-CF9980DC93D0}</Project>
-      <Name>Example</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServiceLocation\ServiceLocation.csproj">
-      <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
-      <Name>ServiceLocation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ServiceLocation.StructureMap\ServiceLocation.StructureMap.csproj">
       <Project>{229D1074-FFB5-46FA-A6E3-75007D98C19A}</Project>
       <Name>ServiceLocation.StructureMap</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Import\trove\Facts.Project" />
+  <ItemGroup>
+    <Reference Include="xunit">
+      <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+    <Reference Include="Cavity.ServiceLocation">
+      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\net40\Cavity.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Testing.Unit">
+      <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\net40\Cavity.Testing.Unit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMapAdapter">
+      <HintPath>..\..\packages\CommonServiceLocator.StructureMapAdapter.1.1.0.2\lib\StructureMapAdapter.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Examples\ITest.cs" />
+    <Compile Include="Examples\Tester.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>
