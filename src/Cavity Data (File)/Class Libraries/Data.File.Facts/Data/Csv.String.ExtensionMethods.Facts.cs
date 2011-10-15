@@ -2,7 +2,7 @@
 {
     using Xunit;
 
-    public sealed class DataStringExtensionMethodsFacts
+    public sealed class CsvStringExtensionMethodsFacts
     {
         [Fact]
         public void a_definition()

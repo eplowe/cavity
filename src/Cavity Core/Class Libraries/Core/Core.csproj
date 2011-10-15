@@ -25,7 +25,6 @@
     <Compile Include="Configuration\FileConfigurationElementCollection.cs" />
     <Compile Include="Configuration\FileConfigurationElement.cs" />
     <Compile Include="Configuration\PathConfigurationSection.cs" />
-    <Compile Include="Data\Data.String.ExtensionMethods.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\KeyStringPair.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />

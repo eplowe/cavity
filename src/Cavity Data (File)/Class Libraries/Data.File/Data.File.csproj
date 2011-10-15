@@ -9,6 +9,7 @@
     <ServiceLocation>false</ServiceLocation>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data\Csv.String.ExtensionMethods.cs" />
     <Compile Include="Data\CsvFile.cs" />
     <Compile Include="Data\CsvStreamReader.cs" />
   </ItemGroup>
