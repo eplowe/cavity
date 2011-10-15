@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="StructureMap"
+             type="StructureMap.Configuration.StructureMapConfigurationSection, StructureMap" />
+    <section name="service.location"
+             type="Cavity.Configuration.ServiceLocation, Cavity.ServiceLocation" />
+  </configSections>
+  <StructureMap configSource="StructureMap.config" />
+  <service.location type="Cavity.Configuration.XmlServiceLocatorProvider, Cavity.ServiceLocation.StructureMap" />
+  <startup>
+    <supportedRuntime version="v4.0"
+                      sku=".NETFramework,Version=v4.0" />
+  </startup>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="StructureMap"
+          publicKeyToken="e60ad81abae3c223"
+          culture="neutral" />
+        <bindingRedirect oldVersion="2.6.2.0" newVersion="2.6.3.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>

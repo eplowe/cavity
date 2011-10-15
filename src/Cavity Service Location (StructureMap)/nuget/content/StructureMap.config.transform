@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureMap MementoStyle="Attribute">
+  <!--
+  <DefaultInstance PluginType="Namespace.InterfaceName, AssemblyName"
+                   PluggedType="Namespace.ClassName, AssemblyName"
+                   Scope="Singleton"
+                   ConstructorParameterName="example" />
+  -->
+</StructureMap>

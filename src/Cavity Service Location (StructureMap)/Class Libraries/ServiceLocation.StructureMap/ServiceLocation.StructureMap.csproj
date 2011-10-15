@@ -6,31 +6,31 @@
     <RootNamespace>Cavity</RootNamespace>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v2.0\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
-    <Reference Include="StructureMap" Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
-      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMapAdapter" Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
-      <HintPath>$(TrunkDirectory)\lib\trove\Framework\v3.5\StructureMapAdapter.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersion)' != 'v2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Configuration\XmlServiceLocatorProvider.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ServiceLocation\ServiceLocation.csproj">
-      <Project>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</Project>
-      <Name>ServiceLocation</Name>
-    </ProjectReference>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+    <Reference Include="Cavity.ServiceLocation">
+      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\net40\Cavity.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMapAdapter">
+      <HintPath>..\..\packages\CommonServiceLocator.StructureMapAdapter.1.1.0.2\lib\StructureMapAdapter.dll</HintPath>
+    </Reference>
   </ItemGroup>
-  <Import Project="$(SolutionDir)Import\trove\AnyCPU.Project" />
-  <Import Project="$(SolutionDir)Import\trove\Code.Project" />
+  <ItemGroup>
+    <None Include="packages.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <!--
   <Target Name="BeforeBuild">
   </Target>
