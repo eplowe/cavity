@@ -1,6 +1,8 @@
 ﻿namespace Cavity.Collections
 {
+    using System;
     using System.Collections.Generic;
+    using System.Xml;
     using Cavity.Data;
     using Xunit;
 
@@ -74,6 +76,48 @@
 
             Assert.True(obj.Remove(item));
             Assert.Equal(0, obj.Count);
+        }
+
+        [Fact]
+        public void op_ValueOfDateTime_string()
+        {
+            var expected = DateTime.UtcNow;
+            var obj = new KeyStringDictionary
+            {
+                new KeyStringPair("key", expected.ToXmlString())
+            };
+
+            var actual = obj.Value<DateTime>("key");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ValueOfInt32_string()
+        {
+            const int expected = 123;
+            var obj = new KeyStringDictionary
+            {
+                new KeyStringPair("key", XmlConvert.ToString(expected))
+            };
+
+            var actual = obj.Value<int>("key");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ValueOfString_string()
+        {
+            const string expected = "value";
+            var obj = new KeyStringDictionary
+            {
+                new KeyStringPair("key", expected)
+            };
+
+            var actual = obj.Value<string>("key");
+
+            Assert.Equal(expected, actual);
         }
     }
 }

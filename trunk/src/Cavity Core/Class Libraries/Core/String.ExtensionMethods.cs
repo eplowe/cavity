@@ -10,6 +10,7 @@
     using System.Runtime.Serialization.Formatters.Soap;
     using System.Text;
     using System.Threading;
+    using System.Xml;
     using System.Xml.Serialization;
 
     public static class StringExtensionMethods
@@ -677,6 +678,92 @@
                 .Where(arg => !string.IsNullOrEmpty(arg))
                 .Any(arg => obj.StartsWith(arg, comparison));
 #endif
+        }
+        
+#if NET20
+        public static T To<T>(string obj)
+#else
+        public static T To<T>(this string obj)
+#endif
+        {
+            var type = typeof(T);
+            object value;
+            if (typeof(bool) == type)
+            {
+                value = XmlConvert.ToBoolean(obj);
+            }
+            else if (typeof(byte) == type)
+            {
+                value = XmlConvert.ToByte(obj);
+            }
+            else if (typeof(char) == type)
+            {
+                value = XmlConvert.ToChar(obj);
+            }
+            else if (typeof(DateTime) == type)
+            {
+                value = XmlConvert.ToDateTime(obj, XmlDateTimeSerializationMode.Utc);
+            }
+#if !NET20
+            else if (typeof(DateTimeOffset) == type)
+            {
+                value = XmlConvert.ToDateTimeOffset(obj);
+            }
+#endif
+            else if (typeof(decimal) == type)
+            {
+                value = XmlConvert.ToDecimal(obj);
+            }
+            else if (typeof(double) == type)
+            {
+                value = XmlConvert.ToDouble(obj);
+            }
+            else if (typeof(Guid) == type)
+            {
+                value = XmlConvert.ToGuid(obj);
+            }
+            else if (typeof(short) == type)
+            {
+                value = XmlConvert.ToInt16(obj);
+            }
+            else if (typeof(int) == type)
+            {
+                value = XmlConvert.ToInt32(obj);
+            }
+            else if (typeof(long) == type)
+            {
+                value = XmlConvert.ToInt64(obj);
+            }
+            else if (typeof(sbyte) == type)
+            {
+                value = XmlConvert.ToSByte(obj);
+            }
+            else if (typeof(float) == type)
+            {
+                value = XmlConvert.ToSingle(obj);
+            }
+            else if (typeof(TimeSpan) == type)
+            {
+                value = XmlConvert.ToTimeSpan(obj);
+            }
+            else if (typeof(ushort) == type)
+            {
+                value = XmlConvert.ToUInt16(obj);
+            }
+            else if (typeof(uint) == type)
+            {
+                value = XmlConvert.ToUInt32(obj);
+            }
+            else if (typeof(ulong) == type)
+            {
+                value = XmlConvert.ToUInt32(obj);
+            }
+            else
+            {
+                value = obj;
+            }
+
+            return (T)Convert.ChangeType(value, type, CultureInfo.InvariantCulture);
         }
 
         [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Title casing only works from lower case strings.")]
