@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{EFFAFE17-5D62-4B78-AC53-04CBCBB6A369}</ProjectGuid>
+    <AssemblyName>Cavity.Data.File.Facts</AssemblyName>
+    <RootNamespace>Cavity</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Data\CsvFile.Facts.cs" />
+    <Compile Include="Data\CsvStreamReader.Facts.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
+  <!--
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
