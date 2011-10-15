@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Core</id>
-    <version>1.1.0.484</version>
+    <version>1.1.0.489</version>
     <title>Cavity Core</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -15,7 +15,7 @@
     <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
     <language />
     <tags />
-    <releaseNotes />
+    <releaseNotes>Separating CSV-related types into a new package: Cavity Data (File).</releaseNotes>
   </metadata>
   <files>
     <file src="lib\net20\Cavity.Core.dll" target="lib\net20\Cavity.Core.dll" />

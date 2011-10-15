@@ -19,7 +19,6 @@
     <Compile Include="Collections\TranslationDictionary`1.Facts.cs" />
     <Compile Include="Generic.ExtensionMethods.Facts.cs" />
     <Compile Include="DateTime.ExtensionMethods.Facts.cs" />
-    <Compile Include="Data\Data.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\DataCollection.Facts.cs" />
     <Compile Include="IO\DirectoryInfo.ExtensionMethods.Facts.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.Facts.cs" />

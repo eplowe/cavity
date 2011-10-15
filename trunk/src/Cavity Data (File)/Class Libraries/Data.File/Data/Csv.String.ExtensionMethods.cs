@@ -2,7 +2,7 @@
 {
     using System;
 
-    public static class DataStringExtensionMethods
+    public static class CsvStringExtensionMethods
     {
 #if NET20
         public static string FormatCommaSeparatedValue(string value)
