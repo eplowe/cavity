@@ -59,7 +59,9 @@ namespace Example
 
 Choose from the following configuration options:
 
-* [http://nuget.org/List/Packages/Cavity.ServiceLocation.Autofac Autofac] *
+== [http://code.google.com/p/autofac/ Autofac] ==
+
+Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.Autofac NuGet package].
 
 `app.config`
 {{{
@@ -94,7 +96,9 @@ Choose from the following configuration options:
 </autofac>
 }}}
 
-* [http://nuget.org/List/Packages/Cavity.ServiceLocation.CastleWindsor Castle Windsor] *
+== [http://www.castleproject.org/container/ Castle Windsor] ==
+
+Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.CastleWindsor NuGet package].
 
 `app.config`
 {{{
@@ -130,7 +134,9 @@ Choose from the following configuration options:
 </castle>
 }}}
 
-* [http://nuget.org/List/Packages/Cavity.ServiceLocation.StructureMap StructureMap] *
+== [http://structuremap.github.com/structuremap/ StructureMap] ==
+
+Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.StructureMap NuGet package].
 
 `app.config`
 {{{
@@ -161,7 +167,9 @@ Choose from the following configuration options:
 </StructureMap>
 }}}
 
-* [http://nuget.org/List/Packages/Cavity.ServiceLocation.Unity Unity] *
+== [http://unity.codeplex.com/ Unity] ==
+
+Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.Unity NuGet package].
 
 Copy the following assemblies into the `bin` folder (references are not required):
  * Microsoft.Practices.Unity.dll
@@ -185,7 +193,7 @@ Copy the following assemblies into the `bin` folder (references are not required
 </configuration>
 }}}
 
-`StructureMap.config`
+`unity.config`
 {{{
 <?xml version="1.0" encoding="utf-8" ?>
 <unity>
