@@ -7,7 +7,7 @@
     using System.IO;
     using System.Text;
     using Cavity.Collections;
-    using Cavity.Data;
+    using Cavity.IO;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't a collection.")]
     public class CsvFile : IEnumerable<KeyStringDictionary>
@@ -66,7 +66,7 @@
                 }
 
 #if NET20
-                buffer.Append(DataStringExtensionMethods.FormatCommaSeparatedValue(item));
+                buffer.Append(CsvStringExtensionMethods.FormatCommaSeparatedValue(item));
 #else
                 buffer.Append(item.FormatCommaSeparatedValue());
 #endif

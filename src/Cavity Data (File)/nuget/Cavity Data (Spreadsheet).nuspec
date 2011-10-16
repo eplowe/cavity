@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Cavity.Data.Spreadsheet</id>
+    <version>1.1.0.499</version>
+    <title>Cavity Data (Spreadsheet)</title>
+    <authors>Alan Dean</authors>
+    <owners />
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://code.google.com/p/cavity/</projectUrl>
+    <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides data access for spreadsheets, such as CSV or Excel.</description>
+    <summary />
+    <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
+    <language />
+    <tags>Data</tags>
+    <releaseNotes />
+  </metadata>
+  <files>
+    <file src="lib\net20\Cavity.Data.File.dll" target="lib\net20\Cavity.Data.File.dll" />
+    <file src="lib\net35\Cavity.Data.File.dll" target="lib\net35\Cavity.Data.File.dll" />
+    <file src="lib\net40\Cavity.Data.File.dll" target="lib\net40\Cavity.Data.File.dll" />
+  </files>
+</package>

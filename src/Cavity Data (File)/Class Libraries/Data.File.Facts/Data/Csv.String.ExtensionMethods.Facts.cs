@@ -7,7 +7,7 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(typeof(DataStringExtensionMethods).IsStatic());
+            Assert.True(typeof(CsvStringExtensionMethods).IsStatic());
         }
 
         [Fact]
