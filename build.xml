@@ -13,9 +13,9 @@
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Bundle.all" />
   </ImportGroup>
   <PropertyGroup>
-    <net20>true</net20>
-    <net35>true</net35>
-    <net40>true</net40>
+    <NET20>true</NET20>
+    <NET35>true</NET35>
+    <NET40>true</NET40>
   </PropertyGroup>
   <Target Name="Run" DependsOnTargets="Version">
     <CallTarget Targets="Clean" />

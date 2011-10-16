@@ -6,7 +6,7 @@
     <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
   </ImportGroup>
   <PropertyGroup>
-    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\src</ZipSrcDirectory>
+    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\Cavity.MSBuild.Compliance src</ZipSrcDirectory>
   </PropertyGroup>
   <Target Name="Run">
     <ItemGroup>
@@ -17,9 +17,9 @@
     <CallTarget Targets="Zip Source" />
   </Target>
   <Target Name="Copy Output">
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\MSBuild.Compliance\bin\Release net40\Cavity.MSBuild.Compliance.dll"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\MSBuild.Compliance\bin\Release net40 AnyCPU\Cavity.MSBuild.Compliance.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\..\Cavity MSBuild\net40" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\MSBuild.Compliance\bin\Release net40\Cavity.MSBuild.Compliance.targets"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\MSBuild.Compliance\bin\Release net40 AnyCPU\Cavity.MSBuild.Compliance.targets"
           DestinationFolder="$(MSBuildProjectDirectory)\..\Cavity MSBuild\net40" />
   </Target>
   <Target Name="Zip Source">
@@ -41,6 +41,7 @@
                                  ZipFileName="$(MSBuildProjectDirectory)\Cavity.MSBuild.Compliance [src].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipSrcDirectory)"
-               Condition="Exists('$(ZipSrcDirectory)')" />
+               Condition="Exists('$(ZipSrcDirectory)')"
+               ContinueOnError="true" />
   </Target>
 </Project>

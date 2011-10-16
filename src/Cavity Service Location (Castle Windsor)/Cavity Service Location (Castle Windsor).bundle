@@ -6,8 +6,8 @@
     <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
   </ImportGroup>
   <PropertyGroup>
-    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\lib</ZipLibDirectory>
-    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\src</ZipSrcDirectory>
+    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\Cavity.ServiceLocation.CastleWindsor lib</ZipLibDirectory>
+    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\Cavity.ServiceLocation.CastleWindsor src</ZipSrcDirectory>
   </PropertyGroup>
   <Target Name="Run">
     <ItemGroup>
@@ -19,7 +19,7 @@
     <CallTarget Targets="Zip Source" />
   </Target>
   <Target Name="Copy Output">
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\ServiceLocation.CastleWindsor\bin\Release net40\Cavity.ServiceLocation.CastleWindsor.dll"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\ServiceLocation.CastleWindsor\bin\Release net40 AnyCPU\Cavity.ServiceLocation.CastleWindsor.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40" />
   </Target>
   <Target Name="Zip Output">
@@ -61,6 +61,7 @@
                                  ZipFileName="$(MSBuildProjectDirectory)\Cavity.ServiceLocation.CastleWindsor [src].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipSrcDirectory)"
-               Condition="Exists('$(ZipSrcDirectory)')" />
+               Condition="Exists('$(ZipSrcDirectory)')"
+               ContinueOnError="true" />
   </Target>
 </Project>

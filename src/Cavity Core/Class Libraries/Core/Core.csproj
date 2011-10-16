@@ -5,9 +5,6 @@
     <AssemblyName>Cavity.Core</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup>
-    <ServiceLocation>false</ServiceLocation>
-  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Collections\TranslationDictionary`1.cs" />
     <Compile Include="Collections\Generic\MultitonCollection`1.cs" />

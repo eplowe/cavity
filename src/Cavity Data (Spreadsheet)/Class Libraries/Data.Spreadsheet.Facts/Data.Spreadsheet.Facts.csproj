@@ -5,12 +5,14 @@
     <AssemblyName>Cavity.Data.Spreadsheet.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+  <ItemGroup Condition=" '$(Platform)' == 'x64' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\Csv.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\CsvFile.Facts.cs" />
     <Compile Include="Data\CsvStreamReader.Facts.cs" />
+    <!--
     <Compile Include="Data\ExcelFile.Facts.cs" />
     <Compile Include="Data\ExcelWorksheet.Facts.cs" />
+    -->
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data.Spreadsheet\Data.Spreadsheet.csproj">
@@ -26,12 +28,10 @@
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.0.10827\lib\$(TargetFrameworkVersionName)\Moq.dll</HintPath>
     </Reference>
@@ -54,7 +54,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\MixedCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <!--

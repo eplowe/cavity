@@ -5,9 +5,6 @@
     <AssemblyName>Cavity.MSBuild.Compliance</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup>
-    <ServiceLocation>false</ServiceLocation>
-  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Build\CSharpProjectCompliance.cs" />
   </ItemGroup>
