@@ -467,14 +467,6 @@ string indexed = data[0];
 var pair = new KeyStringPair("name", "value");
 }}}
 
-_Extension Methods_
-
- * `FormatCommaSeparatedValue()`
-
-{{{
-string value = "example".FormatCommaSeparatedValue();
-}}}
-
 == using Cavity.Dynamic _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Core%2FClass%20Libraries%2FCore.Facts%2FDynamic Facts]_ ==
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Dynamic/DynamicData.cs DynamicData]
