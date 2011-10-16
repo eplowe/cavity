@@ -61,7 +61,7 @@ Choose from the following configuration options:
 
 == [http://code.google.com/p/autofac/ Autofac] ==
 
-Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.Autofac NuGet package].
+http://nuget.org/List/Packages/Cavity.ServiceLocation.Autofac
 
 `app.config`
 {{{
@@ -98,7 +98,7 @@ Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.Autofac NuGet pac
 
 == [http://www.castleproject.org/container/ Castle Windsor] ==
 
-Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.CastleWindsor NuGet package].
+http://nuget.org/List/Packages/Cavity.ServiceLocation.CastleWindsor
 
 `app.config`
 {{{
@@ -136,7 +136,7 @@ Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.CastleWindsor NuG
 
 == [http://structuremap.github.com/structuremap/ StructureMap] ==
 
-Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.StructureMap NuGet package].
+http://nuget.org/List/Packages/Cavity.ServiceLocation.StructureMap
 
 `app.config`
 {{{
@@ -169,7 +169,7 @@ Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.StructureMap NuGe
 
 == [http://unity.codeplex.com/ Unity] ==
 
-Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.Unity NuGet package].
+http://nuget.org/List/Packages/Cavity.ServiceLocation.Unity
 
 `app.config`
 {{{
