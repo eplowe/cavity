@@ -487,15 +487,6 @@ var example = data.Example;
 
 == using Cavity.IO _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Core%2FClass%20Libraries%2FCore.Facts%2FIO Facts]_ ==
 
-[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/IO/CsvFile.cs CsvFile]
-
-{{{
-foreach (var entry in new CsvFile(@"C:\example.csv"))
-{
-    var value = entry["COLUMN NAME"];
-}
-}}}
-
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/IO/TempDirectory.cs TempDirectory]
 
 {{{
