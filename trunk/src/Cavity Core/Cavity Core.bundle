@@ -6,8 +6,8 @@
     <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
   </ImportGroup>
   <PropertyGroup>
-    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\lib</ZipLibDirectory>
-    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\src</ZipSrcDirectory>
+    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\Cavity.Core lib</ZipLibDirectory>
+    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\Cavity.Core src</ZipSrcDirectory>
   </PropertyGroup>
   <Target Name="Run">
     <ItemGroup>
@@ -19,11 +19,11 @@
     <CallTarget Targets="Zip Source" />
   </Target>
   <Target Name="Copy Output">
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Core\bin\Release net20\Cavity.Core.dll"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Core\bin\Release net20 AnyCPU\Cavity.Core.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net20" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Core\bin\Release net35\Cavity.Core.dll"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Core\bin\Release net35 AnyCPU\Cavity.Core.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Core\bin\Release net40\Cavity.Core.dll"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Core\bin\Release net40 AnyCPU\Cavity.Core.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40" />
   </Target>
   <Target Name="Zip Output">
@@ -65,6 +65,7 @@
                                  ZipFileName="$(MSBuildProjectDirectory)\Cavity.Core [src].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipSrcDirectory)"
-               Condition="Exists('$(ZipSrcDirectory)')" />
+               Condition="Exists('$(ZipSrcDirectory)')"
+               ContinueOnError="true" />
   </Target>
 </Project>

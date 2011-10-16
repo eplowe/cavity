@@ -17,23 +17,50 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
-    <TargetFrameworkVersionName>net20</TargetFrameworkVersionName>
+    <TargetFrameworkVersionName>NET20</TargetFrameworkVersionName>
     <DefineConstants>NET20;$(DefineConstants)</DefineConstants>
     <TargetFrameworkVersionNumber>2.0</TargetFrameworkVersionNumber>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
-    <TargetFrameworkVersionName>net35</TargetFrameworkVersionName>
+    <TargetFrameworkVersionName>NET35</TargetFrameworkVersionName>
     <DefineConstants>NET35;$(DefineConstants)</DefineConstants>
     <TargetFrameworkVersionNumber>3.5</TargetFrameworkVersionNumber>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
-    <TargetFrameworkVersionName>net40</TargetFrameworkVersionName>
+    <TargetFrameworkVersionName>NET40</TargetFrameworkVersionName>
     <DefineConstants>NET40;$(DefineConstants)</DefineConstants>
     <TargetFrameworkVersionNumber>4.0</TargetFrameworkVersionNumber>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile Condition="Exists('$(SolutionDir)$(RootNamespace).snk')">$(SolutionDir)$(RootNamespace).snk</AssemblyOriginatorKeyFile>
-    <OutputPath Condition=" '$(OutputPath)' == '' ">bin\$(Configuration) $(TargetFrameworkVersionName)\</OutputPath>
+    <OutputPath Condition=" '$(OutputPath)' == '' ">bin\$(Configuration) $(TargetFrameworkVersionName) $(Platform)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <ErrorReport Condition=" '$(ErrorReport)' == '' ">prompt</ErrorReport>

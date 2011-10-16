@@ -6,8 +6,8 @@
     <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
   </ImportGroup>
   <PropertyGroup>
-    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\lib</ZipLibDirectory>
-    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\src</ZipSrcDirectory>
+    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\Cavity.ServiceLocation lib</ZipLibDirectory>
+    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\Cavity.ServiceLocation src</ZipSrcDirectory>
   </PropertyGroup>
   <Target Name="Run">
     <ItemGroup>
@@ -19,11 +19,11 @@
     <CallTarget Targets="Zip Source" />
   </Target>
   <Target Name="Copy Output">
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\ServiceLocation\bin\Release net20\Cavity.ServiceLocation.dll"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\ServiceLocation\bin\Release net20 AnyCPU\Cavity.ServiceLocation.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net20" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\ServiceLocation\bin\Release net35\Cavity.ServiceLocation.dll"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\ServiceLocation\bin\Release net35 AnyCPU\Cavity.ServiceLocation.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\ServiceLocation\bin\Release net40\Cavity.ServiceLocation.dll"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\ServiceLocation\bin\Release net40 AnyCPU\Cavity.ServiceLocation.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40" />
   </Target>
   <Target Name="Zip Output">
@@ -65,6 +65,7 @@
                                  ZipFileName="$(MSBuildProjectDirectory)\Cavity.ServiceLocation [src].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipSrcDirectory)"
-               Condition="Exists('$(ZipSrcDirectory)')" />
+               Condition="Exists('$(ZipSrcDirectory)')"
+               ContinueOnError="true" />
   </Target>
 </Project>

@@ -5,22 +5,46 @@
   </ItemGroup>
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
-    <net20 Condition="'$(net20)'==''">true</net20>
-    <net35 Condition="'$(net35)'==''">true</net35>
-    <net40 Condition="'$(net40)'==''">true</net40>
+    <NET20 Condition="'$(NET20)'==''">true</NET20>
+    <NET35 Condition="'$(NET35)'==''">true</NET35>
+    <NET40 Condition="'$(NET40)'==''">true</NET40>
   </PropertyGroup>
   <Target Name="Build">
-    <MSBuild Condition=" '$(net20)'=='true' "
-             Projects="%(SolutionFiles.Identity)"
+    <CallTarget Targets="Build NET20" />
+    <CallTarget Targets="Build NET35" />
+    <CallTarget Targets="Build NET40" />
+  </Target>
+  <Target Name="Build NET20" Condition=" '$(NET20)'=='true' ">
+    <MSBuild Projects="%(SolutionFiles.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v2.0" />
-    <MSBuild Condition=" '$(net35)'=='true' "
-             Projects="%(SolutionFiles.Identity)"
+    <MSBuild Projects="%(SolutionFiles.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v2.0;Platform=x86" />
+    <MSBuild Projects="%(SolutionFiles.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v2.0;Platform=x64" />
+  </Target>
+  <Target Name="Build NET35" Condition=" '$(NET35)'=='true' ">
+    <MSBuild Projects="%(SolutionFiles.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v3.5" />
-    <MSBuild Condition=" '$(net40)'=='true' "
-             Projects="%(SolutionFiles.Identity)"
+    <MSBuild Projects="%(SolutionFiles.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v3.5;Platform=x86" />
+    <MSBuild Projects="%(SolutionFiles.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v3.5;Platform=x64" />
+  </Target>
+  <Target Name="Build NET40" Condition=" '$(NET40)'=='true' ">
+    <MSBuild Projects="%(SolutionFiles.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v4.0" />
+    <MSBuild Projects="%(SolutionFiles.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v4.0;Platform=x86" />
+    <MSBuild Projects="%(SolutionFiles.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);Configuration=$(Configuration);TargetFrameworkVersion=v4.0;Platform=x64" />
   </Target>
 </Project>

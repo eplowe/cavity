@@ -6,8 +6,8 @@
     <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
   </ImportGroup>
   <PropertyGroup>
-    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\lib</ZipLibDirectory>
-    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\src</ZipSrcDirectory>
+    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\Cavity.Data.Spreadsheet lib</ZipLibDirectory>
+    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\Cavity.Data.Spreadsheet src</ZipSrcDirectory>
   </PropertyGroup>
   <Target Name="Run">
     <ItemGroup>
@@ -19,12 +19,18 @@
     <CallTarget Targets="Zip Source" />
   </Target>
   <Target Name="Copy Output">
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Spreadsheet\bin\Release net20\Cavity.Data.Spreadsheet.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net20" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Spreadsheet\bin\Release net35\Cavity.Data.Spreadsheet.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Spreadsheet\bin\Release net40\Cavity.Data.Spreadsheet.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Spreadsheet\bin\Release net20 x64\Cavity.Data.Spreadsheet.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net20\x64" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Spreadsheet\bin\Release net35 x64\Cavity.Data.Spreadsheet.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35\x64" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Spreadsheet\bin\Release net40 x64\Cavity.Data.Spreadsheet.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40\x64" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Spreadsheet\bin\Release net20 x86\Cavity.Data.Spreadsheet.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net20\x86" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Spreadsheet\bin\Release net35 x86\Cavity.Data.Spreadsheet.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35\x86" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Spreadsheet\bin\Release net40 x86\Cavity.Data.Spreadsheet.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40\x86" />
   </Target>
   <Target Name="Zip Output">
     <RemoveDir Directories="$(ZipLibDirectory)"
@@ -65,6 +71,7 @@
                                  ZipFileName="$(MSBuildProjectDirectory)\Cavity.Data.Spreadsheet [src].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipSrcDirectory)"
-               Condition="Exists('$(ZipSrcDirectory)')" />
+               Condition="Exists('$(ZipSrcDirectory)')"
+               ContinueOnError="true" />
   </Target>
 </Project>
