@@ -171,11 +171,6 @@ Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.StructureMap NuGe
 
 Add the [http://nuget.org/List/Packages/Cavity.ServiceLocation.Unity NuGet package].
 
-Copy the following assemblies into the `bin` folder (references are not required):
- * Microsoft.Practices.Unity.dll
- * Microsoft.Practices.Unity.Configuration.dll
- * Cavity.!ServiceLocation.!Unity.dll
-
 `app.config`
 {{{
 <?xml version="1.0" encoding="utf-8" ?>
