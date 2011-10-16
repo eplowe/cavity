@@ -1,14 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.File", "Class Libraries\Data.File\Data.File.csproj", "{94A4843F-2FCA-48D9-84EF-4250D51DB2EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Spreadsheet", "Class Libraries\Data.Spreadsheet\Data.Spreadsheet.csproj", "{94A4843F-2FCA-48D9-84EF-4250D51DB2EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.File.Facts", "Class Libraries\Data.File.Facts\Data.File.Facts.csproj", "{EFFAFE17-5D62-4B78-AC53-04CBCBB6A369}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Spreadsheet.Facts", "Class Libraries\Data.Spreadsheet.Facts\Data.Spreadsheet.Facts.csproj", "{EFFAFE17-5D62-4B78-AC53-04CBCBB6A369}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{94A4843F-2FCA-48D9-84EF-4250D51DB2EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

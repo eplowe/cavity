@@ -68,5 +68,14 @@ namespace Cavity.Properties {
                 return ResourceManager.GetString("CsvStreamReader_ReadEntry_FormatException", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=&quot;Excel 12.0;HDR=YES;&quot;.
+        /// </summary>
+        internal static string Excel_ConnectionString {
+            get {
+                return ResourceManager.GetString("Excel_ConnectionString", resourceCulture);
+            }
+        }
     }
 }

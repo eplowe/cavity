@@ -19,11 +19,11 @@
     <CallTarget Targets="Zip Source" />
   </Target>
   <Target Name="Copy Output">
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.File\bin\Release net20\Cavity.Data.File.dll"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Spreadsheet\bin\Release net20\Cavity.Data.Spreadsheet.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net20" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.File\bin\Release net35\Cavity.Data.File.dll"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Spreadsheet\bin\Release net35\Cavity.Data.Spreadsheet.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.File\bin\Release net40\Cavity.Data.File.dll"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Spreadsheet\bin\Release net40\Cavity.Data.Spreadsheet.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40" />
   </Target>
   <Target Name="Zip Output">
@@ -41,7 +41,7 @@
     </ItemGroup>
     <MSBuild.Community.Tasks.Zip Files="@(OutputFiles)"
                                  WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Data.File [lib].zip"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Data.Spreadsheet [lib].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipLibDirectory)"
                Condition="Exists('$(ZipLibDirectory)')" />
@@ -62,7 +62,7 @@
     </ItemGroup>
     <MSBuild.Community.Tasks.Zip Files="@(SourceFiles)"
                                  WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Data.File [src].zip"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Data.Spreadsheet [src].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipSrcDirectory)"
                Condition="Exists('$(ZipSrcDirectory)')" />
