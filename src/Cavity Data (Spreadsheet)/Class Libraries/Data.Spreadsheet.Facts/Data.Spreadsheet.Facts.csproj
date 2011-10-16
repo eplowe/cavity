@@ -2,29 +2,33 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{EFFAFE17-5D62-4B78-AC53-04CBCBB6A369}</ProjectGuid>
-    <AssemblyName>Cavity.Data.File.Facts</AssemblyName>
+    <AssemblyName>Cavity.Data.Spreadsheet.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\Csv.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\CsvFile.Facts.cs" />
     <Compile Include="Data\CsvStreamReader.Facts.cs" />
+    <Compile Include="Data\ExcelFile.Facts.cs" />
+    <Compile Include="Data\ExcelWorksheet.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data.File\Data.File.csproj">
+    <ProjectReference Include="..\Data.Spreadsheet\Data.Spreadsheet.csproj">
       <Project>{94A4843F-2FCA-48D9-84EF-4250D51DB2EF}</Project>
-      <Name>Data.File</Name>
+      <Name>Data.Spreadsheet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
       <HintPath>..\..\packages\Cavity.Core.1.1.0.490\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.Testing.Unit">
-      <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
-    </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Testing.Unit">
+      <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
@@ -34,8 +38,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Spreadsheets\Default.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Spreadsheets\NameValue.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Spreadsheets\NameValue.xlsb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Spreadsheets\NameValue.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Spreadsheets\OneTwo.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <!--
   <Target Name="BeforeBuild">
