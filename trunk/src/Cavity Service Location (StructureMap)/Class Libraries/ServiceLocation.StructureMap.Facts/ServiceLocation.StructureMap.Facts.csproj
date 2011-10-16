@@ -25,6 +25,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="StructureMapAdapter">
+      <HintPath>..\..\packages\CommonServiceLocator.StructureMapAdapter.1.1.0.3\lib\StructureMapAdapter.dll</HintPath>
+    </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
@@ -44,9 +47,6 @@
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMapAdapter">
-      <HintPath>..\..\packages\CommonServiceLocator.StructureMapAdapter.1.1.0.2\lib\StructureMapAdapter.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
