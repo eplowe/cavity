@@ -1,0 +1,39 @@
+#summary Provides data access to spreadsheets (currently read-only).
+
+== !NuGet Packages ==
+
+http://nuget.org/List/Packages/Cavity.Data.Spreadsheet.x86
+
+http://nuget.org/List/Packages/Cavity.Data.Spreadsheet.x64
+
+== using Cavity.Data ==
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/IO/CsvFile.cs CsvFile]
+
+{{{
+foreach (KeyStringDictionary entry in new CsvFile(@"C:\example.csv"))
+{
+    var value = entry.Value<string>("COLUMN NAME");
+}
+}}}
+
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/IO/CsvFile.cs ExcelFile]
+
+{{{
+foreach (ExcelWorksheet worksheet in new ExcelFile(file))
+{
+    var name = worksheet.Name;
+}
+}}}
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/IO/CsvFile.cs ExcelWorksheet]
+
+{{{
+var file = new FileInfo("NameValue.xlsx");
+
+foreach (KeyStringDictionary entry in new ExcelWorksheet(file, "Sheet1$"))
+{
+    var value = entry.Value<string>("COLUMN NAME");
+}
+}}}
