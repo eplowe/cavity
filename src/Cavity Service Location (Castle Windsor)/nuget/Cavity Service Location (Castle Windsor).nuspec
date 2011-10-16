@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.ServiceLocation.CastleWindsor</id>
-    <version>1.1.0.490</version>
+    <version>1.1.0.491</version>
     <title>Cavity Service Location (Castle Windsor)</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -18,7 +18,7 @@
     <releaseNotes />
     <dependencies>
       <dependency id="Cavity.ServiceLocation" version="1.1.0.438" />
-      <dependency id="Cavity.Core" version="1.1.0.438" />
+      <dependency id="Cavity.Core" version="1.1.0.490" />
       <dependency id="CommonServiceLocator.WindsorAdapter" version="1.0" />
     </dependencies>
     <frameworkAssemblies>
