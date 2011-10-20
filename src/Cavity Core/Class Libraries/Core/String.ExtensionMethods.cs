@@ -12,6 +12,7 @@
     using System.Threading;
     using System.Xml;
     using System.Xml.Serialization;
+    using System.Xml.XPath;
 
     public static class StringExtensionMethods
     {
@@ -802,6 +803,18 @@
             }
 
             return null;
+        }
+
+#if NET20
+        public static IXPathNavigable XmlDeserialize(string xml)
+#else
+        public static IXPathNavigable XmlDeserialize(this string xml)
+#endif
+        {
+            var result = new XmlDocument();
+            result.LoadXml(xml);
+
+            return result;
         }
 
 #if NET20

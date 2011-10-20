@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using Cavity.Data;
+    using Cavity.Properties;
 
     [Serializable]
     public class KeyStringDictionary : Dictionary<string, string>, IEnumerable<KeyStringPair>
@@ -16,6 +17,28 @@
                                       StreamingContext context)
             : base(info, context)
         {
+        }
+
+        public string this[int index]
+        {
+            get
+            {
+                if (index > -1 && index < Count)
+                {
+                    var i = 0;
+                    foreach (var key in Keys)
+                    {
+                        if (i == index)
+                        {
+                            return this[key];
+                        }
+
+                        i++;
+                    }
+                }
+
+                throw new ArgumentOutOfRangeException("index", Resources.IndexOutOfRangeException_Message);
+            }
         }
 
         public virtual void Add(KeyStringPair item)
@@ -40,6 +63,15 @@
             {
                 yield return new KeyStringPair(e.Current.Key, e.Current.Value);
             }
+        }
+
+        public virtual T Value<T>(int index)
+        {
+#if NET20
+            return StringExtensionMethods.To<T>(this[index]);
+#else
+            return this[index].To<T>();
+#endif
         }
 
         public virtual T Value<T>(string key)

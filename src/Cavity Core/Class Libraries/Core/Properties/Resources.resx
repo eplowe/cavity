@@ -123,6 +123,9 @@
   <data name="EntityTag_FormatException_Message" xml:space="preserve">
     <value>An entity tag must be enclosed with quotes and may optionally begin with W/.</value>
   </data>
+  <data name="IndexOutOfRangeException_Message" xml:space="preserve">
+    <value>Index was out of range. Must be non-negative and less than the size of the collection.</value>
+  </data>
   <data name="ObjectExtensionMethods_IsBoundedBy_Message" xml:space="preserve">
     <value>The upper bound must be greater than the lower bound.</value>
   </data>
