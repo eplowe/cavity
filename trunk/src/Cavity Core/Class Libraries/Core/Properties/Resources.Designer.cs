@@ -79,6 +79,15 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Index was out of range. Must be non-negative and less than the size of the collection..
+        /// </summary>
+        internal static string IndexOutOfRangeException_Message {
+            get {
+                return ResourceManager.GetString("IndexOutOfRangeException_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The upper bound must be greater than the lower bound..
         /// </summary>
         internal static string ObjectExtensionMethods_IsBoundedBy_Message {

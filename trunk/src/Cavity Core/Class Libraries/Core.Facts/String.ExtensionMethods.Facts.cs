@@ -1131,6 +1131,27 @@
         }
 
         [Fact]
+        public void op_XmlDeserialize_string()
+        {
+            const string expected = "<root />";
+            var actual = expected.XmlDeserialize().CreateNavigator().OuterXml;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_XmlDeserialize_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).XmlDeserialize());
+        }
+
+        [Fact]
+        public void op_XmlDeserialize_stringEmpty()
+        {
+            Assert.Throws<XmlException>(() => string.Empty.XmlDeserialize());
+        }
+
+        [Fact]
         public void op_XmlDeserializeOfT_string()
         {
             var expected = new DateTime(2009, 04, 25);
