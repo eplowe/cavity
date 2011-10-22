@@ -1,7 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSBuild.Domain", "Class Libraries\MSBuild.Domain\MSBuild.Domain.csproj", "{980844FD-79CC-48EC-A16A-A2561C126631}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSBuild.Domain.Facts", "Class Libraries\MSBuild.Domain.Facts\MSBuild.Domain.Facts.csproj", "{7AC5B128-CBBF-41B6-94EA-22EC3CE3CA02}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{980844FD-79CC-48EC-A16A-A2561C126631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{980844FD-79CC-48EC-A16A-A2561C126631}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{980844FD-79CC-48EC-A16A-A2561C126631}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{980844FD-79CC-48EC-A16A-A2561C126631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC5B128-CBBF-41B6-94EA-22EC3CE3CA02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC5B128-CBBF-41B6-94EA-22EC3CE3CA02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC5B128-CBBF-41B6-94EA-22EC3CE3CA02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC5B128-CBBF-41B6-94EA-22EC3CE3CA02}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
