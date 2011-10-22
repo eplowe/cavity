@@ -13,7 +13,7 @@
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
     [XmlRoot("list")]
-    public class List : List<string>, IXmlSerializable
+    public class StringList : List<string>, IXmlSerializable
     {
         public virtual IEnumerable<T> ToEnumerable<T>()
         {

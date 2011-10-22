@@ -17,8 +17,8 @@
     <tags>IoC</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.ServiceLocation" version="1.1.0.438" />
       <dependency id="Cavity.Core" version="1.1.0.490" />
+      <dependency id="Cavity.ServiceLocation" version="1.1.0.438" />
       <dependency id="CommonServiceLocator.WindsorAdapter" version="1.0" />
     </dependencies>
     <frameworkAssemblies>

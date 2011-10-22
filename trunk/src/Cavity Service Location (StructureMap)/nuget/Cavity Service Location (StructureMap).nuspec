@@ -17,9 +17,9 @@
     <tags>IoC</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="CommonServiceLocator.StructureMapAdapter" version="1.1.0.3" />
       <dependency id="Cavity.Core" version="1.1.0.490" />
       <dependency id="Cavity.ServiceLocation" version="1.1.0.438" />
+      <dependency id="CommonServiceLocator.StructureMapAdapter" version="1.1.0.3" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Configuration" targetFramework="net40" />
