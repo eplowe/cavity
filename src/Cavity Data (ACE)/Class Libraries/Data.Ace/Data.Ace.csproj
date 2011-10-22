@@ -2,30 +2,16 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{94A4843F-2FCA-48D9-84EF-4250D51DB2EF}</ProjectGuid>
-    <AssemblyName>Cavity.Data.Spreadsheet</AssemblyName>
+    <AssemblyName>Cavity.Data.Ace</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
     <ServiceLocation>false</ServiceLocation>
   </PropertyGroup>
   <ItemGroup Condition=" '$(Platform)' == 'x64' or '$(Platform)' == 'x86' ">
-    <Compile Include="Data\Csv.String.ExtensionMethods.cs" />
-    <Compile Include="Data\CsvFile.cs" />
-    <Compile Include="Data\CsvStreamReader.cs" />
     <Compile Include="Data\Excel.cs" />
     <Compile Include="Data\ExcelFile.cs" />
     <Compile Include="Data\ExcelWorksheet.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(Platform)' == 'x64' or '$(Platform)' == 'x86' ">
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
@@ -33,7 +19,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\MixedCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.project" />

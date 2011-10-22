@@ -2,22 +2,17 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{EFFAFE17-5D62-4B78-AC53-04CBCBB6A369}</ProjectGuid>
-    <AssemblyName>Cavity.Data.Spreadsheet.Facts</AssemblyName>
+    <AssemblyName>Cavity.Data.Ace.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(Platform)' == 'x64' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Compile Include="Data\Csv.String.ExtensionMethods.Facts.cs" />
-    <Compile Include="Data\CsvFile.Facts.cs" />
-    <Compile Include="Data\CsvStreamReader.Facts.cs" />
-    <!--
+  <ItemGroup Condition=" '$(Platform)' == 'x64' and '$(CommandLineBuild)' != 'true' ">
     <Compile Include="Data\ExcelFile.Facts.cs" />
     <Compile Include="Data\ExcelWorksheet.Facts.cs" />
-    -->
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data.Spreadsheet\Data.Spreadsheet.csproj">
+    <ProjectReference Include="..\Data.Ace\Data.Ace.csproj">
       <Project>{94A4843F-2FCA-48D9-84EF-4250D51DB2EF}</Project>
-      <Name>Data.Spreadsheet</Name>
+      <Name>Data.Ace</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
