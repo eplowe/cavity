@@ -8,7 +8,7 @@
 #if NET20
     using Cavity.Collections;
 #endif
-    using Cavity.Collections.Generic;
+    using Cavity.Collections;
     using Cavity.Data;
 
     public class Lexicon
