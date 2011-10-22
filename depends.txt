@@ -1,0 +1,40 @@
+1.1.0.438	Cavity.Testing.Unit
+
+1.1.0.438	Cavity log4net trace listener
+
+1.1.0.438	Cavity.ServiceLocation
+
+1.1.0.514	Cavity.Core
+
+1.1.0.491	Cavity Service Location (Autofac)
+			+ Autofac.CommonServiceLocator
+			+ Cavity.Core
+			+ Cavity.ServiceLocation
+
+1.1.0.491	Cavity.ServiceLocation.CastleWindsor
+			+ Cavity.Core
+			+ Cavity.ServiceLocation
+			+ CommonServiceLocator.WindsorAdapter
+
+1.1.0.491	Cavity.ServiceLocation.StructureMap
+			+ Cavity.Core
+			+ Cavity.ServiceLocation
+			+ CommonServiceLocator.StructureMapAdapter
+
+1.1.0.491	Cavity.ServiceLocation.Unity
+			+ Cavity.Core
+			+ Cavity.ServiceLocation
+			+ CommonServiceLocator.UnityAdapter
+
+1.1.0.541	Cavity.Data.Ace.x64
+1.1.0.541	Cavity.Data.Ace.x86
+			+ Cavity.Core
+
+1.1.0.541	Cavity.Data.Csv
+			+ Cavity.Core
+
+1.1.0.0	Cavity.Domain
+			+ Cavity.Data.Csv
+				* Cavity.Core
+
+1.1.0.0	Cavity.Domain.UnitedKingdom

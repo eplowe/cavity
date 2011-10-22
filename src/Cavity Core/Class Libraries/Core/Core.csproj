@@ -6,6 +6,7 @@
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collections\StringList.cs" />
     <Compile Include="Collections\TranslationDictionary`1.cs" />
     <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
     <Compile Include="Collections\Generic\Tree`1.cs" />
