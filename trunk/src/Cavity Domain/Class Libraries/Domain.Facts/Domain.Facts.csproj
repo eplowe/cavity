@@ -32,6 +32,11 @@
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\LexicalItem.Facts.cs" />
+    <Compile Include="Models\Lexicon.Facts.cs" />
+    <Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <!--
