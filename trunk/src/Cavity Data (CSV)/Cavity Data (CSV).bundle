@@ -6,8 +6,8 @@
     <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
   </ImportGroup>
   <PropertyGroup>
-    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\Cavity.Data.Ace lib</ZipLibDirectory>
-    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\Cavity.Data.Ace src</ZipSrcDirectory>
+    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\Cavity.Data.Csv lib</ZipLibDirectory>
+    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\Cavity.Data.Csv src</ZipSrcDirectory>
   </PropertyGroup>
   <Target Name="Run">
     <ItemGroup>
@@ -19,18 +19,12 @@
     <CallTarget Targets="Zip Source" />
   </Target>
   <Target Name="Copy Output">
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net20 x64\Cavity.Data.Ace.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net20\x64" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net35 x64\Cavity.Data.Ace.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35\x64" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net40 x64\Cavity.Data.Ace.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40\x64" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net20 x86\Cavity.Data.Ace.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net20\x86" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net35 x86\Cavity.Data.Ace.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35\x86" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net40 x86\Cavity.Data.Ace.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40\x86" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Csv\bin\Release net20 AnyCPU\Cavity.Data.Csv.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net20" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Csv\bin\Release net35 AnyCPU\Cavity.Data.Csv.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Csv\bin\Release net40 AnyCPU\Cavity.Data.Csv.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40" />
   </Target>
   <Target Name="Zip Output">
     <RemoveDir Directories="$(ZipLibDirectory)"
@@ -47,7 +41,7 @@
     </ItemGroup>
     <MSBuild.Community.Tasks.Zip Files="@(OutputFiles)"
                                  WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Data.Ace [lib].zip"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Data.Csv [lib].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipLibDirectory)"
                Condition="Exists('$(ZipLibDirectory)')" />
@@ -68,7 +62,7 @@
     </ItemGroup>
     <MSBuild.Community.Tasks.Zip Files="@(SourceFiles)"
                                  WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Data.Ace [src].zip"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Data.Csv [src].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipSrcDirectory)"
                Condition="Exists('$(ZipSrcDirectory)')"

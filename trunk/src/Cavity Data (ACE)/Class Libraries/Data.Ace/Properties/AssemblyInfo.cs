@@ -3,16 +3,16 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyDefaultAlias("Cavity.Data.Spreadsheet.dll")]
-[assembly: AssemblyTitle("Cavity.Data.Spreadsheet.dll")]
+[assembly: AssemblyDefaultAlias("Cavity.Data.Ace.dll")]
+[assembly: AssemblyTitle("Cavity.Data.Ace.dll")]
 
 #if (DEBUG)
 
-[assembly: AssemblyDescription("Cavity : Data Spreadsheet Library (Debug)")]
+[assembly: AssemblyDescription("Cavity : ACE Data Library (Debug)")]
 
 #else
 
-[assembly: AssemblyDescription("Cavity : Data Spreadsheet Library (Release)")]
+[assembly: AssemblyDescription("Cavity : ACE Data Library (Release)")]
 
 #endif
 

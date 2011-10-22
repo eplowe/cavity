@@ -14,11 +14,11 @@
             {
                 throw new ArgumentNullException("file");
             }
-
+            
 #if NET20
-            return StringExtensionMethods.FormatWith(Resources.Excel_ConnectionString, file.FullName);
+            return StringExtensionMethods.FormatWith(Settings.Default.Excel, file.FullName);
 #else
-            return Resources.Excel_ConnectionString.FormatWith(file.FullName);
+            return Settings.Default.Excel.FormatWith(file.FullName);
 #endif
         }
     }

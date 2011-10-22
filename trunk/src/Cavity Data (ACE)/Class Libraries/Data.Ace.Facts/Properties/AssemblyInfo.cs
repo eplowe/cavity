@@ -2,15 +2,15 @@
 using System.Reflection;
 
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyDefaultAlias("Cavity.Data.Spreadsheet.Facts.dll")]
-[assembly: AssemblyTitle("Cavity.Data.Spreadsheet.Facts.dll")]
+[assembly: AssemblyDefaultAlias("Cavity.Data.Ace.Facts.dll")]
+[assembly: AssemblyTitle("Cavity.Data.Ace.Facts.dll")]
 
 #if (DEBUG)
 
-[assembly: AssemblyDescription("Cavity : Data Spreadsheet Facts Library (Debug)")]
+[assembly: AssemblyDescription("Cavity : ACE Data Facts Library (Debug)")]
 
 #else
 
-[assembly: AssemblyDescription("Cavity : Data Spreadsheet Facts Library (Release)")]
+[assembly: AssemblyDescription("Cavity : ACE Data Facts Library (Release)")]
 
 #endif
