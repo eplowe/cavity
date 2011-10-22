@@ -1,6 +1,6 @@
 ﻿namespace Cavity.Data
 {
-    using Cavity.Collections.Generic;
+    using Cavity.Collections;
     using Cavity.Models;
 
     public interface IStoreLexicon

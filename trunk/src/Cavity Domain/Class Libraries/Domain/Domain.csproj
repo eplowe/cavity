@@ -12,12 +12,18 @@
     <Reference Include="Cavity.Core">
       <HintPath>..\..\packages\Cavity.Core.1.1.0.514\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Cavity.Data.Csv">
+      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.541\lib\net40\Cavity.Data.Csv.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\INormalizationComparer.cs" />
     <Compile Include="Collections\LevenshteinComparer.cs" />
     <Compile Include="Collections\NormalizationComparer.cs" />
     <Compile Include="Collections\SynonymCollection.cs" />
+    <Compile Include="Data\CsvLexiconStorage.cs" />
+    <Compile Include="Data\IStoreLexicon.cs" />
+    <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Models\LexicalItem.cs" />
     <Compile Include="Models\Lexicon.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.cs" />
