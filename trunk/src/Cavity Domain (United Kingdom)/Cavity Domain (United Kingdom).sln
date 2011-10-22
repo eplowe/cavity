@@ -1,7 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitedKingdom", "Class Libraries\Domain.UnitedKingdom\Domain.UnitedKingdom.csproj", "{166775FD-D5EB-4233-88B8-4B14E9001252}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitedKingdom.Facts", "Class Libraries\Domain.UnitedKingdom.Facts\Domain.UnitedKingdom.Facts.csproj", "{A101EF34-98EE-46D5-BBCF-C6F8E9E525C7}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{166775FD-D5EB-4233-88B8-4B14E9001252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166775FD-D5EB-4233-88B8-4B14E9001252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166775FD-D5EB-4233-88B8-4B14E9001252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166775FD-D5EB-4233-88B8-4B14E9001252}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A101EF34-98EE-46D5-BBCF-C6F8E9E525C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A101EF34-98EE-46D5-BBCF-C6F8E9E525C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A101EF34-98EE-46D5-BBCF-C6F8E9E525C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A101EF34-98EE-46D5-BBCF-C6F8E9E525C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
