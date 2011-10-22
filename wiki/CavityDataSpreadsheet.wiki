@@ -1,47 +1,5 @@
 #summary Provides data access for spreadsheets, such as CSV or Excel (currently read-only).
 
-== !NuGet Packages ==
-
-http://nuget.org/List/Packages/Cavity.Data.Spreadsheet.x86
-
-http://nuget.org/List/Packages/Cavity.Data.Spreadsheet.x64
-
-== using Cavity.Data _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Data%20(Spreadsheet)%2FClass%20Libraries%2FData.Spreadsheet.Facts%2FData Facts]_ ==
-
-[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Data%20(Spreadsheet)/Class%20Libraries/Data.Spreadsheet/Data/CsvFile.cs CsvFile]
-
-{{{
-foreach (KeyStringDictionary entry in new CsvFile(@"C:\example.csv"))
-{
-    var value = entry.Value<string>("COLUMN NAME");
-}
-}}}
-
-
-[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Data%20(Spreadsheet)/Class%20Libraries/Data.Spreadsheet/Data/ExcelFile.cs ExcelFile]
-
-{{{
-foreach (ExcelWorksheet worksheet in new ExcelFile(file))
-{
-    var name = worksheet.Name;
-}
-}}}
-
-[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Data%20(Spreadsheet)/Class%20Libraries/Data.Spreadsheet/Data/ExcelWorksheet.cs ExcelWorksheet]
-
-{{{
-var file = new FileInfo("NameValue.xlsx");
-
-foreach (KeyStringDictionary entry in new ExcelWorksheet(file, "Sheet1$"))
-{
-    var value = entry.Value<string>("COLUMN NAME");
-}
-}}}
-
-_Extension Methods_
-
- * `FormatCommaSeparatedValue()`
-
-{{{
-string value = "example".FormatCommaSeparatedValue();
-}}}
+This package is now obsolete, instead see:
+ * [CavityDataAce Cavity Data (ACE)]
+ * [CavityDataCsv Cavity Data (CSV)]
