@@ -38,6 +38,8 @@
     <Compile Include="Collections\LevenshteinComparer.Facts.cs" />
     <Compile Include="Collections\NormalizationComparer.Facts.cs" />
     <Compile Include="Collections\SynonymCollection.Facts.cs" />
+    <Compile Include="Data\CsvLexiconStorage.Facts.cs" />
+    <Compile Include="Data\IStoreLexicon.Facts.cs" />
     <Compile Include="Models\LexicalItem.Facts.cs" />
     <Compile Include="Models\Lexicon.Facts.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs" />

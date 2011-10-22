@@ -63,7 +63,7 @@
         }
 
         [Fact]
-        [SuppressMessage("Microsoft.Globalization", "CA1309:UseOrdinalStringComparison", MessageId = "Cavity.Collections.Generic.NormalizationComparer.#ctor(System.Collections.Generic.IComparer`1<System.String>)", Justification = "This is for testing purposes.")]
+        [SuppressMessage("Microsoft.Globalization", "CA1309:UseOrdinalStringComparison", MessageId = "Cavity.Collections.NormalizationComparer.#ctor(System.Collections.Generic.IComparer`1<System.String>)", Justification = "This is for testing purposes.")]
         public void op_Normalize_string_whenInvariantCultureIgnoreCase()
         {
             INormalizationComparer obj = new NormalizationComparer(StringComparer.InvariantCultureIgnoreCase);

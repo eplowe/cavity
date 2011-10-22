@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq;
-    using Cavity.Collections.Generic;
+    using Cavity.Collections;
     using Xunit;
 
     public sealed class LexicalItemFacts

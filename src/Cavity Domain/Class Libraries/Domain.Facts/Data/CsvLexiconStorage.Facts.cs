@@ -3,7 +3,7 @@
     using System;
     using System.IO;
     using System.Linq;
-    using Cavity.Collections.Generic;
+    using Cavity.Collections;
     using Cavity.IO;
     using Cavity.Models;
     using Xunit;
