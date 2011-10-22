@@ -32,7 +32,7 @@
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Collections\INormalizationComparer.Facts.cs" />
     <Compile Include="Collections\LevenshteinComparer.Derived.cs" />
     <Compile Include="Collections\LevenshteinComparer.Facts.cs" />

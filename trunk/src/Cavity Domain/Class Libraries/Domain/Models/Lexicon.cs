@@ -5,9 +5,6 @@
 #if !NET20
     using System.Linq;
 #endif
-#if NET20
-    using Cavity.Collections;
-#endif
     using Cavity.Collections;
     using Cavity.Data;
 

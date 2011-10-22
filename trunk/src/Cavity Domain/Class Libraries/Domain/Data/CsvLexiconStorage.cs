@@ -137,8 +137,8 @@
                         .Item(Location.FullName)
                         .WriteLine(StringExtensionMethods.FormatWith(
                             "{0},{1}",
-                            DataStringExtensionMethods.FormatCommaSeparatedValue(item.Value.CanonicalForm),
-                            DataStringExtensionMethods.FormatCommaSeparatedValue(IEnumerableExtensionMethods.Concat(synonyms.Values, ';'))));
+                            CsvStringExtensionMethods.FormatCommaSeparatedValue(item.Value.CanonicalForm),
+                            CsvStringExtensionMethods.FormatCommaSeparatedValue(IEnumerableExtensionMethods.Concat(synonyms.Values, ';'))));
                 }
 #else
                 foreach (var item in lexicon.Items.OrderBy(x => x.CanonicalForm))
