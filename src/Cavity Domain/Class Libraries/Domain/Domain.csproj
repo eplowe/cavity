@@ -13,6 +13,11 @@
       <HintPath>..\..\packages\Cavity.Core.1.1.0.514\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\LexicalItem.cs" />
+    <Compile Include="Models\Lexicon.cs" />
+    <Compile Include="Models\Lexicon.String.ExtensionMethods.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <!--
