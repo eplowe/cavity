@@ -5,7 +5,7 @@
 #if !NET20
     using System.Linq;
 #endif
-    using Cavity.Collections.Generic;
+    using Cavity.Collections;
     using Cavity.Data;
 
     public class LexicalItem

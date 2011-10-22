@@ -1,4 +1,4 @@
-﻿namespace Cavity.Collections.Generic
+﻿namespace Cavity.Collections
 {
     public sealed class DerivedLevenshteinComparer : LevenshteinComparer
     {

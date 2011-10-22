@@ -1,4 +1,4 @@
-﻿namespace Cavity.Collections.Generic
+﻿namespace Cavity.Collections
 {
     using Xunit;
 

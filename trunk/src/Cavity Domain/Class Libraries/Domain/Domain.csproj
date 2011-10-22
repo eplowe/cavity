@@ -14,6 +14,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\INormalizationComparer.cs" />
+    <Compile Include="Collections\LevenshteinComparer.cs" />
+    <Compile Include="Collections\NormalizationComparer.cs" />
+    <Compile Include="Collections\SynonymCollection.cs" />
     <Compile Include="Models\LexicalItem.cs" />
     <Compile Include="Models\Lexicon.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.cs" />
