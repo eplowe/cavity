@@ -1,4 +1,5 @@
 #summary Provides data access for spreadsheets, such as CSV or Excel (currently read-only).
+#labels Deprecated
 
 This package is now obsolete, instead see:
  * [CavityDataAce Cavity Data (ACE)]
