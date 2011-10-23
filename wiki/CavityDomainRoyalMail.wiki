@@ -1,0 +1,14 @@
+#summary Provides domain models and supporting types.
+#labels Phase-Implementation
+
+== !NuGet Package ==
+
+http://nuget.org/List/Packages/Cavity.Domain.RoyalMail
+
+== using Cavity.Models _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Domain%20(Royal%20Mail)%2FClass%20Libraries%2FDomain.RoyalMail.Facts%2FModels Facts]_ ==
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Domain%20(Royal%20Mail)/Class%20Libraries/Domain.RoyalMail/Models/BritishPostcode.cs BritishPostcode] 
+
+{{{
+BritishPostcode postcode = "AB10 1AA";
+}}}

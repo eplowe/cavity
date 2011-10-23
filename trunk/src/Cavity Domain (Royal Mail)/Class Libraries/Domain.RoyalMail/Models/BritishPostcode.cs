@@ -6,9 +6,10 @@
 #if !NET20
     using System.Linq;
 #endif
+    using Cavity;
     using Cavity.Diagnostics;
 
-    public sealed class BritishPostcode : ComparableObject, IAddressLine
+    public sealed class BritishPostcode : ComparableObject
     {
         private BritishPostcode()
         {
@@ -39,18 +40,6 @@
 
         public string Unit { get; set; }
 
-#if NET40
-        dynamic IAddressLine.Data
-#else
-        object IAddressLine.Data
-#endif
-        {
-            get
-            {
-                return ToString();
-            }
-        }
-
         public static implicit operator BritishPostcode(string value)
         {
             return ReferenceEquals(null, value) ? null : FromString(value);
@@ -64,7 +53,13 @@
                 throw new ArgumentNullException("value");
             }
 
-            value = value.Trim().ToUpperInvariant();
+            value = value
+                .NormalizeWhiteSpace()
+                .Trim()
+                .ToUpperInvariant()
+                .Where(c => ' '.Equals(c) || char.IsLetterOrDigit(c))
+                .Aggregate(string.Empty, (current, c) => current + c);
+
             if (0 == value.Length)
             {
                 return new BritishPostcode();
@@ -92,11 +87,6 @@
         public override string ToString()
         {
             return Unit ?? string.Empty;
-        }
-
-        public string ToString(IFormatAddress renderer)
-        {
-            throw new NotSupportedException();
         }
 
         private static string ToArea(IEnumerable<char> value)

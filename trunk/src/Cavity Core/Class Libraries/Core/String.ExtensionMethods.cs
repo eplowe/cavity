@@ -1,6 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
+    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
@@ -688,6 +689,117 @@
 #endif
         {
             var type = typeof(T);
+            if (type.IsGenericType &&
+                type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                return string.IsNullOrEmpty(obj)
+                    ? default(T)
+                    : To<T>(Nullable.GetUnderlyingType(type), obj);
+            }
+
+            return To<T>(type, obj);
+        }
+
+#if NET20
+        public static T TryTo<T>(string obj)
+#else
+        public static T TryTo<T>(this string obj)
+#endif
+        {
+            var type = typeof(T);
+            if (type.IsGenericType &&
+                type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                return string.IsNullOrEmpty(obj)
+                    ? default(T)
+                    : TryTo<T>(Nullable.GetUnderlyingType(type), obj);
+            }
+
+            return TryTo<T>(type, obj);
+        }
+
+        [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Title casing only works from lower case strings.")]
+#if NET20
+        public static string ToTitleCase(string obj)
+#else
+        public static string ToTitleCase(this string obj)
+#endif
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return obj;
+            }
+
+            var info = Thread.CurrentThread.CurrentUICulture.TextInfo;
+
+            return info.ToTitleCase(obj.ToLowerInvariant());
+        }
+
+#if NET20
+        public static IXPathNavigable XmlDeserialize(string xml)
+#else
+        public static IXPathNavigable XmlDeserialize(this string xml)
+#endif
+        {
+            var result = new XmlDocument();
+            result.LoadXml(xml);
+
+            return result;
+        }
+
+#if NET20
+        public static T XmlDeserialize<T>(string xml)
+#else
+        public static T XmlDeserialize<T>(this string xml)
+#endif
+        {
+            return (T)XmlDeserialize(xml, typeof(T));
+        }
+
+#if NET20
+        public static object XmlDeserialize(string xml,
+                                            Type type)
+#else
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
+        public static object XmlDeserialize(this string xml,
+                                            Type type)
+#endif
+        {
+            if (null == xml)
+            {
+                throw new ArgumentNullException("xml");
+            }
+
+            if (0 == xml.Length)
+            {
+                throw new ArgumentOutOfRangeException("xml");
+            }
+
+            if (null == type)
+            {
+                throw new ArgumentNullException("type");
+            }
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(xml);
+                    writer.Flush();
+                    stream.Position = 0;
+                    return typeof(Exception).IsAssignableFrom(type)
+                               ? new SoapFormatter().Deserialize(stream)
+                               : new XmlSerializer(type).Deserialize(stream);
+                }
+            }
+        }
+
+#if NET20
+        private static T To<T>(Type type, string obj)
+#else
+        private static T To<T>(this Type type, string obj)
+#endif
+        {
             object value;
             if (typeof(bool) == type)
             {
@@ -767,101 +879,153 @@
             return (T)Convert.ChangeType(value, type, CultureInfo.InvariantCulture);
         }
 
-        [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Title casing only works from lower case strings.")]
+        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "This is due to the type-specific nature of parsing.")]
 #if NET20
-        public static string ToTitleCase(string obj)
+        private static T TryTo<T>(Type type, string obj)
 #else
-        public static string ToTitleCase(this string obj)
+        private static T TryTo<T>(this Type type, string obj)
 #endif
         {
-            if (string.IsNullOrEmpty(obj))
+            if (typeof(bool) == type)
             {
-                return obj;
-            }
-
-            var info = Thread.CurrentThread.CurrentUICulture.TextInfo;
-
-            return info.ToTitleCase(obj.ToLowerInvariant());
-        }
-
-#if NET20
-        public static int? TryToInt32(string obj)
-#else
-        public static int? TryToInt32(this string obj)
-#endif
-        {
-            if (string.IsNullOrEmpty(obj))
-            {
-                return null;
-            }
-
-            int result;
-
-            if (int.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out result))
-            {
-                return result;
-            }
-
-            return null;
-        }
-
-#if NET20
-        public static IXPathNavigable XmlDeserialize(string xml)
-#else
-        public static IXPathNavigable XmlDeserialize(this string xml)
-#endif
-        {
-            var result = new XmlDocument();
-            result.LoadXml(xml);
-
-            return result;
-        }
-
-#if NET20
-        public static T XmlDeserialize<T>(string xml)
-#else
-        public static T XmlDeserialize<T>(this string xml)
-#endif
-        {
-            return (T)XmlDeserialize(xml, typeof(T));
-        }
-
-#if NET20
-        public static object XmlDeserialize(string xml,
-                                            Type type)
-#else
-        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
-        public static object XmlDeserialize(this string xml,
-                                            Type type)
-#endif
-        {
-            if (null == xml)
-            {
-                throw new ArgumentNullException("xml");
-            }
-
-            if (0 == xml.Length)
-            {
-                throw new ArgumentOutOfRangeException("xml");
-            }
-
-            if (null == type)
-            {
-                throw new ArgumentNullException("type");
-            }
-
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(stream))
+                bool boolResult;
+                if (bool.TryParse(obj, out boolResult))
                 {
-                    writer.Write(xml);
-                    writer.Flush();
-                    stream.Position = 0;
-                    return typeof(Exception).IsAssignableFrom(type)
-                               ? new SoapFormatter().Deserialize(stream)
-                               : new XmlSerializer(type).Deserialize(stream);
+                    return (T)Convert.ChangeType(boolResult, type, CultureInfo.InvariantCulture);
                 }
             }
+            else if (typeof(byte) == type)
+            {
+                byte byteResult;
+                if (byte.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out byteResult))
+                {
+                    return (T)Convert.ChangeType(byteResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(char) == type)
+            {
+                char charResult;
+                if (char.TryParse(obj, out charResult))
+                {
+                    return (T)Convert.ChangeType(charResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(DateTime) == type)
+            {
+                DateTime dateTimeResult;
+                if (DateTime.TryParse(obj, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out dateTimeResult))
+                {
+                    return (T)Convert.ChangeType(dateTimeResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+#if !NET20
+            else if (typeof(DateTimeOffset) == type)
+            {
+                DateTimeOffset dateTimeOffsetResult;
+                if (DateTimeOffset.TryParse(obj, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTimeOffsetResult))
+                {
+                    return (T)Convert.ChangeType(dateTimeOffsetResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+#endif
+            else if (typeof(decimal) == type)
+            {
+                decimal decimalResult;
+                if (decimal.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out decimalResult))
+                {
+                    return (T)Convert.ChangeType(decimalResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(double) == type)
+            {
+                double doubleResult;
+                if (double.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out doubleResult))
+                {
+                    return (T)Convert.ChangeType(doubleResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(Guid) == type)
+            {
+                Guid guidResult;
+                if (Guid.TryParse(obj, out guidResult))
+                {
+                    return (T)Convert.ChangeType(guidResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(short) == type)
+            {
+                short shortResult;
+                if (short.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out shortResult))
+                {
+                    return (T)Convert.ChangeType(shortResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(int) == type)
+            {
+                int intResult;
+                if (int.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out intResult))
+                {
+                    return (T)Convert.ChangeType(intResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(long) == type)
+            {
+                long longResult;
+                if (long.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out longResult))
+                {
+                    return (T)Convert.ChangeType(longResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(sbyte) == type)
+            {
+                sbyte sbyteResult;
+                if (sbyte.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out sbyteResult))
+                {
+                    return (T)Convert.ChangeType(sbyteResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(float) == type)
+            {
+                float floatResult;
+                if (float.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out floatResult))
+                {
+                    return (T)Convert.ChangeType(floatResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(TimeSpan) == type)
+            {
+                TimeSpan timeSpanResult;
+                if (TimeSpan.TryParse(obj, CultureInfo.InvariantCulture, out timeSpanResult))
+                {
+                    return (T)Convert.ChangeType(timeSpanResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(ushort) == type)
+            {
+                ushort ushortResult;
+                if (ushort.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out ushortResult))
+                {
+                    return (T)Convert.ChangeType(ushortResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(uint) == type)
+            {
+                uint uintResult;
+                if (uint.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out uintResult))
+                {
+                    return (T)Convert.ChangeType(uintResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+            else if (typeof(ulong) == type)
+            {
+                ulong ulongResult;
+                if (ulong.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out ulongResult))
+                {
+                    return (T)Convert.ChangeType(ulongResult, type, CultureInfo.InvariantCulture);
+                }
+            }
+
+            return (T)Convert.ChangeType(obj, type, CultureInfo.InvariantCulture);
         }
     }
 }
