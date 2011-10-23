@@ -10,7 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.568\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
@@ -20,7 +20,6 @@
     <Compile Include="Models\IUserCategory.cs" />
     <Compile Include="Models\NonResidentialUserCategory.cs" />
     <Compile Include="Models\ResidentialUserCategory.cs" />
-    <Compile Include="Models\DataOrigin.cs" />
     <Compile Include="Models\LargeUserCategory.cs" />
     <Compile Include="Models\Organization.cs" />
     <Compile Include="Models\PostalAddressFileEntry.cs" />

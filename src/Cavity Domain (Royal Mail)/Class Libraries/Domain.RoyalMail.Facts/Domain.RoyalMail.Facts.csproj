@@ -23,11 +23,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cavity.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.568\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Data.Csv">
-      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.568\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.589\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
     </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
@@ -36,7 +36,6 @@
   <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Models\BritishPostcode.Facts.cs" />
     <Compile Include="Models\BritishAddress.Facts.cs" />
-    <Compile Include="Models\DataOrigin.Facts.cs" />
     <Compile Include="Models\Organization.Facts.cs" />
     <Compile Include="Models\PostalAddressFileEntry.Facts.cs" />
     <Compile Include="Models\IUserCategory.Facts.cs" />
