@@ -323,7 +323,7 @@ string value = dictionary["key"];
 
 int value = dictionary.Value<int>("key");
 
-int? value = dictionary.Value<int?>("key");
+int? value = dictionary.TryValue<int?>("key");
 }}}
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Collections/TranslationDictionary%601.cs TranslationDictionary<T>]

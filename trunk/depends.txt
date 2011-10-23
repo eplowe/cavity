@@ -26,14 +26,14 @@
 
 1.1.0.587	Cavity.Core
 
-1.1.0.509	Cavity MSBuild (Compliance)
+1.1.0.587	Cavity MSBuild (Compliance)
 			+ Cavity.Core
 
-1.1.0.568	Cavity.Data.Ace.x64
-1.1.0.568	Cavity.Data.Ace.x86
+1.1.0.589	Cavity.Data.Ace.x64
+1.1.0.589	Cavity.Data.Ace.x86
 			+ Cavity.Core
 
-1.1.0.568	Cavity.Data.Csv
+1.1.0.589	Cavity.Data.Csv
 			+ Cavity.Core
 
 1.1.0.568	Cavity.Domain
