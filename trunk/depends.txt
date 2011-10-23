@@ -36,11 +36,11 @@
 1.1.0.589	Cavity.Data.Csv
 			+ Cavity.Core
 
-1.1.0.568	Cavity.Domain
+1.1.0.xxx	Cavity.Domain
 			+ Cavity.Data.Csv
 				* Cavity.Core
 
-1.1.0.0	Cavity.Domain.RoyalMail
+1.1.0.xxx	Cavity.Domain.RoyalMail
 			+ Cavity.Core
 
 1.1.0.0	Cavity MSBuild (Domain)
