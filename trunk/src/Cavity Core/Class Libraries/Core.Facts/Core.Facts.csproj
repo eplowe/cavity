@@ -44,6 +44,7 @@
     <Compile Include="Configuration\DirectoryConfigurationElement.Facts.cs" />
     <Compile Include="Configuration\DirectoryConfigurationElementCollection.Facts.cs" />
     <Compile Include="Collections\KeyStringDictionary.Facts.cs" />
+    <Compile Include="Collections\StringList.Facts.cs" />
     <Compile Include="Data\KeyStringPair.Facts.cs" />
     <Compile Include="Configuration\Config.Facts.cs" />
     <Compile Include="Configuration\ConfigXml.Facts.cs" />
@@ -106,9 +107,6 @@
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Collections\StringList.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
