@@ -2,16 +2,16 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{A101EF34-98EE-46D5-BBCF-C6F8E9E525C7}</ProjectGuid>
-    <AssemblyName>Cavity.Domain.UnitedKingdom.Facts</AssemblyName>
+    <AssemblyName>Cavity.Domain.RoyalMail.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain.UnitedKingdom\Domain.UnitedKingdom.csproj">
+    <ProjectReference Include="..\Domain.RoyalMail\Domain.RoyalMail.csproj">
       <Project>{166775FD-D5EB-4233-88B8-4B14E9001252}</Project>
-      <Name>Domain.UnitedKingdom</Name>
+      <Name>Domain.RoyalMail</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

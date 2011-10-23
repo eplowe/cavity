@@ -2,15 +2,15 @@
 using System.Reflection;
 
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyDefaultAlias("Cavity.Domain.UnitedKingdom.Facts.dll")]
-[assembly: AssemblyTitle("Cavity.Domain.UnitedKingdom.Facts.dll")]
+[assembly: AssemblyDefaultAlias("Cavity.Domain.RoyalMail.Facts.dll")]
+[assembly: AssemblyTitle("Cavity.Domain.RoyalMail.Facts.dll")]
 
 #if (DEBUG)
 
-[assembly: AssemblyDescription("Cavity : United Kingdom Domain Facts Library (Debug)")]
+[assembly: AssemblyDescription("Cavity : Royal Mail Domain Facts Library (Debug)")]
 
 #else
 
-[assembly: AssemblyDescription("Cavity : United Kingdom Domain Facts Library (Release)")]
+[assembly: AssemblyDescription("Cavity : Royal Mail Domain Facts Library (Release)")]
 
 #endif
