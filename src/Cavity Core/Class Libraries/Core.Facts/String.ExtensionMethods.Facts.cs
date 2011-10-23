@@ -1008,6 +1008,31 @@
         }
 
         [Fact]
+        public void op_ToOfNullableInt32_string()
+        {
+            const int expected = 123;
+            var actual = XmlConvert.ToString(expected).To<int?>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToOfNullableInt32_stringEmpty()
+        {
+            var actual = string.Empty.To<int?>();
+
+            Assert.False(actual.HasValue);
+        }
+
+        [Fact]
+        public void op_ToOfNullableInt32_stringNull()
+        {
+            var actual = (null as string).To<int?>();
+
+            Assert.False(actual.HasValue);
+        }
+
+        [Fact]
         public void op_ToOfInt64_string()
         {
             const long expected = 123;
@@ -1098,36 +1123,196 @@
         }
 
         [Fact]
-        public void op_ToTitleCase_stringNull()
+        public void op_TryToOfBoolean_string()
         {
-            Assert.Null((null as string).ToTitleCase());
-        }
-
-        [Fact]
-        public void op_TryToInt32_string()
-        {
-            const int expected = 123;
-            var actual = "123".TryToInt32();
+            const bool expected = true;
+            var actual = expected.ToXmlString().TryTo<bool>();
 
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void op_TryToInt32_stringEmpty()
+        public void op_TryToOfByte_string()
         {
-            Assert.Null(string.Empty.TryToInt32());
+            const byte expected = 1;
+            var actual = expected.ToXmlString().TryTo<byte>();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void op_TryToInt32_stringExample()
+        public void op_TryToOfChar_string()
         {
-            Assert.Null("example".TryToInt32());
+            const char expected = 'a';
+            var actual = expected.ToXmlString().TryTo<char>();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void op_TryToInt32_stringNull()
+        public void op_TryToOfDateTime_string()
         {
-            Assert.Null((null as string).TryToInt32());
+            var expected = DateTime.UtcNow;
+            var actual = expected.ToXmlString().TryTo<DateTime>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfDateTimeOffset_string()
+        {
+            var expected = DateTimeOffset.Now;
+            var actual = expected.ToXmlString().TryTo<DateTimeOffset>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfDecimal_string()
+        {
+            const decimal expected = 123.45m;
+            var actual = XmlConvert.ToString(expected).TryTo<decimal>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfDouble_string()
+        {
+            const double expected = 123.45f;
+            var actual = XmlConvert.ToString(expected).TryTo<double>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfGuid_string()
+        {
+            var expected = Guid.NewGuid();
+            var actual = XmlConvert.ToString(expected).TryTo<Guid>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfInt16_string()
+        {
+            const short expected = 123;
+            var actual = XmlConvert.ToString(expected).TryTo<short>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfInt32_string()
+        {
+            const int expected = 123;
+            var actual = XmlConvert.ToString(expected).TryTo<int>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfNullableInt32_string()
+        {
+            const int expected = 123;
+            var actual = XmlConvert.ToString(expected).TryTo<int?>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfNullableInt32_stringEmpty()
+        {
+            var actual = string.Empty.TryTo<int?>();
+
+            Assert.False(actual.HasValue);
+        }
+
+        [Fact]
+        public void op_TryToOfNullableInt32_stringNull()
+        {
+            var actual = (null as string).TryTo<int?>();
+
+            Assert.False(actual.HasValue);
+        }
+
+        [Fact]
+        public void op_TryToOfInt64_string()
+        {
+            const long expected = 123;
+            var actual = XmlConvert.ToString(expected).TryTo<long>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfSByte_string()
+        {
+            const sbyte expected = 123;
+            var actual = XmlConvert.ToString(expected).TryTo<sbyte>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfSingle_string()
+        {
+            const float expected = 123.45f;
+            var actual = XmlConvert.ToString(expected).TryTo<float>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfString_string()
+        {
+            const string expected = "value";
+            var actual = expected.TryTo<string>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfTimeSpan_string()
+        {
+            var expected = new TimeSpan(1, 2, 3, 4);
+            var actual = expected.ToString().TryTo<TimeSpan>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfUInt16_string()
+        {
+            const ushort expected = 123;
+            var actual = XmlConvert.ToString(expected).TryTo<ushort>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfUInt32_string()
+        {
+            const uint expected = 123;
+            var actual = XmlConvert.ToString(expected).TryTo<uint>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfUInt64_string()
+        {
+            const ulong expected = 123;
+            var actual = XmlConvert.ToString(expected).TryTo<ulong>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToTitleCase_stringNull()
+        {
+            Assert.Null((null as string).ToTitleCase());
         }
 
         [Fact]

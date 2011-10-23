@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Models
 {
     using System;
-    using Moq;
     using Xunit;
 
     public sealed class BritishPostcodeFacts
@@ -15,7 +14,6 @@
                             .IsSealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
-                            .Implements<IAddressLine>()
                             .Result);
         }
 
@@ -68,6 +66,18 @@
         }
 
         [Fact]
+        public void op_FromString_string_whenPeriod()
+        {
+            const string original = ".AB10 1AA.";
+            var obj = BritishPostcode.FromString(original);
+
+            Assert.Equal("AB", obj.Area);
+            Assert.Equal("AB10", obj.District);
+            Assert.Equal("AB10 1", obj.Sector);
+            Assert.Equal("AB10 1AA", obj.Unit);
+        }
+
+        [Fact]
         public void op_FromString_string_whenLondonWC()
         {
             const string original = "WC1A 2HR";
@@ -113,23 +123,6 @@
         }
 
         [Fact]
-        public void op_ToString_IFormatAddress()
-        {
-            var obj = BritishPostcode.FromString("GU21 4XG");
-            var renderer = new Mock<IFormatAddress>().Object;
-
-            Assert.Throws<NotSupportedException>(() => obj.ToString(renderer));
-        }
-
-        [Fact]
-        public void op_ToString_IFormatAddressNull()
-        {
-            var obj = BritishPostcode.FromString("GU21 4XG");
-
-            Assert.Throws<NotSupportedException>(() => obj.ToString(null));
-        }
-
-        [Fact]
         public void prop_Area()
         {
             Assert.True(new PropertyExpectations<BritishPostcode>(p => p.Area)
@@ -163,16 +156,6 @@
                             .TypeIs<string>()
                             .IsNotDecorated()
                             .Result);
-        }
-
-        [Fact]
-        public void prop_Value()
-        {
-            const string expected = "AA1 2ZZ";
-            IAddressLine obj = BritishPostcode.FromString(expected);
-            var actual = obj.Data;
-
-            Assert.Equal(expected, actual);
         }
     }
 }
