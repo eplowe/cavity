@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{166775FD-D5EB-4233-88B8-4B14E9001252}</ProjectGuid>
-    <AssemblyName>Cavity.Domain.UnitedKingdom</AssemblyName>
+    <AssemblyName>Cavity.Domain.RoyalMail</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>

@@ -3,16 +3,16 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyDefaultAlias("Cavity.UnitedKingdom.dll")]
-[assembly: AssemblyTitle("Cavity.UnitedKingdom.dll")]
+[assembly: AssemblyDefaultAlias("Cavity.RoyalMail.dll")]
+[assembly: AssemblyTitle("Cavity.RoyalMail.dll")]
 
 #if (DEBUG)
 
-[assembly: AssemblyDescription("Cavity : United Kingdom Domain Library (Debug)")]
+[assembly: AssemblyDescription("Cavity : Royal Mail Domain Library (Debug)")]
 
 #else
 
-[assembly: AssemblyDescription("Cavity : United Kingdom Domain Library (Release)")]
+[assembly: AssemblyDescription("Cavity : Royal Mail Domain Library (Release)")]
 
 #endif
 
