@@ -4,8 +4,6 @@
 
 1.1.0.438	Cavity.ServiceLocation
 
-1.1.0.514	Cavity.Core
-
 1.1.0.491	Cavity Service Location (Autofac)
 			+ Autofac.CommonServiceLocator
 			+ Cavity.Core
@@ -26,14 +24,16 @@
 			+ Cavity.ServiceLocation
 			+ CommonServiceLocator.UnityAdapter
 
-1.1.0.541	Cavity.Data.Ace.x64
-1.1.0.541	Cavity.Data.Ace.x86
+1.1.0.568	Cavity.Core
+
+1.1.0.568	Cavity.Data.Ace.x64
+1.1.0.568	Cavity.Data.Ace.x86
 			+ Cavity.Core
 
-1.1.0.541	Cavity.Data.Csv
+1.1.0.568	Cavity.Data.Csv
 			+ Cavity.Core
 
-1.1.0.0	Cavity.Domain
+1.1.0.568	Cavity.Domain
 			+ Cavity.Data.Csv
 				* Cavity.Core
 

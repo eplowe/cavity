@@ -14,11 +14,6 @@
     <Compile Include="Data\ExcelWorksheet.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.514\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -32,6 +27,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.568\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\MixedCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.project" />

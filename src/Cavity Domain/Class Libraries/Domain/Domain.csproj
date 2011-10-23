@@ -6,17 +6,6 @@
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.514\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.Data.Csv">
-      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.541\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Collections\INormalizationComparer.cs" />
     <Compile Include="Collections\LevenshteinComparer.cs" />
     <Compile Include="Collections\NormalizationComparer.cs" />
@@ -28,6 +17,17 @@
     <Compile Include="Models\Lexicon.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.cs" />
     <Compile Include="Models\Telephone.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.568\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Data.Csv">
+      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.568\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
