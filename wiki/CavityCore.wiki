@@ -283,16 +283,22 @@ if ("Mr. Smith".StartsWithAny(StringComparison.Ordinal, "Mr.", "Mrs.", "Miss", "
 }
 }}}
 
+ * `To<T>()`
+
+{{{
+int value = "123".To<int>();
+}}}
+
+ * `TryTo<T>()`
+
+{{{
+int? value = "123".TryTo<int?>();
+}}}
+
  * `ToTitleCase()`
 
 {{{
 string value = "an example".ToTitleCase();
-}}}
-
- * `TryToInt32()`
-
-{{{
-int? value = "123".TryToInt32();
 }}}
 
  * `XmlDeserialize<T>()`
@@ -310,6 +316,14 @@ var dictionary = new KeyStringDictionary
 {
     new KeyStringPair("key", "value")
 };
+
+string value = dictionary[0];
+
+string value = dictionary["key"];
+
+int value = dictionary.Value<int>("key");
+
+int? value = dictionary.Value<int?>("key");
 }}}
 
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Core/Class%20Libraries/Core/Collections/TranslationDictionary%601.cs TranslationDictionary<T>]
