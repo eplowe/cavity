@@ -1,8 +1,6 @@
 ﻿namespace Cavity.Models
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
-    using Cavity;
     using Xunit;
 
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "NonResidential", Justification = "This is not a single word.")]
@@ -12,13 +10,13 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<NonResidentialUserCategory>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IUserCategory>()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IUserCategory>()
+                            .Result);
         }
 
         [Fact]

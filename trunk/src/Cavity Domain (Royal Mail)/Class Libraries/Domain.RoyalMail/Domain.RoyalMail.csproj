@@ -8,11 +8,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Models\BritishAddress.cs" />
@@ -24,6 +19,14 @@
     <Compile Include="Models\Organization.cs" />
     <Compile Include="Models\PostalAddressFileEntry.cs" />
     <Compile Include="Models\UserCategory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Data.Csv">
+      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.589\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />

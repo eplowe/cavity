@@ -66,18 +66,6 @@
         }
 
         [Fact]
-        public void op_FromString_string_whenPeriod()
-        {
-            const string original = ".AB10 1AA.";
-            var obj = BritishPostcode.FromString(original);
-
-            Assert.Equal("AB", obj.Area);
-            Assert.Equal("AB10", obj.District);
-            Assert.Equal("AB10 1", obj.Sector);
-            Assert.Equal("AB10 1AA", obj.Unit);
-        }
-
-        [Fact]
         public void op_FromString_string_whenLondonWC()
         {
             const string original = "WC1A 2HR";
@@ -99,6 +87,18 @@
             Assert.Equal("GU21", obj.District);
             Assert.Null(obj.Sector);
             Assert.Null(obj.Unit);
+        }
+
+        [Fact]
+        public void op_FromString_string_whenPeriod()
+        {
+            const string original = ".AB10 1AA.";
+            var obj = BritishPostcode.FromString(original);
+
+            Assert.Equal("AB", obj.Area);
+            Assert.Equal("AB10", obj.District);
+            Assert.Equal("AB10 1", obj.Sector);
+            Assert.Equal("AB10 1AA", obj.Unit);
         }
 
         [Fact]

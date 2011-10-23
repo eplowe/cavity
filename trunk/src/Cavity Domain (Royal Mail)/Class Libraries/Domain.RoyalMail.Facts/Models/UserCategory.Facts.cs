@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Models
 {
     using System.Diagnostics.CodeAnalysis;
-    using Cavity;
     using Xunit;
 
     public sealed class UserCategoryFacts
@@ -13,15 +12,16 @@
         }
 
         [Fact]
-        public void op_Resolve_char_whenUnknown()
-        {
-            Assert.Null(UserCategory.Resolve('x'));
-        }
-
-        [Fact]
         public void op_Resolve_char_whenLarge()
         {
             Assert.IsType<LargeUserCategory>(UserCategory.Resolve('L'));
+        }
+
+        [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "NonResidential", Justification = "This is not a single word.")]
+        public void op_Resolve_char_whenNonResidential()
+        {
+            Assert.IsType<NonResidentialUserCategory>(UserCategory.Resolve('N'));
         }
 
         [Fact]
@@ -31,10 +31,9 @@
         }
 
         [Fact]
-        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "NonResidential", Justification = "This is not a single word.")]
-        public void op_Resolve_char_whenNonResidential()
+        public void op_Resolve_char_whenUnknown()
         {
-            Assert.IsType<NonResidentialUserCategory>(UserCategory.Resolve('N'));
+            Assert.Null(UserCategory.Resolve('x'));
         }
     }
 }

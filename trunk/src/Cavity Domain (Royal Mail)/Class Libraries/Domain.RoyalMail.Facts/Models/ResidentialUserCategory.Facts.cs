@@ -1,7 +1,5 @@
 ﻿namespace Cavity.Models
 {
-    using System;
-    using Cavity;
     using Xunit;
 
     public sealed class ResidentialUserCategoryFacts
@@ -10,13 +8,13 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<ResidentialUserCategory>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IUserCategory>()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IUserCategory>()
+                            .Result);
         }
 
         [Fact]
