@@ -33,20 +33,6 @@
         }
 
         [Fact]
-        public void op_ToString_whenName()
-        {
-            var obj = new Organization
-            {
-                Name = "Example"
-            };
-
-            const string expected = "Example";
-            var actual = obj.ToString();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void op_ToString_whenDepartment()
         {
             var obj = new Organization
@@ -61,11 +47,25 @@
         }
 
         [Fact]
+        public void op_ToString_whenName()
+        {
+            var obj = new Organization
+            {
+                Name = "Example"
+            };
+
+            const string expected = "Example";
+            var actual = obj.ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_ToString_whenNameAndDepartment()
         {
             var obj = new Organization
             {
-                Name = "Example",
+                Name = "Example", 
                 Department = "Accounts"
             };
 

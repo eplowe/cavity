@@ -3,11 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-#if !NET20
     using System.Linq;
-#endif
-    using Cavity;
     using Cavity.Diagnostics;
+#if !NET20
+#endif
 
     public sealed class BritishPostcode : ComparableObject
     {
@@ -15,16 +14,16 @@
         {
         }
 
-        private BritishPostcode(string area,
+        private BritishPostcode(string area, 
                                 string district)
         {
             Area = area;
             District = district;
         }
 
-        private BritishPostcode(string area,
-                                string district,
-                                string sector,
+        private BritishPostcode(string area, 
+                                string district, 
+                                string sector, 
                                 string unit)
             : this(area, district)
         {
@@ -58,7 +57,9 @@
                 .Trim()
                 .ToUpperInvariant()
                 .Where(c => ' '.Equals(c) || char.IsLetterOrDigit(c))
-                .Aggregate(string.Empty, (current, c) => current + c);
+                .Aggregate(string.Empty, 
+                           (current, 
+                            c) => current + c);
 
             if (0 == value.Length)
             {
@@ -74,9 +75,9 @@
 
                 case 2:
                     return new BritishPostcode(
-                        area,
-                        parts[0],
-                        string.Concat(parts[0], ' ', ToSector(parts[1])),
+                        area, 
+                        parts[0], 
+                        string.Concat(parts[0], ' ', ToSector(parts[1])), 
                         value);
 
                 default:
@@ -109,7 +110,9 @@
 #else
             return value
                 .TakeWhile(c => c >= 'A' && c <= 'Z')
-                .Aggregate<char, string>(null, (x, c) => x + c);
+                .Aggregate<char, string>(null, 
+                                         (x, 
+                                          c) => x + c);
 #endif
         }
 
@@ -129,7 +132,9 @@
 #else
             return value
                 .Where(c => c >= '0' && c <= '9')
-                .Aggregate<char, string>(null, (x, c) => x + c);
+                .Aggregate<char, string>(null, 
+                                         (x, 
+                                          c) => x + c);
 #endif
         }
     }
