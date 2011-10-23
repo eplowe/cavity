@@ -65,6 +65,24 @@
             }
         }
 
+        public virtual T TryValue<T>(int index)
+        {
+#if NET20
+            return StringExtensionMethods.TryTo<T>(this[index]);
+#else
+            return this[index].TryTo<T>();
+#endif
+        }
+
+        public virtual T TryValue<T>(string key)
+        {
+#if NET20
+            return StringExtensionMethods.TryTo<T>(this[key]);
+#else
+            return this[key].TryTo<T>();
+#endif
+        }
+
         public virtual T Value<T>(int index)
         {
 #if NET20

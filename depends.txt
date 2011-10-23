@@ -24,7 +24,10 @@
 			+ Cavity.ServiceLocation
 			+ CommonServiceLocator.UnityAdapter
 
-1.1.0.568	Cavity.Core
+1.1.0.587	Cavity.Core
+
+1.1.0.509	Cavity MSBuild (Compliance)
+			+ Cavity.Core
 
 1.1.0.568	Cavity.Data.Ace.x64
 1.1.0.568	Cavity.Data.Ace.x86
@@ -38,4 +41,7 @@
 				* Cavity.Core
 
 1.1.0.0	Cavity.Domain.RoyalMail
+			+ Cavity.Core
+
+1.1.0.0	Cavity MSBuild (Domain)
 			+ Cavity.Core

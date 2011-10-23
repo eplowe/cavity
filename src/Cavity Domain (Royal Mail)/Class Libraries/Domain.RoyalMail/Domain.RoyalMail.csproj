@@ -13,7 +13,7 @@
       <HintPath>..\..\packages\Cavity.Core.1.1.0.568\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Models\BritishAddress.cs" />
     <Compile Include="Models\BritishPostcode.cs" />

@@ -71,6 +71,18 @@
         }
 
         [Fact]
+        public void op_ContainsKey_string()
+        {
+            var obj = new KeyStringDictionary
+            {
+                new KeyStringPair("key", "value")
+            };
+
+            Assert.True(obj.ContainsKey("key"));
+            Assert.False(obj.ContainsKey("example"));
+        }
+
+        [Fact]
         public void op_GetEnumerator()
         {
             var obj = new KeyStringDictionary
@@ -97,6 +109,90 @@
 
             Assert.True(obj.Remove(item));
             Assert.Equal(0, obj.Count);
+        }
+
+        [Fact]
+        public void op_TryValueOfDateTime_int()
+        {
+            var expected = DateTime.UtcNow;
+            var obj = new KeyStringDictionary
+            {
+                new KeyStringPair("key", expected.ToXmlString())
+            };
+
+            var actual = obj.TryValue<DateTime>(0);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryValueOfInt32_int()
+        {
+            const int expected = 123;
+            var obj = new KeyStringDictionary
+            {
+                new KeyStringPair("key", XmlConvert.ToString(expected))
+            };
+
+            var actual = obj.TryValue<int>(0);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryValueOfString_int()
+        {
+            const string expected = "value";
+            var obj = new KeyStringDictionary
+            {
+                new KeyStringPair("key", expected)
+            };
+
+            var actual = obj.TryValue<string>(0);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryValueOfDateTime_string()
+        {
+            var expected = DateTime.UtcNow;
+            var obj = new KeyStringDictionary
+            {
+                new KeyStringPair("key", expected.ToXmlString())
+            };
+
+            var actual = obj.TryValue<DateTime>("key");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryValueOfInt32_string()
+        {
+            const int expected = 123;
+            var obj = new KeyStringDictionary
+            {
+                new KeyStringPair("key", XmlConvert.ToString(expected))
+            };
+
+            var actual = obj.TryValue<int>("key");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryValueOfString_string()
+        {
+            const string expected = "value";
+            var obj = new KeyStringDictionary
+            {
+                new KeyStringPair("key", expected)
+            };
+
+            var actual = obj.TryValue<string>("key");
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

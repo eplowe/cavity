@@ -1132,10 +1132,28 @@
         }
 
         [Fact]
+        public void op_TryToOfBoolean_stringInvalid()
+        {
+            const bool expected = false;
+            var actual = "invalid".TryTo<bool>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_TryToOfByte_string()
         {
             const byte expected = 1;
             var actual = expected.ToXmlString().TryTo<byte>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfByte_stringInvalid()
+        {
+            const byte expected = 0;
+            var actual = "invalid".TryTo<byte>();
 
             Assert.Equal(expected, actual);
         }
@@ -1150,10 +1168,19 @@
         }
 
         [Fact]
-        public void op_TryToOfDateTime_string()
+        public void op_TryToOfChar_stringInvalid()
         {
-            var expected = DateTime.UtcNow;
-            var actual = expected.ToXmlString().TryTo<DateTime>();
+            const char expected = '\0';
+            var actual = "invalid".TryTo<char>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfDateTime_stringInvalid()
+        {
+            var expected = DateTime.MinValue;
+            var actual = "invalid".TryTo<DateTime>();
 
             Assert.Equal(expected, actual);
         }
@@ -1168,10 +1195,28 @@
         }
 
         [Fact]
+        public void op_TryToOfDateTimeOffset_stringInvalid()
+        {
+            var expected = DateTimeOffset.MinValue;
+            var actual = "invalid".TryTo<DateTimeOffset>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_TryToOfDecimal_string()
         {
             const decimal expected = 123.45m;
-            var actual = XmlConvert.ToString(expected).TryTo<decimal>();
+            var actual = "123.45".TryTo<decimal>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfDecimal_stringInvalid()
+        {
+            const decimal expected = 0m;
+            var actual = "invalid".TryTo<decimal>();
 
             Assert.Equal(expected, actual);
         }
@@ -1179,12 +1224,22 @@
         [Fact]
         public void op_TryToOfDouble_string()
         {
-            const double expected = 123.45f;
+            const double expected = 123f;
             var actual = XmlConvert.ToString(expected).TryTo<double>();
 
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void op_TryToOfDouble_stringInvalid()
+        {
+            const double expected = 0f;
+            var actual = "invalid".TryTo<double>();
+
+            Assert.Equal(expected, actual);
+        }
+
+#if NET40
         [Fact]
         public void op_TryToOfGuid_string()
         {
@@ -1193,6 +1248,16 @@
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void op_TryToOfGuid_stringInvalid()
+        {
+            var expected = Guid.Empty;
+            var actual = "invalid".TryTo<Guid>();
+
+            Assert.Equal(expected, actual);
+        }
+#endif
 
         [Fact]
         public void op_TryToOfInt16_string()
@@ -1204,10 +1269,28 @@
         }
 
         [Fact]
+        public void op_TryToOfInt16_stringInvalid()
+        {
+            const short expected = 0;
+            var actual = "invalid".TryTo<short>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_TryToOfInt32_string()
         {
             const int expected = 123;
             var actual = XmlConvert.ToString(expected).TryTo<int>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfInt32_stringInvalid()
+        {
+            const int expected = 0;
+            var actual = "invalid".TryTo<int>();
 
             Assert.Equal(expected, actual);
         }
@@ -1230,6 +1313,14 @@
         }
 
         [Fact]
+        public void op_TryToOfNullableInt32_stringInvalid()
+        {
+            var actual = "invalid".TryTo<int?>();
+
+            Assert.False(actual.HasValue);
+        }
+
+        [Fact]
         public void op_TryToOfNullableInt32_stringNull()
         {
             var actual = (null as string).TryTo<int?>();
@@ -1247,10 +1338,28 @@
         }
 
         [Fact]
+        public void op_TryToOfInt64_stringInvalid()
+        {
+            const long expected = 0;
+            var actual = "invalid".TryTo<long>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_TryToOfSByte_string()
         {
             const sbyte expected = 123;
             var actual = XmlConvert.ToString(expected).TryTo<sbyte>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfSByte_stringInvalid()
+        {
+            const sbyte expected = 0;
+            var actual = "invalid".TryTo<sbyte>();
 
             Assert.Equal(expected, actual);
         }
@@ -1265,6 +1374,15 @@
         }
 
         [Fact]
+        public void op_TryToOfSingle_stringInvalid()
+        {
+            const float expected = 0f;
+            var actual = "invalid".TryTo<float>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_TryToOfString_string()
         {
             const string expected = "value";
@@ -1273,6 +1391,22 @@
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void op_TryToOfString_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.TryTo<string>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfString_stringNull()
+        {
+            Assert.Null((null as string).TryTo<string>());
+        }
+
+#if NET40
         [Fact]
         public void op_TryToOfTimeSpan_string()
         {
@@ -1283,10 +1417,29 @@
         }
 
         [Fact]
+        public void op_TryToOfTimeSpan_stringInvalid()
+        {
+            var expected = new TimeSpan(0);
+            var actual = "invalid".TryTo<TimeSpan>();
+
+            Assert.Equal(expected, actual);
+        }
+#endif
+
+        [Fact]
         public void op_TryToOfUInt16_string()
         {
             const ushort expected = 123;
             var actual = XmlConvert.ToString(expected).TryTo<ushort>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfUInt16_stringInvalid()
+        {
+            const ushort expected = 0;
+            var actual = "invalid".TryTo<ushort>();
 
             Assert.Equal(expected, actual);
         }
@@ -1301,10 +1454,28 @@
         }
 
         [Fact]
+        public void op_TryToOfUInt32_stringInvalid()
+        {
+            const uint expected = 0;
+            var actual = "invalid".TryTo<uint>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_TryToOfUInt64_string()
         {
             const ulong expected = 123;
             var actual = XmlConvert.ToString(expected).TryTo<ulong>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_TryToOfUInt64_stringInvalid()
+        {
+            const ulong expected = 0;
+            var actual = "invalid".TryTo<ulong>();
 
             Assert.Equal(expected, actual);
         }

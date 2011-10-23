@@ -73,8 +73,8 @@
             Assert.IsType<LargeUserCategory>(actual.Category);
         }
 
-        [Fact]
-        // [Fact(Skip = "This test is not to be run all the time.")]
+        // [Fact]
+        [Fact(Skip = "This test is not to be run all the time.")]
         public void verify_against_full_postal_address_file()
         {
             foreach (PostalAddressFileEntry entry in new CsvFile(@"F:\Data\PAF (Postcoder)\2011-10\ACPC4135P1.csv"))

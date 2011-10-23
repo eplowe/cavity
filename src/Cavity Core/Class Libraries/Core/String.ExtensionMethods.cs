@@ -699,7 +699,7 @@
 
             return To<T>(type, obj);
         }
-
+        
 #if NET20
         public static T TryTo<T>(string obj)
 #else
@@ -878,7 +878,7 @@
 
             return (T)Convert.ChangeType(value, type, CultureInfo.InvariantCulture);
         }
-
+        
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "This is due to the type-specific nature of parsing.")]
 #if NET20
         private static T TryTo<T>(Type type, string obj)
@@ -889,143 +889,151 @@
             if (typeof(bool) == type)
             {
                 bool boolResult;
-                if (bool.TryParse(obj, out boolResult))
-                {
-                    return (T)Convert.ChangeType(boolResult, type, CultureInfo.InvariantCulture);
-                }
+                return bool.TryParse(obj, out boolResult)
+                           ? (T)Convert.ChangeType(boolResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
             }
-            else if (typeof(byte) == type)
+            
+            if (typeof(byte) == type)
             {
                 byte byteResult;
-                if (byte.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out byteResult))
-                {
-                    return (T)Convert.ChangeType(byteResult, type, CultureInfo.InvariantCulture);
-                }
+                return byte.TryParse(obj, NumberStyles.Any, CultureInfo.InvariantCulture, out byteResult)
+                           ? (T)Convert.ChangeType(byteResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
             }
-            else if (typeof(char) == type)
+            
+            if (typeof(char) == type)
             {
                 char charResult;
-                if (char.TryParse(obj, out charResult))
-                {
-                    return (T)Convert.ChangeType(charResult, type, CultureInfo.InvariantCulture);
-                }
+                return char.TryParse(obj, out charResult)
+                           ? (T)Convert.ChangeType(charResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
             }
-            else if (typeof(DateTime) == type)
+            
+            if (typeof(DateTime) == type)
             {
                 DateTime dateTimeResult;
-                if (DateTime.TryParse(obj, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out dateTimeResult))
-                {
-                    return (T)Convert.ChangeType(dateTimeResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-#if !NET20
-            else if (typeof(DateTimeOffset) == type)
-            {
-                DateTimeOffset dateTimeOffsetResult;
-                if (DateTimeOffset.TryParse(obj, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTimeOffsetResult))
-                {
-                    return (T)Convert.ChangeType(dateTimeOffsetResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-#endif
-            else if (typeof(decimal) == type)
-            {
-                decimal decimalResult;
-                if (decimal.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out decimalResult))
-                {
-                    return (T)Convert.ChangeType(decimalResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-            else if (typeof(double) == type)
-            {
-                double doubleResult;
-                if (double.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out doubleResult))
-                {
-                    return (T)Convert.ChangeType(doubleResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-            else if (typeof(Guid) == type)
-            {
-                Guid guidResult;
-                if (Guid.TryParse(obj, out guidResult))
-                {
-                    return (T)Convert.ChangeType(guidResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-            else if (typeof(short) == type)
-            {
-                short shortResult;
-                if (short.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out shortResult))
-                {
-                    return (T)Convert.ChangeType(shortResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-            else if (typeof(int) == type)
-            {
-                int intResult;
-                if (int.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out intResult))
-                {
-                    return (T)Convert.ChangeType(intResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-            else if (typeof(long) == type)
-            {
-                long longResult;
-                if (long.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out longResult))
-                {
-                    return (T)Convert.ChangeType(longResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-            else if (typeof(sbyte) == type)
-            {
-                sbyte sbyteResult;
-                if (sbyte.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out sbyteResult))
-                {
-                    return (T)Convert.ChangeType(sbyteResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-            else if (typeof(float) == type)
-            {
-                float floatResult;
-                if (float.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out floatResult))
-                {
-                    return (T)Convert.ChangeType(floatResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-            else if (typeof(TimeSpan) == type)
-            {
-                TimeSpan timeSpanResult;
-                if (TimeSpan.TryParse(obj, CultureInfo.InvariantCulture, out timeSpanResult))
-                {
-                    return (T)Convert.ChangeType(timeSpanResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-            else if (typeof(ushort) == type)
-            {
-                ushort ushortResult;
-                if (ushort.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out ushortResult))
-                {
-                    return (T)Convert.ChangeType(ushortResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-            else if (typeof(uint) == type)
-            {
-                uint uintResult;
-                if (uint.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out uintResult))
-                {
-                    return (T)Convert.ChangeType(uintResult, type, CultureInfo.InvariantCulture);
-                }
-            }
-            else if (typeof(ulong) == type)
-            {
-                ulong ulongResult;
-                if (ulong.TryParse(obj, NumberStyles.None, CultureInfo.InvariantCulture, out ulongResult))
-                {
-                    return (T)Convert.ChangeType(ulongResult, type, CultureInfo.InvariantCulture);
-                }
+                return DateTime.TryParse(obj, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out dateTimeResult)
+                           ? (T)Convert.ChangeType(dateTimeResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
             }
 
-            return (T)Convert.ChangeType(obj, type, CultureInfo.InvariantCulture);
+#if !NET20
+            if (typeof(DateTimeOffset) == type)
+            {
+                DateTimeOffset dateTimeOffsetResult;
+                return DateTimeOffset.TryParse(obj, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTimeOffsetResult)
+                           ? (T)Convert.ChangeType(dateTimeOffsetResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+#endif
+            
+            if (typeof(decimal) == type)
+            {
+                decimal decimalResult;
+                return decimal.TryParse(obj, NumberStyles.Any, CultureInfo.InvariantCulture, out decimalResult)
+                           ? (T)Convert.ChangeType(decimalResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+            
+            if (typeof(double) == type)
+            {
+                double doubleResult;
+                return double.TryParse(obj, NumberStyles.Any, CultureInfo.InvariantCulture, out doubleResult)
+                           ? (T)Convert.ChangeType(doubleResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+
+#if NET40
+            if (typeof(Guid) == type)
+            {
+                Guid guidResult;
+                return Guid.TryParse(obj, out guidResult)
+                           ? (T)Convert.ChangeType(guidResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+
+#endif
+            if (typeof(short) == type)
+            {
+                short shortResult;
+                return short.TryParse(obj, NumberStyles.Any, CultureInfo.InvariantCulture, out shortResult)
+                           ? (T)Convert.ChangeType(shortResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+            
+            if (typeof(int) == type)
+            {
+                int intResult;
+                return int.TryParse(obj, NumberStyles.Any, CultureInfo.InvariantCulture, out intResult)
+                           ? (T)Convert.ChangeType(intResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+            
+            if (typeof(long) == type)
+            {
+                long longResult;
+                return long.TryParse(obj, NumberStyles.Any, CultureInfo.InvariantCulture, out longResult)
+                           ? (T)Convert.ChangeType(longResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+            
+            if (typeof(sbyte) == type)
+            {
+                sbyte sbyteResult;
+                return sbyte.TryParse(obj, NumberStyles.Any, CultureInfo.InvariantCulture, out sbyteResult)
+                           ? (T)Convert.ChangeType(sbyteResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+            
+            if (typeof(float) == type)
+            {
+                float floatResult;
+                return float.TryParse(obj, NumberStyles.Any, CultureInfo.InvariantCulture, out floatResult)
+                           ? (T)Convert.ChangeType(floatResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+
+            if (typeof(string) == type)
+            {
+                return (T)Convert.ChangeType(obj, type, CultureInfo.InvariantCulture);
+            }
+
+#if NET40
+            if (typeof(TimeSpan) == type)
+            {
+                TimeSpan timeSpanResult;
+                return TimeSpan.TryParse(obj, CultureInfo.InvariantCulture, out timeSpanResult)
+                           ? (T)Convert.ChangeType(timeSpanResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+
+#endif
+            if (typeof(ushort) == type)
+            {
+                ushort ushortResult;
+                return ushort.TryParse(obj, NumberStyles.Any, CultureInfo.InvariantCulture, out ushortResult)
+                           ? (T)Convert.ChangeType(ushortResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+            
+            if (typeof(uint) == type)
+            {
+                uint uintResult;
+                return uint.TryParse(obj, NumberStyles.Any, CultureInfo.InvariantCulture, out uintResult)
+                           ? (T)Convert.ChangeType(uintResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+            
+            if (typeof(ulong) == type)
+            {
+                ulong ulongResult;
+                return ulong.TryParse(obj, NumberStyles.Any, CultureInfo.InvariantCulture, out ulongResult)
+                           ? (T)Convert.ChangeType(ulongResult, type, CultureInfo.InvariantCulture)
+                           : default(T);
+            }
+
+            return default(T);
         }
     }
 }
