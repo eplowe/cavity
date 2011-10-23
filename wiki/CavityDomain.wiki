@@ -1,4 +1,4 @@
-#summary The core Cavity library
+#summary Provides domain models and supporting types.
 #labels Phase-Implementation
 
 == !NuGet Package ==
