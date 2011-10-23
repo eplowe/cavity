@@ -17,7 +17,7 @@
     <tags />
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Core" version="1.1.0.568" />
+      <dependency id="Cavity.Core" version="1.1.0.587" />
     </dependencies>
   </metadata>
   <files>
