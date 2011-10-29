@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>Levenshtein</Word>
+      <Word>Multiton</Word>
+      <Word>xpath</Word>
+    </Recognized>
+  </Words>
+</Dictionary>
