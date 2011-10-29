@@ -2,12 +2,13 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <CodeAnalysisAdditionalOptions>/assemblyCompareMode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
-    <CodeAnalysisRuleSet Condition="Exists('$(MSBuildExtensionsPath)\Cavity\Code.ruleset')">$(MSBuildExtensionsPath)\Cavity\Code.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Condition="Exists('$(MSBuildExtensionsPath)\Cavity\Code.dictionary')"
-                            Include="$(MSBuildExtensionsPath)\Cavity\Code.dictionary">
-      <Link>Properties\Code.dictionary</Link>
-    </CodeAnalysisDictionary>
-  </ItemGroup>
+  <Choose>
+    <When Condition="Exists('Properties\CodeAnalysis.ruleset')">
+      <CodeAnalysisRuleSet>Properties\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    </When>
+    <Otherwise>
+      <CodeAnalysisRuleSet Condition="Exists('$(MSBuildExtensionsPath)\Cavity\Code.ruleset')">$(MSBuildExtensionsPath)\Cavity\Code.ruleset</CodeAnalysisRuleSet>
+    </Otherwise>
+  </Choose>
 </Project>
