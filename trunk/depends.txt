@@ -55,5 +55,8 @@
 			+ Cavity.Commands
 				* Cavity.Core
 
+1.1.0.645	Cavity Repository
+			+ Cavity.Core
+
 1.1.0.___	Cavity MSBuild (Domain)
 			+ Cavity.Core
