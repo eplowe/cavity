@@ -5,6 +5,24 @@
     <AssemblyName>Cavity.Transactions.Commands</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="Transactions\DurableEnlistmentNotification.cs" />
+    <Compile Include="Transactions\EnlistmentIdentity.cs" />
+    <Compile Include="Transactions\Operation.cs" />
+    <Compile Include="Transactions\Recovery.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Reference Include="Cavity.Commands">
+      <HintPath>..\..\packages\Cavity.Commands.1.1.0.636\lib\$(TargetFrameworkVersionName)\Cavity.Commands.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <!--
