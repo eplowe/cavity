@@ -2,13 +2,13 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{BB566F81-567B-45D8-839E-D1DB3F815A04}</ProjectGuid>
-    <AssemblyName>Cavity.Repository.FileSystem.XML.Facts</AssemblyName>
+    <AssemblyName>Cavity.Repository.FileSystem.Xml.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Repository.FileSystem.XML\Repository.FileSystem.XML.csproj">
+    <ProjectReference Include="..\Repository.FileSystem.Xml\Repository.FileSystem.Xml.csproj">
       <Project>{087F141B-93D3-4D0F-873E-A176DC98C161}</Project>
-      <Name>Repository.FileSystem.XML</Name>
+      <Name>Repository.FileSystem.Xml</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -17,6 +17,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Repository">
+      <HintPath>..\..\packages\Cavity.Repository.1.1.0.645\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Testing.Repository">
+      <HintPath>..\..\packages\Cavity.Testing.Repository.1.1.0.650\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Repository.dll</HintPath>
+    </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
@@ -26,6 +35,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Configuration\FileRepositoryConfiguration.Facts.cs" />
+    <Compile Include="Data\FileRepository`1.Facts.cs" />
+    <Compile Include="IO\RecordFile.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
