@@ -58,5 +58,8 @@
 1.1.0.645	Cavity Repository
 			+ Cavity.Core
 
+1.1.0.650	Cavity Repository Testing
+			+ Cavity.Core
+
 1.1.0.___	Cavity MSBuild (Domain)
 			+ Cavity.Core
