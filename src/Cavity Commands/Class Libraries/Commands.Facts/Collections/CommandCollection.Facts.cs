@@ -33,22 +33,18 @@
         [Fact]
         public void deserialize()
         {
-            using (var temp = new TempDirectory())
-            {
-                var example = temp.Info.ToDirectory("example");
-                var obj = ("<commands>" +
-                           "<command i='1' type='{0}'>".FormatWith(typeof(DirectoryCreateCommand).AssemblyQualifiedName) +
-                           @"<directory.create path='{0}' undo='false' />".FormatWith(temp.Info.FullName) +
-                           "</command>" +
-                           "<command i='1' type='{0}'>".FormatWith(typeof(DirectoryCreateCommand).AssemblyQualifiedName) +
-                           @"<directory.create path='{0}' undo='true' />".FormatWith(example.FullName) +
-                           "</command>" +
-                           "</commands>").XmlDeserialize<CommandCollection>();
+            var obj = ("<commands>" +
+                       "<command i='1' type='{0}'>".FormatWith(typeof(DerivedCommand).AssemblyQualifiedName) +
+                       @"<command.derived undo='false' />" +
+                       "</command>" +
+                       "<command i='1' type='{0}'>".FormatWith(typeof(DerivedCommand).AssemblyQualifiedName) +
+                       @"<command.derived undo='true' />" +
+                       "</command>" +
+                       "</commands>").XmlDeserialize<CommandCollection>();
 
-                Assert.Equal(2, obj.Count);
-                Assert.Equal(temp.Info.FullName, ((DirectoryCreateCommand)obj.First()).Path);
-                Assert.Equal(example.FullName, ((DirectoryCreateCommand)obj.Last()).Path);
-            }
+            Assert.Equal(2, obj.Count);
+            Assert.IsType<DerivedCommand>(obj.First());
+            Assert.IsType<DerivedCommand>(obj.Last());
         }
 
         [Fact]
@@ -173,13 +169,13 @@
             {
                 var obj = new CommandCollection
                 {
-                    new DirectoryCreateCommand(temp.Info.FullName)
+                    new DerivedCommand()
                 };
 
                 var navigator = obj.XmlSerialize().CreateNavigator();
 
                 Assert.True(navigator.Evaluate<bool>("1 = count(/commands/command)"));
-                var xpath = "1 = count(/commands/command[@type='{0}']/directory.create[@path='{1}'][@undo='false'])".FormatWith(typeof(DirectoryCreateCommand).AssemblyQualifiedName, temp.Info.FullName);
+                var xpath = "1 = count(/commands/command[@type='{0}']/command.derived[@undo='false'])".FormatWith(typeof(DerivedCommand).AssemblyQualifiedName, temp.Info.FullName);
                 Assert.True(navigator.Evaluate<bool>(xpath));
             }
         }

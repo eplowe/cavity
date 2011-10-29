@@ -18,7 +18,9 @@
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Do", Justification = "This naming is intentional.")]
         public virtual bool Do()
         {
-#if !NET20
+#if NET20
+            Trace.WriteIf(Tracing.Is.TraceVerbose, StringExtensionMethods.FormatWith("Count={0}", Count));
+#else
             Trace.WriteIf(Tracing.Is.TraceVerbose, "Count={0}".FormatWith(Count));
 #endif
             if (0 == Count)
@@ -40,7 +42,9 @@
 
         public virtual bool Undo()
         {
-#if !NET20
+#if NET20
+            Trace.WriteIf(Tracing.Is.TraceVerbose, StringExtensionMethods.FormatWith("Count={0}", Count));
+#else
             Trace.WriteIf(Tracing.Is.TraceVerbose, "Count={0}".FormatWith(Count));
 #endif
             if (0 == Count)

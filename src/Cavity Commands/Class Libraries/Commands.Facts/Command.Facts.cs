@@ -33,7 +33,7 @@
         [Fact]
         public void deserialize()
         {
-            var obj = "<command undo='true' unidirectional='true' />".XmlDeserialize<DerivedCommand>();
+            var obj = "<command.derived undo='true' unidirectional='true' />".XmlDeserialize<DerivedCommand>();
 
             Assert.True(obj.Undo);
             Assert.True(obj.Unidirectional);
@@ -82,8 +82,8 @@
 
             var navigator = obj.XmlSerialize().CreateNavigator();
 
-            Assert.True(navigator.Evaluate<bool>("1 = count(/command)"));
-            const string xpath = "1 = count(command[@undo='false'][@unidirectional='true'])";
+            Assert.True(navigator.Evaluate<bool>("1 = count(/command.derived)"));
+            const string xpath = "1 = count(command.derived[@undo='false'][@unidirectional='true'])";
             Assert.True(navigator.Evaluate<bool>(xpath));
         }
     }

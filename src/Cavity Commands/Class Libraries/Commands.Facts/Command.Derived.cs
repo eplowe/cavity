@@ -3,7 +3,7 @@
     using System;
     using System.Xml.Serialization;
 
-    [XmlRoot("command")]
+    [XmlRoot("command.derived")]
     public sealed class DerivedCommand : Command
     {
         public DerivedCommand()
