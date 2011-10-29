@@ -10,7 +10,8 @@ http://nuget.org/List/Packages/Cavity.Commands.FileSystem
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Commands%20(File%20System)/Class%20Libraries/Commands.FileSystem/IO/DirectoryCreateCommand.cs DirectoryCreateCommand]
 
 {{{
-var command = @"<directory.create path='C:\example' undo='true' unidirectional='true' />".XmlDeserialize<DirectoryCreateCommand>();
+var command = @"<directory.create path='C:\example' undo='true' unidirectional='true' />"
+    .XmlDeserialize<DirectoryCreateCommand>();
 if (!command.Act())
 {
     command.Revert();
@@ -20,7 +21,8 @@ if (!command.Act())
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Commands%20(File%20System)/Class%20Libraries/Commands.FileSystem/IO/FileCopyCommand.cs FileCopyCommand]
 
 {{{
-var command = @"<file.copy source='C:\from.txt' destination='C:\to.txt' undo='true' unidirectional='true' />".XmlDeserialize<FileCopyCommand>();
+var command = @"<file.copy source='C:\from.txt' destination='C:\to.txt' undo='true' unidirectional='true' />"
+    .XmlDeserialize<FileCopyCommand>();
 if (!command.Act())
 {
     command.Revert();
@@ -30,7 +32,8 @@ if (!command.Act())
 [http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Commands%20(File%20System)/Class%20Libraries/Commands.FileSystem/IO/FileMoveCommand.cs FileMoveCommand]
 
 {{{
-var command = @"<file.move source='C:\from.txt' destination='C:\to.txt' undo='true' unidirectional='true' />".XmlDeserialize<FileMoveCommand>();
+var command = @"<file.move source='C:\from.txt' destination='C:\to.txt' undo='true' unidirectional='true' />"
+    .XmlDeserialize<FileMoveCommand>();
 if (!command.Act())
 {
     command.Revert();
