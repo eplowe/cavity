@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Cavity.Repository.FileSystem.Xml</id>
+    <version>1.1.0.658</version>
+    <title>Cavity Repository (XML File System)</title>
+    <authors>Alan Dean</authors>
+    <owners />
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://code.google.com/p/cavity/</projectUrl>
+    <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides an XML file-based Cavity Repository implementation.</description>
+    <summary />
+    <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
+    <language />
+    <tags>Data</tags>
+    <releaseNotes />
+    <dependencies>
+      <dependency id="Cavity.Repository" version="1.1.0.645" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="lib\net35\Cavity.Repository.FileSystem.Xml.dll" target="lib\net35\Cavity.Repository.FileSystem.Xml.dll" />
+    <file src="lib\net40\Cavity.Repository.FileSystem.Xml.dll" target="lib\net40\Cavity.Repository.FileSystem.Xml.dll" />
+  </files>
+</package>

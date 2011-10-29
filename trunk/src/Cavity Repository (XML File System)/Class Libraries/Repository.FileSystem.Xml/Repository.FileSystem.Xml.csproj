@@ -7,10 +7,10 @@
   </PropertyGroup>
   <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\net40\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Repository">
-      <HintPath>..\..\packages\Cavity.Repository.1.1.0.645\lib\net40\Cavity.Repository.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Repository.1.1.0.645\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
