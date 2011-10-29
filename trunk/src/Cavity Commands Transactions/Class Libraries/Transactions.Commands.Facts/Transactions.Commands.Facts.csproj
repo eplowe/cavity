@@ -16,12 +16,15 @@
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Reference Include="Cavity.Commands">
-      <HintPath>..\..\packages\Cavity.Commands.1.1.0.636\lib\net40\Cavity.Commands.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Commands.1.1.0.636\lib\$(TargetFrameworkVersionName)\Cavity.Commands.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\net40\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Commands.FileSystem">
+      <HintPath>..\..\packages\Cavity.Commands.FileSystem.1.1.0.637\lib\$(TargetFrameworkVersionName)\Cavity.Commands.FileSystem.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
@@ -33,7 +36,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Transactions\DurableEnlistmentNotification.Derived.cs" />
     <Compile Include="Transactions\DurableEnlistmentNotification.Facts.cs" />
     <Compile Include="Transactions\EnlistmentIdentity.Facts.cs" />

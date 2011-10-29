@@ -51,7 +51,7 @@
 			+ Cavity.Commands
 				* Cavity.Core
 
-1.1.0.___	Cavity Commands Transactions
+1.1.0.642	Cavity Commands Transactions
 			+ Cavity.Commands
 				* Cavity.Core
 
