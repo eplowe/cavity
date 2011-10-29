@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Net20ZipFile>$(MSBuildProjectDirectory)\zip\Cavity $(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision) [Framework v2.0].zip</Net20ZipFile>
+    <Net35ZipFile>$(MSBuildProjectDirectory)\zip\Cavity $(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision) [Framework v3.5].zip</Net35ZipFile>
+    <Net40ZipFile>$(MSBuildProjectDirectory)\zip\Cavity $(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision) [Framework v4.0].zip</Net40ZipFile>
+    <SourceZipFile>$(MSBuildProjectDirectory)\zip\Cavity $(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision) [Source].zip</SourceZipFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Net20Assemblies Include="$(MSBuildProjectDirectory)\**\nuget\lib\net20\*.dll" />
+    <Net35Assemblies Include="$(MSBuildProjectDirectory)\**\nuget\lib\net35\*.dll" />
+    <Net40Assemblies Include="$(MSBuildProjectDirectory)\**\nuget\lib\net40\*.dll" />
+  </ItemGroup>
+  <Target Name="Zip">
+    <CallTarget Targets="Zip NET20" />
+    <CallTarget Targets="Zip NET35" />
+    <CallTarget Targets="Zip NET40" />
+    <CallTarget Targets="Zip Source" />
+  </Target>
+  <Target Name="Zip NET20">
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\zip\NET20"
+               Condition="Exists('$(MSBuildProjectDirectory)\zip\NET20')" />
+    <MakeDir Directories="$(MSBuildProjectDirectory)\zip\NET20"
+             Condition="!Exists('$(MSBuildProjectDirectory)\zip\NET20')" />
+    <Copy SourceFiles="@(Net20Assemblies)"
+          DestinationFolder="$(MSBuildProjectDirectory)\zip\NET20" />
+    <ItemGroup>
+      <Net20ZipSource Include="$(MSBuildProjectDirectory)\zip\NET20\*.*" />
+    </ItemGroup>
+    <Delete Files="$(Net20ZipFile)"
+            Condition="Exists('$(Net20ZipFile)')" />
+    <MSBuild.Community.Tasks.Zip Files="@(Net20ZipSource)"
+                                 WorkingDirectory="$(MSBuildProjectDirectory)\zip\NET20"
+                                 ZipFileName="$(Net20ZipFile)"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\zip\NET20"
+               Condition="Exists('$(MSBuildProjectDirectory)\zip\NET20')" />
+  </Target>
+  <Target Name="Zip NET35">
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\zip\NET35"
+               Condition="Exists('$(MSBuildProjectDirectory)\zip\NET35')" />
+    <MakeDir Directories="$(MSBuildProjectDirectory)\zip\NET35"
+             Condition="!Exists('$(MSBuildProjectDirectory)\zip\NET35')" />
+    <Copy SourceFiles="@(NET35Assemblies)"
+          DestinationFolder="$(MSBuildProjectDirectory)\zip\NET35" />
+    <ItemGroup>
+      <NET35ZipSource Include="$(MSBuildProjectDirectory)\zip\NET35\*.*" />
+    </ItemGroup>
+    <Delete Files="$(NET35ZipFile)"
+            Condition="Exists('$(NET35ZipFile)')" />
+    <MSBuild.Community.Tasks.Zip Files="@(NET35ZipSource)"
+                                 WorkingDirectory="$(MSBuildProjectDirectory)\zip\NET35"
+                                 ZipFileName="$(NET35ZipFile)"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\zip\NET35"
+               Condition="Exists('$(MSBuildProjectDirectory)\zip\NET35')" />
+  </Target>
+  <Target Name="Zip NET40">
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\zip\NET40"
+               Condition="Exists('$(MSBuildProjectDirectory)\zip\NET40')" />
+    <MakeDir Directories="$(MSBuildProjectDirectory)\zip\NET40"
+             Condition="!Exists('$(MSBuildProjectDirectory)\zip\NET40')" />
+    <Copy SourceFiles="@(NET40Assemblies)"
+          DestinationFolder="$(MSBuildProjectDirectory)\zip\NET40" />
+    <ItemGroup>
+      <NET40ZipSource Include="$(MSBuildProjectDirectory)\zip\NET40\*.*" />
+    </ItemGroup>
+    <Delete Files="$(NET40ZipFile)"
+            Condition="Exists('$(NET40ZipFile)')" />
+    <MSBuild.Community.Tasks.Zip Files="@(NET40ZipSource)"
+                                 WorkingDirectory="$(MSBuildProjectDirectory)\zip\NET40"
+                                 ZipFileName="$(NET40ZipFile)"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\zip\NET40"
+               Condition="Exists('$(MSBuildProjectDirectory)\zip\NET40')" />
+  </Target>
+  <Target Name="Zip Source">
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\zip\src"
+               Condition="Exists('$(MSBuildProjectDirectory)\zip\src')" />
+    <MakeDir Directories="$(MSBuildProjectDirectory)\zip\src"
+             Condition="!Exists('$(MSBuildProjectDirectory)\zip\src')" />
+    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(MSBuildProjectDirectory)\src"
+                                      DestinationFolder="$(MSBuildProjectDirectory)\zip\src"
+                                      Mirror="true"
+                                      ExcludeFolders=".svn;_svn;obj;bin;PrecompiledWeb"
+                                      ExcludeFiles="*.suo;*.csproj.user;*.vs10x;StyleCop.Cache"
+                                      NoJobHeader="true" />
+    <ItemGroup>
+      <ZipSource Include="$(MSBuildProjectDirectory)\zip\src\**\*.*" />
+    </ItemGroup>
+    <Delete Files="$(SourceZipFile)"
+            Condition="Exists('$(SourceZipFile)')" />
+    <MSBuild.Community.Tasks.Zip Files="@(ZipSource)"
+                                 WorkingDirectory="$(MSBuildProjectDirectory)\zip\src"
+                                 ZipFileName="$(SourceZipFile)"
+                                 ZipLevel="9" />
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\zip\src"
+               Condition="Exists('$(MSBuildProjectDirectory)\zip\src')" />
+  </Target>
+</Project>
