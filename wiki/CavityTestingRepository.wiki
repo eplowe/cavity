@@ -14,5 +14,5 @@ http://nuget.org/List/Packages/Cavity.Testing.Repository
 new RepositoryExpectations<int>().VerifyAll<FileRepository<int>>();
 
 // verify reference type behaviour
-new RepositoryExpectations<int>().VerifyAll<FileRepository<Example>>();
+new RepositoryExpectations<Example>().VerifyAll<FileRepository<Example>>();
 }}}
