@@ -5,6 +5,23 @@
     <AssemblyName>Cavity.Commands.FileSystem</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Commands">
+      <HintPath>..\..\packages\Cavity.Commands.1.1.0.636\lib\$(TargetFrameworkVersionName)\Cavity.Commands.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="IO\DirectoryCreateCommand.cs" />
+    <Compile Include="IO\FileCopyCommand.cs" />
+    <Compile Include="IO\FileMoveCommand.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <!--

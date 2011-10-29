@@ -1,0 +1,72 @@
+#summary Provides an XML serializable implementation of the Command design pattern.
+#labels Phase-Implementation
+
+== !NuGet Packages ==
+
+http://nuget.org/List/Packages/Cavity.Commands
+
+== using Cavity _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Commands%2FClass%20Libraries%2FCommands.Facts Facts]_ ==
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Commands/Class%20Libraries/Commands/ICommand.cs ICommand]
+
+{{{
+class ExampleCommand : ICommand
+{
+    bool ICommand.Act()
+    {
+    }
+    
+    bool ICommand.Revert()
+    {
+    }
+    
+    XmlSchema IXmlSerializable.GetSchema()
+    {
+    }
+    
+    void IXmlSerializable.ReadXml(XmlReader reader)
+    {
+    }
+    
+    void IXmlSerializable.WriteXml(XmlWriter writer)
+    {
+    }
+}
+}}}
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Commands/Class%20Libraries/Commands/Command.cs Command]
+
+{{{
+[XmlRoot("example")]
+class ExampleCommand : Command
+{
+    public override bool Act()
+    {
+    }
+    
+    public override bool Revert()
+    {
+    }
+}
+}}}
+
+== using Cavity.Collections _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Commands%2FClass%20Libraries%2FCommands.Facts%2FCollections Facts]_ ==
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Commands/Class%20Libraries/Commands/Collections/CommandCollection.cs CommandCollection]
+
+{{{
+var commands = new CommandCollection
+{
+    new ExampleCommand()
+};
+
+var file = new DirectoryInfo(@"C:\").ToFile("commands.xml");
+
+file.CreateNew(commands.XmlSerialize());
+
+commands = file.ReadToEnd().XmlDeserialize<CommandCollection>();
+if (!commands.Do())
+{
+    commands.Undo();
+}
+}}}
