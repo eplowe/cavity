@@ -60,7 +60,7 @@ var commands = new CommandCollection
     new ExampleCommand()
 };
 
-var file = new DirectoryInfo(@"C:\").ToFile("commands.xml");
+var file = new DirectoryInfo("C:\\").ToFile("commands.xml");
 
 file.CreateNew(commands.XmlSerialize());
 
