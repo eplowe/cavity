@@ -59,7 +59,12 @@
 			+ Cavity.Core
 
 1.1.0.650	Cavity Repository Testing
-			+ Cavity.Core
+			+ Cavity.Repository
+				* Cavity.Core
+
+1.1.0.658	Cavity Repository (XML File System)
+			+ Cavity.Repository
+				* Cavity.Core
 
 1.1.0.___	Cavity MSBuild (Domain)
 			+ Cavity.Core
