@@ -12,6 +12,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
@@ -26,6 +29,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Data\IEntity.Facts.cs" />
+    <Compile Include="Data\IRecord.Facts.cs" />
+    <Compile Include="Data\IRecord`1.Facts.cs" />
+    <Compile Include="Data\IRepository`1.Facts.cs" />
+    <Compile Include="Data\Record`1.Facts.cs" />
+    <Compile Include="Data\RepositoryException.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
