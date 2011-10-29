@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Cavity.Commands.FileSystem</id>
+    <version>1.1.0.637</version>
+    <title>Cavity Commands (File System)</title>
+    <authors>Alan Dean</authors>
+    <owners />
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://code.google.com/p/cavity/</projectUrl>
+    <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contains various file system command types.</description>
+    <summary />
+    <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
+    <language />
+    <tags />
+    <releaseNotes />
+    <dependencies>
+      <dependency id="Cavity.Commands" version="1.1.0.636" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="lib\net20\Cavity.Commands.FileSystem.dll" target="lib\net20\Cavity.Commands.FileSystem.dll" />
+    <file src="lib\net35\Cavity.Commands.FileSystem.dll" target="lib\net35\Cavity.Commands.FileSystem.dll" />
+    <file src="lib\net40\Cavity.Commands.FileSystem.dll" target="lib\net40\Cavity.Commands.FileSystem.dll" />
+  </files>
+</package>
