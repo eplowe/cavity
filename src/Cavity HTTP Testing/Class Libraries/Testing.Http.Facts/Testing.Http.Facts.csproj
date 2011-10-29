@@ -2,16 +2,19 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{4FF837F8-C720-417F-981F-42F493AE9467}</ProjectGuid>
-    <AssemblyName>Cavity.Testing.HTTP.Facts</AssemblyName>
+    <AssemblyName>Cavity.Testing.Http.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Testing.HTTP\Testing.HTTP.csproj">
+    <ProjectReference Include="..\Testing.Http\Testing.Http.csproj">
       <Project>{AEEDCAB3-FD8E-45B9-A9F7-88EB650702A4}</Project>
-      <Name>Testing.HTTP</Name>
+      <Name>Testing.Http</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
@@ -26,6 +29,34 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Net\HttpExpectations.Facts.cs" />
+    <Compile Include="Net\HttpHeadTest.Facts.cs" />
+    <Compile Include="Net\HttpRequestDefinition.Facts.cs" />
+    <Compile Include="Net\HttpResponseCacheControlTest.Facts.cs" />
+    <Compile Include="Net\HttpResponseContentLanguageTest.Facts.cs" />
+    <Compile Include="Net\HttpResponseContentMD5Test.Facts.cs" />
+    <Compile Include="Net\HttpResponseContentTypeTest.Facts.cs" />
+    <Compile Include="Net\HttpResponseHeaderTest.Facts.cs" />
+    <Compile Include="Net\HttpStatusCodeTest.Facts.cs" />
+    <Compile Include="Net\HttpTestException.Facts.cs" />
+    <Compile Include="Net\IHttpContent.Facts.cs" />
+    <Compile Include="Net\IRequestAcceptContent.Facts.cs" />
+    <Compile Include="Net\IRequestAcceptLanguage.Facts.cs" />
+    <Compile Include="Net\IRequestMethod.Facts.cs" />
+    <Compile Include="Net\IResponseCacheConditionals.Facts.cs" />
+    <Compile Include="Net\IResponseCacheControl.Facts.cs" />
+    <Compile Include="Net\IResponseContent.Facts.cs" />
+    <Compile Include="Net\IResponseContentLanguage.Facts.cs" />
+    <Compile Include="Net\IResponseContentMD5.Facts.cs" />
+    <Compile Include="Net\IResponseHtml.Facts.cs" />
+    <Compile Include="Net\IResponseStatus.Facts.cs" />
+    <Compile Include="Net\IResponseXml.Facts.cs" />
+    <Compile Include="Net\ITestHttp.Facts.cs" />
+    <Compile Include="Net\ITestHttpExpectation.Facts.cs" />
+    <Compile Include="Net\NoContentResponse.Facts.cs" />
+    <Compile Include="Net\Response.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />

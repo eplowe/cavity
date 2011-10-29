@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.HTTP", "Class Libraries\Testing.HTTP\Testing.HTTP.csproj", "{AEEDCAB3-FD8E-45B9-A9F7-88EB650702A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Http", "Class Libraries\Testing.Http\Testing.Http.csproj", "{AEEDCAB3-FD8E-45B9-A9F7-88EB650702A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.HTTP.Facts", "Class Libraries\Testing.HTTP.Facts\Testing.HTTP.Facts.csproj", "{4FF837F8-C720-417F-981F-42F493AE9467}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Http.Facts", "Class Libraries\Testing.Http.Facts\Testing.Http.Facts.csproj", "{4FF837F8-C720-417F-981F-42F493AE9467}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

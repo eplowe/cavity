@@ -2,8 +2,8 @@
 using System.Reflection;
 
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyDefaultAlias("Cavity.Testing.HTTP.Facts.dll")]
-[assembly: AssemblyTitle("Cavity.Testing.HTTP.Facts.dll")]
+[assembly: AssemblyDefaultAlias("Cavity.Testing.Http.Facts.dll")]
+[assembly: AssemblyTitle("Cavity.Testing.Http.Facts.dll")]
 
 #if (DEBUG)
 

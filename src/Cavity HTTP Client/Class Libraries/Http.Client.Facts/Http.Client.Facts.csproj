@@ -12,19 +12,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\net40\Cavity.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.0.10827\lib\$(TargetFrameworkVersionName)\Moq.dll</HintPath>
@@ -32,6 +32,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Net\Http.Facts.cs" />
+    <Compile Include="Net\HttpClient.Facts.cs" />
+    <Compile Include="Net\HttpDate.Facts.cs" />
+    <Compile Include="Net\HttpHeaderCollection.Facts.cs" />
+    <Compile Include="Net\HttpMessage.Derived.cs" />
+    <Compile Include="Net\HttpMessage.Facts.cs" />
+    <Compile Include="Net\HttpMethod.Facts.cs" />
+    <Compile Include="Net\HttpRequest.Facts.cs" />
+    <Compile Include="Net\HttpResponse.Facts.cs" />
+    <Compile Include="Net\HttpVersion.Facts.cs" />
+    <Compile Include="Net\IHttp.Facts.cs" />
+    <Compile Include="Net\IHttpClient.Facts.cs" />
+    <Compile Include="Net\IHttpMessage.Facts.cs" />
+    <Compile Include="Net\IHttpRequest.Facts.cs" />
+    <Compile Include="Net\IHttpResponse.Facts.cs" />
+    <Compile Include="Net\IUserAgent.Facts.cs" />
+    <Compile Include="Net\Mime\IContent.Facts.cs" />
+    <Compile Include="Net\Mime\IContentType.Facts.cs" />
+    <Compile Include="Net\Mime\IMediaType.Facts.cs" />
+    <Compile Include="Net\RequestLine.Facts.cs" />
+    <Compile Include="Net\Sockets\Uri.ExtensionMethods.Facts.cs" />
+    <Compile Include="Net\StatusLine.Facts.cs" />
+    <Compile Include="Net\UserAgent.Facts.cs" />
+    <Compile Include="Text\TextPlain.Facts.cs" />
+    <Compile Include="Xml\ApplicationXml.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
