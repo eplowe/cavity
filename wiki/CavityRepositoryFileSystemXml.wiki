@@ -1,4 +1,4 @@
-#summary Provides a standard test suite to verify the behaviour of Cavity Repository implementations.
+#summary Provides an XML file-based Cavity Repository implementation.
 #labels Phase-Implementation
 
 == !NuGet Packages ==
