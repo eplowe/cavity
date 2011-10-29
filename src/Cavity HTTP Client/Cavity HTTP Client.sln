@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTP.Client", "Class Libraries\HTTP.Client\HTTP.Client.csproj", "{B6E53FF7-E60E-437A-9F40-D7C14CC2EB9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Client", "Class Libraries\Http.Client\Http.Client.csproj", "{B6E53FF7-E60E-437A-9F40-D7C14CC2EB9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTP.Client.Facts", "Class Libraries\HTTP.Client.Facts\HTTP.Client.Facts.csproj", "{CFF72223-C8ED-4010-A5B5-57845F2AD577}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Client.Facts", "Class Libraries\Http.Client.Facts\Http.Client.Facts.csproj", "{CFF72223-C8ED-4010-A5B5-57845F2AD577}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

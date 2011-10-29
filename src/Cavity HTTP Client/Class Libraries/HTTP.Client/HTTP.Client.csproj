@@ -2,9 +2,57 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{B6E53FF7-E60E-437A-9F40-D7C14CC2EB9F}</ProjectGuid>
-    <AssemblyName>Cavity.HTTP.Client</AssemblyName>
+    <AssemblyName>Cavity.Http.Client</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Net\Http.cs" />
+    <Compile Include="Net\HttpClient.cs" />
+    <Compile Include="Net\HttpDate.cs" />
+    <Compile Include="Net\HttpHeaderCollection.cs" />
+    <Compile Include="Net\HttpMessage.cs" />
+    <Compile Include="Net\HttpMethod.cs" />
+    <Compile Include="Net\HttpRequest.cs" />
+    <Compile Include="Net\HttpResponse.cs" />
+    <Compile Include="Net\HttpVersion.cs" />
+    <Compile Include="Net\IHttp.cs" />
+    <Compile Include="Net\IHttpClient.cs" />
+    <Compile Include="Net\IHttpMessage.cs" />
+    <Compile Include="Net\IHttpRequest.cs" />
+    <Compile Include="Net\IHttpResponse.cs" />
+    <Compile Include="Net\IUserAgent.cs" />
+    <Compile Include="Net\Mime\IContent.cs" />
+    <Compile Include="Net\Mime\IContentType.cs" />
+    <Compile Include="Net\Mime\IMediaType.cs" />
+    <Compile Include="Net\RequestLine.cs" />
+    <Compile Include="Net\Sockets\Uri.ExtensionMethods.cs" />
+    <Compile Include="Net\StatusLine.cs" />
+    <Compile Include="Net\UserAgent.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Text\TextPlain.cs" />
+    <Compile Include="Xml\ApplicationXml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\net40\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <!--
