@@ -3,8 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyDefaultAlias("Cavity.Repository.FileSystem.XML.dll")]
-[assembly: AssemblyTitle("Cavity.Repository.FileSystem.XML.dll")]
+[assembly: AssemblyDefaultAlias("Cavity.Repository.FileSystem.Xml.dll")]
+[assembly: AssemblyTitle("Cavity.Repository.FileSystem.Xml.dll")]
 
 #if (DEBUG)
 
