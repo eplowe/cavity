@@ -47,5 +47,9 @@
 1.1.0.___	Cavity Commands
 			+ Cavity.Core
 
+1.1.0.___	Cavity Commands (File System)
+			+ Cavity.Commands
+				* Cavity.Core
+
 1.1.0.___	Cavity MSBuild (Domain)
 			+ Cavity.Core

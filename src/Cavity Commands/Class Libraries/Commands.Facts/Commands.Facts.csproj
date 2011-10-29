@@ -32,9 +32,6 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Collections\CommandCollection.Facts.cs" />
-    <Compile Include="IO\DirectoryCreateCommand.Facts.cs" />
-    <Compile Include="IO\FileCopyCommand.Facts.cs" />
-    <Compile Include="IO\FileMoveCommand.Facts.cs" />
     <Compile Include="Command.Derived.cs" />
     <Compile Include="Command.Facts.cs" />
     <Compile Include="ICommand.Facts.cs" />

@@ -9,9 +9,6 @@
     <Compile Include="Collections\CommandCollection.cs" />
     <Compile Include="Diagnostics\CommandCounter.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
-    <Compile Include="IO\DirectoryCreateCommand.cs" />
-    <Compile Include="IO\FileCopyCommand.cs" />
-    <Compile Include="IO\FileMoveCommand.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="ICommand.cs" />
   </ItemGroup>
