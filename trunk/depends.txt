@@ -44,5 +44,8 @@
 			+ Cavity.Data.Csv
 				* Cavity.Core
 
-1.1.0.0	Cavity MSBuild (Domain)
+1.1.0.___	Cavity Commands
+			+ Cavity.Core
+
+1.1.0.___	Cavity MSBuild (Domain)
 			+ Cavity.Core
