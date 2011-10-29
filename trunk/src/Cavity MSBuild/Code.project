@@ -5,10 +5,14 @@
   </PropertyGroup>
   <Choose>
     <When Condition="Exists('Properties\CodeAnalysis.ruleset')">
-      <CodeAnalysisRuleSet>Properties\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
+      <PropertyGroup>
+        <CodeAnalysisRuleSet>Properties\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
+      </PropertyGroup>
     </When>
     <Otherwise>
-      <CodeAnalysisRuleSet Condition="Exists('$(MSBuildExtensionsPath)\Cavity\Code.ruleset')">$(MSBuildExtensionsPath)\Cavity\Code.ruleset</CodeAnalysisRuleSet>
+      <PropertyGroup>
+        <CodeAnalysisRuleSet Condition="Exists('$(MSBuildExtensionsPath)\Cavity\Code.ruleset')">$(MSBuildExtensionsPath)\Cavity\Code.ruleset</CodeAnalysisRuleSet>
+      </PropertyGroup>
     </Otherwise>
   </Choose>
 </Project>
