@@ -2,8 +2,8 @@
 using System.Reflection;
 
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyDefaultAlias("Cavity.Repository.FileSystem.XML.Facts.dll")]
-[assembly: AssemblyTitle("Cavity.Repository.FileSystem.XML.Facts.dll")]
+[assembly: AssemblyDefaultAlias("Cavity.Repository.FileSystem.Xml.Facts.dll")]
+[assembly: AssemblyTitle("Cavity.Repository.FileSystem.Xml.Facts.dll")]
 
 #if (DEBUG)
 

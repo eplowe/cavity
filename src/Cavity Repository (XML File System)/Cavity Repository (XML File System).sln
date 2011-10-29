@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.FileSystem.XML", "Class Libraries\Repository.FileSystem.XML\Repository.FileSystem.XML.csproj", "{087F141B-93D3-4D0F-873E-A176DC98C161}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.FileSystem.Xml", "Class Libraries\Repository.FileSystem.Xml\Repository.FileSystem.Xml.csproj", "{087F141B-93D3-4D0F-873E-A176DC98C161}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.FileSystem.XML.Facts", "Class Libraries\Repository.FileSystem.XML.Facts\Repository.FileSystem.XML.Facts.csproj", "{BB566F81-567B-45D8-839E-D1DB3F815A04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.FileSystem.Xml.Facts", "Class Libraries\Repository.FileSystem.Xml.Facts\Repository.FileSystem.Xml.Facts.csproj", "{BB566F81-567B-45D8-839E-D1DB3F815A04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
