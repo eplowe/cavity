@@ -109,6 +109,12 @@
       <Link>Properties\$(RootNamespace).snk</Link>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Condition="Exists('Properties\CodeAnalysis.dictionary')"
+                            Include="Properties\CodeAnalysis.dictionary">
+      <Link>Properties\CodeAnalysis.dictionary</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Condition="Exists('$(MSBuildExtensionsPath)\StyleCop\v4.6\StyleCop.targets')"
           Project="$(MSBuildExtensionsPath)\StyleCop\v4.6\StyleCop.targets" />
