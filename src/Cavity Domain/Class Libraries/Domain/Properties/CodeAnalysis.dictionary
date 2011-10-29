@@ -2,12 +2,7 @@
 <Dictionary>
   <Words>
     <Recognized>
-      <Word>Autofac</Word>
-      <Word>Etag</Word>
       <Word>Levenshtein</Word>
-      <Word>Multiton</Word>
-      <Word>Upsert</Word>
-      <Word>xpath</Word>
     </Recognized>
   </Words>
 </Dictionary>
