@@ -3,8 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyDefaultAlias("Cavity.Testing.HTTP.dll")]
-[assembly: AssemblyTitle("Cavity.Testing.HTTP.dll")]
+[assembly: AssemblyDefaultAlias("Cavity.Testing.Http.dll")]
+[assembly: AssemblyTitle("Cavity.Testing.Http.dll")]
 
 #if (DEBUG)
 

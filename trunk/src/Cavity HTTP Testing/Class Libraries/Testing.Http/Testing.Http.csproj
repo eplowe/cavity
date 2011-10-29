@@ -2,9 +2,46 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{AEEDCAB3-FD8E-45B9-A9F7-88EB650702A4}</ProjectGuid>
-    <AssemblyName>Cavity.Testing.HTTP</AssemblyName>
+    <AssemblyName>Cavity.Testing.Http</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Net\HttpExpectations.cs" />
+    <Compile Include="Net\HttpHeadTest.cs" />
+    <Compile Include="Net\HttpRequestDefinition.cs" />
+    <Compile Include="Net\HttpResponseCacheControlTest.cs" />
+    <Compile Include="Net\HttpResponseContentLanguageTest.cs" />
+    <Compile Include="Net\HttpResponseContentMD5Test.cs" />
+    <Compile Include="Net\HttpResponseContentTypeTest.cs" />
+    <Compile Include="Net\HttpResponseHeaderTest.cs" />
+    <Compile Include="Net\HttpStatusCodeTest.cs" />
+    <Compile Include="Net\HttpTestException.cs" />
+    <Compile Include="Net\IHttpContent.cs" />
+    <Compile Include="Net\IRequestAcceptContent.cs" />
+    <Compile Include="Net\IRequestAcceptLanguage.cs" />
+    <Compile Include="Net\IRequestMethod.cs" />
+    <Compile Include="Net\IResponseCacheConditionals.cs" />
+    <Compile Include="Net\IResponseCacheControl.cs" />
+    <Compile Include="Net\IResponseContent.cs" />
+    <Compile Include="Net\IResponseContentLanguage.cs" />
+    <Compile Include="Net\IResponseContentMD5.cs" />
+    <Compile Include="Net\IResponseHtml.cs" />
+    <Compile Include="Net\IResponseStatus.cs" />
+    <Compile Include="Net\IResponseXml.cs" />
+    <Compile Include="Net\ITestHttp.cs" />
+    <Compile Include="Net\ITestHttpExpectation.cs" />
+    <Compile Include="Net\NoContentResponse.cs" />
+    <Compile Include="Net\Response.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <!--

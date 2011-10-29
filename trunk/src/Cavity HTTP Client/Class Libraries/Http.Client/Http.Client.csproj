@@ -5,7 +5,7 @@
     <AssemblyName>Cavity.Http.Client</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Net\Http.cs" />
     <Compile Include="Net\HttpClient.cs" />
     <Compile Include="Net\HttpDate.cs" />
@@ -36,9 +36,9 @@
     <Compile Include="Text\TextPlain.cs" />
     <Compile Include="Xml\ApplicationXml.cs" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\net40\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
