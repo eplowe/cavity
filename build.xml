@@ -11,6 +11,7 @@
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Build.all" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.test" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Bundle.all" />
+    <Import Project="zip.xml" />
   </ImportGroup>
   <PropertyGroup>
     <NET20>true</NET20>
@@ -22,5 +23,6 @@
     <CallTarget Targets="Build" />
     <CallTarget Targets="Test Facts" />
     <CallTarget Targets="Bundle" />
+    <CallTarget Targets="Zip" />
   </Target>
 </Project>
