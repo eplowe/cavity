@@ -17,6 +17,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Repository">
+      <HintPath>..\..\packages\Cavity.Repository.1.1.0.645\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
+    </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
@@ -26,6 +32,66 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Data\DummyRepository`1.cs" />
+    <Compile Include="Data\FakeRepository`1.Facts.cs" />
+    <Compile Include="Data\IVerifyRepository`1.Facts.cs" />
+    <Compile Include="Data\RandomObject.Facts.cs" />
+    <Compile Include="Data\RepositoryDeleteKeyNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryDeleteKey`1.Facts.cs" />
+    <Compile Include="Data\RepositoryDeleteUrnNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryDeleteUrnNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryDeleteUrn`1.Facts.cs" />
+    <Compile Include="Data\RepositoryExistsKeyNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryExistsKey`1.Facts.cs" />
+    <Compile Include="Data\RepositoryExistsUrnNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryExistsUrnNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryExistsUrn`1.Facts.cs" />
+    <Compile Include="Data\RepositoryExpectations`1.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecordCacheabilityNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecordExpirationNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecordKey`1.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecordNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecordStatusNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecordUrnExists`1.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecordUrnNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryInsertRecord`1.Facts.cs" />
+    <Compile Include="Data\RepositoryMatchKeyNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryMatchKey`1.Facts.cs" />
+    <Compile Include="Data\RepositoryMatchUrnNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryMatchUrnNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryMatchUrn`1.Facts.cs" />
+    <Compile Include="Data\RepositoryModifiedSinceKeyNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryModifiedSinceKey`1.Facts.cs" />
+    <Compile Include="Data\RepositoryModifiedSinceUrnNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryModifiedSinceUrnNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryModifiedSinceUrn`1.Facts.cs" />
+    <Compile Include="Data\RepositoryQueryExpressionNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryQueryExpression`1.Facts.cs" />
+    <Compile Include="Data\RepositorySelectKey`1.Facts.cs" />
+    <Compile Include="Data\RepositorySelectUrnNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositorySelectUrnNull`1.Facts.cs" />
+    <Compile Include="Data\RepositorySelectUrn`1.Facts.cs" />
+    <Compile Include="Data\RepositoryToKeyUrnNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryToKeyUrnNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryToKeyUrn`1.Facts.cs" />
+    <Compile Include="Data\RepositoryToUrnKeyNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryToUrnKey`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordCacheabilityNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordExpirationNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordKeyNotFound`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordKeyNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordStatusNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordUrnExists`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecordUrnNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpdateRecord`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpsertInsertRecord`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpsertRecordNull`1.Facts.cs" />
+    <Compile Include="Data\RepositoryUpsertUpdateRecord`1.Facts.cs" />
+    <Compile Include="Data\VerifyRepositoryBase`1.Facts.cs" />
+    <Compile Include="RepositoryTestException.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
