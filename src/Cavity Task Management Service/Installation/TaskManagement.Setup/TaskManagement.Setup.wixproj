@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Conditional" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Target.framework" />
+  <Target Name="Conditional">
+    <CallTarget Targets="Build" Condition=" '$(TargetFrameworkVersion)' == 'v4.0' or '$(TargetFrameworkVersion)' == '' " />
+  </Target>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.5</ProductVersion>
+    <ProjectGuid>{457910bd-90a1-420d-927a-a22091ccb8ad}</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>Cavity Task Management Service</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <IntermediateOutputPath>obj\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <IntermediateOutputPath>obj\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Product.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <PropertyGroup>
+    <ServiceOutputDirectory>$(SolutionDir)Windows Services\TaskManagement.Service\$(OutputPath)\</ServiceOutputDirectory>
+    <StaticOutputDirectory>$(SolutionDir)Static Libraries\TaskManagement.EventLog.Messages\bin\</StaticOutputDirectory>
+  </PropertyGroup>
+  <Target Name="Copy Libraries" BeforeTargets="Compile">
+  <Message Text="SolutionDir = $(SolutionDir)"/>
+    <Copy SourceFiles="$(StaticOutputDirectory)Cavity.TaskManagement.EventLog.Messages.lib"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Castle.Core.dll"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Castle.Windsor.dll"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)castle.config"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.Core.dll"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.Diagnostics.Log4Net.dll"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.ServiceLocation.dll"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.ServiceLocation.CastleWindsor.dll"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.dll"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.dll.config"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.Abstractions.dll"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.Service.exe"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.Service.exe.config"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)CommonServiceLocator.WindsorAdapter.dll"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)log4net.dll"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)log4net.config"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Microsoft.Practices.ServiceLocation.dll"
+          DestinationFolder="obj"
+          SkipUnchangedFiles="false" />
+  </Target>
+  <!-- Target Name="Clean Folders" AfterTargets="Clean">
+    <RemoveDir Condition="Exists('$(ProjectDir)bin')"
+               Directories="$(ProjectDir)bin" />
+    <RemoveDir Condition="Exists('$(ProjectDir)obj')"
+               Directories="$(ProjectDir)obj" />
+    <MakeDir Condition="!Exists('$(ProjectDir)bin')"
+             Directories="$(ProjectDir)bin" />
+    <MakeDir Condition="!Exists('$(ProjectDir)obj')"
+             Directories="$(ProjectDir)obj" />
+  </Target -->
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

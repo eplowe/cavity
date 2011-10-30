@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Product Id="6442166c-81bb-4117-bcfc-036f5dff277a" Name="Cavity Task Management" Language="1033" Version="1.1.0.696" Manufacturer="Alan Dean" UpgradeCode="d3c6a801-9e05-4bd1-9c35-bc44c426d1c7">
+    <Package InstallerVersion="200" InstallScope="perMachine" Compressed="yes" Description="Installs Cavity Task Management." />
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="Common" Name="Common Files">
+          <Directory Id="CommonCompany" Name="Cavity">
+            <Directory Id="CommonTaskManagement" Name="Task Management">
+              <Component Id="EventLog" Guid="3c6164ee-6378-4681-b891-2b81c60db682">
+                <File Id="Messages" KeyPath="yes" Name="Cavity.TaskManagement.EventLog.Messages.lib" Source="obj\Cavity.TaskManagement.EventLog.Messages.lib" />
+                <util:EventSource Log="Cavity" Name="Task Management" CategoryCount="2" CategoryMessageFile="[#Messages]" EventMessageFile="[#Messages]" ParameterMessageFile="[#Messages]" />
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory Id="Company" Name="Cavity">
+          <Directory Id="INSTALLLOCATION" Name="Task Management">
+            <Component Id="PerformanceCounters" Guid="e7f677b4-55dd-42a6-839c-98a7bf4d8d4e" KeyPath="yes">
+              <util:PerformanceCategory Id="CavityCategory" Name="Cavity" Help="Cavity Performance Counters" MultiInstance="no">
+                <util:PerformanceCounter Name="Commands/sec" Help="The number of commands executed per second" Type="rateOfCountsPerSecond32" />
+                <util:PerformanceCounter Name="Tasks/sec" Help="The number of tasks executed per second" Type="rateOfCountsPerSecond32" />
+              </util:PerformanceCategory>
+            </Component>
+            <Component Id="Service" Guid="1d8762a5-3916-46a3-80b6-64f967525150">
+              <File Id="CastleCore" Name="Castle.Core.dll" Source="obj\Castle.Core.dll" />
+              <File Id="CastleWindsor" Name="Castle.Windsor.dll" Source="obj\Castle.Windsor.dll" />
+              <File Id="CavityCore" Name="Cavity.Core.dll" Source="obj\Cavity.Core.dll" />
+              <File Id="CavityDiagnosticsLog4Net" Name="Cavity.Diagnostics.Log4Net.dll" Source="obj\Cavity.Diagnostics.Log4Net.dll" />
+              <File Id="CavityServiceLocation" Name="Cavity.ServiceLocation.dll" Source="obj\Cavity.ServiceLocation.dll" />
+              <File Id="CavityServiceLocationCastleWindsor" Name="Cavity.ServiceLocation.CastleWindsor.dll" Source="obj\Cavity.ServiceLocation.CastleWindsor.dll" />
+              <File Id="CavityTaskManagement" Name="Cavity.TaskManagement.dll" Source="obj\Cavity.TaskManagement.dll" />
+              <File Id="CavityTaskManagementAbstractions" Name="Cavity.TaskManagement.Abstractions.dll" Source="obj\Cavity.TaskManagement.Abstractions.dll" />
+              <File Id="CavityTaskManagementService" KeyPath="yes" Name="Cavity.TaskManagement.Service.exe" Source="obj\Cavity.TaskManagement.Service.exe" />
+              <File Id="CommonServiceLocatorWindsorAdapter" Name="CommonServiceLocator.WindsorAdapter.dll" Source="obj\CommonServiceLocator.WindsorAdapter.dll" />
+              <File Id="log4net" Name="log4net.dll" Source="obj\log4net.dll" />
+              <File Id="MicrosoftPracticesServiceLocation" Name="Microsoft.Practices.ServiceLocation.dll" Source="obj\Microsoft.Practices.ServiceLocation.dll" />
+              <ServiceInstall Id="CavityTaskManagementServiceInstall" Name="CavityTaskManagement" DisplayName="Cavity Task Management" Description="Provides a pluggable task management service." ErrorControl="normal" Start="auto" Type="ownProcess" Account="[SERVICEACCOUNT]" Password="[SERVICEPASSWORD]" Vital="yes" />
+              <ServiceControl Id="CavityTaskManagementServiceControl" Name="CavityTaskManagement" Remove="uninstall" Start="install" Stop="both" Wait="yes" />
+            </Component>
+            <Component Id="ServiceConfig" Guid="13dcbf4e-2f0f-41b6-be32-05f87ae1af0e" Permanent="yes">
+              <File Id="CastleConfig" Name="castle.config" Source="obj\castle.config" />
+              <File Id="CavityTaskManagementConfig" Name="Cavity.TaskManagement.dll.config" Source="obj\Cavity.TaskManagement.dll.config" />
+              <File Id="CavityTaskManagementServiceConfig" Name="Cavity.TaskManagement.Service.exe.config" Source="obj\Cavity.TaskManagement.Service.exe.config" />
+              <File Id="log4netConfig" Name="log4net.config" Source="obj\log4net.config" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature Id="ProductFeature" Title="Task Management Service" Level="1">
+      <ComponentGroupRef Id="Product.Generated" />
+      <ComponentRef Id="EventLog" />
+      <ComponentRef Id="PerformanceCounters" />
+      <ComponentRef Id="Service" />
+      <ComponentRef Id="ServiceConfig" />
+    </Feature>
+  </Product>
+</Wix>

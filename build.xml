@@ -27,88 +27,88 @@
     <CallTarget Targets="Bundle" />
   </Target>
   <ItemGroup>
-  	<AnyCpuAllFrameworks Include="$(MSBuildProjectDirectory)\src\Cavity Commands\Cavity Commands.sln" />
-  	<AnyCpuAllFrameworks Include="$(MSBuildProjectDirectory)\src\Cavity Commands (File System)\Cavity Commands (File System).sln" />
-  	<AnyCpuAllFrameworks Include="$(MSBuildProjectDirectory)\src\Cavity Core\Cavity Core.sln" />
-  	<AnyCpuAllFrameworks Include="$(MSBuildProjectDirectory)\src\Cavity Data (CSV)\Cavity Data (CSV).sln" />
-  	<AnyCpuAllFrameworks Include="$(MSBuildProjectDirectory)\src\Cavity Domain\Cavity Domain.sln" />
-  	<AnyCpuAllFrameworks Include="$(MSBuildProjectDirectory)\src\Cavity MSBuild (Compliance)\Cavity MSBuild (Compliance).sln" />
-  	<AnyCpuAllFrameworks Include="$(MSBuildProjectDirectory)\src\Cavity MSBuild (Domain)\Cavity MSBuild (Domain).sln" />
-  	<AnyCpuAllFrameworks Include="$(MSBuildProjectDirectory)\src\Cavity Service Location\Cavity Service Location.sln" />
+  	<AnyCpu Include="$(MSBuildProjectDirectory)\src\Cavity Commands\Cavity Commands.sln" />
+  	<AnyCpu Include="$(MSBuildProjectDirectory)\src\Cavity Commands (File System)\Cavity Commands (File System).sln" />
+  	<AnyCpu Include="$(MSBuildProjectDirectory)\src\Cavity Core\Cavity Core.sln" />
+  	<AnyCpu Include="$(MSBuildProjectDirectory)\src\Cavity Data (CSV)\Cavity Data (CSV).sln" />
+  	<AnyCpu Include="$(MSBuildProjectDirectory)\src\Cavity Domain\Cavity Domain.sln" />
+  	<AnyCpu Include="$(MSBuildProjectDirectory)\src\Cavity MSBuild (Compliance)\Cavity MSBuild (Compliance).sln" />
+  	<AnyCpu Include="$(MSBuildProjectDirectory)\src\Cavity MSBuild (Domain)\Cavity MSBuild (Domain).sln" />
+  	<AnyCpu Include="$(MSBuildProjectDirectory)\src\Cavity Service Location\Cavity Service Location.sln" />
   </ItemGroup>
   <ItemGroup>
-  	<AnyCpuNet35 Include="$(MSBuildProjectDirectory)\src\Cavity Diagnostics log4net\Cavity Diagnostics log4net.sln" />
-  	<AnyCpuNet35 Include="$(MSBuildProjectDirectory)\src\Cavity Domain (Royal Mail)\Cavity Domain (Royal Mail).sln" />
-  	<AnyCpuNet35 Include="$(MSBuildProjectDirectory)\src\Cavity HTTP Client\Cavity HTTP Client.sln" />
-  	<AnyCpuNet35 Include="$(MSBuildProjectDirectory)\src\Cavity HTTP Testing\Cavity HTTP Testing.sln" />
-  	<AnyCpuNet35 Include="$(MSBuildProjectDirectory)\src\Cavity Repository\Cavity Repository.sln" />
-  	<AnyCpuNet35 Include="$(MSBuildProjectDirectory)\src\Cavity Repository (XML File System)\Cavity Repository (XML File System).sln" />
-  	<AnyCpuNet35 Include="$(MSBuildProjectDirectory)\src\Cavity Repository Testing\Cavity Repository Testing.sln" />
-  	<AnyCpuNet35 Include="$(MSBuildProjectDirectory)\src\Cavity Unit Testing\Cavity Unit Testing.sln" />
+  	<AnyCpu35 Include="$(MSBuildProjectDirectory)\src\Cavity Diagnostics log4net\Cavity Diagnostics log4net.sln" />
+  	<AnyCpu35 Include="$(MSBuildProjectDirectory)\src\Cavity Domain (Royal Mail)\Cavity Domain (Royal Mail).sln" />
+  	<AnyCpu35 Include="$(MSBuildProjectDirectory)\src\Cavity HTTP Client\Cavity HTTP Client.sln" />
+  	<AnyCpu35 Include="$(MSBuildProjectDirectory)\src\Cavity HTTP Testing\Cavity HTTP Testing.sln" />
+  	<AnyCpu35 Include="$(MSBuildProjectDirectory)\src\Cavity Repository\Cavity Repository.sln" />
+  	<AnyCpu35 Include="$(MSBuildProjectDirectory)\src\Cavity Repository (XML File System)\Cavity Repository (XML File System).sln" />
+  	<AnyCpu35 Include="$(MSBuildProjectDirectory)\src\Cavity Repository Testing\Cavity Repository Testing.sln" />
+  	<AnyCpu35 Include="$(MSBuildProjectDirectory)\src\Cavity Unit Testing\Cavity Unit Testing.sln" />
   </ItemGroup>
   <ItemGroup>
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Commands Transactions\Cavity Commands Transactions.sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Diagnostics log4net\Cavity Diagnostics log4net.sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Domain (Royal Mail)\Cavity Domain (Royal Mail).sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity HTTP Client\Cavity HTTP Client.sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity HTTP Testing\Cavity HTTP Testing.sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Repository\Cavity Repository.sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Repository (XML File System)\Cavity Repository (XML File System).sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Repository Testing\Cavity Repository Testing.sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (Autofac)\Cavity Service Location (Autofac).sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (Castle Windsor)\Cavity Service Location (Castle Windsor).sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (StructureMap)\Cavity Service Location (StructureMap).sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (Unity)\Cavity Service Location (Unity).sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Task Management\Cavity Task Management.sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Task Management Abstractions\Cavity Task Management Abstractions.sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Task Management Service\Cavity Task Management Service.sln" />
-  	<AnyCpuNet40 Include="$(MSBuildProjectDirectory)\src\Cavity Unit Testing\Cavity Unit Testing.sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Commands Transactions\Cavity Commands Transactions.sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Diagnostics log4net\Cavity Diagnostics log4net.sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Domain (Royal Mail)\Cavity Domain (Royal Mail).sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity HTTP Client\Cavity HTTP Client.sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity HTTP Testing\Cavity HTTP Testing.sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Repository\Cavity Repository.sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Repository (XML File System)\Cavity Repository (XML File System).sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Repository Testing\Cavity Repository Testing.sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (Autofac)\Cavity Service Location (Autofac).sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (Castle Windsor)\Cavity Service Location (Castle Windsor).sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (StructureMap)\Cavity Service Location (StructureMap).sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (Unity)\Cavity Service Location (Unity).sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Task Management\Cavity Task Management.sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Task Management Abstractions\Cavity Task Management Abstractions.sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Unit Testing\Cavity Unit Testing.sln" />
+  	<AnyCpu40 Include="$(MSBuildProjectDirectory)\src\Cavity Task Management Service\Cavity Task Management Service.sln" />
   </ItemGroup>
   <ItemGroup>
-  	<x64AllFrameworks Include="$(MSBuildProjectDirectory)\src\Cavity Data (ACE)\Cavity Data (ACE).sln" />
+  	<x64 Include="$(MSBuildProjectDirectory)\src\Cavity Data (ACE)\Cavity Data (ACE).sln" />
   </ItemGroup>
   <ItemGroup>
-  	<x86AllFrameworks Include="$(MSBuildProjectDirectory)\src\Cavity Data (ACE)\Cavity Data (ACE).sln" />
+  	<x86 Include="$(MSBuildProjectDirectory)\src\Cavity Data (ACE)\Cavity Data (ACE).sln" />
   </ItemGroup>
   <ItemGroup>
   	<x86Net40 Include="$(MSBuildProjectDirectory)\src\Cavity MSBuild\Cavity MSBuild.sln" />
   </ItemGroup>
   <Target Name="Build">
-    <MSBuild Projects="%(AnyCpuAllFrameworks.Identity)"
+    <MSBuild Projects="%(AnyCpu.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);CommandLineBuild=true;Configuration=$(Configuration);TargetFrameworkVersion=v2.0" />
-    <MSBuild Projects="%(AnyCpuAllFrameworks.Identity)"
+    <MSBuild Projects="%(AnyCpu.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);CommandLineBuild=true;Configuration=$(Configuration);TargetFrameworkVersion=v3.5" />
-    <MSBuild Projects="%(AnyCpuAllFrameworks.Identity)"
+    <MSBuild Projects="%(AnyCpu.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);CommandLineBuild=true;Configuration=$(Configuration);TargetFrameworkVersion=v4.0" />
              
-    <MSBuild Projects="%(AnyCpuNet35.Identity)"
+    <MSBuild Projects="%(AnyCpu35.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);CommandLineBuild=true;Configuration=$(Configuration);TargetFrameworkVersion=v3.5" />
              
-    <MSBuild Projects="%(AnyCpuNet40.Identity)"
+    <MSBuild Projects="%(AnyCpu40.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);CommandLineBuild=true;Configuration=$(Configuration);TargetFrameworkVersion=v4.0" />
              
-    <MSBuild Projects="%(x64AllFrameworks.Identity)"
+    <MSBuild Projects="%(x64.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);CommandLineBuild=true;Configuration=$(Configuration);TargetFrameworkVersion=v2.0;Platform=x64" />
-    <MSBuild Projects="%(x64AllFrameworks.Identity)"
+    <MSBuild Projects="%(x64.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);CommandLineBuild=true;Configuration=$(Configuration);TargetFrameworkVersion=v3.5;Platform=x64" />
-    <MSBuild Projects="%(x64AllFrameworks.Identity)"
+    <MSBuild Projects="%(x64.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);CommandLineBuild=true;Configuration=$(Configuration);TargetFrameworkVersion=v4.0;Platform=x64" />
              
-    <MSBuild Projects="%(x86AllFrameworks.Identity)"
+    <MSBuild Projects="%(x86.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);CommandLineBuild=true;Configuration=$(Configuration);TargetFrameworkVersion=v2.0;Platform=x86" />
-    <MSBuild Projects="%(x86AllFrameworks.Identity)"
+    <MSBuild Projects="%(x86.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);CommandLineBuild=true;Configuration=$(Configuration);TargetFrameworkVersion=v3.5;Platform=x86" />
-    <MSBuild Projects="%(x86AllFrameworks.Identity)"
+    <MSBuild Projects="%(x86.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);CommandLineBuild=true;Configuration=$(Configuration);TargetFrameworkVersion=v4.0;Platform=x86" />
 
