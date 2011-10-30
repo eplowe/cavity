@@ -1,24 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Conditional" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Wix.setup" />
+  <Target Name="Conditional">
+    <CallTarget Targets="Build" Condition=" '$(Platform)' == 'x86' and '$(TargetFrameworkVersion)' == 'v4.0' " />
+  </Target>
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>3.5</ProductVersion>
     <ProjectGuid>{75017f3c-e87d-49d3-9c65-9f094c1cc7ac}</ProjectGuid>
-    <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>Cavity MSBuild Setup</OutputName>
-    <OutputType>Package</OutputType>
-    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
-    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>Debug</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <OutputName>Cavity MSBuild Extensions</OutputName>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
@@ -41,9 +29,11 @@
     <Content Include="Content\Facts.test" />
     <Content Include="Content\MixedCPU.project" />
     <Content Include="Content\MSBuild.project" />
+    <Content Include="Content\Target.framework" />
     <Content Include="Content\net40\Cavity.MSBuild.Compliance.dll" />
     <Content Include="Content\net40\Cavity.MSBuild.Compliance.targets" />
     <Content Include="Content\Version.xml" />
+    <Content Include="Content\WiX.setup" />
     <Content Include="Content\x64.project" />
     <Content Include="Content\x86.project" />
   </ItemGroup>

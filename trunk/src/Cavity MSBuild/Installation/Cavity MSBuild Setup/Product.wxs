@@ -1,100 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="bda14199-8a1c-4c7b-afcd-136c6c28e023"
-           Name="Cavity MSBuild Extensions"
-           Language="1033"
-           Version="1.0.0.0"
-           Manufacturer="Alan Dean"
-           UpgradeCode="f5481b90-9cbd-456f-96df-e2165b8d9af5">
-    <Package InstallerVersion="200"
-             InstallScope="perMachine"
-             Compressed="yes"
-             Description="Installs the Cavity MSBuild extensions." />
-
-    <Media Id="1"
-           Cabinet="media1.cab"
-           EmbedCab="yes" />
-
+  <Product Id="bda14199-8a1c-4c7b-afcd-136c6c28e023" Name="Cavity MSBuild Extensions" Language="1033" Version="1.1.0.675" Manufacturer="Alan Dean" UpgradeCode="f5481b90-9cbd-456f-96df-e2165b8d9af5">
+    <Package InstallerVersion="200" InstallScope="perMachine" Compressed="yes" Description="Installs the Cavity MSBuild extensions." />
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="MSBuildExtensionsPath"
-                   Name="MSBuild">
-          <Directory Id="INSTALLLOCATION"
-                     Name="Cavity">
-            <Directory Id="NET40LOCATION"
-                       Name="net40">
-              <Component Id="NET40"
-                         Guid="9584039a-a660-48ae-98a0-58830b89002b">
-                <File KeyPath="yes"
-                      Id="CavityMSBuildCompliance"
-                      Name="Cavity.MSBuild.Compliance.dll"
-                      Source="Content\net40\Cavity.MSBuild.Compliance.dll" />
-                <File Id="CavityMSBuildComplianceTargets"
-                      Name="Cavity.MSBuild.Compliance.targets"
-                      Source="Content\net40\Cavity.MSBuild.Compliance.targets" />
+        <Directory Id="MSBuildExtensionsPath" Name="MSBuild">
+          <Directory Id="INSTALLLOCATION" Name="Cavity">
+            <Directory Id="NET40LOCATION" Name="net40">
+              <Component Id="NET40" Guid="9584039a-a660-48ae-98a0-58830b89002b">
+                <File KeyPath="yes" Id="CavityMSBuildCompliance" Name="Cavity.MSBuild.Compliance.dll" Source="Content\net40\Cavity.MSBuild.Compliance.dll" />
+                <File Id="CavityMSBuildComplianceTargets" Name="Cavity.MSBuild.Compliance.targets" Source="Content\net40\Cavity.MSBuild.Compliance.targets" />
               </Component>
             </Directory>
-            <Component Id="Content"
-                       Guid="69b3bf14-0198-4279-9932-2260f7b238de">
-              <File KeyPath="yes"
-                    Id="AnyProject"
-                    Name="Any.project"
-                    Source="Content\Any.project" />
-              <File Id="AnyCpuProject"
-                    Name="AnyCPU.project"
-                    Source="Content\AnyCPU.project" />
-              <File Id="BuildAll"
-                    Name="Build.all"
-                    Source="Content\Build.all" />
-              <File Id="BundleAll"
-                    Name="Bundle.all"
-                    Source="Content\Bundle.all" />
-              <File Id="CleanAll"
-                    Name="Clean.all"
-                    Source="Content\Clean.all" />
-              <File Id="CodeProject"
-                    Name="Code.project"
-                    Source="Content\Code.project" />
-              <File Id="CodeRuleset"
-                    Name="Code.ruleset"
-                    Source="Content\Code.ruleset" />
-              <File Id="DataProject"
-                    Name="Data.project"
-                    Source="Content\Data.project" />
-              <File Id="FactsProject"
-                    Name="Facts.project"
-                    Source="Content\Facts.project" />
-              <File Id="FactsRuleset"
-                    Name="Facts.ruleset"
-                    Source="Content\Facts.ruleset" />
-              <File Id="FactsTest"
-                    Name="Facts.test"
-                    Source="Content\Facts.test" />
-              <File Id="MixedCpuProject"
-                    Name="MixedCPU.project"
-                    Source="Content\MixedCPU.project" />
-              <File Id="MSBuildProject"
-                    Name="MSBuild.project"
-                    Source="Content\MSBuild.project" />
-              <File Id="VersionXml"
-                    Name="Version.xml"
-                    Source="Content\Version.xml" />
-              <File Id="x64Project"
-                    Name="x64.project"
-                    Source="Content\x64.project" />
-              <File Id="x86Project"
-                    Name="x86.project"
-                    Source="Content\x86.project" />
+            <Component Id="Content" Guid="69b3bf14-0198-4279-9932-2260f7b238de">
+              <File KeyPath="yes" Id="AnyProject" Name="Any.project" Source="Content\Any.project" />
+              <File Id="AnyCpuProject" Name="AnyCPU.project" Source="Content\AnyCPU.project" />
+              <File Id="BuildAll" Name="Build.all" Source="Content\Build.all" />
+              <File Id="BundleAll" Name="Bundle.all" Source="Content\Bundle.all" />
+              <File Id="CleanAll" Name="Clean.all" Source="Content\Clean.all" />
+              <File Id="CodeProject" Name="Code.project" Source="Content\Code.project" />
+              <File Id="CodeRuleset" Name="Code.ruleset" Source="Content\Code.ruleset" />
+              <File Id="DataProject" Name="Data.project" Source="Content\Data.project" />
+              <File Id="FactsProject" Name="Facts.project" Source="Content\Facts.project" />
+              <File Id="FactsRuleset" Name="Facts.ruleset" Source="Content\Facts.ruleset" />
+              <File Id="FactsTest" Name="Facts.test" Source="Content\Facts.test" />
+              <File Id="MixedCpuProject" Name="MixedCPU.project" Source="Content\MixedCPU.project" />
+              <File Id="MSBuildProject" Name="MSBuild.project" Source="Content\MSBuild.project" />
+              <File Id="TargetFramework" Name="Target.framework" Source="Content\Target.framework" />
+              <File Id="VersionXml" Name="Version.xml" Source="Content\Version.xml" />
+              <File Id="WixSetup" Name="WiX.setup" Source="Content\WiX.setup" />
+              <File Id="x64Project" Name="x64.project" Source="Content\x64.project" />
+              <File Id="x86Project" Name="x86.project" Source="Content\x86.project" />
             </Component>
-            
           </Directory>
         </Directory>
       </Directory>
     </Directory>
-
-    <Feature Id="ProductFeature"
-             Title="MSBuild Files"
-             Level="1">
+    <Feature Id="ProductFeature" Title="MSBuild Files" Level="1">
       <ComponentGroupRef Id="Product.Generated" />
       <ComponentRef Id="Content" />
       <ComponentRef Id="NET40" />
