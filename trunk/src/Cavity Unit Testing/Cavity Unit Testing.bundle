@@ -2,9 +2,6 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
          DefaultTargets="Run"
          ToolsVersion="4.0">
-  <ImportGroup>
-    <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
-  </ImportGroup>
   <Target Name="Run">
     <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Testing.Unit\bin\Release net35 AnyCPU\Cavity.Testing.Unit.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35" />
