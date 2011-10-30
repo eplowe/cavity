@@ -25,6 +25,27 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content" />
+    <Folder Include="Content\net40\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Any.project" />
+    <Content Include="Content\AnyCPU.project" />
+    <Content Include="Content\Build.all" />
+    <Content Include="Content\Bundle.all" />
+    <Content Include="Content\Clean.all" />
+    <Content Include="Content\Code.project" />
+    <Content Include="Content\Code.ruleset" />
+    <Content Include="Content\Data.project" />
+    <Content Include="Content\Facts.project" />
+    <Content Include="Content\Facts.ruleset" />
+    <Content Include="Content\Facts.test" />
+    <Content Include="Content\MixedCPU.project" />
+    <Content Include="Content\MSBuild.project" />
+    <Content Include="Content\net40\Cavity.MSBuild.Compliance.dll" />
+    <Content Include="Content\net40\Cavity.MSBuild.Compliance.targets" />
+    <Content Include="Content\Version.xml" />
+    <Content Include="Content\x64.project" />
+    <Content Include="Content\x86.project" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--
