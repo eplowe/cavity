@@ -5,8 +5,15 @@ To build the source code, please install:
 	Cavity MSBuild Extensions
 		http://code.google.com/p/cavity/downloads/list
 
+	StyleCop 4.6
+		http://stylecop.codeplex.com/
+
 	WiX 3.5
 		http://wix.sourceforge.net/
+	
+	xunit
+		http://xunit.codeplex.com/
+		Note: deploy the contents of the zip to C:\Program Files (x86)\MSBuild\xunit
 
 [Visual Studio]
 
