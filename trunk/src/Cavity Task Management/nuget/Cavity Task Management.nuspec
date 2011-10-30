@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.TaskManagement</id>
-    <version>1.1.0.685</version>
+    <version>1.1.0.694</version>
     <title>Cavity Task Management</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -18,7 +18,7 @@
     <releaseNotes />
     <dependencies>
       <dependency id="Cavity.Core" version="1.1.0.587" />
-      <dependency id="Cavity.TaskManagement.Abstractions" version="1.1.0.680" />
+      <dependency id="Cavity.TaskManagement.Abstractions" version="1.1.0.694" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.ServiceProcess" targetFramework="net40" />

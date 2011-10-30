@@ -66,9 +66,9 @@
 			+ Cavity.Repository
 				* Cavity.Core
 
-1.1.0.680	Cavity Task Management Abstractions
+1.1.0.694	Cavity Task Management Abstractions
 
-1.1.0.685	Cavity Task Management
+1.1.0.694	Cavity Task Management
 			+ Cavity.Core
 			+ Cavity Task Management Abstractions
 
