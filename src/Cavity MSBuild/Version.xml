@@ -12,10 +12,12 @@
   <ItemGroup>
     <NuSpecFiles Include="$(MSBuildProjectDirectory)\**\*.nuspec" />
     <VersionCsFiles Include="$(MSBuildProjectDirectory)\**\Version.cs" />
+    <WixFiles Include="$(MSBuildProjectDirectory)\**\Product.wxs" />
   </ItemGroup>
   <Target Name="Version" DependsOnTargets="Subversion">
     <CallTarget Targets="NuSpec" />
     <CallTarget Targets="Version XML" />
+    <CallTarget Targets="Wix" />
   </Target>
   <Target Name="Subversion"
           Condition="'$(RevisionSource)'=='Subversion'">
@@ -61,6 +63,13 @@
                                        Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
                                        XmlFileName="$(MSBuildProjectDirectory)\version.xml"
                                        XPath="/m:Project/m:PropertyGroup/m:FullVersion"
+                                       Value="$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)" />
+  </Target>
+  <Target Name="Wix">
+    <MSBuild.Community.Tasks.XmlUpdate Prefix="wix"
+                                       Namespace="http://schemas.microsoft.com/wix/2006/wi"
+                                       XmlFileName="%(WixFiles.Identity)"
+                                       XPath="/wix:Wix/wix:Product/@Version"
                                        Value="$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)" />
   </Target>
 </Project>
