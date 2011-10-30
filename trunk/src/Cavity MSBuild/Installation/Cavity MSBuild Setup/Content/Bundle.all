@@ -22,6 +22,7 @@
   </Target>
   <Target Name="NuGet">
     <Exec Command="nuget pack &quot;%(NuSpecFiles.Identity)&quot;"
-          WorkingDirectory="$(BundleDirectory)" />
+          WorkingDirectory="$(BundleDirectory)"
+          ContinueOnError="true" />
   </Target>
 </Project>
