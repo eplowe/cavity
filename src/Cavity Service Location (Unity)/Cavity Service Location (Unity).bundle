@@ -5,63 +5,8 @@
   <ImportGroup>
     <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
   </ImportGroup>
-  <PropertyGroup>
-    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\Cavity.ServiceLocation.Unity lib</ZipLibDirectory>
-    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\Cavity.ServiceLocation.Unity src</ZipSrcDirectory>
-  </PropertyGroup>
   <Target Name="Run">
-    <ItemGroup>
-      <UnwantedZipFiles Include="$(MSBuildProjectDirectory)\*.zip" />
-    </ItemGroup>
-    <Delete Files="%(UnwantedZipFiles.Identity)" />
-    <CallTarget Targets="Copy Output" />
-    <CallTarget Targets="Zip Output" />
-    <CallTarget Targets="Zip Source" />
-  </Target>
-  <Target Name="Copy Output">
     <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\ServiceLocation.Unity\bin\Release net40 AnyCPU\Cavity.ServiceLocation.Unity.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40" />
-  </Target>
-  <Target Name="Zip Output">
-    <RemoveDir Directories="$(ZipLibDirectory)"
-               Condition="Exists('$(ZipLibDirectory)')" />
-    <MakeDir Directories="$(ZipLibDirectory)"
-             Condition="!Exists('$(ZipLibDirectory)')" />
-    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(MSBuildProjectDirectory)\nuget\lib"
-                                      DestinationFolder="$(ZipLibDirectory)"
-                                      Mirror="true"
-                                      ExcludeFolders=".svn;_svn"
-                                      NoJobHeader="true" />
-    <ItemGroup>
-      <OutputFiles Include="$(ZipLibDirectory)\**\*.*" />
-    </ItemGroup>
-    <MSBuild.Community.Tasks.Zip Files="@(OutputFiles)"
-                                 WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.ServiceLocation.Unity [lib].zip"
-                                 ZipLevel="9" />
-    <RemoveDir Directories="$(ZipLibDirectory)"
-               Condition="Exists('$(ZipLibDirectory)')" />
-  </Target>
-  <Target Name="Zip Source">
-    <RemoveDir Directories="$(ZipSrcDirectory)"
-               Condition="Exists('$(ZipSrcDirectory)')" />
-    <MakeDir Directories="$(ZipSrcDirectory)"
-             Condition="!Exists('$(ZipSrcDirectory)')" />
-    <MSBuild.Community.Tasks.RoboCopy SourceFolder="$(MSBuildProjectDirectory)"
-                                      DestinationFolder="$(ZipSrcDirectory)"
-                                      Mirror="true"
-                                      ExcludeFolders=".svn;_svn;obj;bin;PrecompiledWeb"
-                                      ExcludeFiles="*.suo;*.csproj.user;*.vs10x;StyleCop.Cache"
-                                      NoJobHeader="true" />
-    <ItemGroup>
-      <SourceFiles Include="$(ZipSrcDirectory)\**\*.*" />
-    </ItemGroup>
-    <MSBuild.Community.Tasks.Zip Files="@(SourceFiles)"
-                                 WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.ServiceLocation.Unity [src].zip"
-                                 ZipLevel="9" />
-    <RemoveDir Directories="$(ZipSrcDirectory)"
-               Condition="Exists('$(ZipSrcDirectory)')"
-               ContinueOnError="true" />
   </Target>
 </Project>

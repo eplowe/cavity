@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="Run"
+         ToolsVersion="4.0">
+  <ImportGroup>
+    <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+  </ImportGroup>
+  <Target Name="Run">
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Testing.Repository\bin\Release net35 AnyCPU\Cavity.Testing.Repository.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Testing.Repository\bin\Release net40 AnyCPU\Cavity.Testing.Repository.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40" />
+  </Target>
+</Project>
