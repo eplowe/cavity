@@ -20,9 +20,8 @@
           DestinationFolder="$(BundleDirectory)" />
     <CallTarget Targets="NuGet" />
   </Target>
-  <Target Name="NuGet">
+  <Target Name="NuGet" Condition="'$(Revision)' &gt; '0'">
     <Exec Command="nuget pack &quot;%(NuSpecFiles.Identity)&quot;"
-          WorkingDirectory="$(BundleDirectory)"
-          ContinueOnError="true" />
+          WorkingDirectory="$(BundleDirectory)" />
   </Target>
 </Project>
