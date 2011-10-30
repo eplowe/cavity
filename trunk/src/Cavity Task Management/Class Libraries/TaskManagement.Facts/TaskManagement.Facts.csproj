@@ -16,7 +16,15 @@
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.TaskManagement.Abstractions">
+      <HintPath>..\..\packages\Cavity.TaskManagement.Abstractions.1.1.0.680\lib\$(TargetFrameworkVersionName)\Cavity.TaskManagement.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
@@ -25,7 +33,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Cavity.TaskManagement.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+    <Compile Include="Configuration\TaskManagementExtension.Facts.cs" />
+    <Compile Include="Configuration\TaskManagementExtensionCollection.Facts.cs" />
+    <Compile Include="Configuration\TaskManagementSettings.Facts.cs" />
+    <Compile Include="Diagnostics\TaskCounter.Facts.cs" />
+    <Compile Include="Diagnostics\TaskManagementEventLog.Facts.cs" />
+    <Compile Include="IO\FileReceiver`1.Facts.cs" />
+    <Compile Include="IO\IReceiveFile.Facts.cs" />
+    <Compile Include="Models\FileProcessor.Derived.cs" />
+    <Compile Include="Models\FileProcessor.Facts.cs" />
+    <Compile Include="Models\IProcessFile.Dummy.cs" />
+    <Compile Include="Models\IProcessFile.Facts.cs" />
+    <Compile Include="Threading\StandardTask.Derived.cs" />
+    <Compile Include="Threading\StandardTask.Facts.cs" />
+    <Compile Include="Threading\TaskManager.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />

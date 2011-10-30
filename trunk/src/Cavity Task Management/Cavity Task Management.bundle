@@ -6,8 +6,8 @@
     <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
   </ImportGroup>
   <PropertyGroup>
-    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\Cavity.Testing.Repository lib</ZipLibDirectory>
-    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\Cavity.Testing.Repository src</ZipSrcDirectory>
+    <ZipLibDirectory>$(MSBuildProjectDirectory)\..\Cavity.TaskManagement lib</ZipLibDirectory>
+    <ZipSrcDirectory>$(MSBuildProjectDirectory)\..\Cavity.TaskManagement src</ZipSrcDirectory>
   </PropertyGroup>
   <Target Name="Run">
     <ItemGroup>
@@ -19,9 +19,7 @@
     <CallTarget Targets="Zip Source" />
   </Target>
   <Target Name="Copy Output">
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Testing.Repository\bin\Release net35 AnyCPU\Cavity.Testing.Repository.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Testing.Repository\bin\Release net40 AnyCPU\Cavity.Testing.Repository.dll"
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\TaskManagement\bin\Release net40 AnyCPU\Cavity.TaskManagement.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40" />
   </Target>
   <Target Name="Zip Output">
@@ -39,7 +37,7 @@
     </ItemGroup>
     <MSBuild.Community.Tasks.Zip Files="@(OutputFiles)"
                                  WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Testing.Repository [lib].zip"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.TaskManagement [lib].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipLibDirectory)"
                Condition="Exists('$(ZipLibDirectory)')" />
@@ -60,7 +58,7 @@
     </ItemGroup>
     <MSBuild.Community.Tasks.Zip Files="@(SourceFiles)"
                                  WorkingDirectory="$(MSBuildProjectDirectory)"
-                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.Testing.Repository [src].zip"
+                                 ZipFileName="$(MSBuildProjectDirectory)\Cavity.TaskManagement [src].zip"
                                  ZipLevel="9" />
     <RemoveDir Directories="$(ZipSrcDirectory)"
                Condition="Exists('$(ZipSrcDirectory)')"
