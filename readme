@@ -1,16 +1,28 @@
 To build the source code, please install:
 
-NuGet
-	http://nuget.org/
+[All]
 
-MSBuild Community Tasks
-	http://msbuildtasks.tigris.org/
+	Cavity MSBuild Extensions
+		http://code.google.com/p/cavity/downloads/list
 
-MSBuild Extension Pack
-	http://msbuildextensionpack.codeplex.com/
+	WiX 3.5
+		http://wix.sourceforge.net/
 
-Cavity MSBuild Extensions
-	http://code.google.com/p/cavity/downloads/list
+[Visual Studio]
 
-CollabNet Subversion Command-Line Client
-	http://www.collab.net/downloads/subversion/
+	NuGet
+		http://nuget.org/
+
+[Command Line]
+
+	NuGet.exe
+		http://docs.nuget.org/docs/creating-packages/creating-and-publishing-a-package
+
+	MSBuild Community Tasks
+		http://msbuildtasks.tigris.org/
+
+	MSBuild Extension Pack
+		http://msbuildextensionpack.codeplex.com/
+
+	CollabNet Subversion Command-Line Client
+		http://www.collab.net/downloads/subversion/
