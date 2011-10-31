@@ -3,12 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Service", "Windows Services\TaskManagement.Service\TaskManagement.Service.csproj", "{6E1FEB48-28DE-49E6-83BD-08D272F8C43E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TaskManagement.EventLog.Messages", "Static Libraries\TaskManagement.EventLog.Messages\TaskManagement.EventLog.Messages.vcxproj", "{F808F3EF-9B52-A754-2BD6-4DEFB359D01A}"
-EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "TaskManagement.Setup", "Installation\TaskManagement.Setup\TaskManagement.Setup.wixproj", "{457910BD-90A1-420D-927A-A22091CCB8AD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6E1FEB48-28DE-49E6-83BD-08D272F8C43E} = {6E1FEB48-28DE-49E6-83BD-08D272F8C43E}
-		{F808F3EF-9B52-A754-2BD6-4DEFB359D01A} = {F808F3EF-9B52-A754-2BD6-4DEFB359D01A}
 	EndProjectSection
 EndProject
 Global
@@ -31,16 +28,6 @@ Global
 		{6E1FEB48-28DE-49E6-83BD-08D272F8C43E}.Release|Win32.ActiveCfg = Release|x64
 		{6E1FEB48-28DE-49E6-83BD-08D272F8C43E}.Release|x86.ActiveCfg = Release|x86
 		{6E1FEB48-28DE-49E6-83BD-08D272F8C43E}.Release|x86.Build.0 = Release|x86
-		{F808F3EF-9B52-A754-2BD6-4DEFB359D01A}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{F808F3EF-9B52-A754-2BD6-4DEFB359D01A}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{F808F3EF-9B52-A754-2BD6-4DEFB359D01A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{F808F3EF-9B52-A754-2BD6-4DEFB359D01A}.Debug|Win32.Build.0 = Debug|Win32
-		{F808F3EF-9B52-A754-2BD6-4DEFB359D01A}.Debug|x86.ActiveCfg = Debug|Win32
-		{F808F3EF-9B52-A754-2BD6-4DEFB359D01A}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{F808F3EF-9B52-A754-2BD6-4DEFB359D01A}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{F808F3EF-9B52-A754-2BD6-4DEFB359D01A}.Release|Win32.ActiveCfg = Release|Win32
-		{F808F3EF-9B52-A754-2BD6-4DEFB359D01A}.Release|Win32.Build.0 = Release|Win32
-		{F808F3EF-9B52-A754-2BD6-4DEFB359D01A}.Release|x86.ActiveCfg = Release|Win32
 		{457910BD-90A1-420D-927A-A22091CCB8AD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{457910BD-90A1-420D-927A-A22091CCB8AD}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{457910BD-90A1-420D-927A-A22091CCB8AD}.Debug|Win32.ActiveCfg = Debug|x86

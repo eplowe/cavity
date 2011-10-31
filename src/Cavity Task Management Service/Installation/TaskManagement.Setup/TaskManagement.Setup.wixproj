@@ -31,63 +31,30 @@
       <Name>WixUtilExtension</Name>
     </WixExtension>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Cavity.TaskManagement.EventLog.Messages.lib" />
+  </ItemGroup>
   <PropertyGroup>
     <ServiceOutputDirectory>$(SolutionDir)Windows Services\TaskManagement.Service\$(OutputPath)\</ServiceOutputDirectory>
-    <StaticOutputDirectory>$(SolutionDir)Static Libraries\TaskManagement.EventLog.Messages\bin\</StaticOutputDirectory>
   </PropertyGroup>
   <Target Name="Copy Libraries" BeforeTargets="Compile">
-  <Message Text="SolutionDir = $(SolutionDir)"/>
-    <Copy SourceFiles="$(StaticOutputDirectory)Cavity.TaskManagement.EventLog.Messages.lib"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)Castle.Core.dll"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)Castle.Windsor.dll"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)castle.config"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.Core.dll"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.Diagnostics.Log4Net.dll"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.ServiceLocation.dll"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.ServiceLocation.CastleWindsor.dll"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.dll"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.dll.config"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.Abstractions.dll"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.Service.exe"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.Service.exe.config"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)CommonServiceLocator.WindsorAdapter.dll"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)log4net.dll"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)log4net.config"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(ServiceOutputDirectory)Microsoft.Practices.ServiceLocation.dll"
-          DestinationFolder="obj"
-          SkipUnchangedFiles="false" />
+    <Message Text="SolutionDir = $(SolutionDir)" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Castle.Core.dll" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Castle.Windsor.dll" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)castle.config" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.Core.dll" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.Diagnostics.Log4Net.dll" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.ServiceLocation.dll" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.ServiceLocation.CastleWindsor.dll" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.dll" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.dll.config" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.Abstractions.dll" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.Service.exe" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Cavity.TaskManagement.Service.exe.config" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)CommonServiceLocator.WindsorAdapter.dll" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)log4net.dll" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)log4net.config" DestinationFolder="obj" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(ServiceOutputDirectory)Microsoft.Practices.ServiceLocation.dll" DestinationFolder="obj" SkipUnchangedFiles="false" />
   </Target>
   <!-- Target Name="Clean Folders" AfterTargets="Clean">
     <RemoveDir Condition="Exists('$(ProjectDir)bin')"
