@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
-  <Product Id="6442166c-81bb-4117-bcfc-036f5dff277a" Name="Cavity Task Management" Language="1033" Version="1.1.0.696" Manufacturer="Alan Dean" UpgradeCode="d3c6a801-9e05-4bd1-9c35-bc44c426d1c7">
+  <Product Id="6442166c-81bb-4117-bcfc-036f5dff277a" Name="Cavity Task Management" Language="1033" Version="1.1.0.700" Manufacturer="Alan Dean" UpgradeCode="d3c6a801-9e05-4bd1-9c35-bc44c426d1c7">
     <Package InstallerVersion="200" InstallScope="perMachine" Compressed="yes" Description="Installs Cavity Task Management." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <Directory Id="TARGETDIR" Name="SourceDir">
@@ -9,7 +9,7 @@
           <Directory Id="CommonCompany" Name="Cavity">
             <Directory Id="CommonTaskManagement" Name="Task Management">
               <Component Id="EventLog" Guid="3c6164ee-6378-4681-b891-2b81c60db682">
-                <File Id="Messages" KeyPath="yes" Name="Cavity.TaskManagement.EventLog.Messages.lib" Source="obj\Cavity.TaskManagement.EventLog.Messages.lib" />
+                <File Id="Messages" KeyPath="yes" Name="Cavity.TaskManagement.EventLog.Messages.lib" Source="Cavity.TaskManagement.EventLog.Messages.lib" />
                 <util:EventSource Log="Cavity" Name="Task Management" CategoryCount="2" CategoryMessageFile="[#Messages]" EventMessageFile="[#Messages]" ParameterMessageFile="[#Messages]" />
               </Component>
             </Directory>
