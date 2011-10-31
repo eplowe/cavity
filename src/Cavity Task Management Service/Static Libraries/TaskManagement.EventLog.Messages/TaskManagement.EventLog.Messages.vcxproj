@@ -41,7 +41,8 @@
           WorkingDirectory="$(ProjectDir)obj" />
     <Message Text="VCINSTALLDIR = $(VCINSTALLDIR)" />
     <Exec Command="&quot;$(VCINSTALLDIR)bin\LINK&quot; -dll -noentry -machine:X86 -out:&quot;$(ProjectDir)obj\$(LibraryName)&quot; Messages.res"
-          WorkingDirectory="$(ProjectDir)obj" />
+          WorkingDirectory="$(ProjectDir)obj"
+          ContinueOnError="true" />
     <Copy SourceFiles="$(ProjectDir)obj\$(LibraryName)"
           DestinationFolder="$(ProjectDir)bin"
           OverwriteReadOnlyFiles="true" />
