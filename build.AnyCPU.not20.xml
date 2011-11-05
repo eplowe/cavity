@@ -3,20 +3,20 @@
          DefaultTargets="Rebuild"
          ToolsVersion="4.0">
   <ItemGroup>
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Diagnostics log4net\Cavity Diagnostics log4net.sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Domain (Royal Mail)\Cavity Domain (Royal Mail).sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity HTTP Client\Cavity HTTP Client.sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity HTTP Testing\Cavity HTTP Testing.sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Repository\Cavity Repository.sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Repository (XML File System)\Cavity Repository (XML File System).sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Repository Testing\Cavity Repository Testing.sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Unit Testing\Cavity Unit Testing.sln" />
+  	<Solutions Include="Cavity Diagnostics log4net" />
+  	<Solutions Include="Cavity Domain (Royal Mail)" />
+  	<Solutions Include="Cavity HTTP Client" />
+  	<Solutions Include="Cavity HTTP Testing" />
+  	<Solutions Include="Cavity Repository" />
+  	<Solutions Include="Cavity Repository (XML File System)" />
+  	<Solutions Include="Cavity Repository Testing" />
+  	<Solutions Include="Cavity Unit Testing" />
   </ItemGroup>
   <Target Name="Rebuild">
-    <MSBuild Projects="%(Solutions.Identity)"
+    <MSBuild Projects="$(MSBuildProjectDirectory)\src\%(Solutions.Identity)\%(Solutions.Identity).sln"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);TargetFrameworkVersion=v3.5" />
-    <MSBuild Projects="%(Solutions.Identity)"
+    <MSBuild Projects="$(MSBuildProjectDirectory)\src\%(Solutions.Identity)\%(Solutions.Identity).sln"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);TargetFrameworkVersion=v4.0" />
   </Target>
