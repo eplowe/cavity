@@ -5,7 +5,7 @@
     <AssemblyName>Cavity.Testing.Http</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Net\HttpExpectations.cs" />
     <Compile Include="Net\HttpHeadTest.cs" />

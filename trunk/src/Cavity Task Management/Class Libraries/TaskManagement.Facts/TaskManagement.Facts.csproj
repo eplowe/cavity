@@ -16,7 +16,7 @@
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="Cavity.Core">
@@ -38,7 +38,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Configuration\TaskManagementExtension.Facts.cs" />
     <Compile Include="Configuration\TaskManagementExtensionCollection.Facts.cs" />
     <Compile Include="Configuration\TaskManagementSettings.Facts.cs" />
