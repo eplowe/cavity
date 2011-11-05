@@ -3,17 +3,17 @@
          DefaultTargets="Rebuild"
          ToolsVersion="4.0">
   <ItemGroup>
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Commands Transactions\Cavity Commands Transactions.sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (Autofac)\Cavity Service Location (Autofac).sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (Castle Windsor)\Cavity Service Location (Castle Windsor).sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (StructureMap)\Cavity Service Location (StructureMap).sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (Unity)\Cavity Service Location (Unity).sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Task Management\Cavity Task Management.sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Task Management Abstractions\Cavity Task Management Abstractions.sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Task Management Service\Cavity Task Management Service.sln" />
+  	<Solutions Include="Cavity Commands Transactions" />
+  	<Solutions Include="Cavity Service Location (Autofac)" />
+  	<Solutions Include="Cavity Service Location (Castle Windsor)" />
+  	<Solutions Include="Cavity Service Location (StructureMap)" />
+  	<Solutions Include="Cavity Service Location (Unity)" />
+  	<Solutions Include="Cavity Task Management" />
+  	<Solutions Include="Cavity Task Management Abstractions" />
+  	<Solutions Include="Cavity Task Management Service" />
   </ItemGroup>
   <Target Name="Rebuild">
-    <MSBuild Projects="%(Solutions.Identity)"
+    <MSBuild Projects="$(MSBuildProjectDirectory)\src\%(Solutions.Identity)\%(Solutions.Identity).sln"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);TargetFrameworkVersion=v4.0" />
   </Target>

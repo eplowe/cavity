@@ -3,24 +3,24 @@
          DefaultTargets="Rebuild"
          ToolsVersion="4.0">
   <ItemGroup>
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Commands\Cavity Commands.sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Commands (File System)\Cavity Commands (File System).sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Core\Cavity Core.sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Data (ACE)\Cavity Data (ACE).sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Data (CSV)\Cavity Data (CSV).sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Domain\Cavity Domain.sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity MSBuild (Compliance)\Cavity MSBuild (Compliance).sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity MSBuild (Domain)\Cavity MSBuild (Domain).sln" />
-  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Service Location\Cavity Service Location.sln" />
+  	<Solutions Include="Cavity Commands" />
+  	<Solutions Include="Cavity Commands (File System)" />
+  	<Solutions Include="Cavity Core" />
+  	<Solutions Include="Cavity Data (ACE)" />
+  	<Solutions Include="Cavity Data (CSV)" />
+  	<Solutions Include="Cavity Domain" />
+  	<Solutions Include="Cavity MSBuild (Compliance)" />
+  	<Solutions Include="Cavity MSBuild (Domain)" />
+  	<Solutions Include="Cavity Service Location" />
   </ItemGroup>
   <Target Name="Rebuild">
-    <MSBuild Projects="%(Solutions.Identity)"
+    <MSBuild Projects="$(MSBuildProjectDirectory)\src\%(Solutions.Identity)\%(Solutions.Identity).sln"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);TargetFrameworkVersion=v2.0" />
-    <MSBuild Projects="%(Solutions.Identity)"
+    <MSBuild Projects="$(MSBuildProjectDirectory)\src\%(Solutions.Identity)\%(Solutions.Identity).sln"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);TargetFrameworkVersion=v3.5" />
-    <MSBuild Projects="%(Solutions.Identity)"
+    <MSBuild Projects="$(MSBuildProjectDirectory)\src\%(Solutions.Identity)\%(Solutions.Identity).sln"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);TargetFrameworkVersion=v4.0" />
   </Target>
