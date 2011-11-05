@@ -5,7 +5,7 @@
     <AssemblyName>Cavity.Http.Client</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Net\Http.cs" />
     <Compile Include="Net\HttpClient.cs" />
     <Compile Include="Net\HttpDate.cs" />
@@ -36,7 +36,7 @@
     <Compile Include="Text\TextPlain.cs" />
     <Compile Include="Xml\ApplicationXml.cs" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(Platform)' == 'AnyCPU' and '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Cavity.Core">
       <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
