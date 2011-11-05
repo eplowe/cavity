@@ -8,8 +8,13 @@
     public sealed class RandomObject : ComparableObject
     {
         public RandomObject()
+            : this(DateTime.UtcNow.Ticks)
         {
-            Value = DateTime.UtcNow.Ticks;
+        }
+
+        public RandomObject(long value)
+        {
+            Value = value;
         }
 
         [XmlAttribute("value")]

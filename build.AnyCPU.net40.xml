@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="Rebuild"
+         ToolsVersion="4.0">
+  <ItemGroup>
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Commands Transactions\Cavity Commands Transactions.sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (Autofac)\Cavity Service Location (Autofac).sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (Castle Windsor)\Cavity Service Location (Castle Windsor).sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (StructureMap)\Cavity Service Location (StructureMap).sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Service Location (Unity)\Cavity Service Location (Unity).sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Task Management\Cavity Task Management.sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Task Management Abstractions\Cavity Task Management Abstractions.sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Task Management Service\Cavity Task Management Service.sln" />
+  </ItemGroup>
+  <Target Name="Rebuild">
+    <MSBuild Projects="%(Solutions.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);TargetFrameworkVersion=v4.0" />
+  </Target>
+</Project>

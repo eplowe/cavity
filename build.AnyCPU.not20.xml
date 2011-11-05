@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="Rebuild"
+         ToolsVersion="4.0">
+  <ItemGroup>
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Diagnostics log4net\Cavity Diagnostics log4net.sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Domain (Royal Mail)\Cavity Domain (Royal Mail).sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity HTTP Client\Cavity HTTP Client.sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity HTTP Testing\Cavity HTTP Testing.sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Repository\Cavity Repository.sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Repository (XML File System)\Cavity Repository (XML File System).sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Repository Testing\Cavity Repository Testing.sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Unit Testing\Cavity Unit Testing.sln" />
+  </ItemGroup>
+  <Target Name="Rebuild">
+    <MSBuild Projects="%(Solutions.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);TargetFrameworkVersion=v3.5" />
+    <MSBuild Projects="%(Solutions.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);TargetFrameworkVersion=v4.0" />
+  </Target>
+</Project>

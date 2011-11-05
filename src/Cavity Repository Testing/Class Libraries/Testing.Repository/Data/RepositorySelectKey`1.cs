@@ -43,10 +43,8 @@
                 {
                     return;
                 }
-                else
-                {
-                    throw new RepositoryTestException(Resources.Repository_ExpectCorrectRecordValue_ExceptionMessage.FormatWith("Select", "value"));
-                }
+
+                throw new RepositoryTestException(Resources.Repository_ExpectCorrectRecordValue_ExceptionMessage.FormatWith("Select", "value"));
             }
 
             if (!Record1.Value.Equals(record.Value))
