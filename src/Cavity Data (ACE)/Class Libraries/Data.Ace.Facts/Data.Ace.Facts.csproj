@@ -5,7 +5,7 @@
     <AssemblyName>Cavity.Data.Ace.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(Platform)' == 'x64' and '$(CommandLineBuild)' != 'true' ">
+  <ItemGroup Condition=" '$(CommandLineBuild)' != 'true' ">
     <Compile Include="Data\ExcelFile.Facts.cs" />
     <Compile Include="Data\ExcelWorksheet.Facts.cs" />
   </ItemGroup>
@@ -49,7 +49,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\MixedCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <!--

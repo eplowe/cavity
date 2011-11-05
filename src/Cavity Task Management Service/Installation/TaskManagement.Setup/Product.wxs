@@ -2,14 +2,37 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <?define StaticOutputDirectory = "$(var.SolutionDir)Static Libraries\TaskManagement.EventLog.Messages\$(var.Configuration)\" ?>
   <?define ServiceOutputDirectory = "$(var.SolutionDir)Windows Services\TaskManagement.Service\bin\$(var.Configuration) NET40 $(var.Platform)\" ?>
-  <Product Id="6442166c-81bb-4117-bcfc-036f5dff277a" Name="Cavity Task Management" Language="1033" Version="1.1.0.707" Manufacturer="Alan Dean" UpgradeCode="d3c6a801-9e05-4bd1-9c35-bc44c426d1c7">
+  <?if $(var.Platform) = x64 ?>
+  <?define ProductName = "Cavity Task Management (x64)" ?>
+  <?define DisplayName = "Cavity Task Management (x64)" ?>
+  <?define ServiceName = "CavityTaskManagement64" ?>
+  <?define ProductId = "69cef711-4b73-40de-8c6b-c9bcf3bc1cb2" ?>
+  <?define ProductUpgradeCode = "d796a13f-5f28-49a2-8883-9368677fa864" ?>
+  <?define DirectoryId = "ProgramFiles64Folder" ?>
+  <?define EventLogGuid = "fc4f3aaa-acb2-41a9-9104-5e97b2a0e548" ?>
+  <?define PerformanceCountersGuid = "ea5fb002-8e4c-433a-a504-79452bb1d19a" ?>
+  <?define ServiceGuid = "f5f823ca-afa5-4e27-83cf-d203b4bf54a2" ?>
+  <?define ServiceConfigGuid = "f6edba7a-85ea-44cb-910b-fd46577db39e" ?>
+  <?else ?>
+  <?define ProductName = "Cavity Task Management" ?>
+  <?define DisplayName = "Cavity Task Management" ?>
+  <?define ServiceName = "CavityTaskManagement" ?>
+  <?define ProductId = "6442166c-81bb-4117-bcfc-036f5dff277a" ?>
+  <?define ProductUpgradeCode = "d3c6a801-9e05-4bd1-9c35-bc44c426d1c7" ?>
+  <?define DirectoryId = "ProgramFilesFolder" ?>
+  <?define EventLogGuid = "3c6164ee-6378-4681-b891-2b81c60db682" ?>
+  <?define PerformanceCountersGuid = "e7f677b4-55dd-42a6-839c-98a7bf4d8d4e" ?>
+  <?define ServiceGuid = "1d8762a5-3916-46a3-80b6-64f967525150" ?>
+  <?define ServiceConfigGuid = "13dcbf4e-2f0f-41b6-be32-05f87ae1af0e" ?>
+  <?endif ?>
+  <Product Id="$(var.ProductId)" Name="$(var.ProductName)" Language="1033" Version="1.1.0.709" Manufacturer="Alan Dean" UpgradeCode="$(var.ProductUpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" Compressed="yes" Description="Installs Cavity Task Management." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFilesFolder">
+      <Directory Id="$(var.DirectoryId)">
         <Directory Id="Common" Name="Common Files">
           <Directory Id="CommonCompany" Name="Cavity">
-            <Component Id="EventLog" Guid="3c6164ee-6378-4681-b891-2b81c60db682">
+            <Component Id="EventLog" Guid="$(var.EventLogGuid)">
               <File Id="Messages" KeyPath="yes" Name="Cavity.TaskManagement.EventLog.Messages.lib" Source="$(var.StaticOutputDirectory)TaskManagement.EventLog.Messages.lib" />
               <util:EventSource Log="Cavity" Name="Task Management" CategoryCount="2" CategoryMessageFile="[#Messages]" EventMessageFile="[#Messages]" ParameterMessageFile="[#Messages]" />
             </Component>
@@ -17,13 +40,13 @@
         </Directory>
         <Directory Id="Company" Name="Cavity">
           <Directory Id="INSTALLLOCATION" Name="Task Management">
-            <Component Id="PerformanceCounters" Guid="e7f677b4-55dd-42a6-839c-98a7bf4d8d4e" KeyPath="yes">
+            <Component Id="PerformanceCounters" Guid="$(var.PerformanceCountersGuid)" KeyPath="yes">
               <util:PerformanceCategory Id="CavityCategory" Name="Cavity" Help="Cavity Performance Counters" MultiInstance="no">
                 <util:PerformanceCounter Name="Commands/sec" Help="The number of commands executed per second" Type="rateOfCountsPerSecond32" />
                 <util:PerformanceCounter Name="Tasks/sec" Help="The number of tasks executed per second" Type="rateOfCountsPerSecond32" />
               </util:PerformanceCategory>
             </Component>
-            <Component Id="Service" Guid="1d8762a5-3916-46a3-80b6-64f967525150">
+            <Component Id="Service" Guid="$(var.ServiceGuid)">
               <File Id="CastleCore" Name="Castle.Core.dll" Source="$(var.ServiceOutputDirectory)Castle.Core.dll" />
               <File Id="CastleWindsor" Name="Castle.Windsor.dll" Source="$(var.ServiceOutputDirectory)Castle.Windsor.dll" />
               <File Id="CavityCore" Name="Cavity.Core.dll" Source="$(var.ServiceOutputDirectory)Cavity.Core.dll" />
@@ -36,10 +59,10 @@
               <File Id="CommonServiceLocatorWindsorAdapter" Name="CommonServiceLocator.WindsorAdapter.dll" Source="$(var.ServiceOutputDirectory)CommonServiceLocator.WindsorAdapter.dll" />
               <File Id="log4net" Name="log4net.dll" Source="$(var.ServiceOutputDirectory)log4net.dll" />
               <File Id="MicrosoftPracticesServiceLocation" Name="Microsoft.Practices.ServiceLocation.dll" Source="$(var.ServiceOutputDirectory)Microsoft.Practices.ServiceLocation.dll" />
-              <ServiceInstall Id="CavityTaskManagementServiceInstall" Name="CavityTaskManagement" DisplayName="Cavity Task Management" Description="Provides a pluggable task management service." ErrorControl="normal" Start="auto" Type="ownProcess" Account="[SERVICEACCOUNT]" Password="[SERVICEPASSWORD]" Vital="yes" />
-              <ServiceControl Id="CavityTaskManagementServiceControl" Name="CavityTaskManagement" Remove="uninstall" Start="install" Stop="both" Wait="yes" />
+              <ServiceInstall Id="CavityTaskManagementServiceInstall" Name="$(var.ServiceName)" DisplayName="$(var.DisplayName)" Description="Provides a pluggable task management service." ErrorControl="normal" Start="auto" Type="ownProcess" Account="[SERVICEACCOUNT]" Password="[SERVICEPASSWORD]" Vital="yes" />
+              <ServiceControl Id="CavityTaskManagementServiceControl" Name="$(var.ServiceName)" Remove="uninstall" Start="install" Stop="both" Wait="yes" />
             </Component>
-            <Component Id="ServiceConfig" Guid="13dcbf4e-2f0f-41b6-be32-05f87ae1af0e" Permanent="yes">
+            <Component Id="ServiceConfig" Guid="$(var.ServiceConfigGuid)" Permanent="yes">
               <File Id="CastleConfig" Name="castle.config" Source="$(var.ServiceOutputDirectory)castle.config" />
               <File Id="CavityTaskManagementConfig" Name="Cavity.TaskManagement.dll.config" Source="$(var.ServiceOutputDirectory)Cavity.TaskManagement.dll.config" />
               <File Id="CavityTaskManagementServiceConfig" Name="Cavity.TaskManagement.Service.exe.config" Source="$(var.ServiceOutputDirectory)Cavity.TaskManagement.Service.exe.config" />

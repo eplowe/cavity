@@ -8,7 +8,7 @@
   <PropertyGroup>
     <ServiceLocation>false</ServiceLocation>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(Platform)' == 'x64' or '$(Platform)' == 'x86' ">
+  <ItemGroup>
     <Compile Include="Data\Excel.cs" />
     <Compile Include="Data\ExcelFile.cs" />
     <Compile Include="Data\ExcelWorksheet.cs" />
