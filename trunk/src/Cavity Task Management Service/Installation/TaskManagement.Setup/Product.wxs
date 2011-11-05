@@ -25,7 +25,7 @@
   <?define ServiceGuid = "1d8762a5-3916-46a3-80b6-64f967525150" ?>
   <?define ServiceConfigGuid = "13dcbf4e-2f0f-41b6-be32-05f87ae1af0e" ?>
   <?endif ?>
-  <Product Id="$(var.ProductId)" Name="$(var.ProductName)" Language="1033" Version="1.1.0.709" Manufacturer="Alan Dean" UpgradeCode="$(var.ProductUpgradeCode)">
+  <Product Id="$(var.ProductId)" Name="$(var.ProductName)" Language="1033" Version="1.1.0.711" Manufacturer="Alan Dean" UpgradeCode="$(var.ProductUpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" Compressed="yes" Description="Installs Cavity Task Management." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <Directory Id="TARGETDIR" Name="SourceDir">

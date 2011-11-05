@@ -8,6 +8,9 @@
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cavity.TaskManagement">
+      <HintPath>..\..\packages\Cavity.TaskManagement.1.1.0.711\lib\net40\Cavity.TaskManagement.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.ServiceProcess" />
@@ -28,9 +31,6 @@
     </Reference>
     <Reference Include="Cavity.ServiceLocation.CastleWindsor">
       <HintPath>..\..\packages\Cavity.ServiceLocation.CastleWindsor.1.1.0.491\lib\net40\Cavity.ServiceLocation.CastleWindsor.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.TaskManagement">
-      <HintPath>..\..\packages\Cavity.TaskManagement.1.1.0.694\lib\net40\Cavity.TaskManagement.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.TaskManagement.Abstractions">
       <HintPath>..\..\packages\Cavity.TaskManagement.Abstractions.1.1.0.694\lib\net40\Cavity.TaskManagement.Abstractions.dll</HintPath>

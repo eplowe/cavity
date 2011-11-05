@@ -69,9 +69,9 @@
 
 *1.1.0.694* Cavity Task Management Abstractions
 
-*1.1.0.694* Cavity Task Management
+*1.1.0.711* Cavity Task Management
  * Cavity.Core
- * Cavity Task Management Abstractions
+ * Cavity.!TaskManagement.Abstractions
 
 *1.1.0.___* Cavity MSBuild (Domain)
  * Cavity.Core
