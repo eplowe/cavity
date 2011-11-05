@@ -34,9 +34,6 @@
     <MSBuild Projects="$(MSBuildProjectDirectory)\build.x64.xml"
              Targets="Rebuild"
              Properties="$(MSBuildProperties)" />
-    <MSBuild Projects="$(MSBuildProjectDirectory)\build.x86.xml"
-             Targets="Rebuild"
-             Properties="$(MSBuildProperties)" />
     <MSBuild Projects="$(MSBuildProjectDirectory)\build.x86.net40.xml"
              Targets="Rebuild"
              Properties="$(MSBuildProperties)" />
