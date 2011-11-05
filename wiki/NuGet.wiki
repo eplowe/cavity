@@ -1,0 +1,78 @@
+#summary The map of pushed NuGet versions
+
+1.1.0.438	Cavity.Testing.Unit
+
+1.1.0.438	Cavity log4net trace listener
+
+1.1.0.438	Cavity.ServiceLocation
+
+1.1.0.491	Cavity Service Location (Autofac)
+			* Autofac.CommonServiceLocator
+			* Cavity.Core
+			* Cavity.ServiceLocation
+
+1.1.0.491	Cavity.ServiceLocation.CastleWindsor
+			* Cavity.Core
+			* Cavity.ServiceLocation
+			* CommonServiceLocator.WindsorAdapter
+
+1.1.0.491	Cavity.ServiceLocation.StructureMap
+			* Cavity.Core
+			* Cavity.ServiceLocation
+			* CommonServiceLocator.StructureMapAdapter
+
+1.1.0.491	Cavity.ServiceLocation.Unity
+			* Cavity.Core
+			* Cavity.ServiceLocation
+			* CommonServiceLocator.UnityAdapter
+
+1.1.0.587	Cavity.Core
+
+1.1.0.587	Cavity MSBuild (Compliance)
+			* Cavity.Core
+
+1.1.0.589	Cavity.Data.Ace.x64
+1.1.0.589	Cavity.Data.Ace.x86
+			* Cavity.Core
+
+1.1.0.589	Cavity.Data.Csv
+			* Cavity.Core
+
+1.1.0.591	Cavity.Domain
+			* Cavity.Data.Csv
+				* Cavity.Core
+
+1.1.0.591	Cavity.Domain.RoyalMail
+			* Cavity.Data.Csv
+				* Cavity.Core
+
+1.1.0.636	Cavity Commands
+			* Cavity.Core
+
+1.1.0.637	Cavity Commands (File System)
+			* Cavity.Commands
+				* Cavity.Core
+
+1.1.0.642	Cavity Commands Transactions
+			* Cavity.Commands
+				* Cavity.Core
+
+1.1.0.645	Cavity Repository
+			* Cavity.Core
+
+1.1.0.650	Cavity Repository Testing
+			* Cavity.Repository
+				* Cavity.Core
+
+1.1.0.658	Cavity Repository (XML File System)
+			* Cavity.Repository
+				* Cavity.Core
+
+1.1.0.694	Cavity Task Management Abstractions
+
+1.1.0.694	Cavity Task Management
+			* Cavity.Core
+			* Cavity Task Management Abstractions
+
+1.1.0.___	Cavity MSBuild (Domain)
+			* Cavity.Core
