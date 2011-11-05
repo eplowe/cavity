@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="Rebuild"
+         ToolsVersion="4.0">
+  <ItemGroup>
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Data (ACE)\Cavity Data (ACE).sln" />
+  </ItemGroup>
+  <Target Name="Rebuild">
+    <MSBuild Projects="%(Solutions.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);TargetFrameworkVersion=v2.0;Platform=x86" />
+    <MSBuild Projects="%(Solutions.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);TargetFrameworkVersion=v3.5;Platform=x86" />
+    <MSBuild Projects="%(Solutions.Identity)"
+             Targets="Rebuild"
+             Properties="$(MSBuildProperties);TargetFrameworkVersion=v4.0;Platform=x86" />
+  </Target>
+</Project>

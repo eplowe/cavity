@@ -177,7 +177,7 @@
                 .Returns(obj.Record1.Urn);
             record
                 .SetupGet(x => x.Value)
-                .Returns(new RandomObject());
+                .Returns(new RandomObject(123));
             repository
                 .Setup(x => x.Select(obj.Record1.Urn))
                 .Returns(record.Object)
