@@ -11,6 +11,7 @@
   	<Solutions Include="Cavity Task Management" />
   	<Solutions Include="Cavity Task Management Abstractions" />
   	<Solutions Include="Cavity Task Management Service" />
+  	<Solutions Include="Cavity Test Controller Abstractions" />
   </ItemGroup>
   <Target Name="Rebuild">
     <MSBuild Projects="$(MSBuildProjectDirectory)\src\%(Solutions.Identity)\%(Solutions.Identity).sln"
