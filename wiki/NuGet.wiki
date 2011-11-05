@@ -31,8 +31,7 @@
 *1.1.0.587* Cavity MSBuild (Compliance)
  * Cavity.Core
 
-*1.1.0.589* Cavity.Data.Ace.x64
-*1.1.0.589* Cavity.Data.Ace.x86
+*1.1.0.709* Cavity.Data.Ace
  * Cavity.Core
 
 *1.1.0.589* Cavity.Data.Csv
