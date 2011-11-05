@@ -3,17 +3,17 @@
          DefaultTargets="Run"
          ToolsVersion="4.0">
   <Target Name="Run">
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net20 AnyCPU\Cavity.Data.Ace.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net20\x86" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net35 AnyCPU\Cavity.Data.Ace.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35\x86" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net40 AnyCPU\Cavity.Data.Ace.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40\x86" />
     <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net20 x64\Cavity.Data.Ace.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net20\x64" />
     <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net35 x64\Cavity.Data.Ace.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35\x64" />
     <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net40 x64\Cavity.Data.Ace.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40\x64" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net20 x86\Cavity.Data.Ace.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net20\x86" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net35 x86\Cavity.Data.Ace.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net35\x86" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Ace\bin\Release net40 x86\Cavity.Data.Ace.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40\x86" />
   </Target>
 </Project>

@@ -6,6 +6,7 @@
   	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Commands\Cavity Commands.sln" />
   	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Commands (File System)\Cavity Commands (File System).sln" />
   	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Core\Cavity Core.sln" />
+  	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Data (ACE)\Cavity Data (ACE).sln" />
   	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Data (CSV)\Cavity Data (CSV).sln" />
   	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Domain\Cavity Domain.sln" />
   	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity MSBuild (Compliance)\Cavity MSBuild (Compliance).sln" />

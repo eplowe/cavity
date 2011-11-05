@@ -6,7 +6,7 @@
   	<Solutions Include="$(MSBuildProjectDirectory)\src\Cavity Data (ACE)\Cavity Data (ACE).sln" />
   </ItemGroup>
   <Target Name="Rebuild">
-    <MSBuild Projects="%(Solutions.Identity)"
+    <!-- MSBuild Projects="%(Solutions.Identity)"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);TargetFrameworkVersion=v2.0;Platform=x86" />
     <MSBuild Projects="%(Solutions.Identity)"
@@ -14,6 +14,6 @@
              Properties="$(MSBuildProperties);TargetFrameworkVersion=v3.5;Platform=x86" />
     <MSBuild Projects="%(Solutions.Identity)"
              Targets="Rebuild"
-             Properties="$(MSBuildProperties);TargetFrameworkVersion=v4.0;Platform=x86" />
+             Properties="$(MSBuildProperties);TargetFrameworkVersion=v4.0;Platform=x86" / -->
   </Target>
 </Project>
