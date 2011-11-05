@@ -48,7 +48,7 @@
 
             Watcher = new FileSystemWatcher(drop.FullName, filter)
             {
-                IncludeSubdirectories = false,
+                IncludeSubdirectories = true,
                 EnableRaisingEvents = true,
                 NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName
             };
@@ -145,7 +145,7 @@
             {
                 if (null != Watcher)
                 {
-                    var files = new DirectoryInfo(Watcher.Path).GetFiles(Watcher.Filter, SearchOption.TopDirectoryOnly);
+                    var files = new DirectoryInfo(Watcher.Path).GetFiles(Watcher.Filter, SearchOption.AllDirectories);
                     var file = null == files ? null : files.FirstOrDefault();
                     if (null != file)
                     {
