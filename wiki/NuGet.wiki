@@ -73,5 +73,7 @@
  * Cavity.Core
  * Cavity.!TaskManagement.Abstractions
 
+*1.1.0.715* Cavity Test Controller Abstractions
+
 *1.1.0.___* Cavity MSBuild (Domain)
  * Cavity.Core
