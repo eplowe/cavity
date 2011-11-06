@@ -1,5 +1,6 @@
 ﻿namespace Cavity
 {
+    using System;
     using System.Web;
     using System.Web.Routing;
     using Xunit;
@@ -25,25 +26,18 @@
         }
 
         [Fact]
-        public void op_RegisterRoutes_RouteCollection_rootRoute()
+        public void op_RegisterRoutes_RouteCollection()
         {
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
-            var route = (Route)routes["Root"];
-
-            Assert.Equal(string.Empty, route.Url);
+            Assert.NotEmpty(routes);
         }
 
         [Fact]
-        public void op_RegisterRoutes_RouteCollection_404Route()
+        public void op_RegisterRoutes_RouteCollectionNull()
         {
-            var routes = new RouteCollection();
-            MvcApplication.RegisterRoutes(routes);
-
-            var route = (Route)routes["404"];
-
-            Assert.Equal("*", route.Url);
+            Assert.Throws<ArgumentNullException>(() => MvcApplication.RegisterRoutes(null));
         }
     }
 }

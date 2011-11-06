@@ -2,10 +2,12 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
     using Cavity.Configuration;
+    using Cavity.Web.Routing;
 
     public class MvcApplication : HttpApplication
     {
@@ -23,23 +25,7 @@
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                "Root", 
-                string.Empty, 
-                new
-                {
-                    controller = "Root", 
-                    action = "Redirect"
-                });
-
-            routes.MapRoute(
-                "404",
-                "*",
-                new
-                {
-                    controller = "NotFound",
-                    action = "HtmlRepresentation"
-                });
+            RouteTable.Routes.Register(Assembly.GetExecutingAssembly().GetTypes());
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "The runtime requires this to be an instance member.")]

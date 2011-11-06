@@ -15,11 +15,18 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Static`1.cs" />
+    <Compile Include="IO\WrappedStream.cs" />
+    <Compile Include="Web\Mvc\AllowAttribute.cs" />
+    <Compile Include="Web\Mvc\ContentNegotiationAttribute.cs" />
     <Compile Include="Web\Mvc\TemporaryRedirectResult.cs" />
     <Compile Include="Web\Mvc\FoundResult.cs" />
     <Compile Include="Web\Mvc\MovedPermanentlyResult.cs" />
     <Compile Include="Web\Mvc\RedirectionResult.cs" />
     <Compile Include="Web\Mvc\SeeOtherResult.cs" />
+    <Compile Include="Web\Routing\DateRoute`1.cs" />
+    <Compile Include="Web\Routing\IRegisterRoutes.cs" />
+    <Compile Include="Web\Routing\RouteCollection.ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

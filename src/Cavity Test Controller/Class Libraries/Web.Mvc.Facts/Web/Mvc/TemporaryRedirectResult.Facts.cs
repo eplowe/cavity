@@ -49,6 +49,12 @@
         }
 
         [Fact]
+        public void op_SetCache_HttpCachePolicyBaseNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new TemporaryRedirectResult("/path").SetCache(null));
+        }
+
+        [Fact]
         public void op_SetCache_HttpCachePolicyBase_whenNoExpires()
         {
             var obj = new TemporaryRedirectResult("/path");
@@ -61,12 +67,6 @@
             obj.SetCache(cache.Object);
 
             cache.VerifyAll();
-        }
-
-        [Fact]
-        public void op_SetCache_HttpCachePolicyBaseNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new TemporaryRedirectResult("/path").SetCache(null));
         }
 
         [Fact]
