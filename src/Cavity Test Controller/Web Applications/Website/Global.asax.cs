@@ -24,16 +24,29 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Default",
-                "{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+                "Root", 
+                string.Empty, 
+                new
+                {
+                    controller = "Root", 
+                    action = "Redirect"
+                });
+
+            routes.MapRoute(
+                "404",
+                "*",
+                new
+                {
+                    controller = "NotFound",
+                    action = "HtmlRepresentation"
+                });
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "The runtime requires this to be an instance member.")]
         protected void Application_Start()
         {
             log4net.Config.XmlConfigurator.Configure();
-            Config.ExeSection<ServiceLocation>().Provider.Configure();
+            Config.Section<ServiceLocation>("service.location").Provider.Configure();
 
             AreaRegistration.RegisterAllAreas();
 
