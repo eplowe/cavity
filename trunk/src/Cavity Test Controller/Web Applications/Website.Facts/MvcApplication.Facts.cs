@@ -10,12 +10,12 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<MvcApplication>()
-                .DerivesFrom<HttpApplication>()
-                .IsConcreteClass()
-                .IsUnsealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<HttpApplication>()
+                            .IsConcreteClass()
+                            .IsUnsealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
@@ -25,14 +25,25 @@
         }
 
         [Fact]
-        public void op_RegisterRoutes_RouteCollection_defaultRoute()
+        public void op_RegisterRoutes_RouteCollection_rootRoute()
         {
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
-            var route = (Route)routes["Default"];
+            var route = (Route)routes["Root"];
 
-            Assert.Equal("{controller}/{action}/{id}", route.Url);
+            Assert.Equal(string.Empty, route.Url);
+        }
+
+        [Fact]
+        public void op_RegisterRoutes_RouteCollection_404Route()
+        {
+            var routes = new RouteCollection();
+            MvcApplication.RegisterRoutes(routes);
+
+            var route = (Route)routes["404"];
+
+            Assert.Equal("*", route.Url);
         }
     }
 }

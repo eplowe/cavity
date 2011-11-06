@@ -57,6 +57,8 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\NotFoundController.cs" />
+    <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -78,7 +80,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +90,10 @@
     <ProjectReference Include="..\..\Class Libraries\Domain\Domain.csproj">
       <Project>{728634E0-7995-4D42-B1DF-BBC527E36716}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Class Libraries\Web.Mvc\Web.Mvc.csproj">
+      <Project>{3AEFE1E6-0FA8-4970-803B-802002EB8EF2}</Project>
+      <Name>Web.Mvc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
