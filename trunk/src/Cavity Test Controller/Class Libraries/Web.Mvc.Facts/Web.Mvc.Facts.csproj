@@ -33,12 +33,20 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Static`1.Facts.cs" />
+    <Compile Include="IO\WrappedStream.Facts.cs" />
+    <Compile Include="Web\Mvc\AllowAttribute.Facts.cs" />
+    <Compile Include="Web\Mvc\ContentNegotiationAttribute.Facts.cs" />
+    <Compile Include="Web\Mvc\DummyController.cs" />
     <Compile Include="Web\Mvc\TemporaryRedirectResult.Facts.cs" />
     <Compile Include="Web\Mvc\FoundResult.Facts.cs" />
     <Compile Include="Web\Mvc\MovedPermanentlyResult.Facts.cs" />
     <Compile Include="Web\Mvc\RedirectionResult.Derived.cs" />
     <Compile Include="Web\Mvc\RedirectionResult.Facts.cs" />
     <Compile Include="Web\Mvc\SeeOtherResult.Facts.cs" />
+    <Compile Include="Web\Routing\DateRoute`1.Facts.cs" />
+    <Compile Include="Web\Routing\IRegisterRoutes.Facts.cs" />
+    <Compile Include="Web\Routing\RouteCollection.ExtensionMethods.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />

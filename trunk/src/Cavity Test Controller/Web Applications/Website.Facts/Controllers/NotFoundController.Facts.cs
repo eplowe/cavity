@@ -5,22 +5,24 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Cavity;
+    using Cavity.Web.Mvc;
+    using Cavity.Web.Routing;
     using Moq;
     using Xunit;
 
     public sealed class NotFoundControllerFacts
     {
         [Fact]
-        public void type_definition()
+        public void a_definition()
         {
             Assert.True(new TypeExpectations<NotFoundController>()
-                .DerivesFrom<Controller>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<Controller>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsDecoratedWith<AllowAttribute>()
+                            .Implements<IRegisterRoutes>()
+                            .Result);
         }
 
         [Fact]
@@ -47,8 +49,30 @@
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
 
             Assert.IsType<ViewResult>(controller.HtmlRepresentation());
+            Assert.Equal("The requested resource was not found.", controller.ViewBag.Message);
 
             response.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RegisterRoutes_RouteCollection()
+        {
+            var routes = new RouteCollection();
+
+            var controller = (IRegisterRoutes)new NotFoundController();
+            controller.Register(routes);
+
+            var route = (Route)routes["404"];
+
+            Assert.Equal("{*url}", route.Url);
+        }
+
+        [Fact]
+        public void op_RegisterRoutes_RouteCollectionNull()
+        {
+            var controller = (IRegisterRoutes)new NotFoundController();
+
+            Assert.Throws<ArgumentNullException>(() => controller.Register(null));
         }
     }
 }

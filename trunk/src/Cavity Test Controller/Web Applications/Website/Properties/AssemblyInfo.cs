@@ -17,3 +17,4 @@ using System.Reflection;
 #endif
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Cavity")]
+[assembly: SuppressMessage("Microsoft.Design", "CA2210:AssembliesShouldHaveValidStrongNames", Justification = "There are unsigned dependencies.")]

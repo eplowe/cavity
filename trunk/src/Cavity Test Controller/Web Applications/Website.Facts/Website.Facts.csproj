@@ -4,6 +4,7 @@
     <ProjectGuid>{CFF7B717-2F16-42D9-BCB7-FE258BE5B3BC}</ProjectGuid>
     <AssemblyName>Cavity.TestController.Website.Facts</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
@@ -12,8 +13,17 @@
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\net40\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\packages\HtmlAgilityPack.1.4.3\lib\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorGenerator.Testing">
+      <HintPath>..\..\packages\RazorGenerator.Testing.1.2.3\lib\net40\RazorGenerator.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="ReflectionMagic">
+      <HintPath>..\..\packages\ReflectionMagic.1.0.1\lib\net40\ReflectionMagic.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
@@ -58,7 +68,9 @@
     <Compile Include="Controllers\NotFoundController.Facts.cs" />
     <Compile Include="Controllers\RootController.Facts.cs" />
     <Compile Include="MvcApplication.Facts.cs" />
+    <Compile Include="Views\NotFound\HtmlRepresentation.Facts.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.project" />

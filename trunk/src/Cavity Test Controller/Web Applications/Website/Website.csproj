@@ -5,6 +5,7 @@
     <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <AssemblyName>Cavity.TestController.Website</AssemblyName>
     <RootNamespace>Cavity</RootNamespace>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <MvcBuildViews>true</MvcBuildViews>
@@ -41,6 +42,13 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorGenerator.Mvc">
+      <HintPath>..\..\packages\RazorGenerator.Mvc.1.2.1\lib\net40\RazorGenerator.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web" />
@@ -55,14 +63,23 @@
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="WebActivator">
+      <HintPath>..\..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\PrecompiledMvcViewEngineStart.cs" />
     <Compile Include="Controllers\NotFoundController.cs" />
     <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\log4net.cs" />
+    <Compile Include="Views\NotFound\HtmlRepresentation.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HtmlRepresentation.cshtml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -107,6 +124,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\CodeAnalysis.dictionary" />
+    <Content Include="Views\NotFound\HtmlRepresentation.cshtml">
+      <Generator>RazorGenerator</Generator>
+      <LastGenOutput>HtmlRepresentation.generated.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
