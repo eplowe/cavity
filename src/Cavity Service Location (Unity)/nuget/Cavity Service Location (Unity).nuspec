@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.ServiceLocation.Unity</id>
-    <version>1.1.0.509</version>
+    <version>1.1.0.719</version>
     <title>Cavity Service Location (Unity)</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,7 +17,7 @@
     <tags>IoC</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Core" version="1.1.0.490" />
+      <dependency id="Cavity.Core" version="1.1.0.719" />
       <dependency id="Cavity.ServiceLocation" version="1.1.0.438" />
       <dependency id="CommonServiceLocator.UnityAdapter" version="1.0.0.41670" />
     </dependencies>

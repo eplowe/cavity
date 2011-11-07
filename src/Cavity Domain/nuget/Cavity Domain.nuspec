@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Domain</id>
-    <version>1.1.0.591</version>
+    <version>1.1.0.719</version>
     <title>Cavity Domain</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,8 +17,7 @@
     <tags />
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Core" version="1.1.0.568" />
-      <dependency id="Cavity.Data.Csv" version="1.1.0.568" />
+      <dependency id="Cavity.Data.Csv" version="1.1.0.719" />
     </dependencies>
   </metadata>
   <files>

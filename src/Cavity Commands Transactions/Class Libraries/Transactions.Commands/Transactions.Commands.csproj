@@ -14,10 +14,10 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Reference Include="Cavity.Commands">
-      <HintPath>..\..\packages\Cavity.Commands.1.1.0.636\lib\$(TargetFrameworkVersionName)\Cavity.Commands.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Commands.1.1.0.719\lib\$(TargetFrameworkVersionName)\Cavity.Commands.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

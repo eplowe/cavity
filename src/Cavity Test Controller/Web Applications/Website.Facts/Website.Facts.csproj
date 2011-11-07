@@ -8,10 +8,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\net40\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\net40\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\net40\Cavity.Testing.Unit.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Web.Mvc3">
+      <HintPath>..\..\packages\Cavity.Web.Mvc3.1.1.0.719\lib\net40\Cavity.Web.Mvc3.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\packages\HtmlAgilityPack.1.4.3\lib\HtmlAgilityPack.dll</HintPath>
@@ -52,10 +55,6 @@
       <Project>{728634E0-7995-4D42-B1DF-BBC527E36716}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Class Libraries\Web.Mvc\Web.Mvc.csproj">
-      <Project>{3AEFE1E6-0FA8-4970-803B-802002EB8EF2}</Project>
-      <Name>Web.Mvc</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Website\Website.csproj">
       <Project>{16C24F2A-C2D3-47AE-AD6A-CE444806DD8A}</Project>
       <Name>Website</Name>
@@ -65,7 +64,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\NotFoundController.Facts.cs" />
+    <Compile Include="Controllers\DateController.Facts.cs" />
     <Compile Include="Controllers\RootController.Facts.cs" />
     <Compile Include="MvcApplication.Facts.cs" />
     <Compile Include="Views\NotFound\HtmlRepresentation.Facts.cs" />

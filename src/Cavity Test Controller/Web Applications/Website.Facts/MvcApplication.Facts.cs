@@ -31,7 +31,9 @@
             var routes = new RouteCollection();
             MvcApplication.RegisterRoutes(routes);
 
-            Assert.NotEmpty(routes);
+            Assert.NotNull(routes["404"]);
+            Assert.NotNull(routes["Root"]);
+            Assert.NotNull(routes["Today"]);
         }
 
         [Fact]

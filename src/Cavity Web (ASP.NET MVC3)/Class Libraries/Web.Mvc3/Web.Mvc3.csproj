@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{E6E202AC-321A-4307-B45B-D9ED3DCB88C9}</ProjectGuid>
+    <AssemblyName>Cavity.Web.Mvc3</AssemblyName>
+    <RootNamespace>Cavity</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="IO\WrappedStream.cs" />
+    <Compile Include="Web\HttpRequestBase.ExtensionMethods.cs" />
+    <Compile Include="Web\Mvc\Accept.cs" />
+    <Compile Include="Web\Mvc\AcceptLanguage.cs" />
+    <Compile Include="Web\Mvc\AllowAttribute.cs" />
+    <Compile Include="Web\Mvc\ContentNegotiationAttribute.cs" />
+    <Compile Include="Web\Mvc\FoundResult.cs" />
+    <Compile Include="Web\Mvc\LanguageController.cs" />
+    <Compile Include="Web\Mvc\MovedPermanentlyResult.cs" />
+    <Compile Include="Web\Mvc\NotAcceptableResult.cs" />
+    <Compile Include="Web\Mvc\NotFoundController.cs" />
+    <Compile Include="Web\Mvc\RedirectionResult.cs" />
+    <Compile Include="Web\Mvc\SeeOtherResult.cs" />
+    <Compile Include="Web\Mvc\TemporaryRedirectResult.cs" />
+    <Compile Include="Web\Routing\DateRoute`1.cs" />
+    <Compile Include="Web\Routing\IRegisterRoutes.cs" />
+    <Compile Include="Web\Routing\RouteCollection.ExtensionMethods.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\net40\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <!--
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

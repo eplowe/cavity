@@ -13,10 +13,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Commands">
-      <HintPath>..\..\packages\Cavity.Commands.1.1.0.636\lib\$(TargetFrameworkVersionName)\Cavity.Commands.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Commands.1.1.0.719\lib\$(TargetFrameworkVersionName)\Cavity.Commands.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>

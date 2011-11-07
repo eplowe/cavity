@@ -26,6 +26,7 @@
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\KeyStringPair.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="Globalization\CultureInfo.ExtensionMethods.cs" />
     <Compile Include="Globalization\Language.cs" />
     <Compile Include="Globalization\Translation`1.cs" />
     <Compile Include="IO\DirectoryInfo.ExtensionMethods.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Object.ExtensionMethods.cs" />
     <Compile Include="RelativeUri.cs" />
     <Compile Include="String.ExtensionMethods.cs" />
+    <Compile Include="Static`1.cs" />
     <Compile Include="WhiteSpace.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
