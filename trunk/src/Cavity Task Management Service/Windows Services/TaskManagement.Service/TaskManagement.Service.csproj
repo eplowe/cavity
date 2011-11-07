@@ -8,8 +8,14 @@
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\net40\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.ServiceLocation.CastleWindsor">
+      <HintPath>..\..\packages\Cavity.ServiceLocation.CastleWindsor.1.1.0.719\lib\net40\Cavity.ServiceLocation.CastleWindsor.dll</HintPath>
+    </Reference>
     <Reference Include="Cavity.TaskManagement">
-      <HintPath>..\..\packages\Cavity.TaskManagement.1.1.0.711\lib\net40\Cavity.TaskManagement.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.TaskManagement.1.1.0.719\lib\net40\Cavity.TaskManagement.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration.Install" />
@@ -20,17 +26,11 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\..\packages\Castle.Windsor.2.5.4\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\net40\Cavity.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Cavity.Diagnostics.Log4Net">
       <HintPath>..\..\packages\Cavity.Diagnostics.Log4Net.1.1.0.438\lib\net40\Cavity.Diagnostics.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.ServiceLocation">
       <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\net40\Cavity.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.ServiceLocation.CastleWindsor">
-      <HintPath>..\..\packages\Cavity.ServiceLocation.CastleWindsor.1.1.0.491\lib\net40\Cavity.ServiceLocation.CastleWindsor.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.TaskManagement.Abstractions">
       <HintPath>..\..\packages\Cavity.TaskManagement.Abstractions.1.1.0.694\lib\net40\Cavity.TaskManagement.Abstractions.dll</HintPath>
