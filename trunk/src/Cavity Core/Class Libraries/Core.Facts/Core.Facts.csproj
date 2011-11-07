@@ -59,10 +59,12 @@
     <Compile Include="Configuration\DirectoryInfoValidator.Facts.cs" />
     <Compile Include="Configuration\PathConfigurationSection.Facts.cs" />
     <Compile Include="Configuration\PathConfigurationSection.Derived.cs" />
+    <Compile Include="Globalization\CultureInfo.ExtensionMethods.Facts.cs" />
     <Compile Include="Globalization\Language.Facts.cs" />
     <Compile Include="Globalization\Translation`1.Facts.cs" />
     <Compile Include="DisposableObject.Derived.cs" />
     <Compile Include="DisposableObject.Facts.cs" />
+    <Compile Include="Static`1.Facts.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Dynamic\DynamicData.Derived.cs" />

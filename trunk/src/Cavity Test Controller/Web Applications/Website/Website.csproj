@@ -21,8 +21,8 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\..\packages\Castle.Windsor.2.5.4\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\net40\Cavity.Core.dll</HintPath>
+    <Reference Include="Cavity.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\net40\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Diagnostics.Log4Net">
       <HintPath>..\..\packages\Cavity.Diagnostics.Log4Net.1.1.0.438\lib\net40\Cavity.Diagnostics.Log4Net.dll</HintPath>
@@ -30,8 +30,11 @@
     <Reference Include="Cavity.ServiceLocation">
       <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\net40\Cavity.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.ServiceLocation.CastleWindsor">
-      <HintPath>..\..\packages\Cavity.ServiceLocation.CastleWindsor.1.1.0.491\lib\net40\Cavity.ServiceLocation.CastleWindsor.dll</HintPath>
+    <Reference Include="Cavity.ServiceLocation.CastleWindsor, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.ServiceLocation.CastleWindsor.1.1.0.719\lib\net40\Cavity.ServiceLocation.CastleWindsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Web.Mvc3">
+      <HintPath>..\..\packages\Cavity.Web.Mvc3.1.1.0.719\lib\net40\Cavity.Web.Mvc3.dll</HintPath>
     </Reference>
     <Reference Include="CommonServiceLocator.WindsorAdapter">
       <HintPath>..\..\packages\CommonServiceLocator.WindsorAdapter.1.0\lib\NET35\CommonServiceLocator.WindsorAdapter.dll</HintPath>
@@ -63,13 +66,14 @@
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="WebActivator">
-      <HintPath>..\..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    <Reference Include="WebActivator, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\WebActivator.1.5\lib\net40\WebActivator.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\PrecompiledMvcViewEngineStart.cs" />
-    <Compile Include="Controllers\NotFoundController.cs" />
+    <Compile Include="Controllers\DateController.cs" />
     <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -107,10 +111,6 @@
     <ProjectReference Include="..\..\Class Libraries\Domain\Domain.csproj">
       <Project>{728634E0-7995-4D42-B1DF-BBC527E36716}</Project>
       <Name>Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Class Libraries\Web.Mvc\Web.Mvc.csproj">
-      <Project>{3AEFE1E6-0FA8-4970-803B-802002EB8EF2}</Project>
-      <Name>Web.Mvc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

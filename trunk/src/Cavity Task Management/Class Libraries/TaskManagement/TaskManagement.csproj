@@ -9,7 +9,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.587\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.TaskManagement.Abstractions">
       <HintPath>..\..\packages\Cavity.TaskManagement.Abstractions.1.1.0.694\lib\$(TargetFrameworkVersionName)\Cavity.TaskManagement.Abstractions.dll</HintPath>

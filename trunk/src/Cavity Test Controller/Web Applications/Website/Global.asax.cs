@@ -2,11 +2,11 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
     using Cavity.Configuration;
+    using Cavity.Controllers;
     using Cavity.Web.Routing;
 
     public class MvcApplication : HttpApplication
@@ -25,7 +25,8 @@
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            RouteTable.Routes.Register(Assembly.GetExecutingAssembly().GetTypes());
+            routes.Register(typeof(MvcApplication).Assembly.GetTypes());
+            routes.Register<NotFoundController>();
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "The runtime requires this to be an instance member.")]
