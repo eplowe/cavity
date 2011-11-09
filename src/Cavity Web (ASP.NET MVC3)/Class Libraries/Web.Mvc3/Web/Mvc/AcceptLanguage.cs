@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Net.Mime;
     using System.Web;
     using System.Web.Mvc;
     using System.Xml;
@@ -34,7 +33,8 @@
             return new AcceptLanguage(Split(string.IsNullOrEmpty(value) ? "*" : value));
         }
 
-        public ActionResult Negotiate(HttpRequestBase request, Type controller)
+        public ActionResult Negotiate(HttpRequestBase request, 
+                                      Type controller)
         {
             if (null == request)
             {
@@ -54,28 +54,6 @@
             return result ?? new NotAcceptableResult();
         }
 
-        private static IEnumerable<Language> SupportedContentTypes(Type controller)
-        {
-            if (null == controller)
-            {
-                throw new ArgumentNullException("controller");
-            }
-
-            if (!controller.IsSubclassOf(typeof(LanguageController)))
-            {
-                throw new ArgumentOutOfRangeException("controller");
-            }
-
-            var lanneg = Activator.CreateInstance(controller) as LanguageController;
-            if (null != lanneg)
-            {
-                foreach (var language in lanneg.Languages)
-                {
-                    yield return language;
-                }
-            }
-        }
-
         private static IEnumerable<Language> Split(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
@@ -88,7 +66,11 @@
             {
                 var any = false;
                 var languages = new Dictionary<string, decimal>();
-                var parts = value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                var parts = value.Split(new[]
+                {
+                    ','
+                }, 
+                                        StringSplitOptions.RemoveEmptyEntries);
                 for (var i = 0; i < parts.Length; i++)
                 {
                     var part = parts[i];
@@ -118,7 +100,10 @@
                     }
                 }
 
-                foreach (var rank in new[] { 1m, 0.9m, 0.8m, 0.7m, 0.6m, 0.5m, 0.4m, 0.3m, 0.2m, 0.1m })
+                foreach (var rank in new[]
+                {
+                    1m, 0.9m, 0.8m, 0.7m, 0.6m, 0.5m, 0.4m, 0.3m, 0.2m, 0.1m
+                })
                 {
                     var rank1 = rank;
                     foreach (var language in languages.Where(x => rank1 == x.Value).OrderByDescending(x => x.Key))
@@ -130,6 +115,28 @@
                 if (any)
                 {
                     yield return "*";
+                }
+            }
+        }
+
+        private static IEnumerable<Language> SupportedContentTypes(Type controller)
+        {
+            if (null == controller)
+            {
+                throw new ArgumentNullException("controller");
+            }
+
+            if (!controller.IsSubclassOf(typeof(LanguageController)))
+            {
+                throw new ArgumentOutOfRangeException("controller");
+            }
+
+            var lanneg = Activator.CreateInstance(controller) as LanguageController;
+            if (null != lanneg)
+            {
+                foreach (var language in lanneg.Languages)
+                {
+                    yield return language;
                 }
             }
         }

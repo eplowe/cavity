@@ -3,9 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Net.Mime;
     using System.Web;
-    using Cavity;
     using Cavity.Globalization;
     using Moq;
     using Xunit;
@@ -16,12 +14,12 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<AcceptLanguage>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsUnsealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsUnsealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
@@ -33,7 +31,10 @@
         [Fact]
         public void ctor_IEnumerableLanguage()
         {
-            Assert.NotNull(new AcceptLanguage(new[] { new Language("en") }));
+            Assert.NotNull(new AcceptLanguage(new[]
+            {
+                new Language("en")
+            }));
         }
 
         [Fact]
@@ -46,15 +47,6 @@
         public void ctor_IEnumerableLanguageNull()
         {
             Assert.Throws<ArgumentNullException>(() => new AcceptLanguage(null));
-        }
-
-        [Fact]
-        public void prop_Languages()
-        {
-            Assert.True(new PropertyExpectations<AcceptLanguage>(x => x.Languages)
-                .TypeIs<Collection<Language>>()
-                .DefaultValueIsNotNull()
-                .Result);
         }
 
         [Fact]
@@ -87,37 +79,10 @@
         }
 
         [Fact]
-        public void op_FromString_stringEmpty()
-        {
-            const string expected = "*";
-            var actual = AcceptLanguage.FromString(string.Empty).Languages[0];
-
-            Assert.Equal<Language>(expected, actual);
-        }
-
-        [Fact]
-        public void op_FromString_stringNull()
-        {
-            const string expected = "*";
-            var actual = AcceptLanguage.FromString(null).Languages[0];
-
-            Assert.Equal<Language>(expected, actual);
-        }
-
-        [Fact]
         public void op_FromString_string()
         {
             const string expected = "en";
             var actual = AcceptLanguage.FromString(expected).Languages[0];
-
-            Assert.Equal<Language>(expected, actual);
-        }
-
-        [Fact]
-        public void op_FromString_stringSemicolon()
-        {
-            const string expected = "en";
-            var actual = AcceptLanguage.FromString(expected + ";q=0.4").Languages[0];
 
             Assert.Equal<Language>(expected, actual);
         }
@@ -150,11 +115,44 @@
         }
 
         [Fact]
+        public void op_FromString_stringEmpty()
+        {
+            const string expected = "*";
+            var actual = AcceptLanguage.FromString(string.Empty).Languages[0];
+
+            Assert.Equal<Language>(expected, actual);
+        }
+
+        [Fact]
+        public void op_FromString_stringNull()
+        {
+            const string expected = "*";
+            var actual = AcceptLanguage.FromString(null).Languages[0];
+
+            Assert.Equal<Language>(expected, actual);
+        }
+
+        [Fact]
+        public void op_FromString_stringSemicolon()
+        {
+            const string expected = "en";
+            var actual = AcceptLanguage.FromString(expected + ";q=0.4").Languages[0];
+
+            Assert.Equal<Language>(expected, actual);
+        }
+
+        [Fact]
+        public void op_Negotiate_HttpRequestBaseNull_Type()
+        {
+            Assert.Throws<ArgumentNullException>(() => new AcceptLanguage().Negotiate(null, typeof(DummyController)));
+        }
+
+        [Fact]
         public void op_Negotiate_HttpRequestBase_Type()
         {
             var obj = AcceptLanguage.FromString("da, en-gb;q=0.8, en;q=0.7");
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.Path)
                 .Returns("/test")
@@ -173,21 +171,24 @@
         }
 
         [Fact]
-        public void op_Negotiate_HttpRequestBaseNull_Type()
+        public void op_Negotiate_HttpRequestBase_TypeInvalid()
         {
-            Assert.Throws<ArgumentNullException>(() => new AcceptLanguage().Negotiate(null, typeof(DummyController)));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new AcceptLanguage().Negotiate(new Mock<HttpRequestBase>(MockBehavior.Strict).Object, typeof(string)));
         }
 
         [Fact]
         public void op_Negotiate_HttpRequestBase_TypeNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new AcceptLanguage().Negotiate(new Mock<HttpRequestBase>().Object, null));
+            Assert.Throws<ArgumentNullException>(() => new AcceptLanguage().Negotiate(new Mock<HttpRequestBase>(MockBehavior.Strict).Object, null));
         }
 
         [Fact]
-        public void op_Negotiate_HttpRequestBase_TypeInvalid()
+        public void prop_Languages()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AcceptLanguage().Negotiate(new Mock<HttpRequestBase>().Object, typeof(string)));
+            Assert.True(new PropertyExpectations<AcceptLanguage>(x => x.Languages)
+                            .TypeIs<Collection<Language>>()
+                            .DefaultValueIsNotNull()
+                            .Result);
         }
     }
 }

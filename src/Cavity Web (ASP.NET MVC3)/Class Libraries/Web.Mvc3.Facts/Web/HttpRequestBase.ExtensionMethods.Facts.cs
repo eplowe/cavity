@@ -14,29 +14,11 @@
         }
 
         [Fact]
-        public void op_RawQuery_HttpRequestBaseString()
-        {
-            const string expected = "?querystring";
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?querystring")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString();
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
         public void op_RawQueryString_HttpRequestBaseEmpty()
         {
             const string expected = "?";
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test?")
@@ -50,17 +32,89 @@
         }
 
         [Fact]
+        public void op_RawQueryString_HttpRequestBaseEmpty_AlphaDecimalNull()
+        {
+            var expected = string.Empty;
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(null);
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQueryString_HttpRequestBaseEmpty_AlphaDecimalNull_string()
+        {
+            const string expected = "?whence=%2flocation";
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(null, "/location");
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
         public void op_RawQueryString_HttpRequestBaseMissing()
         {
             var expected = string.Empty;
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test")
                 .Verifiable();
 
             var actual = request.Object.RawQueryString();
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQueryString_HttpRequestBaseMissing_AlphaDecimalNull()
+        {
+            var expected = string.Empty;
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(null);
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQueryString_HttpRequestBaseMissing_AlphaDecimalNull_string()
+        {
+            const string expected = "?whence=%2flocation";
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(null, "/location");
 
             Assert.Equal(expected, actual);
 
@@ -74,21 +128,27 @@
         }
 
         [Fact]
-        public void op_RawQuery_HttpRequestBaseString_AlphaDecimalNull()
+        public void op_RawQueryString_HttpRequestBaseNull_AlphaDecimal()
         {
-            const string expected = "?querystring";
+            Assert.Throws<ArgumentNullException>(() => (null as HttpRequestBase).RawQueryString(AlphaDecimal.Random()));
+        }
 
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?querystring")
-                .Verifiable();
+        [Fact]
+        public void op_RawQueryString_HttpRequestBaseNull_AlphaDecimalNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as HttpRequestBase).RawQueryString(null));
+        }
 
-            var actual = request.Object.RawQueryString(null);
+        [Fact]
+        public void op_RawQueryString_HttpRequestBaseNull_AlphaDecimalNull_string()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as HttpRequestBase).RawQueryString(null, "/location"));
+        }
 
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
+        [Fact]
+        public void op_RawQueryString_HttpRequestBaseNull_AlphaDecimal_string()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as HttpRequestBase).RawQueryString(AlphaDecimal.Random(), "/location"));
         }
 
         [Fact]
@@ -96,7 +156,7 @@
         {
             const string expected = "?123";
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request.SetupGet(x => x.RawUrl).Returns("http://example.com/test?123").Verifiable();
 
             var actual = request.Object.RawQueryString(null);
@@ -107,155 +167,14 @@
         }
 
         [Fact]
-        public void op_RawQueryString_HttpRequestBaseEmpty_AlphaDecimalNull()
+        public void op_RawQuery_HttpRequestBaseCastException_AlphaDecimalNull_string()
         {
-            var expected = string.Empty;
+            const string expected = "?<123>&whence=%2flocation";
 
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?")
-                .Verifiable();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request.SetupGet(x => x.RawUrl).Returns("http://example.com/test?<123>").Verifiable();
 
-            var actual = request.Object.RawQueryString(null);
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQueryString_HttpRequestBaseMissing_AlphaDecimalNull()
-        {
-            var expected = string.Empty;
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(null);
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQueryString_HttpRequestBaseNull_AlphaDecimalNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as HttpRequestBase).RawQueryString(null));
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseString_AlphaDecimal()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]&querystring".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?querystring")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token);
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseStringToken_AlphaDecimal()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]&querystring".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns(string.Concat("http://example.com/test?[123]&querystring"))
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token);
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseInvalidToken_AlphaDecimal()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]&xxx&querystring".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?xxx&querystring")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token);
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseParams_AlphaDecimal()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]&a=b".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?a=b")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token);
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseParamsToken_AlphaDecimal()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]&a=b".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?[123]&a=b")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token);
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseEmpty_AlphaDecimal()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token);
+            var actual = request.Object.RawQueryString(null, "/location");
 
             Assert.Equal(expected, actual);
 
@@ -268,7 +187,7 @@
             var token = AlphaDecimal.Random();
             var expected = "?[{0}]".FormatWith(token);
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test?[123]")
@@ -282,12 +201,107 @@
         }
 
         [Fact]
+        public void op_RawQuery_HttpRequestBaseEmptyToken_AlphaDecimal_string()
+        {
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]&whence=%2flocation".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?[]")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token, "/location");
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseEmpty_AlphaDecimal()
+        {
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token);
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseEmpty_AlphaDecimal_string()
+        {
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]&whence=%2flocation".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token, "/location");
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseInvalidToken_AlphaDecimal()
+        {
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]&xxx&querystring".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?xxx&querystring")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token);
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseInvalidToken_AlphaDecimal_string()
+        {
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]&xxx&querystring&whence=%2flocation".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?xxx&querystring")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token, "/location");
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
         public void op_RawQuery_HttpRequestBaseMissing_AlphaDecimal()
         {
             var token = AlphaDecimal.Random();
             var expected = "?[{0}]".FormatWith(token);
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test")
@@ -301,9 +315,209 @@
         }
 
         [Fact]
-        public void op_RawQueryString_HttpRequestBaseNull_AlphaDecimal()
+        public void op_RawQuery_HttpRequestBaseMissing_AlphaDecimal_string()
         {
-            Assert.Throws<ArgumentNullException>(() => (null as HttpRequestBase).RawQueryString(AlphaDecimal.Random()));
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]&whence=%2flocation".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token, "/location");
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseParamsToken_AlphaDecimal()
+        {
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]&a=b".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?[123]&a=b")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token);
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseParamsToken_AlphaDecimal_string()
+        {
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]&a=b&whence=%2flocation".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?[123]&a=b")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token, "/location");
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseParams_AlphaDecimal()
+        {
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]&a=b".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?a=b")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token);
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseParams_AlphaDecimal_string()
+        {
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]&a=b&whence=%2flocation".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?a=b")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token, "/location");
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseString()
+        {
+            const string expected = "?querystring";
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?querystring")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString();
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseStringToken_AlphaDecimal()
+        {
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]&querystring".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns(string.Concat("http://example.com/test?[123]&querystring"))
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token);
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseStringToken_AlphaDecimal_string()
+        {
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]&querystring&whence=%2flocation".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?[123]&querystring")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token, "/location");
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseStringWhence_AlphaDecimalNull_string()
+        {
+            var expected = string.Concat("?querystring", "&whence=%2flocation");
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?querystring&whence=%2freplace")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(null, "/location");
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseString_AlphaDecimal()
+        {
+            var token = AlphaDecimal.Random();
+            var expected = "?[{0}]&querystring".FormatWith(token);
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?querystring")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(token);
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
+        }
+
+        [Fact]
+        public void op_RawQuery_HttpRequestBaseString_AlphaDecimalNull()
+        {
+            const string expected = "?querystring";
+
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?querystring")
+                .Verifiable();
+
+            var actual = request.Object.RawQueryString(null);
+
+            Assert.Equal(expected, actual);
+
+            request.VerifyAll();
         }
 
         [Fact]
@@ -311,7 +525,7 @@
         {
             var expected = string.Concat("?querystring", "&whence=%2flocation");
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test?querystring")
@@ -329,7 +543,7 @@
         {
             const string expected = "?querystring";
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test?querystring&whence=%2freplace")
@@ -347,7 +561,7 @@
         {
             const string expected = "?querystring";
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test?querystring&whence=%2freplace")
@@ -361,87 +575,12 @@
         }
 
         [Fact]
-        public void op_RawQuery_HttpRequestBaseStringWhence_AlphaDecimalNull_string()
-        {
-            var expected = string.Concat("?querystring", "&whence=%2flocation");
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?querystring&whence=%2freplace")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(null, "/location");
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseCastException_AlphaDecimalNull_string()
-        {
-            const string expected = "?<123>&whence=%2flocation";
-
-            var request = new Mock<HttpRequestBase>();
-            request.SetupGet(x => x.RawUrl).Returns("http://example.com/test?<123>").Verifiable();
-
-            var actual = request.Object.RawQueryString(null, "/location");
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQueryString_HttpRequestBaseEmpty_AlphaDecimalNull_string()
-        {
-            const string expected = "?whence=%2flocation";
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(null, "/location");
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQueryString_HttpRequestBaseMissing_AlphaDecimalNull_string()
-        {
-            const string expected = "?whence=%2flocation";
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(null, "/location");
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQueryString_HttpRequestBaseNull_AlphaDecimalNull_string()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as HttpRequestBase).RawQueryString(null, "/location"));
-        }
-
-        [Fact]
         public void op_RawQuery_HttpRequestBaseString_AlphaDecimal_string()
         {
             var token = AlphaDecimal.Random();
             var expected = "?[{0}]&querystring&whence=%2flocation".FormatWith(token);
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test?querystring")
@@ -455,150 +594,11 @@
         }
 
         [Fact]
-        public void op_RawQuery_HttpRequestBaseStringToken_AlphaDecimal_string()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]&querystring&whence=%2flocation".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?[123]&querystring")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token, "/location");
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseInvalidToken_AlphaDecimal_string()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]&xxx&querystring&whence=%2flocation".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?xxx&querystring")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token, "/location");
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseParams_AlphaDecimal_string()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]&a=b&whence=%2flocation".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?a=b")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token, "/location");
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseParamsToken_AlphaDecimal_string()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]&a=b&whence=%2flocation".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?[123]&a=b")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token, "/location");
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseEmpty_AlphaDecimal_string()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]&whence=%2flocation".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token, "/location");
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseEmptyToken_AlphaDecimal_string()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]&whence=%2flocation".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?[]")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token, "/location");
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQuery_HttpRequestBaseMissing_AlphaDecimal_string()
-        {
-            var token = AlphaDecimal.Random();
-            var expected = "?[{0}]&whence=%2flocation".FormatWith(token);
-
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test")
-                .Verifiable();
-
-            var actual = request.Object.RawQueryString(token, "/location");
-
-            Assert.Equal(expected, actual);
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_RawQueryString_HttpRequestBaseNull_AlphaDecimal_string()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as HttpRequestBase).RawQueryString(AlphaDecimal.Random(), "/location"));
-        }
-
-        [Fact]
         public void op_Token_HttpRequestBase()
         {
             var expected = AlphaDecimal.Random();
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test?[{0}]".FormatWith(expected))
@@ -612,37 +612,15 @@
         }
 
         [Fact]
-        public void op_Token_HttpRequestBase_whenRawUrlInvalid()
+        public void op_Token_HttpRequestBaseNull()
         {
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?123")
-                .Verifiable();
-
-            Assert.Null(request.Object.Token());
-
-            request.VerifyAll();
-        }
-
-        [Fact]
-        public void op_Token_HttpRequestBase_whenRawUrlWhence()
-        {
-            var request = new Mock<HttpRequestBase>();
-            request
-                .SetupGet(x => x.RawUrl)
-                .Returns("http://example.com/test?whence=%2Fsome-place")
-                .Verifiable();
-
-            Assert.Null(request.Object.Token());
-
-            request.VerifyAll();
+            Assert.Throws<ArgumentNullException>(() => (null as HttpRequestBase).Token());
         }
 
         [Fact]
         public void op_Token_HttpRequestBase_whenRawUrlEmpty()
         {
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test?")
@@ -654,9 +632,23 @@
         }
 
         [Fact]
+        public void op_Token_HttpRequestBase_whenRawUrlInvalid()
+        {
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?123")
+                .Verifiable();
+
+            Assert.Null(request.Object.Token());
+
+            request.VerifyAll();
+        }
+
+        [Fact]
         public void op_Token_HttpRequestBase_whenRawUrlMissing()
         {
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test")
@@ -672,7 +664,7 @@
         {
             var expected = AlphaDecimal.Random();
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test?[{0}]&a=b".FormatWith(expected))
@@ -688,7 +680,7 @@
         [Fact]
         public void op_Token_HttpRequestBase_whenRawUrlParamsPrefixed()
         {
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns("http://example.com/test?a=b&")
@@ -700,9 +692,17 @@
         }
 
         [Fact]
-        public void op_Token_HttpRequestBaseNull()
+        public void op_Token_HttpRequestBase_whenRawUrlWhence()
         {
-            Assert.Throws<ArgumentNullException>(() => (null as HttpRequestBase).Token());
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+            request
+                .SetupGet(x => x.RawUrl)
+                .Returns("http://example.com/test?whence=%2Fsome-place")
+                .Verifiable();
+
+            Assert.Null(request.Object.Token());
+
+            request.VerifyAll();
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Web
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Text;
     using System.Web;
@@ -20,12 +19,15 @@
             return (-1 == index) ? string.Empty : request.RawUrl.Substring(index);
         }
 
-        public static string RawQueryString(this HttpRequestBase request, AlphaDecimal? token)
+        public static string RawQueryString(this HttpRequestBase request, 
+                                            AlphaDecimal? token)
         {
             return request.RawQueryString(token, null);
         }
 
-        public static string RawQueryString(this HttpRequestBase request, AlphaDecimal? token, string whence)
+        public static string RawQueryString(this HttpRequestBase request, 
+                                            AlphaDecimal? token, 
+                                            string whence)
         {
             if (!string.IsNullOrEmpty(whence))
             {
@@ -71,8 +73,19 @@
         {
             var parts = RawQueryStringParts(request);
             return 0 != parts.Length
-                ? Token(parts[0])
-                : null;
+                       ? Token(parts[0])
+                       : null;
+        }
+
+        private static string[] RawQueryStringParts(HttpRequestBase request)
+        {
+            var query = request.RawQueryString();
+            query = query.StartsWith("?", StringComparison.OrdinalIgnoreCase) ? query.Substring(1) : query;
+            return query.Split(new[]
+            {
+                '&'
+            }, 
+                               StringSplitOptions.RemoveEmptyEntries);
         }
 
         private static AlphaDecimal? Token(string value)
@@ -109,13 +122,6 @@
             }
 
             return result;
-        }
-
-        private static string[] RawQueryStringParts(HttpRequestBase request)
-        {
-            var query = request.RawQueryString();
-            query = query.StartsWith("?", StringComparison.OrdinalIgnoreCase) ? query.Substring(1) : query;
-            return query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

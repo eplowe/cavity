@@ -19,7 +19,7 @@
         {
             var routes = new RouteCollection();
 
-            var mock = new Mock<IRegisterRoutes>();
+            var mock = new Mock<IRegisterRoutes>(MockBehavior.Strict);
             mock
                 .Setup(x => x.Register(routes))
                 .Verifiable();

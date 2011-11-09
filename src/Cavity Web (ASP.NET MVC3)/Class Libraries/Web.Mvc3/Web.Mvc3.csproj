@@ -6,20 +6,28 @@
     <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="IO\WrappedStream.cs" />
     <Compile Include="Web\HttpRequestBase.ExtensionMethods.cs" />
     <Compile Include="Web\Mvc\Accept.cs" />
     <Compile Include="Web\Mvc\AcceptLanguage.cs" />
     <Compile Include="Web\Mvc\AllowAttribute.cs" />
+    <Compile Include="Web\Mvc\ContentMD5Attribute.cs" />
     <Compile Include="Web\Mvc\ContentNegotiationAttribute.cs" />
     <Compile Include="Web\Mvc\FoundResult.cs" />
+    <Compile Include="Web\Mvc\IInterceptInternalServerError.cs" />
+    <Compile Include="Web\Mvc\InternalServerErrorAttribute.cs" />
+    <Compile Include="Web\Mvc\InternalServerErrorViewResult.cs" />
     <Compile Include="Web\Mvc\LanguageController.cs" />
+    <Compile Include="Web\Mvc\MaintenanceController.cs" />
     <Compile Include="Web\Mvc\MovedPermanentlyResult.cs" />
+    <Compile Include="Web\Mvc\NoContentResult.cs" />
     <Compile Include="Web\Mvc\NotAcceptableResult.cs" />
     <Compile Include="Web\Mvc\NotFoundController.cs" />
     <Compile Include="Web\Mvc\RedirectionResult.cs" />
     <Compile Include="Web\Mvc\SeeOtherResult.cs" />
     <Compile Include="Web\Mvc\TemporaryRedirectResult.cs" />
+    <Compile Include="Web\Mvc\TextResult.cs" />
     <Compile Include="Web\Routing\DateRoute`1.cs" />
     <Compile Include="Web\Routing\IRegisterRoutes.cs" />
     <Compile Include="Web\Routing\RouteCollection.ExtensionMethods.cs" />

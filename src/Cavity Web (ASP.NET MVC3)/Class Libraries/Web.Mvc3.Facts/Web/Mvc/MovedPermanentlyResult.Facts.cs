@@ -34,7 +34,7 @@
                 Expires = DateTime.UtcNow.AddMinutes(5)
             };
 
-            var cache = new Mock<HttpCachePolicyBase>();
+            var cache = new Mock<HttpCachePolicyBase>(MockBehavior.Strict);
             cache
                 .Setup(x => x.SetCacheability(HttpCacheability.Public))
                 .Verifiable();

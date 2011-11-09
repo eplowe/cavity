@@ -1,10 +1,9 @@
-﻿namespace Cavity.Controllers
+﻿namespace Cavity.Web.Mvc
 {
     using System;
     using System.Net;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Cavity.Web.Mvc;
     using Cavity.Web.Routing;
 
     [Allow("DELETE, GET, HEAD, OPTIONS, POST, PUT")]

@@ -16,6 +16,12 @@
             }
         }
 
+        [ContentNegotiation(".xml", "application/xml")]
+        public ActionResult Example()
+        {
+            return null;
+        }
+
         public void Register(RouteCollection routes)
         {
             routes.MapRoute(
@@ -26,12 +32,6 @@
                     controller = "Dummy", 
                     action = "Example"
                 });
-        }
-
-        [ContentNegotiation(".xml", "application/xml")]
-        public ActionResult Example()
-        {
-            return null;
         }
     }
 }
