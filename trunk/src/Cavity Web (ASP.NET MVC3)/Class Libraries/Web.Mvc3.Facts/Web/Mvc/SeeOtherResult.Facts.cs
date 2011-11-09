@@ -29,7 +29,7 @@
         [Fact]
         public void op_SetCache_HttpCachePolicyBase()
         {
-            var cache = new Mock<HttpCachePolicyBase>();
+            var cache = new Mock<HttpCachePolicyBase>(MockBehavior.Strict);
             cache
                 .Setup(x => x.SetCacheability(HttpCacheability.NoCache))
                 .Verifiable();

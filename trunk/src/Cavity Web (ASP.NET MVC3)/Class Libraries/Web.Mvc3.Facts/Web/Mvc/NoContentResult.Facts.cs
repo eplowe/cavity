@@ -7,15 +7,15 @@
     using Moq;
     using Xunit;
 
-    public sealed class NotAcceptableResultFacts
+    public sealed class NoContentResultFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<NotAcceptableResult>()
+            Assert.True(new TypeExpectations<NoContentResult>()
                             .DerivesFrom<ActionResult>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .HasDefaultConstructor()
                             .IsNotDecorated()
                             .Result);
@@ -24,7 +24,7 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new NotAcceptableResult());
+            Assert.NotNull(new NoContentResult());
         }
 
         [Fact]
@@ -32,7 +32,7 @@
         {
             var response = new Mock<HttpResponseBase>(MockBehavior.Strict);
             response
-                .SetupSet(x => x.StatusCode = (int)HttpStatusCode.NotAcceptable)
+                .SetupSet(x => x.StatusCode = (int)HttpStatusCode.NoContent)
                 .Verifiable();
             response
                 .Setup(x => x.Cache.SetCacheability(HttpCacheability.NoCache))
@@ -44,18 +44,18 @@
                 .Returns(response.Object)
                 .Verifiable();
 
-            new NotAcceptableResult().ExecuteResult(new ControllerContext()
+            new NoContentResult().ExecuteResult(new ControllerContext()
             {
                 HttpContext = context.Object
             });
 
-            response.VerifyAll();
+            context.VerifyAll();
         }
 
         [Fact]
         public void op_ExecuteResult_ControllerContextNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new NotAcceptableResult().ExecuteResult(null));
+            Assert.Throws<ArgumentNullException>(() => new NoContentResult().ExecuteResult(null as ControllerContext));
         }
     }
 }

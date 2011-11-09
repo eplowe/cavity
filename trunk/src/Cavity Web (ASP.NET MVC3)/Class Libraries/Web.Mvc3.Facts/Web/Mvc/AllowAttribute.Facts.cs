@@ -65,13 +65,13 @@
         {
             using (var stream = new MemoryStream())
             {
-                var request = new Mock<HttpRequestBase>();
+                var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
                 request
                     .SetupGet(x => x.HttpMethod)
                     .Returns("PUT")
                     .Verifiable();
 
-                var response = new Mock<HttpResponseBase>();
+                var response = new Mock<HttpResponseBase>(MockBehavior.Strict);
                 response
                     .Setup(x => x.Cache.SetCacheability(HttpCacheability.Public))
                     .Verifiable();
@@ -98,7 +98,7 @@
                     .Setup(x => x.End())
                     .Verifiable();
 
-                var context = new Mock<HttpContextBase>();
+                var context = new Mock<HttpContextBase>(MockBehavior.Strict);
                 context
                     .SetupGet(x => x.Request)
                     .Returns(request.Object)

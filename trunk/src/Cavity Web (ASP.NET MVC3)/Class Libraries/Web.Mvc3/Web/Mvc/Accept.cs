@@ -27,7 +27,8 @@
             return Parse(Split(string.IsNullOrEmpty(value) ? "*/*" : value).ToList());
         }
 
-        public ActionResult Negotiate(HttpRequestBase request, Type controller)
+        public ActionResult Negotiate(HttpRequestBase request, 
+                                      Type controller)
         {
             if (null == request)
             {
@@ -45,40 +46,6 @@
             }
 
             return result ?? new NotAcceptableResult();
-        }
-
-        private static Dictionary<ContentType, string> SupportedContentTypes(Type controller)
-        {
-            if (null == controller)
-            {
-                throw new ArgumentNullException("controller");
-            }
-            
-            if (!controller.IsSubclassOf(typeof(Controller)))
-            {
-                throw new ArgumentOutOfRangeException("controller");
-            }
-
-            var result = new Dictionary<ContentType, string>();
-
-            foreach (var method in controller.GetMethods())
-            {
-                foreach (object attribute in method.GetCustomAttributes(typeof(ContentNegotiationAttribute), true))
-                {
-                    var conneg = attribute as ContentNegotiationAttribute;
-                    if (null == conneg)
-                    {
-                        continue;
-                    }
-
-                    foreach (var type in conneg.ToContentTypes())
-                    {
-                        result.Add(type, conneg.Extension);
-                    }
-                }
-            }
-
-            return result;
         }
 
         private static Accept Parse(IList<ContentType> types)
@@ -117,7 +84,11 @@
 
             if (!string.IsNullOrEmpty(value))
             {
-                var parts = value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                var parts = value.Split(new[]
+                {
+                    ','
+                }, 
+                                        StringSplitOptions.RemoveEmptyEntries);
                 for (var i = 0; i < parts.Length; i++)
                 {
                     var part = parts[i];
@@ -132,6 +103,40 @@
                     if (!result.Contains(type))
                     {
                         result.Add(type);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private static Dictionary<ContentType, string> SupportedContentTypes(Type controller)
+        {
+            if (null == controller)
+            {
+                throw new ArgumentNullException("controller");
+            }
+
+            if (!controller.IsSubclassOf(typeof(Controller)))
+            {
+                throw new ArgumentOutOfRangeException("controller");
+            }
+
+            var result = new Dictionary<ContentType, string>();
+
+            foreach (var method in controller.GetMethods())
+            {
+                foreach (object attribute in method.GetCustomAttributes(typeof(ContentNegotiationAttribute), true))
+                {
+                    var conneg = attribute as ContentNegotiationAttribute;
+                    if (null == conneg)
+                    {
+                        continue;
+                    }
+
+                    foreach (var type in conneg.ToContentTypes())
+                    {
+                        result.Add(type, conneg.Extension);
                     }
                 }
             }

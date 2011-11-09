@@ -131,7 +131,7 @@
 
                 var encoding = Encoding.UTF8;
 
-                var response = new Mock<HttpResponseBase>();
+                var response = new Mock<HttpResponseBase>(MockBehavior.Strict);
                 response
                     .Setup(x => x.ContentEncoding)
                     .Returns(encoding)
@@ -141,7 +141,7 @@
                     .Returns("text/html")
                     .Verifiable();
 
-                var context = new Mock<HttpContextBase>();
+                var context = new Mock<HttpContextBase>(MockBehavior.Strict);
                 context
                     .Setup(x => x.Response)
                     .Returns(response.Object)

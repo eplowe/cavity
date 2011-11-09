@@ -36,7 +36,7 @@
         [Fact]
         public void op_GetRouteData_HttpContextBase()
         {
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.Path)
                 .Returns("/1999-12-31")
@@ -49,7 +49,7 @@
                 .Returns(string.Empty)
                 .Verifiable();
 
-            var context = new Mock<HttpContextBase>();
+            var context = new Mock<HttpContextBase>(MockBehavior.Strict);
             context
                 .SetupGet(x => x.Request)
                 .Returns(request.Object)
@@ -77,13 +77,13 @@
         [Fact]
         public void op_GetRouteData_HttpContextBase_whenNotFound()
         {
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.Path)
                 .Returns("/example")
                 .Verifiable();
 
-            var context = new Mock<HttpContextBase>();
+            var context = new Mock<HttpContextBase>(MockBehavior.Strict);
             context
                 .SetupGet(x => x.Request)
                 .Returns(request.Object)
@@ -109,13 +109,13 @@
         [Fact]
         public void op_GetVirtualPath_RequestContext_RouteValueDictionary()
         {
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.Path)
                 .Returns("/1999-12-31")
                 .Verifiable();
 
-            var context = new Mock<HttpContextBase>();
+            var context = new Mock<HttpContextBase>(MockBehavior.Strict);
             context
                 .SetupGet(x => x.Request)
                 .Returns(request.Object)
@@ -135,13 +135,13 @@
         [Fact]
         public void op_GetVirtualPath_RequestContext_RouteValueDictionary_whenInvalidDate()
         {
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.Path)
                 .Returns("/1999-02-30")
                 .Verifiable();
 
-            var context = new Mock<HttpContextBase>();
+            var context = new Mock<HttpContextBase>(MockBehavior.Strict);
             context
                 .SetupGet(x => x.Request)
                 .Returns(request.Object)

@@ -78,12 +78,12 @@
         [Fact]
         public void op_ExecuteResult_FilterExecutingContext()
         {
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .Setup(x => x.Url)
                 .Returns(new Uri("http://example.com"));
 
-            var response = new Mock<HttpResponseBase>();
+            var response = new Mock<HttpResponseBase>(MockBehavior.Strict);
             response
                 .SetupSet(x => x.StatusCode = (int)HttpStatusCode.Ambiguous)
                 .Verifiable();
@@ -103,7 +103,7 @@
                 .Setup(x => x.Write(It.IsAny<string>()))
                 .Verifiable();
 
-            var context = new Mock<HttpContextBase>();
+            var context = new Mock<HttpContextBase>(MockBehavior.Strict);
             context
                 .Setup(x => x.Request)
                 .Returns(request.Object);

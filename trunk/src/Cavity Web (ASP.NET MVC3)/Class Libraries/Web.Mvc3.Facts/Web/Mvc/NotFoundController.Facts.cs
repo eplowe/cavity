@@ -1,11 +1,10 @@
-﻿namespace Cavity.Controllers
+﻿namespace Cavity.Web.Mvc
 {
     using System;
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Cavity.Web.Mvc;
     using Cavity.Web.Routing;
     using Moq;
     using Xunit;
@@ -34,12 +33,12 @@
         [Fact]
         public void op_HtmlRepresentation()
         {
-            var response = new Mock<HttpResponseBase>();
+            var response = new Mock<HttpResponseBase>(MockBehavior.Strict);
             response
                 .SetupSet(x => x.StatusCode = (int)HttpStatusCode.NotFound)
                 .Verifiable();
 
-            var context = new Mock<HttpContextBase>();
+            var context = new Mock<HttpContextBase>(MockBehavior.Strict);
             context
                 .Setup(x => x.Response)
                 .Returns(response.Object)

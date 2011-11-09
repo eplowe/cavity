@@ -35,7 +35,7 @@
                 Expires = expires
             };
 
-            var cache = new Mock<HttpCachePolicyBase>();
+            var cache = new Mock<HttpCachePolicyBase>(MockBehavior.Strict);
             cache
                 .Setup(x => x.SetCacheability(HttpCacheability.Public))
                 .Verifiable();

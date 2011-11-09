@@ -7,7 +7,6 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Cavity;
     using Moq;
     using Xunit;
 
@@ -17,63 +16,16 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<LanguageController>()
-                .DerivesFrom<Controller>()
-                .IsAbstractBaseClass()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<Controller>()
+                            .IsAbstractBaseClass()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void ctor()
         {
             Assert.NotNull(new DerivedLanguageController());
-        }
-
-        [Fact]
-        public void op_LanguageNegotiation()
-        {
-            var culture = Thread.CurrentThread.CurrentUICulture;
-
-            try
-            {
-                const string location = "/test";
-
-                var headers = new NameValueCollection();
-                headers["Accept-Language"] = "da, en-gb;q=0.8, en;q=0.7";
-
-                var request = new Mock<HttpRequestBase>();
-                request
-                    .SetupGet(x => x.Headers)
-                    .Returns(headers)
-                    .Verifiable();
-                request
-                    .SetupGet(x => x.Path)
-                    .Returns(location)
-                    .Verifiable();
-                request
-                    .SetupGet(x => x.RawUrl)
-                    .Returns(location)
-                    .Verifiable();
-
-                var context = new Mock<HttpContextBase>();
-                context
-                    .SetupGet(x => x.Request)
-                    .Returns(request.Object)
-                    .Verifiable();
-
-                var controller = new DerivedLanguageController();
-                controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
-
-                var result = (SeeOtherResult)controller.LanguageNegotiation();
-
-                Assert.Equal(location + ".en", result.Location);
-
-                request.VerifyAll();
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentUICulture = culture;
-            }
         }
 
         [Fact]
@@ -88,7 +40,7 @@
                 var headers = new NameValueCollection();
                 headers["Accept"] = "*/*, text/*, text/html";
 
-                var request = new Mock<HttpRequestBase>();
+                var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
                 request
                     .SetupGet(x => x.Headers)
                     .Returns(headers)
@@ -102,7 +54,7 @@
                     .Returns(location)
                     .Verifiable();
 
-                var context = new Mock<HttpContextBase>();
+                var context = new Mock<HttpContextBase>(MockBehavior.Strict);
                 context
                     .SetupGet(x => x.Request)
                     .Returns(request.Object)
@@ -145,13 +97,45 @@
         }
 
         [Fact]
-        public void op_View_CultureInfo_object()
+        public void op_LanguageNegotiation()
         {
             var culture = Thread.CurrentThread.CurrentUICulture;
 
             try
             {
-                Assert.IsAssignableFrom<ViewResult>(new DerivedLanguageController().View(new CultureInfo("fr"), DateTime.UtcNow));
+                const string location = "/test";
+
+                var headers = new NameValueCollection();
+                headers["Accept-Language"] = "da, en-gb;q=0.8, en;q=0.7";
+
+                var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+                request
+                    .SetupGet(x => x.Headers)
+                    .Returns(headers)
+                    .Verifiable();
+                request
+                    .SetupGet(x => x.Path)
+                    .Returns(location)
+                    .Verifiable();
+                request
+                    .SetupGet(x => x.RawUrl)
+                    .Returns(location)
+                    .Verifiable();
+
+                var context = new Mock<HttpContextBase>(MockBehavior.Strict);
+                context
+                    .SetupGet(x => x.Request)
+                    .Returns(request.Object)
+                    .Verifiable();
+
+                var controller = new DerivedLanguageController();
+                controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+
+                var result = (SeeOtherResult)controller.LanguageNegotiation();
+
+                Assert.Equal(location + ".en", result.Location);
+
+                request.VerifyAll();
             }
             finally
             {
@@ -173,6 +157,21 @@
             try
             {
                 Assert.Throws<ArgumentNullException>(() => new DerivedLanguageController().View(null, DateTime.UtcNow));
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = culture;
+            }
+        }
+
+        [Fact]
+        public void op_View_CultureInfo_object()
+        {
+            var culture = Thread.CurrentThread.CurrentUICulture;
+
+            try
+            {
+                Assert.IsAssignableFrom<ViewResult>(new DerivedLanguageController().View(new CultureInfo("fr"), DateTime.UtcNow));
             }
             finally
             {

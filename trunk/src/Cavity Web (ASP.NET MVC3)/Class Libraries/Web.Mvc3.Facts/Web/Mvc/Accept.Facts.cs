@@ -4,7 +4,6 @@
     using System.Collections.ObjectModel;
     using System.Net.Mime;
     using System.Web;
-    using Cavity;
     using Moq;
     using Xunit;
 
@@ -14,27 +13,18 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<Accept>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsUnsealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsUnsealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void ctor()
         {
             Assert.NotNull(new Accept());
-        }
-
-        [Fact]
-        public void prop_ContentTypes()
-        {
-            Assert.True(new PropertyExpectations<Accept>(x => x.ContentTypes)
-                .TypeIs<Collection<ContentType>>()
-                .DefaultValueIsNotNull()
-                .Result);
         }
 
         [Fact]
@@ -67,37 +57,10 @@
         }
 
         [Fact]
-        public void op_FromString_stringEmpty()
-        {
-            const string expected = "*/*";
-            var actual = Accept.FromString(string.Empty).ContentTypes[0].MediaType;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_FromString_stringNull()
-        {
-            const string expected = "*/*";
-            var actual = Accept.FromString(null).ContentTypes[0].MediaType;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void op_FromString_string()
         {
             const string expected = "text/html";
             var actual = Accept.FromString(expected).ContentTypes[0].MediaType;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_FromString_stringSemicolon()
-        {
-            const string expected = "text/html";
-            var actual = Accept.FromString(expected + ";q=0.4").ContentTypes[0].MediaType;
 
             Assert.Equal(expected, actual);
         }
@@ -143,9 +106,42 @@
         }
 
         [Fact]
+        public void op_FromString_stringEmpty()
+        {
+            const string expected = "*/*";
+            var actual = Accept.FromString(string.Empty).ContentTypes[0].MediaType;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_FromString_stringNull()
+        {
+            const string expected = "*/*";
+            var actual = Accept.FromString(null).ContentTypes[0].MediaType;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_FromString_stringSemicolon()
+        {
+            const string expected = "text/html";
+            var actual = Accept.FromString(expected + ";q=0.4").ContentTypes[0].MediaType;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_FromString_stringWithSingleAsterixContentType()
         {
             Assert.Equal(4, Accept.FromString("text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2").ContentTypes.Count);
+        }
+
+        [Fact]
+        public void op_Negotiate_HttpRequestBaseNull_Type()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Accept().Negotiate(null, typeof(DummyController)));
         }
 
         [Fact]
@@ -153,7 +149,7 @@
         {
             var obj = Accept.FromString("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 
-            var request = new Mock<HttpRequestBase>();
+            var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
             request
                 .SetupGet(x => x.Path)
                 .Returns("/test")
@@ -172,21 +168,24 @@
         }
 
         [Fact]
-        public void op_Negotiate_HttpRequestBaseNull_Type()
+        public void op_Negotiate_HttpRequestBase_TypeInvalid()
         {
-            Assert.Throws<ArgumentNullException>(() => new Accept().Negotiate(null, typeof(DummyController)));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Accept().Negotiate(new Mock<HttpRequestBase>(MockBehavior.Strict).Object, typeof(string)));
         }
 
         [Fact]
         public void op_Negotiate_HttpRequestBase_TypeNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new Accept().Negotiate(new Mock<HttpRequestBase>().Object, null));
+            Assert.Throws<ArgumentNullException>(() => new Accept().Negotiate(new Mock<HttpRequestBase>(MockBehavior.Strict).Object, null));
         }
 
         [Fact]
-        public void op_Negotiate_HttpRequestBase_TypeInvalid()
+        public void prop_ContentTypes()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Accept().Negotiate(new Mock<HttpRequestBase>().Object, typeof(string)));
+            Assert.True(new PropertyExpectations<Accept>(x => x.ContentTypes)
+                            .TypeIs<Collection<ContentType>>()
+                            .DefaultValueIsNotNull()
+                            .Result);
         }
     }
 }
