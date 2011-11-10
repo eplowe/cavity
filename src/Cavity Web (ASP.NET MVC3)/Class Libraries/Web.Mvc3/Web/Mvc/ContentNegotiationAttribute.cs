@@ -83,7 +83,7 @@
             {
                 ','
             }, 
-                                         StringSplitOptions.RemoveEmptyEntries);
+            StringSplitOptions.RemoveEmptyEntries);
 
             return parts.Select(part => new ContentType(part.Trim())).ToList();
         }

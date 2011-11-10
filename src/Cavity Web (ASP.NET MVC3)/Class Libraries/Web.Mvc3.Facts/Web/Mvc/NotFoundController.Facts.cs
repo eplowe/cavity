@@ -19,7 +19,7 @@
                             .IsConcreteClass()
                             .IsSealed()
                             .HasDefaultConstructor()
-                            .IsDecoratedWith<AllowAttribute>()
+                            .IsDecoratedWith<InternalServerErrorAttribute>()
                             .Implements<IRegisterRoutes>()
                             .Result);
         }

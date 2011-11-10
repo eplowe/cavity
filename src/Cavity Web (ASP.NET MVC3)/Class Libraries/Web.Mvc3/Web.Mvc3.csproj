@@ -26,8 +26,10 @@
     <Compile Include="Web\Mvc\NotFoundController.cs" />
     <Compile Include="Web\Mvc\RedirectionResult.cs" />
     <Compile Include="Web\Mvc\SeeOtherResult.cs" />
+    <Compile Include="Web\Mvc\StatusAttribute.cs" />
     <Compile Include="Web\Mvc\TemporaryRedirectResult.cs" />
     <Compile Include="Web\Mvc\TextResult.cs" />
+    <Compile Include="Web\Mvc\XmlSerializationResult.cs" />
     <Compile Include="Web\Routing\DateRoute`1.cs" />
     <Compile Include="Web\Routing\IRegisterRoutes.cs" />
     <Compile Include="Web\Routing\RouteCollection.ExtensionMethods.cs" />

@@ -132,12 +132,14 @@
             }
 
             var lanneg = Activator.CreateInstance(controller) as LanguageController;
-            if (null != lanneg)
+            if (null == lanneg)
             {
-                foreach (var language in lanneg.Languages)
-                {
-                    yield return language;
-                }
+                yield break;
+            }
+
+            foreach (var language in lanneg.Languages)
+            {
+                yield return language;
             }
         }
     }
