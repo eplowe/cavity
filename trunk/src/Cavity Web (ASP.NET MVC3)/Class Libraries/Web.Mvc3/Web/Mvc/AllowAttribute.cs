@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Web.Mvc
 {
     using System;
+    using System.Linq;
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
@@ -31,7 +32,6 @@
             base.OnActionExecuting(filterContext);
 
             var request = filterContext.HttpContext.Request;
-            var response = filterContext.HttpContext.Response;
 
             var options = "OPTIONS".Equals(request.HttpMethod, StringComparison.OrdinalIgnoreCase);
 
@@ -41,6 +41,7 @@
                 return;
             }
 
+            var response = filterContext.HttpContext.Response;
             response.Clear();
             var filter = response.Filter as WrappedStream;
             if (null != filter)
@@ -73,13 +74,11 @@
                 {
                     ','
                 }, 
-                                          StringSplitOptions.RemoveEmptyEntries);
-                foreach (var part in parts)
+                StringSplitOptions.RemoveEmptyEntries);
+
+                if (parts.Any(part => part.Trim().Equals(method, StringComparison.OrdinalIgnoreCase)))
                 {
-                    if (part.Trim().Equals(method, StringComparison.OrdinalIgnoreCase))
-                    {
-                        allowed = true;
-                    }
+                    allowed = true;
                 }
             }
 

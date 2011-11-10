@@ -126,7 +126,7 @@
 
             foreach (var method in controller.GetMethods())
             {
-                foreach (object attribute in method.GetCustomAttributes(typeof(ContentNegotiationAttribute), true))
+                foreach (var attribute in method.GetCustomAttributes(typeof(ContentNegotiationAttribute), true))
                 {
                     var conneg = attribute as ContentNegotiationAttribute;
                     if (null == conneg)

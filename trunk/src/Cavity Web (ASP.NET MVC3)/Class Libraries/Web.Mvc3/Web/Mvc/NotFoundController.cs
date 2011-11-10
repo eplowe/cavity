@@ -6,7 +6,7 @@
     using System.Web.Routing;
     using Cavity.Web.Routing;
 
-    [Allow("DELETE, GET, HEAD, OPTIONS, POST, PUT")]
+    [InternalServerError]
     public sealed class NotFoundController : Controller, IRegisterRoutes
     {
         public ActionResult HtmlRepresentation()

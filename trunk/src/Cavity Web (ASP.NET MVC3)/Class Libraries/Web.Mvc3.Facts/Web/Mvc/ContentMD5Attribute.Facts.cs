@@ -29,7 +29,7 @@
         }
 
         [Fact]
-        public void op_OnActionExecuted_FilterExecutedContext()
+        public void op_OnActionExecuted_ActionExecutedContext()
         {
             var response = new Mock<HttpResponseBase>(MockBehavior.Strict);
             response
@@ -59,7 +59,7 @@
         }
 
         [Fact]
-        public void op_OnActionExecuted_FilterExecutedContextNull()
+        public void op_OnActionExecuted_ActionExecutedContextNull()
         {
             Assert.Throws<ArgumentNullException>(() => new ContentMD5Attribute().OnActionExecuted(null));
         }

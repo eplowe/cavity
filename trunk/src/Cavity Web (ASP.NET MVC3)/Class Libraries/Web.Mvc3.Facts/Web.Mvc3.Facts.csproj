@@ -28,8 +28,10 @@
     <Compile Include="Web\Mvc\RedirectionResult.Derived.cs" />
     <Compile Include="Web\Mvc\RedirectionResult.Facts.cs" />
     <Compile Include="Web\Mvc\SeeOtherResult.Facts.cs" />
+    <Compile Include="Web\Mvc\StatusAttribute.Facts.cs" />
     <Compile Include="Web\Mvc\TemporaryRedirectResult.Facts.cs" />
     <Compile Include="Web\Mvc\TextResult.Facts.cs" />
+    <Compile Include="Web\Mvc\XmlSerializationResult.Facts.cs" />
     <Compile Include="Web\Routing\DateRoute`1.Facts.cs" />
     <Compile Include="Web\Routing\IRegisterRoutes.Facts.cs" />
     <Compile Include="Web\Routing\RouteCollection.ExtensionMethods.Facts.cs" />
