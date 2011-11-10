@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="680d06e7-1da8-4ebf-a494-ba47a7c8ec30" Name="Cavity Visual Studio 2010 Templates" Language="1033" Version="1.1.0.723" Manufacturer="Alan Dean" UpgradeCode="186aa0a5-64b0-4867-a3de-019502de9336">
+    <Package InstallerVersion="300" InstallScope="perUser" Compressed="yes" Description="Installs the Cavity Visual Studio 2010 Templates." />
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="PersonalFolder">
+        <Directory Id="VisualStudio2010" Name="Visual Studio 2010">
+          <Directory Id="Templates" Name="Templates">
+            <Directory Id="ItemTemplates" Name="ItemTemplates">
+              <Directory Id="VisualCS" Name="Visual C#">
+                <Component Id="Content" Guid="9584039a-a660-48ae-98a0-58830b89002b">
+                  <RegistryValue Root="HKCU" Key="Software\Cavity\Visual Studio 2010 Templates" Type="string" Value="" KeyPath="yes" />
+                  <File Id="SimpleClassFactsZip" Name="Simple Class Facts.zip" Source="Content\Simple Class Facts.zip" />
+                  <File Id="SimpleClassZip" Name="Simple Class.zip" Source="Content\Simple Class.zip" />
+                </Component>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature Id="ProductFeature" Title="Cavity Visual Studio 2010 Templates" Level="1">
+      <ComponentGroupRef Id="Product.Generated" />
+      <ComponentRef Id="Content" />
+    </Feature>
+  </Product>
+</Wix>

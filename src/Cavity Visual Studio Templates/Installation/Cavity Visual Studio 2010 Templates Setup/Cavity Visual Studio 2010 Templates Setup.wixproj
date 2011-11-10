@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Wix.setup" />
+  <PropertyGroup>
+    <ProjectGuid>{5831d6d4-f8bf-45ec-a73a-54cd07fffb8d}</ProjectGuid>
+    <OutputName>Cavity Visual Studio 2010 Templates</OutputName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SuppressValidation>False</SuppressValidation>
+    <SuppressIces>ICE64;ICE91</SuppressIces>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Product.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Simple Class Facts.zip" />
+    <Content Include="Content\Simple Class.zip" />
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>
