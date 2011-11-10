@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="bda14199-8a1c-4c7b-afcd-136c6c28e023" Name="Cavity MSBuild Extensions" Language="1033" Version="1.1.0.719" Manufacturer="Alan Dean" UpgradeCode="f5481b90-9cbd-456f-96df-e2165b8d9af5">
+  <Product Id="bda14199-8a1c-4c7b-afcd-136c6c28e023" Name="Cavity MSBuild Extensions" Language="1033" Version="1.1.0.723" Manufacturer="Alan Dean" UpgradeCode="f5481b90-9cbd-456f-96df-e2165b8d9af5">
     <Package InstallerVersion="200" InstallScope="perMachine" Compressed="yes" Description="Installs the Cavity MSBuild extensions." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <Directory Id="TARGETDIR" Name="SourceDir">

@@ -9,8 +9,6 @@
   	<Solutions Include="Cavity Data (ACE)" />
   	<Solutions Include="Cavity Data (CSV)" />
   	<Solutions Include="Cavity Domain" />
-  	<Solutions Include="Cavity MSBuild (Compliance)" />
-  	<Solutions Include="Cavity MSBuild (Domain)" />
   	<Solutions Include="Cavity Service Location" />
   </ItemGroup>
   <Target Name="Rebuild">
