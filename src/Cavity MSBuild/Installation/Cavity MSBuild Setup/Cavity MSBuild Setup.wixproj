@@ -13,22 +13,24 @@
     <Folder Include="Content\net40\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Any.project" />
+    <Content Include="Content\Any.include" />
     <Content Include="Content\Any.references" />
-    <Content Include="Content\AnyCPU.project" />
+    <Content Include="Content\AnyCPU.platform" />
     <Content Include="Content\Build.all" />
     <Content Include="Content\Bundle.all" />
     <Content Include="Content\Clean.all" />
     <Content Include="Content\Code.project" />
     <Content Include="Content\Code.ruleset" />
     <Content Include="Content\Code.stylecop" />
+    <Content Include="Content\Compliance.include" />
+    <Content Include="Content\Compliance.rules" />
     <Content Include="Content\Data.references" />
     <Content Include="Content\Facts.project" />
     <Content Include="Content\Facts.ruleset" />
     <Content Include="Content\Facts.stylecop" />
     <Content Include="Content\Facts.test" />
     <Content Include="Content\MEF.references" />
-    <Content Include="Content\MixedCPU.project" />
+    <Content Include="Content\MixedCPU.platform" />
     <Content Include="Content\MSBuild.references" />
     <Content Include="Content\Mvc.project" />
     <Content Include="Content\Mvc.references" />
@@ -40,8 +42,8 @@
     <Content Include="Content\Web.references" />
     <Content Include="Content\Windows.references" />
     <Content Include="Content\WiX.setup" />
-    <Content Include="Content\x64.project" />
-    <Content Include="Content\x86.project" />
+    <Content Include="Content\x64.platform" />
+    <Content Include="Content\x86.platform" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--

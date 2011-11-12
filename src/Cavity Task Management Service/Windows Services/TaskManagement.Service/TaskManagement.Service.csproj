@@ -91,7 +91,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\x86.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\x86.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.references" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\MEF.references" />

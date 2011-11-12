@@ -92,7 +92,7 @@
     <Compile Include="Data\VerifyRepositoryBase`1.Facts.cs" />
     <Compile Include="RepositoryTestException.Facts.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <!--
   <Target Name="BeforeBuild">

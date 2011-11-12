@@ -3,5 +3,5 @@
   <PropertyGroup>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
   </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Any.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Any.include" />
 </Project>

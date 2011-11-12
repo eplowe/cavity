@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define UpgradeCode="{f5481b90-9cbd-456f-96df-e2165b8d9af5}"?>
-  <Product Id="*" Name="Cavity MSBuild Extensions" Language="1033" Version="1.1.0.726" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
+  <Product Id="*" Name="Cavity MSBuild Extensions" Language="1033" Version="1.1.0.727" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" InstallPrivileges="elevated" Compressed="yes" Description="Installs the Cavity MSBuild extensions." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
@@ -18,22 +18,24 @@
             </Directory>
             <Component Id="Content" Guid="69b3bf14-0198-4279-9932-2260f7b238de">
               <RegistryValue Root="HKLM" Key="Software\Cavity\MSBuild Extensions" Type="string" Value="Installed" KeyPath="yes" />
-              <File Id="AnyProject" Name="Any.project" Source="Content\Any.project" />
+              <File Id="AnyInclude" Name="Any.include" Source="Content\Any.include" />
               <File Id="AnyReferences" Name="Any.references" Source="Content\Any.references" />
-              <File Id="AnyCpuProject" Name="AnyCPU.project" Source="Content\AnyCPU.project" />
+              <File Id="AnyCpuPlatform" Name="AnyCPU.platform" Source="Content\AnyCPU.platform" />
               <File Id="BuildAll" Name="Build.all" Source="Content\Build.all" />
               <File Id="BundleAll" Name="Bundle.all" Source="Content\Bundle.all" />
               <File Id="CleanAll" Name="Clean.all" Source="Content\Clean.all" />
               <File Id="CodeProject" Name="Code.project" Source="Content\Code.project" />
               <File Id="CodeRuleset" Name="Code.ruleset" Source="Content\Code.ruleset" />
               <File Id="CodeStyleCop" Name="Code.stylecop" Source="Content\Code.stylecop" />
+              <File Id="ComplianceInclude" Name="Compliance.include" Source="Content\Compliance.include" />
+              <File Id="ComplianceRules" Name="Compliance.rules" Source="Content\Compliance.rules" />
               <File Id="DataReferences" Name="Data.references" Source="Content\Data.references" />
               <File Id="FactsProject" Name="Facts.project" Source="Content\Facts.project" />
               <File Id="FactsRuleset" Name="Facts.ruleset" Source="Content\Facts.ruleset" />
               <File Id="FactsStyleCop" Name="Facts.stylecop" Source="Content\Facts.stylecop" />
               <File Id="FactsTest" Name="Facts.test" Source="Content\Facts.test" />
               <File Id="MefReferences" Name="MEF.references" Source="Content\MEF.references" />
-              <File Id="MixedCpuProject" Name="MixedCPU.project" Source="Content\MixedCPU.project" />
+              <File Id="MixedCpuPlatform" Name="MixedCPU.platform" Source="Content\MixedCPU.platform" />
               <File Id="MSBuildReferences" Name="MSBuild.references" Source="Content\MSBuild.references" />
               <File Id="MvcProject" Name="Mvc.project" Source="Content\Mvc.project" />
               <File Id="MvcReferences" Name="Mvc.references" Source="Content\Mvc.references" />
@@ -43,8 +45,8 @@
               <File Id="WebReferences" Name="Web.references" Source="Content\Web.references" />
               <File Id="WindowsReferences" Name="Windows.references" Source="Content\Windows.references" />
               <File Id="WixSetup" Name="WiX.setup" Source="Content\WiX.setup" />
-              <File Id="x64Project" Name="x64.project" Source="Content\x64.project" />
-              <File Id="x86Project" Name="x86.project" Source="Content\x86.project" />
+              <File Id="x64Platform" Name="x64.platform" Source="Content\x64.platform" />
+              <File Id="x86Platform" Name="x86.platform" Source="Content\x86.platform" />
             </Component>
           </Directory>
         </Directory>

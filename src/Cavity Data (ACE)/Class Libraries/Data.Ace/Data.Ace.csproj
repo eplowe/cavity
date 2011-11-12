@@ -32,7 +32,7 @@
       <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\MixedCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\MixedCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.references" />
   <!--
