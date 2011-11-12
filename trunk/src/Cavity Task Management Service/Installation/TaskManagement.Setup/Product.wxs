@@ -6,7 +6,6 @@
   <?define ProductName = "Cavity Task Management (x64)" ?>
   <?define DisplayName = "Cavity Task Management (x64)" ?>
   <?define ServiceName = "CavityTaskManagement64" ?>
-  <?define ProductId = "69cef711-4b73-40de-8c6b-c9bcf3bc1cb2" ?>
   <?define ProductUpgradeCode = "d796a13f-5f28-49a2-8883-9368677fa864" ?>
   <?define DirectoryId = "ProgramFiles64Folder" ?>
   <?define EventLogGuid = "fc4f3aaa-acb2-41a9-9104-5e97b2a0e548" ?>
@@ -17,7 +16,6 @@
   <?define ProductName = "Cavity Task Management" ?>
   <?define DisplayName = "Cavity Task Management" ?>
   <?define ServiceName = "CavityTaskManagement" ?>
-  <?define ProductId = "6442166c-81bb-4117-bcfc-036f5dff277a" ?>
   <?define ProductUpgradeCode = "d3c6a801-9e05-4bd1-9c35-bc44c426d1c7" ?>
   <?define DirectoryId = "ProgramFilesFolder" ?>
   <?define EventLogGuid = "3c6164ee-6378-4681-b891-2b81c60db682" ?>
@@ -25,9 +23,10 @@
   <?define ServiceGuid = "1d8762a5-3916-46a3-80b6-64f967525150" ?>
   <?define ServiceConfigGuid = "13dcbf4e-2f0f-41b6-be32-05f87ae1af0e" ?>
   <?endif ?>
-  <Product Id="$(var.ProductId)" Name="$(var.ProductName)" Language="1033" Version="1.1.0.721" Manufacturer="Alan Dean" UpgradeCode="$(var.ProductUpgradeCode)">
+  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.1.0.725" Manufacturer="Alan Dean" UpgradeCode="$(var.ProductUpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" Compressed="yes" Description="Installs Cavity Task Management." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+    <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="$(var.DirectoryId)">
         <Directory Id="Common" Name="Common Files">

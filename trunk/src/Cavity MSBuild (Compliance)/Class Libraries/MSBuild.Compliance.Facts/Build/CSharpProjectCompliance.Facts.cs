@@ -157,6 +157,15 @@
         }
 
         [Fact]
+        public void prop_Explanation()
+        {
+            Assert.True(new PropertyExpectations<CSharpProjectCompliance>(p => p.Explanation)
+                            .IsAutoProperty<string>()
+                            .IsDecoratedWith<RequiredAttribute>()
+                            .Result);
+        }
+
+        [Fact]
         public void prop_Projects()
         {
             Assert.True(new PropertyExpectations<CSharpProjectCompliance>(p => p.Projects)
@@ -169,7 +178,7 @@
         public void prop_XPath()
         {
             Assert.True(new PropertyExpectations<CSharpProjectCompliance>(p => p.XPath)
-                            .IsAutoProperty<ITaskItem[]>()
+                            .IsAutoProperty<string>()
                             .IsDecoratedWith<RequiredAttribute>()
                             .Result);
         }

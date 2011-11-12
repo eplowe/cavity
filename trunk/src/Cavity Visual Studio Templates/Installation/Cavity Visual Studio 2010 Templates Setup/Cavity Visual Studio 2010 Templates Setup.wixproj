@@ -7,7 +7,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <SuppressValidation>False</SuppressValidation>
-    <SuppressIces>ICE64;ICE91</SuppressIces>
+    <SuppressIces>ICE64;ICE91;$(SuppressIces)</SuppressIces>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />

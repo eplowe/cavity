@@ -72,7 +72,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.references" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

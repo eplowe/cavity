@@ -20,11 +20,12 @@
   </Target>
   <Target Name="Clean output">
     <ItemGroup>
-      <CsProjFiles Include="$(MSBuildProjectDirectory)\**\*.csproj" />
+      <ProjFiles Include="$(MSBuildProjectDirectory)\**\*.csproj" />
+      <ProjFiles Include="$(MSBuildProjectDirectory)\**\*.wixproj" />
     </ItemGroup>
-    <RemoveDir Directories="%(CsProjFiles.RelativeDir)bin\"
+    <RemoveDir Directories="%(ProjFiles.RelativeDir)bin\"
                ContinueOnError="true" />
-    <RemoveDir Directories="%(CsProjFiles.RelativeDir)obj\"
+    <RemoveDir Directories="%(ProjFiles.RelativeDir)obj\"
                ContinueOnError="true" />
   </Target>
   <Target Name="Clean solutions">

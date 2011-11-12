@@ -127,6 +127,7 @@
     <value>Paths have not been set.</value>
   </data>
   <data name="CSharpProjectCompliance_XPath_Message" xml:space="preserve">
-    <value>{0} failed compliance: {1}</value>
+    <value>{0} failed compliance with {1} because {2}.</value>
+    <comment> </comment>
   </data>
 </root>
