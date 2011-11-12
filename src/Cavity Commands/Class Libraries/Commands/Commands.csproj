@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{C5D47F15-C43B-4607-BC40-91206D4AD503}</ProjectGuid>
     <AssemblyName>Cavity.Commands</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Collections\CommandCollection.cs" />

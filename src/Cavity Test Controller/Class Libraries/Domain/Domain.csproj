@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{728634E0-7995-4D42-B1DF-BBC527E36716}</ProjectGuid>
     <AssemblyName>Cavity.TestController.Domain</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

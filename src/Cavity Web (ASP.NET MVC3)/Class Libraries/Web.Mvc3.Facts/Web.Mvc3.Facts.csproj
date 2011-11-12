@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{31A2B757-45AF-4E46-97F2-88320E57DE5B}</ProjectGuid>
     <AssemblyName>Cavity.Web.Mvc.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="IO\WrappedStream.Facts.cs" />
@@ -46,9 +45,6 @@
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Routing" />
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
@@ -64,6 +60,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Mvc.references" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

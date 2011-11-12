@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}</ProjectGuid>
     <AssemblyName>Cavity.MSBuild.Compliance.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Build\CSharpProjectCompliance.Facts.cs" />

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{78E22D73-593D-448E-A4C0-F02D1E88E244}</ProjectGuid>
     <AssemblyName>Cavity.Domain.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Include="packages.config" />

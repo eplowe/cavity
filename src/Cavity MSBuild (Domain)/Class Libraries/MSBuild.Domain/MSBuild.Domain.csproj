@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{980844FD-79CC-48EC-A16A-A2561C126631}</ProjectGuid>
     <AssemblyName>Cavity.MSBuild.Domain</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{AEEDCAB3-FD8E-45B9-A9F7-88EB650702A4}</ProjectGuid>
     <AssemblyName>Cavity.Testing.Http</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="GlobalSuppressions.cs" />

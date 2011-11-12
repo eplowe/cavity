@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{88F1D720-99E4-4779-AA31-0802788178BD}</ProjectGuid>
     <AssemblyName>Cavity.TestController.Data</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />

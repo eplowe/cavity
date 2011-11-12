@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</ProjectGuid>
     <AssemblyName>Cavity.Core</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Collections\StringList.cs" />

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{D0299C27-537C-42CE-B313-9F4D34EF8395}</ProjectGuid>
     <AssemblyName>Cavity.ServiceLocation.Autofac.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Configuration\XmlServiceLocatorProvider.Facts.cs" />

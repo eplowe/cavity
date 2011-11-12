@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{81E4953D-9825-4B67-B9D1-D0B8BA1B3A3D}</ProjectGuid>
     <AssemblyName>Cavity.TaskManagement.Abstractions</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Threading\IManageTasks.cs" />

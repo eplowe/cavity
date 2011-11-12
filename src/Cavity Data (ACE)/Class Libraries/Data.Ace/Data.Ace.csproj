@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{94A4843F-2FCA-48D9-84EF-4250D51DB2EF}</ProjectGuid>
     <AssemblyName>Cavity.Data.Ace</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
     <ServiceLocation>false</ServiceLocation>

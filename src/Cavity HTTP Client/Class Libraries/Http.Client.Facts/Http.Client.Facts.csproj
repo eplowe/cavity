@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{CFF72223-C8ED-4010-A5B5-57845F2AD577}</ProjectGuid>
     <AssemblyName>Cavity.Http.Client.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Http.Client\Http.Client.csproj">

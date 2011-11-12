@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <OutputType Condition=" '$(OutputType)' == '' ">Library</OutputType>
-    <RootNamespace Condition=" '$(RootNamespace)' == '' ">Example</RootNamespace>
+    <RootNamespace Condition=" '$(RootNamespace)' == '' ">Cavity</RootNamespace>
     <DefineConstants Condition=" '$(SuppressTrace)' != 'true' ">TRACE;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>

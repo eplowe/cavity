@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{BB566F81-567B-45D8-839E-D1DB3F815A04}</ProjectGuid>
     <AssemblyName>Cavity.Repository.FileSystem.Xml.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Repository.FileSystem.Xml\Repository.FileSystem.Xml.csproj">

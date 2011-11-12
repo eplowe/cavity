@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{1ACBDACF-14B0-4B7E-9FCA-9ADFB0F803E0}</ProjectGuid>
     <AssemblyName>Cavity.Data.Csv</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
