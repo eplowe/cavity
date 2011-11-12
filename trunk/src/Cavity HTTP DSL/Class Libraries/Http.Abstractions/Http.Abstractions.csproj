@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{BE0954AC-AD99-4286-96A5-24E9774913AB}</ProjectGuid>
+    <AssemblyName>Cavity.Http.Abstractions</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Net\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <!--
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
