@@ -28,12 +28,13 @@
                     type = Property.ReflectedType;
                 }
 
+                var parameters = new[]
+                {
+                    Value
+                };
                 Property.GetSetMethod(true).Invoke(
                     Activator.CreateInstance(type, true),
-                    new[]
-                    {
-                        Value
-                    });
+                    parameters);
 
                 if (null != ExpectedException)
                 {

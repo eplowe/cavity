@@ -41,14 +41,15 @@
                                        int id,
                                        object data)
         {
+            var array = new[]
+            {
+                data
+            };
             TraceData(eventCache,
                       source,
                       eventType,
                       id,
-                      new[]
-                      {
-                          data
-                      });
+                      array);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Temporary")]
@@ -72,29 +73,31 @@
                 {
                     continue;
                 }
-
+            
+                var array = new[]
+                {
+                    datum
+                };
                 TraceEvent(eventCache,
                            source,
                            eventType,
                            id,
                            "{0}",
-                           new[]
-                           {
-                               datum
-                           });
+                           array);
             }
 #else
             foreach (var datum in data.Where(x => !TraceException(eventType, x)))
             {
+                var array = new[]
+                {
+                    datum
+                };
                 TraceEvent(eventCache,
                            source,
                            eventType,
                            id,
                            "{0}",
-                           new[]
-                           {
-                               datum
-                           });
+                           array);
             }
 #endif
         }
@@ -261,15 +264,16 @@
                                         int id,
                                         string message)
         {
+            var array = new[]
+            {
+                message
+            };
             TraceEvent(eventCache,
                        source,
                        eventType,
                        id,
                        "{0}",
-                       new[]
-                       {
-                           message
-                       });
+                       array);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Temporary")]
@@ -279,15 +283,16 @@
                                            string message,
                                            Guid relatedActivityId)
         {
+            var array = new object[]
+            {
+                message, relatedActivityId
+            };
             TraceEvent(eventCache,
                        source,
                        TraceEventType.Transfer,
                        id,
                        "{0}",
-                       new object[]
-                       {
-                           message, relatedActivityId
-                       });
+                       array);
         }
 
         public override void Write(object o)

@@ -15,6 +15,9 @@
     public sealed class CSharpProjectCompliance : Task
     {
         [Required]
+        public string Explanation { get; set; }
+
+        [Required]
         public ITaskItem[] Projects { get; set; }
 
         [Required]
@@ -101,7 +104,7 @@
             var o = navigator.Evaluate(XPath, namespaces);
             if (o != null && !(bool)o)
             {
-                Log.LogError(Resources.CSharpProjectCompliance_XPath_Message, file, XPath);
+                Log.LogError(Resources.CSharpProjectCompliance_XPath_Message, file, XPath, Explanation);
                 return false;
             }
 

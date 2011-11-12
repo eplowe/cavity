@@ -16,7 +16,7 @@
     /// Represents an integer with a radix of 36.
     /// </summary>
     /// <remarks>
-    /// <see href="http://wikipedia.org/wiki/Base_36">Base 36</see>
+    /// Wikipedia: <see href="http://wikipedia.org/wiki/Base_36">Base 36</see>.
     /// </remarks>
     [Serializable]
     public struct AlphaDecimal : ISerializable,

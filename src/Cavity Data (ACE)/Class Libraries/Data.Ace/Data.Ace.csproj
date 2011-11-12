@@ -34,8 +34,8 @@
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\MixedCPU.project" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.references" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

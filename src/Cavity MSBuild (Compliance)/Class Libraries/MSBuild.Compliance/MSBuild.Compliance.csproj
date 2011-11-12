@@ -26,9 +26,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.Project" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.Project" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\MSBuild.Project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\MSBuild.references" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

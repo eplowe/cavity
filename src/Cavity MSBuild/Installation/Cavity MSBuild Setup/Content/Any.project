@@ -1,79 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Target.framework" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Any.references" />
   <PropertyGroup>
     <FileAlignment>512</FileAlignment>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-  </PropertyGroup>
-  <PropertyGroup>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
     <OutputType Condition=" '$(OutputType)' == '' ">Library</OutputType>
     <RootNamespace Condition=" '$(RootNamespace)' == '' ">Example</RootNamespace>
-    <SignAssembly Condition=" '$(SignAssembly)' == '' ">true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile Condition="Exists('$(SolutionDir)$(RootNamespace).snk')">$(SolutionDir)$(RootNamespace).snk</AssemblyOriginatorKeyFile>
+    <DefineConstants Condition=" '$(SuppressTrace)' != 'true' ">TRACE;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
     <ErrorReport Condition=" '$(ErrorReport)' == '' ">prompt</ErrorReport>
-    <RunCodeAnalysis Condition=" '$(RunCodeAnalysis)' == '' ">true</RunCodeAnalysis>
-    <CodeAnalysisTreatWarningsAsErrors Condition=" '$(CodeAnalysisTreatWarningsAsErrors)' == '' ">true</CodeAnalysisTreatWarningsAsErrors>
-    <StyleCopTreatErrorsAsWarnings Condition=" '$(StyleCopTreatErrorsAsWarnings)' == '' ">false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors Condition=" '$(TreatWarningsAsErrors)' == '' ">true</TreatWarningsAsErrors>
     <WarningLevel Condition=" '$(WarningLevel)' == '' ">4</WarningLevel>
   </PropertyGroup>
+  <Choose>
+    <When Condition=" '$(Configuration)' == 'Debug' ">
+      <PropertyGroup>
+        <DefineConstants Condition=" '$(SuppressDebug)' != 'true' ">DEBUG;$(DefineConstants)</DefineConstants>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+      </PropertyGroup>
+    </When>
+    <When Condition=" '$(Configuration)' == 'Release' ">
+      <PropertyGroup>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+      </PropertyGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="Exists('$(SolutionDir)$(RootNamespace).snk')">
+      <PropertyGroup>
+        <SignAssembly Condition=" '$(SignAssembly)' == '' ">true</SignAssembly>
+        <AssemblyOriginatorKeyFile>$(SolutionDir)$(RootNamespace).snk</AssemblyOriginatorKeyFile>
+      </PropertyGroup>
+      <ItemGroup>
+        <None Include="$(SolutionDir)$(RootNamespace).snk">
+          <Link>Properties\$(RootNamespace).snk</Link>
+        </None>
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <SignAssembly>false</SignAssembly>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
   <PropertyGroup>
-    <DefineConstants Condition=" '$(SuppressTrace)' != 'true' ">TRACE;$(DefineConstants)</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DefineConstants Condition=" '$(SuppressDebug)' != 'true' ">DEBUG;$(DefineConstants)</DefineConstants>
+    <RunCodeAnalysis Condition=" '$(RunCodeAnalysis)' == '' ">true</RunCodeAnalysis>
+    <CodeAnalysisTreatWarningsAsErrors Condition=" '$(CodeAnalysisTreatWarningsAsErrors)' == '' ">true</CodeAnalysisTreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml" />
+    <CodeAnalysisDictionary Condition="Exists('Properties\CodeAnalysis.dictionary')"
+                            Include="Properties\CodeAnalysis.dictionary">
+      <Link>Properties\CodeAnalysis.dictionary</Link>
+    </CodeAnalysisDictionary>
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
-    <Reference Include="System.Numerics" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
+  <PropertyGroup>
+    <StyleCopTreatErrorsAsWarnings Condition=" '$(StyleCopTreatErrorsAsWarnings)' == '' ">false</StyleCopTreatErrorsAsWarnings>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Condition="Exists('$(SolutionDir)Version.cs')"
              Include="$(SolutionDir)Version.cs">
@@ -85,20 +73,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Condition="Exists('$(SolutionDir)$(RootNamespace).snk')"
-          Include="$(SolutionDir)$(RootNamespace).snk">
-      <Link>Properties\$(RootNamespace).snk</Link>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Condition="Exists('Properties\CodeAnalysis.dictionary')"
-                            Include="Properties\CodeAnalysis.dictionary">
-      <Link>Properties\CodeAnalysis.dictionary</Link>
-    </CodeAnalysisDictionary>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Condition="Exists('$(MSBuildExtensionsPath)\StyleCop\v4.6\StyleCop.targets')"
-          Project="$(MSBuildExtensionsPath)\StyleCop\v4.6\StyleCop.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\StyleCop\v4.6\StyleCop.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\net40\Cavity.MSBuild.Compliance.targets" />
 </Project>
