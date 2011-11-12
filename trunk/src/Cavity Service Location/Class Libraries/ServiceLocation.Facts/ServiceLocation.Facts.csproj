@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{9E656B3A-FF1E-4CA4-8E6B-4BD7ADF1809F}</ProjectGuid>
     <AssemblyName>Cavity.ServiceLocation.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Configuration\ISetLocatorProvider.Dummy.cs" />

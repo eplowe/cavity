@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{2B199291-145D-49DE-BC52-522DFA986945}</ProjectGuid>
     <AssemblyName>Cavity.Data.Csv.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\Csv.String.ExtensionMethods.Facts.cs" />

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{B6E53FF7-E60E-437A-9F40-D7C14CC2EB9F}</ProjectGuid>
     <AssemblyName>Cavity.Http.Client</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Net\Http.cs" />

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{46F86585-BFDE-41A1-B12C-1B770FDCA2DA}</ProjectGuid>
     <AssemblyName>Cavity.TestController.Abstractions.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
@@ -15,7 +14,6 @@
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
@@ -34,6 +32,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\MEF.references" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

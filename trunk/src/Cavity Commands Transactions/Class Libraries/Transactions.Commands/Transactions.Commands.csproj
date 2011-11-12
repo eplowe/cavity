@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{6EBDA186-5D36-45F6-A3EF-743097747BEB}</ProjectGuid>
     <AssemblyName>Cavity.Transactions.Commands</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Diagnostics\Tracing.cs" />

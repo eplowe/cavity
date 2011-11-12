@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{0FF43960-7762-46A3-BA82-DBA2161DBAC9}</ProjectGuid>
     <AssemblyName>Cavity.MSBuild.Compliance</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Build\CSharpProjectCompliance.cs" />

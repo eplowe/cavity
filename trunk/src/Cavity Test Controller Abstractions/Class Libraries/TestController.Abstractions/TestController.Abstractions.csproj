@@ -3,16 +3,13 @@
   <PropertyGroup>
     <ProjectGuid>{E8E036AD-06D6-41A8-972C-A7840EC1437B}</ProjectGuid>
     <AssemblyName>Cavity.TestController.Abstractions</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.ComponentModel.Composition" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="Testing\IRunTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\MEF.references" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

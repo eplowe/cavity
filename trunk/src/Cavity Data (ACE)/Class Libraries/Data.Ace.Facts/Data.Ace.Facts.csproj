@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{EFFAFE17-5D62-4B78-AC53-04CBCBB6A369}</ProjectGuid>
     <AssemblyName>Cavity.Data.Ace.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(CommandLineBuild)' != 'true' ">
     <Compile Include="Data\ExcelFile.Facts.cs" />

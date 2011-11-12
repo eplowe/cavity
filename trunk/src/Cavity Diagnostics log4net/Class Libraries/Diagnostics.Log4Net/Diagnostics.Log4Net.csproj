@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{5960B260-2521-4C8A-BF81-F5BDBADC065D}</ProjectGuid>
     <AssemblyName>Cavity.Diagnostics.Log4Net</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Diagnostics\Log4NetTraceListener.cs" />

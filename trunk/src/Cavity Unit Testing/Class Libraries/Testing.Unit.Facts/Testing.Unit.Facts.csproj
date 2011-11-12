@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{DEE68EFC-926D-4FBF-9ACB-E5539E2313E6}</ProjectGuid>
     <AssemblyName>Cavity.Testing.Unit.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
     <ServiceLocation>false</ServiceLocation>

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{FAD65C24-7586-44A2-9B12-CC4B4CADE3E4}</ProjectGuid>
     <AssemblyName>Cavity.Domain</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Collections\INormalizationComparer.cs" />

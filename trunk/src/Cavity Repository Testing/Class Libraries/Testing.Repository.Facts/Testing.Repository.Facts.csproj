@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{C562E0DE-4257-4D12-AB3C-8EEB298A6D01}</ProjectGuid>
     <AssemblyName>Cavity.Testing.Repository.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Testing.Repository\Testing.Repository.csproj">

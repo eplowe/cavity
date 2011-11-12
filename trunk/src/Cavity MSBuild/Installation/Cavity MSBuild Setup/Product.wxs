@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define UpgradeCode="{f5481b90-9cbd-456f-96df-e2165b8d9af5}"?>
-  <Product Id="*" Name="Cavity MSBuild Extensions" Language="1033" Version="1.1.0.725" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
+  <Product Id="*" Name="Cavity MSBuild Extensions" Language="1033" Version="1.1.0.726" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" InstallPrivileges="elevated" Compressed="yes" Description="Installs the Cavity MSBuild extensions." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
@@ -32,10 +32,16 @@
               <File Id="FactsRuleset" Name="Facts.ruleset" Source="Content\Facts.ruleset" />
               <File Id="FactsStyleCop" Name="Facts.stylecop" Source="Content\Facts.stylecop" />
               <File Id="FactsTest" Name="Facts.test" Source="Content\Facts.test" />
+              <File Id="MefReferences" Name="MEF.references" Source="Content\MEF.references" />
               <File Id="MixedCpuProject" Name="MixedCPU.project" Source="Content\MixedCPU.project" />
               <File Id="MSBuildReferences" Name="MSBuild.references" Source="Content\MSBuild.references" />
+              <File Id="MvcProject" Name="Mvc.project" Source="Content\Mvc.project" />
+              <File Id="MvcReferences" Name="Mvc.references" Source="Content\Mvc.references" />
+              <File Id="ServiceReferences" Name="Service.references" Source="Content\Service.references" />
               <File Id="TargetFramework" Name="Target.framework" Source="Content\Target.framework" />
               <File Id="VersionXml" Name="Version.xml" Source="Content\Version.xml" />
+              <File Id="WebReferences" Name="Web.references" Source="Content\Web.references" />
+              <File Id="WindowsReferences" Name="Windows.references" Source="Content\Windows.references" />
               <File Id="WixSetup" Name="WiX.setup" Source="Content\WiX.setup" />
               <File Id="x64Project" Name="x64.project" Source="Content\x64.project" />
               <File Id="x86Project" Name="x86.project" Source="Content\x86.project" />

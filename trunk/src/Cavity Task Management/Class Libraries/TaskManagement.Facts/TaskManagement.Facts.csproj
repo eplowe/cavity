@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{08C8B40A-9858-424F-8468-9DFE1082EA79}</ProjectGuid>
     <AssemblyName>Cavity.TaskManagement.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\TaskManagement\TaskManagement.csproj">
@@ -17,8 +16,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.ServiceProcess" />
     <Reference Include="Cavity.Core">
       <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
@@ -56,6 +53,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\MEF.references" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Service.references" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{DAA78F38-1405-4971-AB8D-1D42FD41B848}</ProjectGuid>
     <AssemblyName>Cavity.ServiceLocation.CastleWindsor</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">

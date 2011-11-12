@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{7DD77C51-A1D5-486A-948A-20AA80C4D55E}</ProjectGuid>
     <AssemblyName>Cavity.ServiceLocation.CastleWindsor.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>

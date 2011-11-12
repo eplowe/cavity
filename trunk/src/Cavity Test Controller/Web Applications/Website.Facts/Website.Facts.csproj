@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{CFF7B717-2F16-42D9-BCB7-FE258BE5B3BC}</ProjectGuid>
     <AssemblyName>Cavity.TestController.Website.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
@@ -28,20 +27,6 @@
     <Reference Include="ReflectionMagic">
       <HintPath>..\..\packages\ReflectionMagic.1.0.1\lib\net40\ReflectionMagic.dll</HintPath>
     </Reference>
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
@@ -64,15 +49,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MvcApplication.Facts.cs" />
     <Compile Include="Controllers\DateController.Facts.cs" />
     <Compile Include="Controllers\RootController.Facts.cs" />
-    <Compile Include="MvcApplication.Facts.cs" />
     <Compile Include="Views\NotFound\HtmlRepresentation.Facts.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.references" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Mvc.references" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

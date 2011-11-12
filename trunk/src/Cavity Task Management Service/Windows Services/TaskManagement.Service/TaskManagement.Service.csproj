@@ -3,10 +3,12 @@
   <PropertyGroup>
     <ProjectGuid>{6E1FEB48-28DE-49E6-83BD-08D272F8C43E}</ProjectGuid>
     <AssemblyName>Cavity.TaskManagement.Service</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
     <OutputType>WinExe</OutputType>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Configuration.Install" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
       <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\net40\Cavity.Core.dll</HintPath>
@@ -17,9 +19,6 @@
     <Reference Include="Cavity.TaskManagement">
       <HintPath>..\..\packages\Cavity.TaskManagement.1.1.0.719\lib\net40\Cavity.TaskManagement.dll</HintPath>
     </Reference>
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Configuration.Install" />
-    <Reference Include="System.ServiceProcess" />
     <Reference Include="Castle.Core">
       <HintPath>..\..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
     </Reference>
@@ -95,6 +94,8 @@
   <Import Project="$(MSBuildExtensionsPath)\Cavity\x86.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.references" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\MEF.references" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Service.references" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

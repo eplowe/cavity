@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{D2E25F1C-1AAF-44C8-B48C-3DD1344014DE}</ProjectGuid>
     <AssemblyName>Cavity.TaskManagement.Abstractions.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\TaskManagement.Abstractions\TaskManagement.Abstractions.csproj">

@@ -4,6 +4,7 @@
   <ItemGroup>
     <Reference Include="System"/>
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />

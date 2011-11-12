@@ -3,7 +3,6 @@
   <PropertyGroup>
     <ProjectGuid>{A101EF34-98EE-46D5-BBCF-C6F8E9E525C7}</ProjectGuid>
     <AssemblyName>Cavity.Domain.RoyalMail.Facts</AssemblyName>
-    <RootNamespace>Cavity</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Include="packages.config" />
