@@ -25,11 +25,6 @@
     <Compile Include="IO\TempFile.Facts.cs" />
     <Compile Include="IO\EncodedStringWriter.Facts.cs" />
     <Compile Include="IO\StreamWriterDictionary.Facts.cs" />
-    <Compile Include="Net\CacheControl.Facts.cs" />
-    <Compile Include="Net\EntityTag.Facts.cs" />
-    <Compile Include="Net\HttpHeader.Facts.cs" />
-    <Compile Include="Net\IHttpHeader.Facts.cs" />
-    <Compile Include="Net\Token.Facts.cs" />
     <Compile Include="Security\Cryptography\MD5Hash.Facts.cs" />
     <Compile Include="Object.ExtensionMethods.Facts.cs" />
     <Compile Include="RelativeUri.Facts.cs" />

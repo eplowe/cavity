@@ -4,6 +4,7 @@
          ToolsVersion="4.0">
   <ItemGroup>
   	<Solutions Include="Cavity Commands Transactions" />
+  	<Solutions Include="Cavity HTTP DSL" />
   	<Solutions Include="Cavity MSBuild (Compliance)" />
   	<Solutions Include="Cavity MSBuild (Domain)" />
   	<Solutions Include="Cavity Service Location (Autofac)" />
