@@ -5,7 +5,6 @@
     using System.IO;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
-    using Cavity.Net;
     using Xunit;
 
     public sealed class LanguageFacts
@@ -213,7 +212,7 @@
         [Fact]
         public void op_GetObjectData_SerializationInfo_StreamingContext()
         {
-            var info = new SerializationInfo(typeof(EntityTag), new FormatterConverter());
+            var info = new SerializationInfo(typeof(Language), new FormatterConverter());
             var context = new StreamingContext(StreamingContextStates.All);
 
             const string expected = "fr";

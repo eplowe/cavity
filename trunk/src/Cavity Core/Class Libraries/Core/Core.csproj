@@ -53,12 +53,6 @@
     <Compile Include="WhiteSpace.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Compile Include="Net\CacheControl.cs" />
-    <Compile Include="Net\EntityTag.cs" />
-    <Compile Include="Net\HttpHeader.cs" />
-    <Compile Include="Net\IHttpHeader.cs" />
-    <Compile Include="Net\IWebRequest.cs" />
-    <Compile Include="Net\Token.cs" />
     <Compile Include="ValueObject`1.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
