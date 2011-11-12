@@ -106,6 +106,7 @@
       <LastGenOutput>HtmlRepresentation.generated.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Mvc.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.references" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

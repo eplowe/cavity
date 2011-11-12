@@ -25,7 +25,7 @@
     <Compile Include="Models\LongTask.cs" />
     <Compile Include="Models\ShortTask.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\MEF.references" />
   <!--

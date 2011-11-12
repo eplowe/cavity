@@ -55,7 +55,7 @@
     <Compile Include="Views\NotFound\HtmlRepresentation.Facts.cs" />
   </ItemGroup>
   <ItemGroup />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.references" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Mvc.references" />

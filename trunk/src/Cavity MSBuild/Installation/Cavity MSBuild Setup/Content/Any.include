@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Any.references" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Compliance.include" />
   <PropertyGroup>
     <FileAlignment>512</FileAlignment>
     <ProductVersion>8.0.30703</ProductVersion>
@@ -9,11 +10,6 @@
     <OutputType Condition=" '$(OutputType)' == '' ">Library</OutputType>
     <RootNamespace Condition=" '$(RootNamespace)' == '' ">Cavity</RootNamespace>
     <DefineConstants Condition=" '$(SuppressTrace)' != 'true' ">TRACE;$(DefineConstants)</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ErrorReport Condition=" '$(ErrorReport)' == '' ">prompt</ErrorReport>
-    <TreatWarningsAsErrors Condition=" '$(TreatWarningsAsErrors)' == '' ">true</TreatWarningsAsErrors>
-    <WarningLevel Condition=" '$(WarningLevel)' == '' ">4</WarningLevel>
   </PropertyGroup>
   <Choose>
     <When Condition=" '$(Configuration)' == 'Debug' ">
@@ -49,19 +45,6 @@
       </PropertyGroup>
     </Otherwise>
   </Choose>
-  <PropertyGroup>
-    <RunCodeAnalysis Condition=" '$(RunCodeAnalysis)' == '' ">true</RunCodeAnalysis>
-    <CodeAnalysisTreatWarningsAsErrors Condition=" '$(CodeAnalysisTreatWarningsAsErrors)' == '' ">true</CodeAnalysisTreatWarningsAsErrors>
-  </PropertyGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Condition="Exists('Properties\CodeAnalysis.dictionary')"
-                            Include="Properties\CodeAnalysis.dictionary">
-      <Link>Properties\CodeAnalysis.dictionary</Link>
-    </CodeAnalysisDictionary>
-  </ItemGroup>
-  <PropertyGroup>
-    <StyleCopTreatErrorsAsWarnings Condition=" '$(StyleCopTreatErrorsAsWarnings)' == '' ">false</StyleCopTreatErrorsAsWarnings>
-  </PropertyGroup>
   <ItemGroup>
     <Compile Condition="Exists('$(SolutionDir)Version.cs')"
              Include="$(SolutionDir)Version.cs">
@@ -74,6 +57,4 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\StyleCop\v4.6\StyleCop.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\net40\Cavity.MSBuild.Compliance.targets" />
 </Project>

@@ -40,7 +40,7 @@
     <Compile Include="Data\FileRepository`1.Facts.cs" />
     <Compile Include="IO\RecordFile.Facts.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <!--
   <Target Name="BeforeBuild">

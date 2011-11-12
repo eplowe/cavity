@@ -27,7 +27,7 @@
       <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.719\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <!--
   <Target Name="BeforeBuild">

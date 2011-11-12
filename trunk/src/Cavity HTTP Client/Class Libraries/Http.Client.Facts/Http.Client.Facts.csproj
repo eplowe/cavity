@@ -59,7 +59,7 @@
     <Compile Include="Text\TextPlain.Facts.cs" />
     <Compile Include="Xml\ApplicationXml.Facts.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <!--
   <Target Name="BeforeBuild">
