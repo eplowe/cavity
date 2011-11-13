@@ -5,6 +5,9 @@
     <AssemblyName>Cavity.Http.Dsl.Facts</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cavity.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.728\lib\net40\Cavity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\net40\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
@@ -28,8 +31,12 @@
       <Name>Http.Dsl</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Net\" />
+    <Compile Include="Net\HttpExpectation.Facts.cs" />
+    <Compile Include="Net\HttpExpectations.Facts.cs" />
+    <Compile Include="Net\IHttpExpectation.Facts.cs" />
+    <Compile Include="Net\IHttpExpectations.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />

@@ -14,7 +14,6 @@
                             .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
-                            .Implements<IHttpHeader>()
                             .Result);
         }
 

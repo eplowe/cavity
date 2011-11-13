@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{C1D5205A-AC67-4B00-8239-63CE54A0185E}</ProjectGuid>
-    <RootNamespace>Cavity.Http.Dsl</RootNamespace>
+    <AssemblyName>Cavity.Http.Dsl</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Http.Abstractions\Http.Abstractions.csproj">
@@ -11,7 +11,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Net\" />
+    <Compile Include="HttpTestException.cs" />
+    <Compile Include="Net\HttpExpectation.cs" />
+    <Compile Include="Net\HttpExpectations.cs" />
+    <Compile Include="Net\IHttpExpectation.cs" />
+    <Compile Include="Net\IHttpExpectations.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.728\lib\net40\Cavity.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
