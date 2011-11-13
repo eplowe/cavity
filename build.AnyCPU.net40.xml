@@ -5,6 +5,7 @@
   <ItemGroup>
   	<Solutions Include="Cavity Commands Transactions" />
   	<!-- Solutions Include="Cavity HTTP Generalizations" / -->
+  	<!-- Solutions Include="Cavity HTTP Testing" / -->
   	<Solutions Include="Cavity MSBuild (Compliance)" />
   	<Solutions Include="Cavity MSBuild (Domain)" />
   	<Solutions Include="Cavity Service Location (Autofac)" />
