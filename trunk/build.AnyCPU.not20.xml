@@ -5,8 +5,6 @@
   <ItemGroup>
   	<Solutions Include="Cavity Diagnostics log4net" />
   	<Solutions Include="Cavity Domain (Royal Mail)" />
-  	<Solutions Include="Cavity HTTP Client" />
-  	<Solutions Include="Cavity HTTP Testing" />
   	<Solutions Include="Cavity Repository" />
   	<Solutions Include="Cavity Repository (XML File System)" />
   	<Solutions Include="Cavity Repository Testing" />
