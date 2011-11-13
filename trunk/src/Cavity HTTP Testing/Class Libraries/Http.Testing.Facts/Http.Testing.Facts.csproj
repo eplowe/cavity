@@ -4,6 +4,42 @@
     <ProjectGuid>{224F5934-9295-41A5-BA7B-F0589C63CD3A}</ProjectGuid>
     <AssemblyName>Cavity.Http.Testing.Facts</AssemblyName>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Http.Testing\Http.Testing.csproj">
+      <Project>{C1B76C56-2E8D-4F9E-8EEA-FFB9E6A92715}</Project>
+      <Name>Http.Testing</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.742\lib\net40\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Http.Generalizations">
+      <HintPath>..\..\packages\Cavity.Http.Generalizations.1.1.0.742\lib\net40\Cavity.Http.Generalizations.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Testing.Unit">
+      <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\net40\Cavity.Testing.Unit.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit">
+      <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="example.http">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HttpExpectation.Facts.cs" />
+    <Compile Include="HttpExpectations.Facts.cs" />
+    <Compile Include="HttpTestException.Facts.cs" />
+    <Compile Include="IHttpExpectation.Facts.cs" />
+    <Compile Include="IHttpExpectations.Facts.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <!--

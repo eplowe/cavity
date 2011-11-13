@@ -1,9 +1,14 @@
-﻿namespace Cavity.Net
+﻿namespace Cavity
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using Cavity.IO;
+    using Cavity.Net;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't fundamentally a collection.")]
     public sealed class HttpExpectations : Collection<HttpExpectation>, IHttpExpectations
@@ -33,6 +38,23 @@
 
         public HttpExpectations()
         {
+        }
+
+        bool IHttpExpectations.Result
+        {
+            get
+            {
+                var cookies = new CookieContainer();
+
+                return 0 == Items
+                                .Where(x => !x.Verify(cookies))
+                                .Count();
+            }
+        }
+
+        public static IHttpExpectations Load(FileInfo file)
+        {
+            return Load(file.ReadToEnd());
         }
 
         public static IHttpExpectations Load(string value)

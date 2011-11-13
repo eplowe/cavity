@@ -4,6 +4,28 @@
     <ProjectGuid>{3C12CE19-B51C-4959-B581-756E59A98F78}</ProjectGuid>
     <AssemblyName>Cavity.Http.Generalizations</AssemblyName>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Net\HttpExchange.cs" />
+    <Compile Include="Net\HttpHeader.cs" />
+    <Compile Include="Net\HttpHeaderDictionary.cs" />
+    <Compile Include="Net\HttpMessage.cs" />
+    <Compile Include="Net\HttpRequest.cs" />
+    <Compile Include="Net\HttpRequestLine.cs" />
+    <Compile Include="Net\HttpResponse.cs" />
+    <Compile Include="Net\HttpStatusLine.cs" />
+    <Compile Include="Net\HttpVersion.cs" />
+    <Compile Include="Net\IHttpMessageBody.cs" />
+    <Compile Include="Net\IHttpMessageHeaders.cs" />
+    <Compile Include="Net\TextBody.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.742\lib\net40\Cavity.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <!--

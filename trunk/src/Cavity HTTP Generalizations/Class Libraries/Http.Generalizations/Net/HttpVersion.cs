@@ -66,7 +66,7 @@
 
             if (!value.StartsWith("HTTP/", StringComparison.Ordinal))
             {
-                throw new FormatException(Resources.HttpVersion_FormatException_PrefixMessage);
+                throw new FormatException();
             }
 
             if ("HTTP/1.1".Equals(value, StringComparison.Ordinal))
@@ -77,7 +77,7 @@
             var parts = value.Substring("HTTP/".Length).Split('.', StringSplitOptions.RemoveEmptyEntries);
             if (2 != parts.Length)
             {
-                throw new FormatException(Resources.HttpVersion_FormatException_PrefixMessage);
+                throw new FormatException();
             }
 
             return new HttpVersion(XmlConvert.ToInt32(parts[0]), XmlConvert.ToInt32(parts[1]));

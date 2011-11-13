@@ -74,7 +74,7 @@
                 return new HttpRequestLine(parts[0], parts[1], parts[2]);
             }
 
-            throw new FormatException(Resources.RequestLine_FormatException_Message);
+            throw new FormatException();
         }
 
         public override string ToString()
