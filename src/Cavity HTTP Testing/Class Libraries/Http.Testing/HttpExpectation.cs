@@ -1,8 +1,9 @@
-﻿namespace Cavity.Net
+﻿namespace Cavity
 {
     using System;
     using System.Globalization;
     using System.Net;
+    using Cavity.Net;
 
     public class HttpExpectation : IHttpExpectation
     {

@@ -1,7 +1,8 @@
-﻿namespace Cavity.Net
+﻿namespace Cavity
 {
     using System;
     using System.Net;
+    using Cavity.Net;
     using Cavity.Security.Cryptography;
     using Xunit;
 

@@ -1,7 +1,8 @@
-﻿namespace Cavity.Net
+﻿namespace Cavity
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using Xunit;
@@ -37,6 +38,18 @@
         public void ctor_IEnumerableOfHttpExpectationNull()
         {
             Assert.Throws<ArgumentNullException>(() => new HttpExpectations(null));
+        }
+
+        [Fact]
+        public void op_Load_FileInfo()
+        {
+            Assert.True(HttpExpectations.Load(new FileInfo("example.http")).Result);
+        }
+
+        [Fact]
+        public void op_Load_FileInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => HttpExpectations.Load(null as FileInfo));
         }
 
         [Fact]
@@ -79,7 +92,7 @@
         [Fact]
         public void op_Load_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => HttpExpectations.Load(null));
+            Assert.Throws<ArgumentNullException>(() => HttpExpectations.Load(null as string));
         }
     }
 }

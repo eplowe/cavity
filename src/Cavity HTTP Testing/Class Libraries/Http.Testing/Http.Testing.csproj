@@ -4,6 +4,24 @@
     <ProjectGuid>{C1B76C56-2E8D-4F9E-8EEA-FFB9E6A92715}</ProjectGuid>
     <AssemblyName>Cavity.Http.Testing</AssemblyName>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="HttpExpectation.cs" />
+    <Compile Include="HttpExpectations.cs" />
+    <Compile Include="HttpTestException.cs" />
+    <Compile Include="IHttpExpectation.cs" />
+    <Compile Include="IHttpExpectations.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.742\lib\net40\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Http.Generalizations">
+      <HintPath>..\..\packages\Cavity.Http.Generalizations.1.1.0.742\lib\net40\Cavity.Http.Generalizations.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <!--

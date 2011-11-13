@@ -11,20 +11,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.742\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Repository">
+      <HintPath>..\..\packages\Cavity.Repository.1.1.0.742\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Testing.Repository">
+      <HintPath>..\..\packages\Cavity.Testing.Repository.1.1.0.742\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Repository.dll</HintPath>
+    </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.Repository">
-      <HintPath>..\..\packages\Cavity.Repository.1.1.0.719\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.Testing.Repository">
-      <HintPath>..\..\packages\Cavity.Testing.Repository.1.1.0.719\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Repository.dll</HintPath>
-    </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
     </Reference>

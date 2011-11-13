@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="ValueObject`1.cs" />
+    <Compile Include="Net\EntityTag.cs" />
+    <Compile Include="Net\Token.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Dynamic\DynamicData.cs" />

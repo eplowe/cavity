@@ -1,4 +1,4 @@
-﻿namespace Cavity.Net
+﻿namespace Cavity
 {
     using System.Net;
 
