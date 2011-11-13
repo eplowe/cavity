@@ -5,6 +5,9 @@
     <AssemblyName>Cavity.Http.Abstractions.Facts</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cavity.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.728\lib\net40\Cavity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\net40\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
@@ -24,8 +27,21 @@
       <Name>Http.Abstractions</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Net\" />
+    <Compile Include="Net\HttpExchange.Facts.cs" />
+    <Compile Include="Net\HttpResponse.Facts.cs" />
+    <Compile Include="Net\HttpStatusLine.Facts.cs" />
+    <Compile Include="Net\HttpHeader.Facts.cs" />
+    <Compile Include="Net\HttpHeaderDictionary.Facts.cs" />
+    <Compile Include="Net\HttpMessage.Facts.cs" />
+    <Compile Include="Net\HttpVersion.Facts.cs" />
+    <Compile Include="Net\IHttpMessageHeaders.Facts.cs" />
+    <Compile Include="Net\IHttpMessageBody.Facts.cs" />
+    <Compile Include="Net\HttpRequest.Facts.cs" />
+    <Compile Include="Net\HttpRequestLine.Facts.cs" />
+    <Compile Include="Net\TextBody.Facts.cs" />
+    <Compile Include="Net\Token.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />

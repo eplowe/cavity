@@ -2,13 +2,13 @@
 {
     using System;
 
-    public class HttpHeader : ComparableObject, IHttpHeader
+    public class HttpHeader : ComparableObject
     {
         private Token _name;
 
         private string _value;
 
-        public HttpHeader(Token name,
+        public HttpHeader(Token name, 
                           string value)
             : this()
         {
