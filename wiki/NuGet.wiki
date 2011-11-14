@@ -2,30 +2,30 @@
 
 *1.1.0.438* Cavity.Testing.Unit
 
-*1.1.0.438* Cavity log4net trace listener
-
 *1.1.0.438* Cavity.!ServiceLocation
 
 *1.1.0.694* Cavity Task Management Abstractions
 
 *1.1.0.715* Cavity Test Controller Abstractions
 
-*1.1.0.719* Cavity Service Location (Autofac)
+*1.1.0.743* Cavity log4net trace listener
+
+*1.1.0.743* Cavity Service Location (Autofac)
  * Autofac.!CommonServiceLocator
  * Cavity.!ServiceLocation
   (Cavity.Core)
 
-*1.1.0.719* Cavity.!ServiceLocation.!CastleWindsor
+*1.1.0.743* Cavity.!ServiceLocation.!CastleWindsor
  * !CommonServiceLocator.!WindsorAdapter
  * Cavity.!ServiceLocation
   (Cavity.Core)
 
-*1.1.0.719* Cavity.!ServiceLocation.!StructureMap
+*1.1.0.743* Cavity.!ServiceLocation.!StructureMap
  * !CommonServiceLocator.!StructureMapAdapter
  * Cavity.!ServiceLocation
   (Cavity.Core)
 
-*1.1.0.719* Cavity.!ServiceLocation.Unity
+*1.1.0.743* Cavity.!ServiceLocation.Unity
  * !CommonServiceLocator.!UnityAdapter
  * Cavity.!ServiceLocation
   (Cavity.Core)

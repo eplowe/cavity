@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Cavity.Diagnostics.Log4Net.Web</id>
+    <version>1.1.0.743</version>
+    <title>Cavity log4net trace listener for Web Applications</title>
+    <authors>Alan Dean</authors>
+    <owners />
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://code.google.com/p/cavity/</projectUrl>
+    <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A trace listener for log4net, allowing provider-agnostic tracing in web applications.</description>
+    <summary />
+    <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
+    <language />
+    <tags>Diagnostics</tags>
+    <releaseNotes />
+    <dependencies>
+      <dependency id="log4net" version="1.2.10" />
+      <dependency id="WebActivator" version="1.5" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="content\App_Start\CavityDiagnosticsStart.cs.pp" target="content\App_Start\CavityDiagnosticsStart.cs.pp" />
+    <file src="content\log4net.config.transform" target="content\log4net.config.transform" />
+    <file src="content\web.config.transform" target="content\web.config.transform" />
+    <file src="content\Properties\log4net.cs" target="content\Properties\log4net.cs" />
+    <file src="lib\net35\Cavity.Diagnostics.Log4Net.dll" target="lib\net35\Cavity.Diagnostics.Log4Net.dll" />
+    <file src="lib\net40\Cavity.Diagnostics.Log4Net.dll" target="lib\net40\Cavity.Diagnostics.Log4Net.dll" />
+    <file src="tools\Web.Install.ps1" target="tools\Install.ps1" />
+  </files>
+</package>
