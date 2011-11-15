@@ -7,13 +7,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\net40\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.742\lib\net40\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\net40\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Web.Mvc3">
-      <HintPath>..\..\packages\Cavity.Web.Mvc3.1.1.0.719\lib\net40\Cavity.Web.Mvc3.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Web.Mvc3.1.1.0.742\lib\net40\Cavity.Web.Mvc3.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\packages\HtmlAgilityPack.1.4.3\lib\HtmlAgilityPack.dll</HintPath>
@@ -25,7 +25,7 @@
       <HintPath>..\..\packages\RazorGenerator.Testing.1.2.3\lib\net40\RazorGenerator.Testing.dll</HintPath>
     </Reference>
     <Reference Include="ReflectionMagic">
-      <HintPath>..\..\packages\ReflectionMagic.1.0.1\lib\net40\ReflectionMagic.dll</HintPath>
+      <HintPath>..\..\packages\ReflectionMagic.1.1\lib\net40\ReflectionMagic.dll</HintPath>
     </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>

@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Cavity.MvcApplication1" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Cavity.MvcApplication" Language="C#" %>
