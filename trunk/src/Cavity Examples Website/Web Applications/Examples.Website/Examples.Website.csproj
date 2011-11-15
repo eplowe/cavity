@@ -8,10 +8,14 @@
     <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="App_Start\CavityDiagnosticsStart.cs" />
+    <Compile Include="App_Start\CavityServiceLocationStart.cs" />
+    <Compile Include="App_Start\PrecompiledMvcViewEngineStart.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Properties\log4net.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -31,14 +35,62 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Start\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\packages\Castle.Windsor.2.5.4\lib\net40\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.742\lib\net40\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Diagnostics.Log4Net">
+      <HintPath>..\..\packages\Cavity.Diagnostics.Log4Net.Web.1.1.0.743\lib\net40\Cavity.Diagnostics.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.ServiceLocation">
+      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\net40\Cavity.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.ServiceLocation.CastleWindsor">
+      <HintPath>..\..\packages\Cavity.ServiceLocation.CastleWindsor.Web.1.1.0.743\lib\net40\Cavity.ServiceLocation.CastleWindsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Web.Mvc3">
+      <HintPath>..\..\packages\Cavity.Web.Mvc3.1.1.0.742\lib\net40\Cavity.Web.Mvc3.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator.WindsorAdapter">
+      <HintPath>..\..\packages\CommonServiceLocator.WindsorAdapter.1.0\lib\NET35\CommonServiceLocator.WindsorAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorGenerator.Mvc">
+      <HintPath>..\..\packages\RazorGenerator.Mvc.1.2.1\lib\net40\RazorGenerator.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\..\packages\WebActivator.1.5\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="castle.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Mvc.project" />

@@ -5,8 +5,7 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Cavity.Configuration;
-    using Cavity.Controllers;
+    using Cavity.Web.Mvc;
     using Cavity.Web.Routing;
 
     public class MvcApplication : HttpApplication
@@ -32,9 +31,6 @@
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "The runtime requires this to be an instance member.")]
         protected void Application_Start()
         {
-            log4net.Config.XmlConfigurator.Configure();
-            Config.Section<ServiceLocation>("service.location").Provider.Configure();
-
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);

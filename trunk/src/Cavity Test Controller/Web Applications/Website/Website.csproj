@@ -4,6 +4,7 @@
     <ProjectGuid>{16C24F2A-C2D3-47AE-AD6A-CE444806DD8A}</ProjectGuid>
     <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <AssemblyName>Cavity.TestController.Website</AssemblyName>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
@@ -12,20 +13,20 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\..\packages\Castle.Windsor.2.5.4\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.719\lib\net40\Cavity.Core.dll</HintPath>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.742\lib\net40\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Diagnostics.Log4Net">
-      <HintPath>..\..\packages\Cavity.Diagnostics.Log4Net.1.1.0.438\lib\net40\Cavity.Diagnostics.Log4Net.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Diagnostics.Log4Net.Web.1.1.0.743\lib\net40\Cavity.Diagnostics.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.ServiceLocation">
       <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\net40\Cavity.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.ServiceLocation.CastleWindsor, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Cavity.ServiceLocation.CastleWindsor.1.1.0.719\lib\net40\Cavity.ServiceLocation.CastleWindsor.dll</HintPath>
+    <Reference Include="Cavity.ServiceLocation.CastleWindsor">
+      <HintPath>..\..\packages\Cavity.ServiceLocation.CastleWindsor.Web.1.1.0.743\lib\net40\Cavity.ServiceLocation.CastleWindsor.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.Web.Mvc3">
-      <HintPath>..\..\packages\Cavity.Web.Mvc3.1.1.0.719\lib\net40\Cavity.Web.Mvc3.dll</HintPath>
+    <Reference Include="Cavity.Web.Mvc3, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.Web.Mvc3.1.1.0.742\lib\net40\Cavity.Web.Mvc3.dll</HintPath>
     </Reference>
     <Reference Include="CommonServiceLocator.WindsorAdapter">
       <HintPath>..\..\packages\CommonServiceLocator.WindsorAdapter.1.0\lib\NET35\CommonServiceLocator.WindsorAdapter.dll</HintPath>
@@ -49,6 +50,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\CavityDiagnosticsStart.cs" />
+    <Compile Include="App_Start\CavityServiceLocationStart.cs" />
     <Compile Include="App_Start\PrecompiledMvcViewEngineStart.cs" />
     <Compile Include="Controllers\DateController.cs" />
     <Compile Include="Controllers\RootController.cs" />

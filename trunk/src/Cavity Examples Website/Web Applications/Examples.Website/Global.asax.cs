@@ -5,8 +5,10 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
+    using Cavity.Web.Mvc;
+    using Cavity.Web.Routing;
 
-    public class MvcApplication1 : HttpApplication
+    public class MvcApplication : HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -22,15 +24,8 @@
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                "Default",
-                "{controller}/{action}/{id}",
-                new
-                    {
-                        controller = "Home",
-                        action = "Index",
-                        id = UrlParameter.Optional
-                    });
+            routes.Register(typeof(MvcApplication).Assembly.GetTypes());
+            routes.Register<NotFoundController>();
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "The runtime requires this to be an instance member.")]
