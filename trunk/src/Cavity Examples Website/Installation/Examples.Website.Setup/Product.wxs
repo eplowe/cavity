@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+  <?define UpgradeCode="{decc7da2-f4a7-4628-977a-0167f7967dc4}"?>
+  <Product Id="*" Name="Cavity Examples Website" Language="1033" Version="1.1.0.745" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
+    <Package InstallerVersion="200" InstallScope="perMachine" InstallPrivileges="elevated" Compressed="yes" />
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+    <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
+    <iis:WebSite Id="WEBSITE" Description="xamples.net">
+      <iis:WebAddress Id="DOMAIN" Port="80" IP="*" Header="xamples.net" />
+      <iis:WebAddress Id="WWW" Port="80" IP="*" Header="www.xamples.net" />
+    </iis:WebSite>
+    <CustomAction Id="SetPleskVHosts" Directory="PLESKVHOSTS" Value="[%plesk_vhosts]" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="PLESKVHOSTS" Name="vhosts">
+        <Directory Id="XAMPLES" Name="xamples.net">
+          <Directory Id="HTTPDOCS" Name="httpdocs">
+            <Component Id="Website" Guid="e6ac82cf-6cb8-4275-b611-c4b144a82cdc">
+              <RegistryValue Root="HKLM" Key="Software\Cavity\xamples.net" Type="string" Value="Installed" KeyPath="yes" />
+              <File Name="castle.config" Source="$(var.Examples.Website.ProjectDir)\castle.config" />
+              <File Name="Global.asax" Source="$(var.Examples.Website.ProjectDir)\Global.asax" />
+              <File Name="log4net.config" Source="$(var.Examples.Website.ProjectDir)\log4net.config" />
+              <File Name="Web.config" Source="$(var.Examples.Website.ProjectDir)\Web.config" />
+              <File Name="Web.Debug.config" Source="$(var.Examples.Website.ProjectDir)\Web.Debug.config" />
+              <File Name="Web.Release.config" Source="$(var.Examples.Website.ProjectDir)\Web.Release.config" />
+            </Component>
+            <Directory Id="BINDIR" Name="bin">
+              <Component Id="bin" Guid="f82b6510-ad91-4290-887d-f9da512e3585">
+                <RegistryValue Root="HKLM" Key="Software\Cavity\xamples.net\bin" Type="string" Value="Installed" KeyPath="yes" />
+                <File Name="Castle.Core.dll" Source="$(var.Examples.Website.TargetDir)\Castle.Core.dll" />
+                <File Name="Castle.Windsor.dll" Source="$(var.Examples.Website.TargetDir)\Castle.Windsor.dll" />
+                <File Name="Cavity.Core.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.Core.dll" />
+                <File Name="Cavity.Diagnostics.Log4Net.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.Diagnostics.Log4Net.dll" />
+                <File Name="Cavity.Examples.Website.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.Examples.Website.dll" />
+                <File Name="Cavity.ServiceLocation.CastleWindsor.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.ServiceLocation.CastleWindsor.dll" />
+                <File Name="Cavity.ServiceLocation.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.ServiceLocation.dll" />
+                <File Name="Cavity.Web.Mvc3.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.Web.Mvc3.dll" />
+                <File Name="CommonServiceLocator.WindsorAdapter.dll" Source="$(var.Examples.Website.TargetDir)\CommonServiceLocator.WindsorAdapter.dll" />
+                <File Name="log4net.dll" Source="$(var.Examples.Website.TargetDir)\log4net.dll" />
+                <File Name="Microsoft.Practices.ServiceLocation.dll" Source="$(var.Examples.Website.TargetDir)\Microsoft.Practices.ServiceLocation.dll" />
+                <File Name="Microsoft.Web.Infrastructure.dll" Source="$(var.Examples.Website.TargetDir)\Microsoft.Web.Infrastructure.dll" />
+                <File Name="RazorGenerator.Mvc.dll" Source="$(var.Examples.Website.TargetDir)\RazorGenerator.Mvc.dll" />
+                <File Name="WebActivator.dll" Source="$(var.Examples.Website.TargetDir)\WebActivator.dll" />
+              </Component>
+            </Directory>
+            <Directory Id="CONTENTDIR" Name="Content">
+              <Component Id="Content" Guid="ae53c310-631d-4113-9781-e5fadee0d272">
+                <RegistryValue Root="HKLM" Key="Software\Cavity\xamples.net\Content" Type="string" Value="Installed" KeyPath="yes" />
+                <File Name="site.css" Source="$(var.Examples.Website.ProjectDir)\Content\site.css" />
+              </Component>
+            </Directory>
+            <Directory Id="VIEWSDIR" Name="Views">
+              <Component Id="Views" Guid="53b5314d-2862-4a17-b871-d548820893a2">
+                <RegistryValue Root="HKLM" Key="Software\Cavity\xamples.net\Views" Type="string" Value="Installed" KeyPath="yes" />
+                <File Name="_ViewStart.cshtml" Source="$(var.Examples.Website.ProjectDir)\Views\_ViewStart.cshtml" />
+                <File Id="ViewsWebConfig" Name="Web.config" Source="$(var.Examples.Website.ProjectDir)\Views\Web.config" />
+              </Component>
+              <Directory Id="SHAREDVIEWSDIR" Name="Shared">
+                <Component Id="SharedViews" Guid="2547f951-5557-40c5-9b07-3d571a23d3d1">
+                  <RegistryValue Root="HKLM" Key="Software\Cavity\xamples.net\Views\Shared" Type="string" Value="Installed" KeyPath="yes" />
+                  <File Name="_Layout.cshtml" Source="$(var.Examples.Website.ProjectDir)\Views\Shared\_Layout.cshtml" />
+                  <File Name="Error.cshtml" Source="$(var.Examples.Website.ProjectDir)\Views\Shared\Error.cshtml" />
+                </Component>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature Id="ProductFeature" Title="Examples.Website.Setup" Level="1">
+      <ComponentGroupRef Id="Product.Generated" />
+      <ComponentRef Id="Website" />
+      <ComponentRef Id="bin" />
+      <ComponentRef Id="Content" />
+      <ComponentRef Id="Views" />
+      <ComponentRef Id="SharedViews" />
+    </Feature>
+    <InstallExecuteSequence>
+      <Custom Action="SetPleskVHosts" After="CostFinalize" />
+    </InstallExecuteSequence>
+  </Product>
+</Wix>
