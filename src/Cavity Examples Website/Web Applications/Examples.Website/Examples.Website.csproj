@@ -11,6 +11,8 @@
     <Compile Include="App_Start\CavityDiagnosticsStart.cs" />
     <Compile Include="App_Start\CavityServiceLocationStart.cs" />
     <Compile Include="App_Start\PrecompiledMvcViewEngineStart.cs" />
+    <Compile Include="Controllers\RootController.cs" />
+    <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -35,7 +37,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +87,7 @@
   <ItemGroup>
     <Content Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="castle.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
