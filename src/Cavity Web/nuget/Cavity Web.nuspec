@@ -14,7 +14,7 @@
     <summary />
     <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
     <language />
-    <tags />
+    <tags>Web</tags>
     <releaseNotes />
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />

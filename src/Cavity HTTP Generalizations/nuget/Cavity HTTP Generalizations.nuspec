@@ -14,7 +14,7 @@
     <summary />
     <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
     <language />
-    <tags />
+    <tags>HTTP</tags>
     <releaseNotes />
     <dependencies>
       <dependency id="Cavity.Core" version="1.1.0.746" />
