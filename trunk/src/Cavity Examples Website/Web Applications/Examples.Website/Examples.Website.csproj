@@ -11,7 +11,8 @@
     <Compile Include="App_Start\CavityDiagnosticsStart.cs" />
     <Compile Include="App_Start\CavityServiceLocationStart.cs" />
     <Compile Include="App_Start\PrecompiledMvcViewEngineStart.cs" />
-    <Compile Include="Controllers\RootController.cs" />
+    <Compile Include="Controllers\DateController.cs" />
+    <Compile Include="Controllers\EchoController.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -101,6 +102,8 @@
     <None Include="Properties\CodeAnalysis.dictionary" />
     <Content Include="Views\NotFound\HtmlRepresentation.cshtml" />
     <Content Include="redirection.config" />
+    <Content Include="Views\Date\HtmlRepresentation.cshtml" />
+    <Content Include="Views\Echo\HtmlRepresentation.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Mvc.project" />

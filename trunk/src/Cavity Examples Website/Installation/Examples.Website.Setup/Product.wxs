@@ -15,9 +15,8 @@
         <Directory Id="XAMPLES" Name="xamples.net">
           <Directory Id="HTTPDOCS" Name="httpdocs">
             <Component Id="Website" Guid="e6ac82cf-6cb8-4275-b611-c4b144a82cdc">
-              <RegistryValue Root="HKLM" Key="Software\Cavity\xamples.net" Type="string" Value="Installed" KeyPath="yes" />
               <File Name="castle.config" Source="$(var.Examples.Website.ProjectDir)\castle.config" />
-              <File Name="Global.asax" Source="$(var.Examples.Website.ProjectDir)\Global.asax" />
+              <File Name="Global.asax" Source="$(var.Examples.Website.ProjectDir)\Global.asax" KeyPath="yes" />
               <File Name="log4net.config" Source="$(var.Examples.Website.ProjectDir)\log4net.config" />
               <File Name="redirection.config" Source="$(var.Examples.Website.ProjectDir)\redirection.config" />
               <File Name="Web.config" Source="$(var.Examples.Website.ProjectDir)\Web.config" />
@@ -26,13 +25,12 @@
             </Component>
             <Directory Id="BINDIR" Name="bin">
               <Component Id="bin" Guid="f82b6510-ad91-4290-887d-f9da512e3585">
-                <RegistryValue Root="HKLM" Key="Software\Cavity\xamples.net\bin" Type="string" Value="Installed" KeyPath="yes" />
                 <File Name="Castle.Core.dll" Source="$(var.Examples.Website.TargetDir)\Castle.Core.dll" />
                 <File Name="Castle.Windsor.dll" Source="$(var.Examples.Website.TargetDir)\Castle.Windsor.dll" />
                 <File Name="Cavity.Configuration.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.Configuration.dll" />
                 <File Name="Cavity.Core.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.Core.dll" />
                 <File Name="Cavity.Diagnostics.Log4Net.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.Diagnostics.Log4Net.dll" />
-                <File Name="Cavity.Examples.Website.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.Examples.Website.dll" />
+                <File Name="Cavity.Examples.Website.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.Examples.Website.dll" KeyPath="yes" />
                 <File Name="Cavity.ServiceLocation.CastleWindsor.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.ServiceLocation.CastleWindsor.dll" />
                 <File Name="Cavity.ServiceLocation.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.ServiceLocation.dll" />
                 <File Name="Cavity.Web.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.Web.dll" />
@@ -47,26 +45,32 @@
             </Directory>
             <Directory Id="CONTENTDIR" Name="Content">
               <Component Id="Content" Guid="ae53c310-631d-4113-9781-e5fadee0d272">
-                <RegistryValue Root="HKLM" Key="Software\Cavity\xamples.net\Content" Type="string" Value="Installed" KeyPath="yes" />
-                <File Name="site.css" Source="$(var.Examples.Website.ProjectDir)\Content\site.css" />
+                <File Name="site.css" Source="$(var.Examples.Website.ProjectDir)\Content\site.css" KeyPath="yes" />
               </Component>
             </Directory>
             <Directory Id="VIEWSDIR" Name="Views">
               <Component Id="Views" Guid="53b5314d-2862-4a17-b871-d548820893a2">
-                <RegistryValue Root="HKLM" Key="Software\Cavity\xamples.net\Views" Type="string" Value="Installed" KeyPath="yes" />
-                <File Name="_ViewStart.cshtml" Source="$(var.Examples.Website.ProjectDir)\Views\_ViewStart.cshtml" />
+                <File Name="_ViewStart.cshtml" Source="$(var.Examples.Website.ProjectDir)\Views\_ViewStart.cshtml" KeyPath="yes" />
                 <File Id="ViewsWebConfig" Name="Web.config" Source="$(var.Examples.Website.ProjectDir)\Views\Web.config" />
               </Component>
+              <Directory Id="DATEVIEWSDIR" Name="Date">
+                <Component Id="DateViews" Guid="e7f97c34-ace2-4248-8ad8-566cfa2421d0">
+                  <File Id="DateHtmlRepresentation" Name="HtmlRepresentation.cshtml" Source="$(var.Examples.Website.ProjectDir)\Views\Date\HtmlRepresentation.cshtml" KeyPath="yes" />
+                </Component>
+              </Directory>
+              <Directory Id="ECHOVIEWSDIR" Name="Echo">
+                <Component Id="EchoViews" Guid="84f3572a-87de-4f20-a87d-8403416c4eb3">
+                  <File Id="EchoHtmlRepresentation" Name="HtmlRepresentation.cshtml" Source="$(var.Examples.Website.ProjectDir)\Views\Echo\HtmlRepresentation.cshtml" KeyPath="yes" />
+                </Component>
+              </Directory>
               <Directory Id="NOTFOUNDVIEWSDIR" Name="NotFound">
                 <Component Id="NotFoundViews" Guid="83ec99a0-6ee8-4fff-91eb-85e3bda0fa0f">
-                  <RegistryValue Root="HKLM" Key="Software\Cavity\xamples.net\Views\NotFound" Type="string" Value="Installed" KeyPath="yes" />
-                  <File Name="HtmlRepresentation.cshtml" Source="$(var.Examples.Website.ProjectDir)\Views\NotFound\HtmlRepresentation.cshtml" />
+                  <File Id="NotFoundHtmlRepresentation" Name="HtmlRepresentation.cshtml" Source="$(var.Examples.Website.ProjectDir)\Views\NotFound\HtmlRepresentation.cshtml" KeyPath="yes" />
                 </Component>
               </Directory>
               <Directory Id="SHAREDVIEWSDIR" Name="Shared">
                 <Component Id="SharedViews" Guid="2547f951-5557-40c5-9b07-3d571a23d3d1">
-                  <RegistryValue Root="HKLM" Key="Software\Cavity\xamples.net\Views\Shared" Type="string" Value="Installed" KeyPath="yes" />
-                  <File Name="_Layout.cshtml" Source="$(var.Examples.Website.ProjectDir)\Views\Shared\_Layout.cshtml" />
+                  <File Name="_Layout.cshtml" Source="$(var.Examples.Website.ProjectDir)\Views\Shared\_Layout.cshtml" KeyPath="yes" />
                   <File Name="Error.cshtml" Source="$(var.Examples.Website.ProjectDir)\Views\Shared\Error.cshtml" />
                 </Component>
               </Directory>
@@ -81,6 +85,8 @@
       <ComponentRef Id="bin" />
       <ComponentRef Id="Content" />
       <ComponentRef Id="Views" />
+      <ComponentRef Id="DateViews" />
+      <ComponentRef Id="EchoViews" />
       <ComponentRef Id="NotFoundViews" />
       <ComponentRef Id="SharedViews" />
     </Feature>
