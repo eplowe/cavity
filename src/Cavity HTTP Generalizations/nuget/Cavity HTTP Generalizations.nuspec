@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Http.Generalizations</id>
-    <version>1.1.0.742</version>
+    <version>1.1.0.746</version>
     <title>Cavity HTTP Generalizations</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,7 +17,7 @@
     <tags />
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Core" version="1.1.0.742" />
+      <dependency id="Cavity.Core" version="1.1.0.746" />
     </dependencies>
   </metadata>
   <files>

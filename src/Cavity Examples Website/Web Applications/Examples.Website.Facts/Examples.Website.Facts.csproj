@@ -6,14 +6,17 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.742\lib\net40\Cavity.Core.dll</HintPath>
+    <Reference Include="Cavity.Configuration">
+      <HintPath>..\..\packages\Cavity.Configuration.1.1.0.746\lib\net40\Cavity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.746\lib\net40\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\net40\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.Web.Mvc3">
-      <HintPath>..\..\packages\Cavity.Web.Mvc3.1.1.0.742\lib\net40\Cavity.Web.Mvc3.dll</HintPath>
+    <Reference Include="Cavity.Web.Mvc3, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.Web.Mvc3.1.1.0.746\lib\net40\Cavity.Web.Mvc3.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\packages\HtmlAgilityPack.1.4.3\lib\HtmlAgilityPack.dll</HintPath>

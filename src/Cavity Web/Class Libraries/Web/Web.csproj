@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{950EFFC7-63F7-4632-A0CF-D97ED295E63F}</ProjectGuid>
+    <AssemblyName>Cavity.Web</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\RedirectionConfigurationElementCollection`1.cs" />
+    <Compile Include="Configuration\RedirectionConfigurationElement`1.cs" />
+    <Compile Include="Configuration\RedirectionConfigurationSection.cs" />
+    <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="Net\Host.cs" />
+    <Compile Include="Web\RedirectionModule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Configuration">
+      <HintPath>..\..\packages\Cavity.Configuration.1.1.0.746\lib\$(TargetFrameworkVersionName)\Cavity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.746\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Web.references" />
+  <!--
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

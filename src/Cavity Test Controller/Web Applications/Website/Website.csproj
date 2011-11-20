@@ -13,8 +13,11 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\..\packages\Castle.Windsor.2.5.4\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="Cavity.Configuration">
+      <HintPath>..\..\packages\Cavity.Configuration.1.1.0.746\lib\net40\Cavity.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.742\lib\net40\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.746\lib\net40\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Diagnostics.Log4Net">
       <HintPath>..\..\packages\Cavity.Diagnostics.Log4Net.Web.1.1.0.743\lib\net40\Cavity.Diagnostics.Log4Net.dll</HintPath>
@@ -23,10 +26,10 @@
       <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\net40\Cavity.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.ServiceLocation.CastleWindsor">
-      <HintPath>..\..\packages\Cavity.ServiceLocation.CastleWindsor.Web.1.1.0.743\lib\net40\Cavity.ServiceLocation.CastleWindsor.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.ServiceLocation.CastleWindsor.Web.1.1.0.746\lib\net40\Cavity.ServiceLocation.CastleWindsor.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.Web.Mvc3, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Cavity.Web.Mvc3.1.1.0.742\lib\net40\Cavity.Web.Mvc3.dll</HintPath>
+    <Reference Include="Cavity.Web.Mvc3">
+      <HintPath>..\..\packages\Cavity.Web.Mvc3.1.1.0.746\lib\net40\Cavity.Web.Mvc3.dll</HintPath>
     </Reference>
     <Reference Include="CommonServiceLocator.WindsorAdapter">
       <HintPath>..\..\packages\CommonServiceLocator.WindsorAdapter.1.0\lib\NET35\CommonServiceLocator.WindsorAdapter.dll</HintPath>
