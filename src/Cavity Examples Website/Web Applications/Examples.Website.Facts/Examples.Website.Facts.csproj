@@ -42,7 +42,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\RootController.Facts.cs" />
+    <Compile Include="Controllers\DateController.Facts.cs" />
     <Compile Include="MvcApplication.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +50,9 @@
       <Project>{1EFE2D5E-CBB0-4535-885C-EE8B74F2D42C}</Project>
       <Name>Examples.Website</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />

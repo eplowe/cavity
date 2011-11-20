@@ -1,0 +1,15 @@
+﻿@model System.Collections.Specialized.NameValueCollection
+@{
+    ViewBag.Title = ViewBag.Key;
+}
+<dl>
+@if (null != Model)
+{
+    foreach (string key in Model.Keys)
+    {
+        var value = Model[key];
+        <dt>@key</dt>
+        <dd>@value</dd>
+    }
+}
+</dl>

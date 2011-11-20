@@ -62,6 +62,8 @@
             buffer.AppendLine("HTTP/1.1 200 OK");
             buffer.AppendLine("<<");
             buffer.AppendLine(string.Empty);
+            buffer.AppendLine("# a comment");
+            buffer.AppendLine(string.Empty);
             buffer.AppendLine(">request>");
             buffer.AppendLine("GET http://example.net/ HTTP/1.1");
             buffer.AppendLine("<response<");

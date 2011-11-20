@@ -2,6 +2,7 @@
 {
     using System;
     using System.Globalization;
+    using System.Linq;
     using System.Net;
     using Cavity.Net;
 
@@ -40,6 +41,10 @@
             {
                 switch (header.Name)
                 {
+                    case "AllowAutoRedirect":
+                        result.AllowAutoRedirect = true;
+                        break;
+
                     case "Accept":
                         result.Accept = header.Value;
                         break;

@@ -1,0 +1,9 @@
+﻿@model System.DateTime
+@{
+    ViewBag.Title = Model.ToLongDateString();
+}
+
+<form action="/echo" method="post">
+    <input type="text" id="one" name="one" />
+    <input type="submit" value="Submit"/>
+</form>

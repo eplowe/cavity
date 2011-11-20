@@ -7,6 +7,7 @@
     using System.IO;
     using System.Linq;
     using System.Net;
+    using System.Text;
     using Cavity.IO;
     using Cavity.Net;
 
@@ -108,11 +109,32 @@
                 yield break;
             }
 
-            var parts = value.Split(_request, StringSplitOptions.RemoveEmptyEntries);
+            var parts = StripComments(value).Split(_request, StringSplitOptions.RemoveEmptyEntries);
             foreach (var part in parts)
             {
                 yield return FromPart(part);
             }
+        }
+
+        private static string StripComments(string value)
+        {
+            var buffer = new StringBuilder();
+
+            var eol = new[]
+            {
+                Environment.NewLine
+            };
+            foreach (var line in value.Split(eol, StringSplitOptions.RemoveEmptyEntries))
+            {
+                if (line.StartsWith("#", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                buffer.AppendLine(line);
+            }
+
+            return buffer.ToString();
         }
     }
 }
