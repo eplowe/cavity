@@ -1,0 +1,1 @@
+link -dll -noentry -out:Cavity.TaskManagement.EventLog.Messages.lib messages.res

@@ -5,6 +5,7 @@
   <ItemGroup>
   	<Solutions Include="Cavity Commands" />
   	<Solutions Include="Cavity Commands (File System)" />
+  	<Solutions Include="Cavity Configuration" />
   	<Solutions Include="Cavity Core" />
   	<Solutions Include="Cavity Data (ACE)" />
   	<Solutions Include="Cavity Data (CSV)" />

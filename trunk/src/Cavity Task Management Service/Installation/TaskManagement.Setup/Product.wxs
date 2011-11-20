@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <?define StaticOutputDirectory = "$(var.SolutionDir)Static Libraries\TaskManagement.EventLog.Messages\$(var.Configuration)\" ?>
-  <?define ServiceOutputDirectory = "$(var.SolutionDir)Windows Services\TaskManagement.Service\bin\$(var.Configuration) NET40 $(var.Platform)\" ?>
   <?if $(var.Platform) = x64 ?>
   <?define ProductName = "Cavity Task Management (x64)" ?>
   <?define DisplayName = "Cavity Task Management (x64)" ?>
@@ -23,7 +22,7 @@
   <?define ServiceGuid = "1d8762a5-3916-46a3-80b6-64f967525150" ?>
   <?define ServiceConfigGuid = "13dcbf4e-2f0f-41b6-be32-05f87ae1af0e" ?>
   <?endif ?>
-  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.1.0.742" Manufacturer="Alan Dean" UpgradeCode="$(var.ProductUpgradeCode)">
+  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.1.0.746" Manufacturer="Alan Dean" UpgradeCode="$(var.ProductUpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" Compressed="yes" Description="Installs Cavity Task Management." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
@@ -32,7 +31,7 @@
         <Directory Id="Common" Name="Common Files">
           <Directory Id="CommonCompany" Name="Cavity">
             <Component Id="EventLog" Guid="$(var.EventLogGuid)">
-              <File Id="Messages" KeyPath="yes" Name="Cavity.TaskManagement.EventLog.Messages.lib" Source="$(var.StaticOutputDirectory)TaskManagement.EventLog.Messages.lib" />
+              <File Id="Messages" KeyPath="yes" Name="Cavity.TaskManagement.EventLog.Messages.lib" Source="Cavity.TaskManagement.EventLog.Messages.lib" />
               <util:EventSource Log="Cavity" Name="Task Management" CategoryCount="2" CategoryMessageFile="[#Messages]" EventMessageFile="[#Messages]" ParameterMessageFile="[#Messages]" />
             </Component>
           </Directory>
@@ -46,26 +45,27 @@
               </util:PerformanceCategory>
             </Component>
             <Component Id="Service" Guid="$(var.ServiceGuid)">
-              <File Id="CastleCore" Name="Castle.Core.dll" Source="$(var.ServiceOutputDirectory)Castle.Core.dll" />
-              <File Id="CastleWindsor" Name="Castle.Windsor.dll" Source="$(var.ServiceOutputDirectory)Castle.Windsor.dll" />
-              <File Id="CavityCore" Name="Cavity.Core.dll" Source="$(var.ServiceOutputDirectory)Cavity.Core.dll" />
-              <File Id="CavityDiagnosticsLog4Net" Name="Cavity.Diagnostics.Log4Net.dll" Source="$(var.ServiceOutputDirectory)Cavity.Diagnostics.Log4Net.dll" />
-              <File Id="CavityServiceLocation" Name="Cavity.ServiceLocation.dll" Source="$(var.ServiceOutputDirectory)Cavity.ServiceLocation.dll" />
-              <File Id="CavityServiceLocationCastleWindsor" Name="Cavity.ServiceLocation.CastleWindsor.dll" Source="$(var.ServiceOutputDirectory)Cavity.ServiceLocation.CastleWindsor.dll" />
-              <File Id="CavityTaskManagement" Name="Cavity.TaskManagement.dll" Source="$(var.ServiceOutputDirectory)Cavity.TaskManagement.dll" />
-              <File Id="CavityTaskManagementAbstractions" Name="Cavity.TaskManagement.Abstractions.dll" Source="$(var.ServiceOutputDirectory)Cavity.TaskManagement.Abstractions.dll" />
-              <File Id="CavityTaskManagementService" KeyPath="yes" Name="Cavity.TaskManagement.Service.exe" Source="$(var.ServiceOutputDirectory)Cavity.TaskManagement.Service.exe" />
-              <File Id="CommonServiceLocatorWindsorAdapter" Name="CommonServiceLocator.WindsorAdapter.dll" Source="$(var.ServiceOutputDirectory)CommonServiceLocator.WindsorAdapter.dll" />
-              <File Id="log4net" Name="log4net.dll" Source="$(var.ServiceOutputDirectory)log4net.dll" />
-              <File Id="MicrosoftPracticesServiceLocation" Name="Microsoft.Practices.ServiceLocation.dll" Source="$(var.ServiceOutputDirectory)Microsoft.Practices.ServiceLocation.dll" />
+              <File Name="Castle.Core.dll" Source="$(var.TaskManagement.Service.TargetDir)\Castle.Core.dll" />
+              <File Name="Castle.Windsor.dll" Source="$(var.TaskManagement.Service.TargetDir)\Castle.Windsor.dll" />
+              <File Name="Cavity.Configuration.dll" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.Configuration.dll" />
+              <File Name="Cavity.Core.dll" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.Core.dll" />
+              <File Name="Cavity.Diagnostics.Log4Net.dll" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.Diagnostics.Log4Net.dll" />
+              <File Name="Cavity.ServiceLocation.dll" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.ServiceLocation.dll" />
+              <File Name="Cavity.ServiceLocation.CastleWindsor.dll" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.ServiceLocation.CastleWindsor.dll" />
+              <File Name="Cavity.TaskManagement.dll" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.TaskManagement.dll" />
+              <File Name="Cavity.TaskManagement.Abstractions.dll" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.TaskManagement.Abstractions.dll" />
+              <File Name="Cavity.TaskManagement.Service.exe" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.TaskManagement.Service.exe" KeyPath="yes" />
+              <File Name="CommonServiceLocator.WindsorAdapter.dll" Source="$(var.TaskManagement.Service.TargetDir)\CommonServiceLocator.WindsorAdapter.dll" />
+              <File Name="log4net.dll" Source="$(var.TaskManagement.Service.TargetDir)\log4net.dll" />
+              <File Name="Microsoft.Practices.ServiceLocation.dll" Source="$(var.TaskManagement.Service.TargetDir)\Microsoft.Practices.ServiceLocation.dll" />
               <ServiceInstall Id="CavityTaskManagementServiceInstall" Name="$(var.ServiceName)" DisplayName="$(var.DisplayName)" Description="Provides a pluggable task management service." ErrorControl="normal" Start="auto" Type="ownProcess" Account="[SERVICEACCOUNT]" Password="[SERVICEPASSWORD]" Vital="yes" />
               <ServiceControl Id="CavityTaskManagementServiceControl" Name="$(var.ServiceName)" Remove="uninstall" Start="install" Stop="both" Wait="yes" />
             </Component>
             <Component Id="ServiceConfig" Guid="$(var.ServiceConfigGuid)" Permanent="yes">
-              <File Id="CastleConfig" Name="castle.config" Source="$(var.ServiceOutputDirectory)castle.config" />
-              <File Id="CavityTaskManagementConfig" Name="Cavity.TaskManagement.dll.config" Source="$(var.ServiceOutputDirectory)Cavity.TaskManagement.dll.config" />
-              <File Id="CavityTaskManagementServiceConfig" Name="Cavity.TaskManagement.Service.exe.config" Source="$(var.ServiceOutputDirectory)Cavity.TaskManagement.Service.exe.config" />
-              <File Id="log4netConfig" Name="log4net.config" Source="$(var.ServiceOutputDirectory)log4net.config" />
+              <File Name="castle.config" Source="$(var.TaskManagement.Service.TargetDir)\castle.config" />
+              <File Name="Cavity.TaskManagement.dll.config" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.TaskManagement.dll.config" />
+              <File Name="Cavity.TaskManagement.Service.exe.config" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.TaskManagement.Service.exe.config" KeyPath="yes" />
+              <File Name="log4net.config" Source="$(var.TaskManagement.Service.TargetDir)\log4net.config" />
             </Component>
           </Directory>
         </Directory>

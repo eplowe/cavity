@@ -12,7 +12,6 @@
     <Compile Include="CommentAttribute.Facts.cs" />
     <Compile Include="ComparableObject.Derived.cs" />
     <Compile Include="ComparableObject.Facts.cs" />
-    <Compile Include="Configuration\DirectoryInfoConverter.Facts.cs" />
     <Compile Include="Collections\Generic\Tree`1.Facts.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.Facts.cs" />
     <Compile Include="Collections\TranslationDictionary`1.Facts.cs" />
@@ -37,24 +36,8 @@
     <Compile Include="Xml\IXmlSerializerNamespaces.Facts.cs" />
     <Compile Include="Xml\XmlNamespace.Facts.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.Facts.cs" />
-    <Compile Include="Configuration\DirectoryConfigurationElement.Facts.cs" />
-    <Compile Include="Configuration\DirectoryConfigurationElementCollection.Facts.cs" />
     <Compile Include="Collections\KeyStringDictionary.Facts.cs" />
-    <Compile Include="Collections\StringList.Facts.cs" />
     <Compile Include="Data\KeyStringPair.Facts.cs" />
-    <Compile Include="Configuration\Config.Facts.cs" />
-    <Compile Include="Configuration\ConfigXml.Facts.cs" />
-    <Compile Include="Configuration\ConfigurationSectionHandler.Dummy.cs" />
-    <Compile Include="Configuration\ConfigurationSection.Dummy.cs" />
-    <Compile Include="Configuration\ConfigurationSection.Dummy2.cs" />
-    <Compile Include="Configuration\ConfigurationSection.Dummy3.cs" />
-    <Compile Include="Configuration\FileInfoValidator.Facts.cs" />
-    <Compile Include="Configuration\FileInfoConverter.Facts.cs" />
-    <Compile Include="Configuration\FileConfigurationElementCollection.Facts.cs" />
-    <Compile Include="Configuration\FileConfigurationElement.Facts.cs" />
-    <Compile Include="Configuration\DirectoryInfoValidator.Facts.cs" />
-    <Compile Include="Configuration\PathConfigurationSection.Facts.cs" />
-    <Compile Include="Configuration\PathConfigurationSection.Derived.cs" />
     <Compile Include="Globalization\CultureInfo.ExtensionMethods.Facts.cs" />
     <Compile Include="Globalization\Language.Facts.cs" />
     <Compile Include="Globalization\Translation`1.Facts.cs" />
@@ -70,14 +53,7 @@
     <Compile Include="Threading\ThreadedObject.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
-    <None Include="paths.config">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

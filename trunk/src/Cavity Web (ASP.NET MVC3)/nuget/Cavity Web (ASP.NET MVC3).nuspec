@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Web.Mvc3</id>
-    <version>1.1.0.742</version>
+    <version>1.1.0.746</version>
     <title>Cavity Web (ASP.NET MVC3)</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -22,7 +22,7 @@
       <frameworkAssembly assemblyName="System.Web.Routing" targetFramework="net40" />
     </frameworkAssemblies>
     <dependencies>
-      <dependency id="Cavity.Core" version="1.1.0.742" />
+      <dependency id="Cavity.Core" version="1.1.0.746" />
     </dependencies>
   </metadata>
   <files>

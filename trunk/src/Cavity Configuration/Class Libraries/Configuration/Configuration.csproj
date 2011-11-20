@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{0069A77A-0500-413A-8253-35018ED877DD}</ProjectGuid>
+    <AssemblyName>Cavity.Configuration</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Collections\StringList.cs" />
+    <Compile Include="Configuration\AddRemoveClearConfigurationElementCollection`1.cs" />
+    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configuration\ConfigurationConverter`1.cs" />
+    <Compile Include="Configuration\ConfigurationProperty`1.cs" />
+    <Compile Include="Configuration\ConfigurationValidator`1.cs" />
+    <Compile Include="Configuration\ConfigXml.cs" />
+    <Compile Include="Configuration\NameValueConfigurationElement`1.cs" />
+    <Compile Include="Configuration\PathConfigurationSection.cs" />
+    <Compile Include="Diagnostics\Tracing.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.746\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <!--
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

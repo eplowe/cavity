@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.ServiceLocation.StructureMap.Web</id>
-    <version>1.1.0.743</version>
+    <version>1.1.0.746</version>
     <title>Cavity Service Location for Web Applications (StructureMap)</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,7 +17,7 @@
     <tags>IoC</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Core" version="1.1.0.742" />
+      <dependency id="Cavity.Configuration" version="1.1.0.746" />
       <dependency id="Cavity.ServiceLocation" version="1.1.0.438" />
       <dependency id="CommonServiceLocator.StructureMapAdapter" version="1.1.0.3" />
       <dependency id="WebActivator" version="1.5" />
