@@ -28,6 +28,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Testing\IConfigureTest.Facts.cs" />
     <Compile Include="Testing\IRunTest.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />

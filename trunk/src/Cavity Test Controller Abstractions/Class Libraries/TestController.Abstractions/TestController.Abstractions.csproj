@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.TestController.Abstractions</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Testing\IConfigureTest.cs" />
     <Compile Include="Testing\IRunTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />

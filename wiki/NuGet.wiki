@@ -6,7 +6,7 @@
 
 *1.1.0.694* Cavity Task Management Abstractions
 
-*1.1.0.715* Cavity Test Controller Abstractions
+*1.1.0.749* Cavity Test Controller Abstractions
 
 *1.1.0.743* Cavity log4net trace listener
 
