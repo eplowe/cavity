@@ -15,6 +15,7 @@
     <Compile Include="Collections\Generic\Tree`1.Facts.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.Facts.cs" />
     <Compile Include="Collections\TranslationDictionary`1.Facts.cs" />
+    <Compile Include="Compression\GZip.Facts.cs" />
     <Compile Include="Generic.ExtensionMethods.Facts.cs" />
     <Compile Include="DateTime.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\DataCollection.Facts.cs" />
@@ -26,6 +27,7 @@
     <Compile Include="IO\StreamWriterDictionary.Facts.cs" />
     <Compile Include="Net\EntityTag.Facts.cs" />
     <Compile Include="Net\Token.Facts.cs" />
+    <Compile Include="Reflection\Assembly.ExtensionMethods.Facts.cs" />
     <Compile Include="Security\Cryptography\MD5Hash.Facts.cs" />
     <Compile Include="Object.ExtensionMethods.Facts.cs" />
     <Compile Include="RelativeUri.Facts.cs" />
@@ -53,6 +55,9 @@
     <Compile Include="Threading\ThreadedObject.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="example.txt.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

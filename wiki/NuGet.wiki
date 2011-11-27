@@ -4,13 +4,13 @@
 
 *1.1.0.438* Cavity.!ServiceLocation
 
-*1.1.0.694* Cavity Task Management Abstractions
+*1.1.0.751* Cavity Task Management Abstractions
 
 *1.1.0.749* Cavity Test Controller Abstractions
 
 *1.1.0.743* Cavity log4net trace listener
 
-*1.1.0.746* Cavity.Core
+*1.1.0.751* Cavity.Core
 
 *1.1.0.746* Cavity Service Location (Autofac)
  * Autofac.!CommonServiceLocator
@@ -53,7 +53,7 @@
 *1.1.0.746* Cavity HTTP Generalizations
  * Cavity.Core
 
-*1.1.0.746* Cavity Task Management
+*1.1.0.751* Cavity Task Management
  * Cavity.!TaskManagement.Abstractions
  * Cavity.Core
 

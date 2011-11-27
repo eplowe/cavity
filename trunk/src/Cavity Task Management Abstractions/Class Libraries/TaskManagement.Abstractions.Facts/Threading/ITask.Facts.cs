@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Threading
 {
+    using System;
     using System.ComponentModel.Composition;
     using System.Threading;
     using System.Threading.Tasks;
@@ -14,6 +15,7 @@
             Assert.True(new TypeExpectations<ITask>()
                             .IsInterface()
                             .IsDecoratedWith<InheritedExportAttribute>()
+                            .Implements<IDisposable>()
                             .Result);
         }
 
@@ -28,6 +30,24 @@
                 .Verifiable();
 
             mock.Object.Run(cancellation);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_CancellationToken_get()
+        {
+            var expected = new CancellationToken();
+
+            var mock = new Mock<ITask>();
+            mock
+                .SetupGet(x => x.CancellationToken)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.CancellationToken;
+
+            Assert.Equal(expected, actual);
 
             mock.VerifyAll();
         }

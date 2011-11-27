@@ -22,6 +22,7 @@
     <Compile Include="IO\StreamWriterDictionary.cs" />
     <Compile Include="IO\TempDirectory.cs" />
     <Compile Include="IO\TempFile.cs" />
+    <Compile Include="Reflection\Assembly.ExtensionMethods.cs" />
     <Compile Include="Security\Cryptography\MD5Hash.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.cs" />
@@ -41,9 +42,10 @@
     <Compile Include="WhiteSpace.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Compile Include="ValueObject`1.cs" />
+    <Compile Include="Compression\GZip.cs" />
     <Compile Include="Net\EntityTag.cs" />
     <Compile Include="Net\Token.cs" />
+    <Compile Include="ValueObject`1.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Dynamic\DynamicData.cs" />
