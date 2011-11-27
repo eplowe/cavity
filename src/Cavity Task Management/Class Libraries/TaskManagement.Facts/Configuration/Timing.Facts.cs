@@ -54,7 +54,7 @@
             {
                 Assert.False(Timing.Wait<StandardTask>(TimeSpan.FromHours(1)));
 
-                var due = DateTime.ParseExact(file.ReadToEnd(), "o", CultureInfo.InvariantCulture, DateTimeStyles.None);
+                var due = file.ReadToEnd().To<DateTime>();
 
                 Assert.True(DateTime.UtcNow < due);
             }
@@ -96,7 +96,7 @@
 
                 Assert.False(Timing.Wait<StandardTask>(TimeSpan.FromMinutes(1)));
 
-                var due = DateTime.ParseExact(file.ReadToEnd(), "o", CultureInfo.InvariantCulture, DateTimeStyles.None);
+                var due = file.ReadToEnd().To<DateTime>();
 
                 Assert.True(DateTime.UtcNow < due);
             }
