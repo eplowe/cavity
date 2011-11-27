@@ -13,9 +13,11 @@
   <Target Name="Rebuild">
     <MSBuild Projects="$(MSBuildProjectDirectory)\src\%(Solutions.Identity)\%(Solutions.Identity).sln"
              Targets="Rebuild"
-             Properties="$(MSBuildProperties);TargetFrameworkVersion=v3.5" />
+             Properties="$(MSBuildProperties);TargetFrameworkVersion=v3.5"
+             BuildInParallel="true" />
     <MSBuild Projects="$(MSBuildProjectDirectory)\src\%(Solutions.Identity)\%(Solutions.Identity).sln"
              Targets="Rebuild"
-             Properties="$(MSBuildProperties);TargetFrameworkVersion=v4.0" />
+             Properties="$(MSBuildProperties);TargetFrameworkVersion=v4.0"
+             BuildInParallel="true" />
   </Target>
 </Project>

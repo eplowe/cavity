@@ -18,8 +18,6 @@
             Thread.Sleep(new TimeSpan(0, 0, 0, 0, 200));
             file.Refresh();
             file.Delete();
-
-            throw new NotSupportedException();
         }
 
         protected override void OnDispose()

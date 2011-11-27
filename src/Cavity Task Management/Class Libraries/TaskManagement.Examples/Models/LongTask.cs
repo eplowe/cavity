@@ -7,13 +7,15 @@
 
     public sealed class LongTask : StandardTask
     {
-        public override IThreadedObject CreateInstance()
+        public override void Run()
         {
             Trace.TraceInformation("long running task started {0}".FormatWith(DateTime.UtcNow.ToXmlString()));
             Thread.Sleep(new TimeSpan(0, 0, 30));
             Trace.TraceInformation("long running task finished {0}".FormatWith(DateTime.UtcNow.ToXmlString()));
+        }
 
-            return null;
+        protected override void OnDispose()
+        {
         }
     }
 }

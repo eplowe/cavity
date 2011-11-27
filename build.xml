@@ -24,18 +24,23 @@
   <Target Name="Build">
     <MSBuild Projects="$(MSBuildProjectDirectory)\build.AnyCPU.xml"
              Targets="Rebuild"
-             Properties="$(MSBuildProperties)" />
+             Properties="$(MSBuildProperties)"
+             BuildInParallel="true" />
     <MSBuild Projects="$(MSBuildProjectDirectory)\build.AnyCPU.not20.xml"
              Targets="Rebuild"
-             Properties="$(MSBuildProperties)" />
+             Properties="$(MSBuildProperties)"
+             BuildInParallel="true" />
     <MSBuild Projects="$(MSBuildProjectDirectory)\build.AnyCPU.net40.xml"
              Targets="Rebuild"
-             Properties="$(MSBuildProperties)" />
+             Properties="$(MSBuildProperties)"
+             BuildInParallel="true" />
     <MSBuild Projects="$(MSBuildProjectDirectory)\build.x86.net40.xml"
              Targets="Rebuild"
-             Properties="$(MSBuildProperties)" />
+             Properties="$(MSBuildProperties)"
+             BuildInParallel="true" />
     <MSBuild Projects="$(MSBuildProjectDirectory)\build.x64.net40.xml"
              Targets="Rebuild"
-             Properties="$(MSBuildProperties)" />
+             Properties="$(MSBuildProperties)"
+             BuildInParallel="true" />
   </Target>
 </Project>

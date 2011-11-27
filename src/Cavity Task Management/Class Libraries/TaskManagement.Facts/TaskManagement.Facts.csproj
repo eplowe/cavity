@@ -15,16 +15,16 @@
       <HintPath>..\..\packages\Cavity.Configuration.1.1.0.746\lib\$(TargetFrameworkVersionName)\Cavity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.746\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.751\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.TaskManagement.Abstractions">
+      <HintPath>..\..\packages\Cavity.TaskManagement.Abstractions.1.1.0.751\lib\$(TargetFrameworkVersionName)\Cavity.TaskManagement.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
-    <Reference Include="Cavity.TaskManagement.Abstractions">
-      <HintPath>..\..\packages\Cavity.TaskManagement.Abstractions.1.1.0.694\lib\$(TargetFrameworkVersionName)\Cavity.TaskManagement.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
@@ -45,6 +45,8 @@
     <Compile Include="Diagnostics\TaskCounter.Facts.cs" />
     <Compile Include="Diagnostics\TaskManagementEventLog.Facts.cs" />
     <Compile Include="IO\FileReceiver`1.Facts.cs" />
+    <Compile Include="IO\FileReceiverTask`1.Derived.cs" />
+    <Compile Include="IO\FileReceiverTask`1.Facts.cs" />
     <Compile Include="IO\IReceiveFile.Facts.cs" />
     <Compile Include="Models\FileProcessor.Derived.cs" />
     <Compile Include="Models\FileProcessor.Facts.cs" />
@@ -53,6 +55,9 @@
     <Compile Include="Threading\StandardTask.Derived.cs" />
     <Compile Include="Threading\StandardTask.Facts.cs" />
     <Compile Include="Threading\TaskManager.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Timing.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />

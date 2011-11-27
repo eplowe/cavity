@@ -3,7 +3,6 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Moq;
     using Xunit;
 
     public sealed class StandardTaskFacts
@@ -30,46 +29,21 @@
         }
 
         [Fact]
-        public void op_CreateInstance_CancellationToken()
-        {
-            var expected = new Mock<IThreadedObject>();
-            using (var obj = new DerivedStandardTask(expected.Object))
-            {
-                using (var actual = obj.CreateInstance())
-                {
-                    Assert.Same(expected.Object, actual);
-                }
-            }
-        }
-
-        [Fact]
         public void op_Run_CancellationToken()
         {
-            using (var obj = new DerivedStandardTask(new Mock<IThreadedObject>().Object))
+            using (var obj = new DerivedStandardTask())
             {
                 obj.Run(new CancellationToken());
             }
         }
 
         [Fact]
-        public void op_Run_CancellationToken_whenException()
+        public void prop_CancellationToken()
         {
-            using (var obj = new DerivedStandardTask(new Mock<IThreadedObject>().Object)
-            {
-                ThrowException = true
-            })
-            {
-                obj.Run(new CancellationToken());
-            }
-        }
-
-        [Fact]
-        public void op_Run_CancellationToken_whenNullInstance()
-        {
-            using (var obj = new DerivedStandardTask(null))
-            {
-                obj.Run(new CancellationToken());
-            }
+            Assert.True(new PropertyExpectations<StandardTask>(x => x.CancellationToken)
+                            .TypeIs<CancellationToken>()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]

@@ -5,11 +5,13 @@
 
     public sealed class ShortTask : StandardTask
     {
-        public override IThreadedObject CreateInstance()
+        public override void Run()
         {
             Trace.TraceInformation("short running task");
+        }
 
-            return null;
+        protected override void OnDispose()
+        {
         }
     }
 }
