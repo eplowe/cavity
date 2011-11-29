@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Configuration
 {
     using System;
-    using System.Globalization;
     using System.IO;
     using Cavity;
     using Cavity.IO;
@@ -42,6 +41,34 @@
 
             var expected = Path.Combine(type.Assembly.Directory().FullName, "StandardTask.example");
             var actual = Timing.ToFile(type, "example").FullName;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Due()
+        {
+            var file = Timing.ToFile(typeof(StandardTask), "wait");
+            try
+            {
+                var expected = DateTime.UtcNow.AddMinutes(-1);
+                file.CreateNew(expected.ToXmlString());
+
+                var actual = Timing.Due<StandardTask>();
+
+                Assert.Equal(expected, actual);
+            }
+            finally
+            {
+                file.Delete();
+            }
+        }
+
+        [Fact]
+        public void op_Wait_whenNoFile()
+        {
+            var expected = DateTime.MinValue;
+            var actual = Timing.Due<StandardTask>();
 
             Assert.Equal(expected, actual);
         }

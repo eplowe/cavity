@@ -8,9 +8,9 @@
     </sectionGroup>
   </configSections>
   <cavity>
-    <task.management refreshRate="00:00:20">
+    <task.management refreshRate="00:00:01">
       <extensions>
-        <add directory="C:\Tasks\lib" />
+        <!--<add directory="" />-->
       </extensions>
     </task.management>
   </cavity>

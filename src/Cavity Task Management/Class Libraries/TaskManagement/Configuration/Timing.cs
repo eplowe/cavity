@@ -3,7 +3,6 @@
     using System;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
     using System.IO;
     using Cavity.Diagnostics;
     using Cavity.IO;
@@ -12,6 +11,16 @@
     public static class Timing
     {
         private static readonly object _lock = new object();
+
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "This design is intentional.")]
+        public static DateTime Due<T>()
+        {
+            var file = ToFile(typeof(T), "wait");
+
+            return !file.Exists
+                ? DateTime.MinValue
+                : file.ReadToEnd().To<DateTime>();
+        }
 
         public static FileInfo ToFile(Type type, string extension)
         {
