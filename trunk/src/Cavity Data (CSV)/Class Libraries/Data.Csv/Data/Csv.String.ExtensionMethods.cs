@@ -22,6 +22,8 @@
 #endif
 
             return value.Contains(",")
+                || value.Contains("\n")
+                || value.Contains(Environment.NewLine)
                        ? string.Concat("\"", value, "\"")
                        : value;
         }

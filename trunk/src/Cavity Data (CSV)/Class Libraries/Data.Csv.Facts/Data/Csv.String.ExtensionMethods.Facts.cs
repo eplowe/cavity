@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Data
 {
+    using System;
     using Xunit;
 
     public sealed class CsvStringExtensionMethodsFacts
@@ -24,6 +25,24 @@
         {
             const string expected = "\"foo, bar\"";
             var actual = "foo, bar".FormatCommaSeparatedValue();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_FormatCommaSeparatedValue_stringNewLine()
+        {
+            var expected = "\"foo{0} bar\"".FormatWith(Environment.NewLine);
+            var actual = "foo{0} bar".FormatWith(Environment.NewLine).FormatCommaSeparatedValue();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_FormatCommaSeparatedValue_stringUnixLF()
+        {
+            const string expected = "\"foo\n bar\"";
+            var actual = "foo\n bar".FormatCommaSeparatedValue();
 
             Assert.Equal(expected, actual);
         }
