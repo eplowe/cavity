@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Domain.RoyalMail</id>
-    <version>1.1.0.757</version>
+    <version>1.1.0.758</version>
     <title>Cavity Domain (Royal Mail)</title>
     <authors>Alan Dean</authors>
     <owners />
