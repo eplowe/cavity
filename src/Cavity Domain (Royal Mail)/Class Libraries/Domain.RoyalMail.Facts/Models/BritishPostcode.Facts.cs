@@ -90,6 +90,18 @@
         }
 
         [Fact]
+        public void op_FromString_string_whenOnlySector()
+        {
+            const string original = "GU21 4";
+            var obj = BritishPostcode.FromString(original);
+
+            Assert.Equal("GU", obj.Area);
+            Assert.Equal("GU21", obj.District);
+            Assert.Equal("GU21 4", obj.Sector);
+            Assert.Null(obj.Unit);
+        }
+
+        [Fact]
         public void op_FromString_string_whenPeriod()
         {
             const string original = ".AB10 1AA.";

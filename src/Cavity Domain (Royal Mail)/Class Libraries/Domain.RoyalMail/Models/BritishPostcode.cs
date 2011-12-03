@@ -74,11 +74,18 @@
                     return new BritishPostcode(area, parts[0]);
 
                 case 2:
-                    return new BritishPostcode(
+                    var result = new BritishPostcode(
                         area, 
                         parts[0], 
                         string.Concat(parts[0], ' ', ToSector(parts[1])), 
-                        value);
+                        null);
+
+                    if (value != result.Sector)
+                    {
+                        result.Unit = value;
+                    }
+
+                    return result;
 
                 default:
                     return new BritishPostcode();
