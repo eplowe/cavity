@@ -8,6 +8,28 @@
     {
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
 #if NET20
+        public static DirectoryInfo Make(DirectoryInfo obj)
+#else
+        public static DirectoryInfo Make(this DirectoryInfo obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            obj.Refresh();
+            if (!obj.Exists)
+            {
+                obj.Create();
+                obj.Refresh();
+            }
+
+            return obj;
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
         public static DirectoryInfo ToDirectory(DirectoryInfo obj,
                                                 object name)
 #else
@@ -30,10 +52,13 @@
 #endif
         {
             var dir = new DirectoryInfo(PathCombine(obj, name));
-            if (create && !dir.Exists)
+            if (create)
             {
-                dir.Create();
-                dir.Refresh();
+#if NET20
+                DirectoryInfoExtensionMethods.Make(dir);
+#else
+                dir.Make();
+#endif
             }
 
             return dir;

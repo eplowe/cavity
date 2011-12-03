@@ -13,6 +13,32 @@
         }
 
         [Fact]
+        public void op_Make_DirectoryInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var actual = temp.Info.ToDirectory("example").Make();
+
+                Assert.True(actual.Exists);
+            }
+        }
+
+        [Fact]
+        public void op_Make_DirectoryInfo_whenDirectoryExists()
+        {
+            using (var temp = new TempDirectory())
+            {
+                temp.Info.Make();
+            }
+        }
+
+        [Fact]
+        public void op_Make_DirectoryInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).Make());
+        }
+
+        [Fact]
         public void op_ToDirectory_DirectoryInfoNull_object()
         {
             Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToDirectory("example"));
