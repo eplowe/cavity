@@ -78,6 +78,18 @@
         }
 
         [Fact]
+        public void op_FromString_string_whenOnlyArea()
+        {
+            const string original = "GU";
+            var obj = BritishPostcode.FromString(original);
+
+            Assert.Equal("GU", obj.Area);
+            Assert.Null(obj.District);
+            Assert.Null(obj.Sector);
+            Assert.Null(obj.Unit);
+        }
+
+        [Fact]
         public void op_FromString_string_whenOnlyDistrict()
         {
             const string original = "GU21";

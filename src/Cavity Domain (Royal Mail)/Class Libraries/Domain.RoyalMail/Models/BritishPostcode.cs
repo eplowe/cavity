@@ -14,23 +14,6 @@
         {
         }
 
-        private BritishPostcode(string area, 
-                                string district)
-        {
-            Area = area;
-            District = district;
-        }
-
-        private BritishPostcode(string area, 
-                                string district, 
-                                string sector, 
-                                string unit)
-            : this(area, district)
-        {
-            Sector = sector;
-            Unit = unit;
-        }
-
         public string Area { get; set; }
 
         public string District { get; set; }
@@ -71,21 +54,21 @@
             switch (parts.Length)
             {
                 case 1:
-                    return new BritishPostcode(area, parts[0]);
+                    return new BritishPostcode
+                    {
+                        Area = area,
+                        District = area == parts[0] ? null : parts[0]
+                    };
 
                 case 2:
-                    var result = new BritishPostcode(
-                        area, 
-                        parts[0], 
-                        string.Concat(parts[0], ' ', ToSector(parts[1])), 
-                        null);
-
-                    if (value != result.Sector)
+                    var sector = string.Concat(parts[0], ' ', ToSector(parts[1]));
+                    return new BritishPostcode
                     {
-                        result.Unit = value;
-                    }
-
-                    return result;
+                        Area = area,
+                        District = parts[0],
+                        Sector = sector,
+                        Unit = value == sector ? null : value
+                    };
 
                 default:
                     return new BritishPostcode();
