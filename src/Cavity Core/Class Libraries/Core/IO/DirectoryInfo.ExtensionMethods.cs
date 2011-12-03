@@ -64,7 +64,15 @@
                 throw new ArgumentNullException("name");
             }
 
-            return Path.Combine(obj.FullName, name.ToString());
+#if NET20
+            var value = StringExtensionMethods.ReplaceAllWith(name.ToString(), string.Empty, StringComparison.Ordinal, "\\", "/", ":", "*", "?", "\"", "<", ">", "|");
+#else
+            var value = name
+                .ToString()
+                .ReplaceAllWith(string.Empty, StringComparison.Ordinal, "\\", "/", ":", "*", "?", "\"", "<", ">", "|");
+#endif
+
+            return Path.Combine(obj.FullName, value);
         }
     }
 }
