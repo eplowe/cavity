@@ -69,7 +69,7 @@
  * Cavity.Data.Csv
  	* Cavity.Core
 
-*1.1.0.746* Cavity.Domain.RoyalMail
+*1.1.0.757* Cavity.Domain.RoyalMail
  * Cavity.Data.Csv
  	* Cavity.Core
 
