@@ -28,7 +28,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.AppendLine(expected);
+                Assert.Same(file, file.AppendLine(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -43,7 +43,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.AppendLine(expected);
+                Assert.Same(file, file.AppendLine(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -58,7 +58,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.AppendLine(null);
+                Assert.Same(file, file.AppendLine(null));
 
                 var actual = file.ReadToEnd();
 
@@ -73,8 +73,8 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(string.Empty);
-                file.AppendLine(expected);
+                Assert.Same(file, file.CreateNew(string.Empty));
+                Assert.Same(file, file.AppendLine(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -95,7 +95,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.Append(expected);
+                Assert.Same(file, file.Append(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -110,7 +110,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.Append(expected);
+                Assert.Same(file, file.Append(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -125,7 +125,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.Append(null);
+                Assert.Same(file, file.Append(null));
 
                 var actual = file.ReadToEnd();
 
@@ -140,8 +140,8 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(string.Empty);
-                file.Append(expected);
+                Assert.Same(file, file.CreateNew(string.Empty));
+                Assert.Same(file, file.Append(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -156,7 +156,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew();
+                Assert.Same(file, file.CreateNew());
 
                 var actual = file.ReadToEnd();
 
@@ -183,7 +183,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(expected);
+                Assert.Same(file, file.CreateNew(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -198,7 +198,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(expected);
+                Assert.Same(file, file.CreateNew(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -213,7 +213,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(null);
+                Assert.Same(file, file.CreateNew(null));
 
                 var actual = file.ReadToEnd();
 
@@ -227,7 +227,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(string.Empty);
+                Assert.Same(file, file.CreateNew(string.Empty));
 
                 Assert.Throws<IOException>(() => file.CreateNew("example"));
             }
@@ -239,7 +239,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew();
+                Assert.Same(file, file.CreateNew());
 
                 Assert.Throws<IOException>(() => file.CreateNew());
             }
@@ -270,7 +270,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.Create(xml);
+                Assert.Same(file, file.Create(xml));
 
                 var actual = file.ReadToEnd();
 
@@ -299,8 +299,8 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(string.Empty);
-                file.Create(xml);
+                Assert.Same(file, file.CreateNew(string.Empty));
+                Assert.Same(file, file.Create(xml));
 
                 var actual = file.ReadToEnd();
 
@@ -315,7 +315,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.Create(expected);
+                Assert.Same(file, file.Create(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -330,7 +330,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.Create(expected);
+                Assert.Same(file, file.Create(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -345,7 +345,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.Create(null as string);
+                Assert.Same(file, file.Create(null as string));
 
                 var actual = file.ReadToEnd();
 
@@ -360,8 +360,8 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(string.Empty);
-                file.Create(expected);
+                Assert.Same(file, file.CreateNew(string.Empty));
+                Assert.Same(file, file.Create(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -376,7 +376,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(expected);
+                Assert.Same(file, file.CreateNew(expected));
 
                 foreach (var actual in file.Lines())
                 {
@@ -391,7 +391,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew();
+                Assert.Same(file, file.CreateNew());
 
                 Assert.Empty(file.Lines());
             }
@@ -421,7 +421,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(expected);
+                Assert.Same(file, file.CreateNew(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -458,8 +458,8 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(string.Empty);
-                file.Truncate(expected);
+                Assert.Same(file, file.CreateNew(string.Empty));
+                Assert.Same(file, file.Truncate(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -474,8 +474,8 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(string.Empty);
-                file.Truncate(expected);
+                Assert.Same(file, file.CreateNew(string.Empty));
+                Assert.Same(file, file.Truncate(expected));
 
                 var actual = file.ReadToEnd();
 
@@ -490,8 +490,8 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
-                file.CreateNew(string.Empty);
-                file.Truncate(null);
+                Assert.Same(file, file.CreateNew(string.Empty));
+                Assert.Same(file, file.Truncate(null));
 
                 var actual = file.ReadToEnd();
 

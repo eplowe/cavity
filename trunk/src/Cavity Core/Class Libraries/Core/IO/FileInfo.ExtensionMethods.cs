@@ -9,10 +9,10 @@
     public static class FileInfoExtensionMethods
     {
 #if NET20
-        public static void Append(FileInfo obj,
+        public static FileInfo Append(FileInfo obj,
                                   string value)
 #else
-        public static void Append(this FileInfo obj,
+        public static FileInfo Append(this FileInfo obj,
                                   string value)
 #endif
         {
@@ -31,13 +31,15 @@
                     }
                 }
             }
+
+            return obj;
         }
 
 #if NET20
-        public static void AppendLine(FileInfo obj,
+        public static FileInfo AppendLine(FileInfo obj,
                                       string value)
 #else
-        public static void AppendLine(this FileInfo obj,
+        public static FileInfo AppendLine(this FileInfo obj,
                                       string value)
 #endif
         {
@@ -53,13 +55,15 @@
                     writer.WriteLine(value);
                 }
             }
+
+            return obj;
         }
 
 #if NET20
-        public static void Create(FileInfo obj,
+        public static FileInfo Create(FileInfo obj,
                                   string value)
 #else
-        public static void Create(this FileInfo obj,
+        public static FileInfo Create(this FileInfo obj,
                                   string value)
 #endif
         {
@@ -78,13 +82,15 @@
                     }
                 }
             }
+
+            return obj;
         }
 
 #if NET20
-        public static void Create(FileInfo obj,
+        public static FileInfo Create(FileInfo obj,
                                   IXPathNavigable xml)
 #else
-        public static void Create(this FileInfo obj,
+        public static FileInfo Create(this FileInfo obj,
                                   IXPathNavigable xml)
 #endif
         {
@@ -99,24 +105,26 @@
             }
 
             Create(obj, xml.CreateNavigator().OuterXml);
+
+            return obj;
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix", Justification = "This naming is intentional")]
 #if NET20
-        public static void CreateNew(FileInfo obj)
+        public static FileInfo CreateNew(FileInfo obj)
 #else
-        public static void CreateNew(this FileInfo obj)
+        public static FileInfo CreateNew(this FileInfo obj)
 #endif
         {
-            CreateNew(obj, null);
+            return CreateNew(obj, null);
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix", Justification = "This naming is intentional")]
 #if NET20
-        public static void CreateNew(FileInfo obj,
+        public static FileInfo CreateNew(FileInfo obj,
                                      string value)
 #else
-        public static void CreateNew(this FileInfo obj,
+        public static FileInfo CreateNew(this FileInfo obj,
                                      string value)
 #endif
         {
@@ -135,6 +143,8 @@
                     }
                 }
             }
+
+            return obj;
         }
 
 #if NET20
@@ -182,10 +192,10 @@
         }
 
 #if NET20
-        public static void Truncate(FileInfo obj,
+        public static FileInfo Truncate(FileInfo obj,
                                     string value)
 #else
-        public static void Truncate(this FileInfo obj,
+        public static FileInfo Truncate(this FileInfo obj,
                                     string value)
 #endif
         {
@@ -204,6 +214,8 @@
                     }
                 }
             }
+
+            return obj;
         }
     }
 }
