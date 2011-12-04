@@ -21,6 +21,24 @@
         }
 
         [Fact]
+        public void op_FormatCommaSeparatedValue_stringLeadingSpace()
+        {
+            const string expected = "\" example\"";
+            var actual = " example".FormatCommaSeparatedValue();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_FormatCommaSeparatedValue_stringTrailingSpace()
+        {
+            const string expected = "\"example \"";
+            var actual = "example ".FormatCommaSeparatedValue();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_FormatCommaSeparatedValue_stringComma()
         {
             const string expected = "\"foo, bar\"";
