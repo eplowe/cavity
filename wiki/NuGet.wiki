@@ -41,7 +41,7 @@
 *1.1.0.746* Cavity.Data.Ace
  * Cavity.Core
 
-*1.1.0.761* Cavity.Data.Csv
+*1.1.0.763* Cavity.Data.Csv
  * Cavity.Core
 
 *1.1.0.746* Cavity Repository
@@ -53,7 +53,7 @@
 *1.1.0.746* Cavity HTTP Generalizations
  * Cavity.Core
 
-*1.1.0.751* Cavity Task Management
+*1.1.0.764* Cavity Task Management
  * Cavity.!TaskManagement.Abstractions
  * Cavity.Core
 
