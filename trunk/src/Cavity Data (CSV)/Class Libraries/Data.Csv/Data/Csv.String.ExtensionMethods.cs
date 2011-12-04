@@ -15,13 +15,20 @@
                 return null;
             }
 
+            if (0 == value.Length)
+            {
+                return string.Empty;
+            }
+
 #if NET20
             value = StringExtensionMethods.Replace(value, "\"", "\"\"", StringComparison.Ordinal);
 #else
             value = value.Replace("\"", "\"\"", StringComparison.Ordinal);
 #endif
 
-            return value.Contains(",")
+            return ' ' == value[0]
+                || ' ' == value[value.Length - 1]
+                || value.Contains(",")
                 || value.Contains("\n")
                 || value.Contains(Environment.NewLine)
                        ? string.Concat("\"", value, "\"")
