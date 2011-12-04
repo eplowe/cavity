@@ -5,6 +5,9 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+#if !NET20
+    using System.Linq;
+#endif
     using System.Text;
     using Cavity.Collections;
     using Cavity.IO;
@@ -49,6 +52,61 @@
             return Line(data.Values);
         }
 
+        public static string Line(KeyStringDictionary data, 
+                                  string columns)
+        {
+            if (null == data)
+            {
+                throw new ArgumentNullException("data");
+            }
+
+            if (null == columns)
+            {
+                throw new ArgumentNullException("columns");
+            }
+
+            columns = columns.Normalize().Trim();
+            if (0 == columns.Length)
+            {
+                throw new ArgumentOutOfRangeException("columns");
+            }
+
+            return Line(data, columns.Split(','));
+        }
+
+        public static string Line(KeyStringDictionary data, 
+                                  params string[] columns)
+        {
+            if (null == data)
+            {
+                throw new ArgumentNullException("data");
+            }
+
+            if (null == columns)
+            {
+                throw new ArgumentNullException("columns");
+            }
+
+            if (0 == columns.Length)
+            {
+                throw new ArgumentOutOfRangeException("columns");
+            }
+
+#if NET20
+            var values = new List<string>();
+            foreach (var column in columns)
+            {
+                values.Add(data[column.Normalize().Trim()]);
+            }
+#else
+            var values = columns
+                .Select(column => data[column.Normalize().Trim()])
+                .ToList();
+#endif
+
+            return Line(values);
+        }
+
         public static string Line(IEnumerable<string> data)
         {
             if (null == data)
@@ -82,7 +140,7 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This design is intentional.")]
-        public static void Save(FileMode mode,
+        public static void Save(FileMode mode, 
                                 IEnumerable<KeyValuePair<FileInfo, KeyStringDictionary>> data)
         {
             if (null == data)
@@ -93,8 +151,8 @@
             var count = 0;
             using (var writers = new StreamWriterDictionary
             {
-                Access = FileAccess.Write,
-                Mode = mode,
+                Access = FileAccess.Write, 
+                Mode = mode, 
                 Share = FileShare.Read
             })
             {
@@ -111,7 +169,7 @@
             }
         }
 
-        public virtual void Save(FileMode mode,
+        public virtual void Save(FileMode mode, 
                                  IEnumerable<KeyStringDictionary> data)
         {
             if (null == data)
@@ -120,7 +178,8 @@
             }
 
             Info.Refresh();
-            if (null != Info.Directory && !Info.Directory.Exists)
+            if (null != Info.Directory &&
+                !Info.Directory.Exists)
             {
                 Info.Directory.Create();
             }
@@ -144,7 +203,8 @@
             }
 
             Info.Refresh();
-            if (0 == count && Info.Exists)
+            if (0 == count &&
+                Info.Exists)
             {
                 Info.Delete();
             }
