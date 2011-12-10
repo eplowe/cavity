@@ -65,7 +65,7 @@
         {
             using (var temp = new TempDirectory())
             {
-                foreach (var c in new[] { "\\", "/", ":", "*", "?", "\"", "<", ">", "|" })
+                foreach (var c in new[] { "\\", "/", ":", "*", "?", "\"", "<", ">", "|", "\n", "\t" })
                 {
                     var name = "invalid {0}example".FormatWith(c);
 

@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Text;
 
     public static class DirectoryInfoExtensionMethods
     {
@@ -89,15 +90,63 @@
                 throw new ArgumentNullException("name");
             }
 
-#if NET20
-            var value = StringExtensionMethods.ReplaceAllWith(name.ToString(), string.Empty, StringComparison.Ordinal, "\\", "/", ":", "*", "?", "\"", "<", ">", "|");
-#else
-            var value = name
-                .ToString()
-                .ReplaceAllWith(string.Empty, StringComparison.Ordinal, "\\", "/", ":", "*", "?", "\"", "<", ">", "|");
-#endif
+            var buffer = new StringBuilder();
+            foreach (int c in name.ToString())
+            {
+                if (32 > c)
+                {
+                    // Control characters
+                    continue;
+                }
 
-            return Path.Combine(obj.FullName, value);
+                switch (c)
+                {
+                    case 34: // "
+                    case 42: // *
+                    case 47: // /
+                    case 58: // :
+                    case 60: // <
+                    case 62: // >
+                    case 63: // ?
+                    case 92: // \
+                    case 124: // |
+                    case 127: // DEL
+                        break;
+
+                    default:
+                        buffer.Append((char)c);
+                        break;
+                }
+            }
+
+#if NET20
+            var value = StringExtensionMethods.NormalizeWhiteSpace(buffer.ToString()).Trim();
+#else
+            var value = buffer.ToString().NormalizeWhiteSpace().Trim();
+#endif
+            if (0 == value.Length)
+            {
+#if NET20
+                var message = StringExtensionMethods.FormatWith("'{0}' was empty when trimmed.", buffer.ToString());
+#else
+                var message = "'{0}' was empty when trimmed.".FormatWith(name.ToString());
+#endif
+                throw new ArgumentOutOfRangeException("name", name, message);
+            }
+
+            try
+            {
+                return Path.Combine(obj.FullName, value);
+            }
+            catch (ArgumentException exception)
+            {
+#if NET20
+                var message = StringExtensionMethods.FormatWith("'{0}' is an invalid name.", name.ToString());
+#else
+                var message = "'{0}' is an invalid name.".FormatWith(name.ToString());
+#endif
+                throw new ArgumentOutOfRangeException(message, exception);
+            }
         }
     }
 }
