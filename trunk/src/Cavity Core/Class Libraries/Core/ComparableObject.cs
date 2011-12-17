@@ -4,7 +4,7 @@ namespace Cavity
 
     public abstract class ComparableObject : IComparable
     {
-        public static bool operator ==(ComparableObject operand1,
+        public static bool operator ==(ComparableObject operand1, 
                                        ComparableObject operand2)
         {
             return ReferenceEquals(null, operand1)
@@ -12,7 +12,7 @@ namespace Cavity
                        : operand1.Equals(operand2);
         }
 
-        public static bool operator >(ComparableObject operand1,
+        public static bool operator >(ComparableObject operand1, 
                                       ComparableObject operand2)
         {
             return Compare(operand1, operand2) > 0;
@@ -25,7 +25,7 @@ namespace Cavity
                        : value.ToString();
         }
 
-        public static bool operator !=(ComparableObject operand1,
+        public static bool operator !=(ComparableObject operand1, 
                                        ComparableObject operand2)
         {
             return ReferenceEquals(null, operand1)
@@ -33,20 +33,20 @@ namespace Cavity
                        : !operand1.Equals(operand2);
         }
 
-        public static bool operator <(ComparableObject operand1,
+        public static bool operator <(ComparableObject operand1, 
                                       ComparableObject operand2)
         {
             return Compare(operand1, operand2) < 0;
         }
 
-        public static int Compare(ComparableObject comparand1,
+        public static int Compare(ComparableObject comparand1, 
                                   ComparableObject comparand2)
         {
             return ReferenceEquals(comparand1, comparand2)
                        ? 0
                        : string.Compare(
-                           ReferenceEquals(null, comparand1) ? null : comparand1.ToString(),
-                           ReferenceEquals(null, comparand2) ? null : comparand2.ToString(),
+                           ReferenceEquals(null, comparand1) ? null : comparand1.ToString(), 
+                           ReferenceEquals(null, comparand2) ? null : comparand2.ToString(), 
                            StringComparison.OrdinalIgnoreCase);
         }
 

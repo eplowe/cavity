@@ -15,7 +15,7 @@ namespace Cavity.IO
             _encoding = encoding;
         }
 
-        public EncodedStringWriter(IFormatProvider formatProvider,
+        public EncodedStringWriter(IFormatProvider formatProvider, 
                                    Encoding encoding)
             : base(formatProvider)
         {
@@ -23,15 +23,15 @@ namespace Cavity.IO
         }
 
         [SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", MessageId = "System.IO.StringWriter.#ctor(System.Text.StringBuilder)", Justification = "Providing a mirror of all the StringWriter constructors.")]
-        public EncodedStringWriter(StringBuilder builder,
+        public EncodedStringWriter(StringBuilder builder, 
                                    Encoding encoding)
             : base(builder)
         {
             _encoding = encoding;
         }
 
-        public EncodedStringWriter(StringBuilder builder,
-                                   IFormatProvider formatProvider,
+        public EncodedStringWriter(StringBuilder builder, 
+                                   IFormatProvider formatProvider, 
                                    Encoding encoding)
             : base(builder, formatProvider)
         {

@@ -117,7 +117,7 @@
             }
         }
 
-        public static bool operator ==(DataCollection obj,
+        public static bool operator ==(DataCollection obj, 
                                        DataCollection comparand)
         {
             return ReferenceEquals(null, obj)
@@ -125,7 +125,7 @@
                        : obj.Equals(comparand);
         }
 
-        public static bool operator !=(DataCollection obj,
+        public static bool operator !=(DataCollection obj, 
                                        DataCollection comparand)
         {
             return ReferenceEquals(null, obj)
@@ -183,7 +183,7 @@
             }
         }
 
-        public virtual void Add(string name,
+        public virtual void Add(string name, 
                                 string value)
         {
             if (null == name)
@@ -235,7 +235,7 @@
 #endif
         }
 
-        public virtual bool Contains(string name,
+        public virtual bool Contains(string name, 
                                      string value)
         {
 #if NET20

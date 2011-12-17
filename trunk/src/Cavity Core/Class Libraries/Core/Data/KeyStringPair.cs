@@ -2,16 +2,17 @@
 {
     using System;
     using System.Runtime.Serialization;
+    using System.Text;
+
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
-    using System.Text;
 
     [Serializable]
-    public struct KeyStringPair : ISerializable,
+    public struct KeyStringPair : ISerializable, 
                                   IEquatable<KeyStringPair>
     {
-        public KeyStringPair(string key,
+        public KeyStringPair(string key, 
                              string value)
             : this()
         {
@@ -19,7 +20,7 @@
             Value = value;
         }
 
-        private KeyStringPair(SerializationInfo info,
+        private KeyStringPair(SerializationInfo info, 
                               StreamingContext context)
             : this()
         {
@@ -31,13 +32,13 @@
 
         public string Value { get; set; }
 
-        public static bool operator ==(KeyStringPair obj,
+        public static bool operator ==(KeyStringPair obj, 
                                        KeyStringPair comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator !=(KeyStringPair obj,
+        public static bool operator !=(KeyStringPair obj, 
                                        KeyStringPair comparand)
         {
             return !obj.Equals(comparand);
@@ -74,7 +75,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        void ISerializable.GetObjectData(SerializationInfo info,
+        void ISerializable.GetObjectData(SerializationInfo info, 
                                          StreamingContext context)
         {
             if (null == info)

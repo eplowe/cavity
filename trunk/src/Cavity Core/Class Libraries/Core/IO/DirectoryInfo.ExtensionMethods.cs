@@ -31,10 +31,10 @@
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
 #if NET20
-        public static DirectoryInfo ToDirectory(DirectoryInfo obj,
+        public static DirectoryInfo ToDirectory(DirectoryInfo obj, 
                                                 object name)
 #else
-        public static DirectoryInfo ToDirectory(this DirectoryInfo obj,
+        public static DirectoryInfo ToDirectory(this DirectoryInfo obj, 
                                                 object name)
 #endif
         {
@@ -43,12 +43,12 @@
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
 #if NET20
-        public static DirectoryInfo ToDirectory(DirectoryInfo obj,
-                                                object name,
+        public static DirectoryInfo ToDirectory(DirectoryInfo obj, 
+                                                object name, 
                                                 bool create)
 #else
-        public static DirectoryInfo ToDirectory(this DirectoryInfo obj,
-                                                object name,
+        public static DirectoryInfo ToDirectory(this DirectoryInfo obj, 
+                                                object name, 
                                                 bool create)
 #endif
         {
@@ -67,17 +67,17 @@
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
 #if NET20
-        public static FileInfo ToFile(DirectoryInfo obj,
+        public static FileInfo ToFile(DirectoryInfo obj, 
                                       object name)
 #else
-        public static FileInfo ToFile(this DirectoryInfo obj,
+        public static FileInfo ToFile(this DirectoryInfo obj, 
                                       object name)
 #endif
         {
             return new FileInfo(PathCombine(obj, name));
         }
 
-        private static string PathCombine(FileSystemInfo obj,
+        private static string PathCombine(FileSystemInfo obj, 
                                           object name)
         {
             if (null == obj)

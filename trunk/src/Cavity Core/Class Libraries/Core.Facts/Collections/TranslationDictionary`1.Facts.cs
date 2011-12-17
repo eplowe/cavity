@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Collections
 {
     using System.Collections.Generic;
-    using Cavity.Data;
     using Cavity.Globalization;
     using Xunit;
 

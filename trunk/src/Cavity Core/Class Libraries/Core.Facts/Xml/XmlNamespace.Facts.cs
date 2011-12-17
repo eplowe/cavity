@@ -53,24 +53,24 @@
         [Fact]
         public void prop_Prefix()
         {
-            Assert.NotNull(new PropertyExpectations<XmlNamespace>(p => p.Prefix)
-                               .IsNotDecorated()
-                               .TypeIs<string>()
-                               .ArgumentNullException()
-                               .ArgumentOutOfRangeException(string.Empty)
-                               .Set("prefix")
-                               .Result);
+            Assert.True(new PropertyExpectations<XmlNamespace>(p => p.Prefix)
+                            .IsNotDecorated()
+                            .TypeIs<string>()
+                            .ArgumentNullException()
+                            .ArgumentOutOfRangeException(string.Empty)
+                            .Set("prefix")
+                            .Result);
         }
 
         [Fact]
         public void prop_Uri()
         {
-            Assert.NotNull(new PropertyExpectations<XmlNamespace>(p => p.Uri)
-                               .IsNotDecorated()
-                               .TypeIs<AbsoluteUri>()
-                               .ArgumentNullException()
-                               .Set(new AbsoluteUri("http://example.com/"))
-                               .Result);
+            Assert.True(new PropertyExpectations<XmlNamespace>(p => p.Uri)
+                            .IsNotDecorated()
+                            .TypeIs<AbsoluteUri>()
+                            .ArgumentNullException()
+                            .Set(new AbsoluteUri("http://example.com/"))
+                            .Result);
         }
     }
 }

@@ -14,10 +14,10 @@
     public static class IEnumerableExtensionMethods
     {
 #if NET20
-        public static string Concat(IEnumerable<string> source,
+        public static string Concat(IEnumerable<string> source, 
                                     char separator)
 #else
-        public static string Concat(this IEnumerable<string> source,
+        public static string Concat(this IEnumerable<string> source, 
                                     char separator)
 #endif
         {
@@ -25,10 +25,10 @@
         }
 
 #if NET20
-        public static string Concat(IEnumerable<string> source,
+        public static string Concat(IEnumerable<string> source, 
                                     string separator)
 #else
-        public static string Concat(this IEnumerable<string> source,
+        public static string Concat(this IEnumerable<string> source, 
                                     string separator)
 #endif
         {
@@ -98,6 +98,7 @@
         {
             return null == obj || !obj.Cast<object>().Any();
         }
+
 #endif
 
 #if NET20

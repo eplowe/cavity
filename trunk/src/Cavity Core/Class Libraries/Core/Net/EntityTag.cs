@@ -2,11 +2,12 @@
 {
     using System;
     using System.Runtime.Serialization;
+    using Cavity.Properties;
+    using Cavity.Security.Cryptography;
+
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
-    using Cavity.Properties;
-    using Cavity.Security.Cryptography;
 
     /// <summary>
     /// Represents an entity tag.
@@ -15,9 +16,9 @@
     /// <see href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19">HTTP/1.1 ETag</see>
     /// </remarks>
     [Serializable]
-    public struct EntityTag : ISerializable,
-                              IComparable,
-                              IComparable<EntityTag>,
+    public struct EntityTag : ISerializable, 
+                              IComparable, 
+                              IComparable<EntityTag>, 
                               IEquatable<EntityTag>
     {
         public EntityTag(string value)
@@ -53,7 +54,7 @@
             Value = value;
         }
 
-        private EntityTag(SerializationInfo info,
+        private EntityTag(SerializationInfo info, 
                           StreamingContext context)
             : this()
         {
@@ -70,13 +71,13 @@
 
         private string Value { get; set; }
 
-        public static bool operator ==(EntityTag obj,
+        public static bool operator ==(EntityTag obj, 
                                        EntityTag comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator >(EntityTag operand1,
+        public static bool operator >(EntityTag operand1, 
                                       EntityTag operand2)
         {
             return 0 < Compare(operand1, operand2);
@@ -97,19 +98,19 @@
             return new EntityTag("\"{0}\"".FormatWith(value));
         }
 
-        public static bool operator !=(EntityTag obj,
+        public static bool operator !=(EntityTag obj, 
                                        EntityTag comparand)
         {
             return !obj.Equals(comparand);
         }
 
-        public static bool operator <(EntityTag operand1,
+        public static bool operator <(EntityTag operand1, 
                                       EntityTag operand2)
         {
             return 0 > Compare(operand1, operand2);
         }
 
-        public static int Compare(EntityTag operand1,
+        public static int Compare(EntityTag operand1, 
                                   EntityTag operand2)
         {
             return string.CompareOrdinal(operand1, operand2);
@@ -156,7 +157,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        void ISerializable.GetObjectData(SerializationInfo info,
+        void ISerializable.GetObjectData(SerializationInfo info, 
                                          StreamingContext context)
         {
             if (null == info)

@@ -27,7 +27,7 @@
             FirstLine = firstLine;
         }
 
-        protected StreamWriterDictionary(SerializationInfo info,
+        protected StreamWriterDictionary(SerializationInfo info, 
                                          StreamingContext context)
             : base(info, context)
         {
@@ -49,7 +49,7 @@
         private bool Disposed { get; set; }
 
         [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
-        public override void GetObjectData(SerializationInfo info,
+        public override void GetObjectData(SerializationInfo info, 
                                            StreamingContext context)
         {
             base.GetObjectData(info, context);
@@ -65,16 +65,16 @@
             return Item(fileName, Mode, Access, Share);
         }
 
-        public virtual StreamWriter Item(string fileName,
-                                         FileMode mode,
-                                         FileAccess access,
+        public virtual StreamWriter Item(string fileName, 
+                                         FileMode mode, 
+                                         FileAccess access, 
                                          FileShare share)
         {
             return Item(fileName, FirstLine, mode, access, share);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Only files are supported.")]
-        public virtual StreamWriter Item(FileInfo file,
+        public virtual StreamWriter Item(FileInfo file, 
                                          string firstLine)
         {
             if (null == file)
@@ -85,16 +85,16 @@
             return Item(file.FullName, firstLine, Mode, Access, Share);
         }
 
-        public virtual StreamWriter Item(string fileName,
+        public virtual StreamWriter Item(string fileName, 
                                          string firstLine)
         {
             return Item(fileName, firstLine, Mode, Access, Share);
         }
 
-        public virtual StreamWriter Item(string fileName,
-                                         string firstLine,
-                                         FileMode mode,
-                                         FileAccess access,
+        public virtual StreamWriter Item(string fileName, 
+                                         string firstLine, 
+                                         FileMode mode, 
+                                         FileAccess access, 
                                          FileShare share)
         {
             return Item(new FileInfo(fileName), firstLine, mode, access, share);
@@ -130,10 +130,10 @@
             Disposed = true;
         }
 
-        private StreamWriter Item(FileInfo file,
-                                  string firstLine,
-                                  FileMode mode,
-                                  FileAccess access,
+        private StreamWriter Item(FileInfo file, 
+                                  string firstLine, 
+                                  FileMode mode, 
+                                  FileAccess access, 
                                   FileShare share)
         {
             if (Disposed)

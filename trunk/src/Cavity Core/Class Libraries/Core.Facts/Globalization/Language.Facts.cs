@@ -70,46 +70,10 @@
         }
 
         [Fact]
-        public void opImplicit_Language_string()
+        public void opImplicit_CultureInfoInvariantCulture_Language()
         {
-            var expected = new Language("en");
-            Language actual = "en";
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opImplicit_string_Language()
-        {
-            const string expected = "en";
-            string actual = new Language("en");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opImplicit_Language_CultureInfo()
-        {
-            var expected = new Language("en");
-            Language actual = new CultureInfo("en");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opImplicit_Language_CultureInfoNull()
-        {
-            var expected = new Language();
-            Language actual = null as CultureInfo;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opImplicit_Language_CultureInfoInvariantCulture()
-        {
-            var expected = new Language();
-            Language actual = CultureInfo.InvariantCulture;
+            var expected = CultureInfo.InvariantCulture;
+            CultureInfo actual = new Language();
 
             Assert.Equal(expected, actual);
         }
@@ -124,10 +88,46 @@
         }
 
         [Fact]
-        public void opImplicit_CultureInfoInvariantCulture_Language()
+        public void opImplicit_Language_CultureInfo()
         {
-            var expected = CultureInfo.InvariantCulture;
-            CultureInfo actual = new Language();
+            var expected = new Language("en");
+            Language actual = new CultureInfo("en");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opImplicit_Language_CultureInfoInvariantCulture()
+        {
+            var expected = new Language();
+            Language actual = CultureInfo.InvariantCulture;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opImplicit_Language_CultureInfoNull()
+        {
+            var expected = new Language();
+            Language actual = null as CultureInfo;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opImplicit_Language_string()
+        {
+            var expected = new Language("en");
+            Language actual = "en";
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opImplicit_string_Language()
+        {
+            const string expected = "en";
+            string actual = new Language("en");
 
             Assert.Equal(expected, actual);
         }
@@ -206,6 +206,7 @@
 
             // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => value.GetObjectData(null, context));
+
             // ReSharper restore AssignNullToNotNullAttribute
         }
 

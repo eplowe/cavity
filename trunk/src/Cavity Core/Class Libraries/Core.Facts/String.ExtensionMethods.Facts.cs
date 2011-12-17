@@ -276,65 +276,65 @@
         {
             var expected = new string(' ', WhiteSpace.Characters.Count);
             var actual = string.Concat(
-                '\u0009',
+                '\u0009', 
                 // HT (Horizontal Tab)
-                '\u000A',
+                '\u000A', 
                 // LF (Line Feed)
-                '\u000B',
+                '\u000B', 
                 // VT (Vertical Tab)
-                '\u000C',
+                '\u000C', 
                 // FF (Form Feed)
-                '\u000D',
+                '\u000D', 
                 // CR (Carriage Return)
-                '\u0020',
+                '\u0020', 
                 // Space
-                '\u0085',
+                '\u0085', 
                 // NEL (control character next line)
-                '\u00A0',
+                '\u00A0', 
                 // No-Break Space
-                '\u1680',
+                '\u1680', 
                 // Ogham Space Mark
-                '\u180E',
+                '\u180E', 
                 // Mongolian Vowel Separator
-                '\u2000',
+                '\u2000', 
                 // En quad
-                '\u2001',
+                '\u2001', 
                 // Em quad
-                '\u2002',
+                '\u2002', 
                 // En Space
-                '\u2003',
+                '\u2003', 
                 // Em Space
-                '\u2004',
+                '\u2004', 
                 // Three-Per-Em Space
-                '\u2005',
+                '\u2005', 
                 // Four-Per-Em Space
-                '\u2006',
+                '\u2006', 
                 // Six-Per-Em Space
-                '\u2007',
+                '\u2007', 
                 // Figure Space
-                '\u2008',
+                '\u2008', 
                 // Punctuation Space
-                '\u2009',
+                '\u2009', 
                 // Thin Space
-                '\u200A',
+                '\u200A', 
                 // Hair Space
-                '\u200B',
+                '\u200B', 
                 // Zero Width Space
-                '\u200C',
+                '\u200C', 
                 // Zero Width Non Joiner
-                '\u200D',
+                '\u200D', 
                 // Zero Width Joiner
-                '\u2028',
+                '\u2028', 
                 // Line Separator
-                '\u2029',
+                '\u2029', 
                 // Paragraph Separator
-                '\u202F',
+                '\u202F', 
                 // Narrow No-Break Space
-                '\u205F',
+                '\u205F', 
                 // Medium Mathematical Space
-                '\u2060',
+                '\u2060', 
                 // Word Joiner
-                '\u3000',
+                '\u3000', 
                 // Ideographic Space
                 '\uFEFF').NormalizeWhiteSpace();
 
@@ -409,65 +409,65 @@
         {
             var expected = string.Empty;
             var actual = string.Concat(
-                '\u0009',
+                '\u0009', 
                 // HT (Horizontal Tab)
-                '\u000A',
+                '\u000A', 
                 // LF (Line Feed)
-                '\u000B',
+                '\u000B', 
                 // VT (Vertical Tab)
-                '\u000C',
+                '\u000C', 
                 // FF (Form Feed)
-                '\u000D',
+                '\u000D', 
                 // CR (Carriage Return)
-                '\u0020',
+                '\u0020', 
                 // Space
-                '\u0085',
+                '\u0085', 
                 // NEL (control character next line)
-                '\u00A0',
+                '\u00A0', 
                 // No-Break Space
-                '\u1680',
+                '\u1680', 
                 // Ogham Space Mark
-                '\u180E',
+                '\u180E', 
                 // Mongolian Vowel Separator
-                '\u2000',
+                '\u2000', 
                 // En quad
-                '\u2001',
+                '\u2001', 
                 // Em quad
-                '\u2002',
+                '\u2002', 
                 // En Space
-                '\u2003',
+                '\u2003', 
                 // Em Space
-                '\u2004',
+                '\u2004', 
                 // Three-Per-Em Space
-                '\u2005',
+                '\u2005', 
                 // Four-Per-Em Space
-                '\u2006',
+                '\u2006', 
                 // Six-Per-Em Space
-                '\u2007',
+                '\u2007', 
                 // Figure Space
-                '\u2008',
+                '\u2008', 
                 // Punctuation Space
-                '\u2009',
+                '\u2009', 
                 // Thin Space
-                '\u200A',
+                '\u200A', 
                 // Hair Space
-                '\u200B',
+                '\u200B', 
                 // Zero Width Space
-                '\u200C',
+                '\u200C', 
                 // Zero Width Non Joiner
-                '\u200D',
+                '\u200D', 
                 // Zero Width Joiner
-                '\u2028',
+                '\u2028', 
                 // Line Separator
-                '\u2029',
+                '\u2029', 
                 // Paragraph Separator
-                '\u202F',
+                '\u202F', 
                 // Narrow No-Break Space
-                '\u205F',
+                '\u205F', 
                 // Medium Mathematical Space
-                '\u2060',
+                '\u2060', 
                 // Word Joiner
-                '\u3000',
+                '\u3000', 
                 // Ideographic Space
                 '\uFEFF').RemoveAnyWhiteSpace();
 
@@ -958,7 +958,7 @@
         {
             var expected = DateTimeOffset.Now;
             var actual = expected.ToXmlString().To<DateTimeOffset>();
-            
+
             Assert.Equal(expected, actual);
         }
 
@@ -1257,6 +1257,7 @@
 
             Assert.Equal(expected, actual);
         }
+
 #endif
 
         [Fact]
@@ -1424,6 +1425,7 @@
 
             Assert.Equal(expected, actual);
         }
+
 #endif
 
         [Fact]
@@ -1512,8 +1514,8 @@
         {
             var expected = new DateTime(2009, 04, 25);
             var actual = string.Concat(
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
-                Environment.NewLine,
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?>", 
+                Environment.NewLine, 
                 "<dateTime>2009-04-25T00:00:00</dateTime>").XmlDeserialize<DateTime>();
 
             Assert.Equal(expected, actual);
@@ -1578,8 +1580,8 @@
         {
             var expected = new DateTime(2009, 04, 25);
             var actual = (DateTime)string.Concat(
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
-                Environment.NewLine,
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?>", 
+                Environment.NewLine, 
                 "<dateTime>2009-04-25T00:00:00</dateTime>").XmlDeserialize(typeof(DateTime));
 
             Assert.Equal(expected, actual);

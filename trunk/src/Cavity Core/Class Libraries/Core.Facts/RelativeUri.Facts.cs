@@ -529,9 +529,10 @@
         {
             var context = new StreamingContext(StreamingContextStates.All);
 
-// ReSharper disable AssignNullToNotNullAttribute
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => (new RelativeUri("/") as ISerializable).GetObjectData(null, context));
-// ReSharper restore AssignNullToNotNullAttribute
+
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]

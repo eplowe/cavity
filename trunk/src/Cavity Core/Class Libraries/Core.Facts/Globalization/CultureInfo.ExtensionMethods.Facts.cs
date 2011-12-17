@@ -3,7 +3,6 @@
     using System;
     using System.Globalization;
     using System.Threading;
-    using Cavity;
     using Xunit;
 
     public sealed class CultureInfoExtensionMethodsFacts
@@ -36,15 +35,15 @@
         }
 
         [Fact]
-        public void op_SetCurrentCulture_CultureInfoNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as CultureInfo).SetCurrentCulture());
-        }
-
-        [Fact]
         public void op_SetCurrentCulture_CultureInfoInvariantCulture()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => CultureInfo.InvariantCulture.SetCurrentCulture());
+        }
+
+        [Fact]
+        public void op_SetCurrentCulture_CultureInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as CultureInfo).SetCurrentCulture());
         }
     }
 }

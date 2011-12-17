@@ -73,17 +73,20 @@
         public void op_TryGetMember_GetMemberBinder_object()
         {
             object result;
-// ReSharper disable AssignNullToNotNullAttribute
+
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => new DynamicData().TryGetMember(null, out result));
-// ReSharper restore AssignNullToNotNullAttribute
+
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]
         public void op_TrySetMember_SetMemberBinder_object()
         {
-// ReSharper disable AssignNullToNotNullAttribute
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => new DynamicData().TrySetMember(null, "example"));
-// ReSharper restore AssignNullToNotNullAttribute
+
+            // ReSharper restore AssignNullToNotNullAttribute
         }
     }
 }

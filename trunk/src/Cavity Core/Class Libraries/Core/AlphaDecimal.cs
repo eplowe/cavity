@@ -19,10 +19,10 @@
     /// Wikipedia: <see href="http://wikipedia.org/wiki/Base_36">Base 36</see>.
     /// </remarks>
     [Serializable]
-    public struct AlphaDecimal : ISerializable,
-                                 IConvertible,
-                                 IComparable,
-                                 IComparable<AlphaDecimal>,
+    public struct AlphaDecimal : ISerializable, 
+                                 IConvertible, 
+                                 IComparable, 
+                                 IComparable<AlphaDecimal>, 
                                  IEquatable<AlphaDecimal>
     {
         private const string Chars = "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -30,18 +30,18 @@
 #if NET20 || NET35
         private static readonly long[] _powers =
             {
-                1,
-                36,
-                1296,
-                46656,
-                1679616,
-                60466176,
-                2176782336,
-                78364164096,
-                2821109907456,
-                101559956668416,
-                3656158440062976,
-                131621703842267136,
+                1, 
+                36, 
+                1296, 
+                46656, 
+                1679616, 
+                60466176, 
+                2176782336, 
+                78364164096, 
+                2821109907456, 
+                101559956668416, 
+                3656158440062976, 
+                131621703842267136, 
                 4738381338321616896
             };
 
@@ -56,9 +56,10 @@
         {
             Value = value;
         }
+
 #endif
 
-        private AlphaDecimal(SerializationInfo info,
+        private AlphaDecimal(SerializationInfo info, 
                              StreamingContext context)
             : this()
         {
@@ -95,7 +96,7 @@
         private BigInteger Value { get; set; }
 #endif
 
-        public static AlphaDecimal operator +(AlphaDecimal operand1,
+        public static AlphaDecimal operator +(AlphaDecimal operand1, 
                                               AlphaDecimal operand2)
         {
             return operand1.Add(operand2);
@@ -106,19 +107,19 @@
             return operand.Decrement();
         }
 
-        public static AlphaDecimal operator /(AlphaDecimal operand1,
+        public static AlphaDecimal operator /(AlphaDecimal operand1, 
                                               AlphaDecimal operand2)
         {
             return operand1.Divide(operand2);
         }
 
-        public static bool operator ==(AlphaDecimal obj,
+        public static bool operator ==(AlphaDecimal obj, 
                                        AlphaDecimal comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator >(AlphaDecimal operand1,
+        public static bool operator >(AlphaDecimal operand1, 
                                       AlphaDecimal operand2)
         {
             return operand1.Value > operand2.Value;
@@ -149,6 +150,7 @@
         {
             return new AlphaDecimal(new BigInteger(value.ToByteArray()));
         }
+
 #endif
 
         public static implicit operator string(AlphaDecimal value)
@@ -161,48 +163,49 @@
             return operand.Increment();
         }
 
-        public static bool operator !=(AlphaDecimal obj,
+        public static bool operator !=(AlphaDecimal obj, 
                                        AlphaDecimal comparand)
         {
             return !obj.Equals(comparand);
         }
 
-        public static bool operator <(AlphaDecimal operand1,
+        public static bool operator <(AlphaDecimal operand1, 
                                       AlphaDecimal operand2)
         {
             return operand1.Value < operand2.Value;
         }
 
-        public static AlphaDecimal operator %(AlphaDecimal operand1,
+        public static AlphaDecimal operator %(AlphaDecimal operand1, 
                                               AlphaDecimal operand2)
         {
             return operand1.Mod(operand2);
         }
 
-        public static AlphaDecimal operator *(AlphaDecimal operand1,
+        public static AlphaDecimal operator *(AlphaDecimal operand1, 
                                               AlphaDecimal operand2)
         {
             return operand1.Multiply(operand2);
         }
 
-        public static AlphaDecimal operator -(AlphaDecimal operand1,
+        public static AlphaDecimal operator -(AlphaDecimal operand1, 
                                               AlphaDecimal operand2)
         {
             return operand1.Subtract(operand2);
         }
 
 #if NET20 || NET35
-        public static long Compare(AlphaDecimal operand1,
+        public static long Compare(AlphaDecimal operand1, 
                                    AlphaDecimal operand2)
         {
             return operand1 - operand2;
         }
 #else
-        public static BigInteger Compare(AlphaDecimal operand1,
+        public static BigInteger Compare(AlphaDecimal operand1, 
                                          AlphaDecimal operand2)
         {
             return operand1 - operand2;
         }
+
 #endif
 
         public static AlphaDecimal FromString(string expression)
@@ -284,8 +287,8 @@
             }
 
             return string.Concat(
-                Value < 0 ? "-" : string.Empty,
-                Chars[(int)remainder],
+                Value < 0 ? "-" : string.Empty, 
+                Chars[(int)remainder], 
                 buffer);
         }
 
@@ -369,7 +372,7 @@
             return ToString();
         }
 
-        object IConvertible.ToType(Type conversionType,
+        object IConvertible.ToType(Type conversionType, 
                                    IFormatProvider provider)
         {
             return Convert.ChangeType((long)Value, conversionType, provider);
@@ -399,7 +402,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        void ISerializable.GetObjectData(SerializationInfo info,
+        void ISerializable.GetObjectData(SerializationInfo info, 
                                          StreamingContext context)
         {
             if (null == info)
@@ -441,18 +444,18 @@
             BigInteger value = 0;
             var powers = new List<BigInteger>
             {
-                1,
-                36,
-                1296,
-                46656,
-                1679616,
-                60466176,
-                2176782336,
-                78364164096,
-                2821109907456,
-                101559956668416,
-                3656158440062976,
-                131621703842267136,
+                1, 
+                36, 
+                1296, 
+                46656, 
+                1679616, 
+                60466176, 
+                2176782336, 
+                78364164096, 
+                2821109907456, 
+                101559956668416, 
+                3656158440062976, 
+                131621703842267136, 
                 4738381338321616896
             };
             for (var i = 1; i < expression.Length + 1; i++)
@@ -462,6 +465,7 @@
                     powers.Add(powers.Last() * 36);
                 }
             }
+
 #endif
 
             for (var i = expression.Length - 1; i > -1; i--)
