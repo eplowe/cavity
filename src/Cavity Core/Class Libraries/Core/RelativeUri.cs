@@ -22,7 +22,7 @@
             Value = value;
         }
 
-        protected RelativeUri(SerializationInfo info,
+        protected RelativeUri(SerializationInfo info, 
                               StreamingContext context)
         {
             if (null != info)
@@ -62,7 +62,7 @@
             }
         }
 
-        public static bool operator ==(RelativeUri obj,
+        public static bool operator ==(RelativeUri obj, 
                                        RelativeUri comparand)
         {
             return ReferenceEquals(null, obj)
@@ -70,7 +70,7 @@
                        : obj.Equals(comparand);
         }
 
-        public static bool operator >(RelativeUri obj,
+        public static bool operator >(RelativeUri obj, 
                                       RelativeUri comparand)
         {
             return !ReferenceEquals(null, obj) && 0 < obj.CompareTo(comparand);
@@ -96,7 +96,7 @@
             return (null == value) ? null : new RelativeUri(value);
         }
 
-        public static bool operator !=(RelativeUri obj,
+        public static bool operator !=(RelativeUri obj, 
                                        RelativeUri comparand)
         {
             return ReferenceEquals(null, obj)
@@ -104,7 +104,7 @@
                        : !obj.Equals(comparand);
         }
 
-        public static bool operator <(RelativeUri obj,
+        public static bool operator <(RelativeUri obj, 
                                       RelativeUri comparand)
         {
             return ReferenceEquals(null, obj)
@@ -180,7 +180,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        public virtual void GetObjectData(SerializationInfo info,
+        public virtual void GetObjectData(SerializationInfo info, 
                                           StreamingContext context)
         {
             if (null == info)

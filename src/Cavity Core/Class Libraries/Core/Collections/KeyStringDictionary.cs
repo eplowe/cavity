@@ -13,7 +13,7 @@
         {
         }
 
-        protected KeyStringDictionary(SerializationInfo info,
+        protected KeyStringDictionary(SerializationInfo info, 
                                       StreamingContext context)
             : base(info, context)
         {
@@ -23,7 +23,8 @@
         {
             get
             {
-                if (index > -1 && index < Count)
+                if (index > -1 &&
+                    index < Count)
                 {
                     var i = 0;
                     foreach (var key in Keys)
@@ -54,15 +55,6 @@
         public virtual bool Remove(KeyStringPair item)
         {
             return (this as IDictionary<string, string>).Remove(new KeyValuePair<string, string>(item.Key, item.Value));
-        }
-
-        public new IEnumerator<KeyStringPair> GetEnumerator()
-        {
-            var e = base.GetEnumerator();
-            while (e.MoveNext())
-            {
-                yield return new KeyStringPair(e.Current.Key, e.Current.Value);
-            }
         }
 
         public virtual T TryValue<T>(int index)
@@ -99,6 +91,15 @@
 #else
             return this[key].To<T>();
 #endif
+        }
+
+        public new IEnumerator<KeyStringPair> GetEnumerator()
+        {
+            var e = base.GetEnumerator();
+            while (e.MoveNext())
+            {
+                yield return new KeyStringPair(e.Current.Key, e.Current.Value);
+            }
         }
     }
 }

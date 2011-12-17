@@ -55,10 +55,10 @@
             {
                 {
                     "one", "1"
-                    },
+                    }, 
                 {
                     "two", "2"
-                    },
+                    }, 
                 {
                     "three", "3"
                     }
@@ -81,7 +81,7 @@
             {
                 {
                     "one", "1"
-                    },
+                    }, 
                 {
                     "nine", "9"
                     }
@@ -115,10 +115,10 @@
             {
                 {
                     "one", "1"
-                    },
+                    }, 
                 {
                     "two", expected
-                    },
+                    }, 
                 {
                     "three", "3"
                     }
@@ -138,10 +138,10 @@
             {
                 {
                     "name", "1"
-                    },
+                    }, 
                 {
                     "name", "2"
-                    },
+                    }, 
                 {
                     "name", "3"
                     }
@@ -165,7 +165,7 @@
             {
                 {
                     "one", "1"
-                    },
+                    }, 
                 {
                     "two", "2"
                     }
@@ -175,7 +175,7 @@
             {
                 {
                     "one", "1"
-                    },
+                    }, 
                 {
                     "two", string.Empty
                     }
@@ -192,7 +192,7 @@
             {
                 {
                     "one", "1"
-                    },
+                    }, 
                 {
                     "two", "2"
                     }
@@ -309,7 +309,7 @@
         {
             var expected = new DataCollection
             {
-                new KeyStringPair("name1", "value1"),
+                new KeyStringPair("name1", "value1"), 
                 new KeyStringPair("name2", "value2")
             };
 
@@ -464,7 +464,7 @@
             {
                 {
                     "name", string.Empty
-                    },
+                    }, 
                 {
                     "name", "value"
                     }
@@ -554,7 +554,7 @@
             {
                 {
                     "foo", "bar"
-                    },
+                    }, 
                 {
                     "checkbox", "first,second"
                     }
@@ -623,7 +623,7 @@
             {
                 {
                     "name1", "value1"
-                    },
+                    }, 
                 {
                     "name2", "value2"
                     }

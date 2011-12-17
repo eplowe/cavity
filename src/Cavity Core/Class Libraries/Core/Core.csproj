@@ -22,6 +22,7 @@
     <Compile Include="IO\StreamWriterDictionary.cs" />
     <Compile Include="IO\TempDirectory.cs" />
     <Compile Include="IO\TempFile.cs" />
+    <Compile Include="NullObject.cs" />
     <Compile Include="Reflection\Assembly.ExtensionMethods.cs" />
     <Compile Include="Security\Cryptography\MD5Hash.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.cs" />

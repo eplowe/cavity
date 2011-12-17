@@ -149,30 +149,30 @@
         [Fact]
         public void prop_Count()
         {
-            Assert.NotNull(new PropertyExpectations<Tree<int>>(x => x.Count)
-                               .TypeIs<int>()
-                               .DefaultValueIs(0)
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<Tree<int>>(x => x.Count)
+                            .TypeIs<int>()
+                            .DefaultValueIs(0)
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Parent()
         {
-            Assert.NotNull(new PropertyExpectations<Tree<int>>(x => x.Parent)
-                               .TypeIs<Tree<int>>()
-                               .DefaultValueIsNull()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<Tree<int>>(x => x.Parent)
+                            .TypeIs<Tree<int>>()
+                            .DefaultValueIsNull()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Value()
         {
-            Assert.NotNull(new PropertyExpectations<Tree<int>>(x => x.Value)
-                               .IsAutoProperty<int>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<Tree<int>>(x => x.Value)
+                            .IsAutoProperty<int>()
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

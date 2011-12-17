@@ -3,7 +3,6 @@
     using System;
     using System.IO;
     using System.Reflection;
-    using Cavity;
     using Xunit;
 
     public sealed class AssemblyExtensionMethodsFacts
@@ -12,12 +11,6 @@
         public void a_definition()
         {
             Assert.True(typeof(AssemblyExtensionMethods).IsStatic());
-        }
-
-        [Fact]
-        public void op_Directory_AssemblyNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as Assembly).Directory());
         }
 
         [Fact]
@@ -30,6 +23,12 @@
             var actual = assembly.Directory().FullName;
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Directory_AssemblyNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as Assembly).Directory());
         }
     }
 }

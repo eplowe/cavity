@@ -24,18 +24,18 @@
         }
 
         [Fact]
+        public void op_Make_DirectoryInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).Make());
+        }
+
+        [Fact]
         public void op_Make_DirectoryInfo_whenDirectoryExists()
         {
             using (var temp = new TempDirectory())
             {
                 temp.Info.Make();
             }
-        }
-
-        [Fact]
-        public void op_Make_DirectoryInfoNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).Make());
         }
 
         [Fact]
@@ -57,25 +57,6 @@
 
                 Assert.False(actual.Exists);
                 Assert.Equal(expected, actual.FullName);
-            }
-        }
-
-        [Fact]
-        public void op_ToDirectory_DirectoryInfo_object_whenInvalidCharacters()
-        {
-            using (var temp = new TempDirectory())
-            {
-                foreach (var c in new[] { "\\", "/", ":", "*", "?", "\"", "<", ">", "|", "\n", "\t" })
-                {
-                    var name = "invalid {0}example".FormatWith(c);
-
-                    var expected = Path.Combine(temp.Info.FullName, "invalid example");
-
-                    var actual = temp.Info.ToDirectory(name);
-
-                    Assert.False(actual.Exists);
-                    Assert.Equal(expected, actual.FullName);
-                }
             }
         }
 
@@ -105,26 +86,31 @@
         }
 
         [Fact]
-        public void op_ToFile_DirectoryInfoNull_object()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToFile("example.txt"));
-        }
-
-        [Fact]
-        public void op_ToFile_DirectoryInfo_object_whenInvalidCharacters()
+        public void op_ToDirectory_DirectoryInfo_object_whenInvalidCharacters()
         {
             using (var temp = new TempDirectory())
             {
-                foreach (var c in new[] { "\\", "/", ":", "*", "?", "\"", "<", ">", "|" })
+                foreach (var c in new[]
                 {
-                    var name = "invalid {0}example.txt".FormatWith(c);
+                    "\\", "/", ":", "*", "?", "\"", "<", ">", "|", "\n", "\t"
+                })
+                {
+                    var name = "invalid {0}example".FormatWith(c);
 
-                    var expected = Path.Combine(temp.Info.FullName, "invalid example.txt");
-                    var actual = temp.Info.ToFile(name).FullName;
+                    var expected = Path.Combine(temp.Info.FullName, "invalid example");
 
-                    Assert.Equal(expected, actual);
+                    var actual = temp.Info.ToDirectory(name);
+
+                    Assert.False(actual.Exists);
+                    Assert.Equal(expected, actual.FullName);
                 }
             }
+        }
+
+        [Fact]
+        public void op_ToFile_DirectoryInfoNull_object()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToFile("example.txt"));
         }
 
         [Fact]
@@ -147,6 +133,26 @@
             using (var temp = new TempDirectory())
             {
                 Assert.Throws<ArgumentNullException>(() => temp.Info.ToFile(null));
+            }
+        }
+
+        [Fact]
+        public void op_ToFile_DirectoryInfo_object_whenInvalidCharacters()
+        {
+            using (var temp = new TempDirectory())
+            {
+                foreach (var c in new[]
+                {
+                    "\\", "/", ":", "*", "?", "\"", "<", ">", "|"
+                })
+                {
+                    var name = "invalid {0}example.txt".FormatWith(c);
+
+                    var expected = Path.Combine(temp.Info.FullName, "invalid example.txt");
+                    var actual = temp.Info.ToFile(name).FullName;
+
+                    Assert.Equal(expected, actual);
+                }
             }
         }
     }

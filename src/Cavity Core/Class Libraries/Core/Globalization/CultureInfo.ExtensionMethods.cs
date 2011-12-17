@@ -16,7 +16,7 @@
             {
                 throw new ArgumentNullException("language");
             }
-            
+
             if (CultureInfo.InvariantCulture == language)
             {
                 throw new ArgumentOutOfRangeException("language");

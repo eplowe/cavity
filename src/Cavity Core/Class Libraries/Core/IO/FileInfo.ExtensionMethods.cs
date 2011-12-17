@@ -9,11 +9,11 @@
     public static class FileInfoExtensionMethods
     {
 #if NET20
-        public static FileInfo Append(FileInfo obj,
+        public static FileInfo Append(FileInfo obj, 
                                   string value)
 #else
-        public static FileInfo Append(this FileInfo obj,
-                                  string value)
+        public static FileInfo Append(this FileInfo obj, 
+                                      string value)
 #endif
         {
             if (null == obj)
@@ -36,11 +36,11 @@
         }
 
 #if NET20
-        public static FileInfo AppendLine(FileInfo obj,
+        public static FileInfo AppendLine(FileInfo obj, 
                                       string value)
 #else
-        public static FileInfo AppendLine(this FileInfo obj,
-                                      string value)
+        public static FileInfo AppendLine(this FileInfo obj, 
+                                          string value)
 #endif
         {
             if (null == obj)
@@ -60,11 +60,11 @@
         }
 
 #if NET20
-        public static FileInfo Create(FileInfo obj,
+        public static FileInfo Create(FileInfo obj, 
                                   string value)
 #else
-        public static FileInfo Create(this FileInfo obj,
-                                  string value)
+        public static FileInfo Create(this FileInfo obj, 
+                                      string value)
 #endif
         {
             if (null == obj)
@@ -87,11 +87,11 @@
         }
 
 #if NET20
-        public static FileInfo Create(FileInfo obj,
+        public static FileInfo Create(FileInfo obj, 
                                   IXPathNavigable xml)
 #else
-        public static FileInfo Create(this FileInfo obj,
-                                  IXPathNavigable xml)
+        public static FileInfo Create(this FileInfo obj, 
+                                      IXPathNavigable xml)
 #endif
         {
             if (null == obj)
@@ -121,11 +121,11 @@
 
         [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix", Justification = "This naming is intentional")]
 #if NET20
-        public static FileInfo CreateNew(FileInfo obj,
+        public static FileInfo CreateNew(FileInfo obj, 
                                      string value)
 #else
-        public static FileInfo CreateNew(this FileInfo obj,
-                                     string value)
+        public static FileInfo CreateNew(this FileInfo obj, 
+                                         string value)
 #endif
         {
             if (null == obj)
@@ -192,11 +192,11 @@
         }
 
 #if NET20
-        public static FileInfo Truncate(FileInfo obj,
+        public static FileInfo Truncate(FileInfo obj, 
                                     string value)
 #else
-        public static FileInfo Truncate(this FileInfo obj,
-                                    string value)
+        public static FileInfo Truncate(this FileInfo obj, 
+                                        string value)
 #endif
         {
             if (null == obj)

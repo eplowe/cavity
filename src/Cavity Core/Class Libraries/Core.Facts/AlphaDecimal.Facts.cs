@@ -179,6 +179,7 @@
 
             Assert.Equal(expected, actual);
         }
+
 #endif
 
         [Fact]
@@ -475,6 +476,7 @@
 
             Assert.Equal(expected, actual);
         }
+
 #endif
 
         [Fact]
@@ -508,9 +510,10 @@
 
             ISerializable value = (AlphaDecimal)123;
 
-// ReSharper disable AssignNullToNotNullAttribute
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => value.GetObjectData(null, context));
-// ReSharper restore AssignNullToNotNullAttribute
+
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]

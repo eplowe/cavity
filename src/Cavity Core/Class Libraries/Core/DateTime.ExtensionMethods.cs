@@ -15,7 +15,7 @@
         }
 
 #if !NET20
-        public static DateTime ToLocalTime(this DateTime obj,
+        public static DateTime ToLocalTime(this DateTime obj, 
                                            string zone)
         {
             if (null == zone)
@@ -31,7 +31,7 @@
             return obj.ToLocalTime(TimeZoneInfo.FindSystemTimeZoneById(zone));
         }
 
-        public static DateTime ToLocalTime(this DateTime obj,
+        public static DateTime ToLocalTime(this DateTime obj, 
                                            TimeZoneInfo zone)
         {
             if (null == zone)
@@ -41,6 +41,7 @@
 
             return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(obj, zone.Id);
         }
+
 #endif
     }
 }

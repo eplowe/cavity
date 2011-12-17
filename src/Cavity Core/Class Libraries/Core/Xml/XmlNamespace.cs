@@ -9,7 +9,7 @@
 
         private AbsoluteUri _uri;
 
-        public XmlNamespace(string prefix,
+        public XmlNamespace(string prefix, 
                             AbsoluteUri uri)
             : this()
         {

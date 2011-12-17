@@ -9,10 +9,10 @@
     public static class XPathNavigatorExtensionMethods
     {
 #if NET20
-        public static T Evaluate<T>(XPathNavigator obj,
+        public static T Evaluate<T>(XPathNavigator obj, 
                                     string xpath)
 #else
-        public static T Evaluate<T>(this XPathNavigator obj,
+        public static T Evaluate<T>(this XPathNavigator obj, 
                                     string xpath)
 #endif
         {
@@ -20,12 +20,12 @@
         }
 
 #if NET20
-        public static T Evaluate<T>(XPathNavigator obj,
-                                    string xpath,
+        public static T Evaluate<T>(XPathNavigator obj, 
+                                    string xpath, 
                                     IXmlNamespaceResolver namespaces)
 #else
-        public static T Evaluate<T>(this XPathNavigator obj,
-                                    string xpath,
+        public static T Evaluate<T>(this XPathNavigator obj, 
+                                    string xpath, 
                                     IXmlNamespaceResolver namespaces)
 #endif
         {

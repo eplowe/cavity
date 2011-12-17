@@ -10,7 +10,7 @@
     {
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety.")]
         public static FileInfo Extract(FileInfo source, 
-                                   DirectoryInfo destination)
+                                       DirectoryInfo destination)
         {
             if (null == source)
             {

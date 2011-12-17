@@ -9,10 +9,10 @@
     public static class GenericExtensionMethods
     {
 #if NET20
-        public static bool EqualsOneOf<T>(T obj,
+        public static bool EqualsOneOf<T>(T obj, 
                                           params T[] args)
 #else
-        public static bool EqualsOneOf<T>(this T obj,
+        public static bool EqualsOneOf<T>(this T obj, 
                                           params T[] args)
 #endif
         {
@@ -42,10 +42,10 @@
         }
 
 #if NET20
-        public static bool In<T>(T value,
+        public static bool In<T>(T value, 
                                  params T[] args)
 #else
-        public static bool In<T>(this T value,
+        public static bool In<T>(this T value, 
                                  params T[] args)
 #endif
         {
@@ -75,13 +75,13 @@
         }
 
 #if NET20
-        public static bool IsBoundedBy<T>(T obj,
-                                          T lower,
+        public static bool IsBoundedBy<T>(T obj, 
+                                          T lower, 
                                           T upper)
 #else
 
-        public static bool IsBoundedBy<T>(this T obj,
-                                          T lower,
+        public static bool IsBoundedBy<T>(this T obj, 
+                                          T lower, 
                                           T upper)
 #endif
             where T : IComparable<T>

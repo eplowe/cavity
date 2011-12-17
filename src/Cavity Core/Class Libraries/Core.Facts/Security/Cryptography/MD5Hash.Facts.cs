@@ -165,7 +165,7 @@
         {
             const long expected = 1;
             var actual = MD5Hash.Compare(
-                Convert.FromBase64String(EmptyHash),
+                Convert.FromBase64String(EmptyHash), 
                 Convert.FromBase64String(JigsawHash));
 
             Assert.Equal(expected, actual);
@@ -176,7 +176,7 @@
         {
             const long expected = -1;
             var actual = MD5Hash.Compare(
-                Convert.FromBase64String(JigsawHash),
+                Convert.FromBase64String(JigsawHash), 
                 Convert.FromBase64String(EmptyHash));
 
             Assert.Equal(expected, actual);
@@ -187,7 +187,7 @@
         {
             const long expected = 0;
             var actual = MD5Hash.Compare(
-                Convert.FromBase64String(JigsawHash),
+                Convert.FromBase64String(JigsawHash), 
                 Convert.FromBase64String(JigsawHash));
 
             Assert.Equal(expected, actual);
@@ -422,9 +422,10 @@
 
             ISerializable value = (MD5Hash)Convert.FromBase64String(JigsawHash);
 
-// ReSharper disable AssignNullToNotNullAttribute
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => value.GetObjectData(null, context));
-// ReSharper restore AssignNullToNotNullAttribute
+
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]

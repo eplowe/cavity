@@ -46,6 +46,7 @@ namespace Cavity
             {
                 return XmlConvert.ToString((DateTimeOffset)value);
             }
+
 #endif
 
             if (value is decimal)

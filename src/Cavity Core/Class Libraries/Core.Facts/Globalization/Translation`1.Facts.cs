@@ -142,6 +142,7 @@
 
             // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => value.GetObjectData(null, context));
+
             // ReSharper restore AssignNullToNotNullAttribute
         }
 
@@ -180,19 +181,19 @@
         [Fact]
         public void prop_Language()
         {
-            Assert.NotNull(new PropertyExpectations<Translation<int>>(x => x.Language)
-                               .IsAutoProperty<Language>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<Translation<int>>(x => x.Language)
+                            .IsAutoProperty<Language>()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Value()
         {
-            Assert.NotNull(new PropertyExpectations<Translation<int>>(x => x.Value)
-                               .IsAutoProperty<int>()
-                               .IsNotDecorated()
-                               .Result);
+            Assert.True(new PropertyExpectations<Translation<int>>(x => x.Value)
+                            .IsAutoProperty<int>()
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

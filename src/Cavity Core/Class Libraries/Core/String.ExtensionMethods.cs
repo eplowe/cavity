@@ -1,7 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
-    using System.ComponentModel;
+    ////using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
@@ -18,12 +18,12 @@
     public static class StringExtensionMethods
     {
 #if NET20
-        public static bool Contains(string obj,
-                                    string value,
+        public static bool Contains(string obj, 
+                                    string value, 
                                     StringComparison comparisonType)
 #else
-        public static bool Contains(this string obj,
-                                    string value,
+        public static bool Contains(this string obj, 
+                                    string value, 
                                     StringComparison comparisonType)
 #endif
         {
@@ -40,6 +40,7 @@
         {
             return string.IsNullOrEmpty(obj);
         }
+
 #endif
 
 #if NET20
@@ -70,12 +71,12 @@
         }
 
 #if NET20
-        public static bool EndsWithAny(string obj,
-                                       StringComparison comparison,
+        public static bool EndsWithAny(string obj, 
+                                       StringComparison comparison, 
                                        params string[] args)
 #else
-        public static bool EndsWithAny(this string obj,
-                                       StringComparison comparison,
+        public static bool EndsWithAny(this string obj, 
+                                       StringComparison comparison, 
                                        params string[] args)
 #endif
         {
@@ -122,12 +123,12 @@
         }
 
 #if NET20
-        public static bool EqualsAny(string obj,
-                                     StringComparison comparison,
+        public static bool EqualsAny(string obj, 
+                                     StringComparison comparison, 
                                      params string[] args)
 #else
-        public static bool EqualsAny(this string obj,
-                                     StringComparison comparison,
+        public static bool EqualsAny(this string obj, 
+                                     StringComparison comparison, 
                                      params string[] args)
 #endif
         {
@@ -174,10 +175,10 @@
         }
 
 #if NET20
-        public static string FormatWith(string obj,
+        public static string FormatWith(string obj, 
                                         params object[] args)
 #else
-        public static string FormatWith(this string obj,
+        public static string FormatWith(this string obj, 
                                         params object[] args)
 #endif
         {
@@ -186,10 +187,10 @@
 
         [SuppressMessage("Microsoft.Performance", "CA1814:PreferJaggedArraysOverMultidimensional", MessageId = "Body", Justification = "Space is not wasted.")]
 #if NET20
-        public static int LevenshteinDistance(string obj,
+        public static int LevenshteinDistance(string obj, 
                                               string comparand)
 #else
-        public static int LevenshteinDistance(this string obj,
+        public static int LevenshteinDistance(this string obj, 
                                               string comparand)
 #endif
         {
@@ -222,7 +223,7 @@
                     var cost = (comparand[j - 1] == obj[i - 1]) ? 0 : 1;
 
                     d[i, j] = Math.Min(
-                        Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
+                        Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1), 
                         d[i - 1, j - 1] + cost);
                 }
             }
@@ -256,10 +257,10 @@
         }
 
 #if NET20
-        public static string RemoveAny(string obj,
+        public static string RemoveAny(string obj, 
                                        params char[] args)
 #else
-        public static string RemoveAny(this string obj,
+        public static string RemoveAny(this string obj, 
                                        params char[] args)
 #endif
         {
@@ -293,8 +294,8 @@
 #else
             return 0 == obj.Length
                        ? string.Empty
-                       : args.Aggregate(obj,
-                                        (current,
+                       : args.Aggregate(obj, 
+                                        (current, 
                                          arg) => current.Replace(arg.ToString(), string.Empty));
 #endif
         }
@@ -332,6 +333,7 @@
             {
                 buffer.Append(c);
             }
+
 #endif
 
             return buffer.ToString();
@@ -365,6 +367,7 @@
             {
                 buffer.Append(c);
             }
+
 #endif
 
             return buffer.ToString();
@@ -380,12 +383,12 @@
         }
 
 #if NET20
-        public static string RemoveFromEnd(string obj,
-                                           string value,
+        public static string RemoveFromEnd(string obj, 
+                                           string value, 
                                            StringComparison comparisonType)
 #else
-        public static string RemoveFromEnd(this string obj,
-                                           string value,
+        public static string RemoveFromEnd(this string obj, 
+                                           string value, 
                                            StringComparison comparisonType)
 #endif
         {
@@ -410,12 +413,12 @@
         }
 
 #if NET20
-        public static string RemoveFromStart(string obj,
-                                             string value,
+        public static string RemoveFromStart(string obj, 
+                                             string value, 
                                              StringComparison comparisonType)
 #else
-        public static string RemoveFromStart(this string obj,
-                                             string value,
+        public static string RemoveFromStart(this string obj, 
+                                             string value, 
                                              StringComparison comparisonType)
 #endif
         {
@@ -440,14 +443,14 @@
         }
 
 #if NET20
-        public static string Replace(string obj,
-                                     string oldValue,
-                                     string newValue,
+        public static string Replace(string obj, 
+                                     string oldValue, 
+                                     string newValue, 
                                      StringComparison comparisonType)
 #else
-        public static string Replace(this string obj,
-                                     string oldValue,
-                                     string newValue,
+        public static string Replace(this string obj, 
+                                     string oldValue, 
+                                     string newValue, 
                                      StringComparison comparisonType)
 #endif
         {
@@ -488,14 +491,14 @@
         }
 
 #if NET20
-        public static string ReplaceAllWith(string obj,
-                                            string newValue,
-                                            StringComparison comparisonType,
+        public static string ReplaceAllWith(string obj, 
+                                            string newValue, 
+                                            StringComparison comparisonType, 
                                             params string[] args)
 #else
-        public static string ReplaceAllWith(this string obj,
-                                            string newValue,
-                                            StringComparison comparisonType,
+        public static string ReplaceAllWith(this string obj, 
+                                            string newValue, 
+                                            StringComparison comparisonType, 
                                             params string[] args)
 #endif
         {
@@ -522,15 +525,17 @@
 
             return obj;
 #else
-            return args.Aggregate(obj, (x, arg) => x.Replace(arg, newValue, comparisonType));
+            return args.Aggregate(obj, 
+                                  (x, 
+                                   arg) => x.Replace(arg, newValue, comparisonType));
 #endif
         }
 
 #if NET20
-        public static bool SameIndexesOfEach(string obj,
+        public static bool SameIndexesOfEach(string obj, 
                                              params char[] args)
 #else
-        public static bool SameIndexesOfEach(this string obj,
+        public static bool SameIndexesOfEach(this string obj, 
                                              params char[] args)
 #endif
         {
@@ -565,12 +570,12 @@
         }
 
 #if NET20
-        public static string[] Split(string obj,
-                                     char separator,
+        public static string[] Split(string obj, 
+                                     char separator, 
                                      StringSplitOptions options)
 #else
-        public static string[] Split(this string obj,
-                                     char separator,
+        public static string[] Split(this string obj, 
+                                     char separator, 
                                      StringSplitOptions options)
 #endif
         {
@@ -583,15 +588,15 @@
                 new[]
                 {
                     separator
-                },
+                }, 
                 options);
         }
 
 #if NET20
-        public static bool StartsOrEndsWith(string obj,
+        public static bool StartsOrEndsWith(string obj, 
                                             params char[] args)
 #else
-        public static bool StartsOrEndsWith(this string obj,
+        public static bool StartsOrEndsWith(this string obj, 
                                             params char[] args)
 #endif
         {
@@ -631,12 +636,12 @@
         }
 
 #if NET20
-        public static bool StartsWithAny(string obj,
-                                         StringComparison comparison,
+        public static bool StartsWithAny(string obj, 
+                                         StringComparison comparison, 
                                          params string[] args)
 #else
-        public static bool StartsWithAny(this string obj,
-                                         StringComparison comparison,
+        public static bool StartsWithAny(this string obj, 
+                                         StringComparison comparison, 
                                          params string[] args)
 #endif
         {
@@ -681,7 +686,7 @@
                 .Any(arg => obj.StartsWith(arg, comparison));
 #endif
         }
-        
+
 #if NET20
         public static T To<T>(string obj)
 #else
@@ -693,13 +698,13 @@
                 type.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 return string.IsNullOrEmpty(obj)
-                    ? default(T)
-                    : To<T>(Nullable.GetUnderlyingType(type), obj);
+                           ? default(T)
+                           : To<T>(Nullable.GetUnderlyingType(type), obj);
             }
 
             return To<T>(type, obj);
         }
-        
+
 #if NET20
         public static T TryTo<T>(string obj)
 #else
@@ -711,8 +716,8 @@
                 type.GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 return string.IsNullOrEmpty(obj)
-                    ? default(T)
-                    : TryTo<T>(Nullable.GetUnderlyingType(type), obj);
+                           ? default(T)
+                           : TryTo<T>(Nullable.GetUnderlyingType(type), obj);
             }
 
             return TryTo<T>(type, obj);
@@ -757,11 +762,11 @@
         }
 
 #if NET20
-        public static object XmlDeserialize(string xml,
+        public static object XmlDeserialize(string xml, 
                                             Type type)
 #else
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
-        public static object XmlDeserialize(this string xml,
+        public static object XmlDeserialize(this string xml, 
                                             Type type)
 #endif
         {
@@ -797,7 +802,8 @@
 #if NET20
         private static T To<T>(Type type, string obj)
 #else
-        private static T To<T>(this Type type, string obj)
+        private static T To<T>(this Type type, 
+                               string obj)
 #endif
         {
             object value;
@@ -817,11 +823,13 @@
             {
                 value = XmlConvert.ToDateTime(obj, XmlDateTimeSerializationMode.Utc);
             }
+
 #if !NET20
             else if (typeof(DateTimeOffset) == type)
             {
                 value = XmlConvert.ToDateTimeOffset(obj);
             }
+
 #endif
             else if (typeof(decimal) == type)
             {
@@ -878,12 +886,13 @@
 
             return (T)Convert.ChangeType(value, type, CultureInfo.InvariantCulture);
         }
-        
+
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "This is due to the type-specific nature of parsing.")]
 #if NET20
         private static T TryTo<T>(Type type, string obj)
 #else
-        private static T TryTo<T>(this Type type, string obj)
+        private static T TryTo<T>(this Type type, 
+                                  string obj)
 #endif
         {
             if (typeof(bool) == type)
@@ -893,7 +902,7 @@
                            ? (T)Convert.ChangeType(boolResult, type, CultureInfo.InvariantCulture)
                            : default(T);
             }
-            
+
             if (typeof(byte) == type)
             {
                 byte byteResult;
@@ -901,7 +910,7 @@
                            ? (T)Convert.ChangeType(byteResult, type, CultureInfo.InvariantCulture)
                            : default(T);
             }
-            
+
             if (typeof(char) == type)
             {
                 char charResult;
@@ -909,7 +918,7 @@
                            ? (T)Convert.ChangeType(charResult, type, CultureInfo.InvariantCulture)
                            : default(T);
             }
-            
+
             if (typeof(DateTime) == type)
             {
                 DateTime dateTimeResult;
@@ -926,8 +935,9 @@
                            ? (T)Convert.ChangeType(dateTimeOffsetResult, type, CultureInfo.InvariantCulture)
                            : default(T);
             }
+
 #endif
-            
+
             if (typeof(decimal) == type)
             {
                 decimal decimalResult;
@@ -935,7 +945,7 @@
                            ? (T)Convert.ChangeType(decimalResult, type, CultureInfo.InvariantCulture)
                            : default(T);
             }
-            
+
             if (typeof(double) == type)
             {
                 double doubleResult;
@@ -961,7 +971,7 @@
                            ? (T)Convert.ChangeType(shortResult, type, CultureInfo.InvariantCulture)
                            : default(T);
             }
-            
+
             if (typeof(int) == type)
             {
                 int intResult;
@@ -969,7 +979,7 @@
                            ? (T)Convert.ChangeType(intResult, type, CultureInfo.InvariantCulture)
                            : default(T);
             }
-            
+
             if (typeof(long) == type)
             {
                 long longResult;
@@ -977,7 +987,7 @@
                            ? (T)Convert.ChangeType(longResult, type, CultureInfo.InvariantCulture)
                            : default(T);
             }
-            
+
             if (typeof(sbyte) == type)
             {
                 sbyte sbyteResult;
@@ -985,7 +995,7 @@
                            ? (T)Convert.ChangeType(sbyteResult, type, CultureInfo.InvariantCulture)
                            : default(T);
             }
-            
+
             if (typeof(float) == type)
             {
                 float floatResult;
@@ -1016,7 +1026,7 @@
                            ? (T)Convert.ChangeType(ushortResult, type, CultureInfo.InvariantCulture)
                            : default(T);
             }
-            
+
             if (typeof(uint) == type)
             {
                 uint uintResult;
@@ -1024,7 +1034,7 @@
                            ? (T)Convert.ChangeType(uintResult, type, CultureInfo.InvariantCulture)
                            : default(T);
             }
-            
+
             if (typeof(ulong) == type)
             {
                 ulong ulongResult;

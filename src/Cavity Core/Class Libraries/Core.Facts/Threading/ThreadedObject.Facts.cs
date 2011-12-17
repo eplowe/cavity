@@ -18,9 +18,9 @@
         [Fact]
         public void prop_CancellationToken()
         {
-            Assert.NotNull(new PropertyExpectations<ThreadedObject>(x => x.CancellationToken)
-                               .TypeIs<CancellationToken>()
-                               .Result);
+            Assert.True(new PropertyExpectations<ThreadedObject>(x => x.CancellationToken)
+                            .TypeIs<CancellationToken>()
+                            .Result);
         }
 
         [Fact]
