@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Diagnostics.Log4Net.Web</id>
-    <version>1.1.0.746</version>
+    <version>1.1.0.769</version>
     <title>Cavity log4net trace listener for Web Applications</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,7 +17,7 @@
     <tags>Diagnostics</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="log4net" version="1.2.10" />
+      <dependency id="log4net" version="1.2.11" />
       <dependency id="WebActivator" version="1.5" />
     </dependencies>
   </metadata>
@@ -26,6 +26,7 @@
     <file src="content\log4net.config.transform" target="content\log4net.config.transform" />
     <file src="content\web.config.transform" target="content\web.config.transform" />
     <file src="content\Properties\log4net.cs" target="content\Properties\log4net.cs" />
+    <file src="lib\net20\Cavity.Diagnostics.Log4Net.dll" target="lib\net20\Cavity.Diagnostics.Log4Net.dll" />
     <file src="lib\net35\Cavity.Diagnostics.Log4Net.dll" target="lib\net35\Cavity.Diagnostics.Log4Net.dll" />
     <file src="lib\net40\Cavity.Diagnostics.Log4Net.dll" target="lib\net40\Cavity.Diagnostics.Log4Net.dll" />
     <file src="tools\Web.Install.ps1" target="tools\Install.ps1" />

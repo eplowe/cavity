@@ -9,6 +9,7 @@
   	<Solutions Include="Cavity Core" />
   	<Solutions Include="Cavity Data (ACE)" />
   	<Solutions Include="Cavity Data (CSV)" />
+  	<Solutions Include="Cavity Diagnostics log4net" />
   	<Solutions Include="Cavity Domain" />
   	<Solutions Include="Cavity Service Location" />
   </ItemGroup>
