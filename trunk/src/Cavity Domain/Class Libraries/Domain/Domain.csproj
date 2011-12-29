@@ -19,10 +19,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.746\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.768\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Data.Csv">
-      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.746\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.769\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -163,7 +163,7 @@
 
             var id = operation.Identity;
 
-            var expected = Recovery.MasterDirectory.ToFile(@"{0}\{1}.xml".FormatWith(id.ResourceManager, id.Instance)).FullName;
+            var expected = Recovery.MasterDirectory.ToDirectory(id.ResourceManager).ToFile("{0}.xml".FormatWith(id.Instance)).FullName;
             var actual = Recovery.ItemFile(operation).FullName;
 
             Assert.Equal(expected, actual);
@@ -191,7 +191,7 @@
 
             var id = operation.Identity;
 
-            var expected = Recovery.MasterDirectory.ToFile(@"{0}\Example\{1}.xml".FormatWith(id.ResourceManager, id.Instance)).FullName;
+            var expected = Recovery.MasterDirectory.ToDirectory(id.ResourceManager).ToDirectory("Example").ToFile("{0}.xml".FormatWith(id.Instance)).FullName;
             var actual = Recovery.ItemFile(operation, "Example").FullName;
 
             Assert.Equal(expected, actual);
@@ -207,7 +207,7 @@
 
             var id = operation.Identity;
 
-            var expected = Recovery.MasterDirectory.ToFile(@"{0}\{1}.xml".FormatWith(id.ResourceManager, id.Instance)).FullName;
+            var expected = Recovery.MasterDirectory.ToDirectory(id.ResourceManager).ToFile("{0}.xml".FormatWith(id.Instance)).FullName;
             var actual = Recovery.ItemFile(operation, null).FullName;
 
             Assert.Equal(expected, actual);

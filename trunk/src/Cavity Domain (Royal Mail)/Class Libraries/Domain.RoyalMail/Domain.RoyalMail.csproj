@@ -4,9 +4,6 @@
     <ProjectGuid>{166775FD-D5EB-4233-88B8-4B14E9001252}</ProjectGuid>
     <AssemblyName>Cavity.Domain.RoyalMail</AssemblyName>
   </PropertyGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Models\BritishAddress.cs" />
@@ -21,11 +18,14 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.746\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.768\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Data.Csv">
-      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.746\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.769\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />

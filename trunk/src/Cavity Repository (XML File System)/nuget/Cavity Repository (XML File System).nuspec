@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Repository.FileSystem.Xml</id>
-    <version>1.1.0.746</version>
+    <version>1.1.0.769</version>
     <title>Cavity Repository (XML File System)</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,7 +17,7 @@
     <tags>Data</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Repository" version="1.1.0.746" />
+      <dependency id="Cavity.Repository" version="1.1.0.769" />
     </dependencies>
   </metadata>
   <files>
