@@ -22,7 +22,7 @@
   <?define ServiceGuid = "1d8762a5-3916-46a3-80b6-64f967525150" ?>
   <?define ServiceConfigGuid = "13dcbf4e-2f0f-41b6-be32-05f87ae1af0e" ?>
   <?endif ?>
-  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.1.0.769" Manufacturer="Alan Dean" UpgradeCode="$(var.ProductUpgradeCode)">
+  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.1.0.770" Manufacturer="Alan Dean" UpgradeCode="$(var.ProductUpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" Compressed="yes" Description="Installs Cavity Task Management." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
@@ -56,7 +56,6 @@
               <File Name="Cavity.TaskManagement.dll" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.TaskManagement.dll" />
               <File Name="Cavity.TaskManagement.Abstractions.dll" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.TaskManagement.Abstractions.dll" />
               <File Name="Cavity.TaskManagement.Service.exe" Source="$(var.TaskManagement.Service.TargetDir)\Cavity.TaskManagement.Service.exe" KeyPath="yes" />
-              <File Name="CommonServiceLocator.WindsorAdapter.dll" Source="$(var.TaskManagement.Service.TargetDir)\CommonServiceLocator.WindsorAdapter.dll" />
               <File Name="log4net.dll" Source="$(var.TaskManagement.Service.TargetDir)\log4net.dll" />
               <File Name="Microsoft.Practices.ServiceLocation.dll" Source="$(var.TaskManagement.Service.TargetDir)\Microsoft.Practices.ServiceLocation.dll" />
               <ServiceInstall Id="CavityTaskManagementServiceInstall" Name="$(var.ServiceName)" DisplayName="$(var.DisplayName)" Description="Provides a pluggable task management service." ErrorControl="normal" Start="auto" Type="ownProcess" Account="[SERVICEACCOUNT]" Password="[SERVICEPASSWORD]" Vital="yes" />

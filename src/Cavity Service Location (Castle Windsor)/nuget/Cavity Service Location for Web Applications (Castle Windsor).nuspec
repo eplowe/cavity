@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.ServiceLocation.CastleWindsor.Web</id>
-    <version>1.1.0.769</version>
+    <version>1.1.0.770</version>
     <title>Cavity Service Location for Web Applications (Castle Windsor)</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,9 +17,10 @@
     <tags>IoC</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Configuration" version="1.1.0.769" />
+      <dependency id="Castle.Windsor" version="3.0.0.4001" />
+      <dependency id="Cavity.Configuration" version="1.1.0.770" />
       <dependency id="Cavity.ServiceLocation" version="1.1.0.438" />
-      <dependency id="CommonServiceLocator.WindsorAdapter" version="1.0" />
+      <dependency id="CommonServiceLocator" version="1.0" />
       <dependency id="WebActivator" version="1.5" />
     </dependencies>
     <frameworkAssemblies>
@@ -30,6 +31,7 @@
     <file src="content\App_Start\CavityServiceLocationStart.cs.pp" target="content\App_Start\CavityServiceLocationStart.cs.pp" />
     <file src="content\web.config.transform" target="content\web.config.transform" />
     <file src="content\castle.config.transform" target="content\castle.config.transform" />
+    <file src="lib\net35\Cavity.ServiceLocation.CastleWindsor.dll" target="lib\net35\Cavity.ServiceLocation.CastleWindsor.dll" />
     <file src="lib\net40\Cavity.ServiceLocation.CastleWindsor.dll" target="lib\net40\Cavity.ServiceLocation.CastleWindsor.dll" />
     <file src="tools\Web.Install.ps1" target="tools\Install.ps1" />
   </files>

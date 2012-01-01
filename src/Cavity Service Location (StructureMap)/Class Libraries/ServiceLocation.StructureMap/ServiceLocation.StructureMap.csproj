@@ -5,13 +5,13 @@
     <AssemblyName>Cavity.ServiceLocation.StructureMap</AssemblyName>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Configuration\XmlServiceLocatorProvider.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Cavity.ServiceLocation">
-      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\net40\Cavity.ServiceLocation.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -19,16 +19,14 @@
     <Reference Include="StructureMap">
       <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMapAdapter">
+      <HintPath>..\..\packages\CommonServiceLocator.StructureMapAdapter.1.1.0.3\lib\StructureMapAdapter.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="StructureMapAdapter">
-      <HintPath>..\..\packages\CommonServiceLocator.StructureMapAdapter.1.1.0.3\lib\StructureMapAdapter.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />

@@ -16,7 +16,6 @@ Server: Microsoft-IIS/7.0
 X-AspNetMvc-Version: 3.0
 X-AspNet-Version: 4.0.30319
 X-Powered-By: ASP.NET
-Content-Length: 352
 <<
 
 # Full negotiation, accepting French
@@ -33,7 +32,6 @@ Server: Microsoft-IIS/7.0
 X-AspNetMvc-Version: 3.0
 X-AspNet-Version: 4.0.30319
 X-Powered-By: ASP.NET
-Content-Length: 352
 <<
 
 # Redirect from naked domain to www

@@ -5,22 +5,27 @@
     <AssemblyName>Cavity.ServiceLocation.CastleWindsor</AssemblyName>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Configuration\XmlServiceLocatorProvider.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="Practices\ServiceLocation\WindsorServiceLocator.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' == '3.5' ">
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.0.0.4001\lib\net35\Castle.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Reference Include="Castle.Core">
-      <HintPath>..\..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Castle.Windsor">
-      <HintPath>..\..\packages\Castle.Windsor.2.5.4\lib\net40\Castle.Windsor.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Windsor.3.0.0.4001\lib\$(TargetFrameworkVersionName)\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.ServiceLocation">
-      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\net40\Cavity.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="CommonServiceLocator.WindsorAdapter">
-      <HintPath>..\..\packages\CommonServiceLocator.WindsorAdapter.1.0\lib\NET35\CommonServiceLocator.WindsorAdapter.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -28,6 +33,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />

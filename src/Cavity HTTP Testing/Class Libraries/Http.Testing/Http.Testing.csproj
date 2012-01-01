@@ -13,10 +13,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.768\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.770\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Http.Generalizations">
-      <HintPath>..\..\packages\Cavity.Http.Generalizations.1.1.0.769\lib\$(TargetFrameworkVersionName)\Cavity.Http.Generalizations.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Http.Generalizations.1.1.0.770\lib\$(TargetFrameworkVersionName)\Cavity.Http.Generalizations.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

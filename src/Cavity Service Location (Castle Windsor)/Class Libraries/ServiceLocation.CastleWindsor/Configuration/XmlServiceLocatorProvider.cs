@@ -4,7 +4,7 @@
     using Castle.Windsor;
     using Castle.Windsor.Configuration.Interpreters;
     using Cavity.Diagnostics;
-    using CommonServiceLocator.WindsorAdapter;
+    using Cavity.Practices.ServiceLocation;
     using Microsoft.Practices.ServiceLocation;
 
     public sealed class XmlServiceLocatorProvider : ISetLocatorProvider

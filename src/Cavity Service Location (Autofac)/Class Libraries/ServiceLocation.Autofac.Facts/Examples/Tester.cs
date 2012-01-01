@@ -4,6 +4,10 @@
 
     public sealed class Tester : ITest
     {
+        public Tester()
+        {
+        }
+
         public Tester(string expected)
         {
             Expected = expected;

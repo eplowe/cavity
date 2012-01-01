@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
   <?define UpgradeCode="{decc7da2-f4a7-4628-977a-0167f7967dc4}"?>
-  <Product Id="*" Name="Cavity Examples Website" Language="1033" Version="1.1.0.769" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
+  <Product Id="*" Name="Cavity Examples Website" Language="1033" Version="1.1.0.770" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" InstallPrivileges="elevated" Compressed="yes" />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
@@ -35,7 +35,6 @@
                 <File Name="Cavity.ServiceLocation.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.ServiceLocation.dll" />
                 <File Name="Cavity.Web.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.Web.dll" />
                 <File Name="Cavity.Web.Mvc3.dll" Source="$(var.Examples.Website.TargetDir)\Cavity.Web.Mvc3.dll" />
-                <File Name="CommonServiceLocator.WindsorAdapter.dll" Source="$(var.Examples.Website.TargetDir)\CommonServiceLocator.WindsorAdapter.dll" />
                 <File Name="log4net.dll" Source="$(var.Examples.Website.TargetDir)\log4net.dll" />
                 <File Name="Microsoft.Practices.ServiceLocation.dll" Source="$(var.Examples.Website.TargetDir)\Microsoft.Practices.ServiceLocation.dll" />
                 <File Name="Microsoft.Web.Infrastructure.dll" Source="$(var.Examples.Website.TargetDir)\Microsoft.Web.Infrastructure.dll" />

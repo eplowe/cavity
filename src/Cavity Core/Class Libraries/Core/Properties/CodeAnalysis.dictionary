@@ -2,6 +2,7 @@
 <Dictionary>
   <Words>
     <Recognized>
+      <Word>ciphertext</Word>
       <Word>Levenshtein</Word>
       <Word>Multiton</Word>
       <Word>xpath</Word>
