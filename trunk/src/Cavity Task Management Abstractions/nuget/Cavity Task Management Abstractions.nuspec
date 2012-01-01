@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.TaskManagement.Abstractions</id>
-    <version>1.1.0.769</version>
+    <version>1.1.0.770</version>
     <title>Cavity Task Management Abstractions</title>
     <authors>Alan Dean</authors>
     <owners />

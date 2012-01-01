@@ -217,7 +217,7 @@
             Assert.Throws<ArgumentNullException>(() => MD5Hash.Compute(null as FileSystemInfo));
         }
 
-        [Fact(Skip = "The jigsaw md5 page is not responding.")]
+        [Fact]
         public void op_Compute_Uri()
         {
             try

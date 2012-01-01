@@ -3,8 +3,8 @@
     using System.Diagnostics;
     using Autofac;
     using Autofac.Configuration;
-    using AutofacContrib.CommonServiceLocator;
     using Cavity.Diagnostics;
+    using Cavity.Practices.ServiceLocation;
     using Microsoft.Practices.ServiceLocation;
 
     public sealed class XmlServiceLocatorProvider : ISetLocatorProvider

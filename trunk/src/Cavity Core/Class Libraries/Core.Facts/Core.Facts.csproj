@@ -29,6 +29,9 @@
     <Compile Include="Net\Token.Facts.cs" />
     <Compile Include="Reflection\Assembly.ExtensionMethods.Facts.cs" />
     <Compile Include="Security\Cryptography\MD5Hash.Facts.cs" />
+    <Compile Include="Security\Cryptography\Salt.Facts.cs" />
+    <Compile Include="Security\Cryptography\SecureHash.Facts.cs" />
+    <Compile Include="Text\Encoding.ExtensionMethods.Facts.cs" />
     <Compile Include="Object.ExtensionMethods.Facts.cs" />
     <Compile Include="RelativeUri.Facts.cs" />
     <Compile Include="String.ExtensionMethods.Facts.cs" />

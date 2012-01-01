@@ -7,6 +7,10 @@
   	<Solutions Include="Cavity Repository" />
   	<Solutions Include="Cavity Repository (XML File System)" />
   	<Solutions Include="Cavity Repository Testing" />
+  	<Solutions Include="Cavity Service Location (Autofac)" />
+  	<Solutions Include="Cavity Service Location (Castle Windsor)" />
+  	<Solutions Include="Cavity Service Location (StructureMap)" />
+  	<Solutions Include="Cavity Service Location (Unity)" />
   	<Solutions Include="Cavity Unit Testing" />
   </ItemGroup>
   <Target Name="Rebuild">

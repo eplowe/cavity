@@ -9,10 +9,6 @@
   	<Solutions Include="Cavity HTTP Testing" />
   	<Solutions Include="Cavity MSBuild (Compliance)" />
   	<Solutions Include="Cavity MSBuild (Domain)" />
-  	<Solutions Include="Cavity Service Location (Autofac)" />
-  	<Solutions Include="Cavity Service Location (Castle Windsor)" />
-  	<Solutions Include="Cavity Service Location (StructureMap)" />
-  	<Solutions Include="Cavity Service Location (Unity)" />
   	<Solutions Include="Cavity Task Management" />
   	<Solutions Include="Cavity Task Management Abstractions" />
   	<Solutions Include="Cavity Task Management Service" />

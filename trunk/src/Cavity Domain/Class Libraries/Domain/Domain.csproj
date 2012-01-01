@@ -12,17 +12,22 @@
     <Compile Include="Data\CsvLexiconStorage.cs" />
     <Compile Include="Data\IStoreLexicon.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="Models\Coordinates.cs" />
     <Compile Include="Models\LexicalItem.cs" />
     <Compile Include="Models\Lexicon.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.cs" />
     <Compile Include="Models\Telephone.cs" />
   </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\Money.cs" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.768\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.770\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Data.Csv">
-      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.769\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.770\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

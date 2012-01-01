@@ -26,6 +26,9 @@
     <Compile Include="NullObject.cs" />
     <Compile Include="Reflection\Assembly.ExtensionMethods.cs" />
     <Compile Include="Security\Cryptography\MD5Hash.cs" />
+    <Compile Include="Security\Cryptography\Salt.cs" />
+    <Compile Include="Security\Cryptography\SecureHash.cs" />
+    <Compile Include="Text\Encoding.ExtensionMethods.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.cs" />
     <Compile Include="Xml\XmlNamespace.cs" />
