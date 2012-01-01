@@ -10,8 +10,6 @@
     {
         public static void Main()
         {
-            log4net.Config.XmlConfigurator.Configure();
-            Config.ExeSection<ServiceLocation>().Provider.Configure();
             try
             {
                 log4net.Config.XmlConfigurator.Configure();
