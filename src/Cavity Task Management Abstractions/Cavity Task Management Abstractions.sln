@@ -5,6 +5,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Abstractions
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Abstractions.Facts", "Class Libraries\TaskManagement.Abstractions.Facts\TaskManagement.Abstractions.Facts.csproj", "{D2E25F1C-1AAF-44C8-B48C-3DD1344014DE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9BB0B1CC-266A-4F09-AD06-82D2705FDEF4}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Task Management Abstractions.bundle = Cavity Task Management Abstractions.bundle
+		.nuget\Cavity Task Management Abstractions.nuspec = .nuget\Cavity Task Management Abstractions.nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{EF95F5A5-AFCF-4820-BC3B-464A7C13020D}</ProjectGuid>
     <AssemblyName>Cavity.TestController.Domain.Facts</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Test Controller\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
@@ -33,6 +35,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{0069A77A-0500-413A-8253-35018ED877DD}</ProjectGuid>
     <AssemblyName>Cavity.Configuration</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Configuration\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Collections\StringList.cs" />
@@ -26,6 +28,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

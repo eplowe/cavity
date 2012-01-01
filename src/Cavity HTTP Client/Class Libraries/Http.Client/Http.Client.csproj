@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{B6E53FF7-E60E-437A-9F40-D7C14CC2EB9F}</ProjectGuid>
     <AssemblyName>Cavity.Http.Client</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity HTTP Client\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Net\Http.cs" />
@@ -54,6 +56,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

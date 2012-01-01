@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{783E3226-40FA-4103-B7EB-D90957540D93}</ProjectGuid>
     <AssemblyName>Cavity.Web.Facts</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Web\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Web\Web.csproj">
@@ -46,6 +48,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Web.references" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

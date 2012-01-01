@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{0FF43960-7762-46A3-BA82-DBA2161DBAC9}</ProjectGuid>
     <AssemblyName>Cavity.MSBuild.Compliance</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity MSBuild (Compliance)\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Build\CSharpProjectCompliance.cs" />
@@ -28,6 +30,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\MSBuild.references" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

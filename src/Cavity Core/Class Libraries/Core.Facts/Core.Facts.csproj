@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{E912C668-ED80-471E-9E57-BDB10394E47B}</ProjectGuid>
     <AssemblyName>Cavity.Core.Facts</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Core\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="AbsoluteUri.Facts.cs" />
@@ -94,6 +96,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

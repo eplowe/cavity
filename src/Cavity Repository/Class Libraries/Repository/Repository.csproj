@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{48565F37-92B3-4C45-8F8E-E64F20F6F0BC}</ProjectGuid>
     <AssemblyName>Cavity.Repository</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Repository\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\IEntity.cs" />
@@ -22,6 +24,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}</ProjectGuid>
     <AssemblyName>Cavity.MSBuild.Compliance.Facts</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity MSBuild (Compliance)\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Build\CSharpProjectCompliance.Facts.cs" />
@@ -10,7 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MSBuild.Compliance\MSBuild.Compliance.csproj">
       <Project>{0FF43960-7762-46A3-BA82-DBA2161DBAC9}</Project>
-      <Name>Build</Name>
+      <Name>MSBuild.Compliance</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +40,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\MSBuild.references" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Cavity.Data.Csv</id>
+    <version>1.1.0.773</version>
+    <title>Cavity Data (CSV)</title>
+    <authors>Alan Dean</authors>
+    <owners />
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://code.google.com/p/cavity/</projectUrl>
+    <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides data acess for comma separated (CSV) files.</description>
+    <summary />
+    <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
+    <language />
+    <tags>Data</tags>
+    <releaseNotes />
+    <dependencies>
+      <dependency id="Cavity.Core" version="1.1.0.770" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="lib\net20\Cavity.Data.Csv.dll" target="lib\net20\Cavity.Data.Csv.dll" />
+    <file src="lib\net35\Cavity.Data.Csv.dll" target="lib\net35\Cavity.Data.Csv.dll" />
+    <file src="lib\net40\Cavity.Data.Csv.dll" target="lib\net40\Cavity.Data.Csv.dll" />
+  </files>
+</package>

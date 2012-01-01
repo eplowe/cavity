@@ -5,6 +5,33 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.Autofac", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.Autofac.Facts", "Class Libraries\ServiceLocation.Autofac.Facts\ServiceLocation.Autofac.Facts.csproj", "{D0299C27-537C-42CE-B313-9F4D34EF8395}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{23B7740E-238D-48E2-830C-378CFDA0B5DA}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Service Location (Autofac).bundle = Cavity Service Location (Autofac).bundle
+		.nuget\Cavity Service Location for Console Applications (Autofac).nuspec = .nuget\Cavity Service Location for Console Applications (Autofac).nuspec
+		.nuget\Cavity Service Location for Web Applications (Autofac).nuspec = .nuget\Cavity Service Location for Web Applications (Autofac).nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{57A15A9C-FDF6-4719-B315-8B047F78C02B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\content\app.config.transform = .nuget\content\app.config.transform
+		.nuget\content\autofac.config.transform = .nuget\content\autofac.config.transform
+		.nuget\content\web.config.transform = .nuget\content\web.config.transform
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{BCC591D9-2668-45E1-81EB-5653EBE78042}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\tools\Console.Install.ps1 = .nuget\tools\Console.Install.ps1
+		.nuget\tools\Web.Install.ps1 = .nuget\tools\Web.Install.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{44B4D056-467E-444E-9E2A-CD4DBE48B3C3}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\content\App_Start\CavityServiceLocationStart.cs.pp = .nuget\content\App_Start\CavityServiceLocationStart.cs.pp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,5 +49,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{57A15A9C-FDF6-4719-B315-8B047F78C02B} = {23B7740E-238D-48E2-830C-378CFDA0B5DA}
+		{BCC591D9-2668-45E1-81EB-5653EBE78042} = {23B7740E-238D-48E2-830C-378CFDA0B5DA}
+		{44B4D056-467E-444E-9E2A-CD4DBE48B3C3} = {57A15A9C-FDF6-4719-B315-8B047F78C02B}
 	EndGlobalSection
 EndGlobal

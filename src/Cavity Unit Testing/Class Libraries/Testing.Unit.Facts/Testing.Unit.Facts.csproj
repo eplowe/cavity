@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{DEE68EFC-926D-4FBF-9ACB-E5539E2313E6}</ProjectGuid>
     <AssemblyName>Cavity.Testing.Unit.Facts</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Unit Testing\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup>
     <ServiceLocation>false</ServiceLocation>
@@ -78,6 +80,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.Project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

@@ -5,6 +5,33 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.StructureMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.StructureMap.Facts", "Class Libraries\ServiceLocation.StructureMap.Facts\ServiceLocation.StructureMap.Facts.csproj", "{095E71A3-34EE-4741-8C04-5E6D96E43B2F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{85817081-9FA0-4C30-8EBE-C424964579C7}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Service Location (StructureMap).bundle = Cavity Service Location (StructureMap).bundle
+		.nuget\Cavity Service Location for Console Applications (StructureMap).nuspec = .nuget\Cavity Service Location for Console Applications (StructureMap).nuspec
+		.nuget\Cavity Service Location for Web Applications (StructureMap).nuspec = .nuget\Cavity Service Location for Web Applications (StructureMap).nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{80948470-018C-44CD-8448-1C7D7DBB6C69}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\content\app.config.transform = .nuget\content\app.config.transform
+		.nuget\content\StructureMap.config.transform = .nuget\content\StructureMap.config.transform
+		.nuget\content\web.config.transform = .nuget\content\web.config.transform
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{90F7DCFC-5E95-4B43-8A21-53512FDD2B5E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\content\App_Start\CavityServiceLocationStart.cs.pp = .nuget\content\App_Start\CavityServiceLocationStart.cs.pp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{6D93A65E-A759-4676-8B59-19A9048B5B3C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\tools\Console.Install.ps1 = .nuget\tools\Console.Install.ps1
+		.nuget\tools\Web.Install.ps1 = .nuget\tools\Web.Install.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,5 +49,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{80948470-018C-44CD-8448-1C7D7DBB6C69} = {85817081-9FA0-4C30-8EBE-C424964579C7}
+		{6D93A65E-A759-4676-8B59-19A9048B5B3C} = {85817081-9FA0-4C30-8EBE-C424964579C7}
+		{90F7DCFC-5E95-4B43-8A21-53512FDD2B5E} = {80948470-018C-44CD-8448-1C7D7DBB6C69}
 	EndGlobalSection
 EndGlobal

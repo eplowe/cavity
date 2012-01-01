@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{166775FD-D5EB-4233-88B8-4B14E9001252}</ProjectGuid>
     <AssemblyName>Cavity.Domain.RoyalMail</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Domain (Royal Mail)\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Diagnostics\Tracing.cs" />
@@ -29,6 +31,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

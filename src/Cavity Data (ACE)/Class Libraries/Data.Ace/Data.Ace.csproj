@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{94A4843F-2FCA-48D9-84EF-4250D51DB2EF}</ProjectGuid>
     <AssemblyName>Cavity.Data.Ace</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Data (ACE)\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup>
     <ServiceLocation>false</ServiceLocation>
@@ -35,6 +37,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Cavity\MixedCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.references" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

@@ -5,6 +5,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Unit", "Class Libra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Unit.Facts", "Class Libraries\Testing.Unit.Facts\Testing.Unit.Facts.csproj", "{DEE68EFC-926D-4FBF-9ACB-E5539E2313E6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{01FE540E-8787-4992-B5E6-40976529139D}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Unit Testing.bundle = Cavity Unit Testing.bundle
+		.nuget\Cavity Unit Testing.nuspec = .nuget\Cavity Unit Testing.nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

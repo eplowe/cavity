@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{7D95675C-9277-4AA6-9A78-2F5522D78207}</ProjectGuid>
     <AssemblyName>Cavity.TaskManagement</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Task Management\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -53,6 +55,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\MEF.references" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Service.references" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

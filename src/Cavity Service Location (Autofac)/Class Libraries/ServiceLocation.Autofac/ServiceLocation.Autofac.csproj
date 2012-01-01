@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{6BCF22E0-E321-431B-AEE2-981A03C66E09}</ProjectGuid>
     <AssemblyName>Cavity.ServiceLocation.Autofac</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Service Location (Autofac)\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Configuration\XmlServiceLocatorProvider.cs" />
@@ -28,6 +30,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

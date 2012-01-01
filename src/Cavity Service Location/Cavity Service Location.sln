@@ -5,6 +5,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation", "Class Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.Facts", "Class Libraries\ServiceLocation.Facts\ServiceLocation.Facts.csproj", "{9E656B3A-FF1E-4CA4-8E6B-4BD7ADF1809F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8D7678EC-4708-4F2F-9127-732573487540}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Service Location.bundle = Cavity Service Location.bundle
+		.nuget\Cavity Service Location.nuspec = .nuget\Cavity Service Location.nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

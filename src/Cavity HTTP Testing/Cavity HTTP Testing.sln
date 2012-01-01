@@ -5,6 +5,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Testing", "Class Libra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http.Testing.Facts", "Class Libraries\Http.Testing.Facts\Http.Testing.Facts.csproj", "{224F5934-9295-41A5-BA7B-F0589C63CD3A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3856477B-FA64-41F9-9066-B4AE9CBF078E}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity HTTP Testing.bundle = Cavity HTTP Testing.bundle
+		.nuget\Cavity HTTP Testing.nuspec = .nuget\Cavity HTTP Testing.nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

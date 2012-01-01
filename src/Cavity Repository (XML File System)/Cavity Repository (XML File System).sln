@@ -5,6 +5,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.FileSystem.Xml",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.FileSystem.Xml.Facts", "Class Libraries\Repository.FileSystem.Xml.Facts\Repository.FileSystem.Xml.Facts.csproj", "{BB566F81-567B-45D8-839E-D1DB3F815A04}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C7849F59-4534-43A5-AA68-B2E8A2ED6252}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Repository (XML File System).bundle = Cavity Repository (XML File System).bundle
+		.nuget\Cavity Repository (XML File System).nuspec = .nuget\Cavity Repository (XML File System).nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

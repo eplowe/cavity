@@ -5,6 +5,33 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.Unity", "Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.Unity.Facts", "Class Libraries\ServiceLocation.Unity.Facts\ServiceLocation.Unity.Facts.csproj", "{F5C5643E-5457-4996-B0FB-7ADA360107B5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F89989F1-1368-46BE-82FD-2BA71D6F4B49}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Service Location (Unity).bundle = Cavity Service Location (Unity).bundle
+		.nuget\Cavity Service Location for Console Applications (Unity).nuspec = .nuget\Cavity Service Location for Console Applications (Unity).nuspec
+		.nuget\Cavity Service Location for Web Applications (Unity).nuspec = .nuget\Cavity Service Location for Web Applications (Unity).nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{9F3966CB-65AE-4A5A-8E4D-384638C1C833}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\content\app.config.transform = .nuget\content\app.config.transform
+		.nuget\content\unity.config.transform = .nuget\content\unity.config.transform
+		.nuget\content\web.config.transform = .nuget\content\web.config.transform
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{012AC37D-A94F-461A-B4E9-9712FCDA045E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\content\App_Start\CavityServiceLocationStart.cs.pp = .nuget\content\App_Start\CavityServiceLocationStart.cs.pp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{FAD974EF-DBD8-4674-8A6C-1C7B2AC046EE}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\tools\Console.Install.ps1 = .nuget\tools\Console.Install.ps1
+		.nuget\tools\Web.Install.ps1 = .nuget\tools\Web.Install.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +49,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9F3966CB-65AE-4A5A-8E4D-384638C1C833} = {F89989F1-1368-46BE-82FD-2BA71D6F4B49}
+		{FAD974EF-DBD8-4674-8A6C-1C7B2AC046EE} = {F89989F1-1368-46BE-82FD-2BA71D6F4B49}
+		{012AC37D-A94F-461A-B4E9-9712FCDA045E} = {9F3966CB-65AE-4A5A-8E4D-384638C1C833}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35

@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{950EFFC7-63F7-4632-A0CF-D97ED295E63F}</ProjectGuid>
     <AssemblyName>Cavity.Web</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Web\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Configuration\RedirectionConfigurationElementCollection`1.cs" />
@@ -26,6 +28,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Web.references" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

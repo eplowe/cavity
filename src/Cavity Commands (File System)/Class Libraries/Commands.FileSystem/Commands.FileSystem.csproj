@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{330F7265-626C-4BC8-8710-C9C96EFA7ED7}</ProjectGuid>
     <AssemblyName>Cavity.Commands.FileSystem</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Commands (File System)\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Diagnostics\Tracing.cs" />
@@ -23,6 +25,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

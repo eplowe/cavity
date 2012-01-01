@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{AA821324-3888-45BB-B6B3-61C2B5060664}</ProjectGuid>
     <AssemblyName>Cavity.Commands.FileSystem.Facts</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Commands (File System)\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Commands.FileSystem\Commands.FileSystem.csproj">
@@ -39,6 +41,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

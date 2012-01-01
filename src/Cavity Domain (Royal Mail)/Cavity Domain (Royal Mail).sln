@@ -5,6 +5,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.RoyalMail", "Class L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.RoyalMail.Facts", "Class Libraries\Domain.RoyalMail.Facts\Domain.RoyalMail.Facts.csproj", "{A101EF34-98EE-46D5-BBCF-C6F8E9E525C7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6F8DCF10-24C0-45F6-B319-5B9386CF1B79}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Domain (Royal Mail).bundle = Cavity Domain (Royal Mail).bundle
+		.nuget\Cavity Domain (Royal Mail).nuspec = .nuget\Cavity Domain (Royal Mail).nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

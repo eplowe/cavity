@@ -5,6 +5,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Commands", "Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Commands.Facts", "Class Libraries\Transactions.Commands.Facts\Transactions.Commands.Facts.csproj", "{5D033DA5-CDB4-4EE8-BDE6-CC0C0F90D328}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{02E9EC96-34DC-4621-BAC3-2FB467367C37}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Commands Transactions.bundle = Cavity Commands Transactions.bundle
+		.nuget\Cavity Commands Transactions.nuspec = .nuget\Cavity Commands Transactions.nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

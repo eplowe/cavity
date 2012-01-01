@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{46F86585-BFDE-41A1-B12C-1B770FDCA2DA}</ProjectGuid>
     <AssemblyName>Cavity.TestController.Abstractions.Facts</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Test Controller Abstractions\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
@@ -34,6 +36,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\MEF.references" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

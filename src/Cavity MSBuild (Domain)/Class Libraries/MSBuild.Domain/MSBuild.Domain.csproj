@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{980844FD-79CC-48EC-A16A-A2561C126631}</ProjectGuid>
     <AssemblyName>Cavity.MSBuild.Domain</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity MSBuild (Domain)\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
@@ -14,6 +16,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{5D033DA5-CDB4-4EE8-BDE6-CC0C0F90D328}</ProjectGuid>
     <AssemblyName>Cavity.Transactions.Commands.Facts</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Commands Transactions\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Transactions.Commands\Transactions.Commands.csproj">
@@ -44,6 +46,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

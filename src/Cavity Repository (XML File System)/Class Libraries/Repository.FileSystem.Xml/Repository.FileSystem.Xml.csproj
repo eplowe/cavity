@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{087F141B-93D3-4D0F-873E-A176DC98C161}</ProjectGuid>
     <AssemblyName>Cavity.Repository.FileSystem.Xml</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Repository (XML File System)\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Configuration\FileRepositoryConfiguration.cs" />
@@ -33,6 +35,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>
