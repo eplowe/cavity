@@ -6,6 +6,8 @@
     <AssemblyName>Cavity.Examples.Website</AssemblyName>
     <OutputPath>bin\</OutputPath>
     <UseIISExpress>false</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Examples Website\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App_Start\CavityDiagnosticsStart.cs" />
@@ -136,4 +138,5 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
 </Project>

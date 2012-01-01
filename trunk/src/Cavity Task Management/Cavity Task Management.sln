@@ -7,6 +7,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Examples", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Facts", "Class Libraries\TaskManagement.Facts\TaskManagement.Facts.csproj", "{08C8B40A-9858-424F-8468-9DFE1082EA79}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BA106F51-1640-47EE-B042-0703B6F956F0}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Task Management.bundle = Cavity Task Management.bundle
+		.nuget\Cavity Task Management.nuspec = .nuget\Cavity Task Management.nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{7F7F7C6A-7BFD-4D5B-A724-EA4C4ED9C36C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\content\Cavity.TaskManagement.dll.config.transform = .nuget\content\Cavity.TaskManagement.dll.config.transform
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{E486BBCB-9FE6-49B1-A3B2-C4104DC955FF}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\tools\Install.ps1 = .nuget\tools\Install.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,16 +35,20 @@ Global
 		{7D95675C-9277-4AA6-9A78-2F5522D78207}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D95675C-9277-4AA6-9A78-2F5522D78207}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D95675C-9277-4AA6-9A78-2F5522D78207}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08C8B40A-9858-424F-8468-9DFE1082EA79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08C8B40A-9858-424F-8468-9DFE1082EA79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08C8B40A-9858-424F-8468-9DFE1082EA79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08C8B40A-9858-424F-8468-9DFE1082EA79}.Release|Any CPU.Build.0 = Release|Any CPU
 		{18FCB723-73DA-4544-87A3-41F6A9EE70DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18FCB723-73DA-4544-87A3-41F6A9EE70DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18FCB723-73DA-4544-87A3-41F6A9EE70DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18FCB723-73DA-4544-87A3-41F6A9EE70DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08C8B40A-9858-424F-8468-9DFE1082EA79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08C8B40A-9858-424F-8468-9DFE1082EA79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08C8B40A-9858-424F-8468-9DFE1082EA79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08C8B40A-9858-424F-8468-9DFE1082EA79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7F7F7C6A-7BFD-4D5B-A724-EA4C4ED9C36C} = {BA106F51-1640-47EE-B042-0703B6F956F0}
+		{E486BBCB-9FE6-49B1-A3B2-C4104DC955FF} = {BA106F51-1640-47EE-B042-0703B6F956F0}
 	EndGlobalSection
 EndGlobal

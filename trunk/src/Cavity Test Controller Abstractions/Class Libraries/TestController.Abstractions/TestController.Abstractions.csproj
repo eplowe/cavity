@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{E8E036AD-06D6-41A8-972C-A7840EC1437B}</ProjectGuid>
     <AssemblyName>Cavity.TestController.Abstractions</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Test Controller Abstractions\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Testing\IConfigureTest.cs" />
@@ -11,6 +13,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\MEF.references" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

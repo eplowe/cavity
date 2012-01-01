@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Cavity.Domain.RoyalMail</id>
+    <version>1.1.0.773</version>
+    <title>Cavity Domain (Royal Mail)</title>
+    <authors>Alan Dean</authors>
+    <owners />
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://code.google.com/p/cavity/</projectUrl>
+    <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides Royal Mail domain models.</description>
+    <summary />
+    <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
+    <language />
+    <tags>Domain</tags>
+    <releaseNotes />
+    <dependencies>
+      <dependency id="Cavity.Data.Csv" version="1.1.0.770" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="lib\net35\Cavity.Domain.RoyalMail.dll" target="lib\net35\Cavity.Domain.RoyalMail.dll" />
+    <file src="lib\net40\Cavity.Domain.RoyalMail.dll" target="lib\net40\Cavity.Domain.RoyalMail.dll" />
+  </files>
+</package>

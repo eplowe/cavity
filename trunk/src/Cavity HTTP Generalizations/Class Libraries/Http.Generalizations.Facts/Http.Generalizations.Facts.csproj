@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{DCF32955-EA10-4573-8C51-DE59B547E087}</ProjectGuid>
     <AssemblyName>Cavity.Http.Generalizations.Facts</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity HTTP Generalizations\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Http.Generalizations\Http.Generalizations.csproj">
@@ -43,6 +45,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

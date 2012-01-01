@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{6FE7A292-4EF7-4DA1-95AF-6F03822042E7}</ProjectGuid>
     <AssemblyName>Cavity.ServiceLocation</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Service Location\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Configuration\ISetLocatorProvider.cs" />
@@ -26,6 +28,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

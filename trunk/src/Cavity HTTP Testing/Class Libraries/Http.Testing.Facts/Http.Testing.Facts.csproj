@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{224F5934-9295-41A5-BA7B-F0589C63CD3A}</ProjectGuid>
     <AssemblyName>Cavity.Http.Testing.Facts</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity HTTP Testing\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Http.Testing\Http.Testing.csproj">
@@ -42,6 +44,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

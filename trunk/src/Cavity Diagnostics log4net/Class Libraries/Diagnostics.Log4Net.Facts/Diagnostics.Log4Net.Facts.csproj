@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{EB10FF5C-DE8D-40B2-A7CB-9257DDC30507}</ProjectGuid>
     <AssemblyName>Cavity.Diagnostics.Log4Net.Facts</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Diagnostics log4net\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Diagnostics\Log4NetTraceListener.Facts.cs" />
@@ -34,6 +36,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.Project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

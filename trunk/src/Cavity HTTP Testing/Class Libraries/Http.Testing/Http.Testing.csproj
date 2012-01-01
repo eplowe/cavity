@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{C1B76C56-2E8D-4F9E-8EEA-FFB9E6A92715}</ProjectGuid>
     <AssemblyName>Cavity.Http.Testing</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity HTTP Testing\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="HttpExpectation.cs" />
@@ -24,6 +26,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

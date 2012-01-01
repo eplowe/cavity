@@ -5,6 +5,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Class Libraries\Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Facts", "Class Libraries\Core.Facts\Core.Facts.csproj", "{E912C668-ED80-471E-9E57-BDB10394E47B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A0B9E24F-CED7-4CDB-8B0A-AB98CB7E4659}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Core.bundle = Cavity Core.bundle
+		.nuget\Cavity Core.nuspec = .nuget\Cavity Core.nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

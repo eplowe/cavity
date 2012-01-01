@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Mvc3.Facts", "Class Lib
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{127EEE45-E8D1-49F2-AF3E-511094A4DBC8}"
 	ProjectSection(SolutionItems) = preProject
+		Cavity Web (ASP.NET MVC3).bundle = Cavity Web (ASP.NET MVC3).bundle
+		.nuget\Cavity Web (ASP.NET MVC3).nuspec = .nuget\Cavity Web (ASP.NET MVC3).nuspec
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection

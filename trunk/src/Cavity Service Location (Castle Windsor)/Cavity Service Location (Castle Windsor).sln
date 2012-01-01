@@ -5,6 +5,33 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.CastleWinds
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.CastleWindsor.Facts", "Class Libraries\ServiceLocation.CastleWindsor.Facts\ServiceLocation.CastleWindsor.Facts.csproj", "{7DD77C51-A1D5-486A-948A-20AA80C4D55E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4BAF87B4-8F31-49AE-BB1A-33D21825184B}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Service Location (Castle Windsor).bundle = Cavity Service Location (Castle Windsor).bundle
+		.nuget\Cavity Service Location for Console Applications (Castle Windsor).nuspec = .nuget\Cavity Service Location for Console Applications (Castle Windsor).nuspec
+		.nuget\Cavity Service Location for Web Applications (Castle Windsor).nuspec = .nuget\Cavity Service Location for Web Applications (Castle Windsor).nuspec
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{12A53457-28B2-4CDB-85DA-C0B211B8437A}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\content\app.config.transform = .nuget\content\app.config.transform
+		.nuget\content\castle.config.transform = .nuget\content\castle.config.transform
+		.nuget\content\web.config.transform = .nuget\content\web.config.transform
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{35F58BA5-CFDE-4E2A-9CBB-C16EE55C9739}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\tools\Console.Install.ps1 = .nuget\tools\Console.Install.ps1
+		.nuget\tools\Web.Install.ps1 = .nuget\tools\Web.Install.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{688EA82B-F3C1-4A1E-A0BD-72132D269DC3}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\content\App_Start\CavityServiceLocationStart.cs.pp = .nuget\content\App_Start\CavityServiceLocationStart.cs.pp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,5 +49,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{12A53457-28B2-4CDB-85DA-C0B211B8437A} = {4BAF87B4-8F31-49AE-BB1A-33D21825184B}
+		{35F58BA5-CFDE-4E2A-9CBB-C16EE55C9739} = {4BAF87B4-8F31-49AE-BB1A-33D21825184B}
+		{688EA82B-F3C1-4A1E-A0BD-72132D269DC3} = {12A53457-28B2-4CDB-85DA-C0B211B8437A}
 	EndGlobalSection
 EndGlobal

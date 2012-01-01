@@ -3,13 +3,13 @@
          DefaultTargets="Run"
          ToolsVersion="4.0">
   <ItemGroup>
-    <NuGetLibDir Include="$(MSBuildProjectDirectory)\nuget\lib\net40" />
+    <NuGetLibDir Include="$(MSBuildProjectDirectory)\.nuget\lib\net40" />
   </ItemGroup>
   <Target Name="Run">
     <MakeDir Directories="%(NuGetLibDir.Identity)"
              Condition="!Exists('%(NuGetLibDir.Identity)')"/>
              
     <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Web.Mvc3\bin\Release net40 AnyCPU\Cavity.Web.Mvc3.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\nuget\lib\net40" />
+          DestinationFolder="$(MSBuildProjectDirectory)\.nuget\lib\net40" />
   </Target>
 </Project>
