@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{E6E202AC-321A-4307-B45B-D9ED3DCB88C9}</ProjectGuid>
     <AssemblyName>Cavity.Web.Mvc3</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Web (ASP.NET MVC3)\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Diagnostics\Tracing.cs" />
@@ -44,6 +46,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Mvc.references" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>

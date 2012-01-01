@@ -3,6 +3,8 @@
   <PropertyGroup>
     <ProjectGuid>{31A2B757-45AF-4E46-97F2-88320E57DE5B}</ProjectGuid>
     <AssemblyName>Cavity.Web.Mvc.Facts</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Web (ASP.NET MVC3)\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="IO\WrappedStream.Facts.cs" />
@@ -61,6 +63,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Mvc.references" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">
   </Target>
