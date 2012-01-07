@@ -20,5 +20,5 @@
   <PropertyGroup>
     <StyleCopTreatErrorsAsWarnings Condition=" '$(StyleCopTreatErrorsAsWarnings)' == '' ">false</StyleCopTreatErrorsAsWarnings>
   </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath)\StyleCop\v4.6\StyleCop.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\StyleCop\v4.7\StyleCop.targets" />
 </Project>
