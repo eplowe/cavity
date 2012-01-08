@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Target Name="Clean">
+    <CallTarget Targets="Clean solutions" />
     <CallTarget Targets="Clean files" />
     <CallTarget Targets="Clean output" />
-    <CallTarget Targets="Clean solutions" />
   </Target>
   <Target Name="Clean files">
     <ItemGroup>
@@ -34,6 +34,6 @@
     </ItemGroup>
     <MSBuild Projects="@(SolutionFiles)"
              Targets="Clean"
-             Properties="Configuration=$(Configuration)" />
+             BuildInParallel="true" />
   </Target>
 </Project>
