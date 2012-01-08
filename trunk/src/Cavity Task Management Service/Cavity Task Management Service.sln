@@ -48,7 +48,7 @@ Global
 		{457910BD-90A1-420D-927A-A22091CCB8AD}.Release|x64.ActiveCfg = Release|x64
 		{457910BD-90A1-420D-927A-A22091CCB8AD}.Release|x64.Build.0 = Release|x64
 		{457910BD-90A1-420D-927A-A22091CCB8AD}.Release|x86.ActiveCfg = Release|x86
-		{457910BD-90A1-420D-927A-A22091CCB8AD}.Release|x86.Build.0 = Release|x86		
+		{457910BD-90A1-420D-927A-A22091CCB8AD}.Release|x86.Build.0 = Release|x86	
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
