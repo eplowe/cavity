@@ -37,7 +37,7 @@
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="xunit">
-      <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
+      <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -27,7 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="xunit">
-      <HintPath>..\..\packages\xunit.1.8.0.1549\lib\xunit.dll</HintPath>
+      <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
