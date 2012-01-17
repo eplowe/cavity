@@ -10,7 +10,7 @@
     <projectUrl>http://code.google.com/p/cavity/</projectUrl>
     <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Provides data acess for comma separated (CSV) files.</description>
+    <description>Provides data access for comma separated (CSV) files.</description>
     <summary />
     <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
     <language />
