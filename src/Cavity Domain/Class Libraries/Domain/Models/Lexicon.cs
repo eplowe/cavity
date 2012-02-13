@@ -77,6 +77,22 @@
 #endif
             }
         }
+        
+        public virtual LexicalItem Add(LexicalItem item)
+        {
+            if (null == item)
+            {
+                throw new ArgumentNullException("item");
+            }
+
+            var copy = Add(item.CanonicalForm);
+            foreach (var synonym in item.Synonyms)
+            {
+                copy.Synonyms.Add(synonym);
+            }
+
+            return copy;
+        }
 
         public virtual LexicalItem Add(string value)
         {
@@ -139,8 +155,29 @@
                 item.Invoke(func);
             }
         }
-
 #endif
+
+        public virtual void MoveTo(Lexicon destination, LexicalItem item)
+        {
+            if (null == destination)
+            {
+                throw new ArgumentNullException("destination");
+            }
+
+            if (ReferenceEquals(this, destination))
+            {
+                throw new InvalidOperationException("The source and destination cannot be the same instance.");
+            }
+
+            if (null == item)
+            {
+                throw new ArgumentNullException("item");
+            }
+
+            Remove(new[] { item });
+            destination.Add(item);
+        }
+
         public virtual void Remove(IEnumerable<LexicalItem> items)
         {
             if (null == items)

@@ -75,6 +75,27 @@
         }
 
         [Fact]
+        public void op_Add_LexicalItem()
+        {
+            const string expected = "Example";
+
+            var obj = new Lexicon(NormalizationComparer.Ordinal);
+            obj.Add(new LexicalItem(NormalizationComparer.CurrentCulture, expected));
+
+            var actual = obj.Items.First().CanonicalForm;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Add_LexicalItemNull()
+        {
+            var obj = new Lexicon(NormalizationComparer.Ordinal);
+
+            Assert.Throws<ArgumentNullException>(() => obj.Add(null as LexicalItem));
+        }
+
+        [Fact]
         public void op_Add_string()
         {
             const string expected = "Example";
@@ -96,7 +117,7 @@
         [Fact]
         public void op_Add_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new Lexicon(NormalizationComparer.Ordinal).Add(null));
+            Assert.Throws<ArgumentNullException>(() => new Lexicon(NormalizationComparer.Ordinal).Add(null as string));
         }
 
         [Fact]
@@ -281,6 +302,50 @@
             obj.Remove(lexicon.Items);
 
             Assert.Equal(0, obj.Items.Count());
+        }
+
+        [Fact]
+        public void op_MoveTo_Lexicon_LexicalItem()
+        {
+            const string expected = "Example";
+
+            var source = new Lexicon(NormalizationComparer.Ordinal);
+            var item = source.Add(expected);
+
+            var destination = new Lexicon(NormalizationComparer.Ordinal);
+            source.MoveTo(destination, item);
+
+            Assert.Empty(source.Items);
+            var actual = destination.Items.First().CanonicalForm;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MoveTo_LexiconNull_LexicalItem()
+        {
+            var obj = new Lexicon(NormalizationComparer.Ordinal);
+            var item = new LexicalItem(NormalizationComparer.Ordinal, "Example");
+
+            Assert.Throws<ArgumentNullException>(() => obj.MoveTo(null, item));
+        }
+
+        [Fact]
+        public void op_MoveTo_LexiconSame_LexicalItem()
+        {
+            var obj = new Lexicon(NormalizationComparer.Ordinal);
+            var item = new LexicalItem(NormalizationComparer.Ordinal, "Example");
+
+            Assert.Throws<InvalidOperationException>(() => obj.MoveTo(obj, item));
+        }
+
+        [Fact]
+        public void op_MoveTo_Lexicon_LexicalItemNull()
+        {
+            var obj = new Lexicon(NormalizationComparer.Ordinal);
+            var destination = new Lexicon(NormalizationComparer.Ordinal);
+
+            Assert.Throws<ArgumentNullException>(() => obj.MoveTo(destination, null));
         }
 
         [Fact]
