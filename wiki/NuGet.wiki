@@ -69,7 +69,7 @@
  * Cavity.Http.Generalizations
    * Cavity.Core
 
-*1.1.0.770* Cavity.Domain
+*1.1.0.782* Cavity.Domain
  * Cavity.Data.Csv
    * Cavity.Core
 
