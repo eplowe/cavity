@@ -12,9 +12,9 @@
     {
         private KeyStringPair _canonicalForm;
 
-        private INormalizationComparer _comparer;
+        private INormalityComparer _comparer;
 
-        public LexicalItem(INormalizationComparer comparer,
+        public LexicalItem(INormalityComparer comparer,
                            string canonicalForm)
             : this()
         {
@@ -31,7 +31,7 @@
         {
             get
             {
-                return _canonicalForm.Key;
+                return _canonicalForm.Value;
             }
 
             set
@@ -47,7 +47,7 @@
                     throw new ArgumentOutOfRangeException("value");
                 }
 
-                _canonicalForm = new KeyStringPair(value, Comparer.Normalize(value));
+                _canonicalForm = new KeyStringPair(Comparer.Normalize(value), value);
             }
         }
 
@@ -69,7 +69,7 @@
 
         public SynonymCollection Synonyms { get; protected set; }
 
-        protected INormalizationComparer Comparer
+        protected INormalityComparer Comparer
         {
             get
             {
@@ -87,12 +87,52 @@
             }
         }
 
+        public string ContainsEnding(string value)
+        {
+            if (null == value)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            if (0 == value.Length)
+            {
+                return null;
+            }
+
+            if (Contains(value))
+            {
+                return value;
+            }
+
+            var parts = value.Split(' ');
+            if (parts.Length < 2)
+            {
+                return null;
+            }
+
+            var substring = value;
+            foreach (var part in parts)
+            {
+#if NET20
+                substring = StringExtensionMethods.RemoveFromStart(substring, part, StringComparison.Ordinal).TrimStart();
+#else
+                substring = substring.RemoveFromStart(part, StringComparison.Ordinal).TrimStart();
+#endif
+                if (Contains(substring))
+                {
+                    return substring;
+                }
+            }
+
+            return null;
+        }
+
         public virtual bool Contains(string value)
         {
-            var x = _canonicalForm.Value;
+            var x = _canonicalForm.Key;
             var y = Comparer.Normalize(value);
 
-            return 0 == Comparer.Compare(x, y) || Synonyms.Contains(y);
+            return Comparer.Equals(x, y) || Synonyms.Contains(y);
         }
 
 #if !NET20

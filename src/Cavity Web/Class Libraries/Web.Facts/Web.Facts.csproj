@@ -14,10 +14,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Configuration">
-      <HintPath>..\..\packages\Cavity.Configuration.1.1.0.770\lib\$(TargetFrameworkVersionName)\Cavity.Configuration.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Configuration.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.770\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>

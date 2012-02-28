@@ -1,9 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System;
-#if NET20
     using System.Collections.Generic;
-#endif
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -11,7 +9,6 @@
     using System.Linq;
 #endif
     using Cavity.Collections;
-    using Cavity.Collections.Generic;
     using Cavity.Diagnostics;
     using Cavity.IO;
     using Cavity.Models;
@@ -52,6 +49,39 @@
             }
         }
 
+        private IEnumerable<FileInfo> Hierarchy
+        {
+            get
+            {
+                var file = Location;
+                file.Refresh();
+
+                while (true)
+                {
+                    if (file.Exists)
+                    {
+                        yield return file;
+                    }
+
+                    if (null == file.Directory)
+                    {
+                        yield break;
+                    }
+
+                    if (null == file.Directory.Parent)
+                    {
+                        yield break;
+                    }
+
+#if NET20
+                    file = new FileInfo(DirectoryInfoExtensionMethods.ToFile(file.Directory.Parent, file.Name).FullName);
+#else
+                    file = new FileInfo(file.Directory.Parent.ToFile(file.Name).FullName);
+#endif
+                }
+            }
+        }
+
         public virtual void Delete(Lexicon lexicon)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
@@ -67,7 +97,7 @@
             }
         }
 
-        public virtual Lexicon Load(INormalizationComparer comparer)
+        public virtual Lexicon Load(INormalityComparer comparer)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             var result = new Lexicon(comparer)
@@ -75,18 +105,18 @@
                 Storage = this
             };
 
-            foreach (var data in new CsvFile(Location))
+            Load(result, Location);
+
+            return result;
+        }
+
+        public virtual LexicalCollection LoadHierarchy(INormalityComparer comparer)
+        {
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
+            var result = new LexicalCollection(comparer);
+            foreach (var file in Hierarchy)
             {
-                var canonical = data["CANONICAL"];
-                var item = result[canonical] ?? result.Add(canonical);
-#if NET20
-                foreach (var synonym in StringExtensionMethods.Split(data["SYNONYMS"], ';', StringSplitOptions.RemoveEmptyEntries))
-#else
-                foreach (var synonym in data["SYNONYMS"].Split(';', StringSplitOptions.RemoveEmptyEntries))
-#endif
-                {
-                    item.Synonyms.Add(synonym);
-                }
+                Load(result, file);
             }
 
             return result;
@@ -109,9 +139,9 @@
             })
             {
 #if NET20
-                if (0 == IEnumerableExtensionMethods.Count(lexicon.Items))
+                if (0 == IEnumerableExtensionMethods.Count(lexicon))
 #else
-                if (0 == lexicon.Items.Count())
+                if (!lexicon.Any())
 #endif
                 {
                     writers.Item(Location.FullName).WriteLine(string.Empty);
@@ -120,7 +150,7 @@
 
 #if NET20
                 var items = new SortedList<string, LexicalItem>();
-                foreach (var item in lexicon.Items)
+                foreach (var item in lexicon)
                 {
                     items.Add(item.CanonicalForm, item);
                 }
@@ -141,7 +171,7 @@
                             CsvStringExtensionMethods.FormatCommaSeparatedValue(IEnumerableExtensionMethods.Concat(synonyms.Values, ';'))));
                 }
 #else
-                foreach (var item in lexicon.Items.OrderBy(x => x.CanonicalForm))
+                foreach (var item in lexicon.OrderBy(x => x.CanonicalForm))
                 {
                     writers
                         .Item(Location.FullName)
@@ -150,6 +180,23 @@
                             item.Synonyms.OrderBy(x => x).Concat(';').FormatCommaSeparatedValue()));
                 }
 #endif
+            }
+        }
+
+        private static void Load(LexicalCollection lexicon, FileInfo file)
+        {
+            foreach (var data in new CsvFile(file))
+            {
+                var canonical = data["CANONICAL"];
+                var item = lexicon[canonical] ?? lexicon.Add(canonical);
+#if NET20
+                foreach (var synonym in StringExtensionMethods.Split(data["SYNONYMS"], ';', StringSplitOptions.RemoveEmptyEntries))
+#else
+                foreach (var synonym in data["SYNONYMS"].Split(';', StringSplitOptions.RemoveEmptyEntries))
+#endif
+                {
+                    item.Synonyms.Add(synonym);
+                }
             }
         }
     }

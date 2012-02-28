@@ -32,6 +32,22 @@
         }
 
         [Fact]
+        public void op_Parse_CultureInfoBritish_stringSterling()
+        {
+            var obj = new Currency("€", 2);
+
+            var expected = new Money
+            {
+                Amount = -123456.78m, 
+                Currency = obj
+            };
+
+            var actual = obj.Parse(new CultureInfo("es-ES"), "-123.456,78 €");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_Parse_CultureInfoNull_string()
         {
             var obj = new Currency("€", 2);
@@ -46,27 +62,11 @@
 
             var expected = new Money
             {
-                Amount = -123456.78m,
+                Amount = -123456.78m, 
                 Currency = obj
             };
 
             var actual = obj.Parse(new CultureInfo("en-GB"), "-£123,456.78");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Parse_CultureInfoBritish_stringSterling()
-        {
-            var obj = new Currency("€", 2);
-
-            var expected = new Money
-            {
-                Amount = -123456.78m,
-                Currency = obj
-            };
-
-            var actual = obj.Parse(new CultureInfo("es-ES"), "-123.456,78 €");
 
             Assert.Equal(expected, actual);
         }
@@ -156,10 +156,10 @@
         {
             var expected = new Currency
             {
-                Code = "EUR",
-                Number = "978",
-                Significance = 2,
-                Symbol = "€",
+                Code = "EUR", 
+                Number = "978", 
+                Significance = 2, 
+                Symbol = "€", 
                 Title = "Euro"
             };
 
@@ -182,10 +182,10 @@
         {
             var obj = new Currency
             {
-                Code = "EUR",
-                Number = "978",
-                Significance = 2,
-                Symbol = "€",
+                Code = "EUR", 
+                Number = "978", 
+                Significance = 2, 
+                Symbol = "€", 
                 Title = "Euro"
             };
 

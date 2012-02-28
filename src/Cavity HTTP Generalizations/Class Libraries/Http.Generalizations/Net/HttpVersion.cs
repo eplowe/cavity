@@ -2,7 +2,6 @@
 {
     using System;
     using System.Xml;
-    using Cavity.Properties;
 
     public class HttpVersion : ComparableObject
     {
@@ -44,12 +43,16 @@
 
         public static implicit operator HttpVersion(string value)
         {
-            return ReferenceEquals(null, value) ? null : FromString(value);
+            return ReferenceEquals(null, value)
+                       ? null
+                       : FromString(value);
         }
 
         public static implicit operator string(HttpVersion obj)
         {
-            return ReferenceEquals(null, obj) ? null : obj.ToString();
+            return ReferenceEquals(null, obj)
+                       ? null
+                       : obj.ToString();
         }
 
         public static HttpVersion FromString(string value)

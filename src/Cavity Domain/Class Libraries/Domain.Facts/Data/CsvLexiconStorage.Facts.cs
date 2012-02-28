@@ -44,7 +44,7 @@
             using (var file = new TempFile())
             {
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
-                store.Delete(new Lexicon(NormalizationComparer.Ordinal));
+                store.Delete(new Lexicon(NormalityComparer.Ordinal));
 
                 file.Info.Refresh();
                 Assert.False(file.Info.Exists);
@@ -63,7 +63,31 @@
         }
 
         [Fact]
-        public void op_Load_IComparer()
+        public void op_LoadHierarchy_INormalityComparer()
+        {
+            using (var parent = new TempDirectory())
+            {
+                var file = parent.Info.ToFile("example.csv");
+
+                file.AppendLine("CANONICAL,SYNONYMS");
+                file.AppendLine("parent,");
+
+                var child = parent.Info.ToDirectory("child", true);
+                file = child.ToFile("example.csv");
+
+                file.AppendLine("CANONICAL,SYNONYMS");
+                file.AppendLine("child,");
+
+                var store = new CsvLexiconStorage(file);
+                var obj = store.LoadHierarchy(NormalityComparer.Ordinal);
+
+                Assert.Equal("parent", obj.ToCanonicalForm("parent"));
+                Assert.Equal("child", obj.ToCanonicalForm("child"));
+            }
+        }
+
+        [Fact]
+        public void op_Load_INormalityComparer()
         {
             using (var file = new TempFile())
             {
@@ -71,7 +95,7 @@
                 file.Info.AppendLine("1,");
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
-                var obj = store.Load(NormalizationComparer.Ordinal);
+                var obj = store.Load(NormalityComparer.Ordinal);
 
                 Assert.Equal("1", obj.ToCanonicalForm("1"));
 
@@ -80,13 +104,24 @@
         }
 
         [Fact]
-        public void op_Load_IComparerNull()
+        public void op_Load_INormalityComparer_whenFileMissing()
+        {
+            using (var directory = new TempDirectory())
+            {
+                IStoreLexicon store = new CsvLexiconStorage(directory.Info.ToFile("example.csv"));
+
+                Assert.Empty(store.Load(NormalityComparer.Ordinal));
+            }
+        }
+
+        [Fact]
+        public void op_Load_INormalityComparerNull()
         {
             using (var file = new TempFile())
             {
                 file.Info.Delete();
 
-                var lexicon = new Lexicon(NormalizationComparer.Ordinal);
+                var lexicon = new Lexicon(NormalityComparer.Ordinal);
                 lexicon.Add("Example");
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
@@ -97,7 +132,7 @@
         }
 
         [Fact]
-        public void op_Load_withMultipleSynonyms()
+        public void op_Load_INormalityComparer_withMultipleSynonyms()
         {
             using (var file = new TempFile())
             {
@@ -105,7 +140,7 @@
                 file.Info.AppendLine("1,One;Unit");
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
-                var obj = store.Load(NormalizationComparer.Ordinal);
+                var obj = store.Load(NormalityComparer.Ordinal);
 
                 Assert.Equal("1", obj.ToCanonicalForm("One"));
                 Assert.Equal("1", obj.ToCanonicalForm("Unit"));
@@ -122,12 +157,12 @@
                 file.Info.AppendLine("1,Unit");
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
-                var obj = store.Load(NormalizationComparer.Ordinal);
+                var obj = store.Load(NormalityComparer.Ordinal);
 
                 Assert.Equal("1", obj.ToCanonicalForm("One"));
                 Assert.Equal("1", obj.ToCanonicalForm("Unit"));
-                Assert.Equal(1, obj.Items.Count());
-                Assert.Equal(2, obj.Items.First().Synonyms.Count);
+                Assert.Equal(1, obj.Count());
+                Assert.Equal(2, obj.First().Synonyms.Count);
             }
         }
 
@@ -140,7 +175,7 @@
                 file.Info.AppendLine("1,One");
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
-                var obj = store.Load(NormalizationComparer.Ordinal);
+                var obj = store.Load(NormalityComparer.Ordinal);
 
                 Assert.Equal("1", obj.ToCanonicalForm("One"));
             }
@@ -153,7 +188,7 @@
             {
                 file.Info.Delete();
 
-                var lexicon = new Lexicon(NormalizationComparer.Ordinal);
+                var lexicon = new Lexicon(NormalityComparer.Ordinal);
                 lexicon.Add("Example");
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
@@ -162,7 +197,7 @@
                 file.Info.Refresh();
                 Assert.True(file.Info.Exists);
 
-                Assert.True(store.Load(NormalizationComparer.Ordinal).Contains("Example"));
+                Assert.True(store.Load(NormalityComparer.Ordinal).Contains("Example"));
             }
         }
 
@@ -185,7 +220,7 @@
                 file.Info.Delete();
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
-                store.Save(new Lexicon(NormalizationComparer.Ordinal));
+                store.Save(new Lexicon(NormalityComparer.Ordinal));
 
                 file.Info.Refresh();
                 Assert.True(file.Info.Exists);
@@ -201,7 +236,7 @@
             {
                 file.Info.Delete();
 
-                var lexicon = new Lexicon(NormalizationComparer.Ordinal);
+                var lexicon = new Lexicon(NormalityComparer.Ordinal);
                 lexicon.Add("foo, bar");
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
@@ -210,7 +245,7 @@
                 file.Info.Refresh();
                 Assert.True(file.Info.Exists);
 
-                Assert.True(store.Load(NormalizationComparer.Ordinal).Contains("foo, bar"));
+                Assert.True(store.Load(NormalityComparer.Ordinal).Contains("foo, bar"));
             }
         }
 

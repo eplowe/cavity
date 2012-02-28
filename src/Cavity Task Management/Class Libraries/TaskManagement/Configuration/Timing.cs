@@ -17,9 +17,9 @@
         {
             var file = ToFile(typeof(T), "wait");
 
-            return !file.Exists
-                ? DateTime.MinValue
-                : file.ReadToEnd().To<DateTime>();
+            return file.Exists
+                ? file.ReadToEnd().To<DateTime>()
+                : DateTime.MinValue;
         }
 
         public static FileInfo ToFile(Type type, string extension)

@@ -18,7 +18,7 @@
         [Fact]
         public void op_Delete_Lexicon()
         {
-            var lexicon = new Lexicon(NormalizationComparer.Ordinal);
+            var lexicon = new Lexicon(NormalityComparer.Ordinal);
 
             var mock = new Mock<IStoreLexicon>();
             mock
@@ -33,15 +33,15 @@
         [Fact]
         public void op_Load_INormalizationComparer()
         {
-            var expected = new Lexicon(NormalizationComparer.Ordinal);
+            var expected = new Lexicon(NormalityComparer.Ordinal);
 
             var mock = new Mock<IStoreLexicon>();
             mock
-                .Setup(x => x.Load(NormalizationComparer.Ordinal))
+                .Setup(x => x.Load(NormalityComparer.Ordinal))
                 .Returns(expected)
                 .Verifiable();
 
-            var actual = mock.Object.Load(NormalizationComparer.Ordinal);
+            var actual = mock.Object.Load(NormalityComparer.Ordinal);
 
             Assert.Same(expected, actual);
 
@@ -51,7 +51,7 @@
         [Fact]
         public void op_Save_Lexicon()
         {
-            var lexicon = new Lexicon(NormalizationComparer.Ordinal);
+            var lexicon = new Lexicon(NormalityComparer.Ordinal);
 
             var mock = new Mock<IStoreLexicon>();
             mock

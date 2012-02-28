@@ -41,15 +41,12 @@
                 throw new ArgumentNullException("request");
             }
 
-            ActionResult result = null;
-
             var supported = SupportedContentTypes(controller).ToList();
-            foreach (var language in Languages.Where(supported.Contains))
-            {
-                var location = string.Concat(request.Path, '.', language, request.RawQueryString());
-                result = new SeeOtherResult(location);
-                break;
-            }
+            ActionResult result = Languages
+                .Where(supported.Contains)
+                .Select(language => request.Path.Append(".", language, request.RawQueryString()))
+                .Select(location => new SeeOtherResult(location))
+                .FirstOrDefault();
 
             return result ?? new NotAcceptableResult();
         }
@@ -66,50 +63,44 @@
             {
                 var any = false;
                 var languages = new Dictionary<string, decimal>();
-                var parts = value.Split(new[]
+                var parts = value.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                foreach (var part in parts)
                 {
-                    ','
-                }, 
-                                        StringSplitOptions.RemoveEmptyEntries);
-                for (var i = 0; i < parts.Length; i++)
-                {
-                    var part = parts[i];
-                    var index = part.IndexOf(';');
+                    var item = part;
+                    var index = item.IndexOf(';');
                     decimal q = 1;
                     if (-1 != index)
                     {
-                        q = XmlConvert.ToDecimal(part.Substring(index).RemoveFromStart(";q=", StringComparison.OrdinalIgnoreCase).Trim());
+                        q = XmlConvert.ToDecimal(item.Substring(index).RemoveFromStart(";q=", StringComparison.OrdinalIgnoreCase).Trim());
                         if (0 == q)
                         {
                             continue;
                         }
 
-                        part = part.Substring(0, index);
+                        item = item.Substring(0, index);
                     }
 
-                    part = part.Trim();
-                    if ("*".Equals(part, StringComparison.Ordinal))
+                    item = item.Trim();
+                    if ("*".Equals(item, StringComparison.Ordinal))
                     {
                         any = true;
                         continue;
                     }
 
-                    if (!languages.ContainsKey(part))
+                    if (!languages.ContainsKey(item))
                     {
-                        languages.Add(part, q);
+                        languages.Add(item, q);
                     }
                 }
 
-                foreach (var rank in new[]
+                var ranks = new[]
                 {
                     1m, 0.9m, 0.8m, 0.7m, 0.6m, 0.5m, 0.4m, 0.3m, 0.2m, 0.1m
-                })
+                };
+                foreach (var language in ranks.SelectMany(item => languages.Where(x => item == x.Value)
+                                                                      .OrderByDescending(x => x.Key)))
                 {
-                    var rank1 = rank;
-                    foreach (var language in languages.Where(x => rank1 == x.Value).OrderByDescending(x => x.Key))
-                    {
-                        yield return language.Key;
-                    }
+                    yield return language.Key;
                 }
 
                 if (any)

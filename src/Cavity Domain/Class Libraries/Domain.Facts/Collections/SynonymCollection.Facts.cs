@@ -23,7 +23,7 @@
         [Fact]
         public void ctor_INormalizationComparer()
         {
-            Assert.NotNull(new SynonymCollection(new Mock<INormalizationComparer>().Object));
+            Assert.NotNull(new SynonymCollection(new Mock<INormalityComparer>().Object));
         }
 
         [Fact]
@@ -35,7 +35,7 @@
         [Fact]
         public void op_Add_string()
         {
-            new SynonymCollection(NormalizationComparer.OrdinalIgnoreCase)
+            new SynonymCollection(NormalityComparer.OrdinalIgnoreCase)
             {
                 "Example"
             };
@@ -44,7 +44,7 @@
         [Fact]
         public void op_Clear()
         {
-            var obj = new SynonymCollection(NormalizationComparer.OrdinalIgnoreCase)
+            var obj = new SynonymCollection(NormalityComparer.OrdinalIgnoreCase)
             {
                 "Example"
             };
@@ -59,7 +59,7 @@
         [Fact]
         public void op_Contains_string()
         {
-            var obj = new SynonymCollection(NormalizationComparer.Ordinal)
+            var obj = new SynonymCollection(NormalityComparer.Ordinal)
             {
                 "Example"
             };
@@ -72,7 +72,7 @@
         {
             const string expected = "Example";
 
-            var obj = new SynonymCollection(NormalizationComparer.Ordinal)
+            var obj = new SynonymCollection(NormalityComparer.Ordinal)
             {
                 expected
             };
@@ -83,7 +83,7 @@
         [Fact]
         public void op_Contains_string_whenOrdinalIgnoreCase()
         {
-            var obj = new SynonymCollection(NormalizationComparer.OrdinalIgnoreCase)
+            var obj = new SynonymCollection(NormalityComparer.OrdinalIgnoreCase)
             {
                 "Example"
             };
@@ -96,7 +96,7 @@
         {
             const string expected = "Example";
 
-            var obj = new SynonymCollection(NormalizationComparer.OrdinalIgnoreCase)
+            var obj = new SynonymCollection(NormalityComparer.OrdinalIgnoreCase)
             {
                 expected
             };
@@ -110,7 +110,7 @@
         [Fact]
         public void prop_Count()
         {
-            var obj = new SynonymCollection(NormalizationComparer.OrdinalIgnoreCase);
+            var obj = new SynonymCollection(NormalityComparer.OrdinalIgnoreCase);
 
             Assert.Equal(0, obj.Count);
 

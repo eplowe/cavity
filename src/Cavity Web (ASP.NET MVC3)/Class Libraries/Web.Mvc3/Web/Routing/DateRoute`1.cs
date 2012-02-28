@@ -30,15 +30,11 @@
 
         public override RouteData GetRouteData(HttpContextBase httpContext)
         {
-            RouteData result = null;
-
             var route = GetRoute(httpContext);
-            if (null != route)
-            {
-                result = route.GetRouteData(httpContext);
-            }
 
-            return result;
+            return null == route
+                ? null
+                : route.GetRouteData(httpContext);
         }
 
         public override VirtualPathData GetVirtualPath(RequestContext requestContext, 
@@ -49,15 +45,11 @@
                 throw new ArgumentNullException("requestContext");
             }
 
-            VirtualPathData result = null;
-
             var route = GetRoute(requestContext.HttpContext);
-            if (null != route)
-            {
-                result = route.GetVirtualPath(requestContext, values);
-            }
 
-            return result;
+            return null == route
+                ? null
+                : route.GetVirtualPath(requestContext, values);
         }
 
         private Route GetRoute(HttpContextBase httpContext)
@@ -73,16 +65,21 @@
                 return null;
             }
 
-            if ('-' != path[5] ||
-                '-' != path[8])
+            if ('-' != path[5])
             {
                 return null;
             }
 
-            if (new[]
+            if ('-' != path[8])
+            {
+                return null;
+            }
+
+            var indices = new[]
             {
                 1, 2, 3, 4, 6, 7, 9, 10
-            }.Any(index => !char.IsDigit(path[index])))
+            };
+            if (indices.Any(index => !char.IsDigit(path[index])))
             {
                 return null;
             }

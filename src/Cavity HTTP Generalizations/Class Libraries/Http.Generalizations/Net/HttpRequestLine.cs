@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-    using Cavity.Properties;
 
     public class HttpRequestLine : ComparableObject
     {
@@ -48,7 +47,9 @@
 
         public static implicit operator string(HttpRequestLine obj)
         {
-            return ReferenceEquals(null, obj) ? null : obj.ToString();
+            return ReferenceEquals(null, obj)
+                       ? null
+                       : obj.ToString();
         }
 
         public static HttpRequestLine FromString(string value)

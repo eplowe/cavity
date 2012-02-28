@@ -7,7 +7,7 @@
     {
         void Delete(Lexicon lexicon);
 
-        Lexicon Load(INormalizationComparer comparer);
+        Lexicon Load(INormalityComparer comparer);
 
         void Save(Lexicon lexicon);
     }

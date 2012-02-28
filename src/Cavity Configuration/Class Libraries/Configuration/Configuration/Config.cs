@@ -56,7 +56,11 @@
 
             var fileMap = new ExeConfigurationFileMap
             {
+#if NET20
                 ExeConfigFilename = assembly.Location + ".config"
+#else
+                ExeConfigFilename = assembly.Location.Append(".config")
+#endif
             };
 
             var config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
@@ -152,7 +156,11 @@
                 return (T)_types[typeof(T)];
             }
 
+#if NET20
             return Xml<T>(new FileInfo(assembly.Location + ".xml"));
+#else
+            return Xml<T>(new FileInfo(assembly.Location.Append(".xml")));
+#endif
         }
 
         public static T Xml<T>(FileInfo file) where T : new()
@@ -192,9 +200,7 @@
 #else
             _xml = _xml ?? new HashSet<ConfigXml>();
             _xml.RemoveWhere(x => x.Changed);
-            var xml = _xml
-                .Where(x => string.Equals(x.Info.FullName, file.FullName, StringComparison.OrdinalIgnoreCase))
-                .FirstOrDefault();
+            var xml = _xml.FirstOrDefault(x => string.Equals(x.Info.FullName, file.FullName, StringComparison.OrdinalIgnoreCase));
 #endif
             if (null == xml)
             {

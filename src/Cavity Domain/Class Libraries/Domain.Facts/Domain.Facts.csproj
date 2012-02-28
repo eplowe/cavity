@@ -24,22 +24,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.770\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    <Reference Include="Cavity.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.Data.Csv">
-      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.770\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
+    <Reference Include="Cavity.Data.Csv, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
     </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Compile Include="Collections\INormalizationComparer.Facts.cs" />
-    <Compile Include="Collections\LevenshteinComparer.Derived.cs" />
+    <Compile Include="Collections\INormalityComparer.Facts.cs" />
     <Compile Include="Collections\LevenshteinComparer.Facts.cs" />
-    <Compile Include="Collections\NormalizationComparer.Facts.cs" />
     <Compile Include="Collections\SynonymCollection.Facts.cs" />
+    <Compile Include="Collections\LexicalCollection.Facts.cs" />
+    <Compile Include="Collections\NormalityComparer.Facts.cs" />
+    <Compile Include="Collections\UnderscoreComparer.cs" />
     <Compile Include="Data\CsvLexiconStorage.Facts.cs" />
     <Compile Include="Data\IStoreLexicon.Facts.cs" />
     <Compile Include="Models\Coordinates.Facts.cs" />

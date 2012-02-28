@@ -109,11 +109,15 @@
         {
             var context = Static<HttpContextBase>.Instance ?? new HttpContextWrapper(HttpContext.Current);
             var response = context.Response;
-            if (response.ContentType.StartsWith("text/html", StringComparison.OrdinalIgnoreCase)
-                || response.ContentType.StartsWith("application/xhtml+xml", StringComparison.OrdinalIgnoreCase)
-                || response.ContentType.StartsWith("application/atom+xml", StringComparison.OrdinalIgnoreCase)
-                ||
-                response.ContentType.StartsWith("application/rdf+xml", StringComparison.OrdinalIgnoreCase))
+            var prefixes = new[]
+            {
+                "text/html", "application/xhtml+xml", "application/atom+xml", "application/rdf+xml"
+            };
+#if NET20
+            if (StringExtensionMethods.StartsWithAny(response.ContentType, StringComparison.OrdinalIgnoreCase, prefixes))
+#else
+            if (response.ContentType.StartsWithAny(StringComparison.OrdinalIgnoreCase, prefixes))
+#endif
             {
                 buffer = response
                     .ContentEncoding
@@ -122,17 +126,21 @@
 
             UnderlyingStream.Write(buffer, offset, buffer.Length);
 
-            if (0 == offset ||
-                Bytes.Count == offset)
+            if (0 == offset)
             {
                 Bytes.AddRange(buffer);
+                return;
             }
-            else
+
+            if (Bytes.Count == offset)
             {
-                for (var i = 0; i < buffer.Length; i++)
-                {
-                    Bytes[offset + i] = buffer[i];
-                }
+                Bytes.AddRange(buffer);
+                return;
+            }
+
+            for (var i = 0; i < buffer.Length; i++)
+            {
+                Bytes[offset + i] = buffer[i];
             }
         }
     }

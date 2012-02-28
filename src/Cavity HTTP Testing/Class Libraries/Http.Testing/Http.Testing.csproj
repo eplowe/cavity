@@ -14,11 +14,11 @@
     <Compile Include="IHttpExpectations.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.770\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    <Reference Include="Cavity.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.Http.Generalizations">
-      <HintPath>..\..\packages\Cavity.Http.Generalizations.1.1.0.770\lib\$(TargetFrameworkVersionName)\Cavity.Http.Generalizations.dll</HintPath>
+    <Reference Include="Cavity.Http.Generalizations, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cavity.Http.Generalizations.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Http.Generalizations.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

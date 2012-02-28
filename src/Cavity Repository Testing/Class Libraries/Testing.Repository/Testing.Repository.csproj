@@ -78,10 +78,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.770\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Repository">
-      <HintPath>..\..\packages\Cavity.Repository.1.1.0.770\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Repository.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
