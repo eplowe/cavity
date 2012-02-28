@@ -33,13 +33,13 @@
         {
             var obj = new Coordinates
             {
-                Latitude = 53.493192m,
+                Latitude = 53.493192m, 
                 Longitude = -2.105470m
             };
 
             var comparand = new Coordinates
             {
-                Latitude = 53.493192m,
+                Latitude = 53.493192m, 
                 Longitude = -2.105470m
             };
 
@@ -52,7 +52,7 @@
             var obj = new Coordinates();
             var comparand = new Coordinates
             {
-                Latitude = 53.493192m,
+                Latitude = 53.493192m, 
                 Longitude = -2.105470m
             };
 
@@ -64,13 +64,13 @@
         {
             var obj = new Coordinates
             {
-                Latitude = 53.493192m,
+                Latitude = 53.493192m, 
                 Longitude = -2.105470m
             };
 
             var comparand = new Coordinates
             {
-                Latitude = 53.493192m,
+                Latitude = 53.493192m, 
                 Longitude = -2.105470m
             };
 
@@ -82,7 +82,7 @@
         {
             var comparand = new Coordinates
             {
-                Latitude = 53.493192m,
+                Latitude = 53.493192m, 
                 Longitude = -2.105470m
             };
 
@@ -109,7 +109,7 @@
             const int expected = -841705376;
             var obj = new Coordinates
             {
-                Latitude = 53.493192m,
+                Latitude = 53.493192m, 
                 Longitude = -2.105470m
             };
 
@@ -178,7 +178,7 @@
         {
             var expected = new Coordinates
             {
-                Latitude = 53.493192m,
+                Latitude = 53.493192m, 
                 Longitude = -2.105470m
             };
             var actual = "<coordinates latitude='53.493192' longitude='-2.105470' />".XmlDeserialize<Coordinates>();
@@ -200,7 +200,7 @@
         {
             var obj = new Coordinates
             {
-                Latitude = 53.493192m,
+                Latitude = 53.493192m, 
                 Longitude = -2.105470m
             };
 

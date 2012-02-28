@@ -45,16 +45,23 @@
                 throw new ArgumentNullException("type");
             }
 
-            if (type.IsClass &&
-                type.IsSubclassOf(typeof(Controller)))
+            if (!type.IsClass)
             {
-                if (!skipInterface &&
-                    null != type.GetInterface("IRegisterRoutes"))
-                {
-                    var instance = (IRegisterRoutes)Activator.CreateInstance(type);
-                    instance.Register(routes);
-                }
+                return;
             }
+
+            if (!type.IsSubclassOf(typeof(Controller)))
+            {
+                return;
+            }
+
+            if (skipInterface || null == type.GetInterface("IRegisterRoutes"))
+            {
+                return;
+            }
+
+            var instance = (IRegisterRoutes)Activator.CreateInstance(type);
+            instance.Register(routes);
         }
     }
 }

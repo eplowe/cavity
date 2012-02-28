@@ -18,6 +18,108 @@
     public static class StringExtensionMethods
     {
 #if NET20
+        public static string Append(string obj, 
+                                    params char[] args)
+#else
+        public static string Append(this string obj,
+                                    params char[] args)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (null == args)
+            {
+                return obj;
+            }
+
+            switch (args.Length)
+            {
+                case 0:
+                    return obj;
+                case 1:
+                    return string.Concat(obj, args[0]);
+                case 2:
+                    return string.Concat(obj, args[0], args[1]);
+                case 3:
+                    return string.Concat(obj, args[0], args[1], args[2]);
+                case 4:
+                    return string.Concat(obj, args[0], args[1], args[2], args[3]);
+                case 5:
+                    return string.Concat(obj, args[0], args[1], args[2], args[3], args[4]);
+                case 6:
+                    return string.Concat(obj, args[0], args[1], args[2], args[3], args[4], args[5]);
+                case 7:
+                    return string.Concat(obj, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+                case 8:
+                    return string.Concat(obj, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
+                case 9:
+                    return string.Concat(obj, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]);
+                default:
+                    var buffer = new StringBuilder(obj);
+                    foreach (var arg in args)
+                    {
+                        buffer.Append(arg);
+                    }
+
+                    return buffer.ToString();
+            }
+        }
+
+#if NET20
+        public static string Append(string obj, 
+                                    params string[] args)
+#else
+        public static string Append(this string obj,
+                                    params string[] args)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (null == args)
+            {
+                return obj;
+            }
+
+            switch (args.Length)
+            {
+                case 0:
+                    return obj;
+                case 1:
+                    return string.Concat(obj, args[0]);
+                case 2:
+                    return string.Concat(obj, args[0], args[1]);
+                case 3:
+                    return string.Concat(obj, args[0], args[1], args[2]);
+                case 4:
+                    return string.Concat(obj, args[0], args[1], args[2], args[3]);
+                case 5:
+                    return string.Concat(obj, args[0], args[1], args[2], args[3], args[4]);
+                case 6:
+                    return string.Concat(obj, args[0], args[1], args[2], args[3], args[4], args[5]);
+                case 7:
+                    return string.Concat(obj, args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+                case 8:
+                    return string.Concat(obj, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
+                case 9:
+                    return string.Concat(obj, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]);
+                default:
+                    var buffer = new StringBuilder(obj);
+                    foreach (var arg in args)
+                    {
+                        buffer.Append(arg);
+                    }
+
+                    return buffer.ToString();
+            }
+        }
+
+#if NET20
         public static bool Contains(string obj, 
                                     string value, 
                                     StringComparison comparisonType)
@@ -33,6 +135,98 @@
             }
 
             return -1 != obj.IndexOf(value, comparisonType);
+        }
+
+#if NET20
+        public static bool ContainsAny(string obj, 
+                                       params char[] args)
+#else
+        public static bool ContainsAny(this string obj,
+                                       params char[] args)
+#endif
+        {
+            if (null == obj)
+            {
+                return false;
+            }
+
+            if (0 == obj.Length)
+            {
+                return false;
+            }
+
+            if (null == args)
+            {
+                return false;
+            }
+
+            if (0 == args.Length)
+            {
+                return false;
+            }
+
+#if NET20
+            foreach (var arg in args)
+            {
+                if (-1 == obj.IndexOf(arg))
+                {
+                    continue;
+                }
+
+                return true;
+            }
+
+            return false;
+#else
+            return args.Any(arg => -1 != obj.IndexOf(arg));
+#endif
+        }
+
+#if NET20
+        public static bool ContainsAny(string obj, 
+                                       StringComparison comparison, 
+                                       params string[] args)
+#else
+        public static bool ContainsAny(this string obj,
+                                       StringComparison comparison, 
+                                       params string[] args)
+#endif
+        {
+            if (null == obj)
+            {
+                return false;
+            }
+
+            if (0 == obj.Length)
+            {
+                return false;
+            }
+
+            if (null == args)
+            {
+                return false;
+            }
+
+            if (0 == args.Length)
+            {
+                return false;
+            }
+
+#if NET20
+            foreach (var arg in args)
+            {
+                if (-1 == obj.IndexOf(arg, comparison))
+                {
+                    continue;
+                }
+
+                return true;
+            }
+
+            return false;
+#else
+            return args.Any(arg => -1 != obj.IndexOf(arg, comparison));
+#endif
         }
 
 #if !NET20
@@ -296,7 +490,7 @@
                        ? string.Empty
                        : args.Aggregate(obj, 
                                         (current, 
-                                         arg) => current.Replace(arg.ToString(), string.Empty));
+                                         arg) => current.Replace(arg.ToString(CultureInfo.InvariantCulture), string.Empty));
 #endif
         }
 
@@ -532,6 +726,27 @@
         }
 
 #if NET20
+        public static bool SameLengthAs(string obj,
+                                        string value)
+#else
+        public static bool SameLengthAs(this string obj,
+                                        string value)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (null == value)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            return obj.Length == value.Length;
+        }
+
+#if NET20
         public static bool SameIndexesOfEach(string obj, 
                                              params char[] args)
 #else
@@ -589,6 +804,29 @@
                 {
                     separator
                 }, 
+                options);
+        }
+
+#if NET20
+        public static string[] Split(string obj, 
+                                     string separator, 
+                                     StringSplitOptions options)
+#else
+        public static string[] Split(this string obj,
+                                     string separator,
+                                     StringSplitOptions options)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return obj.Split(
+                new[]
+                {
+                    separator
+                },
                 options);
         }
 

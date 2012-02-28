@@ -25,7 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="log4net">
-      <HintPath>..\..\packages\log4net.1.2.11\lib\$(TargetFrameworkVersionName)-full\log4net.dll</HintPath>
+      <HintPath>..\..\packages\log4net.2.0.0\lib\$(TargetFrameworkVersionName)-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>

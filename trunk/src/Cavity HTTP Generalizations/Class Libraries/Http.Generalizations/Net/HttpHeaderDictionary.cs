@@ -35,11 +35,7 @@
             }
 
             var result = new HttpHeaderDictionary();
-            var lines = value.Split(new[]
-            {
-                Environment.NewLine
-            }, 
-                                    StringSplitOptions.None).ToQueue();
+            var lines = value.Split(Environment.NewLine, StringSplitOptions.None).ToQueue();
             if (0 == lines.Count)
             {
                 return result;

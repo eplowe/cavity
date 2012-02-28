@@ -35,13 +35,15 @@
             ContentType = new ContentType(contentType).MediaType;
 
             var xml = model.XmlSerialize() as XmlDocument;
-            if (null != xml)
+            if (null == xml)
             {
-                xml.CreateXmlDeclaration("1.0", "utf-8", null);
-                xml.PreserveWhitespace = false;
-
-                Content = xml.OuterXml;
+                return;
             }
+
+            xml.CreateXmlDeclaration("1.0", "utf-8", null);
+            xml.PreserveWhitespace = false;
+
+            Content = xml.OuterXml;
         }
 
         public override void ExecuteResult(ControllerContext context)

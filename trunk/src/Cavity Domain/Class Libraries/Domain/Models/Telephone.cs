@@ -22,7 +22,9 @@
 
         public static implicit operator Telephone(string value)
         {
-            return ReferenceEquals(null, value) ? null : FromString(value);
+            return ReferenceEquals(null, value)
+                       ? null
+                       : FromString(value);
         }
 
         public static Telephone FromString(string value)

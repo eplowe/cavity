@@ -58,7 +58,7 @@
 
             private set
             {
-                if (0 == ToContentTypes(value).Count())
+                if (!ToContentTypes(value).Any())
                 {
                     throw new ArgumentOutOfRangeException("value");
                 }
@@ -79,13 +79,10 @@
                 throw new ArgumentNullException("mediaTypes");
             }
 
-            var parts = mediaTypes.Split(new[]
-            {
-                ','
-            }, 
-            StringSplitOptions.RemoveEmptyEntries);
-
-            return parts.Select(part => new ContentType(part.Trim())).ToList();
+            return mediaTypes
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Select(part => new ContentType(part.Trim()))
+                .ToList();
         }
     }
 }

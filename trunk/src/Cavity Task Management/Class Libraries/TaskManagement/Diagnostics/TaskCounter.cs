@@ -13,15 +13,17 @@
 
         public static void Increment()
         {
-            if (_exists)
+            if (!_exists)
             {
-                using (var counter = new PerformanceCounter(Category, Counter, false)
-                {
-                    MachineName = "."
-                })
-                {
-                    counter.Increment();
-                }
+                return;
+            }
+
+            using (var counter = new PerformanceCounter(Category, Counter, false)
+            {
+                MachineName = "."
+            })
+            {
+                counter.Increment();
             }
         }
 

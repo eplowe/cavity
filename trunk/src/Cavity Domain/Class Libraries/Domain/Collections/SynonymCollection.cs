@@ -3,25 +3,20 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-#if !NET20
-    using System.Linq;
-#endif
-    using Cavity.Data;
 
     public class SynonymCollection : IEnumerable<string>
     {
-        private INormalizationComparer _comparer;
+        private INormalityComparer _comparer;
 
-        public SynonymCollection(INormalizationComparer comparer)
+        public SynonymCollection(INormalityComparer comparer)
             : this()
         {
             Comparer = comparer;
+            Items = new Dictionary<string, string>(comparer);
         }
 
         private SynonymCollection()
         {
-            Items = new Collection<KeyStringPair>();
         }
 
         public int Count
@@ -32,7 +27,7 @@
             }
         }
 
-        protected INormalizationComparer Comparer
+        protected INormalityComparer Comparer
         {
             get
             {
@@ -50,11 +45,11 @@
             }
         }
 
-        protected Collection<KeyStringPair> Items { get; private set; }
+        protected Dictionary<string, string> Items { get; private set; }
 
         public virtual void Add(string value)
         {
-            Items.Add(new KeyStringPair(value, Comparer.Normalize(value)));
+            Items.Add(Comparer.Normalize(value), value);
         }
 
         public virtual void Clear()
@@ -64,19 +59,7 @@
 
         public virtual bool Contains(string value)
         {
-#if NET20
-            foreach (var item in Items)
-            {
-                if (0 == Comparer.Compare(item.Value, value))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-#else
-            return Items.Any(item => 0 == Comparer.Compare(item.Value, value));
-#endif
+            return Items.ContainsKey(value);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -86,14 +69,7 @@
 
         public virtual IEnumerator<string> GetEnumerator()
         {
-#if NET20
-            foreach (var item in Items)
-            {
-                yield return item.Key;
-            }
-#else
-            return Items.Select(item => item.Key).GetEnumerator();
-#endif
+            return Items.Values.GetEnumerator();
         }
     }
 }

@@ -35,15 +35,12 @@
                 throw new ArgumentNullException("request");
             }
 
-            ActionResult result = null;
-
             var supported = SupportedContentTypes(controller);
-            foreach (var type in ContentTypes.Where(supported.ContainsKey))
-            {
-                var location = string.Concat(request.Path, '.', supported[type], request.RawQueryString());
-                result = new SeeOtherResult(location);
-                break;
-            }
+            ActionResult result = ContentTypes
+                .Where(supported.ContainsKey)
+                .Select(type => request.Path.Append(".", supported[type], request.RawQueryString()))
+                .Select(location => new SeeOtherResult(location))
+                .FirstOrDefault();
 
             return result ?? new NotAcceptableResult();
         }
@@ -63,11 +60,15 @@
                 if (type.MediaType.Equals("*/*", StringComparison.OrdinalIgnoreCase))
                 {
                     any = true;
+                    continue;
                 }
-                else if (type.MediaType.EndsWith("/*", StringComparison.OrdinalIgnoreCase))
+                
+                if (!type.MediaType.EndsWith("/*", StringComparison.OrdinalIgnoreCase))
                 {
-                    result.ContentTypes.Add(type);
+                    continue;
                 }
+
+                result.ContentTypes.Add(type);
             }
 
             if (any)
@@ -84,26 +85,14 @@
 
             if (!string.IsNullOrEmpty(value))
             {
-                var parts = value.Split(new[]
+                var parts = value.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                foreach (var type in (from part in parts
+                                      let index = part.IndexOf(';')
+                                      select -1 == index ? part.Trim() : part.Substring(0, index).Trim())
+                                      .Select(item => new ContentType("*".Equals(item, StringComparison.Ordinal) ? "*/*" : item))
+                                      .Where(type => !result.Contains(type)))
                 {
-                    ','
-                }, 
-                                        StringSplitOptions.RemoveEmptyEntries);
-                for (var i = 0; i < parts.Length; i++)
-                {
-                    var part = parts[i];
-                    var index = part.IndexOf(';');
-                    part = -1 == index ? part.Trim() : part.Substring(0, index).Trim();
-                    if ("*".Equals(part, StringComparison.Ordinal))
-                    {
-                        part = "*/*";
-                    }
-
-                    var type = new ContentType(part);
-                    if (!result.Contains(type))
-                    {
-                        result.Add(type);
-                    }
+                    result.Add(type);
                 }
             }
 

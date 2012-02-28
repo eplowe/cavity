@@ -16,7 +16,9 @@
 
             var index = request.RawUrl.IndexOf('?');
 
-            return (-1 == index) ? string.Empty : request.RawUrl.Substring(index);
+            return (-1 == index)
+                ? string.Empty
+                : request.RawUrl.Substring(index);
         }
 
         public static string RawQueryString(this HttpRequestBase request, 
@@ -72,20 +74,18 @@
         public static AlphaDecimal? Token(this HttpRequestBase request)
         {
             var parts = RawQueryStringParts(request);
-            return 0 != parts.Length
-                       ? Token(parts[0])
-                       : null;
+            return 0 == parts.Length
+                       ? null
+                       : Token(parts[0]);
         }
 
         private static string[] RawQueryStringParts(HttpRequestBase request)
         {
             var query = request.RawQueryString();
-            query = query.StartsWith("?", StringComparison.OrdinalIgnoreCase) ? query.Substring(1) : query;
-            return query.Split(new[]
-            {
-                '&'
-            }, 
-                               StringSplitOptions.RemoveEmptyEntries);
+            query = query.StartsWith("?", StringComparison.OrdinalIgnoreCase)
+                ? query.Substring(1)
+                : query;
+            return query.Split('&', StringSplitOptions.RemoveEmptyEntries);
         }
 
         private static AlphaDecimal? Token(string value)
@@ -105,8 +105,12 @@
                 return null;
             }
 
-            if (!value.StartsWith("[", StringComparison.Ordinal) ||
-                !value.EndsWith("]", StringComparison.Ordinal))
+            if (!value.StartsWith("[", StringComparison.Ordinal))
+            {
+                return null;
+            }
+
+            if (!value.EndsWith("]", StringComparison.Ordinal))
             {
                 return null;
             }

@@ -36,11 +36,11 @@
             var options = "OPTIONS".Equals(request.HttpMethod, StringComparison.OrdinalIgnoreCase);
 
             if (!options &&
-                !IsNotAllowed(request.HttpMethod))
+                IsAllowed(request.HttpMethod))
             {
                 return;
             }
-
+            
             var response = filterContext.HttpContext.Response;
             response.Clear();
             var filter = response.Filter as WrappedStream;
@@ -64,25 +64,16 @@
             response.End();
         }
 
-        private bool IsNotAllowed(string method)
+        private bool IsAllowed(string method)
         {
-            var allowed = false;
-
-            if (!string.IsNullOrEmpty(Methods))
+            if (string.IsNullOrEmpty(Methods))
             {
-                var parts = Methods.Split(new[]
-                {
-                    ','
-                }, 
-                StringSplitOptions.RemoveEmptyEntries);
-
-                if (parts.Any(part => part.Trim().Equals(method, StringComparison.OrdinalIgnoreCase)))
-                {
-                    allowed = true;
-                }
+                return true;
             }
 
-            return !allowed;
+            return Methods
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Any(part => part.Trim().Equals(method, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

@@ -179,7 +179,11 @@
 
             if (quote)
             {
-                Line = string.Concat(line, Environment.NewLine, ReadLine());
+#if NET20
+                Line = StringExtensionMethods.Append(line, Environment.NewLine, ReadLine());
+#else
+                Line = line.Append(Environment.NewLine, ReadLine());
+#endif
                 LineNumber++;
                 return Parse(Line);
             }

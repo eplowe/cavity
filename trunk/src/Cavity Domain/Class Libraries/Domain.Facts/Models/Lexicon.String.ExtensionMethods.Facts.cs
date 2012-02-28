@@ -16,7 +16,7 @@
         public void op_RemoveMatch_stringEmpty_Lexicon()
         {
             var expected = string.Empty;
-            var actual = string.Empty.RemoveMatch(new Lexicon(NormalizationComparer.Ordinal));
+            var actual = string.Empty.RemoveMatch(new Lexicon(NormalityComparer.Ordinal));
 
             Assert.Equal(expected, actual);
         }
@@ -24,7 +24,7 @@
         [Fact]
         public void op_RemoveMatch_stringNull_Lexicon()
         {
-            Assert.Null((null as string).RemoveMatch(new Lexicon(NormalizationComparer.Ordinal)));
+            Assert.Null((null as string).RemoveMatch(new Lexicon(NormalityComparer.Ordinal)));
         }
 
         [Fact]
@@ -32,7 +32,7 @@
         {
             const string expected = "Foo";
 
-            var lexicon = new Lexicon(NormalizationComparer.Ordinal);
+            var lexicon = new Lexicon(NormalityComparer.Ordinal);
             lexicon.Add("Bar");
 
             var actual = expected.RemoveMatch(lexicon);
@@ -51,7 +51,7 @@
         {
             var expected = string.Empty;
 
-            var lexicon = new Lexicon(NormalizationComparer.Ordinal);
+            var lexicon = new Lexicon(NormalityComparer.Ordinal);
             lexicon.Add("Example");
 
             var actual = "Example".RemoveMatch(lexicon);

@@ -13,7 +13,7 @@
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
 
-            return typeof(string).Equals(sourceType) || base.CanConvertFrom(context, sourceType);
+            return typeof(string) == sourceType || base.CanConvertFrom(context, sourceType);
         }
 
         public override object ConvertFrom(ITypeDescriptorContext context,

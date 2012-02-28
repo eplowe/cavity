@@ -28,8 +28,11 @@
 
             return ' ' == value[0]
                 || ' ' == value[value.Length - 1]
-                || value.Contains(",")
-                || value.Contains("\n")
+#if NET20
+                || StringExtensionMethods.ContainsAny(value, ',', '\n')
+#else
+                || value.ContainsAny(',', '\n')
+#endif
                 || value.Contains(Environment.NewLine)
                        ? string.Concat("\"", value, "\"")
                        : value;

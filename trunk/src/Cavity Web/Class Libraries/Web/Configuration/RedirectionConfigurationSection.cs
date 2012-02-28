@@ -72,14 +72,11 @@
 
         private AbsoluteUri Host(Uri uri)
         {
-            foreach (var baseUri in from host in Hosts
-                                    where uri.Host.Equals(host.From)
-                                    select new Uri("{0}://{1}".FormatWith(uri.Scheme, host.To)))
-            {
-                return new Uri(baseUri, new Uri(uri.PathAndQuery, UriKind.Relative));
-            }
-
-            return null;
+            return (from host in Hosts
+                    where uri.Host.Equals(host.From)
+                    select new Uri("{0}://{1}".FormatWith(uri.Scheme, host.To)))
+                    .Select(baseUri => new Uri(baseUri, new Uri(uri.PathAndQuery, UriKind.Relative)))
+                    .FirstOrDefault();
         }
 
         private AbsoluteUri Relative(Uri uri)

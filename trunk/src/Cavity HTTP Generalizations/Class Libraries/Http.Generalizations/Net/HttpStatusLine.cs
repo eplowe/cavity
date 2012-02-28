@@ -68,7 +68,9 @@
 
         public static implicit operator string(HttpStatusLine obj)
         {
-            return ReferenceEquals(null, obj) ? null : obj.ToString();
+            return ReferenceEquals(null, obj)
+                       ? null
+                       : obj.ToString();
         }
 
         public static HttpStatusLine FromString(string value)

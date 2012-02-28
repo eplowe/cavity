@@ -14,7 +14,9 @@
         [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Host names are canonically lower case.")]
         public override string ToString()
         {
-            return "{0}".FormatWith(Name).ToLowerInvariant();
+            return null == Name
+                       ? string.Empty
+                       : Name.ToLowerInvariant();
         }
     }
 }

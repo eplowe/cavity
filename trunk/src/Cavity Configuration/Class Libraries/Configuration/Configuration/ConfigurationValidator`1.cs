@@ -11,7 +11,7 @@
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
 
-            return typeof(T).Equals(type);
+            return typeof(T) == type;
         }
 
         public override void Validate(object value)

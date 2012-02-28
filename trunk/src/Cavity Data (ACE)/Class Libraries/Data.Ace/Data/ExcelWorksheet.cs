@@ -8,6 +8,9 @@
     using System.Data.SqlClient;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+#if !NET20
+    using System.Linq;
+#endif
     using Cavity.Collections;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't a collection.")]
@@ -75,15 +78,16 @@
                             yield break;
                         }
 
+#if NET20
                         var columns = new List<string>();
                         foreach (DataRow row in schema.Rows)
                         {
-#if NET20
                             columns.Add(row["ColumnName"].ToString());
-#else
-                            columns.Add(row.Field<string>("ColumnName"));
-#endif
                         }
+#else
+                        var columns = (from DataRow row in schema.Rows
+                                       select row.Field<string>("ColumnName")).ToList();
+#endif
 
                         while (reader.Read())
                         {

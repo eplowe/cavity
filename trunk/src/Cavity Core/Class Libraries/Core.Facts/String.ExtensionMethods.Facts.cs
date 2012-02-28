@@ -1,6 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Xml;
     using Xunit;
@@ -14,21 +15,327 @@
         }
 
         [Fact]
-        public void op_Contains_stringEmpty_StringComparison()
+        public void op_Append_string_chars()
+        {
+            const string expected = "cat dog";
+            var actual = "cat".Append(" dog");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_chars2()
+        {
+            const string expected = "12";
+            var actual = string.Empty.Append('1', '2');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_chars3()
+        {
+            const string expected = "123";
+            var actual = string.Empty.Append('1', '2', '3');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_chars4()
+        {
+            const string expected = "1234";
+            var actual = string.Empty.Append('1', '2', '3', '4');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_chars5()
+        {
+            const string expected = "12345";
+            var actual = string.Empty.Append('1', '2', '3', '4', '5');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_chars6()
+        {
+            const string expected = "123456";
+            var actual = string.Empty.Append('1', '2', '3', '4', '5', '6');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_chars7()
+        {
+            const string expected = "1234567";
+            var actual = string.Empty.Append('1', '2', '3', '4', '5', '6', '7');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_chars8()
+        {
+            const string expected = "12345678";
+            var actual = string.Empty.Append('1', '2', '3', '4', '5', '6', '7', '8');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_chars9()
+        {
+            const string expected = "123456789";
+            var actual = string.Empty.Append('1', '2', '3', '4', '5', '6', '7', '8', '9');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_chars10()
+        {
+            const string expected = "1234567890";
+            var actual = string.Empty.Append('1', '2', '3', '4', '5', '6', '7', '8', '9', '0');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringNull_chars()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).Append('+'));
+        }
+
+        [Fact]
+        public void op_Append_string_charsEmpty()
+        {
+            const string expected = "example";
+            var actual = expected.Append(new List<char>().ToArray());
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_string_charsNull()
+        {
+            const string expected = "example";
+            var actual = expected.Append(null as char[]);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_string_strings()
+        {
+            const string expected = "cat dog";
+            var actual = "cat".Append(" dog");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_strings2()
+        {
+            const string expected = "12";
+            var actual = string.Empty.Append("1", "2");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_strings3()
+        {
+            const string expected = "123";
+            var actual = string.Empty.Append("1", "2", "3");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_strings4()
+        {
+            const string expected = "1234";
+            var actual = string.Empty.Append("1", "2", "3", "4");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_strings5()
+        {
+            const string expected = "12345";
+            var actual = string.Empty.Append("1", "2", "3", "4", "5");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_strings6()
+        {
+            const string expected = "123456";
+            var actual = string.Empty.Append("1", "2", "3", "4", "5", "6");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_strings7()
+        {
+            const string expected = "1234567";
+            var actual = string.Empty.Append("1", "2", "3", "4", "5", "6", "7");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_strings8()
+        {
+            const string expected = "12345678";
+            var actual = string.Empty.Append("1", "2", "3", "4", "5", "6", "7", "8");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_strings9()
+        {
+            const string expected = "123456789";
+            var actual = string.Empty.Append("1", "2", "3", "4", "5", "6", "7", "8", "9");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringEmpty_strings10()
+        {
+            const string expected = "1234567890";
+            var actual = string.Empty.Append("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_stringNull_strings()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).Append("example"));
+        }
+
+        [Fact]
+        public void op_Append_string_stringEmpty()
+        {
+            const string expected = "example";
+            var actual = expected.Append(string.Empty);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_string_stringNull()
+        {
+            const string expected = "example";
+            var actual = expected.Append(null as string);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_string_stringsEmpty()
+        {
+            const string expected = "example";
+            var actual = expected.Append(new List<string>().ToArray());
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_string_stringsNull()
+        {
+            const string expected = "example";
+            var actual = expected.Append(null as string[]);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Contains_stringEmpty_string_StringComparison()
         {
             Assert.False(string.Empty.Contains("example", StringComparison.Ordinal));
         }
 
         [Fact]
-        public void op_Contains_stringNull_StringComparison()
+        public void op_Contains_stringNull_string_StringComparison()
         {
             Assert.Throws<ArgumentNullException>(() => (null as string).Contains("example", StringComparison.Ordinal));
         }
 
         [Fact]
-        public void op_Contains_string_StringComparison()
+        public void op_Contains_string_string_StringComparison()
         {
             Assert.True("abc".Contains("B", StringComparison.OrdinalIgnoreCase));
+        }
+
+        [Fact]
+        public void op_ContainsAny_stringEmpty_StringComparison_chars()
+        {
+            Assert.False(string.Empty.ContainsAny('a', 'b', 'c'));
+        }
+
+        [Fact]
+        public void op_ContainsAny_stringNull_StringComparison_chars()
+        {
+            Assert.False((null as string).ContainsAny('a'));
+        }
+
+        [Fact]
+        public void op_ContainsAny_string_StringComparison_chars()
+        {
+            Assert.True("example".ContainsAny('a'));
+        }
+
+        [Fact]
+        public void op_ContainsAny_string_StringComparison_charsEmpty()
+        {
+            Assert.False("example".ContainsAny());
+        }
+
+        [Fact]
+        public void op_ContainsAny_string_StringComparison_charsNull()
+        {
+            Assert.False("example".ContainsAny(null as char[]));
+        }
+
+        [Fact]
+        public void op_ContainsAny_stringEmpty_StringComparison_strings()
+        {
+            Assert.False(string.Empty.ContainsAny(StringComparison.Ordinal, "abc", "xyz"));
+        }
+
+        [Fact]
+        public void op_ContainsAny_stringNull_StringComparison_strings()
+        {
+            Assert.False((null as string).ContainsAny(StringComparison.Ordinal, "example"));
+        }
+
+        [Fact]
+        public void op_ContainsAny_string_StringComparison_strings()
+        {
+            Assert.True("example".ContainsAny(StringComparison.OrdinalIgnoreCase, "A"));
+        }
+
+        [Fact]
+        public void op_ContainsAny_string_StringComparison_stringsEmpty()
+        {
+            Assert.False("example".ContainsAny(StringComparison.Ordinal));
+        }
+
+        [Fact]
+        public void op_ContainsAny_string_StringComparison_stringsNull()
+        {
+            Assert.False("example".ContainsAny(StringComparison.Ordinal, null as string[]));
         }
 
         [Fact]
@@ -763,6 +1070,36 @@
         }
 
         [Fact]
+        public void op_SameLengthAs_string_string()
+        {
+            Assert.True("Abba".SameLengthAs("Zulu"));
+        }
+
+        [Fact]
+        public void op_SameLengthAs_string_stringEmpty()
+        {
+            Assert.False("example".SameLengthAs(string.Empty));
+        }
+
+        [Fact]
+        public void op_SameLengthAs_stringEmpty_stringEmpty()
+        {
+            Assert.True(string.Empty.SameLengthAs(string.Empty));
+        }
+
+        [Fact]
+        public void op_SameLengthAs_string_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => "example".SameLengthAs(null));
+        }
+
+        [Fact]
+        public void op_SameLengthAs_stringNull_string()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).SameLengthAs("example"));
+        }
+
+        [Fact]
         public void op_SameIndexesOfEach_stringAbba_charsAa()
         {
             Assert.True("Abba".SameIndexesOfEach('A', 'a'));
@@ -827,6 +1164,20 @@
         public void op_Split_string_char_StringSplitOptions()
         {
             var actual = "a;;b".Split(';', StringSplitOptions.RemoveEmptyEntries);
+
+            Assert.Equal(2, actual.Length);
+        }
+
+        [Fact]
+        public void op_Split_stringNull_string_StringSplitOptions()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).Split(";", StringSplitOptions.RemoveEmptyEntries));
+        }
+
+        [Fact]
+        public void op_Split_string_string_StringSplitOptions()
+        {
+            var actual = "a;;b".Split(";", StringSplitOptions.RemoveEmptyEntries);
 
             Assert.Equal(2, actual.Length);
         }
