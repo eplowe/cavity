@@ -7,16 +7,20 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collections\CaverphoneComparer.cs" />
+    <Compile Include="Collections\MetaphoneComparer.cs" />
     <Compile Include="Collections\INormalityComparer.cs" />
     <Compile Include="Collections\LevenshteinComparer.cs" />
     <Compile Include="Collections\LexicalCollection.cs" />
     <Compile Include="Collections\NormalityComparer.cs" />
+    <Compile Include="Collections\SoundexComparer.cs" />
     <Compile Include="Collections\SynonymCollection.cs" />
     <Compile Include="Data\CsvLexiconStorage.cs" />
     <Compile Include="Data\IStoreLexicon.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Models\Coordinates.cs" />
     <Compile Include="Models\LexicalItem.cs" />
+    <Compile Include="Models\LexicalMatch.cs" />
     <Compile Include="Models\Lexicon.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.cs" />
     <Compile Include="Models\Telephone.cs" />
@@ -26,11 +30,11 @@
     <Compile Include="Models\Money.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cavity.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.784\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.Data.Csv, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
+    <Reference Include="Cavity.Data.Csv">
+      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.784\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

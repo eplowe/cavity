@@ -55,6 +55,7 @@
     <Compile Include="ValueObject`1.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+    <Compile Include="IO\FileSystemInfo.ExtensionMethods.cs" />
     <Compile Include="Dynamic\DynamicData.cs" />
     <Compile Include="Threading\IThreadedObject.cs" />
     <Compile Include="Threading\ThreadedObject.cs" />

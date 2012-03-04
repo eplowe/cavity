@@ -25,6 +25,21 @@
             _items = new List<LexicalItem>();
         }
 
+        public IEnumerable<string> CanonicalForms
+        {
+            get
+            {
+#if NET20
+                foreach (var item in this)
+                {
+                    yield return item.CanonicalForm;
+                }
+#else
+                return this.Select(item => item.CanonicalForm);
+#endif
+            }
+        }
+
         public INormalityComparer Comparer
         {
             get
@@ -128,6 +143,121 @@
             {
                 item.Invoke(func);
             }
+        }
+#endif
+
+        public LexicalMatch Match(string value)
+        {
+            if (null == value)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            if (0 == value.Trim().Length)
+            {
+                return null;
+            }
+
+#if NET20
+            foreach (var item in this)
+            {
+                var result = item.Match(value);
+                if (null == result)
+                {
+                    continue;
+                }
+
+                return result;
+            }
+
+            return null;
+#else
+            return this
+                .Select(item => item.Match(value))
+                .FirstOrDefault(result => null != result);
+#endif
+        }
+
+        public LexicalMatch MatchBeginning(string value)
+        {
+            if (null == value)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            if (0 == value.Trim().Length)
+            {
+                return null;
+            }
+
+#if NET20
+            foreach (var item in this)
+            {
+                var result = item.MatchBeginning(value);
+                if (null == result)
+                {
+                    continue;
+                }
+
+                return result;
+            }
+
+            return null;
+#else
+            return this
+                .Select(item => item.MatchBeginning(value))
+                .FirstOrDefault(result => null != result);
+#endif
+        }
+
+        public LexicalMatch MatchEnding(string value)
+        {
+            if (null == value)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            if (0 == value.Trim().Length)
+            {
+                return null;
+            }
+
+#if NET20
+            foreach (var item in this)
+            {
+                var result = item.MatchEnding(value);
+                if (null == result)
+                {
+                    continue;
+                }
+
+                return result;
+            }
+
+            return null;
+#else
+            return this
+                .Select(item => item.MatchEnding(value))
+                .FirstOrDefault(result => null != result);
+#endif
+        }
+
+#if !NET20
+        public LexicalMatch MatchWithin(string value)
+        {
+            if (null == value)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            if (0 == value.Trim().Length)
+            {
+                return null;
+            }
+
+            return this
+                .Select(item => item.MatchWithin(value))
+                .FirstOrDefault(result => null != result);
         }
 #endif
 

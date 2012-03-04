@@ -49,7 +49,13 @@
 
         public virtual void Add(string value)
         {
-            Items.Add(Comparer.Normalize(value), value);
+            value = Comparer.Normalize(value);
+            if (Contains(value))
+            {
+                return;
+            }
+
+            Items.Add(value, value);
         }
 
         public virtual void Clear()

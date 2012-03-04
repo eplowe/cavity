@@ -10,87 +10,87 @@
 
 *1.1.0.783* Cavity log4net trace listener
 
-*1.1.0.783* Cavity.Core
+*1.1.0.784* Cavity.Core
 
-*1.1.0.783* Cavity Configuration
+*1.1.0.784* Cavity Configuration
  * Cavity.Core
 
-*1.1.0.783* Cavity Commands
+*1.1.0.784* Cavity Commands
  * Cavity.Core
 
-*1.1.0.783* Cavity.Data.Ace
+*1.1.0.784* Cavity.Data.Ace
  * Cavity.Core
 
-*1.1.0.783* Cavity.Data.Csv
+*1.1.0.784* Cavity.Data.Csv
  * Cavity.Core
 
-*1.1.0.783* Cavity Repository
+*1.1.0.784* Cavity Repository
  * Cavity.Core
 
-*1.1.0.783* Cavity Web (ASP.NET MVC3)
+*1.1.0.784* Cavity Web (ASP.NET MVC3)
  * Cavity.Core
 
-*1.1.0.783* Cavity HTTP Generalizations
+*1.1.0.784* Cavity HTTP Generalizations
  * Cavity.Core
 
-*1.1.0.783* Cavity Service Location (Autofac)
+*1.1.0.784* Cavity Service Location (Autofac)
  * Autofac.!CommonServiceLocator
  * Cavity.!ServiceLocation
  * Cavity.Configuration
   (Cavity.Core)
 
-*1.1.0.783* Cavity.!ServiceLocation.!CastleWindsor
+*1.1.0.784* Cavity.!ServiceLocation.!CastleWindsor
  * !CommonServiceLocator.!WindsorAdapter
  * Cavity.!ServiceLocation
  * Cavity.Configuration
   (Cavity.Core)
 
-*1.1.0.783* Cavity.!ServiceLocation.!StructureMap
+*1.1.0.784* Cavity.!ServiceLocation.!StructureMap
  * !CommonServiceLocator.!StructureMapAdapter
  * Cavity.!ServiceLocation
  * Cavity.Configuration
   (Cavity.Core)
 
-*1.1.0.783* Cavity.!ServiceLocation.Unity
+*1.1.0.784* Cavity.!ServiceLocation.Unity
  * !CommonServiceLocator.!UnityAdapter
  * Cavity.!ServiceLocation
   (Cavity.Core)
 
-*1.1.0.783* Cavity Task Management
+*1.1.0.784* Cavity Task Management
  * Cavity.!TaskManagement.Abstractions
  * Cavity.Configuration
    * Cavity.Core
 
-*1.1.0.783* Cavity Web
+*1.1.0.784* Cavity Web
  * Cavity.Configuration
    * Cavity.Core
 
-*1.1.0.783* Cavity HTTP Testing
+*1.1.0.784* Cavity HTTP Testing
  * Cavity.Http.Generalizations
    * Cavity.Core
 
-*1.1.0.783* Cavity Repository Testing
+*1.1.0.784* Cavity Repository Testing
  * Cavity.Repository
    * Cavity.Core
 
-*1.1.0.783* Cavity Commands (File System)
+*1.1.0.784* Cavity Commands (File System)
  * Cavity.Commands
    * Cavity.Core
 
-*1.1.0.783* Cavity.Domain
+*1.1.0.784* Cavity.Domain
  * Cavity.Data.Csv
    * Cavity.Core
 
-*1.1.0.783* Cavity.Domain.RoyalMail
+*1.1.0.784* Cavity.Domain.RoyalMail
  * Cavity.Data.Csv
    * Cavity.Core
 
-*1.1.0.783* Cavity Commands Transactions
+*1.1.0.784* Cavity Commands Transactions
  * Cavity.Commands
    * Cavity.Core
  + Cavity Commands (File System)
 
-*1.1.0.770* Cavity Repository (XML File System)
+*1.1.0.784* Cavity Repository (XML File System)
  * Cavity.Repository
    * Cavity.Core
  + Cavity Repository Testing
@@ -101,7 +101,7 @@
 *1.1.0.___* Cavity MSBuild (Domain)
  * Cavity.Core
  
-*1.1.0.783* Cavity Task Management Service
+*1.1.0.784* Cavity Task Management Service
  * Cavity.Diagnostics.Log4Net.Console
  * Cavity.ServiceLocation.CastleWindsor.Console
  * Cavity.TaskManagement

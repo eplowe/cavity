@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Http.Testing</id>
-    <version>1.1.0.783</version>
+    <version>1.1.0.784</version>
     <title>Cavity HTTP Testing</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,7 +17,7 @@
     <tags>HTTP TDD</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Http.Generalizations" version="1.1.0.783" />
+      <dependency id="Cavity.Http.Generalizations" version="1.1.0.784" />
     </dependencies>
   </metadata>
   <files>

@@ -21,7 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.784\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.TaskManagement.Abstractions">
       <HintPath>..\..\packages\Cavity.TaskManagement.Abstractions.1.1.0.751\lib\$(TargetFrameworkVersionName)\Cavity.TaskManagement.Abstractions.dll</HintPath>

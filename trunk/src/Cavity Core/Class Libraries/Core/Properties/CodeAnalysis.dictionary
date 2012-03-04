@@ -2,9 +2,12 @@
 <Dictionary>
   <Words>
     <Recognized>
+      <Word>Caverphone</Word>
       <Word>ciphertext</Word>
       <Word>Levenshtein</Word>
+      <Word>Metaphone</Word>
       <Word>Multiton</Word>
+      <Word>Soundex</Word>
       <Word>xpath</Word>
     </Recognized>
   </Words>

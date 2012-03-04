@@ -24,11 +24,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cavity.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.784\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.Data.Csv, Version=1.1.0.0, Culture=neutral, PublicKeyToken=c0c289e4846931e8, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.783\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
+    <Reference Include="Cavity.Data.Csv">
+      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.784\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
     </Reference>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
@@ -41,6 +41,9 @@
     <Compile Include="Collections\LexicalCollection.Facts.cs" />
     <Compile Include="Collections\NormalityComparer.Facts.cs" />
     <Compile Include="Collections\UnderscoreComparer.cs" />
+    <Compile Include="Collections\CaverphoneComparer.Facts.cs" />
+    <Compile Include="Collections\MetaphoneComparer.Facts.cs" />
+    <Compile Include="Collections\SoundexComparer.Facts.cs" />
     <Compile Include="Data\CsvLexiconStorage.Facts.cs" />
     <Compile Include="Data\IStoreLexicon.Facts.cs" />
     <Compile Include="Models\Coordinates.Facts.cs" />
@@ -50,6 +53,7 @@
     <Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Models\Money.Facts.cs" />
     <Compile Include="Models\Telephone.Facts.cs" />
+    <Compile Include="Models\LexicalMatch.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />

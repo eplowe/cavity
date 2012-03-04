@@ -17,7 +17,11 @@
                 throw new ArgumentNullException("directory");
             }
 
+#if NET40
+            Info = directory.CombineAsFile(Guid.NewGuid());
+#else
             Info = new FileInfo(Path.Combine(directory.FullName, Guid.NewGuid().ToString()));
+#endif
         }
 
         ~TempFile()

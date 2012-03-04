@@ -42,6 +42,19 @@
         }
 
         [Fact]
+        public void op_Add_string_whenAlreadyExists()
+        {
+            const string synonym = "Example";
+            var obj = new SynonymCollection(NormalityComparer.OrdinalIgnoreCase)
+            {
+                synonym, 
+                synonym
+            };
+
+            Assert.Equal(1, obj.Count);
+        }
+
+        [Fact]
         public void op_Clear()
         {
             var obj = new SynonymCollection(NormalityComparer.OrdinalIgnoreCase)
@@ -96,7 +109,7 @@
         {
             const string expected = "Example";
 
-            var obj = new SynonymCollection(NormalityComparer.OrdinalIgnoreCase)
+            var obj = new SynonymCollection(NormalityComparer.Ordinal)
             {
                 expected
             };

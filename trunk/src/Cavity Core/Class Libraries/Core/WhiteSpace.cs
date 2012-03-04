@@ -66,10 +66,10 @@
             //// Word Joiner
             '\u3000', 
             //// Ideographic Space
-            '\uFEFF'
-            
-            
+            '\uFEFF',
             //// Zero Width No-Break Space
+            '·'
+            //// Interpunct
         };
 
         public static IList<char> Characters
