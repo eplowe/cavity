@@ -2,7 +2,7 @@
 {
     using System;
 
-    [AttributeUsage(AttributeTargets.All)]
+    [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
     public sealed class CommentAttribute : Attribute
     {
         public CommentAttribute(string value)

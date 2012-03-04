@@ -1,7 +1,9 @@
 ﻿namespace Cavity
 {
     using System;
-    ////using System.ComponentModel;
+#if NET20
+    using System.Collections.Generic;
+#endif
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
@@ -117,6 +119,157 @@
 
                     return buffer.ToString();
             }
+        }
+
+#if NET20
+        public static string Caverphone(string obj)
+#else
+        public static string Caverphone(this string obj)
+#endif
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return obj;
+            }
+
+            var buffer = new StringBuilder(CaverphoneStart(obj));
+            if (0 == buffer.Length)
+            {
+                return string.Empty;
+            }
+
+            CaverphoneEndings(buffer);
+            buffer.Replace("cq", "2q");
+            buffer.Replace("ci", "si");
+            buffer.Replace("ce", "se");
+            buffer.Replace("cy", "sy");
+            buffer.Replace("tch", "2ch");
+            buffer.Replace('c', 'k');
+            buffer.Replace('q', 'k');
+            buffer.Replace('x', 'k');
+            buffer.Replace('v', 'f');
+            buffer.Replace("dg", "2g");
+            buffer.Replace("tio", "sio");
+            buffer.Replace("tia", "sia");
+            buffer.Replace('d', 't');
+            buffer.Replace("ph", "fh");
+            buffer.Replace('b', 'p');
+            buffer.Replace("sh", "s2");
+            buffer.Replace('z', 's');
+#if NET20
+            if (GenericExtensionMethods.In(buffer[0], 'a', 'e', 'i', 'o', 'u'))
+#else
+            if (buffer[0].In('a', 'e', 'i', 'o', 'u'))
+#endif
+            {
+                buffer[0] = 'a';
+            }
+
+            for (var i = 1; i < buffer.Length; i++)
+            {
+#if NET20
+                if (GenericExtensionMethods.In(buffer[i], 'a', 'e', 'i', 'o', 'u'))
+#else
+                if (buffer[i].In('a', 'e', 'i', 'o', 'u'))
+#endif
+                {
+                    buffer[i] = '3';
+                }
+            }
+
+            buffer.Replace("3gh3", "3kh3");
+            buffer.Replace("gh", "22");
+            buffer.Replace('g', 'k');
+
+            for (var i = buffer.Length - 1; i > 0; i--)
+            {
+#if NET20
+                if (!GenericExtensionMethods.In(buffer[i], 's', 't', 'p', 'k', 'f', 'm', 'n'))
+#else
+                if (!buffer[i].In('s', 't', 'p', 'k', 'f', 'm', 'n'))
+#endif
+                {
+                    continue;
+                }
+
+                if (buffer[i] != buffer[i - 1])
+                {
+                    continue;
+                }
+
+                buffer.Remove(i, 1);
+            }
+
+            for (var i = 0; i < buffer.Length; i++)
+            {
+                switch (buffer[i])
+                {
+                    case 's':
+                        buffer[i] = 'S';
+                        break;
+                    case 't':
+                        buffer[i] = 'T';
+                        break;
+                    case 'p':
+                        buffer[i] = 'P';
+                        break;
+                    case 'k':
+                        buffer[i] = 'K';
+                        break;
+                    case 'f':
+                        buffer[i] = 'F';
+                        break;
+                    case 'm':
+                        buffer[i] = 'M';
+                        break;
+                    case 'n':
+                        buffer[i] = 'N';
+                        break;
+                }
+            }
+
+            buffer.Replace("w3", "W3");
+            buffer.Replace("wy", "Wy");
+            buffer.Replace("wh3", "Wh3");
+            buffer.Replace("why", "Why");
+            buffer.Replace('w', '2');
+
+            if ('h' == buffer[0])
+            {
+                buffer[0] = 'a';
+            }
+
+            for (var i = 1; i < buffer.Length; i++)
+            {
+                if ('h' == buffer[i])
+                {
+                    buffer[i] = '2';
+                }
+            }
+
+            buffer.Replace("r3", "R3");
+            buffer.Replace("ry", "Ry");
+            buffer.Replace('r', '2');
+            buffer.Replace("l3", "L3");
+            buffer.Replace("ly", "Ly");
+            buffer.Replace('l', '2');
+            buffer.Replace('j', 'y');
+            buffer.Replace("y3", "Y3");
+            buffer.Replace('y', '2');
+
+            for (var i = buffer.Length - 1; i > -1; i--)
+            {
+#if NET20
+                if (GenericExtensionMethods.In(buffer[i], '2', '3'))
+#else
+                if (buffer[i].In('2', '3'))
+#endif
+                {
+                    buffer.Remove(i, 1);
+                }
+            }
+
+            return Append(buffer.ToString(), "111111").Substring(0, 6);
         }
 
 #if NET20
@@ -425,6 +578,45 @@
             return d[n, m];
         }
 
+        [Comment("See http://aspell.net/metaphone/")]
+        [Comment("See http://aspell.net/metaphone/metaphone-kuhn.txt")]
+#if NET20
+        public static string Metaphone(string obj)
+#else
+        public static string Metaphone(this string obj)
+#endif
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return obj;
+            }
+
+            var buffer = MetaphoneAlphabet(obj);
+            if (0 == buffer.Length)
+            {
+                return string.Empty;
+            }
+
+            MetaphoneFirstLetters(buffer);
+
+            for (var i = 0; i < buffer.Length; i++)
+            {
+                MetaphoneDropDuplicates(i, buffer);
+                MetaphoneLetterB(i, buffer);
+                MetaphoneLetterC(i, buffer);
+                MetaphoneLetterD(i, buffer);
+                MetaphoneLetterG(i, buffer);
+                MetaphoneLetterH(i, buffer);
+                MetaphoneLetterS(i, buffer);
+                MetaphoneLetterT(i, buffer);
+                MetaphoneLetterW(i, buffer);
+                MetaphoneLetterY(i, buffer);
+                MetaphoneLetterVowel(i, buffer);
+            }
+
+            return MetaphoneEnd(buffer);
+        }
+
 #if NET20
         public static string NormalizeWhiteSpace(string obj)
 #else
@@ -495,6 +687,41 @@
         }
 
 #if NET20
+        public static string RemoveAnyCurrencySymbols(string obj)
+#else
+        public static string RemoveAnyCurrencySymbols(this string obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (0 == obj.Length)
+            {
+                return string.Empty;
+            }
+
+            const string symbols = "¤₳฿₵¢₡₢₠$₫৳₯€ƒ₣₲₴₭ℳ₥₦₧₱₰£₹₨₪₸₮₩¥៛";
+            var buffer = new StringBuilder(obj.Length);
+#if NET20
+            foreach (var c in obj)
+            {
+                if (-1 != symbols.IndexOf(c))
+                {
+                    continue;
+                }
+#else
+            foreach (var c in obj.Where(c => -1 == symbols.IndexOf(c)))
+            {
+#endif
+                buffer.Append(c);
+            }
+
+            return buffer.ToString();
+        }
+
+#if NET20
         public static string RemoveAnyDigits(string obj)
 #else
         public static string RemoveAnyDigits(this string obj)
@@ -519,16 +746,152 @@
                 {
                     continue;
                 }
-
-                buffer.Append(c);
-            }
 #else
             foreach (var c in obj.Where(c => !char.IsDigit(c)))
             {
+#endif
                 buffer.Append(c);
             }
 
+            return buffer.ToString();
+        }
+
+#if NET20
+        public static string RemoveAnyFractions(string obj)
+#else
+        public static string RemoveAnyFractions(this string obj)
 #endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (0 == obj.Length)
+            {
+                return string.Empty;
+            }
+
+            const string fractions = "½⅓¼⅕⅙⅛⅔⅖¾⅗⅜⅘⅚⅝⅞⁄";
+            var buffer = new StringBuilder(obj.Length);
+#if NET20
+            foreach (var c in obj)
+            {
+                if (-1 != fractions.IndexOf(c))
+                {
+                    continue;
+                }
+#else
+            foreach (var c in obj.Where(c => -1 == fractions.IndexOf(c)))
+            {
+#endif
+                buffer.Append(c);
+            }
+
+            return buffer.ToString();
+        }
+
+#if NET20
+        public static string RemoveAnyMathematicalSymbols(string obj)
+#else
+        public static string RemoveAnyMathematicalSymbols(this string obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (0 == obj.Length)
+            {
+                return string.Empty;
+            }
+
+            const string symbols = "∞%‰‱+−-±∓×÷⁄∣∤=≠<>≪≫≺∝⊗′″‴√#ℵℶ𝔠:!~≈≀◅▻⋉⋈∴∵■□∎▮‣⇒→⊃⇔↔¬˜∧∨⊕⊻∀∃≜≝≐≅≡{}∅∈∉⊆⊂⊇⊃∪∩∆∖→↦∘ℕNℤZℙPℚQℝRℂCℍHO∑∏∐Δδ∂∇′•∫∮πσ†T⊤⊥⊧⊢o";
+            var buffer = new StringBuilder(obj.Length);
+#if NET20
+            foreach (var c in obj)
+            {
+                if (-1 != symbols.IndexOf(c))
+                {
+                    continue;
+                }
+#else
+            foreach (var c in obj.Where(c => -1 == symbols.IndexOf(c)))
+            {
+#endif
+                buffer.Append(c);
+            }
+
+            return buffer.ToString();
+        }
+
+#if NET20
+        public static string RemoveAnyPunctuation(string obj)
+#else
+        public static string RemoveAnyPunctuation(this string obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (0 == obj.Length)
+            {
+                return string.Empty;
+            }
+
+            const string punctuation = "„“”‘’'\"‐‒–—―…!?.:;,[](){}⟨⟩«»/⁄";
+            var buffer = new StringBuilder(obj.Length);
+#if NET20
+            foreach (var c in obj)
+            {
+                if (-1 != punctuation.IndexOf(c))
+                {
+                    continue;
+                }
+#else
+            foreach (var c in obj.Where(c => -1 == punctuation.IndexOf(c)))
+            {
+#endif
+                buffer.Append(c);
+            }
+
+            return buffer.ToString();
+        }
+
+#if NET20
+        public static string RemoveAnyTypography(string obj)
+#else
+        public static string RemoveAnyTypography(this string obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (0 == obj.Length)
+            {
+                return string.Empty;
+            }
+
+            const string typography = "&@*\\•^†‡°〃¡¿#№ºª¶§~_¦|©®℗℠™⁂⊤⊥☞∴∵‽؟◊※⁀";
+            var buffer = new StringBuilder(obj.Length);
+#if NET20
+            foreach (var c in obj)
+            {
+                if (-1 != typography.IndexOf(c))
+                {
+                    continue;
+                }
+#else
+            foreach (var c in obj.Where(c => -1 == typography.IndexOf(c)))
+            {
+#endif
+                buffer.Append(c);
+            }
 
             return buffer.ToString();
         }
@@ -553,16 +916,12 @@
                 {
                     continue;
                 }
-
-                buffer.Append(c);
-            }
 #else
             foreach (var c in obj.Where(c => !c.IsWhiteSpace()))
             {
+#endif
                 buffer.Append(c);
             }
-
-#endif
 
             return buffer.ToString();
         }
@@ -573,7 +932,17 @@
         public static string RemoveDefiniteArticle(this string obj)
 #endif
         {
-            return RemoveFromStart(obj, "THE", StringComparison.OrdinalIgnoreCase);
+            if (null == obj)
+            {
+                return null;
+            }
+
+            if (!obj.StartsWith("THE ", StringComparison.OrdinalIgnoreCase))
+            {
+                return obj;
+            }
+
+            return " " + RemoveFromStart(obj, "THE ", StringComparison.OrdinalIgnoreCase);
         }
 
 #if NET20
@@ -634,6 +1003,49 @@
             return obj.StartsWith(value, comparisonType)
                        ? obj.Substring(value.Length)
                        : obj;
+        }
+
+#if NET20
+        public static string RemoveIllegalFileCharacters(string obj)
+#else
+        public static string RemoveIllegalFileCharacters(this string obj)
+#endif
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return obj;
+            }
+
+            var buffer = new StringBuilder();
+            foreach (int c in obj)
+            {
+                if (32 > c)
+                {
+                    // Control characters
+                    continue;
+                }
+
+                switch (c)
+                {
+                    case 34: // "
+                    case 42: // *
+                    case 47: // /
+                    case 58: // :
+                    case 60: // <
+                    case 62: // >
+                    case 63: // ?
+                    case 92: // \
+                    case 124: // |
+                    case 127: // DEL
+                        break;
+
+                    default:
+                        buffer.Append((char)c);
+                        break;
+                }
+            }
+
+            return buffer.ToString();
         }
 
 #if NET20
@@ -726,6 +1138,108 @@
         }
 
 #if NET20
+        public static string ReplaceBeginning(string obj, 
+                                              string newValue, 
+                                              StringComparison comparisonType, 
+                                              params string[] beginnings)
+#else
+        public static string ReplaceBeginning(this string obj,
+                                              string newValue,
+                                              StringComparison comparisonType,
+                                              params string[] beginnings)
+#endif
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return obj;
+            }
+
+            if (null == newValue)
+            {
+                throw new ArgumentNullException("newValue");
+            }
+
+            if (null == beginnings)
+            {
+                throw new ArgumentNullException("beginnings");
+            }
+
+#if NET20
+            foreach (var beginning in beginnings)
+            {
+                if (string.IsNullOrEmpty(beginning))
+                {
+                    continue;
+                }
+
+                if (!obj.StartsWith(beginning, comparisonType))
+                {
+                    continue;
+                }
+#else
+            foreach (var beginning in beginnings
+                .Where(beginning => !string.IsNullOrEmpty(beginning))
+                .Where(beginning => obj.StartsWith(beginning, comparisonType)))
+            {
+#endif
+                return newValue + RemoveFromStart(obj, beginning, comparisonType);
+            }
+
+            return obj;
+        }
+
+#if NET20
+        public static string ReplaceEnding(string obj, 
+                                           string newValue, 
+                                           StringComparison comparisonType, 
+                                           params string[] endings)
+#else
+        public static string ReplaceEnding(this string obj,
+                                           string newValue,
+                                           StringComparison comparisonType,
+                                           params string[] endings)
+#endif
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return obj;
+            }
+
+            if (null == newValue)
+            {
+                throw new ArgumentNullException("newValue");
+            }
+
+            if (null == endings)
+            {
+                throw new ArgumentNullException("endings");
+            }
+
+#if NET20
+            foreach (var ending in endings)
+            {
+                if (string.IsNullOrEmpty(ending))
+                {
+                    continue;
+                }
+
+                if (!obj.EndsWith(ending, comparisonType))
+                {
+                    continue;
+                }
+#else
+            foreach (var ending in endings
+                .Where(ending => !string.IsNullOrEmpty(ending))
+                .Where(ending => obj.EndsWith(ending, comparisonType)))
+            {
+#endif
+                return RemoveFromEnd(obj, ending, comparisonType) + newValue;
+            }
+
+            return obj;
+        }
+
+#if NET20
         public static bool SameLengthAs(string obj,
                                         string value)
 #else
@@ -782,6 +1296,106 @@
 #else
             return string.IsNullOrEmpty(obj) || args.All(arg => obj.IndexOf(arg) == obj.LastIndexOf(arg));
 #endif
+        }
+
+#if NET20
+        public static string Soundex(string obj)
+#else
+        public static string Soundex(this string obj)
+#endif
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return obj;
+            }
+
+            obj = RemoveAnyDigits(ToEnglishAlphabet(obj)).ToUpperInvariant();
+            if (0 == obj.Length)
+            {
+                return string.Empty;
+            }
+
+            if (1 == obj.Length)
+            {
+                return Append(obj, "000");
+            }
+
+            var buffer = new StringBuilder();
+            buffer.Append(obj[0]);
+
+#if NET20
+            var list = new List<char>(RemoveAny(obj, 'Y', 'H', 'W').ToCharArray());
+#else
+            var list = RemoveAny(obj, 'Y', 'H', 'W').ToList();
+#endif
+            for (var i = 0; i < list.Count; i++)
+            {
+                switch (list[i])
+                {
+                    case 'B':
+                    case 'F':
+                    case 'P':
+                    case 'V':
+                        list[i] = '1';
+                        break;
+                    case 'C':
+                    case 'G':
+                    case 'J':
+                    case 'K':
+                    case 'Q':
+                    case 'S':
+                    case 'X':
+                    case 'Z':
+                        list[i] = '2';
+                        break;
+                    case 'D':
+                    case 'T':
+                        list[i] = '3';
+                        break;
+                    case 'L':
+                        list[i] = '4';
+                        break;
+                    case 'M':
+                    case 'N':
+                        list[i] = '5';
+                        break;
+                    case 'R':
+                        list[i] = '6';
+                        break;
+                    default:
+                        list[i] = ' ';
+                        break;
+                }
+            }
+
+            var current = ' ';
+            for (var i = 0; i < list.Count; i++)
+            {
+                var c = list[i];
+                if (current == c)
+                {
+                    continue;
+                }
+
+                current = c;
+                if (' ' == c)
+                {
+                    continue;
+                }
+
+                if (0 == i)
+                {
+                    continue;
+                }
+
+                buffer.Append(c);
+                if (4 == buffer.Length)
+                {
+                    return buffer.ToString();
+                }
+            }
+
+            return Append(buffer.ToString(), new string('0', 4 - buffer.ToString().Length));
         }
 
 #if NET20
@@ -961,6 +1575,129 @@
             return TryTo<T>(type, obj);
         }
 
+        [Comment("TODO: Extend alphabet, see http://en.wikipedia.org/wiki/Latin_alphabets")]
+        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Tough to see how to reduce the cyclomatic complexity of this switch statement.")]
+#if NET20
+        public static string ToEnglishAlphabet(string obj)
+#else
+        public static string ToEnglishAlphabet(this string obj)
+#endif
+        {
+            if (string.IsNullOrEmpty(obj))
+            {
+                return obj;
+            }
+
+            var buffer = new StringBuilder();
+            foreach (var c in obj)
+            {
+                switch (c)
+                {
+                    case 'À':
+                    case 'Â':
+                    case 'Æ':
+                        buffer.Append('A');
+                        break;
+                    case 'à':
+                    case 'â':
+                    case 'æ':
+                        buffer.Append('a');
+                        break;
+                    case 'Ç':
+                        buffer.Append('C');
+                        break;
+                    case 'ç':
+                        buffer.Append('c');
+                        break;
+                    case 'É':
+                    case 'È':
+                    case 'Ê':
+                    case 'Ë':
+                        buffer.Append('E');
+                        break;
+                    case 'é':
+                    case 'è':
+                    case 'ê':
+                    case 'ë':
+                        buffer.Append('e');
+                        break;
+                    case 'Î':
+                    case 'Ï':
+                        buffer.Append('I');
+                        break;
+                    case 'î':
+                    case 'ï':
+                        buffer.Append('i');
+                        break;
+                    case 'Ô':
+                    case 'Œ':
+                        buffer.Append('O');
+                        break;
+                    case 'ô':
+                    case 'œ':
+                        buffer.Append('o');
+                        break;
+                    case 'Ù':
+                    case 'Û':
+                    case 'Ü':
+                        buffer.Append('U');
+                        break;
+                    case 'ù':
+                    case 'û':
+                    case 'ü':
+                        buffer.Append('u');
+                        break;
+                    case 'Ÿ':
+                        buffer.Append('Y');
+                        break;
+                    case 'ÿ':
+                        buffer.Append('y');
+                        break;
+                    default:
+                        buffer.Append(c);
+                        break;
+                }
+            }
+
+            return buffer.ToString();
+        }
+
+#if NET20
+        public static string ToEnglishSpacedAlphanumeric(string obj)
+#else
+        public static string ToEnglishSpacedAlphanumeric(this string obj)
+#endif
+        {
+            if (null == obj)
+            {
+                return null;
+            }
+
+            if (0 == obj.Length)
+            {
+                return string.Empty;
+            }
+
+            obj = ToEnglishAlphabet(NormalizeWhiteSpace(obj));
+            var buffer = new StringBuilder();
+
+#if NET20
+            foreach (var c in obj)
+            {
+                if (' ' != c && !char.IsLetterOrDigit(c))
+                {
+                    continue;
+                }
+#else
+            foreach (var c in obj.Where(c => ' ' == c || char.IsLetterOrDigit(c)))
+            {
+#endif
+                buffer.Append(c);
+            }
+
+            return buffer.ToString();
+        }
+
         [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Title casing only works from lower case strings.")]
 #if NET20
         public static string ToTitleCase(string obj)
@@ -1035,6 +1772,666 @@
                                : new XmlSerializer(type).Deserialize(stream);
                 }
             }
+        }
+
+        [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "The algorithm specifies lower case.")]
+        [Comment("If the name starts with cough make it cou2f")]
+        [Comment("If the name starts with rough make it rou2f")]
+        [Comment("If the name starts with tough make it tou2f")]
+        [Comment("If the name starts with enough make it enou2f")]
+        [Comment("If the name starts with gn make it 2n")]
+        private static string CaverphoneStart(string value)
+        {
+            if (null == value)
+            {
+                return null;
+            }
+
+            if (0 == value.Length)
+            {
+                return value;
+            }
+
+            value = ToEnglishAlphabet(value);
+
+            if (0 == value.Length)
+            {
+                return value;
+            }
+
+            value = value.ToLowerInvariant();
+
+            if (StartsWithAny(value, StringComparison.Ordinal, "cough", "rough", "tough"))
+            {
+                return string.Concat(value.Substring(0, 3), "2f", 5 == value.Length ? string.Empty : value.Substring(5));
+            }
+
+            if (value.StartsWith("enough", StringComparison.Ordinal))
+            {
+                return string.Concat(value.Substring(0, 4), "2f", 6 == value.Length ? string.Empty : value.Substring(6));
+            }
+
+            if (value.StartsWith("gn", StringComparison.Ordinal))
+            {
+                return string.Concat("2n", 2 == value.Length ? string.Empty : value.Substring(2));
+            }
+
+            return value;
+        }
+
+        [Comment("If the name ends with mb make it m2")]
+        private static void CaverphoneEndings(StringBuilder buffer)
+        {
+            if (2 > buffer.Length)
+            {
+                return;
+            }
+
+            var last = buffer.Length - 1;
+            var penultimate = last - 1;
+
+            if ('m' != buffer[penultimate])
+            {
+                return;
+            }
+
+            if ('b' != buffer[last])
+            {
+                return;
+            }
+
+            buffer[last] = '2';
+        }
+
+        private static StringBuilder MetaphoneAlphabet(string value)
+        {
+            var buffer = new StringBuilder();
+            const string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+            value = ToEnglishAlphabet(NormalizeWhiteSpace(value)).ToUpperInvariant();
+#if NET20
+            foreach (var c in value)
+            {
+                if (-1 == alphabet.IndexOf(c))
+                {
+                    continue;
+                }
+#else
+            foreach (var c in value.Where(c => alphabet.Contains(c)))
+            {
+#endif
+                buffer.Append(c);
+            }
+            
+            return buffer;
+        }
+
+        private static void MetaphoneFirstLetters(StringBuilder buffer)
+        {
+            if (0 == buffer.Length)
+            {
+                return;
+            }
+
+            if ('X' == buffer[0])
+            {
+                //// X-
+                buffer[0] = 'S';
+                return;
+            }
+
+            if (1 == buffer.Length)
+            {
+                return;
+            }
+
+            if ('A' == buffer[0] && 'E' == buffer[1])
+            {
+                //// AE-
+                buffer.Remove(0, 1);
+                return;
+            }
+
+            if ('G' == buffer[0] && 'N' == buffer[1])
+            {
+                //// GN-
+                buffer.Remove(0, 1);
+                return;
+            }
+
+            if ('K' == buffer[0] && 'N' == buffer[1])
+            {
+                //// KN-
+                buffer.Remove(0, 1);
+                return;
+            }
+
+            if ('P' == buffer[0] && 'N' == buffer[1])
+            {
+                //// PN-
+                buffer.Remove(0, 1);
+                return;
+            }
+
+            if ('W' == buffer[0] && 'R' == buffer[1])
+            {
+                //// WR-
+                buffer.Remove(0, 1);
+            }
+        }
+
+        [Comment("Drop duplicate adjacent letters, except for C.")]
+        private static void MetaphoneDropDuplicates(int i, StringBuilder buffer)
+        {
+            if ('C' == buffer[i])
+            {
+                return;
+            }
+
+            var next = i + 1;
+
+            if (next == buffer.Length)
+            {
+                return;
+            }
+
+            if (buffer[i] != buffer[next])
+            {
+                return;
+            }
+
+            buffer[next] = ' ';
+        }
+
+        [Comment("Drop all vowels unless it is the beginning.")]
+        private static void MetaphoneLetterVowel(int i, StringBuilder buffer)
+        {
+            if (0 == i)
+            {
+                return;
+            }
+
+#if NET20
+            if (GenericExtensionMethods.In(buffer[i], 'A', 'E', 'I', 'O', 'U'))
+#else
+            if (buffer[i].In('A', 'E', 'I', 'O', 'U'))
+#endif
+            {
+                buffer[i] = ' ';
+            }
+        }
+
+        [Comment("Drop 'B' if after 'M' and if it is at the end of the word.")]
+        private static void MetaphoneLetterB(int i, StringBuilder buffer)
+        {
+            if (0 == i)
+            {
+                return;
+            }
+
+            var previous = i - 1;
+            var next = i + 1;
+            var last = buffer.Length - 1;
+
+            if ('M' != buffer[previous])
+            {
+                return;
+            }
+
+            if ('B' != buffer[i])
+            {
+                return;
+            }
+
+            if (i == last)
+            {
+                //// -MB
+                buffer[i] = ' ';
+                return;
+            }
+
+            if (next != last)
+            {
+                return;
+            }
+
+            if ('E' != buffer[next])
+            {
+                return;
+            }
+
+            //// -MBE
+            buffer[i] = ' ';
+        }
+
+        [Comment("'C' transforms to 'X' if followed by 'IA' or 'H' (unless in latter case, it is part of '-SCH-', in which case it transforms to 'K').")]
+        [Comment("'C' transforms to 'S' if followed by 'I', 'E', or 'Y'.")]
+        [Comment("Otherwise, 'C' transforms to 'K'.")]
+        [Comment("'CK' transforms to 'K'.")]
+        private static void MetaphoneLetterC(int i, StringBuilder buffer)
+        {
+            if ('C' != buffer[i])
+            {
+                return;
+            }
+
+            var previous = i - 1;
+            var next = i + 1;
+
+            if (next == buffer.Length)
+            {
+                buffer[i] = 'k';
+                return;
+            }
+
+            if ('I' == buffer[next])
+            {
+                if (next + 1 != buffer.Length &&
+                    'A' == buffer[next + 1])
+                {
+                    //// -CIA-
+                    buffer[i] = 'x';
+                    buffer[next] = ' ';
+                    buffer[next + 1] = ' ';
+                    return;
+                }
+
+                //// -CI-
+                buffer[i] = 's';
+                buffer[next] = ' ';
+                return;
+            }
+
+#if NET20
+            if (GenericExtensionMethods.In(buffer[next], 'E', 'Y'))
+#else
+            if (buffer[next].In('E', 'Y'))
+#endif
+            {
+                //// -CE-, -CY-
+                buffer[i] = 's';
+                buffer[next] = ' ';
+                return;
+            }
+
+            if ('K' == buffer[next])
+            {
+                //// -CK-
+                buffer[i] = 'k';
+                buffer[next] = ' ';
+                return;
+            }
+
+            if ('H' == buffer[next])
+            {
+                if (i == 0 || 'S' != buffer[previous])
+                {
+                    //// -CH-
+                    buffer[i] = 'x';
+                    buffer[next] = ' ';
+                    return;
+                }
+
+                if (i != 0 || 'S' == buffer[previous])
+                {
+                    //// -SCH-
+                    buffer[next] = ' ';
+                }
+            }
+
+            buffer[i] = 'k';
+        }
+
+        [Comment("'D' transforms to 'J' if followed by 'GE', 'GY', or 'GI'.")]
+        [Comment("Otherwise, 'D' transforms to 'T'.")]
+        private static void MetaphoneLetterD(int i, StringBuilder buffer)
+        {
+            if ('D' != buffer[i])
+            {
+                return;
+            }
+
+            var next = i + 1;
+            var last = buffer.Length - 1;
+
+            if (next + 1 <= last
+                && 'G' == buffer[next])
+            {
+#if NET20
+                if (GenericExtensionMethods.In(buffer[next + 1], 'E', 'I', 'Y'))
+#else
+                if (buffer[next + 1].In('E', 'I', 'Y'))
+#endif
+                {
+                    //// -DGE-, -DGY-, -DGI-
+                    buffer[i] = 'j';
+                    buffer[next] = ' ';
+                    buffer[next + 1] = ' ';
+                    return;
+                }
+            }
+
+            buffer[i] = 't';
+        }
+
+        [Comment("Drop 'G' if followed by 'H' and 'H' is not at the end or before a vowel.")]
+        [Comment("Drop 'G' if followed by 'N' or 'NED' and is at the end.")]
+        [Comment("'G' transforms to 'J' if before 'I', 'E', or 'Y', and it is not in 'GG'.")]
+        [Comment("Otherwise, 'G' transforms to 'K'.")]
+        private static void MetaphoneLetterG(int i, StringBuilder buffer)
+        {
+            if ('G' != buffer[i])
+            {
+                return;
+            }
+
+            var next = i + 1;
+            var last = buffer.Length - 1;
+
+            if (next == last)
+            {
+                if ('N' == buffer[next])
+                {
+                    //// -GN
+                    buffer[i] = ' ';
+                    return;
+                }
+            }
+            else if (next + 2 == last && 'N' == buffer[next] && 'E' == buffer[next + 1] && 'D' == buffer[next + 2])
+            {
+                //// -GNED
+                buffer[i] = ' ';
+                return;
+            }
+            
+            if (next != buffer.Length)
+            {
+#if NET20
+                if (GenericExtensionMethods.In(buffer[next], 'E', 'I', 'Y'))
+#else
+                if (buffer[next].In('E', 'I', 'Y'))
+#endif
+                {
+                    //// -GE-, -GY-, -GI-
+                    buffer[i] = 'j';
+                    buffer[next] = ' ';
+                    return;
+                }
+
+                if ('H' == buffer[next])
+                {
+                    if (next + 1 != buffer.Length &&
+#if NET20
+                        GenericExtensionMethods.In(buffer[next + 1], 'A', 'E', 'I', 'O', 'U'))
+#else
+                        buffer[next + 1].In('A', 'E', 'I', 'O', 'U'))
+#endif
+                    {
+                        buffer[i] = 'k';
+                        return;
+                    }
+
+                    //// -GH-
+                    buffer[i] = ' ';
+                    return;
+                }
+            }
+
+            buffer[i] = 'k';
+        }
+
+        [Comment("Drop 'H' if after vowel and not before a vowel.")]
+        private static void MetaphoneLetterH(int i, StringBuilder buffer)
+        {
+            if (0 == i)
+            {
+                return;
+            }
+
+            if ('H' != buffer[i])
+            {
+                return;
+            }
+
+            var previous = i - 1;
+            var next = i + 1;
+
+#if NET20
+            if (!GenericExtensionMethods.In(buffer[previous], 'A', 'E', 'I', 'O', 'U'))
+#else
+            if (!buffer[previous].In('A', 'E', 'I', 'O', 'U'))
+#endif
+            {
+                return;
+            }
+
+            if (next != buffer.Length
+#if NET20
+                && GenericExtensionMethods.In(buffer[next], 'A', 'E', 'I', 'O', 'U'))
+#else
+                && buffer[next].In('A', 'E', 'I', 'O', 'U'))
+#endif
+            {
+                return;
+            }
+
+            buffer[i] = ' ';
+        }
+
+        [Comment("'S' transforms to 'X' if followed by 'H', 'IO', or 'IA'.")]
+        private static void MetaphoneLetterS(int i, StringBuilder buffer)
+        {
+            if ('S' != buffer[i])
+            {
+                return;
+            }
+
+            var next = i + 1;
+            var last = buffer.Length - 1;
+
+            if (next == buffer.Length)
+            {
+                return;
+            }
+
+            if ('H' == buffer[next])
+            {
+                //// -SH-
+                buffer[i] = 'x';
+                buffer[next] = ' ';
+            }
+
+            if (next == last)
+            {
+                return;
+            }
+
+            if ('I' != buffer[next])
+            {
+                return;
+            }
+
+            if (next + 1 > last)
+            {
+            }
+
+#if NET20
+            if (GenericExtensionMethods.In(buffer[next + 1], 'A', 'O'))
+#else
+            if (buffer[next + 1].In('A', 'O'))
+#endif
+            {
+                //// -SIA-, -SIO-
+                buffer[i] = 'x';
+                buffer[next] = ' ';
+                buffer[next + 1] = ' ';
+            }
+        }
+
+        [Comment("'T' transforms to 'X' if followed by 'IA' or 'IO'.")]
+        [Comment("'TH' transforms to '0'")]
+        [Comment("Drop 'T' if followed by 'CH'.")]
+        private static void MetaphoneLetterT(int i, StringBuilder buffer)
+        {
+            if ('T' != buffer[i])
+            {
+                return;
+            }
+
+            var next = i + 1;
+            var last = buffer.Length - 1;
+
+            if (next == buffer.Length)
+            {
+                return;
+            }
+
+            if ('H' == buffer[next])
+            {
+                //// -TH-
+                buffer[i] = '0';
+                buffer[next] = ' ';
+                return;
+            }
+
+            if (next == last)
+            {
+                return;
+            }
+
+            if ('C' == buffer[next] && 'H' == buffer[next + 1])
+            {
+                //// -TCH-
+                buffer[i] = ' ';
+                return;
+            }
+
+            if ('I' != buffer[next])
+            {
+                return;
+            }
+
+            if (next + 1 > last)
+            {
+            }
+
+#if NET20
+            if (GenericExtensionMethods.In(buffer[next + 1], 'A', 'O'))
+#else
+            if (buffer[next + 1].In('A', 'O'))
+#endif
+            {
+                //// -TIA-, -TIO-
+                buffer[i] = 'x';
+                buffer[next] = ' ';
+                buffer[next + 1] = ' ';
+            }
+        }
+
+        [Comment("'WH' transforms to 'W' if at the beginning.")]
+        [Comment("Drop 'W' if not followed by a vowel.")]
+        private static void MetaphoneLetterW(int i, StringBuilder buffer)
+        {
+            if ('W' != buffer[i])
+            {
+                return;
+            }
+
+            var next = i + 1;
+
+            if (next != buffer.Length)
+            {
+                if (0 == i && 'H' == buffer[next])
+                {
+                    //// WH-
+                    buffer[i] = 'W';
+                    buffer[next] = ' ';
+                    return;
+                }
+
+#if NET20
+                if (GenericExtensionMethods.In(buffer[next], 'A', 'E', 'I', 'O', 'U'))
+#else
+                if (buffer[next].In('A', 'E', 'I', 'O', 'U'))
+#endif
+                {
+                    return;
+                }
+            }
+
+            buffer[i] = ' ';
+        }
+
+        [Comment("Drop 'Y' if not followed by a vowel.")]
+        private static void MetaphoneLetterY(int i, StringBuilder buffer)
+        {
+            if ('Y' != buffer[i])
+            {
+                return;
+            }
+
+            var next = i + 1;
+
+            if (next != buffer.Length &&
+#if NET20
+                GenericExtensionMethods.In(buffer[next], 'A', 'E', 'I', 'O', 'U'))
+#else
+                buffer[next].In('A', 'E', 'I', 'O', 'U'))
+#endif
+            {
+                return;
+            }
+
+            buffer[i] = ' ';
+        }
+
+        private static string MetaphoneEnd(StringBuilder buffer)
+        {
+            if (0 == buffer.Length)
+            {
+                return string.Empty;
+            }
+
+            buffer.Replace("CK", "K");
+            buffer.Replace("PH", "F");
+            buffer.Replace("X", "KS");
+
+            for (var i = buffer.Length; i > 0; i--)
+            {
+                switch (buffer[i - 1])
+                {
+                    case ' ':
+                        buffer.Remove(i - 1, 1);
+                        break;
+
+                    case 'j':
+                        buffer[i - 1] = 'J';
+                        break;
+                    case 'k':
+                        buffer[i - 1] = 'K';
+                        break;
+                    case 's':
+                        buffer[i - 1] = 'S';
+                        break;
+                    case 't':
+                        buffer[i - 1] = 'T';
+                        break;
+                    case 'x':
+                        buffer[i - 1] = 'X';
+                        break;
+
+                    case 'V':
+                        buffer[i - 1] = 'F';
+                        break;
+                    case 'Q':
+                        buffer[i - 1] = 'K';
+                        break;
+                    case 'Z':
+                        buffer[i - 1] = 'S';
+                        break;
+                }
+            }
+
+            return buffer.ToString();
         }
 
 #if NET20

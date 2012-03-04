@@ -2,8 +2,11 @@
 <Dictionary>
   <Words>
     <Recognized>
+      <Word>Caverphone</Word>
       <Word>ctor</Word>
       <Word>Levenshtein</Word>
+      <Word>Metaphone</Word>
+      <Word>Soundex</Word>
     </Recognized>
   </Words>
 </Dictionary>

@@ -2,8 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Xml;
+    using Cavity.IO;
     using Xunit;
 
     public sealed class StringExtensionMethodsFacts
@@ -552,6 +555,96 @@
         }
 
         [Fact]
+        public void op_Caverphone_stringNull()
+        {
+            Assert.Null((null as string).Caverphone());
+        }
+
+        [Fact]
+        public void op_Caverphone_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.Caverphone();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Caverphone_string_whenLee()
+        {
+            const string expected = "L11111";
+            var actual = "Lee".Caverphone();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Caverphone_string_whenThompson()
+        {
+            const string expected = "TMPSN1";
+            var actual = "Thompson".Caverphone();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Metaphone_stringNull()
+        {
+            Assert.Null((null as string).Metaphone());
+        }
+
+        [Fact]
+        public void op_Metaphone_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.Metaphone();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Metaphone_string()
+        {
+            const string expected = "EKSMPL";
+            var actual = "Example".Metaphone();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Metaphone_string_whenSingleCharacter()
+        {
+            foreach (var c in "abcdefghijklmnopqrstuvwxyz")
+            {
+                Assert.NotNull(XmlConvert.ToString(c).Metaphone());
+            }
+        }
+
+        [Fact]
+        public void op_Metaphone_string_whenSame()
+        {
+            var expected = 0;
+            var actual = 0;
+            foreach (var line in new FileInfo("metaphone.txt").Lines())
+            {
+                expected++;
+                var parts = line.Split('\t');
+
+                var metaphone = parts[0].Metaphone();
+                if (metaphone == parts[1])
+                {
+                    actual++;
+                }
+                else
+                {
+                    Trace.WriteLine("{0}\t{1}".FormatWith(line, metaphone));
+                }
+            }
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_LevenshteinDistance_stringNull_stringA()
         {
             const int expected = 1;
@@ -643,7 +736,9 @@
                 // Word Joiner
                 '\u3000', 
                 // Ideographic Space
-                '\uFEFF').NormalizeWhiteSpace();
+                '\uFEFF', 
+                //// Zero Width No-Break Space
+                '·').NormalizeWhiteSpace();
 
             Assert.Equal(expected, actual);
         }
@@ -664,10 +759,58 @@
         }
 
         [Fact]
+        public void op_RemoveAnyFractions_string()
+        {
+            const string expected = "00";
+            var actual = "0½⅓¼⅕⅙⅛⅔⅖¾⅗⅜⅘⅚⅝⅞⁄0".RemoveAnyFractions();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyFractions_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveAnyFractions();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyFractions_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).RemoveAnyFractions());
+        }
+
+        [Fact]
+        public void op_RemoveAnyCurrencySymbols_string()
+        {
+            const string expected = "__";
+            var actual = "_¤₳฿₵¢₡₢₠$₫৳₯€ƒ₣₲₴₭ℳ₥₦₧₱₰£₹₨₪₸₮₩¥៛_".RemoveAnyCurrencySymbols();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyCurrencySymbols_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveAnyCurrencySymbols();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyCurrencySymbols_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).RemoveAnyCurrencySymbols());
+        }
+
+        [Fact]
         public void op_RemoveAnyDigits_string()
         {
-            const string expected = "abc";
-            var actual = "a01234b56789c".RemoveAnyDigits();
+            const string expected = "__";
+            var actual = "_0123456789_".RemoveAnyDigits();
 
             Assert.Equal(expected, actual);
         }
@@ -688,10 +831,82 @@
         }
 
         [Fact]
+        public void op_RemoveAnyMathematicalSymbols_string()
+        {
+            const string expected = "__";
+            var actual = "_∞%‰‱+−-±∓×÷⁄∣∤=≠<>≪≫≺∝⊗′″‴√#ℵℶ𝔠:!~≈≀◅▻⋉⋈∴∵■□∎▮‣⇒→⊃⇔↔¬˜∧∨⊕⊻∀∃≜≝≐≅≡{}∅∈∉⊆⊂⊇⊃∪∩∆∖→↦∘ℕNℤZℙPℚQℝRℂCℍHO∑∏∐Δδ∂∇′•∫∮πσ†T⊤⊥⊧⊢o_".RemoveAnyMathematicalSymbols();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyMathematicalSymbols_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveAnyMathematicalSymbols();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyMathematicalSymbols_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).RemoveAnyMathematicalSymbols());
+        }
+
+        [Fact]
+        public void op_RemoveAnyPunctuation_string()
+        {
+            const string expected = "00";
+            var actual = "0„“”‘’'\"‐‒–—―…!?.:;,[](){}⟨⟩«»/⁄0".RemoveAnyPunctuation();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyPunctuation_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveAnyPunctuation();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyPunctuation_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).RemoveAnyPunctuation());
+        }
+
+        [Fact]
+        public void op_RemoveAnyTypography_string()
+        {
+            const string expected = "0";
+            var actual = "0&@*\\•^†‡°〃¡¿#№ºª¶§~_¦|©®℗℠™⁂⊤⊥☞∴∵‽؟◊※⁀".RemoveAnyTypography();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyTypography_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveAnyTypography();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveAnyTypography_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).RemoveAnyTypography());
+        }
+
+        [Fact]
         public void op_RemoveAnyWhiteSpace_string()
         {
             const string expected = "example";
-            var actual = "e x a m p l e".RemoveAnyWhiteSpace();
+            var actual = "e x a m p l e·".RemoveAnyWhiteSpace();
 
             Assert.Equal(expected, actual);
         }
@@ -818,6 +1033,72 @@
         }
 
         [Fact]
+        public void op_ReplaceBeginning_strings()
+        {
+            const string expected = "Success Test";
+            var actual = "Example Test".ReplaceBeginning("Success ", StringComparison.Ordinal, "xxx", "Example ");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceBeginning_strings_whenNoMatch()
+        {
+            const string expected = "Example";
+            var actual = expected.ReplaceBeginning("xxx", StringComparison.Ordinal, "yyy");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceBeginning_strings_whenStringNullOrEmpty()
+        {
+            const string expected = "Example";
+            var actual = expected.ReplaceBeginning("xxx", StringComparison.Ordinal, string.Empty, null);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceBeginning_stringsNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => "Example".ReplaceBeginning("xxx", StringComparison.Ordinal, null as string[]));
+        }
+
+        [Fact]
+        public void op_ReplaceEnding_strings()
+        {
+            const string expected = "Test Success";
+            var actual = "Test Example".ReplaceEnding(" Success", StringComparison.Ordinal, "xxx", " Example");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceEnding_strings_whenNoMatch()
+        {
+            const string expected = "Example";
+            var actual = expected.ReplaceEnding("xxx", StringComparison.Ordinal, "yyy");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceEnding_strings_whenStringNullOrEmpty()
+        {
+            const string expected = "Example";
+            var actual = expected.ReplaceEnding("xxx", StringComparison.Ordinal, string.Empty, null);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceEnding_stringsNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => "Example".ReplaceEnding("xxx", StringComparison.Ordinal, null as string[]));
+        }
+
+        [Fact]
         public void op_RemoveDefiniteArticle_string()
         {
             const string expected = " Example";
@@ -911,6 +1192,36 @@
             var actual = "Example".RemoveFromStart("ex", StringComparison.OrdinalIgnoreCase);
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveIllegalFileCharacters_stringNull()
+        {
+            Assert.Null((null as string).RemoveIllegalFileCharacters());
+        }
+
+        [Fact]
+        public void op_RemoveIllegalFileCharacters_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.RemoveIllegalFileCharacters();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_RemoveIllegalFileCharacters_string()
+        {
+            foreach (var c in new[]
+            {
+                '\\', '/', ':', '*', '?', '"', '<', '>', '|', (char)31
+            })
+            {
+                const string expected = "example";
+                var actual = expected.Append(c).RemoveIllegalFileCharacters();
+
+                Assert.Equal(expected, actual);
+            }
         }
 
         [Fact]
@@ -1269,6 +1580,30 @@
         }
 
         [Fact]
+        public void op_ToEnglishSpacedAlphanumeric_string()
+        {
+            const string expected = "An example 123";
+            var actual = "An éxample 123.".ToEnglishSpacedAlphanumeric();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishSpacedAlphanumeric_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.ToEnglishSpacedAlphanumeric();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishSpacedAlphanumeric_stringNull()
+        {
+            Assert.Null((null as string).ToEnglishSpacedAlphanumeric());
+        }
+
+        [Fact]
         public void op_ToOfBoolean_string()
         {
             const bool expected = true;
@@ -1451,6 +1786,420 @@
         {
             const ulong expected = 123;
             var actual = XmlConvert.ToString(expected).To<ulong>();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Soundex_stringNull()
+        {
+            Assert.Null((null as string).Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.Soundex();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Soundex_stringNumber()
+        {
+            var expected = string.Empty;
+            var actual = "123".Soundex();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenA261()
+        {
+            const string expected = "A261";
+
+            Assert.Equal(expected, "Ashcraft".Soundex());
+            Assert.Equal(expected, "Ashcroft".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenT522()
+        {
+            const string expected = "T522";
+
+            Assert.Equal(expected, "Tymczak".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenP236()
+        {
+            const string expected = "P236";
+
+            Assert.Equal(expected, "Pfister".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenS530()
+        {
+            const string expected = "S530";
+
+            Assert.Equal(expected, "Smith".Soundex());
+            Assert.Equal(expected, "Smythe".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenA626()
+        {
+            const string expected = "A626";
+
+            Assert.Equal(expected, "Archer".Soundex());
+            Assert.Equal(expected, "Arguer".Soundex());
+            Assert.Equal(expected, "Aircrew".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenW410()
+        {
+            const string expected = "W410";
+
+            Assert.Equal(expected, "Wolf".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenR163()
+        {
+            const string expected = "R163";
+
+            Assert.Equal(expected, "Robert".Soundex());
+            Assert.Equal(expected, "Rupert".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenR100()
+        {
+            const string expected = "R100";
+
+            Assert.Equal(expected, "Rub".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenR000()
+        {
+            const string expected = "R000";
+
+            Assert.Equal(expected, "R".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenR150()
+        {
+            const string expected = "R150";
+
+            Assert.Equal(expected, "Rubin".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenS532()
+        {
+            const string expected = "S532";
+
+            Assert.Equal(expected, "Soundex".Soundex());
+            Assert.Equal(expected, "Sownteks".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenE251()
+        {
+            const string expected = "E251";
+
+            Assert.Equal(expected, "Example".Soundex());
+            Assert.Equal(expected, "Ekzampul".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenE460()
+        {
+            const string expected = "E460";
+
+            Assert.Equal(expected, "Ellery".Soundex());
+            Assert.Equal(expected, "Euler".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenG200()
+        {
+            const string expected = "G200";
+
+            Assert.Equal(expected, "Gauss".Soundex());
+            Assert.Equal(expected, "Ghosh".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenH416()
+        {
+            const string expected = "H416";
+
+            Assert.Equal(expected, "Heilbronn".Soundex());
+            Assert.Equal(expected, "Hilbert".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenK530()
+        {
+            const string expected = "K530";
+
+            Assert.Equal(expected, "Kant".Soundex());
+            Assert.Equal(expected, "Knuth".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenL300()
+        {
+            const string expected = "L300";
+
+            Assert.Equal(expected, "Ladd".Soundex());
+            Assert.Equal(expected, "Lloyd".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenL222()
+        {
+            const string expected = "L222";
+
+            Assert.Equal(expected, "Lukasiewicz".Soundex());
+            Assert.Equal(expected, "Lissajous".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenW350()
+        {
+            const string expected = "W350";
+
+            Assert.Equal(expected, "Wheaton".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenB620()
+        {
+            const string expected = "B620";
+
+            Assert.Equal(expected, "Burroughs".Soundex());
+            Assert.Equal(expected, "Burrows".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenO600()
+        {
+            const string expected = "O600";
+
+            Assert.Equal(expected, "O'Hara".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenW252()
+        {
+            const string expected = "W252";
+
+            Assert.Equal(expected, "Washington".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenL000()
+        {
+            const string expected = "L000";
+
+            Assert.Equal(expected, "Lee".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenG362()
+        {
+            const string expected = "G362";
+
+            Assert.Equal(expected, "Gutierrez".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenJ250()
+        {
+            const string expected = "J250";
+
+            Assert.Equal(expected, "Jackson".Soundex());
+        }
+
+        [Fact]
+        public void op_Soundex_string_whenV532()
+        {
+            const string expected = "V532";
+
+            Assert.Equal(expected, "Van Deusen".Soundex());
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_stringNull()
+        {
+            Assert.Null((null as string).ToEnglishAlphabet());
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string()
+        {
+            const string expected = "example";
+            var actual = expected.ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenLowercaseA()
+        {
+            const string expected = "aaaa";
+            var actual = "aàâæ".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenUppercaseA()
+        {
+            const string expected = "AAAA";
+            var actual = "AÀÂÆ".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenLowercaseC()
+        {
+            const string expected = "cc";
+            var actual = "cç".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenUppercaseC()
+        {
+            const string expected = "CC";
+            var actual = "CÇ".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenLowercaseE()
+        {
+            const string expected = "eeeee";
+            var actual = "eéèêë".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenUppercaseE()
+        {
+            const string expected = "EEEEE";
+            var actual = "EÉÈÊË".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenUppercaseI()
+        {
+            const string expected = "III";
+            var actual = "IÎÏ".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenLowercaseI()
+        {
+            const string expected = "iii";
+            var actual = "iîï".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenLowercaseO()
+        {
+            const string expected = "ooo";
+            var actual = "oôœ".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenUppercaseO()
+        {
+            const string expected = "OOO";
+            var actual = "OÔŒ".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenLowercaseU()
+        {
+            const string expected = "uuuu";
+            var actual = "uùûü".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenUppercaseU()
+        {
+            const string expected = "UUUU";
+            var actual = "UÙÛÜ".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenLowercaseY()
+        {
+            const string expected = "yy";
+            var actual = "yÿ".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_string_whenUppercaseY()
+        {
+            const string expected = "YY";
+            var actual = "YŸ".ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_stringAlphaUppercase()
+        {
+            const string expected = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var actual = expected.ToEnglishAlphabet();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToEnglishAlphabet_stringAlphaLowercase()
+        {
+            const string expected = "abcdefghijklmnopqrstuvwxyz";
+            var actual = expected.ToEnglishAlphabet();
 
             Assert.Equal(expected, actual);
         }

@@ -4,11 +4,14 @@
     <Recognized>
       <Word>Asterix</Word>
       <Word>Ato</Word>
+      <Word>Caverphone</Word>
       <Word>ctor</Word>
       <Word>Etag</Word>
       <Word>Foo</Word>
       <Word>Levenshtein</Word>
+      <Word>Metaphone</Word>
       <Word>Multiton</Word>
+      <Word>Soundex</Word>
       <Word>Zz</Word>
     </Recognized>
   </Words>

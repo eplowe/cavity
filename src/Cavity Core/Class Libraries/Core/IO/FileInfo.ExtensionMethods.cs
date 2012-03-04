@@ -10,10 +10,10 @@
     {
 #if NET20
         public static FileInfo Append(FileInfo obj, 
-                                  string value)
+                                      object value)
 #else
         public static FileInfo Append(this FileInfo obj, 
-                                      string value)
+                                      object value)
 #endif
         {
             if (null == obj)
@@ -27,7 +27,7 @@
                 {
                     if (null != value)
                     {
-                        writer.Write(value);
+                        writer.Write(value.ToString());
                     }
                 }
             }
@@ -37,10 +37,10 @@
 
 #if NET20
         public static FileInfo AppendLine(FileInfo obj, 
-                                      string value)
+                                          object value)
 #else
-        public static FileInfo AppendLine(this FileInfo obj, 
-                                          string value)
+        public static FileInfo AppendLine(this FileInfo obj,
+                                          object value)
 #endif
         {
             if (null == obj)
@@ -52,7 +52,10 @@
             {
                 using (var writer = new StreamWriter(stream))
                 {
-                    writer.WriteLine(value);
+                    if (null != value)
+                    {
+                        writer.WriteLine(value.ToString());
+                    }
                 }
             }
 
@@ -122,10 +125,10 @@
         [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix", Justification = "This naming is intentional")]
 #if NET20
         public static FileInfo CreateNew(FileInfo obj, 
-                                     string value)
+                                         object value)
 #else
         public static FileInfo CreateNew(this FileInfo obj, 
-                                         string value)
+                                         object value)
 #endif
         {
             if (null == obj)
@@ -139,7 +142,7 @@
                 {
                     if (null != value)
                     {
-                        writer.Write(value);
+                        writer.Write(value.ToString());
                     }
                 }
             }
@@ -214,6 +217,29 @@
                     }
                 }
             }
+
+            return obj;
+        }
+
+#if NET20
+        public static FileInfo Truncate(FileInfo obj, 
+                                        IXPathNavigable xml)
+#else
+        public static FileInfo Truncate(this FileInfo obj,
+                                        IXPathNavigable xml)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (null == xml)
+            {
+                throw new ArgumentNullException("xml");
+            }
+
+            Truncate(obj, xml.CreateNavigator().OuterXml);
 
             return obj;
         }

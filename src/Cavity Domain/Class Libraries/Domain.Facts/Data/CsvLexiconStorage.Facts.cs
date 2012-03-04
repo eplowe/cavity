@@ -104,17 +104,6 @@
         }
 
         [Fact]
-        public void op_Load_INormalityComparer_whenFileMissing()
-        {
-            using (var directory = new TempDirectory())
-            {
-                IStoreLexicon store = new CsvLexiconStorage(directory.Info.ToFile("example.csv"));
-
-                Assert.Empty(store.Load(NormalityComparer.Ordinal));
-            }
-        }
-
-        [Fact]
         public void op_Load_INormalityComparerNull()
         {
             using (var file = new TempFile())
@@ -128,6 +117,17 @@
                 store.Save(lexicon);
 
                 Assert.Throws<ArgumentNullException>(() => store.Load(null));
+            }
+        }
+
+        [Fact]
+        public void op_Load_INormalityComparer_whenFileMissing()
+        {
+            using (var directory = new TempDirectory())
+            {
+                IStoreLexicon store = new CsvLexiconStorage(directory.Info.ToFile("example.csv"));
+
+                Assert.Empty(store.Load(NormalityComparer.Ordinal));
             }
         }
 

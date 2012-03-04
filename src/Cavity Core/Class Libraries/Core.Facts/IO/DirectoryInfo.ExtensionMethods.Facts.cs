@@ -13,6 +13,196 @@
         }
 
         [Fact]
+        public void op_CopyTo_DirectoryInfoMissing_DirectoryInfo_boolTrue_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source").ToDirectory("test");
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test");
+
+                Assert.Throws<DirectoryNotFoundException>(() => source.CopyTo(destination, true, "*.txt"));
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfoNull_DirectoryInfo_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).CopyTo(temp.Info, true));
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfoNull_DirectoryInfo_bool_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).CopyTo(temp.Info, true, "*.txt"));
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfo_DirectoryInfoMissing_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "copied";
+                var source = temp.Info.ToDirectory("source").ToDirectory("test", true);
+                source.ToFile("example.txt").Append(expected);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test");
+
+                source.CopyTo(destination, false);
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfo_DirectoryInfoMissing_bool_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "copied";
+                var source = temp.Info.ToDirectory("source").ToDirectory("test", true);
+                source.ToFile("example.txt").Append(expected);
+                source.ToFile("example.ignore").Append(string.Empty);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test");
+
+                source.CopyTo(destination, false, "*.txt");
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+                Assert.False(destination.ToFile("example.ignore").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfo_DirectoryInfoNull_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.Throws<ArgumentNullException>(() => temp.Info.CopyTo(null, true));
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfo_DirectoryInfoNull_bool_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.Throws<ArgumentNullException>(() => temp.Info.CopyTo(null, true, "*.txt"));
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfo_DirectoryInfo_boolFalse()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "unchanged";
+                var source = temp.Info.ToDirectory("source").ToDirectory("test", true);
+                source.ToFile("example.txt").Append(string.Empty);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test", true);
+                destination.ToFile("example.txt").Append(expected);
+
+                source.CopyTo(destination, false);
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfo_DirectoryInfo_boolFalse_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "unchanged";
+                var source = temp.Info.ToDirectory("source").ToDirectory("test", true);
+                source.ToFile("example.ignore").Append(string.Empty);
+                source.ToFile("example.txt").Append(string.Empty);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test", true);
+                destination.ToFile("example.txt").Append(expected);
+
+                source.CopyTo(destination, false, "*.txt");
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+                Assert.False(destination.ToFile("example.ignore").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfo_DirectoryInfo_boolTrue()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "replace";
+                var source = temp.Info.ToDirectory("source").ToDirectory("test", true);
+                source.ToFile("example.txt").Append(expected);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test", true);
+                destination.ToFile("example.txt").Append(string.Empty);
+
+                source.CopyTo(destination, true);
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfo_DirectoryInfo_boolTrue_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "replace";
+                var source = temp.Info.ToDirectory("source").ToDirectory("test", true);
+                source.ToFile("example.ignore").Append(string.Empty);
+                source.ToFile("example.txt").Append(expected);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test", true);
+                destination.ToFile("example.txt").Append(string.Empty);
+
+                source.CopyTo(destination, true, "*.txt");
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+                Assert.False(destination.ToFile("example.ignore").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfo_DirectoryInfo_bool_stringEmpty()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source", true);
+                var destination = temp.Info.ToDirectory("destination", true);
+
+                Assert.Throws<ArgumentOutOfRangeException>(() => source.CopyTo(destination, true, string.Empty));
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfo_DirectoryInfo_bool_stringNull()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source", true);
+                var destination = temp.Info.ToDirectory("destination", true);
+
+                Assert.Throws<ArgumentNullException>(() => source.CopyTo(destination, true, null));
+            }
+        }
+
+        [Fact]
         public void op_Make_DirectoryInfo()
         {
             using (var temp = new TempDirectory())
@@ -35,6 +225,202 @@
             using (var temp = new TempDirectory())
             {
                 temp.Info.Make();
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfoMissing_DirectoryInfo_boolTrue_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source").ToDirectory("test");
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test");
+
+                Assert.Throws<DirectoryNotFoundException>(() => source.MoveTo(destination, true, "*.txt"));
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfoNull_DirectoryInfo_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).MoveTo(temp.Info, true));
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfoNull_DirectoryInfo_bool_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).MoveTo(temp.Info, true, "*.txt"));
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfo_DirectoryInfoMissing_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "moved";
+                var source = temp.Info.ToDirectory("source").ToDirectory("test", true);
+                source.ToFile("example.txt").Append(expected);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test");
+
+                source.MoveTo(destination, false);
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+                Assert.False(source.ToFile("example.txt").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfo_DirectoryInfoMissing_bool_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "moved";
+                var source = temp.Info.ToDirectory("source").ToDirectory("test", true);
+                source.ToFile("example.txt").Append(expected);
+                source.ToFile("example.ignore").Append(string.Empty);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test");
+
+                source.MoveTo(destination, false, "*.txt");
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+                Assert.False(source.ToFile("example.txt").Exists);
+                Assert.False(destination.ToFile("example.ignore").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfo_DirectoryInfoNull_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.Throws<ArgumentNullException>(() => temp.Info.MoveTo(null, true));
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfo_DirectoryInfoNull_bool_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.Throws<ArgumentNullException>(() => temp.Info.MoveTo(null, true, "*.txt"));
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfo_DirectoryInfo_boolFalse()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "unchanged";
+                var source = temp.Info.ToDirectory("source").ToDirectory("test", true);
+                source.ToFile("example.txt").Append(string.Empty);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test", true);
+                destination.ToFile("example.txt").Append(expected);
+
+                source.MoveTo(destination, false);
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+                Assert.True(source.ToFile("example.txt").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfo_DirectoryInfo_boolFalse_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "unchanged";
+                var source = temp.Info.ToDirectory("source").ToDirectory("test", true);
+                source.ToFile("example.ignore").Append(string.Empty);
+                source.ToFile("example.txt").Append(string.Empty);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test", true);
+                destination.ToFile("example.txt").Append(expected);
+
+                source.MoveTo(destination, false, "*.txt");
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+                Assert.True(source.ToFile("example.txt").Exists);
+                Assert.False(destination.ToFile("example.ignore").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfo_DirectoryInfo_boolTrue()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "replace";
+                var source = temp.Info.ToDirectory("source").ToDirectory("test", true);
+                source.ToFile("example.txt").Append(expected);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test", true);
+                destination.ToFile("example.txt").Append(string.Empty);
+
+                source.MoveTo(destination, true);
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+                Assert.False(source.ToFile("example.txt").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfo_DirectoryInfo_boolTrue_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "replace";
+                var source = temp.Info.ToDirectory("source").ToDirectory("test", true);
+                source.ToFile("example.ignore").Append(string.Empty);
+                source.ToFile("example.txt").Append(expected);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("test", true);
+                destination.ToFile("example.txt").Append(string.Empty);
+
+                source.MoveTo(destination, true, "*.txt");
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+                Assert.False(source.ToFile("example.txt").Exists);
+                Assert.False(destination.ToFile("example.ignore").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfo_DirectoryInfo_bool_stringEmpty()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source", true);
+                var destination = temp.Info.ToDirectory("destination", true);
+
+                Assert.Throws<ArgumentOutOfRangeException>(() => source.MoveTo(destination, true, string.Empty));
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_DirectoryInfo_DirectoryInfo_bool_stringNull()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source", true);
+                var destination = temp.Info.ToDirectory("destination", true);
+
+                Assert.Throws<ArgumentNullException>(() => source.MoveTo(destination, true, null));
             }
         }
 

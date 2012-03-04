@@ -51,7 +51,11 @@
                             }
                         }
 
+#if NET40
+                        file = destination.CombineAsFile(decompressed.Name);
+#else
                         file = new FileInfo(Path.Combine(destination.FullName, decompressed.Name));
+#endif
 
                         decompressed.MoveTo(file.FullName);
                     }

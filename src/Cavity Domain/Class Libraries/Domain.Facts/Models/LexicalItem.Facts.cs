@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using Cavity.Collections;
-    using Moq;
     using Xunit;
 
     public sealed class LexicalItemFacts
@@ -33,79 +32,10 @@
         }
 
         [Fact]
-        public void op_ContainsEnding_stringEmpty()
-        {
-            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
-
-            Assert.Null(obj.ContainsEnding(string.Empty));
-        }
-
-        [Fact]
-        public void op_ContainsEnding_stringNull()
-        {
-            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
-
-            Assert.Throws<ArgumentNullException>(() => obj.ContainsEnding(null));
-        }
-
-        [Fact]
-        public void op_ContainsEnding_string_whenExactCanonical()
+        public void opImplicit_string_LexicalItem()
         {
             const string expected = "Example";
-            var obj = new LexicalItem(NormalityComparer.Ordinal, expected);
-            var actual = obj.ContainsEnding(expected);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_ContainsEnding_string_whenCaseDiffersCanonical()
-        {
-            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
-
-            Assert.Null(obj.ContainsEnding("EXAMPLE"));
-        }
-
-        [Fact]
-        public void op_ContainsEnding_string_whenEndsWithCanonical()
-        {
-            const string expected = "example";
-            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
-            var actual = obj.ContainsEnding("This is an example");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_ContainsEnding_string_whenContainsCanonical()
-        {
-            const string expected = "example";
-            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
-            var actual = obj.ContainsEnding("This is an example");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_ContainsEnding_string_whenContainsSynonym()
-        {
-            const string expected = "example";
-            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "ignore");
-            obj.Synonyms.Add("EXAMPLE");
-
-            var actual = obj.ContainsEnding("This is an {0}".FormatWith(expected));
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_ContainsEnding_string_whenBadSpellingSynonym()
-        {
-            const string expected = "an ex_ample";
-            var obj = new LexicalItem(new UnderscoreComparer(), "example");
-            obj.Synonyms.Add("an example");
-
-            var actual = obj.ContainsEnding("This is {0}".FormatWith(expected));
+            string actual = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, expected);
 
             Assert.Equal(expected, actual);
         }
@@ -202,6 +132,429 @@
             var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
 
             Assert.Throws<ArgumentNullException>(() => obj.Invoke(null));
+        }
+
+        [Fact]
+        public void op_MatchBeginning_stringEmpty()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
+
+            Assert.Null(obj.MatchBeginning(string.Empty));
+        }
+
+        [Fact]
+        public void op_MatchBeginning_stringNull()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
+
+            Assert.Throws<ArgumentNullException>(() => obj.MatchBeginning(null));
+        }
+
+        [Fact]
+        public void op_MatchBeginning_string_whenBadSpellingSynonym()
+        {
+            var obj = new LexicalItem(new UnderscoreComparer(), "example");
+            obj.Synonyms.Add("an example");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Suffix = "test case"
+            };
+            var actual = obj.MatchBeginning("an ex_ample test case");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchBeginning_string_whenBeginsWithCanonical()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Suffix = "test case"
+            };
+            var actual = obj.MatchBeginning("example test case");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchBeginning_string_whenCaseDiffersCanonical()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
+
+            Assert.Null(obj.MatchBeginning("EXAMPLE"));
+        }
+
+        [Fact]
+        public void op_MatchBeginning_string_whenContainsCanonical()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Suffix = "test case"
+            };
+            var actual = obj.MatchBeginning("example test case");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchBeginning_string_whenContainsSynonym()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "ignore");
+            obj.Synonyms.Add("EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Suffix = "test case"
+            };
+
+            var actual = obj.MatchBeginning("example test case");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchBeginning_string_whenExactCanonical()
+        {
+            const string expected = "Example";
+            var obj = new LexicalItem(NormalityComparer.Ordinal, expected);
+            var actual = obj.MatchBeginning(expected);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchEnding_stringEmpty()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
+
+            Assert.Null(obj.MatchEnding(string.Empty));
+        }
+
+        [Fact]
+        public void op_MatchEnding_stringNull()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
+
+            Assert.Throws<ArgumentNullException>(() => obj.MatchEnding(null));
+        }
+
+        [Fact]
+        public void op_MatchEnding_string_whenBadSpellingSynonym()
+        {
+            var obj = new LexicalItem(new UnderscoreComparer(), "example");
+            obj.Synonyms.Add("an example");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Prefix = "This is"
+            };
+            var actual = obj.MatchEnding("This is an ex_ample");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchEnding_string_whenCaseDiffersCanonical()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
+
+            Assert.Null(obj.MatchEnding("EXAMPLE"));
+        }
+
+        [Fact]
+        public void op_MatchEnding_string_whenContainsCanonical()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Prefix = "This is an"
+            };
+            var actual = obj.MatchEnding("This is an example");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchEnding_string_whenContainsSynonym()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "ignore");
+            obj.Synonyms.Add("EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Prefix = "This is an"
+            };
+
+            var actual = obj.MatchEnding("This is an example");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchEnding_string_whenEndsWithCanonical()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Prefix = "This is an"
+            };
+            var actual = obj.MatchEnding("This is an example");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchEnding_string_whenExactCanonical()
+        {
+            const string expected = "Example";
+            var obj = new LexicalItem(NormalityComparer.Ordinal, expected);
+            var actual = obj.MatchEnding(expected);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchWithin_stringEmpty()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
+
+            Assert.Null(obj.MatchWithin(string.Empty));
+        }
+
+        [Fact]
+        public void op_MatchWithin_stringNull()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
+
+            Assert.Throws<ArgumentNullException>(() => obj.MatchWithin(null));
+        }
+
+        [Fact]
+        public void op_MatchWithin_string_whenBadSpellingSynonym()
+        {
+            var obj = new LexicalItem(new UnderscoreComparer(), "example");
+            obj.Synonyms.Add("an example");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Prefix = "This is an", 
+                Suffix = "test case"
+            };
+            var actual = obj.MatchWithin("This is an ex_ample test case");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchWithin_string_whenBeginsWithCanonical()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Suffix = "test case"
+            };
+            var actual = obj.MatchWithin("example test case");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchWithin_string_whenBeginsWithCanonicalTwoWords()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "AN EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Suffix = "test case"
+            };
+            var actual = obj.MatchWithin("an example test case");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchWithin_string_whenCaseDiffersCanonical()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
+
+            Assert.Null(obj.MatchWithin("EXAMPLE"));
+        }
+
+        [Fact]
+        public void op_MatchWithin_string_whenContainsCanonical()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Prefix = "This is an", 
+                Suffix = "test case"
+            };
+            var actual = obj.MatchWithin("This is an example test case");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchWithin_string_whenContainsCanonicalTwoWords()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "AN EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Prefix = "This is", 
+                Suffix = "test case"
+            };
+            var actual = obj.MatchWithin("This is an example test case");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchWithin_string_whenContainsSynonym()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "ignore");
+            obj.Synonyms.Add("EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Prefix = "This is an", 
+                Suffix = "test case"
+            };
+
+            var actual = obj.MatchWithin("This is an example test case");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchWithin_string_whenEndsWithCanonical()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Prefix = "This is an"
+            };
+            var actual = obj.MatchWithin("This is an example");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchWithin_string_whenEndsWithCanonicalTwoWords()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "AN EXAMPLE");
+
+            var expected = new LexicalMatch(obj)
+            {
+                Prefix = "This is"
+            };
+            var actual = obj.MatchWithin("This is an example");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchWithin_string_whenExactCanonical()
+        {
+            const string expected = "Example";
+            var obj = new LexicalItem(NormalityComparer.Ordinal, expected);
+            var actual = obj.MatchWithin(expected);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Match_stringEmpty()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
+
+            Assert.Null(obj.Match(string.Empty));
+        }
+
+        [Fact]
+        public void op_Match_stringEmpty_whenSynonyms()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example")
+            {
+                Synonyms =
+                    {
+                        "Foo", 
+                        "Bar"
+                    }
+            };
+
+            Assert.Null(obj.Match(string.Empty));
+        }
+
+        [Fact]
+        public void op_Match_stringNull()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
+
+            Assert.Throws<ArgumentNullException>(() => obj.Match(null));
+        }
+
+        [Fact]
+        public void op_Match_stringNull_whenSynonyms()
+        {
+            var obj = new LexicalItem(NormalityComparer.Ordinal, "Example")
+            {
+                Synonyms =
+                    {
+                        "Foo", 
+                        "Bar"
+                    }
+            };
+
+            Assert.Throws<ArgumentNullException>(() => obj.Match(null));
+        }
+
+        [Fact]
+        public void op_Match_string_whenMatchesSynonym()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "Example")
+            {
+                Synonyms =
+                    {
+                        "Foo", 
+                        "Bar"
+                    }
+            };
+
+            var expected = new LexicalMatch(obj);
+            var actual = obj.Match("Bar");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Match_string_whenOrdinalIgnoreCase()
+        {
+            var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "Example");
+
+            var expected = new LexicalMatch(obj);
+            var actual = obj.Match("EXAMPLE");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToString()
+        {
+            const string expected = "Example";
+            var actual = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, expected).ToString();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

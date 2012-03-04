@@ -3,10 +3,119 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Text;
+#if NET40
+    using System.Threading.Tasks;
+#endif
 
     public static class DirectoryInfoExtensionMethods
     {
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static void CopyTo(DirectoryInfo source,
+                                  DirectoryInfo destination,
+                                  bool replace)
+#else
+        public static void CopyTo(this DirectoryInfo source,
+                                  DirectoryInfo destination,
+                                  bool replace)
+#endif
+        {
+            CopyTo(source, destination, replace, "*.*");
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static void CopyTo(DirectoryInfo source,
+                                  DirectoryInfo destination,
+                                  bool replace,
+                                  string pattern)
+#else
+        public static void CopyTo(this DirectoryInfo source,
+                                  DirectoryInfo destination,
+                                  bool replace,
+                                  string pattern)
+#endif
+        {
+            if (null == source)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            if (null == destination)
+            {
+                throw new ArgumentNullException("destination");
+            }
+
+            if (null == pattern)
+            {
+                throw new ArgumentNullException("pattern");
+            }
+
+            if (0 == pattern.Length)
+            {
+                throw new ArgumentOutOfRangeException("pattern");
+            }
+
+#if NET40
+            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories), file =>
+#else
+            foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
+#endif
+            {
+                var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
+                if (target.Exists)
+                {
+                    if (replace)
+                    {
+                        target.Delete();
+                    }
+                    else
+                    {
+#if NET40
+                        return;
+#else
+                        continue;
+#endif
+                    }
+                }
+
+                if (null != target.Directory &&
+                    !target.Directory.Exists)
+                {
+                    target.Directory.Create();
+                }
+
+                file.CopyTo(target.FullName);
+#if NET40
+            });
+#else
+            }
+#endif
+            foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
+            {
+                var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
+                if (target.Exists)
+                {
+                    if (replace)
+                    {
+                        target.Delete();
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+
+                if (null != target.Directory &&
+                    !target.Directory.Exists)
+                {
+                    target.Directory.Create();
+                }
+
+                file.CopyTo(target.FullName);
+            }
+        }
+
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
 #if NET20
         public static DirectoryInfo Make(DirectoryInfo obj)
@@ -27,6 +136,113 @@
             }
 
             return obj;
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static void MoveTo(DirectoryInfo source,
+                                  DirectoryInfo destination,
+                                  bool replace)
+#else
+        public static void MoveTo(this DirectoryInfo source,
+                                  DirectoryInfo destination,
+                                  bool replace)
+#endif
+        {
+            MoveTo(source, destination, replace, "*.*");
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static void MoveTo(DirectoryInfo source,
+                                  DirectoryInfo destination,
+                                  bool replace,
+                                  string pattern)
+#else
+        public static void MoveTo(this DirectoryInfo source,
+                                  DirectoryInfo destination,
+                                  bool replace,
+                                  string pattern)
+#endif
+        {
+            if (null == source)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            if (null == destination)
+            {
+                throw new ArgumentNullException("destination");
+            }
+
+            if (null == pattern)
+            {
+                throw new ArgumentNullException("pattern");
+            }
+
+            if (0 == pattern.Length)
+            {
+                throw new ArgumentOutOfRangeException("pattern");
+            }
+
+#if NET40
+            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories), file =>
+#else
+            foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
+#endif
+            {
+                var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
+                if (target.Exists)
+                {
+                    if (replace)
+                    {
+                        target.Delete();
+                    }
+                    else
+                    {
+#if NET40
+                        return;
+#else
+                        continue;
+#endif
+                    }
+                }
+
+                if (null != target.Directory &&
+                    !target.Directory.Exists)
+                {
+                    target.Directory.Create();
+                }
+
+                file.MoveTo(target.FullName);
+#if NET40
+            });
+#else
+            }
+#endif
+            foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
+            {
+                var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
+                if (target.Exists)
+                {
+                    if (replace)
+                    {
+                        target.Delete();
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+
+                if (null != target.Directory &&
+                    !target.Directory.Exists)
+                {
+                    target.Directory.Create();
+                }
+
+                file.CopyTo(target.FullName);
+            }
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
@@ -52,14 +268,24 @@
                                                 bool create)
 #endif
         {
-            var dir = new DirectoryInfo(PathCombine(obj, name));
+            if (null == name)
+            {
+                throw new ArgumentNullException("name");
+            }
+
+#if NET40
+            var dir = obj.CombineAsDirectory(name);
+#else
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            var dir = new DirectoryInfo(Path.Combine(obj.FullName, StringExtensionMethods.RemoveIllegalFileCharacters(name.ToString())));
+#endif
             if (create)
             {
-#if NET20
-                DirectoryInfoExtensionMethods.Make(dir);
-#else
-                dir.Make();
-#endif
+                Make(dir);
             }
 
             return dir;
@@ -74,79 +300,21 @@
                                       object name)
 #endif
         {
-            return new FileInfo(PathCombine(obj, name));
-        }
-
-        private static string PathCombine(FileSystemInfo obj, 
-                                          object name)
-        {
-            if (null == obj)
-            {
-                throw new ArgumentNullException("obj");
-            }
-
             if (null == name)
             {
                 throw new ArgumentNullException("name");
             }
 
-            var buffer = new StringBuilder();
-            foreach (int c in name.ToString())
-            {
-                if (32 > c)
-                {
-                    // Control characters
-                    continue;
-                }
-
-                switch (c)
-                {
-                    case 34: // "
-                    case 42: // *
-                    case 47: // /
-                    case 58: // :
-                    case 60: // <
-                    case 62: // >
-                    case 63: // ?
-                    case 92: // \
-                    case 124: // |
-                    case 127: // DEL
-                        break;
-
-                    default:
-                        buffer.Append((char)c);
-                        break;
-                }
-            }
-
-#if NET20
-            var value = StringExtensionMethods.NormalizeWhiteSpace(buffer.ToString()).Trim();
+#if NET40
+            return obj.CombineAsFile(name);
 #else
-            var value = buffer.ToString().NormalizeWhiteSpace().Trim();
-#endif
-            if (0 == value.Length)
+            if (null == obj)
             {
-#if NET20
-                var message = StringExtensionMethods.FormatWith("'{0}' was empty when trimmed.", buffer.ToString());
-#else
-                var message = "'{0}' was empty when trimmed.".FormatWith(name.ToString());
-#endif
-                throw new ArgumentOutOfRangeException("name", name, message);
+                throw new ArgumentNullException("obj");
             }
 
-            try
-            {
-                return Path.Combine(obj.FullName, value);
-            }
-            catch (ArgumentException exception)
-            {
-#if NET20
-                var message = StringExtensionMethods.FormatWith("'{0}' is an invalid name.", name.ToString());
-#else
-                var message = "'{0}' is an invalid name.".FormatWith(name.ToString());
+            return new FileInfo(Path.Combine(obj.FullName, StringExtensionMethods.RemoveIllegalFileCharacters(name.ToString())));
 #endif
-                throw new ArgumentOutOfRangeException(message, exception);
-            }
         }
     }
 }

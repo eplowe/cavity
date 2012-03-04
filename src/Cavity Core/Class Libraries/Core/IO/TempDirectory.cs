@@ -2,6 +2,9 @@
 {
     using System;
     using System.IO;
+#if NET40
+    using System.Threading.Tasks;
+#endif
 
     public class TempDirectory : IDisposable
     {
@@ -16,8 +19,12 @@
             {
                 throw new ArgumentNullException("dir");
             }
-
+            
+#if NET40
+            Info = dir.CombineAsDirectory(Guid.NewGuid());
+#else
             Info = new DirectoryInfo(Path.Combine(dir.FullName, Guid.NewGuid().ToString()));
+#endif
             Info.Create();
         }
 
@@ -59,19 +66,32 @@
 
         private static void DeleteSubdirectories(DirectoryInfo directory)
         {
+#if NET40
+            Parallel.ForEach(directory.EnumerateDirectories(), subdirectory =>
+            {
+                DeleteSubdirectories(subdirectory);
+                subdirectory.Delete();
+            });
+#else
             foreach (var subdirectory in directory.GetDirectories())
             {
                 DeleteSubdirectories(subdirectory);
                 subdirectory.Delete();
             }
+#endif
         }
 
         private void DeleteFiles()
         {
+#if NET40
+            Parallel.ForEach(Info.EnumerateFiles("*", SearchOption.AllDirectories),
+                             file => file.Delete());
+#else
             foreach (var file in Info.GetFiles("*", SearchOption.AllDirectories))
             {
                 file.Delete();
             }
+#endif
         }
     }
 }
