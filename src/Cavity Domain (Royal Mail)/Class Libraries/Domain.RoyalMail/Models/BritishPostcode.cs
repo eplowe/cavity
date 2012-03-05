@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Linq;
-    using Cavity.Diagnostics;
 #if !NET20
+    using System.Linq;
 #endif
+    using Cavity.Diagnostics;
 
     public sealed class BritishPostcode : ComparableObject
     {
@@ -40,9 +40,7 @@
                 .Trim()
                 .ToUpperInvariant()
                 .Where(c => ' '.Equals(c) || char.IsLetterOrDigit(c))
-                .Aggregate(string.Empty, 
-                           (current, 
-                            c) => current + c);
+                .Aggregate(string.Empty, (current, c) => current + c);
 
             if (0 == value.Length)
             {
@@ -51,6 +49,11 @@
 
             var parts = value.Split(' ');
             var area = ToArea(parts[0]);
+            if (null == area)
+            {
+                return new BritishPostcode();
+            }
+
             switch (parts.Length)
             {
                 case 1:
@@ -100,9 +103,7 @@
 #else
             return value
                 .TakeWhile(c => c >= 'A' && c <= 'Z')
-                .Aggregate<char, string>(null, 
-                                         (x, 
-                                          c) => x + c);
+                .Aggregate<char, string>(null, (x, c) => x + c);
 #endif
         }
 
@@ -122,9 +123,7 @@
 #else
             return value
                 .Where(c => c >= '0' && c <= '9')
-                .Aggregate<char, string>(null, 
-                                         (x, 
-                                          c) => x + c);
+                .Aggregate<char, string>(null, (x, c) => x + c);
 #endif
         }
     }
