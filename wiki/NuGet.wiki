@@ -21,7 +21,7 @@
 *1.1.0.784* Cavity.Data.Ace
  * Cavity.Core
 
-*1.1.0.784* Cavity.Data.Csv
+*1.1.0.786* Cavity.Data.Csv
  * Cavity.Core
 
 *1.1.0.784* Cavity Repository
@@ -77,11 +77,11 @@
  * Cavity.Commands
    * Cavity.Core
 
-*1.1.0.784* Cavity.Domain
+*1.1.0.786* Cavity.Domain
  * Cavity.Data.Csv
    * Cavity.Core
 
-*1.1.0.784* Cavity.Domain.RoyalMail
+*1.1.0.786* Cavity.Domain.RoyalMail
  * Cavity.Data.Csv
    * Cavity.Core
 

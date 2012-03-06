@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using Cavity.Collections;
     using Xunit;
 
     public sealed class CsvStreamReaderFacts
@@ -118,6 +119,30 @@
                     using (var reader = new CsvStreamReader(stream))
                     {
                         var actual = reader.ReadEntry();
+                        Assert.Equal("A,B", reader.Header);
+                        Assert.Equal(2, reader.LineNumber);
+                        Assert.Equal(1, reader.EntryNumber);
+                        Assert.Equal("1A", actual["A"]);
+                        Assert.Equal("1B", actual["B"]);
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_ReadEntryOfT()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine("A,B");
+                    writer.WriteLine("1A,1B");
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new CsvStreamReader(stream))
+                    {
+                        var actual = reader.ReadEntry<KeyStringDictionary>();
                         Assert.Equal("A,B", reader.Header);
                         Assert.Equal(2, reader.LineNumber);
                         Assert.Equal(1, reader.EntryNumber);

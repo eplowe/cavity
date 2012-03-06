@@ -43,6 +43,21 @@
         }
 
         [Fact]
+        public void op_AsOfT()
+        {
+            using (var file = new TempFile())
+            {
+                file.Info.AppendLine("name");
+                file.Info.AppendLine("value");
+
+                foreach (var item in new CsvFile(file.Info).As<TestCsvEntry>())
+                {
+                    Assert.Equal("value", item.Name);
+                }
+            }
+        }
+
+        [Fact]
         public void op_GetEnumerator()
         {
             using (var file = new TempFile())

@@ -210,12 +210,28 @@
             }
         }
 
+        public IEnumerable<T> As<T>()
+            where T : KeyStringDictionary
+        {
+            var enumerator = GetEnumerator<T>();
+            while (enumerator.MoveNext())
+            {
+                yield return enumerator.Current;
+            }
+        }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
         public IEnumerator<KeyStringDictionary> GetEnumerator()
+        {
+            return GetEnumerator<KeyStringDictionary>();
+        }
+
+        protected IEnumerator<T> GetEnumerator<T>()
+            where T : KeyStringDictionary
         {
             Info.Refresh();
             if (!Info.Exists)
@@ -229,13 +245,13 @@
                 {
                     while (!reader.EndOfStream)
                     {
-                        var entry = reader.ReadEntry();
+                        var entry = reader.ReadEntry<T>();
                         if (null == entry)
                         {
                             break;
                         }
 
-                        yield return entry;
+                        yield return (T)entry;
                     }
                 }
             }
