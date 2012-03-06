@@ -34,7 +34,7 @@
       <HintPath>..\..\packages\Cavity.Core.1.1.0.784\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Data.Csv">
-      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.784\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.786\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

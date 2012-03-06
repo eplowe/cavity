@@ -57,7 +57,14 @@
 
         public virtual KeyStringDictionary ReadEntry()
         {
-            var result = new KeyStringDictionary();
+            return ReadEntry<KeyStringDictionary>();
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "A non-generic version is available.")]
+        public virtual KeyStringDictionary ReadEntry<T>()
+            where T : KeyStringDictionary
+        {
+            var result = Activator.CreateInstance<T>();
 
             if (null == Columns)
             {
