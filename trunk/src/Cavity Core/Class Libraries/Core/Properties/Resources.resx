@@ -123,6 +123,27 @@
   <data name="EntityTag_FormatException_Message" xml:space="preserve">
     <value>An entity tag must be enclosed with quotes and may optionally begin with W/.</value>
   </data>
+  <data name="ExceptionMessage_IndexAfterValueLength" xml:space="preserve">
+    <value>The index value of {0} is beyond the length of "{1}".</value>
+  </data>
+  <data name="ExceptionMessage_LengthShorterThanValueLength" xml:space="preserve">
+    <value>The length value of {0} is shorter than the length of the value "{1}".</value>
+  </data>
+  <data name="ExceptionMessage_NegativeIndex" xml:space="preserve">
+    <value>The index value of {0} is negative.</value>
+  </data>
+  <data name="ExceptionMessage_NegativeLength" xml:space="preserve">
+    <value>The length value of {0} is negative.</value>
+  </data>
+  <data name="ExceptionMessage_NegativeStartIndex" xml:space="preserve">
+    <value>The start value of {0} is negative.</value>
+  </data>
+  <data name="ExceptionMessage_StartIndexAfterValueLength" xml:space="preserve">
+    <value>The start value of {0} is beyond the length of "{1}".</value>
+  </data>
+  <data name="ExceptionMessage_StartIndexAndLengthAfterValueLength" xml:space="preserve">
+    <value>The start + length value of {0} + {1} is beyond the length of "{2}".</value>
+  </data>
   <data name="IndexOutOfRangeException_Message" xml:space="preserve">
     <value>Index was out of range. Must be non-negative and less than the size of the collection.</value>
   </data>

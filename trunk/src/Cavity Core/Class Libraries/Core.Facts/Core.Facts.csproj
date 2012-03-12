@@ -39,7 +39,7 @@
     <Compile Include="String.ExtensionMethods.Facts.cs" />
     <Compile Include="ValueObject`1.Derived.cs" />
     <Compile Include="ValueObject`1.Facts.cs" />
-    <Compile Include="WhiteSpace.Facts.cs" />
+    <Compile Include="Characters.Facts.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.Facts.cs" />
     <Compile Include="Xml\XmlNamespace.Facts.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.Facts.cs" />
@@ -51,6 +51,7 @@
     <Compile Include="DisposableObject.Derived.cs" />
     <Compile Include="DisposableObject.Facts.cs" />
     <Compile Include="Static`1.Facts.cs" />
+    <Compile Include="MutableString.Facts.cs" />
     <Compile Include="NullObject.Facts.cs" />
     <Compile Include="Date.Facts.cs" />
   </ItemGroup>
@@ -96,6 +97,9 @@
   <ItemGroup>
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.extensions">
+      <HintPath>..\..\packages\xunit.extensions.1.9.0.1566\lib\xunit.extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />

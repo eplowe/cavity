@@ -130,31 +130,27 @@
                 return result;
             }
 
-            var parts = value.Split(' ');
-            if (parts.Length < 2)
-            {
-                return null;
-            }
-
-            var substring = value;
-            foreach (var part in Reverse(parts))
-            {
+            var substring = new MutableString(value);
+            var clone = substring.Clone();
 #if NET20
-                substring = StringExtensionMethods.RemoveFromEnd(substring, part, StringComparison.Ordinal).Trim();
+            foreach (var word in IEnumerableExtensionMethods.Reverse(substring.Words()))
 #else
-                substring = substring.RemoveFromEnd(part, StringComparison.Ordinal).Trim();
+            foreach (var word in substring.Words().Reverse())
 #endif
+            {
+                if (0 == word.Length)
+                {
+                    continue;
+                }
+
+                substring.RemoveFromEnd(word).Trim();
                 result = Match(substring);
                 if (null == result)
                 {
                     continue;
                 }
 
-#if NET20
-                result.Suffix = StringExtensionMethods.RemoveFromStart(value, substring, StringComparison.Ordinal).Trim();
-#else
-                result.Suffix = value.RemoveFromStart(substring, StringComparison.Ordinal).Trim();
-#endif
+                result.Suffix = clone.Suffix(substring).Trim();
                 return result;
             }
 
@@ -179,38 +175,28 @@
                 return result;
             }
 
-            var parts = value.Split(' ');
-            if (parts.Length < 2)
-            {
-                return null;
-            }
-
-            var substring = value;
-            foreach (var part in parts)
-            {
+            var substring = new MutableString(value);
+            var clone = substring.Clone();
 #if NET20
-                substring = StringExtensionMethods.RemoveFromStart(substring, part, StringComparison.Ordinal).Trim();
+            foreach (var word in IEnumerableExtensionMethods.ToList(substring.Words()))
 #else
-                substring = substring.RemoveFromStart(part, StringComparison.Ordinal).Trim();
+            foreach (var word in substring.Words().ToList())
 #endif
+            {
+                substring.RemoveFromStart(word).Trim();
                 result = Match(substring);
                 if (null == result)
                 {
                     continue;
                 }
 
-#if NET20
-                result.Prefix = StringExtensionMethods.RemoveFromEnd(value, substring, StringComparison.Ordinal).Trim();
-#else
-                result.Prefix = value.RemoveFromEnd(substring, StringComparison.Ordinal).Trim();
-#endif
+                result.Prefix = clone.Prefix(substring).Trim();
                 return result;
             }
 
             return null;
         }
 
-#if !NET20
         public LexicalMatch MatchWithin(string value)
         {
             if (null == value)
@@ -235,7 +221,12 @@
                 return null;
             }
 
-            foreach (var part in PartsWithin(parts))
+            var mutable = new MutableString(value);
+#if NET20
+            foreach (var part in PartsWithin(IEnumerableExtensionMethods.ToList(mutable.Words())))
+#else
+            foreach (var part in PartsWithin(mutable.Words().ToList()))
+#endif
             {
                 result = Match(part);
                 if (null == result)
@@ -243,7 +234,11 @@
                     continue;
                 }
 
+#if NET20
+                var splits = StringExtensionMethods.Split(value, part, StringSplitOptions.None);
+#else
                 var splits = value.Split(part, StringSplitOptions.None);
+#endif
                 if (2 != splits.Length)
                 {
                     continue;
@@ -256,7 +251,6 @@
 
             return null;
         }
-#endif
 
         public virtual bool Contains(string value)
         {
@@ -286,8 +280,7 @@
             return CanonicalForm ?? string.Empty;
         }
 
-#if !NET20
-        private static IEnumerable<string> PartsWithin(ICollection<string> parts)
+        private static IEnumerable<string> PartsWithin(IList<string> parts)
         {
             if (null == parts)
             {
@@ -313,29 +306,16 @@
                         break;
                     }
 
-                    yield return parts
-                        .Skip(j)
-                        .Take(i)
-                        .Aggregate<string, string>(null, (x, part) => x + (' ' + part))
-                        .Trim();
+                    var result = new MutableString();
+                    for (var x = j; x < j + i; x++)
+                    {
+                        result.Append(' ');
+                        result.Append(parts[x]);
+                    }
+
+                    yield return result.Trim();
                 }
             }
-        }
-#endif
-
-        private static IEnumerable<string> Reverse(IEnumerable<string> parts)
-        {
-#if NET20
-            var list = new List<string>();
-            foreach (var part in parts)
-            {
-                list.Insert(0, part);
-            }
-
-            return list;
-#else
-            return parts.Reverse();
-#endif
         }
     }
 }

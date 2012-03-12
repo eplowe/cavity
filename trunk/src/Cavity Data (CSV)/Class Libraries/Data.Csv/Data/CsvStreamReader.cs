@@ -62,7 +62,7 @@
 
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "A non-generic version is available.")]
         public virtual KeyStringDictionary ReadEntry<T>()
-            where T : KeyStringDictionary
+            where T : KeyStringDictionary, new()
         {
             var result = Activator.CreateInstance<T>();
 

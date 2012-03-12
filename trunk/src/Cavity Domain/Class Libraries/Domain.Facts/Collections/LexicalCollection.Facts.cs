@@ -268,6 +268,19 @@
         }
 
         [Fact]
+        public void op_MatchBeginning_string_whenContainsDoubleSpace()
+        {
+            const string expected = "Example";
+
+            var obj = new LexicalCollection(NormalityComparer.Ordinal)
+            {
+                expected
+            };
+
+            Assert.Null(obj.MatchBeginning("a  z"));
+        }
+
+        [Fact]
         public void op_MatchEnding_string()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)

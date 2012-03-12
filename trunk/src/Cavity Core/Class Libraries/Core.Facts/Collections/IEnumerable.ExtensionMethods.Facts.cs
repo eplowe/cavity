@@ -3,6 +3,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
+    using Moq;
     using Xunit;
 
     public sealed class IEnumerableExtensionMethodsFacts
@@ -131,6 +133,54 @@
         public void op_IsEmpty_IEnumerableNull()
         {
             Assert.True((null as IEnumerable).IsEmpty());
+        }
+
+        [Fact]
+        public void op_ToHashSet_IEnumerable()
+        {
+            var obj = "a,z".Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            var actual = obj.ToHashSet();
+
+            Assert.Equal("a", actual.First());
+            Assert.Equal("z", actual.Last());
+        }
+
+        [Fact]
+        public void op_ToHashSet_IEnumerableEmpty()
+        {
+            Assert.Empty(new List<string>().ToHashSet());
+        }
+
+        [Fact]
+        public void op_ToHashSet_IEnumerableNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as IEnumerable<int>).ToHashSet());
+        }
+
+        [Fact]
+        public void op_ToHashSet_IEnumerable_IEqualityComparerOfT()
+        {
+            var obj = "a,z".Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            var comparer = new Mock<IEqualityComparer<string>>();
+
+            var actual = obj.ToHashSet(comparer.Object);
+
+            Assert.Equal("a", actual.First());
+            Assert.Equal("z", actual.Last());
+        }
+
+        [Fact]
+        public void op_ToHashSet_IEnumerableEmpty_IEqualityComparerOfT()
+        {
+            Assert.Empty(new List<string>().ToHashSet(new Mock<IEqualityComparer<string>>().Object));
+        }
+
+        [Fact]
+        public void op_ToHashSet_IEnumerableNull_IEqualityComparerOfT()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as IEnumerable<int>).ToHashSet(new Mock<IEqualityComparer<int>>().Object));
         }
 
         [Fact]

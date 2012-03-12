@@ -674,7 +674,7 @@
         [Fact]
         public void op_NormalizeWhiteSpace_string()
         {
-            var expected = new string(' ', WhiteSpace.Characters.Count);
+            var expected = new string(' ', Characters.WhiteSpace.Count);
             var actual = string.Concat(
                 '\u0009', 
                 // HT (Horizontal Tab)

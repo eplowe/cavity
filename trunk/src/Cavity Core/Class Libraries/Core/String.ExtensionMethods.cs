@@ -1576,7 +1576,6 @@
         }
 
         [Comment("TODO: Extend alphabet, see http://en.wikipedia.org/wiki/Latin_alphabets")]
-        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Tough to see how to reduce the cyclomatic complexity of this switch statement.")]
 #if NET20
         public static string ToEnglishAlphabet(string obj)
 #else
@@ -1591,72 +1590,12 @@
             var buffer = new StringBuilder();
             foreach (var c in obj)
             {
-                switch (c)
-                {
-                    case 'À':
-                    case 'Â':
-                    case 'Æ':
-                        buffer.Append('A');
-                        break;
-                    case 'à':
-                    case 'â':
-                    case 'æ':
-                        buffer.Append('a');
-                        break;
-                    case 'Ç':
-                        buffer.Append('C');
-                        break;
-                    case 'ç':
-                        buffer.Append('c');
-                        break;
-                    case 'É':
-                    case 'È':
-                    case 'Ê':
-                    case 'Ë':
-                        buffer.Append('E');
-                        break;
-                    case 'é':
-                    case 'è':
-                    case 'ê':
-                    case 'ë':
-                        buffer.Append('e');
-                        break;
-                    case 'Î':
-                    case 'Ï':
-                        buffer.Append('I');
-                        break;
-                    case 'î':
-                    case 'ï':
-                        buffer.Append('i');
-                        break;
-                    case 'Ô':
-                    case 'Œ':
-                        buffer.Append('O');
-                        break;
-                    case 'ô':
-                    case 'œ':
-                        buffer.Append('o');
-                        break;
-                    case 'Ù':
-                    case 'Û':
-                    case 'Ü':
-                        buffer.Append('U');
-                        break;
-                    case 'ù':
-                    case 'û':
-                    case 'ü':
-                        buffer.Append('u');
-                        break;
-                    case 'Ÿ':
-                        buffer.Append('Y');
-                        break;
-                    case 'ÿ':
-                        buffer.Append('y');
-                        break;
-                    default:
-                        buffer.Append(c);
-                        break;
-                }
+#if NET20
+                var value = CharExtensionMethods.ToEnglishAlphabet(c);
+#else
+                var value = c.ToEnglishAlphabet();
+#endif
+                buffer.Append(value.HasValue ? value.Value : c);
             }
 
             return buffer.ToString();
