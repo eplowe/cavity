@@ -347,7 +347,7 @@
                 Prefix = "This is an", 
                 Suffix = "test case"
             };
-            var actual = obj.MatchWithin("This is an ex_ample test case");
+            var actual = obj.MatchWithin("This is an ex0ample test case");
 
             Assert.Equal(expected, actual);
         }

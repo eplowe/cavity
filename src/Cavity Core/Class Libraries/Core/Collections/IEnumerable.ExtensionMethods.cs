@@ -98,7 +98,78 @@
         {
             return null == obj || !obj.Cast<object>().Any();
         }
+#endif
 
+#if NET20
+        public static IEnumerable<T> Reverse<T>(IEnumerable<T> obj)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            var list = new List<T>();
+            foreach (var item in obj)
+            {
+                list.Insert(0, item);
+            }
+
+            return list;
+        }
+#endif
+
+#if !NET20
+        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> obj)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            var result = new HashSet<T>();
+
+            foreach (var item in obj)
+            {
+                result.Add(item);
+            }
+
+            return result;
+        }
+
+        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> obj, IEqualityComparer<T> comparer)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            var result = new HashSet<T>(comparer);
+
+            foreach (var item in obj)
+            {
+                result.Add(item);
+            }
+
+            return result;
+        }
+#endif
+
+#if NET20
+        public static IList<T> ToList<T>(IEnumerable<T> obj)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            var list = new List<T>();
+            foreach (var item in obj)
+            {
+                list.Add(item);
+            }
+
+            return list;
+        }
 #endif
 
 #if NET20

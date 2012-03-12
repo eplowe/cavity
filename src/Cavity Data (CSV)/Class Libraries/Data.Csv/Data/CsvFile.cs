@@ -211,7 +211,7 @@
         }
 
         public IEnumerable<T> As<T>()
-            where T : KeyStringDictionary
+            where T : KeyStringDictionary, new()
         {
             var enumerator = GetEnumerator<T>();
             while (enumerator.MoveNext())
@@ -231,7 +231,7 @@
         }
 
         protected IEnumerator<T> GetEnumerator<T>()
-            where T : KeyStringDictionary
+            where T : KeyStringDictionary, new()
         {
             Info.Refresh();
             if (!Info.Exists)

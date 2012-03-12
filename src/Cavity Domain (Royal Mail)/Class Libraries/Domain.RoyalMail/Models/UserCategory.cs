@@ -10,9 +10,7 @@
 
         public static IUserCategory Resolve(char code)
         {
-            return _categories
-                .Where(x => x.Code.Equals(code))
-                .FirstOrDefault();
+            return _categories.FirstOrDefault(x => x.Code.Equals(code));
         }
 
         private static IEnumerable<IUserCategory> LoadUserCategories()
