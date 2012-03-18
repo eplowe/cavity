@@ -3,10 +3,14 @@
     using System;
     using System.IO;
     using System.Text;
+
     using Cavity.Net.Mime;
     using Cavity.Text;
+
     using Microsoft.Practices.ServiceLocation;
+
     using Moq;
+
     using Xunit;
 
     public sealed class HttpRequestFacts
@@ -34,9 +38,9 @@
         public void opImplicit_HttpRequest_string()
         {
             var expected = new HttpRequest
-            {
-                RequestLine = "GET / HTTP/1.1"
-            };
+                               {
+                                   RequestLine = "GET / HTTP/1.1"
+                               };
             HttpRequest actual = "GET / HTTP/1.1";
 
             Assert.Equal(expected, actual);
@@ -143,7 +147,10 @@
                     stream.Position = 0;
                     using (var reader = new StreamReader(stream))
                     {
+                        // ReSharper disable AccessToDisposedClosure
                         Assert.Throws<ArgumentNullException>(() => new HttpRequest().Read(reader));
+
+                        // ReSharper restore AccessToDisposedClosure
                     }
                 }
             }
@@ -391,9 +398,9 @@
             var expected = new Uri("http://www.example.com/path");
 
             var obj = new HttpRequest
-            {
-                RequestLine = new RequestLine("GET", expected.AbsoluteUri, "HTTP/1.1")
-            };
+                          {
+                              RequestLine = new RequestLine("GET", expected.AbsoluteUri, "HTTP/1.1")
+                          };
 
             var actual = obj.AbsoluteUri;
 
@@ -406,13 +413,13 @@
             var expected = new Uri("http://www.example.com/path");
 
             var obj = new HttpRequest
-            {
-                RequestLine = "GET /path HTTP/1.1",
-                Headers =
-                    {
-                        (HttpHeader)"Host: www.example.com"
-                    }
-            };
+                          {
+                              RequestLine = "GET /path HTTP/1.1", 
+                              Headers =
+                                  {
+                                      (HttpHeader)"Host: www.example.com"
+                                  }
+                          };
 
             var actual = obj.AbsoluteUri;
 

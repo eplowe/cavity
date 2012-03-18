@@ -7,11 +7,12 @@
     using System.Linq;
 #endif
     using System.Reflection;
+
     using Cavity.Properties;
 
     public sealed class AttributeMemberTest : MemberTestBase
     {
-        public AttributeMemberTest(MemberInfo member,
+        public AttributeMemberTest(MemberInfo member, 
                                    Type attribute)
             : base(member)
         {
@@ -24,7 +25,7 @@
         {
             if (null == Attribute)
             {
-                if (0 != Member.GetCustomAttributes(false).Where(x => !(x is SuppressMessageAttribute)).Count())
+                if (0 != Member.GetCustomAttributes(false).Count(x => !(x is SuppressMessageAttribute)))
                 {
                     throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.DecorationTestException_UnexpectedMessage, Member.Name));
                 }

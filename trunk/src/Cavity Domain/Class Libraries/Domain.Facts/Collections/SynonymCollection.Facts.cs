@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+
     using Moq;
+
     using Xunit;
 
     public sealed class SynonymCollectionFacts
@@ -36,9 +38,9 @@
         public void op_Add_string()
         {
             new SynonymCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                "Example"
-            };
+                {
+                    "Example"
+                };
         }
 
         [Fact]
@@ -46,10 +48,10 @@
         {
             const string synonym = "Example";
             var obj = new SynonymCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                synonym, 
-                synonym
-            };
+                          {
+                              synonym, 
+                              synonym
+                          };
 
             Assert.Equal(1, obj.Count);
         }
@@ -58,9 +60,9 @@
         public void op_Clear()
         {
             var obj = new SynonymCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                "Example"
-            };
+                          {
+                              "Example"
+                          };
 
             Assert.Equal(1, obj.Count);
 
@@ -73,9 +75,9 @@
         public void op_Contains_string()
         {
             var obj = new SynonymCollection(NormalityComparer.Ordinal)
-            {
-                "Example"
-            };
+                          {
+                              "Example"
+                          };
 
             Assert.False(obj.Contains("EXAMPLE"));
         }
@@ -86,9 +88,9 @@
             const string expected = "Example";
 
             var obj = new SynonymCollection(NormalityComparer.Ordinal)
-            {
-                expected
-            };
+                          {
+                              expected
+                          };
 
             Assert.True(obj.Contains(expected));
         }
@@ -97,9 +99,9 @@
         public void op_Contains_string_whenOrdinalIgnoreCase()
         {
             var obj = new SynonymCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                "Example"
-            };
+                          {
+                              "Example"
+                          };
 
             Assert.True(obj.Contains("EXAMPLE"));
         }
@@ -110,9 +112,9 @@
             const string expected = "Example";
 
             var obj = new SynonymCollection(NormalityComparer.Ordinal)
-            {
-                expected
-            };
+                          {
+                              expected
+                          };
 
             foreach (var actual in obj)
             {

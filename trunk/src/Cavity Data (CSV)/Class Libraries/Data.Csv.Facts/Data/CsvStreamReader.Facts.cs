@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+
     using Cavity.Collections;
+
     using Xunit;
 
     public sealed class CsvStreamReaderFacts
@@ -39,9 +41,9 @@
         public void ctor_StreamNull_IEnumerableString()
         {
             var headers = new[]
-            {
-                "A", "B"
-            };
+                              {
+                                  "A", "B"
+                              };
 
             Assert.Throws<ArgumentNullException>(() => new CsvStreamReader(null, headers));
         }
@@ -51,7 +53,10 @@
         {
             using (var stream = new MemoryStream())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentOutOfRangeException>(() => new CsvStreamReader(stream, new List<string>()));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -60,7 +65,10 @@
         {
             using (var stream = new MemoryStream())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => new CsvStreamReader(stream, null as IEnumerable<string>));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -68,9 +76,9 @@
         public void ctor_Stream_IEnumerableString()
         {
             var headers = new[]
-            {
-                "A", "B"
-            };
+                              {
+                                  "A", "B"
+                              };
 
             using (var stream = new MemoryStream())
             {
@@ -92,7 +100,10 @@
         {
             using (var stream = new MemoryStream())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentOutOfRangeException>(() => new CsvStreamReader(stream, string.Empty));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -101,7 +112,10 @@
         {
             using (var stream = new MemoryStream())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => new CsvStreamReader(stream, null as string));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -157,9 +171,9 @@
         public void op_ReadEntry_whenColumnsCtor()
         {
             var headers = new[]
-            {
-                "A", "B"
-            };
+                              {
+                                  "A", "B"
+                              };
 
             using (var stream = new MemoryStream())
             {
@@ -361,7 +375,10 @@
                     stream.Position = 0;
                     using (var reader = new CsvStreamReader(stream))
                     {
+                        // ReSharper disable AccessToDisposedClosure
                         Assert.Throws<FormatException>(() => reader.ReadEntry());
+
+                        // ReSharper restore AccessToDisposedClosure
                     }
                 }
             }

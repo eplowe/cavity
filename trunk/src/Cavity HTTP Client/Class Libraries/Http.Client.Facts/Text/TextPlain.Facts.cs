@@ -3,7 +3,9 @@
     using System;
     using System.IO;
     using System.Net.Mime;
+
     using Cavity.Net.Mime;
+
     using Xunit;
 
     public sealed class TextPlainFacts

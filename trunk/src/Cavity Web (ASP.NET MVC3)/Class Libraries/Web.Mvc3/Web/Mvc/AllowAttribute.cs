@@ -5,6 +5,7 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
+
     using Cavity.IO;
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
@@ -40,7 +41,7 @@
             {
                 return;
             }
-            
+
             var response = filterContext.HttpContext.Response;
             response.Clear();
             var filter = response.Filter as WrappedStream;

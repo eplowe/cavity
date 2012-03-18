@@ -9,6 +9,7 @@
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Xml;
+
     using Xunit;
 
     public sealed class AlphaDecimalFacts
@@ -722,8 +723,11 @@
         public void op_ToString()
         {
             const string expected = "0";
+
+            // ReSharper disable SpecifyACultureInStringConversionExplicitly
             var actual = new AlphaDecimal().ToString();
 
+            // ReSharper restore SpecifyACultureInStringConversionExplicitly
             Assert.Equal(expected, actual);
         }
 
@@ -735,8 +739,11 @@
                 var expected = XmlConvert.ToString(i);
 
                 AlphaDecimal value = i;
+
+                // ReSharper disable SpecifyACultureInStringConversionExplicitly
                 var actual = value.ToString();
 
+                // ReSharper restore SpecifyACultureInStringConversionExplicitly
                 Assert.Equal(expected, actual);
             }
         }
@@ -747,8 +754,11 @@
             const string expected = "10";
 
             AlphaDecimal value = 36;
+
+            // ReSharper disable SpecifyACultureInStringConversionExplicitly
             var actual = value.ToString();
 
+            // ReSharper restore SpecifyACultureInStringConversionExplicitly
             Assert.Equal(expected, actual);
         }
 
@@ -758,8 +768,11 @@
             const string expected = "100";
 
             AlphaDecimal value = 36 * 36;
+
+            // ReSharper disable SpecifyACultureInStringConversionExplicitly
             var actual = value.ToString();
 
+            // ReSharper restore SpecifyACultureInStringConversionExplicitly
             Assert.Equal(expected, actual);
         }
 
@@ -768,11 +781,14 @@
         {
             for (var i = 10; i < 36; i++)
             {
-                var expected = ((char)(i + 87)).ToString();
+                var expected = ((char)(i + 87)).ToString(CultureInfo.InvariantCulture);
 
                 AlphaDecimal value = i;
+
+                // ReSharper disable SpecifyACultureInStringConversionExplicitly
                 var actual = value.ToString();
 
+                // ReSharper restore SpecifyACultureInStringConversionExplicitly
                 Assert.Equal(expected, actual);
             }
         }
@@ -783,8 +799,11 @@
             const string expected = "zik0zj";
 
             AlphaDecimal value = int.MaxValue;
+
+            // ReSharper disable SpecifyACultureInStringConversionExplicitly
             var actual = value.ToString();
 
+            // ReSharper restore SpecifyACultureInStringConversionExplicitly
             Assert.Equal(expected, actual);
         }
 
@@ -794,8 +813,11 @@
             const string expected = "-zik0zj";
 
             AlphaDecimal value = int.MinValue + 1;
+
+            // ReSharper disable SpecifyACultureInStringConversionExplicitly
             var actual = value.ToString();
 
+            // ReSharper restore SpecifyACultureInStringConversionExplicitly
             Assert.Equal(expected, actual);
         }
 
@@ -805,8 +827,11 @@
             const string expected = "1y2p0ij32e8e7";
 
             AlphaDecimal value = long.MaxValue;
+
+            // ReSharper disable SpecifyACultureInStringConversionExplicitly
             var actual = value.ToString();
 
+            // ReSharper restore SpecifyACultureInStringConversionExplicitly
             Assert.Equal(expected, actual);
         }
 
@@ -816,8 +841,11 @@
             const string expected = "-1y2p0ij32e8e7";
 
             AlphaDecimal value = long.MinValue + 1;
+
+            // ReSharper disable SpecifyACultureInStringConversionExplicitly
             var actual = value.ToString();
 
+            // ReSharper restore SpecifyACultureInStringConversionExplicitly
             Assert.Equal(expected, actual);
         }
 
@@ -827,8 +855,11 @@
             const string expected = "zz";
 
             AlphaDecimal value = (36 * 36) - 1;
+
+            // ReSharper disable SpecifyACultureInStringConversionExplicitly
             var actual = value.ToString();
 
+            // ReSharper restore SpecifyACultureInStringConversionExplicitly
             Assert.Equal(expected, actual);
         }
 

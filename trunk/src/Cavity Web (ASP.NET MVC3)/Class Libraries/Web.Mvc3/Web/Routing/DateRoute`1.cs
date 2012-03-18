@@ -33,8 +33,8 @@
             var route = GetRoute(httpContext);
 
             return null == route
-                ? null
-                : route.GetRouteData(httpContext);
+                       ? null
+                       : route.GetRouteData(httpContext);
         }
 
         public override VirtualPathData GetVirtualPath(RequestContext requestContext, 
@@ -48,8 +48,8 @@
             var route = GetRoute(requestContext.HttpContext);
 
             return null == route
-                ? null
-                : route.GetVirtualPath(requestContext, values);
+                       ? null
+                       : route.GetVirtualPath(requestContext, values);
         }
 
         private Route GetRoute(HttpContextBase httpContext)
@@ -76,9 +76,9 @@
             }
 
             var indices = new[]
-            {
-                1, 2, 3, 4, 6, 7, 9, 10
-            };
+                              {
+                                  1, 2, 3, 4, 6, 7, 9, 10
+                              };
             if (indices.Any(index => !char.IsDigit(path[index])))
             {
                 return null;
@@ -96,15 +96,15 @@
             }
 
             return new Route(path.Substring(1), new MvcRouteHandler())
-            {
-                Defaults = new RouteValueDictionary(new
-                {
-                    controller = Controller, 
-                    action = Action, 
-                    Date = date
-                }), 
-                Constraints = new RouteValueDictionary()
-            };
+                       {
+                           Defaults = new RouteValueDictionary(new
+                                                                   {
+                                                                       controller = Controller, 
+                                                                       action = Action, 
+                                                                       Date = date
+                                                                   }), 
+                           Constraints = new RouteValueDictionary()
+                       };
         }
     }
 }

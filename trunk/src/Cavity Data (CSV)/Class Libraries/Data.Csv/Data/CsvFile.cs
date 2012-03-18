@@ -9,6 +9,7 @@
     using System.Linq;
 #endif
     using System.Text;
+
     using Cavity.Collections;
     using Cavity.IO;
 
@@ -75,7 +76,7 @@
         }
 
         public static string Line(KeyStringDictionary data, 
-                                  params string[] columns)
+                                  IList<string> columns)
         {
             if (null == data)
             {
@@ -87,7 +88,7 @@
                 throw new ArgumentNullException("columns");
             }
 
-            if (0 == columns.Length)
+            if (0 == columns.Count)
             {
                 throw new ArgumentOutOfRangeException("columns");
             }
@@ -150,11 +151,11 @@
 
             var count = 0;
             using (var writers = new StreamWriterDictionary
-            {
-                Access = FileAccess.Write, 
-                Mode = mode, 
-                Share = FileShare.Read
-            })
+                                     {
+                                         Access = FileAccess.Write, 
+                                         Mode = mode, 
+                                         Share = FileShare.Read
+                                     })
             {
                 foreach (var item in data)
                 {
@@ -166,6 +167,16 @@
                     writers.Item(item.Key).WriteLine(Line(item.Value));
                     count++;
                 }
+            }
+        }
+
+        public IEnumerable<T> As<T>()
+            where T : KeyStringDictionary, new()
+        {
+            var enumerator = GetEnumerator<T>();
+            while (enumerator.MoveNext())
+            {
+                yield return enumerator.Current;
             }
         }
 
@@ -207,16 +218,6 @@
                 Info.Exists)
             {
                 Info.Delete();
-            }
-        }
-
-        public IEnumerable<T> As<T>()
-            where T : KeyStringDictionary, new()
-        {
-            var enumerator = GetEnumerator<T>();
-            while (enumerator.MoveNext())
-            {
-                yield return enumerator.Current;
             }
         }
 

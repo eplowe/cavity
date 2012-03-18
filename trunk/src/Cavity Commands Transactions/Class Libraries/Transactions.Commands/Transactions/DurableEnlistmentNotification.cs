@@ -4,11 +4,12 @@
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Transactions;
+
     using Cavity.Diagnostics;
 
     public abstract class DurableEnlistmentNotification : IEnlistmentNotification
     {
-        protected DurableEnlistmentNotification(Guid resourceManager,
+        protected DurableEnlistmentNotification(Guid resourceManager, 
                                                 EnlistmentOptions enlistmentOptions)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, "resourceManager={0} enlistmentOptions={1}".FormatWith(resourceManager, enlistmentOptions.ToString("G")));
@@ -24,7 +25,7 @@
 
         public Operation Operation { get; private set; }
 
-        public virtual void OnTransactionCompleted(object sender,
+        public virtual void OnTransactionCompleted(object sender, 
                                                    TransactionEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, "sender=\"{0}\" e.Transaction.TransactionInformation.DistributedIdentifier={1}".FormatWith(sender, null == e ? Guid.Empty : e.Transaction.TransactionInformation.DistributedIdentifier));

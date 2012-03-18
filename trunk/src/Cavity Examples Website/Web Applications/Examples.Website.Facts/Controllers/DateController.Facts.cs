@@ -2,12 +2,12 @@
 {
     using System;
     using System.Linq;
-    using System.Web.Mvc;
     using System.Web.Routing;
-    using Cavity;
+
     using Cavity.Globalization;
     using Cavity.Web.Mvc;
     using Cavity.Web.Routing;
+
     using Xunit;
 
     public sealed class DateControllerFacts
@@ -32,14 +32,6 @@
         }
 
         [Fact]
-        public void op_RegisterRoutes_RouteCollectionNull()
-        {
-            var controller = (IRegisterRoutes)new DateController();
-
-            Assert.Throws<ArgumentNullException>(() => controller.Register(null));
-        }
-
-        [Fact]
         public void op_RegisterRoutes_RouteCollection()
         {
             var routes = new RouteCollection();
@@ -50,6 +42,14 @@
             Assert.Equal("today", ((Route)routes["Today (lanneg)"]).Url);
             Assert.Equal("today.{language}", ((Route)routes["Today (conneg)"]).Url);
             Assert.Equal("today.{language}.html", ((Route)routes["Today"]).Url);
+        }
+
+        [Fact]
+        public void op_RegisterRoutes_RouteCollectionNull()
+        {
+            var controller = (IRegisterRoutes)new DateController();
+
+            Assert.Throws<ArgumentNullException>(() => controller.Register(null));
         }
 
         [Fact]

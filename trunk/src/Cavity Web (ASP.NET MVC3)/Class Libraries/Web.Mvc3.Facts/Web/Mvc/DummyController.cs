@@ -3,10 +3,12 @@
     using System.Collections.Generic;
     using System.Web.Mvc;
     using System.Web.Routing;
+
     using Cavity.Globalization;
     using Cavity.Web.Routing;
 
-    public sealed class DummyController : LanguageController, IRegisterRoutes
+    public sealed class DummyController : LanguageController, 
+                                          IRegisterRoutes
     {
         public override IEnumerable<Language> Languages
         {
@@ -28,10 +30,10 @@
                 "Dummy", 
                 "example", 
                 new
-                {
-                    controller = "Dummy", 
-                    action = "Example"
-                });
+                    {
+                        controller = "Dummy", 
+                        action = "Example"
+                    });
         }
     }
 }

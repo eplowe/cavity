@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using Moq;
+
     using Xunit;
 
     public sealed class IEntityFacts

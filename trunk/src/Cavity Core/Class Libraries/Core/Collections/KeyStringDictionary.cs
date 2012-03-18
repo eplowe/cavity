@@ -3,11 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
+
     using Cavity.Data;
     using Cavity.Properties;
 
     [Serializable]
-    public class KeyStringDictionary : Dictionary<string, string>, IEnumerable<KeyStringPair>
+    public class KeyStringDictionary : Dictionary<string, string>, 
+                                       IEnumerable<KeyStringPair>
     {
         public KeyStringDictionary()
         {

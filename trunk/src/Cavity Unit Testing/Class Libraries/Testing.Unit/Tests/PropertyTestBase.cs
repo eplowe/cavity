@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using System.Reflection;
+
     using Cavity.Fluent;
 
     public abstract class PropertyTestBase : ITestExpectation

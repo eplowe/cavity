@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+
     using Xunit;
 
     public sealed class DirectoryInfoExtensionMethodsFacts
@@ -29,7 +30,10 @@
         {
             using (var temp = new TempDirectory())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).CopyTo(temp.Info, true));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -38,7 +42,10 @@
         {
             using (var temp = new TempDirectory())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).CopyTo(temp.Info, true, "*.txt"));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -85,7 +92,10 @@
         {
             using (var temp = new TempDirectory())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => temp.Info.CopyTo(null, true));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -94,7 +104,10 @@
         {
             using (var temp = new TempDirectory())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => temp.Info.CopyTo(null, true, "*.txt"));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -245,7 +258,10 @@
         {
             using (var temp = new TempDirectory())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).MoveTo(temp.Info, true));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -254,7 +270,10 @@
         {
             using (var temp = new TempDirectory())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).MoveTo(temp.Info, true, "*.txt"));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -303,7 +322,10 @@
         {
             using (var temp = new TempDirectory())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => temp.Info.MoveTo(null, true));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -312,7 +334,10 @@
         {
             using (var temp = new TempDirectory())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => temp.Info.MoveTo(null, true, "*.txt"));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -451,7 +476,10 @@
         {
             using (var temp = new TempDirectory())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => temp.Info.ToDirectory(null));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -477,9 +505,9 @@
             using (var temp = new TempDirectory())
             {
                 foreach (var c in new[]
-                {
-                    "\\", "/", ":", "*", "?", "\"", "<", ">", "|", "\n", "\t"
-                })
+                                      {
+                                          "\\", "/", ":", "*", "?", "\"", "<", ">", "|", "\n", "\t"
+                                      })
                 {
                     var name = "invalid {0}example".FormatWith(c);
 
@@ -518,7 +546,10 @@
         {
             using (var temp = new TempDirectory())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => temp.Info.ToFile(null));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -528,9 +559,9 @@
             using (var temp = new TempDirectory())
             {
                 foreach (var c in new[]
-                {
-                    "\\", "/", ":", "*", "?", "\"", "<", ">", "|"
-                })
+                                      {
+                                          "\\", "/", ":", "*", "?", "\"", "<", ">", "|"
+                                      })
                 {
                     var name = "invalid {0}example.txt".FormatWith(c);
 

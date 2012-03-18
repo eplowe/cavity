@@ -3,7 +3,9 @@
     using System;
     using System.Net;
     using System.Web;
+
     using Moq;
+
     using Xunit;
 
     public sealed class MovedPermanentlyResultFacts
@@ -30,9 +32,9 @@
         public void op_SetCache_HttpCachePolicyBase()
         {
             var obj = new MovedPermanentlyResult("/path")
-            {
-                Expires = DateTime.UtcNow.AddMinutes(5)
-            };
+                          {
+                              Expires = DateTime.UtcNow.AddMinutes(5)
+                          };
 
             var cache = new Mock<HttpCachePolicyBase>(MockBehavior.Strict);
             cache

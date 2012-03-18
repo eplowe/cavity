@@ -1,11 +1,12 @@
-using System.Web.Mvc;
-using System.Web.WebPages;
-using RazorGenerator.Mvc;
-
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Cavity.App_Start.PrecompiledMvcViewEngineStart), "Start")]
 
 namespace Cavity.App_Start
 {
+    using System.Web.Mvc;
+    using System.Web.WebPages;
+
+    using RazorGenerator.Mvc;
+
     public static class PrecompiledMvcViewEngineStart
     {
         public static void Start()

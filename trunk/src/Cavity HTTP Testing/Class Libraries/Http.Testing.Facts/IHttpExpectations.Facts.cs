@@ -1,7 +1,9 @@
 ﻿namespace Cavity
 {
     using System.Collections.Generic;
+
     using Moq;
+
     using Xunit;
 
     public sealed class IHttpExpectationsFacts

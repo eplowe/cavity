@@ -3,11 +3,12 @@
     using System;
     using System.Globalization;
     using System.Reflection;
+
     using Cavity.Properties;
 
     public sealed class PropertySetterTest : PropertyTestBase
     {
-        public PropertySetterTest(PropertyInfo property,
+        public PropertySetterTest(PropertyInfo property, 
                                   object value)
             : base(property)
         {
@@ -23,17 +24,20 @@
             try
             {
                 var type = Property.DeclaringType;
+
+                // ReSharper disable PossibleNullReferenceException
                 if (type.IsAbstract)
                 {
+                    // ReSharper restore PossibleNullReferenceException
                     type = Property.ReflectedType;
                 }
 
                 var parameters = new[]
-                {
-                    Value
-                };
+                                     {
+                                         Value
+                                     };
                 Property.GetSetMethod(true).Invoke(
-                    Activator.CreateInstance(type, true),
+                    Activator.CreateInstance(type, true), 
                     parameters);
 
                 if (null != ExpectedException)
@@ -43,12 +47,15 @@
             }
             catch (TargetInvocationException exception)
             {
-                if (null != ExpectedException &&
-                    !ExpectedException.GetType().Equals(exception.InnerException.GetType()))
+                if (null == ExpectedException)
                 {
+                    throw;
                 }
-                else
+
+                // ReSharper disable PossibleMistakenCallToGetType.2
+                if (ExpectedException.GetType() == exception.InnerException.GetType())
                 {
+                    // ReSharper restore PossibleMistakenCallToGetType.2
                     throw;
                 }
             }

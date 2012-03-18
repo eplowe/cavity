@@ -3,8 +3,11 @@
     using System;
     using System.Web;
     using System.Web.Routing;
+
     using Cavity.Web.Mvc;
+
     using Moq;
+
     using Xunit;
 
     public sealed class DateRouteOfTFacts
@@ -59,7 +62,10 @@
 
             var actual = route.GetRouteData(context.Object);
 
+            // ReSharper disable PossibleNullReferenceException
             Assert.Equal("1999-12-31", (actual.Route as Route).Url);
+
+            // ReSharper restore PossibleNullReferenceException
             Assert.Equal("Dummy", (string)actual.Values["controller"]);
             Assert.Equal("Representation", (string)actual.Values["action"]);
 
@@ -71,7 +77,10 @@
         {
             var route = new DateRoute<DummyController>(string.Empty, "Representation");
 
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => route.GetRouteData(null));
+
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]
@@ -103,7 +112,10 @@
         {
             var route = new DateRoute<DummyController>(string.Empty, "Representation");
 
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => route.GetVirtualPath(null, new RouteValueDictionary()));
+
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]

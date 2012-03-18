@@ -4,7 +4,8 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
-    public sealed class HttpRequest : HttpMessage, IHttpRequest
+    public sealed class HttpRequest : HttpMessage, 
+                                      IHttpRequest
     {
         private RequestLine _requestLine;
 

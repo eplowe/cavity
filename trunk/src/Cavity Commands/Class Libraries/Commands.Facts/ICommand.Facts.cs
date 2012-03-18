@@ -1,7 +1,9 @@
 ﻿namespace Cavity
 {
     using System.Xml.Serialization;
+
     using Moq;
+
     using Xunit;
 
     public sealed class ICommandFacts

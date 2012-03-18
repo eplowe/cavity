@@ -5,6 +5,7 @@
     using System.IO;
     using System.Xml;
     using System.Xml.Serialization;
+
     using Cavity.Diagnostics;
 
     [XmlRoot("file.move")]
@@ -23,7 +24,7 @@
 #endif
         }
 
-        public FileMoveCommand(string source,
+        public FileMoveCommand(string source, 
                                string destination)
             : base(false)
         {
@@ -34,8 +35,8 @@
             Destination = destination;
         }
 
-        public FileMoveCommand(string source,
-                               string destination,
+        public FileMoveCommand(string source, 
+                               string destination, 
                                bool unidirectional)
             : base(unidirectional)
         {
@@ -46,7 +47,7 @@
             Destination = destination;
         }
 
-        public FileMoveCommand(FileInfo source,
+        public FileMoveCommand(FileInfo source, 
                                FileInfo destination)
             : base(false)
         {
@@ -57,8 +58,8 @@
 #endif
         }
 
-        public FileMoveCommand(FileInfo source,
-                               FileInfo destination,
+        public FileMoveCommand(FileInfo source, 
+                               FileInfo destination, 
                                bool unidirectional)
             : base(unidirectional)
         {

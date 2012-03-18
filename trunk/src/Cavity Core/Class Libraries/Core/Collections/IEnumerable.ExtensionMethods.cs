@@ -7,6 +7,7 @@
     using System.Diagnostics.CodeAnalysis;
 #endif
 #if !NET20
+    using System.Globalization;
     using System.Linq;
 #endif
     using System.Text;
@@ -16,13 +17,16 @@
 #if NET20
         public static string Concat(IEnumerable<string> source, 
                                     char separator)
-#else
-        public static string Concat(this IEnumerable<string> source, 
-                                    char separator)
-#endif
         {
             return Concat(source, separator.ToString());
         }
+#else
+        public static string Concat(this IEnumerable<string> source, 
+                                    char separator)
+        {
+            return Concat(source, separator.ToString(CultureInfo.InvariantCulture));
+        }
+#endif
 
 #if NET20
         public static string Concat(IEnumerable<string> source, 
@@ -98,6 +102,7 @@
         {
             return null == obj || !obj.Cast<object>().Any();
         }
+
 #endif
 
 #if NET20
@@ -136,7 +141,8 @@
             return result;
         }
 
-        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> obj, IEqualityComparer<T> comparer)
+        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> obj, 
+                                              IEqualityComparer<T> comparer)
         {
             if (null == obj)
             {
@@ -152,6 +158,7 @@
 
             return result;
         }
+
 #endif
 
 #if NET20

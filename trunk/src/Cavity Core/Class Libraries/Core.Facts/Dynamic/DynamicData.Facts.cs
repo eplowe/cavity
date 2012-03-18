@@ -2,6 +2,7 @@
 {
     using System;
     using System.Dynamic;
+
     using Xunit;
 
     public sealed class DynamicDataFacts

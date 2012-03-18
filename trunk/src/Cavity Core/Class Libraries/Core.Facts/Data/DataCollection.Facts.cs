@@ -5,7 +5,9 @@
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Xml.Serialization;
+
     using Cavity.Xml.XPath;
+
     using Xunit;
 
     public sealed class DataCollectionFacts
@@ -52,17 +54,17 @@
         public void indexer_int_get()
         {
             var obj = new DataCollection
-            {
-                {
-                    "one", "1"
-                    }, 
-                {
-                    "two", "2"
-                    }, 
-                {
-                    "three", "3"
-                    }
-            };
+                          {
+                              {
+                                  "one", "1"
+                                  }, 
+                              {
+                                  "two", "2"
+                                  }, 
+                              {
+                                  "three", "3"
+                                  }
+                          };
 
             Assert.Equal("two", obj[1].Key);
             Assert.Equal("2", obj[1].Value);
@@ -78,14 +80,14 @@
         public void indexer_int_set()
         {
             var obj = new DataCollection
-            {
-                {
-                    "one", "1"
-                    }, 
-                {
-                    "nine", "9"
-                    }
-            };
+                          {
+                              {
+                                  "one", "1"
+                                  }, 
+                              {
+                                  "nine", "9"
+                                  }
+                          };
 
             obj[1] = new KeyStringPair("two", "2");
 
@@ -97,11 +99,11 @@
         public void indexer_int_set_whenAdd()
         {
             var obj = new DataCollection
-            {
-                {
-                    "one", "1"
-                    }
-            };
+                          {
+                              {
+                                  "one", "1"
+                                  }
+                          };
 
             Assert.Throws<ArgumentOutOfRangeException>(() => obj[1] = new KeyStringPair("two", "2"));
         }
@@ -112,17 +114,17 @@
             const string expected = "2";
 
             var obj = new DataCollection
-            {
-                {
-                    "one", "1"
-                    }, 
-                {
-                    "two", expected
-                    }, 
-                {
-                    "three", "3"
-                    }
-            };
+                          {
+                              {
+                                  "one", "1"
+                                  }, 
+                              {
+                                  "two", expected
+                                  }, 
+                              {
+                                  "three", "3"
+                                  }
+                          };
 
             var actual = obj["two"];
 
@@ -135,17 +137,17 @@
             const string expected = "1,2,3";
 
             var obj = new DataCollection
-            {
-                {
-                    "name", "1"
-                    }, 
-                {
-                    "name", "2"
-                    }, 
-                {
-                    "name", "3"
-                    }
-            };
+                          {
+                              {
+                                  "name", "1"
+                                  }, 
+                              {
+                                  "name", "2"
+                                  }, 
+                              {
+                                  "name", "3"
+                                  }
+                          };
 
             var actual = obj["name"];
 
@@ -162,24 +164,24 @@
         public void indexer_string_set()
         {
             var expected = new DataCollection
-            {
-                {
-                    "one", "1"
-                    }, 
-                {
-                    "two", "2"
-                    }
-            };
+                               {
+                                   {
+                                       "one", "1"
+                                       }, 
+                                   {
+                                       "two", "2"
+                                       }
+                               };
 
             var actual = new DataCollection
-            {
-                {
-                    "one", "1"
-                    }, 
-                {
-                    "two", string.Empty
-                    }
-            };
+                             {
+                                 {
+                                     "one", "1"
+                                     }, 
+                                 {
+                                     "two", string.Empty
+                                     }
+                             };
             actual["two"] = "2";
 
             Assert.Equal(expected, actual);
@@ -189,21 +191,21 @@
         public void indexer_string_set_whenAdd()
         {
             var expected = new DataCollection
-            {
-                {
-                    "one", "1"
-                    }, 
-                {
-                    "two", "2"
-                    }
-            };
+                               {
+                                   {
+                                       "one", "1"
+                                       }, 
+                                   {
+                                       "two", "2"
+                                       }
+                               };
 
             var actual = new DataCollection
-            {
-                {
-                    "one", "1"
-                    }
-            };
+                             {
+                                 {
+                                     "one", "1"
+                                     }
+                             };
             actual["two"] = "2";
 
             Assert.Equal(expected, actual);
@@ -245,11 +247,11 @@
         {
             var operand1 = new DataCollection();
             var operand2 = new DataCollection
-            {
-                {
-                    "name", "value"
-                    }
-            };
+                               {
+                                   {
+                                       "name", "value"
+                                       }
+                               };
 
             Assert.False(operand1 == operand2);
         }
@@ -295,11 +297,11 @@
         {
             var operand1 = new DataCollection();
             var operand2 = new DataCollection
-            {
-                {
-                    "name", "value"
-                    }
-            };
+                               {
+                                   {
+                                       "name", "value"
+                                       }
+                               };
 
             Assert.True(operand1 != operand2);
         }
@@ -308,15 +310,15 @@
         public void op_Add_DataCollection()
         {
             var expected = new DataCollection
-            {
-                new KeyStringPair("name1", "value1"), 
-                new KeyStringPair("name2", "value2")
-            };
+                               {
+                                   new KeyStringPair("name1", "value1"), 
+                                   new KeyStringPair("name2", "value2")
+                               };
 
             var actual = new DataCollection
-            {
-                expected
-            };
+                             {
+                                 expected
+                             };
 
             Assert.Equal(expected, actual);
         }
@@ -326,9 +328,9 @@
         {
             var expected = new DataCollection();
             var actual = new DataCollection
-            {
-                new DataCollection()
-            };
+                             {
+                                 new DataCollection()
+                             };
 
             Assert.Equal(expected, actual);
         }
@@ -355,11 +357,11 @@
         public void op_Add_string_string()
         {
             var obj = new DataCollection
-            {
-                {
-                    "name", "value"
-                    }
-            };
+                          {
+                              {
+                                  "name", "value"
+                                  }
+                          };
 
             Assert.Equal(1, obj.Count);
         }
@@ -368,11 +370,11 @@
         public void op_Add_string_stringEmpty()
         {
             var obj = new DataCollection
-            {
-                {
-                    "name", string.Empty
-                    }
-            };
+                          {
+                              {
+                                  "name", string.Empty
+                                  }
+                          };
 
             Assert.Equal(1, obj.Count);
         }
@@ -381,11 +383,11 @@
         public void op_Add_string_stringMultiple()
         {
             var obj = new DataCollection
-            {
-                {
-                    "name", "1,2,3"
-                    }
-            };
+                          {
+                              {
+                                  "name", "1,2,3"
+                                  }
+                          };
 
             Assert.Equal("name", obj[0].Key);
             Assert.Equal("name", obj[1].Key);
@@ -410,11 +412,11 @@
         public void op_Add_string_stringNull()
         {
             var obj = new DataCollection
-            {
-                {
-                    "name", null
-                    }
-            };
+                          {
+                              {
+                                  "name", null
+                                  }
+                          };
 
             Assert.Equal(1, obj.Count);
         }
@@ -423,11 +425,11 @@
         public void op_Contains_string()
         {
             var obj = new DataCollection
-            {
-                {
-                    "name", "value"
-                    }
-            };
+                          {
+                              {
+                                  "name", "value"
+                                  }
+                          };
 
             Assert.True(obj.Contains("name"));
         }
@@ -442,11 +444,11 @@
         public void op_Contains_stringMissing()
         {
             var obj = new DataCollection
-            {
-                {
-                    "name", "value"
-                    }
-            };
+                          {
+                              {
+                                  "name", "value"
+                                  }
+                          };
 
             Assert.False(obj.Contains("???"));
         }
@@ -461,14 +463,14 @@
         public void op_Contains_string_string()
         {
             var obj = new DataCollection
-            {
-                {
-                    "name", string.Empty
-                    }, 
-                {
-                    "name", "value"
-                    }
-            };
+                          {
+                              {
+                                  "name", string.Empty
+                                  }, 
+                              {
+                                  "name", "value"
+                                  }
+                          };
 
             Assert.True(obj.Contains("name", "value"));
         }
@@ -477,11 +479,11 @@
         public void op_Contains_string_stringMissing()
         {
             var obj = new DataCollection
-            {
-                {
-                    "name", "value"
-                    }
-            };
+                          {
+                              {
+                                  "name", "value"
+                                  }
+                          };
 
             Assert.False(obj.Contains("name", "???"));
         }
@@ -490,18 +492,18 @@
         public void op_Equals_object()
         {
             var obj = new DataCollection
-            {
-                {
-                    "name", "value"
-                    }
-            };
+                          {
+                              {
+                                  "name", "value"
+                                  }
+                          };
 
             var comparand = new DataCollection
-            {
-                {
-                    "name", "value"
-                    }
-            };
+                                {
+                                    {
+                                        "name", "value"
+                                        }
+                                };
 
             Assert.True(obj.Equals(comparand));
         }
@@ -510,18 +512,18 @@
         public void op_Equals_objectDiffer()
         {
             var obj = new DataCollection
-            {
-                {
-                    "name", "value"
-                    }
-            };
+                          {
+                              {
+                                  "name", "value"
+                                  }
+                          };
 
             var comparand = new DataCollection
-            {
-                {
-                    "foo", "bar"
-                    }
-            };
+                                {
+                                    {
+                                        "foo", "bar"
+                                        }
+                                };
 
             Assert.False(obj.Equals(comparand));
         }
@@ -551,14 +553,14 @@
         public void op_FromPostData_NameValueCollection()
         {
             var form = new NameValueCollection
-            {
-                {
-                    "foo", "bar"
-                    }, 
-                {
-                    "checkbox", "first,second"
-                    }
-            };
+                           {
+                               {
+                                   "foo", "bar"
+                                   }, 
+                               {
+                                   "checkbox", "first,second"
+                                   }
+                           };
 
             var obj = DataCollection.FromPostData(form);
 
@@ -620,14 +622,14 @@
         public void op_ToString()
         {
             var obj = new DataCollection
-            {
-                {
-                    "name1", "value1"
-                    }, 
-                {
-                    "name2", "value2"
-                    }
-            };
+                          {
+                              {
+                                  "name1", "value1"
+                                  }, 
+                              {
+                                  "name2", "value2"
+                                  }
+                          };
 
             var expected = obj.XmlSerialize().CreateNavigator().OuterXml;
             var actual = obj.ToString();
@@ -655,11 +657,11 @@
         public void serialize()
         {
             var obj = new DataCollection
-            {
-                {
-                    "foo", "bar"
-                    }
-            };
+                          {
+                              {
+                                  "foo", "bar"
+                                  }
+                          };
 
             Assert.True(obj.XmlSerialize().CreateNavigator().Evaluate<bool>("1=count(/data/value[@name='foo'][text()='bar'])"));
         }

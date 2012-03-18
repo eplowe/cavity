@@ -2,7 +2,9 @@
 {
     using System;
     using System.Web.Routing;
+
     using Cavity.Web.Mvc;
+
     using Xunit;
 
     public sealed class RouteCollectionExtensionMethodsFacts
@@ -31,9 +33,9 @@
             var routes = new RouteCollection();
 
             routes.Register(new[]
-            {
-                typeof(DummyController)
-            });
+                                {
+                                    typeof(DummyController)
+                                });
 
             var route = (Route)routes["Dummy"];
 

@@ -4,16 +4,18 @@
     using System.IO;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
+
     using Cavity.Security.Cryptography;
+
     using Xunit;
 
     public sealed class EntityTagFacts
     {
-        private const string EmptyEtag = "\"1B2M2Y8AsgTpgAmY7PhCfg==\"";
+        private const string _emptyEtag = "\"1B2M2Y8AsgTpgAmY7PhCfg==\"";
 
-        private const string JigsawEtag = "\"0TMnkhCZtrIjdTtJk6x3+Q==\"";
+        private const string _jigsawEtag = "\"0TMnkhCZtrIjdTtJk6x3+Q==\"";
 
-        private const string NullEtag = "\"\"";
+        private const string _nullEtag = "\"\"";
 
         [Fact]
         public void a_definition()
@@ -37,13 +39,13 @@
         [Fact]
         public void ctor_SerializationInfo_StreamingContext()
         {
-            EntityTag expected = JigsawEtag;
+            EntityTag expected = _jigsawEtag;
             EntityTag actual;
 
             using (Stream stream = new MemoryStream())
             {
                 var formatter = new BinaryFormatter();
-                formatter.Serialize(stream, (EntityTag)JigsawEtag);
+                formatter.Serialize(stream, (EntityTag)_jigsawEtag);
                 stream.Position = 0;
                 actual = (EntityTag)formatter.Deserialize(stream);
             }
@@ -54,7 +56,7 @@
         [Fact]
         public void ctor_string()
         {
-            Assert.NotNull(new EntityTag(JigsawEtag));
+            Assert.NotNull(new EntityTag(_jigsawEtag));
         }
 
         [Fact]
@@ -84,7 +86,7 @@
         [Fact]
         public void ctor_stringNullEtag()
         {
-            Assert.NotNull(new EntityTag(NullEtag));
+            Assert.NotNull(new EntityTag(_nullEtag));
         }
 
         [Fact]
@@ -117,8 +119,8 @@
         [Fact]
         public void opGreater_EntityTag_EntityTag()
         {
-            EntityTag jigsaw = JigsawEtag;
-            EntityTag empty = EmptyEtag;
+            EntityTag jigsaw = _jigsawEtag;
+            EntityTag empty = _emptyEtag;
 
             Assert.True(empty > jigsaw);
         }
@@ -126,7 +128,7 @@
         [Fact]
         public void opImplicit_EntityTag_MD5Hash()
         {
-            EntityTag expected = EmptyEtag;
+            EntityTag expected = _emptyEtag;
             EntityTag actual = MD5Hash.Compute(string.Empty);
 
             Assert.Equal(expected, actual);
@@ -144,8 +146,8 @@
         [Fact]
         public void opLesser_EntityTag_EntityTag()
         {
-            EntityTag jigsaw = JigsawEtag;
-            EntityTag empty = EmptyEtag;
+            EntityTag jigsaw = _jigsawEtag;
+            EntityTag empty = _emptyEtag;
 
             Assert.True(jigsaw < empty);
         }
@@ -153,8 +155,8 @@
         [Fact]
         public void op_CompareTo_EntityTag()
         {
-            EntityTag empty = EmptyEtag;
-            EntityTag jigsaw = JigsawEtag;
+            EntityTag empty = _emptyEtag;
+            EntityTag jigsaw = _jigsawEtag;
 
             const long expected = -1;
             var actual = jigsaw.CompareTo(empty);
@@ -165,8 +167,8 @@
         [Fact]
         public void op_CompareTo_object()
         {
-            EntityTag jigsaw = JigsawEtag;
-            object empty = (EntityTag)EmptyEtag;
+            EntityTag jigsaw = _jigsawEtag;
+            object empty = (EntityTag)_emptyEtag;
 
             const long expected = -1;
             var actual = jigsaw.CompareTo(empty);
@@ -192,7 +194,7 @@
         public void op_Compare_EntityTagEmpty_EntityTagJigsaw()
         {
             const long expected = 1;
-            var actual = EntityTag.Compare(EmptyEtag, JigsawEtag);
+            var actual = EntityTag.Compare(_emptyEtag, _jigsawEtag);
 
             Assert.Equal(expected, actual);
         }
@@ -201,7 +203,7 @@
         public void op_Compare_EntityTagJigsaw_EntityTagEmpty()
         {
             const long expected = -1;
-            var actual = EntityTag.Compare(JigsawEtag, EmptyEtag);
+            var actual = EntityTag.Compare(_jigsawEtag, _emptyEtag);
 
             Assert.Equal(expected, actual);
         }
@@ -210,7 +212,7 @@
         public void op_Compare_EntityTag_EntityTag()
         {
             const long expected = 0;
-            var actual = EntityTag.Compare(JigsawEtag, JigsawEtag);
+            var actual = EntityTag.Compare(_jigsawEtag, _jigsawEtag);
 
             Assert.Equal(expected, actual);
         }
@@ -218,7 +220,7 @@
         [Fact]
         public void op_Equals_EntityTag()
         {
-            EntityTag obj = NullEtag;
+            EntityTag obj = _nullEtag;
 
             Assert.True(new EntityTag().Equals(obj));
         }
@@ -226,7 +228,7 @@
         [Fact]
         public void op_Equals_object()
         {
-            object obj = (EntityTag)NullEtag;
+            object obj = (EntityTag)_nullEtag;
 
             Assert.True(new EntityTag().Equals(obj));
         }
@@ -234,7 +236,7 @@
         [Fact]
         public void op_Equals_objectDiffers()
         {
-            EntityTag obj = JigsawEtag;
+            EntityTag obj = _jigsawEtag;
 
             Assert.False(new EntityTag().Equals(obj));
         }
@@ -256,8 +258,8 @@
         [Fact]
         public void op_GetHashCode()
         {
-            var expected = JigsawEtag.GetHashCode();
-            var actual = new EntityTag(JigsawEtag).GetHashCode();
+            var expected = _jigsawEtag.GetHashCode();
+            var actual = new EntityTag(_jigsawEtag).GetHashCode();
 
             Assert.Equal(expected, actual);
         }
@@ -276,7 +278,7 @@
         {
             var context = new StreamingContext(StreamingContextStates.All);
 
-            ISerializable value = (EntityTag)JigsawEtag;
+            ISerializable value = (EntityTag)_jigsawEtag;
 
             // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => value.GetObjectData(null, context));
@@ -290,9 +292,9 @@
             var info = new SerializationInfo(typeof(EntityTag), new FormatterConverter());
             var context = new StreamingContext(StreamingContextStates.All);
 
-            const string expected = JigsawEtag;
+            const string expected = _jigsawEtag;
 
-            ISerializable value = (EntityTag)JigsawEtag;
+            ISerializable value = (EntityTag)_jigsawEtag;
 
             value.GetObjectData(info, context);
 
@@ -304,8 +306,8 @@
         [Fact]
         public void op_ToString()
         {
-            const string expected = JigsawEtag;
-            var actual = new EntityTag(JigsawEtag).ToString();
+            const string expected = _jigsawEtag;
+            var actual = new EntityTag(_jigsawEtag).ToString();
 
             Assert.Equal(expected, actual);
         }
@@ -313,7 +315,7 @@
         [Fact]
         public void op_ToString_whenDefault()
         {
-            const string expected = NullEtag;
+            const string expected = _nullEtag;
             var actual = new EntityTag().ToString();
 
             Assert.Equal(expected, actual);

@@ -11,9 +11,12 @@
 #endif
     using System.Net.Mime;
     using System.Text;
+
     using Cavity.Net.Mime;
 
-    public sealed class HttpHeaderCollection : ComparableObject, ICollection<IHttpHeader>, IContentType
+    public sealed class HttpHeaderCollection : ComparableObject, 
+                                               ICollection<IHttpHeader>, 
+                                               IContentType
     {
         private readonly Collection<IHttpHeader> _collection;
 
@@ -118,9 +121,7 @@
                 throw new ArgumentNullException("name");
             }
 
-            return 0 != _collection
-                            .Where(x => x.Name.Equals(name))
-                            .Count();
+            return 0 != _collection.Count(x => x.Name.Equals(name));
         }
 
         public void Read(TextReader reader)
@@ -193,7 +194,7 @@
             return _collection.Contains(item);
         }
 
-        public void CopyTo(IHttpHeader[] array,
+        public void CopyTo(IHttpHeader[] array, 
                            int arrayIndex)
         {
             _collection.CopyTo(array, arrayIndex);

@@ -2,9 +2,11 @@
 {
     using System;
     using System.Reflection;
+
     using Cavity.Properties;
 
-    public sealed class UserAgent : ComparableObject, IUserAgent
+    public sealed class UserAgent : ComparableObject, 
+                                    IUserAgent
     {
         private string _value;
 
@@ -50,7 +52,7 @@
             return Format(version.Major, version.Minor);
         }
 
-        public static string Format(int major,
+        public static string Format(int major, 
                                     int minor)
         {
             return Resources.UserAgent_ValueFormat.FormatWith(major, minor);

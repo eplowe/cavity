@@ -5,7 +5,8 @@
     using System.Configuration;
     using System.Linq;
 
-    public sealed class RedirectionConfigurationElementCollection<T> : ConfigurationElementCollection, ICollection<RedirectionConfigurationElement<T>>
+    public sealed class RedirectionConfigurationElementCollection<T> : ConfigurationElementCollection, 
+                                                                       ICollection<RedirectionConfigurationElement<T>>
     {
         public override ConfigurationElementCollectionType CollectionType
         {
@@ -23,7 +24,7 @@
             }
         }
 
-        public void Add(T from,
+        public void Add(T from, 
                         T to)
         {
             BaseAdd(new RedirectionConfigurationElement<T>(from, to));
@@ -56,10 +57,13 @@
 #endif
         }
 
-        public void CopyTo(RedirectionConfigurationElement<T>[] array,
+        public void CopyTo(RedirectionConfigurationElement<T>[] array, 
                            int arrayIndex)
         {
+            // ReSharper disable CoVariantArrayConversion
             base.CopyTo(array, arrayIndex);
+
+            // ReSharper restore CoVariantArrayConversion
         }
 
         public bool Remove(RedirectionConfigurationElement<T> item)

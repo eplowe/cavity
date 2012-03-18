@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Views.NotFound
 {
     using RazorGenerator.Testing;
+
     using Xunit;
 
     public sealed class HtmlRepresentationFacts

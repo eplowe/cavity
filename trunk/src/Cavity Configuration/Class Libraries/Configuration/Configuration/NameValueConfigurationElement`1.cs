@@ -2,6 +2,7 @@
 {
     using System.Configuration;
     using System.Diagnostics;
+
     using Cavity.Diagnostics;
 
     public sealed class NameValueConfigurationElement<T> : ConfigurationElement
@@ -13,7 +14,8 @@
             Properties.Add(ConfigurationProperty<T>.Item("value"));
         }
 
-        public NameValueConfigurationElement(string name, T value)
+        public NameValueConfigurationElement(string name, 
+                                             T value)
             : this()
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class PropertyGetterTestFacts
@@ -33,9 +34,9 @@
         public void prop_Expected()
         {
             var obj = new PropertyGetterTest(null, false)
-            {
-                Expected = true
-            };
+                          {
+                              Expected = true
+                          };
 
             var actual = (bool)obj.Expected;
 

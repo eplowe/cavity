@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Web.Mvc;
+
     using Cavity.Globalization;
 
     public sealed class DerivedLanguageController : LanguageController

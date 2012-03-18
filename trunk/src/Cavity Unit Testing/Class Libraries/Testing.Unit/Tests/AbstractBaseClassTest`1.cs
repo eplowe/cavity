@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using System.Globalization;
+
     using Cavity.Fluent;
     using Cavity.Properties;
 

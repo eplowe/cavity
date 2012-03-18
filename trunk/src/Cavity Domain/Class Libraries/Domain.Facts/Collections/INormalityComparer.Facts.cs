@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+
     using Moq;
+
     using Xunit;
 
     public sealed class INormalityComparerFacts

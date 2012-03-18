@@ -10,7 +10,7 @@
 
         private decimal _longitude;
 
-        public Coordinates(decimal latitude,
+        public Coordinates(decimal latitude, 
                            decimal longitude)
             : this()
         {
@@ -66,13 +66,13 @@
             }
         }
 
-        public static bool operator ==(Coordinates obj,
+        public static bool operator ==(Coordinates obj, 
                                        Coordinates comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator !=(Coordinates obj,
+        public static bool operator !=(Coordinates obj, 
                                        Coordinates comparand)
         {
             return !obj.Equals(comparand);
@@ -103,8 +103,8 @@
                    && Longitude == other.Longitude;
         }
 
-        private static string ToString(decimal value,
-                                       char positive,
+        private static string ToString(decimal value, 
+                                       char positive, 
                                        char negative)
         {
             if (0m == value)

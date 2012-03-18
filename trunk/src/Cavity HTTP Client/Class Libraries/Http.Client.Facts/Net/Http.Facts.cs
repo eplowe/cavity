@@ -2,9 +2,13 @@
 {
     using System;
     using System.IO;
+
     using Cavity.Net.Mime;
+
     using Microsoft.Practices.ServiceLocation;
+
     using Moq;
+
     using Xunit;
 
     public sealed class HttpFacts
@@ -122,9 +126,9 @@
             }
         }
 
-        private static void WriteGet(TextWriter writer,
-                                     string method,
-                                     string requestUri,
+        private static void WriteGet(TextWriter writer, 
+                                     string method, 
+                                     string requestUri, 
                                      string host)
         {
             writer.WriteLine("{0} {1} HTTP/1.1".FormatWith(method, requestUri));

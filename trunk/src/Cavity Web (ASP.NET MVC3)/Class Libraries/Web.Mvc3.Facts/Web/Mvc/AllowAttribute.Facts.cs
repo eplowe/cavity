@@ -5,8 +5,11 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
+
     using Cavity.IO;
+
     using Moq;
+
     using Xunit;
 
     public sealed class AllowAttributeFacts
@@ -53,9 +56,9 @@
             var obj = new AllowAttribute("GET, HEAD, OPTIONS");
 
             obj.OnActionExecuting(new ActionExecutingContext
-            {
-                HttpContext = context.Object
-            });
+                                      {
+                                          HttpContext = context.Object
+                                      });
 
             request.VerifyAll();
         }
@@ -88,9 +91,13 @@
                     .Setup(x => x.Filter)
                     .Returns(new WrappedStream(stream))
                     .Verifiable();
+
+                // ReSharper disable AccessToDisposedClosure
                 response
                     .SetupSet(x => x.Filter = stream)
                     .Verifiable();
+
+                // ReSharper restore AccessToDisposedClosure
                 response
                     .SetupSet(x => x.StatusCode = (int)HttpStatusCode.MethodNotAllowed)
                     .Verifiable();
@@ -111,9 +118,9 @@
                 var obj = new AllowAttribute("GET, HEAD, OPTIONS");
 
                 obj.OnActionExecuting(new ActionExecutingContext
-                {
-                    HttpContext = context.Object
-                });
+                                          {
+                                              HttpContext = context.Object
+                                          });
 
                 request.VerifyAll();
                 response.VerifyAll();
@@ -162,9 +169,9 @@
             var obj = new AllowAttribute("GET, HEAD, OPTIONS");
 
             obj.OnActionExecuting(new ActionExecutingContext
-            {
-                HttpContext = context.Object
-            });
+                                      {
+                                          HttpContext = context.Object
+                                      });
 
             request.VerifyAll();
             response.VerifyAll();
@@ -211,9 +218,9 @@
 
             new AllowAttribute("GET, HEAD, OPTIONS")
                 .OnActionExecuting(new ActionExecutingContext
-                {
-                    HttpContext = context.Object
-                });
+                                       {
+                                           HttpContext = context.Object
+                                       });
 
             request.VerifyAll();
             response.VerifyAll();
@@ -259,10 +266,10 @@
                 .Verifiable();
 
             new AllowAttribute("GET, HEAD, OPTIONS")
-                .OnActionExecuting(new ActionExecutingContext()
-                {
-                    HttpContext = context.Object
-                });
+                .OnActionExecuting(new ActionExecutingContext
+                                       {
+                                           HttpContext = context.Object
+                                       });
 
             request.VerifyAll();
             response.VerifyAll();

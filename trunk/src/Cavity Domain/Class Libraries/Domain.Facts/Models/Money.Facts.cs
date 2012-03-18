@@ -3,7 +3,9 @@
     using System;
     using System.Globalization;
     using System.Threading;
+
     using Cavity.Xml.XPath;
+
     using Xunit;
 
     public sealed class MoneyFacts

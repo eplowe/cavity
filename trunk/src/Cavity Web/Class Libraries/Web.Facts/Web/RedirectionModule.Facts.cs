@@ -2,8 +2,9 @@
 {
     using System;
     using System.Web;
-    using Cavity;
+
     using Moq;
+
     using Xunit;
 
     public sealed class RedirectionModuleFacts
@@ -12,13 +13,13 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<RedirectionModule>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IHttpModule>()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IHttpModule>()
+                            .Result);
         }
 
         [Fact]

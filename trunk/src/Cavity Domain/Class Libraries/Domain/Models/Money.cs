@@ -8,7 +8,7 @@
     [XmlRoot("money")]
     public struct Money : IEquatable<Money>
     {
-        public Money(Currency currency,
+        public Money(Currency currency, 
                      decimal amount)
             : this()
         {
@@ -22,13 +22,13 @@
         [XmlElement("currency")]
         public Currency Currency { get; set; }
 
-        public static bool operator ==(Money obj,
+        public static bool operator ==(Money obj, 
                                        Money comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator !=(Money obj,
+        public static bool operator !=(Money obj, 
                                        Money comparand)
         {
             return !obj.Equals(comparand);
@@ -60,7 +60,7 @@
                    && Amount == other.Amount;
         }
 
-        private string ToString(CultureInfo culture,
+        private string ToString(CultureInfo culture, 
                                 Currency currency)
         {
             culture = culture ?? Thread.CurrentThread.CurrentUICulture;

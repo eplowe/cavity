@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Models
 {
     using System.Diagnostics.CodeAnalysis;
+
     using Xunit;
 
     public sealed class UserCategoryFacts

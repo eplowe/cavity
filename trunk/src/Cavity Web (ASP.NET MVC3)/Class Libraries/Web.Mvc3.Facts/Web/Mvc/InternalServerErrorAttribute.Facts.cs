@@ -4,7 +4,9 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
+
     using Moq;
+
     using Xunit;
 
     public sealed class InternalServerErrorAttributeFacts
@@ -74,11 +76,11 @@
                 .Verifiable();
 
             var filterContext = new ExceptionContext
-            {
-                HttpContext = context.Object, 
-                Exception = new HttpException(), 
-                ExceptionHandled = false
-            };
+                                    {
+                                        HttpContext = context.Object, 
+                                        Exception = new HttpException(), 
+                                        ExceptionHandled = false
+                                    };
 
             new InternalServerErrorAttribute().OnException(filterContext);
 
@@ -99,10 +101,10 @@
         public void op_OnException_ExceptionContext_whenExceptionHandled()
         {
             var filterContext = new ExceptionContext
-            {
-                HttpContext = new Mock<HttpContextBase>(MockBehavior.Strict).Object, 
-                ExceptionHandled = true
-            };
+                                    {
+                                        HttpContext = new Mock<HttpContextBase>(MockBehavior.Strict).Object, 
+                                        ExceptionHandled = true
+                                    };
 
             new InternalServerErrorAttribute().OnException(filterContext);
 
@@ -120,11 +122,11 @@
                 .Verifiable();
 
             var filterContext = new ExceptionContext
-            {
-                HttpContext = context.Object, 
-                Exception = new HttpException((int)HttpStatusCode.NotFound, "404 Not Found"), 
-                ExceptionHandled = false
-            };
+                                    {
+                                        HttpContext = context.Object, 
+                                        Exception = new HttpException((int)HttpStatusCode.NotFound, "404 Not Found"), 
+                                        ExceptionHandled = false
+                                    };
 
             new InternalServerErrorAttribute().OnException(filterContext);
 
@@ -144,10 +146,10 @@
                 .Verifiable();
 
             var filterContext = new ExceptionContext
-            {
-                HttpContext = context.Object, 
-                ExceptionHandled = false
-            };
+                                    {
+                                        HttpContext = context.Object, 
+                                        ExceptionHandled = false
+                                    };
 
             new InternalServerErrorAttribute().OnException(filterContext);
 

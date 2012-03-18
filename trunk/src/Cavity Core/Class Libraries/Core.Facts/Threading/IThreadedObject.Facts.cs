@@ -2,7 +2,9 @@
 {
     using System;
     using System.Threading;
+
     using Moq;
+
     using Xunit;
 
     public sealed class IThreadedObjectFacts

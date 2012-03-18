@@ -4,7 +4,9 @@
     using System.Collections.ObjectModel;
     using System.Net.Mime;
     using System.Web;
+
     using Moq;
+
     using Xunit;
 
     public sealed class AcceptFacts
@@ -52,7 +54,10 @@
         {
             Accept obj = null as string;
 
+            // ReSharper disable PossibleNullReferenceException
             Assert.Equal(1, obj.ContentTypes.Count);
+
+            // ReSharper restore PossibleNullReferenceException
             Assert.Equal("*/*", obj.ContentTypes[0].MediaType);
         }
 
@@ -160,8 +165,11 @@
                 .Verifiable();
 
             const string expected = "/test.xml";
+
+            // ReSharper disable PossibleNullReferenceException
             var actual = (obj.Negotiate(request.Object, typeof(DummyController)) as SeeOtherResult).Location;
 
+            // ReSharper restore PossibleNullReferenceException
             Assert.Equal(expected, actual);
 
             request.VerifyAll();

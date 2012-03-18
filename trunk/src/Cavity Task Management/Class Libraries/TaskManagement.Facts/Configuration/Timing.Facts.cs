@@ -2,10 +2,11 @@
 {
     using System;
     using System.IO;
-    using Cavity;
+
     using Cavity.IO;
     using Cavity.Reflection;
     using Cavity.Threading;
+
     using Xunit;
 
     public sealed class TimingFacts
@@ -14,35 +15,6 @@
         public void a_definition()
         {
             Assert.True(typeof(Timing).IsStatic());
-        }
-
-        [Fact]
-        public void op_ToFile_TypeNull_string()
-        {
-            Assert.Throws<ArgumentNullException>(() => Timing.ToFile(null, "example"));
-        }
-
-        [Fact]
-        public void op_ToFile_Type_stringNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => Timing.ToFile(typeof(StandardTask), null));
-        }
-
-        [Fact]
-        public void op_ToFile_Type_stringEmpty()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Timing.ToFile(typeof(StandardTask), string.Empty));
-        }
-
-        [Fact]
-        public void op_ToFile_Type_string()
-        {
-            var type = typeof(StandardTask);
-
-            var expected = Path.Combine(type.Assembly.Directory().FullName, "StandardTask.example");
-            var actual = Timing.ToFile(type, "example").FullName;
-
-            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -65,12 +37,32 @@
         }
 
         [Fact]
-        public void op_Wait_whenNoFile()
+        public void op_ToFile_TypeNull_string()
         {
-            var expected = DateTime.MinValue;
-            var actual = Timing.Due<StandardTask>();
+            Assert.Throws<ArgumentNullException>(() => Timing.ToFile(null, "example"));
+        }
+
+        [Fact]
+        public void op_ToFile_Type_string()
+        {
+            var type = typeof(StandardTask);
+
+            var expected = Path.Combine(type.Assembly.Directory().FullName, "StandardTask.example");
+            var actual = Timing.ToFile(type, "example").FullName;
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToFile_Type_stringEmpty()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Timing.ToFile(typeof(StandardTask), string.Empty));
+        }
+
+        [Fact]
+        public void op_ToFile_Type_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => Timing.ToFile(typeof(StandardTask), null));
         }
 
         [Fact]
@@ -80,6 +72,26 @@
             try
             {
                 Assert.False(Timing.Wait<StandardTask>(TimeSpan.FromHours(1)));
+
+                var due = file.ReadToEnd().To<DateTime>();
+
+                Assert.True(DateTime.UtcNow < due);
+            }
+            finally
+            {
+                file.Delete();
+            }
+        }
+
+        [Fact]
+        public void op_Wait_TimeSpan_whenDue()
+        {
+            var file = Timing.ToFile(typeof(StandardTask), "wait");
+            try
+            {
+                file.CreateNew(DateTime.UtcNow.AddMinutes(-1).ToXmlString());
+
+                Assert.False(Timing.Wait<StandardTask>(TimeSpan.FromMinutes(1)));
 
                 var due = file.ReadToEnd().To<DateTime>();
 
@@ -114,23 +126,12 @@
         }
 
         [Fact]
-        public void op_Wait_TimeSpan_whenDue()
+        public void op_Wait_whenNoFile()
         {
-            var file = Timing.ToFile(typeof(StandardTask), "wait");
-            try
-            {
-                file.CreateNew(DateTime.UtcNow.AddMinutes(-1).ToXmlString());
+            var expected = DateTime.MinValue;
+            var actual = Timing.Due<StandardTask>();
 
-                Assert.False(Timing.Wait<StandardTask>(TimeSpan.FromMinutes(1)));
-
-                var due = file.ReadToEnd().To<DateTime>();
-
-                Assert.True(DateTime.UtcNow < due);
-            }
-            finally
-            {
-                file.Delete();
-            }
+            Assert.Equal(expected, actual);
         }
     }
 }

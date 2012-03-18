@@ -2,6 +2,7 @@ namespace Cavity
 {
     using System;
     using System.Xml;
+
     using Xunit;
 
     public sealed class ValueObjectOfTFacts
@@ -28,13 +29,13 @@ namespace Cavity
         public void opEquality_ValueObjectOfT_ValueObjectOfT_whenFalse()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 456
-            };
+                               {
+                                   Int32Property = 456
+                               };
             var operand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
 
             Assert.False(operand1 == operand2);
         }
@@ -43,9 +44,9 @@ namespace Cavity
         public void opEquality_ValueObjectOfT_ValueObjectOfT_whenSame()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
             var operand2 = operand1;
 
             Assert.True(operand1 == operand2);
@@ -55,13 +56,13 @@ namespace Cavity
         public void opEquality_ValueObjectOfT_ValueObjectOfT_whenTrue()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
             var operand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
 
             Assert.True(operand1 == operand2);
         }
@@ -70,9 +71,9 @@ namespace Cavity
         public void opGreater_ValueObjectOfTNull_ValueObjectOfT()
         {
             var operand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
 
             Assert.False(null > operand2);
         }
@@ -81,9 +82,9 @@ namespace Cavity
         public void opGreater_ValueObjectOfT_ValueObjectOfTNull()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
 
             Assert.True(operand1 > null);
         }
@@ -92,13 +93,13 @@ namespace Cavity
         public void opGreater_ValueObjectOfT_ValueObjectOfT_whenFalse()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
             var operand2 = new ValueObjectDerived
-            {
-                Int32Property = 456
-            };
+                               {
+                                   Int32Property = 456
+                               };
 
             Assert.False(operand1 > operand2);
         }
@@ -107,9 +108,9 @@ namespace Cavity
         public void opGreater_ValueObjectOfT_ValueObjectOfT_whenSame()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
             var operand2 = operand1;
 
             Assert.False(operand1 > operand2);
@@ -119,13 +120,13 @@ namespace Cavity
         public void opGreater_ValueObjectOfT_ValueObjectOfT_whenTrue()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 456
-            };
+                               {
+                                   Int32Property = 456
+                               };
             var operand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
 
             Assert.True(operand1 > operand2);
         }
@@ -135,10 +136,10 @@ namespace Cavity
         {
             var expected = "31/12/1999 00:00:00" + Environment.NewLine + "123";
             var actual = new ValueObjectDerived
-            {
-                DateTimeProperty = new DateTime(1999, 12, 31), 
-                Int32Property = 123
-            };
+                             {
+                                 DateTimeProperty = new DateTime(1999, 12, 31), 
+                                 Int32Property = 123
+                             };
 
             Assert.Equal(expected, actual);
         }
@@ -147,13 +148,13 @@ namespace Cavity
         public void opInequality_ValueObjectOfT_ValueObjectOfT_whenFalse()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
             var operand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
 
             Assert.False(operand1 != operand2);
         }
@@ -162,9 +163,9 @@ namespace Cavity
         public void opInequality_ValueObjectOfT_ValueObjectOfT_whenSame()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
             var operand2 = operand1;
 
             Assert.False(operand1 != operand2);
@@ -174,13 +175,13 @@ namespace Cavity
         public void opInequality_ValueObjectOfT_ValueObjectOfT_whenTrue()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 456
-            };
+                               {
+                                   Int32Property = 456
+                               };
             var operand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
 
             Assert.True(operand1 != operand2);
         }
@@ -189,9 +190,9 @@ namespace Cavity
         public void opLesser_ValueObjectOfTNull_ValueObjectOfT()
         {
             var operand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
 
             Assert.True(null < operand2);
         }
@@ -200,9 +201,9 @@ namespace Cavity
         public void opLesser_ValueObjectOfT_ValueObjectOfTNull()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
 
             Assert.False(operand1 < null);
         }
@@ -211,13 +212,13 @@ namespace Cavity
         public void opLesser_ValueObjectOfT_ValueObjectOfT_whenFalse()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 456
-            };
+                               {
+                                   Int32Property = 456
+                               };
             var operand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
 
             Assert.False(operand1 < operand2);
         }
@@ -226,9 +227,9 @@ namespace Cavity
         public void opLesser_ValueObjectOfT_ValueObjectOfT_whenSame()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
             var operand2 = operand1;
 
             Assert.False(operand1 < operand2);
@@ -238,13 +239,13 @@ namespace Cavity
         public void opLesser_ValueObjectOfT_ValueObjectOfT_whenTrue()
         {
             var operand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                               {
+                                   Int32Property = 123
+                               };
             var operand2 = new ValueObjectDerived
-            {
-                Int32Property = 456
-            };
+                               {
+                                   Int32Property = 456
+                               };
 
             Assert.True(operand1 < operand2);
         }
@@ -253,13 +254,13 @@ namespace Cavity
         public void op_CompareTo_object()
         {
             var left = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                           {
+                               Int32Property = 123
+                           };
             var right = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                            {
+                                Int32Property = 123
+                            };
 
             Assert.Equal(0, left.CompareTo(right));
         }
@@ -268,13 +269,13 @@ namespace Cavity
         public void op_CompareTo_objectGreater()
         {
             var left = new ValueObjectDerived
-            {
-                Int32Property = 456
-            };
+                           {
+                               Int32Property = 456
+                           };
             var right = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                            {
+                                Int32Property = 123
+                            };
 
             Assert.True(left.CompareTo(right) > 0);
         }
@@ -289,13 +290,13 @@ namespace Cavity
         public void op_CompareTo_objectLesser()
         {
             var left = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                           {
+                               Int32Property = 123
+                           };
             var right = new ValueObjectDerived
-            {
-                Int32Property = 456
-            };
+                            {
+                                Int32Property = 456
+                            };
 
             Assert.True(left.CompareTo(right) < 0);
         }
@@ -304,9 +305,9 @@ namespace Cavity
         public void op_CompareTo_objectNull()
         {
             var obj = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                          {
+                              Int32Property = 123
+                          };
 
             Assert.True(obj.CompareTo(null) > 0);
         }
@@ -315,9 +316,9 @@ namespace Cavity
         public void op_CompareTo_objectSame()
         {
             var obj = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                          {
+                              Int32Property = 123
+                          };
 
             Assert.Equal(0, obj.CompareTo(obj));
         }
@@ -326,13 +327,13 @@ namespace Cavity
         public void op_Compare_ValueObjectOfTGreater_ValueObjectOfT()
         {
             var comparand1 = new ValueObjectDerived
-            {
-                Int32Property = 456
-            };
+                                 {
+                                     Int32Property = 456
+                                 };
             var comparand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                                 {
+                                     Int32Property = 123
+                                 };
 
             Assert.True(ValueObjectDerived.Compare(comparand1, comparand2) > 0);
         }
@@ -341,13 +342,13 @@ namespace Cavity
         public void op_Compare_ValueObjectOfTLesser_ValueObjectOfT()
         {
             var comparand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                                 {
+                                     Int32Property = 123
+                                 };
             var comparand2 = new ValueObjectDerived
-            {
-                Int32Property = 456
-            };
+                                 {
+                                     Int32Property = 456
+                                 };
 
             Assert.True(ValueObjectDerived.Compare(comparand1, comparand2) < 0);
         }
@@ -356,9 +357,9 @@ namespace Cavity
         public void op_Compare_ValueObjectOfTNull_ValueObjectOfT()
         {
             var comparand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                                 {
+                                     Int32Property = 123
+                                 };
 
             Assert.True(ValueObjectDerived.Compare(null, comparand2) < 0);
         }
@@ -367,9 +368,9 @@ namespace Cavity
         public void op_Compare_ValueObjectOfT_ValueObjectOfTNull()
         {
             var comparand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                                 {
+                                     Int32Property = 123
+                                 };
 
             Assert.True(ValueObjectDerived.Compare(comparand1, null) > 0);
         }
@@ -378,13 +379,13 @@ namespace Cavity
         public void op_Compare_ValueObjectOfT_ValueObjectOfT_whenEqual()
         {
             var comparand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                                 {
+                                     Int32Property = 123
+                                 };
             var comparand2 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                                 {
+                                     Int32Property = 123
+                                 };
 
             Assert.Equal(0, ValueObjectDerived.Compare(comparand1, comparand2));
         }
@@ -393,9 +394,9 @@ namespace Cavity
         public void op_Compare_ValueObjectOfT_ValueObjectOfT_whenSame()
         {
             var comparand1 = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                                 {
+                                     Int32Property = 123
+                                 };
             var comparand2 = comparand1;
 
             Assert.Equal(0, ValueObjectDerived.Compare(comparand1, comparand2));
@@ -405,16 +406,16 @@ namespace Cavity
         public void op_Equals_T()
         {
             var obj = new ValueObjectDerived
-            {
-                DateTimeProperty = new DateTime(1999, 12, 31), 
-                Int32Property = 123
-            };
+                          {
+                              DateTimeProperty = new DateTime(1999, 12, 31), 
+                              Int32Property = 123
+                          };
 
             var comparand = new ValueObjectDerived
-            {
-                DateTimeProperty = XmlConvert.ToDateTime(obj.DateTimeProperty.ToXmlString(), XmlDateTimeSerializationMode.Utc), 
-                Int32Property = 123
-            };
+                                {
+                                    DateTimeProperty = XmlConvert.ToDateTime(obj.DateTimeProperty.ToXmlString(), XmlDateTimeSerializationMode.Utc), 
+                                    Int32Property = 123
+                                };
 
             Assert.True(obj.Equals(comparand));
         }
@@ -425,9 +426,9 @@ namespace Cavity
             var obj = new ValueObjectDerived();
 
             var comparand = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                                {
+                                    Int32Property = 123
+                                };
 
             Assert.False((obj as IEquatable<ValueObjectDerived>).Equals(comparand));
         }
@@ -450,14 +451,14 @@ namespace Cavity
         public void op_Equals_object()
         {
             var obj = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                          {
+                              Int32Property = 123
+                          };
 
             var comparand = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                                {
+                                    Int32Property = 123
+                                };
 
             Assert.True(obj.Equals(comparand as object));
         }
@@ -468,9 +469,9 @@ namespace Cavity
             var obj = new ValueObjectDerived();
 
             var comparand = new ValueObjectDerived
-            {
-                Int32Property = 123
-            };
+                                {
+                                    Int32Property = 123
+                                };
 
             Assert.False(obj.Equals(comparand as object));
         }
@@ -493,9 +494,9 @@ namespace Cavity
         public void op_Equals_objectString()
         {
             var obj = new ValueObjectDerived
-            {
-                StringProperty = "foo"
-            };
+                          {
+                              StringProperty = "foo"
+                          };
 
             Assert.False(obj.Equals("foo"));
         }
@@ -516,13 +517,16 @@ namespace Cavity
         public void op_ToString()
         {
             var obj = new ValueObjectDerived
-            {
-                DateTimeProperty = new DateTime(1999, 12, 31), 
-                Int32Property = 123, 
-                StringProperty = "test"
-            };
+                          {
+                              DateTimeProperty = new DateTime(1999, 12, 31), 
+                              Int32Property = 123, 
+                              StringProperty = "test"
+                          };
 
+            // ReSharper disable SpecifyACultureInStringConversionExplicitly
             var expected = string.Concat(new DateTime(1999, 12, 31).ToString(), Environment.NewLine, "123", Environment.NewLine, "test");
+
+            // ReSharper restore SpecifyACultureInStringConversionExplicitly
             var actual = obj.ToString();
 
             Assert.Equal(expected, actual);

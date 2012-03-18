@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+
     using Cavity.Properties;
 
     public static class Excel
@@ -14,7 +15,7 @@
             {
                 throw new ArgumentNullException("file");
             }
-            
+
 #if NET20
             return StringExtensionMethods.FormatWith(Settings.Default.Excel, file.FullName);
 #else

@@ -5,10 +5,12 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
+
     using Cavity.Diagnostics;
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-    public sealed class InternalServerErrorAttribute : FilterAttribute, IExceptionFilter
+    public sealed class InternalServerErrorAttribute : FilterAttribute, 
+                                                       IExceptionFilter
     {
         private Type _interceptor;
 

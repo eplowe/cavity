@@ -13,13 +13,13 @@
             _value = value;
         }
 
-        public static bool operator ==(HttpDate operand1,
+        public static bool operator ==(HttpDate operand1, 
                                        HttpDate operand2)
         {
             return 0 == Compare(operand1, operand2);
         }
 
-        public static bool operator >(HttpDate operand1,
+        public static bool operator >(HttpDate operand1, 
                                       HttpDate operand2)
         {
             return 0 < Compare(operand1, operand2);
@@ -45,19 +45,19 @@
             return FromString(value);
         }
 
-        public static bool operator !=(HttpDate operand1,
+        public static bool operator !=(HttpDate operand1, 
                                        HttpDate operand2)
         {
             return 0 != Compare(operand1, operand2);
         }
 
-        public static bool operator <(HttpDate operand1,
+        public static bool operator <(HttpDate operand1, 
                                       HttpDate operand2)
         {
             return 0 > Compare(operand1, operand2);
         }
 
-        public static int Compare(HttpDate comparand1,
+        public static int Compare(HttpDate comparand1, 
                                   HttpDate comparand2)
         {
             return DateTime.Compare(comparand1.ToDateTime(), comparand2.ToDateTime());

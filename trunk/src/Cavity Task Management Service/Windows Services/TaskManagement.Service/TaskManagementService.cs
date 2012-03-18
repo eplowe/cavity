@@ -3,11 +3,14 @@
     using System;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.ServiceProcess;
     using System.Threading;
+
     using Cavity.Diagnostics;
     using Cavity.Properties;
     using Cavity.Threading;
+
     using Microsoft.Practices.ServiceLocation;
 
     internal partial class TaskManagementService : ServiceBase
@@ -16,10 +19,7 @@
         {
             Trace.WriteLineIf(Tracing.Is.TraceVerbose, string.Empty);
             InitializeComponent();
-            Disposed += delegate
-            {
-                OnDispose();
-            };
+            Disposed += delegate { OnDispose(); };
         }
 
         private string[] Args { get; set; }
@@ -59,8 +59,8 @@
                 {
                     Trace.WriteLineIf(Tracing.Is.TraceVerbose, "command={0}".FormatWith(command));
                     throw new NotSupportedException(string.Format(
-                        Thread.CurrentThread.CurrentUICulture,
-                        Resources.TaskManagementService_UnsupportedCustomCommand,
+                        Thread.CurrentThread.CurrentUICulture, 
+                        Resources.TaskManagementService_UnsupportedCustomCommand, 
                         command));
                 }
                 catch (Exception exception)
@@ -127,9 +127,6 @@
                             }
 
                             break;
-
-                        default:
-                            break;
                     }
                 }
                 catch (Exception exception)
@@ -151,8 +148,8 @@
                 {
                     Trace.WriteLineIf(Tracing.Is.TraceVerbose, "changeDescription.Reason={0}".FormatWith(changeDescription.Reason.ToString("G")));
                     throw new NotSupportedException(string.Format(
-                        Thread.CurrentThread.CurrentUICulture,
-                        Resources.TaskManagementService_UnsupportedSessionChange,
+                        Thread.CurrentThread.CurrentUICulture, 
+                        Resources.TaskManagementService_UnsupportedSessionChange, 
                         changeDescription.Reason.ToString("G")));
                 }
                 catch (Exception exception)
@@ -198,10 +195,8 @@
                     var combo = string.Empty;
                     if (null != args)
                     {
-                        foreach (var arg in args)
-                        {
-                            combo = "{0}{1}\"{2}\"".FormatWith(combo, null == combo ? string.Empty : ", ", arg);
-                        }
+                        combo = args.Aggregate(combo, (x,
+                                                       arg) => "{0}{1}\"{2}\"".FormatWith(x, null == x ? string.Empty : ", ", arg));
                     }
 
                     Trace.WriteLineIf(Tracing.Is.TraceVerbose, "args={0}".FormatWith(combo));

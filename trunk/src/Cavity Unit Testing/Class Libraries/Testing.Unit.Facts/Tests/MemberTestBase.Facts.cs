@@ -2,7 +2,9 @@
 {
     using System;
     using System.Reflection;
+
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class MemberTestBaseFacts
@@ -43,9 +45,9 @@
             var expected = typeof(PropertiedClass1).GetProperty("AutoBoolean");
 
             var obj = new DerivedMemberTest(typeof(PropertiedClass1).GetProperty("AutoString"))
-            {
-                Member = expected
-            };
+                          {
+                              Member = expected
+                          };
 
             var actual = obj.Member;
 

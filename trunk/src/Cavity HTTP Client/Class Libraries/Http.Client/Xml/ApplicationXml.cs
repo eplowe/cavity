@@ -6,9 +6,12 @@
     using System.Net.Mime;
     using System.Xml;
     using System.Xml.XPath;
+
     using Cavity.Net.Mime;
 
-    public sealed class ApplicationXml : ComparableObject, IContent, IMediaType
+    public sealed class ApplicationXml : ComparableObject, 
+                                         IContent, 
+                                         IMediaType
     {
         private ContentType _contentType;
 

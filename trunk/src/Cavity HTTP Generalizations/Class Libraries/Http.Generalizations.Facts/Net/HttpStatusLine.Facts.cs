@@ -2,6 +2,7 @@
 {
     using System;
     using System.Net;
+
     using Xunit;
 
     public sealed class HttpStatusLineFacts

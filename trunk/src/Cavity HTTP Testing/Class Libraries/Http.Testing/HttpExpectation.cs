@@ -2,8 +2,8 @@
 {
     using System;
     using System.Globalization;
-    using System.Linq;
     using System.Net;
+
     using Cavity.Net;
 
     public class HttpExpectation : IHttpExpectation

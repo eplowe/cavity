@@ -6,8 +6,8 @@
 
     public sealed class DummyConfigurationSectionHandler : IConfigurationSectionHandler
     {
-        object IConfigurationSectionHandler.Create(object parent,
-                                                   object configContext,
+        object IConfigurationSectionHandler.Create(object parent, 
+                                                   object configContext, 
                                                    XmlNode section)
         {
             try

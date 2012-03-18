@@ -1,8 +1,7 @@
 ﻿namespace Cavity.Configuration
 {
-    using System;
     using System.Configuration;
-    using Cavity;
+
     using Xunit;
 
     public sealed class RedirectionConfigurationElementOfTFacts

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Xml
 {
     using System;
+
     using Xunit;
 
     public sealed class XmlNamespaceFacts

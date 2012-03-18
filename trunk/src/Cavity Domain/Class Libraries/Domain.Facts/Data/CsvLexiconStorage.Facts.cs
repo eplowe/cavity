@@ -3,9 +3,11 @@
     using System;
     using System.IO;
     using System.Linq;
+
     using Cavity.Collections;
     using Cavity.IO;
     using Cavity.Models;
+
     using Xunit;
 
     public sealed class CsvLexiconStorageFacts
@@ -110,8 +112,10 @@
             {
                 file.Info.Delete();
 
-                var lexicon = new Lexicon(NormalityComparer.Ordinal);
-                lexicon.Add("Example");
+                var lexicon = new Lexicon(NormalityComparer.Ordinal)
+                                  {
+                                      "Example"
+                                  };
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
                 store.Save(lexicon);
@@ -188,8 +192,10 @@
             {
                 file.Info.Delete();
 
-                var lexicon = new Lexicon(NormalityComparer.Ordinal);
-                lexicon.Add("Example");
+                var lexicon = new Lexicon(NormalityComparer.Ordinal)
+                                  {
+                                      "Example"
+                                  };
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
                 store.Save(lexicon);
@@ -236,8 +242,10 @@
             {
                 file.Info.Delete();
 
-                var lexicon = new Lexicon(NormalityComparer.Ordinal);
-                lexicon.Add("foo, bar");
+                var lexicon = new Lexicon(NormalityComparer.Ordinal)
+                                  {
+                                      "foo, bar"
+                                  };
 
                 IStoreLexicon store = new CsvLexiconStorage(file.Info);
                 store.Save(lexicon);

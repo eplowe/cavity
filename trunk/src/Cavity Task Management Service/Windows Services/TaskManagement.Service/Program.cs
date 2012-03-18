@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics;
     using System.ServiceProcess;
+
     using Cavity.Configuration;
     using Cavity.Diagnostics;
 
@@ -17,9 +18,9 @@
                 AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
                 Config.ExeSection<ServiceLocation>().Provider.Configure();
                 ServiceBase.Run(new ServiceBase[]
-                {
-                    new TaskManagementService() 
-                });
+                                    {
+                                        new TaskManagementService()
+                                    });
             }
             catch (Exception exception)
             {
@@ -27,7 +28,7 @@
             }
         }
 
-        public static void OnUnhandledException(object sender,
+        public static void OnUnhandledException(object sender, 
                                                 UnhandledExceptionEventArgs e)
         {
             if (null == e)

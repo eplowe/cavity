@@ -2,6 +2,7 @@
 {
     using System.Diagnostics;
     using System.ServiceProcess;
+
     using Xunit;
 
     public sealed class TaskManagementEventLogFacts

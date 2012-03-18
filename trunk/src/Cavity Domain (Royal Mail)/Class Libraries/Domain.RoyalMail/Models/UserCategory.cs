@@ -16,13 +16,15 @@
         private static IEnumerable<IUserCategory> LoadUserCategories()
         {
             var category = typeof(IUserCategory);
+
             return AppDomain
                 .CurrentDomain
                 .GetAssemblies()
                 .ToList()
                 .SelectMany(x => x.GetTypes())
                 .Where(x => !x.IsInterface)
-                .Where(category.IsAssignableFrom).Select(type => (IUserCategory)Activator.CreateInstance(type));
+                .Where(category.IsAssignableFrom)
+                .Select(type => (IUserCategory)Activator.CreateInstance(type));
         }
     }
 }

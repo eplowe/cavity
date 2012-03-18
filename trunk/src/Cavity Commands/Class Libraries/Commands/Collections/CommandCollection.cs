@@ -10,10 +10,12 @@
     using System.Xml;
     using System.Xml.Schema;
     using System.Xml.Serialization;
+
     using Cavity.Diagnostics;
 
     [XmlRoot("commands")]
-    public class CommandCollection : Collection<ICommand>, IXmlSerializable
+    public class CommandCollection : Collection<ICommand>, 
+                                     IXmlSerializable
     {
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Do", Justification = "This naming is intentional.")]
         public virtual bool Do()
@@ -71,6 +73,7 @@
                     return false;
                 }
             }
+
 #endif
 
             return true;

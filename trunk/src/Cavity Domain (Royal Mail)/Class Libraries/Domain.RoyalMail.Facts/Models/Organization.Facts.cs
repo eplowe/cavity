@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Models
 {
     using System;
+
     using Xunit;
 
     public sealed class OrganizationFacts
@@ -36,9 +37,9 @@
         public void op_ToString_whenDepartment()
         {
             var obj = new Organization
-            {
-                Department = "Accounts"
-            };
+                          {
+                              Department = "Accounts"
+                          };
 
             var expected = "{0}Accounts".FormatWith(Environment.NewLine);
             var actual = obj.ToString();
@@ -50,9 +51,9 @@
         public void op_ToString_whenName()
         {
             var obj = new Organization
-            {
-                Name = "Example"
-            };
+                          {
+                              Name = "Example"
+                          };
 
             const string expected = "Example";
             var actual = obj.ToString();
@@ -64,10 +65,10 @@
         public void op_ToString_whenNameAndDepartment()
         {
             var obj = new Organization
-            {
-                Name = "Example", 
-                Department = "Accounts"
-            };
+                          {
+                              Name = "Example", 
+                              Department = "Accounts"
+                          };
 
             var expected = "Example{0}Accounts".FormatWith(Environment.NewLine);
             var actual = obj.ToString();

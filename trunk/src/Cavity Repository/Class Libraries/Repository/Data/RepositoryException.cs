@@ -20,13 +20,13 @@
         {
         }
 
-        public RepositoryException(string message,
+        public RepositoryException(string message, 
                                    Exception innerException)
             : base(message, innerException)
         {
         }
 
-        private RepositoryException(SerializationInfo info,
+        private RepositoryException(SerializationInfo info, 
                                     StreamingContext context)
             : base(info, context)
         {

@@ -4,10 +4,12 @@
     using System.Net;
     using System.Web.Mvc;
     using System.Web.Routing;
+
     using Cavity.Web.Routing;
 
     [InternalServerError]
-    public sealed class NotFoundController : Controller, IRegisterRoutes
+    public sealed class NotFoundController : Controller, 
+                                             IRegisterRoutes
     {
         public ActionResult HtmlRepresentation()
         {
@@ -28,10 +30,10 @@
                 "404", 
                 "{*url}", 
                 new
-                {
-                    controller = "NotFound", 
-                    action = "HtmlRepresentation"
-                });
+                    {
+                        controller = "NotFound", 
+                        action = "HtmlRepresentation"
+                    });
         }
     }
 }

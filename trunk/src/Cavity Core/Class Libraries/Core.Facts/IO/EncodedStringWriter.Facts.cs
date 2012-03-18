@@ -4,6 +4,7 @@ namespace Cavity.IO
     using System.Globalization;
     using System.IO;
     using System.Text;
+
     using Xunit;
 
     public sealed class EncodedStringWriterFacts

@@ -1,8 +1,11 @@
 ﻿namespace Cavity.Net
 {
     using System.IO;
+
     using Cavity.Net.Mime;
+
     using Moq;
+
     using Xunit;
 
     public sealed class IHttpMessageFacts

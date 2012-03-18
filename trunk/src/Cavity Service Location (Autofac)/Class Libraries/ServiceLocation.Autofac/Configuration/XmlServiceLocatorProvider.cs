@@ -1,10 +1,13 @@
 ﻿namespace Cavity.Configuration
 {
     using System.Diagnostics;
+
     using Autofac;
     using Autofac.Configuration;
+
     using Cavity.Diagnostics;
     using Cavity.Practices.ServiceLocation;
+
     using Microsoft.Practices.ServiceLocation;
 
     public sealed class XmlServiceLocatorProvider : ISetLocatorProvider

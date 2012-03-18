@@ -62,7 +62,7 @@
                     any = true;
                     continue;
                 }
-                
+
                 if (!type.MediaType.EndsWith("/*", StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
@@ -89,8 +89,8 @@
                 foreach (var type in (from part in parts
                                       let index = part.IndexOf(';')
                                       select -1 == index ? part.Trim() : part.Substring(0, index).Trim())
-                                      .Select(item => new ContentType("*".Equals(item, StringComparison.Ordinal) ? "*/*" : item))
-                                      .Where(type => !result.Contains(type)))
+                    .Select(item => new ContentType("*".Equals(item, StringComparison.Ordinal) ? "*/*" : item))
+                    .Where(type => !result.Contains(type)))
                 {
                     result.Add(type);
                 }

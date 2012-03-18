@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Configuration
 {
     using Cavity.Examples;
+
     using Microsoft.Practices.ServiceLocation;
+
     using Xunit;
 
     public sealed class XmlServiceLocatorProviderFacts

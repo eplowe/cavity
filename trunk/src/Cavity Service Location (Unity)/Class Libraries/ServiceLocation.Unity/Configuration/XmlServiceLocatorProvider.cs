@@ -3,7 +3,9 @@
     using System.Configuration;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+
     using Cavity.Diagnostics;
+
     using Microsoft.Practices.ServiceLocation;
     using Microsoft.Practices.Unity;
     using Microsoft.Practices.Unity.Configuration;

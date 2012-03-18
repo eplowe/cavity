@@ -1,9 +1,11 @@
 ﻿namespace Cavity.Net
 {
     using System;
+
     using Microsoft.Practices.ServiceLocation;
 
-    public sealed class HttpClient : ComparableObject, IHttpClient
+    public sealed class HttpClient : ComparableObject, 
+                                     IHttpClient
     {
         private IHttp _http;
 

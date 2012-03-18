@@ -1,8 +1,11 @@
 ﻿namespace Cavity.Configuration
 {
     using System.Diagnostics;
+
     using Cavity.Diagnostics;
+
     using Microsoft.Practices.ServiceLocation;
+
     using StructureMap;
     using StructureMap.ServiceLocatorAdapter;
 

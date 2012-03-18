@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Collections.Generic
 {
     using System;
+
     using Xunit;
 
     public sealed class TreeOfTFacts
@@ -69,9 +70,9 @@
         public void op_Clear()
         {
             var obj = new Tree<int>
-            {
-                new Tree<int>()
-            };
+                          {
+                              new Tree<int>()
+                          };
 
             obj.Clear();
 
@@ -83,9 +84,9 @@
         {
             var expected = new Tree<int>();
             var obj = new Tree<int>
-            {
-                expected
-            };
+                          {
+                              expected
+                          };
 
             Assert.True(obj.Contains(expected));
         }
@@ -107,9 +108,9 @@
         {
             var expected = new Tree<int>();
             var obj = new Tree<int>
-            {
-                expected
-            };
+                          {
+                              expected
+                          };
 
             foreach (var actual in obj)
             {
@@ -124,9 +125,9 @@
         {
             var expected = new Tree<int>();
             var obj = new Tree<int>
-            {
-                expected
-            };
+                          {
+                              expected
+                          };
 
             obj.Remove(expected);
 

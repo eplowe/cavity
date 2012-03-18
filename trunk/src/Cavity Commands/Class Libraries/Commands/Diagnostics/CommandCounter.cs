@@ -5,9 +5,9 @@
 
     public static class CommandCounter
     {
-        private const string Category = "Cavity";
+        private const string _category = "Cavity";
 
-        private const string Counter = "Commands/sec";
+        private const string _counter = "Commands/sec";
 
         private static readonly bool _exists = CounterExists;
 
@@ -17,7 +17,7 @@
             {
                 try
                 {
-                    return PerformanceCounterCategory.CounterExists(Counter, Category);
+                    return PerformanceCounterCategory.CounterExists(_counter, _category);
                 }
                 catch (InvalidOperationException)
                 {
@@ -33,10 +33,10 @@
                 return;
             }
 
-            using (var counter = new PerformanceCounter(Category, Counter, false)
-            {
-                MachineName = "."
-            })
+            using (var counter = new PerformanceCounter(_category, _counter, false)
+                                     {
+                                         MachineName = "."
+                                     })
             {
                 counter.Increment();
             }

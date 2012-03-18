@@ -5,19 +5,19 @@
     public class NormalityComparer : INormalityComparer
     {
         private static readonly NormalityComparer _currentCulture = new NormalityComparer
-        {
-            Comparison = StringComparison.CurrentCulture
-        };
+                                                                        {
+                                                                            Comparison = StringComparison.CurrentCulture
+                                                                        };
 
         private static readonly NormalityComparer _ordinal = new NormalityComparer
-        {
-            Comparison = StringComparison.Ordinal
-        };
+                                                                 {
+                                                                     Comparison = StringComparison.Ordinal
+                                                                 };
 
         private static readonly NormalityComparer _ordinalIgnoreCase = new NormalityComparer
-        {
-            Comparison = StringComparison.OrdinalIgnoreCase
-        };
+                                                                           {
+                                                                               Comparison = StringComparison.OrdinalIgnoreCase
+                                                                           };
 
         public NormalityComparer()
         {
@@ -50,7 +50,7 @@
 
         public StringComparison Comparison { get; set; }
 
-        public virtual bool Equals(string x,
+        public virtual bool Equals(string x, 
                                    string y)
         {
             return string.Equals(x, Normalize(y), Comparison);

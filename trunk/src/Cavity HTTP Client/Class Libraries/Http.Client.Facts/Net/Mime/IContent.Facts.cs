@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Net.Mime
 {
     using System.IO;
+
     using Moq;
+
     using Xunit;
 
     public sealed class IContentFacts

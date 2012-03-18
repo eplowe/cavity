@@ -4,6 +4,7 @@ namespace Cavity.Tests
     using System.Globalization;
     using System.Reflection;
     using System.Xml.Serialization;
+
     using Cavity.Properties;
 
     public sealed class XmlNamespaceDeclarationsTest : MemberTestBase

@@ -2,12 +2,12 @@
 {
     using System;
     using System.Runtime.Serialization;
-    using Cavity.Properties;
-    using Cavity.Security.Cryptography;
-
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
+
+    using Cavity.Properties;
+    using Cavity.Security.Cryptography;
 
     /// <summary>
     /// Represents an entity tag.

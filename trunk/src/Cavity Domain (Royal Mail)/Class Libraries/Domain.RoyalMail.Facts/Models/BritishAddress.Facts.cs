@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Models
 {
     using System;
+
     using Xunit;
 
     public sealed class BritishAddressFacts
@@ -36,19 +37,19 @@
         public void op_ToString_whenFull()
         {
             var obj = new BritishAddress
-            {
-                SubBuildingName = "Flat A", 
-                BuildingName = "Big House", 
-                PostOfficeBox = "PO Box 123", 
-                BuildingNumber = "12", 
-                DependentStreet = "Little Close", 
-                MainStreet = "High Street", 
-                DoubleDependentLocality = "Local Village", 
-                DependentLocality = "Locality", 
-                PostTown = "Bigton", 
-                Postcode = "AA1 2ZZ", 
-                TraditionalCounty = "Countyshire"
-            };
+                          {
+                              SubBuildingName = "Flat A", 
+                              BuildingName = "Big House", 
+                              PostOfficeBox = "PO Box 123", 
+                              BuildingNumber = "12", 
+                              DependentStreet = "Little Close", 
+                              MainStreet = "High Street", 
+                              DoubleDependentLocality = "Local Village", 
+                              DependentLocality = "Locality", 
+                              PostTown = "Bigton", 
+                              Postcode = "AA1 2ZZ", 
+                              TraditionalCounty = "Countyshire"
+                          };
 
             var expected = "Flat A{0}Big House{0}PO Box 123{0}12 Little Close{0}High Street{0}Local Village{0}Locality{0}Bigton{0}AA1 2ZZ{0}Countyshire{0}".FormatWith(Environment.NewLine);
             var actual = obj.ToString();
@@ -60,13 +61,13 @@
         public void op_ToString_whenMainStreetName()
         {
             var obj = new BritishAddress
-            {
-                BuildingName = "Big House", 
-                MainStreet = "High Street", 
-                PostTown = "Bigton", 
-                Postcode = "AA1 2ZZ", 
-                TraditionalCounty = "Countyshire"
-            };
+                          {
+                              BuildingName = "Big House", 
+                              MainStreet = "High Street", 
+                              PostTown = "Bigton", 
+                              Postcode = "AA1 2ZZ", 
+                              TraditionalCounty = "Countyshire"
+                          };
 
             var expected = "Big House{0}High Street{0}Bigton{0}AA1 2ZZ{0}Countyshire{0}".FormatWith(Environment.NewLine);
             var actual = obj.ToString();
@@ -78,14 +79,14 @@
         public void op_ToString_whenMainStreetNumber()
         {
             var obj = new BritishAddress
-            {
-                BuildingName = "Big House", 
-                BuildingNumber = "12", 
-                MainStreet = "High Street", 
-                PostTown = "Bigton", 
-                Postcode = "AA1 2ZZ", 
-                TraditionalCounty = "Countyshire"
-            };
+                          {
+                              BuildingName = "Big House", 
+                              BuildingNumber = "12", 
+                              MainStreet = "High Street", 
+                              PostTown = "Bigton", 
+                              Postcode = "AA1 2ZZ", 
+                              TraditionalCounty = "Countyshire"
+                          };
 
             var expected = "Big House{0}12 High Street{0}Bigton{0}AA1 2ZZ{0}Countyshire{0}".FormatWith(Environment.NewLine);
             var actual = obj.ToString();
@@ -97,12 +98,12 @@
         public void op_ToString_whenNoCounty()
         {
             var obj = new BritishAddress
-            {
-                BuildingName = "Big House", 
-                MainStreet = "High Street", 
-                PostTown = "Bigton", 
-                Postcode = "AA1 2ZZ"
-            };
+                          {
+                              BuildingName = "Big House", 
+                              MainStreet = "High Street", 
+                              PostTown = "Bigton", 
+                              Postcode = "AA1 2ZZ"
+                          };
 
             var expected = "Big House{0}High Street{0}Bigton{0}AA1 2ZZ{0}".FormatWith(Environment.NewLine);
             var actual = obj.ToString();

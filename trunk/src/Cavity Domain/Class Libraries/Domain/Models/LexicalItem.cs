@@ -5,6 +5,7 @@
 #if !NET20
     using System.Linq;
 #endif
+
     using Cavity.Collections;
     using Cavity.Data;
 
@@ -14,7 +15,7 @@
 
         private INormalityComparer _comparer;
 
-        public LexicalItem(INormalityComparer comparer,
+        public LexicalItem(INormalityComparer comparer, 
                            string canonicalForm)
             : this()
         {
@@ -86,12 +87,12 @@
                 _comparer = value;
             }
         }
-        
+
         public static implicit operator string(LexicalItem obj)
         {
             return ReferenceEquals(null, obj)
-                ? null
-                : obj.ToString();
+                       ? null
+                       : obj.ToString();
         }
 
         public LexicalMatch Match(string value)
@@ -273,6 +274,7 @@
                 Synonyms.Add(func.Invoke(synonym));
             }
         }
+
 #endif
 
         public override string ToString()

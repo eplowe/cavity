@@ -17,8 +17,8 @@
             var index = request.RawUrl.IndexOf('?');
 
             return (-1 == index)
-                ? string.Empty
-                : request.RawUrl.Substring(index);
+                       ? string.Empty
+                       : request.RawUrl.Substring(index);
         }
 
         public static string RawQueryString(this HttpRequestBase request, 
@@ -83,8 +83,8 @@
         {
             var query = request.RawQueryString();
             query = query.StartsWith("?", StringComparison.OrdinalIgnoreCase)
-                ? query.Substring(1)
-                : query;
+                        ? query.Substring(1)
+                        : query;
             return query.Split('&', StringSplitOptions.RemoveEmptyEntries);
         }
 

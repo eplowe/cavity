@@ -2,11 +2,10 @@
 {
     using System;
     using System.Runtime.Serialization;
-    using System.Text;
-
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
+    using System.Text;
 
     [Serializable]
     public struct KeyStringPair : ISerializable, 

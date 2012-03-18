@@ -5,6 +5,7 @@
     using System.Linq;
 #endif
     using System.Xml.XPath;
+
     using Cavity.Properties;
 
     public sealed class RepositoryQueryExpression<T> : VerifyRepositoryBase<T>
@@ -27,7 +28,7 @@
                 throw new RepositoryTestException(Resources.Repository_QueryReturnsNull_ExceptionMessage);
             }
 
-            if (0 == records.Count())
+            if (!records.Any())
             {
                 throw new RepositoryTestException(Resources.Repository_QueryReturnsEmpty_ExceptionMessage);
             }

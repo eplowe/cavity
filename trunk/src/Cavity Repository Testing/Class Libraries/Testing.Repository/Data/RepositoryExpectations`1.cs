@@ -49,6 +49,7 @@
             {
                 obj.Verify(Activator.CreateInstance<TRepository>());
             }
+
 #endif
         }
     }

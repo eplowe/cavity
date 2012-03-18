@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class XmlAttributeTestFacts
@@ -21,9 +22,9 @@
         public void op_Check_whenNameWrong()
         {
             var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute"))
-            {
-                AttributeName = "xxx"
-            };
+                          {
+                              AttributeName = "xxx"
+                          };
 
             Assert.Throws<UnitTestException>(() => obj.Check());
         }
@@ -32,10 +33,10 @@
         public void op_Check_whenNamespaceWrong()
         {
             var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute"))
-            {
-                AttributeName = "attribute",
-                Namespace = "xxx"
-            };
+                          {
+                              AttributeName = "attribute", 
+                              Namespace = "xxx"
+                          };
 
             Assert.Throws<UnitTestException>(() => obj.Check());
         }
@@ -44,10 +45,10 @@
         public void op_Check_whenTrue()
         {
             var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("NamespaceAttribute"))
-            {
-                AttributeName = "attribute",
-                Namespace = "urn:example.org"
-            };
+                          {
+                              AttributeName = "attribute", 
+                              Namespace = "urn:example.org"
+                          };
 
             Assert.True(obj.Check());
         }
@@ -66,9 +67,9 @@
             const string expected = "example";
 
             var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute"))
-            {
-                AttributeName = expected
-            };
+                          {
+                              AttributeName = expected
+                          };
 
             var actual = obj.AttributeName;
 
@@ -81,9 +82,9 @@
             const string expected = "example";
 
             var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute"))
-            {
-                Namespace = expected
-            };
+                          {
+                              Namespace = expected
+                          };
 
             var actual = obj.Namespace;
 

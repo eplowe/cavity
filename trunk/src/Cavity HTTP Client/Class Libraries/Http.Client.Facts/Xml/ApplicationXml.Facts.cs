@@ -5,7 +5,9 @@
     using System.Net.Mime;
     using System.Xml;
     using System.Xml.XPath;
+
     using Cavity.Net.Mime;
+
     using Xunit;
 
     public sealed class ApplicationXmlFacts
@@ -109,7 +111,7 @@
                 }
             }
 
-            Assert.Equal<string>("<root />", (body as ApplicationXml));
+            Assert.Equal<string>("<root />", body as ApplicationXml);
         }
 
         [Fact]

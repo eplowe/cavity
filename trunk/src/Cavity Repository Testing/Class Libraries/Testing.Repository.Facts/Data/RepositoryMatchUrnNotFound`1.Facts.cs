@@ -2,8 +2,11 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+
     using Cavity.Net;
+
     using Moq;
+
     using Xunit;
 
     public sealed class RepositoryMatchUrnNotFoundOfTFacts

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class XmlElementTestFacts
@@ -21,9 +22,9 @@
         public void op_Check_whenNameWrong()
         {
             var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element"))
-            {
-                ElementName = "xxx"
-            };
+                          {
+                              ElementName = "xxx"
+                          };
 
             Assert.Throws<UnitTestException>(() => obj.Check());
         }
@@ -32,10 +33,10 @@
         public void op_Check_whenNamespaceWrong()
         {
             var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element"))
-            {
-                ElementName = "element",
-                Namespace = "xxx"
-            };
+                          {
+                              ElementName = "element", 
+                              Namespace = "xxx"
+                          };
 
             Assert.Throws<UnitTestException>(() => obj.Check());
         }
@@ -44,10 +45,10 @@
         public void op_Check_whenTrue()
         {
             var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("NamespaceElement"))
-            {
-                ElementName = "element",
-                Namespace = "urn:example.org"
-            };
+                          {
+                              ElementName = "element", 
+                              Namespace = "urn:example.org"
+                          };
 
             Assert.True(obj.Check());
         }
@@ -66,9 +67,9 @@
             const string expected = "example";
 
             var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element"))
-            {
-                ElementName = expected
-            };
+                          {
+                              ElementName = expected
+                          };
 
             var actual = obj.ElementName;
 
@@ -81,9 +82,9 @@
             const string expected = "example";
 
             var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element"))
-            {
-                Namespace = expected
-            };
+                          {
+                              Namespace = expected
+                          };
 
             var actual = obj.Namespace;
 

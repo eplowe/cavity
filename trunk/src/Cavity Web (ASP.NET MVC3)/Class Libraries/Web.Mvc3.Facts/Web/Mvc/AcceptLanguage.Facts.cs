@@ -4,8 +4,11 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Web;
+
     using Cavity.Globalization;
+
     using Moq;
+
     using Xunit;
 
     public sealed class AcceptLanguageFacts
@@ -32,9 +35,9 @@
         public void ctor_IEnumerableLanguage()
         {
             Assert.NotNull(new AcceptLanguage(new[]
-            {
-                new Language("en")
-            }));
+                                                  {
+                                                      new Language("en")
+                                                  }));
         }
 
         [Fact]
@@ -74,7 +77,10 @@
         {
             AcceptLanguage obj = null as string;
 
+            // ReSharper disable PossibleNullReferenceException
             Assert.Equal(1, obj.Languages.Count);
+
+            // ReSharper restore PossibleNullReferenceException
             Assert.Equal<Language>("*", obj.Languages[0]);
         }
 
@@ -163,8 +169,11 @@
                 .Verifiable();
 
             const string expected = "/test.en";
+
+            // ReSharper disable PossibleNullReferenceException
             var actual = (obj.Negotiate(request.Object, typeof(DummyController)) as SeeOtherResult).Location;
 
+            // ReSharper restore PossibleNullReferenceException
             Assert.Equal(expected, actual);
 
             request.VerifyAll();

@@ -3,7 +3,8 @@
     using System;
     using System.Web.Mvc;
 
-    public sealed class InternalServerErrorViewResult : ViewResult, IInterceptInternalServerError
+    public sealed class InternalServerErrorViewResult : ViewResult, 
+                                                        IInterceptInternalServerError
     {
         public InternalServerErrorViewResult()
             : this("Error")

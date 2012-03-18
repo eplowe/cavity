@@ -5,6 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Web.Mvc;
+
     using Cavity.Globalization;
 
     public abstract class LanguageController : Controller

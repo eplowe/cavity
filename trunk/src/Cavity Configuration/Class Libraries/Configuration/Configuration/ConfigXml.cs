@@ -3,8 +3,8 @@
     using System;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
     using System.IO;
+
     using Cavity.Diagnostics;
     using Cavity.IO;
 
@@ -25,10 +25,10 @@
 
             Info = file;
             Watcher = new FileSystemWatcher(file.Directory.FullName, file.Name)
-            {
-                EnableRaisingEvents = true,
-                NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName
-            };
+                          {
+                              EnableRaisingEvents = true, 
+                              NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName
+                          };
             Watcher.Changed += OnChanged;
             Watcher.Deleted += OnDeleted;
             Watcher.Created += OnCreated;
@@ -56,41 +56,41 @@
             Trace.WriteIf(Tracing.Is.TraceVerbose, "file.FullName=\"{0}\"".FormatWith(file.FullName));
 #endif
             return new ConfigXml(file)
-            {
+                       {
 #if NET20
                 Value = file.Exists
                             ? StringExtensionMethods.XmlDeserialize<T>(FileInfoExtensionMethods.ReadToEnd(file))
                             : default(T)
 #else
-                Value = file.Exists
-                            ? file.ReadToEnd().XmlDeserialize<T>()
-                            : default(T)
+                           Value = file.Exists
+                                       ? file.ReadToEnd().XmlDeserialize<T>()
+                                       : default(T)
 #endif
-            };
+                       };
         }
 
-        protected virtual void OnChanged(object source,
+        protected virtual void OnChanged(object source, 
                                          FileSystemEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
 
-        protected virtual void OnCreated(object source,
+        protected virtual void OnCreated(object source, 
                                          FileSystemEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
 
-        protected virtual void OnDeleted(object source,
+        protected virtual void OnDeleted(object source, 
                                          FileSystemEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
 
-        protected virtual void OnRenamed(object source,
+        protected virtual void OnRenamed(object source, 
                                          RenamedEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);

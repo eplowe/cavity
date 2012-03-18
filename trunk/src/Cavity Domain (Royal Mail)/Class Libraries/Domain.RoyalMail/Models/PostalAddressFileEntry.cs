@@ -3,8 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.Text;
     using System.Xml;
+
     using Cavity.Collections;
     using Cavity.Data;
 
@@ -57,38 +59,38 @@
             }
 
             var result = new PostalAddressFileEntry
-            {
-                Address =
-                    {
-                        SubBuildingName = TryString(data, "SBN"), 
-                        PostOfficeBox = TryString(data, "POB"), 
-                        BuildingName = TryString(data, "BNA"), 
-                        BuildingNumber = TryString(data, "NUM"), 
-                        DependentStreet = TryString(data, "DST"), 
-                        MainStreet = TryString(data, "STM"), 
-                        DoubleDependentLocality = TryString(data, "DDL"), 
-                        DependentLocality = TryString(data, "DLO"), 
-                        PostTown = TryString(data, "PTN"), 
-                        AdministrativeCounty = TryString(data, "CTA"), 
-                        FormerPostalCounty = TryString(data, "CTP"), 
-                        TraditionalCounty = TryString(data, "CTT"), 
-                        Postcode = TryString(data, "PCD")
-                    }, 
-                Organization =
-                    {
-                        Department = TryString(data, "ORD"), 
-                        Name = TryString(data, "ORC")
-                    }, 
-                Category = data.ContainsKey("CAT") && !string.IsNullOrEmpty(data["CAT"]) ? UserCategory.Resolve(data["CAT"][0]) : null, 
-                DeliveryPointSuffix = TryString(data, "DPX"), 
-                MultipleOccupancyCount = TryInt32(data, "MOC"), 
-                MultipleResidencyRecordCount = TryInt32(data, "MRC"), 
-                NumberOfDeliveryPoints = TryInt32(data, "NDP"), 
-                Origin = data.ContainsKey("DTO") && !string.IsNullOrEmpty(data["DTO"]) ? data["DTO"][0] : new char?(), 
-                SortCode = TryInt32(data, "SCD"), 
-                UniqueMultipleResidenceReferenceNumber = TryInt32(data, "UMR"), 
-                UniqueDeliveryPointReferenceNumber = TryInt32(data, "URN"), 
-            };
+                             {
+                                 Address =
+                                     {
+                                         SubBuildingName = TryString(data, "SBN"), 
+                                         PostOfficeBox = TryString(data, "POB"), 
+                                         BuildingName = TryString(data, "BNA"), 
+                                         BuildingNumber = TryString(data, "NUM"), 
+                                         DependentStreet = TryString(data, "DST"), 
+                                         MainStreet = TryString(data, "STM"), 
+                                         DoubleDependentLocality = TryString(data, "DDL"), 
+                                         DependentLocality = TryString(data, "DLO"), 
+                                         PostTown = TryString(data, "PTN"), 
+                                         AdministrativeCounty = TryString(data, "CTA"), 
+                                         FormerPostalCounty = TryString(data, "CTP"), 
+                                         TraditionalCounty = TryString(data, "CTT"), 
+                                         Postcode = TryString(data, "PCD")
+                                     }, 
+                                 Organization =
+                                     {
+                                         Department = TryString(data, "ORD"), 
+                                         Name = TryString(data, "ORC")
+                                     }, 
+                                 Category = data.ContainsKey("CAT") && !string.IsNullOrEmpty(data["CAT"]) ? UserCategory.Resolve(data["CAT"][0]) : null, 
+                                 DeliveryPointSuffix = TryString(data, "DPX"), 
+                                 MultipleOccupancyCount = TryInt32(data, "MOC"), 
+                                 MultipleResidencyRecordCount = TryInt32(data, "MRC"), 
+                                 NumberOfDeliveryPoints = TryInt32(data, "NDP"), 
+                                 Origin = data.ContainsKey("DTO") && !string.IsNullOrEmpty(data["DTO"]) ? data["DTO"][0] : new char?(), 
+                                 SortCode = TryInt32(data, "SCD"), 
+                                 UniqueMultipleResidenceReferenceNumber = TryInt32(data, "UMR"), 
+                                 UniqueDeliveryPointReferenceNumber = TryInt32(data, "URN"), 
+                             };
 
             return result;
         }
@@ -187,7 +189,7 @@
                         value = NullableInt32String(SortCode);
                         break;
                     case "CAT":
-                        value = null == Category ? string.Empty : Category.Code.ToString();
+                        value = null == Category ? string.Empty : Category.Code.ToString(CultureInfo.InvariantCulture);
                         break;
                     case "NDP":
                         value = NullableInt32String(NumberOfDeliveryPoints);
@@ -208,7 +210,7 @@
                         value = NullableInt32String(UniqueMultipleResidenceReferenceNumber);
                         break;
                     case "DTO":
-                        value = Origin.HasValue ? Origin.Value.ToString() : string.Empty;
+                        value = Origin.HasValue ? Origin.Value.ToString(CultureInfo.InvariantCulture) : string.Empty;
                         break;
                     default:
                         throw new KeyNotFoundException(column);

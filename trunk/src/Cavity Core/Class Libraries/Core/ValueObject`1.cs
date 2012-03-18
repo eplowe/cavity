@@ -8,7 +8,8 @@ namespace Cavity
     using System.Reflection;
     using System.Text;
 
-    public abstract class ValueObject<T> : IComparable, IEquatable<T>
+    public abstract class ValueObject<T> : IComparable, 
+                                           IEquatable<T>
         where T : ValueObject<T>
     {
         protected ValueObject()

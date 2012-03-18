@@ -14,7 +14,8 @@
     using System.Xml.Serialization;
 
     [XmlRoot("data")]
-    public class DataCollection : IEnumerable<KeyStringPair>, IXmlSerializable
+    public class DataCollection : IEnumerable<KeyStringPair>, 
+                                  IXmlSerializable
     {
         public DataCollection()
         {
@@ -230,8 +231,7 @@
 
             return false;
 #else
-            return 0 != Items.Where(x => x.Key.Equals(name, StringComparison.OrdinalIgnoreCase))
-                            .Count();
+            return 0 != Items.Count(x => x.Key.Equals(name, StringComparison.OrdinalIgnoreCase));
 #endif
         }
 
@@ -250,8 +250,7 @@
 
             return false;
 #else
-            return 0 != Items.Where(x => x.Key.Equals(name, StringComparison.OrdinalIgnoreCase) && x.Value.Equals(value, StringComparison.Ordinal))
-                            .Count();
+            return 0 != Items.Count(x => x.Key.Equals(name, StringComparison.OrdinalIgnoreCase) && x.Value.Equals(value, StringComparison.Ordinal));
 #endif
         }
 

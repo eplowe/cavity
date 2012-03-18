@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+
     using Cavity.Diagnostics;
 
     public abstract class DisposableObject : IDisposable

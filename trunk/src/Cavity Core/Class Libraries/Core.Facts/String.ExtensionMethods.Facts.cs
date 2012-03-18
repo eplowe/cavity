@@ -6,7 +6,9 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Xml;
+
     using Cavity.IO;
+
     using Xunit;
 
     public sealed class StringExtensionMethodsFacts
@@ -1213,9 +1215,9 @@
         public void op_RemoveIllegalFileCharacters_string()
         {
             foreach (var c in new[]
-            {
-                '\\', '/', ':', '*', '?', '"', '<', '>', '|', (char)31
-            })
+                                  {
+                                      '\\', '/', ':', '*', '?', '"', '<', '>', '|', (char)31
+                                  })
             {
                 const string expected = "example";
                 var actual = expected.Append(c).RemoveIllegalFileCharacters();

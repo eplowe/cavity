@@ -6,6 +6,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Text;
+
     using Cavity.Collections;
     using Cavity.Properties;
 
@@ -16,14 +17,14 @@
         {
         }
 
-        public CsvStreamReader(Stream stream,
+        public CsvStreamReader(Stream stream, 
                                string header)
             : this(stream, ParseHeader(header))
         {
             Header = header;
         }
 
-        public CsvStreamReader(Stream stream,
+        public CsvStreamReader(Stream stream, 
                                IEnumerable<string> columns)
             : base(stream)
         {

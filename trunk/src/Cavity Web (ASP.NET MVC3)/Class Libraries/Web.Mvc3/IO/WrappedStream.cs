@@ -5,6 +5,7 @@
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Web;
+
     using Cavity.Security.Cryptography;
 
     public sealed class WrappedStream : Stream
@@ -110,9 +111,9 @@
             var context = Static<HttpContextBase>.Instance ?? new HttpContextWrapper(HttpContext.Current);
             var response = context.Response;
             var prefixes = new[]
-            {
-                "text/html", "application/xhtml+xml", "application/atom+xml", "application/rdf+xml"
-            };
+                               {
+                                   "text/html", "application/xhtml+xml", "application/atom+xml", "application/rdf+xml"
+                               };
 #if NET20
             if (StringExtensionMethods.StartsWithAny(response.ContentType, StringComparison.OrdinalIgnoreCase, prefixes))
 #else

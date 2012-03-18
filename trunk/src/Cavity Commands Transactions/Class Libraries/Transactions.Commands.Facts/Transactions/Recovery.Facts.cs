@@ -2,7 +2,9 @@
 {
     using System;
     using System.Linq;
+
     using Cavity.IO;
+
     using Xunit;
 
     public sealed class RecoveryFacts
@@ -28,9 +30,9 @@
                 {
                     Recovery.MasterDirectory = temp.Info.ToDirectory("Recovery");
                     var operation = new Operation(Guid.NewGuid())
-                    {
-                        Info = Guid.NewGuid().ToString()
-                    };
+                                        {
+                                            Info = Guid.NewGuid().ToString()
+                                        };
 
                     Recovery.Include(operation);
                     Recovery.Exclude(operation, false);
@@ -58,16 +60,16 @@
                     var resourceManager = Guid.NewGuid();
                     Recovery.MasterDirectory = temp.Info.ToDirectory("Recovery");
                     var operation1 = new Operation(resourceManager)
-                    {
-                        Info = Guid.NewGuid().ToString()
-                    };
+                                         {
+                                             Info = Guid.NewGuid().ToString()
+                                         };
 
                     Recovery.Include(operation1);
 
                     var operation2 = new Operation(resourceManager)
-                    {
-                        Info = Guid.NewGuid().ToString()
-                    };
+                                         {
+                                             Info = Guid.NewGuid().ToString()
+                                         };
 
                     Recovery.Include(operation2);
                     Recovery.Exclude(operation1, true);
@@ -93,9 +95,9 @@
                 {
                     Recovery.MasterDirectory = temp.Info.ToDirectory("Recovery");
                     var operation = new Operation(Guid.NewGuid())
-                    {
-                        Info = Guid.NewGuid().ToString()
-                    };
+                                        {
+                                            Info = Guid.NewGuid().ToString()
+                                        };
 
                     Recovery.Include(operation);
 
@@ -128,18 +130,18 @@
                     var resourceManager = Guid.NewGuid();
                     Recovery.MasterDirectory = temp.Info.ToDirectory("Recovery");
                     var operation = new Operation(resourceManager)
-                    {
-                        Info = Guid.NewGuid().ToString()
-                    };
+                                        {
+                                            Info = Guid.NewGuid().ToString()
+                                        };
 
                     Recovery.Include(operation);
                     var first = Recovery.ItemFile(operation).FullName;
                     Assert.Equal(first, Recovery.MasterFile(operation).Lines().First());
 
                     operation = new Operation(resourceManager)
-                    {
-                        Info = Guid.NewGuid().ToString()
-                    };
+                                    {
+                                        Info = Guid.NewGuid().ToString()
+                                    };
 
                     Recovery.Include(operation);
                     var last = Recovery.ItemFile(operation).FullName;
@@ -157,9 +159,9 @@
         public void op_ItemFile_Operation()
         {
             var operation = new Operation(Guid.NewGuid())
-            {
-                Info = Guid.NewGuid().ToString()
-            };
+                                {
+                                    Info = Guid.NewGuid().ToString()
+                                };
 
             var id = operation.Identity;
 
@@ -185,9 +187,9 @@
         public void op_ItemFile_Operation_string()
         {
             var operation = new Operation(Guid.NewGuid())
-            {
-                Info = Guid.NewGuid().ToString()
-            };
+                                {
+                                    Info = Guid.NewGuid().ToString()
+                                };
 
             var id = operation.Identity;
 
@@ -201,9 +203,9 @@
         public void op_ItemFile_Operation_stringNull()
         {
             var operation = new Operation(Guid.NewGuid())
-            {
-                Info = Guid.NewGuid().ToString()
-            };
+                                {
+                                    Info = Guid.NewGuid().ToString()
+                                };
 
             var id = operation.Identity;
 
@@ -217,9 +219,9 @@
         public void op_MasterFile_Operation()
         {
             var operation = new Operation(Guid.NewGuid())
-            {
-                Info = Guid.NewGuid().ToString()
-            };
+                                {
+                                    Info = Guid.NewGuid().ToString()
+                                };
 
             var id = operation.Identity;
 

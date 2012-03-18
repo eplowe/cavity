@@ -2,9 +2,11 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.IO;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
+
     using Xunit;
 
     public sealed class TokenFacts
@@ -522,7 +524,7 @@
                             .TypeIs<string>()
                             .ArgumentNullException()
                             .ArgumentOutOfRangeException(string.Empty)
-                            .FormatException(((char)31).ToString()) // CTL
+                            .FormatException(((char)31).ToString(CultureInfo.InvariantCulture)) // CTL
                             .FormatException(" ") // 32
                             .Set("!") // 33
                             .FormatException("\"") // 34
@@ -559,7 +561,7 @@
                             .Set("|") // 124
                             .FormatException("}") // 125
                             .Set("~") // 126
-                            .FormatException(((char)127).ToString()) // DEL
+                            .FormatException(((char)127).ToString(CultureInfo.InvariantCulture)) // DEL
                             .IsNotDecorated()
                             .Result);
         }

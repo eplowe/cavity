@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Data
 {
     using System;
+
     using Moq;
+
     using Xunit;
 
     public sealed class RepositoryInsertRecordKeyOfTFacts

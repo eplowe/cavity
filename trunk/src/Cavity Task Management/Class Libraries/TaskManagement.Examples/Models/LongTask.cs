@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics;
     using System.Threading;
+
     using Cavity.Threading;
 
     public sealed class LongTask : StandardTask

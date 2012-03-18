@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+
     using Cavity.Collections;
     using Cavity.Data;
 

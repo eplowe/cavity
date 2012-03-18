@@ -28,7 +28,7 @@ namespace Cavity.Security.Cryptography
             _bytes = bytes;
         }
 
-        public static bool operator ==(SecureHash obj,
+        public static bool operator ==(SecureHash obj, 
                                        SecureHash comparand)
         {
             return ReferenceEquals(null, obj)
@@ -46,7 +46,7 @@ namespace Cavity.Security.Cryptography
             return null == value ? null : new SecureHash(value);
         }
 
-        public static bool operator !=(SecureHash obj,
+        public static bool operator !=(SecureHash obj, 
                                        SecureHash comparand)
         {
             return ReferenceEquals(null, obj)
@@ -54,7 +54,7 @@ namespace Cavity.Security.Cryptography
                        : !obj.Equals(comparand);
         }
 
-        public static SecureHash Encrypt(string plaintext,
+        public static SecureHash Encrypt(string plaintext, 
                                          Salt salt)
         {
             if (null == plaintext)

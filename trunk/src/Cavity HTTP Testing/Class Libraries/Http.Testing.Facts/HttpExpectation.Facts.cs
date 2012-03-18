@@ -2,8 +2,10 @@
 {
     using System;
     using System.Net;
+
     using Cavity.Net;
     using Cavity.Security.Cryptography;
+
     using Xunit;
 
     public sealed class HttpExpectationFacts
@@ -44,10 +46,10 @@
         {
             var cookies = new CookieContainer();
             var request = new HttpRequest
-            {
-                Line = new HttpRequestLine("GET", "http://example.com/"), 
-                Headers = new HttpHeaderDictionary()
-            };
+                              {
+                                  Line = new HttpRequestLine("GET", "http://example.com/"), 
+                                  Headers = new HttpHeaderDictionary()
+                              };
 
             request.Headers["Accept"] = "*/*";
             request.Headers["Accept-Charset"] = "*";
@@ -124,11 +126,11 @@
         {
             var cookies = new CookieContainer();
             var request = new HttpRequest
-            {
-                Line = new HttpRequestLine("PUT", "http://example.com/entity"), 
-                Headers = new HttpHeaderDictionary(), 
-                Body = new TextBody("example")
-            };
+                              {
+                                  Line = new HttpRequestLine("PUT", "http://example.com/entity"), 
+                                  Headers = new HttpHeaderDictionary(), 
+                                  Body = new TextBody("example")
+                              };
 
             request.Headers["Content-Encoding"] = "gzip";
             request.Headers["Content-Language"] = "en";
@@ -159,9 +161,9 @@
         {
             var cookies = new CookieContainer();
             var request = new HttpRequest
-            {
-                Line = new HttpRequestLine("GET", "http://example.com/")
-            };
+                              {
+                                  Line = new HttpRequestLine("GET", "http://example.com/")
+                              };
 
             var actual = HttpExpectation.GetRequest(request, cookies);
 
@@ -176,10 +178,10 @@
         {
             var cookies = new CookieContainer();
             var request = new HttpRequest
-            {
-                Line = new HttpRequestLine("TRACE", "http://example.com/"), 
-                Headers = new HttpHeaderDictionary()
-            };
+                              {
+                                  Line = new HttpRequestLine("TRACE", "http://example.com/"), 
+                                  Headers = new HttpHeaderDictionary()
+                              };
 
             request.Headers["Max-Forwards"] = "3";
 
@@ -204,9 +206,9 @@
         {
             var cookies = new CookieContainer();
             var request = new HttpRequest
-            {
-                Line = new HttpRequestLine("GET", "http://www.alan-dean.com/example")
-            };
+                              {
+                                  Line = new HttpRequestLine("GET", "http://www.alan-dean.com/example")
+                              };
 
             using (var response = HttpExpectation.GetResponse(request, cookies))
             {
@@ -219,9 +221,9 @@
         {
             var cookies = new CookieContainer();
             var request = new HttpRequest
-            {
-                Line = new HttpRequestLine("GET", "http://www.alan-dean.com/")
-            };
+                              {
+                                  Line = new HttpRequestLine("GET", "http://www.alan-dean.com/")
+                              };
 
             using (var response = HttpExpectation.GetResponse(request, cookies))
             {
@@ -235,23 +237,23 @@
         {
             var cookies = new CookieContainer();
             var expectation = new HttpExpectation
-            {
-                Exchange = new HttpExchange
-                {
-                    Request = new HttpRequest
-                    {
-                        Line = new HttpRequestLine("GET", "http://www.alan-dean.com/")
-                    }, 
-                    Response = new HttpResponse
-                    {
-                        Line = new HttpStatusLine(HttpStatusCode.SeeOther), 
-                        Headers = new HttpHeaderDictionary
-                        {
-                            new HttpHeader("Location", "http://www.alan-dean.com/about")
-                        }
-                    }
-                }
-            };
+                                  {
+                                      Exchange = new HttpExchange
+                                                     {
+                                                         Request = new HttpRequest
+                                                                       {
+                                                                           Line = new HttpRequestLine("GET", "http://www.alan-dean.com/")
+                                                                       }, 
+                                                         Response = new HttpResponse
+                                                                        {
+                                                                            Line = new HttpStatusLine(HttpStatusCode.SeeOther), 
+                                                                            Headers = new HttpHeaderDictionary
+                                                                                          {
+                                                                                              new HttpHeader("Location", "http://www.alan-dean.com/about")
+                                                                                          }
+                                                                        }
+                                                     }
+                                  };
 
             Assert.True(expectation.Verify(cookies));
         }
@@ -273,23 +275,23 @@
         {
             var cookies = new CookieContainer();
             var expectation = new HttpExpectation
-            {
-                Exchange = new HttpExchange
-                {
-                    Request = new HttpRequest
-                    {
-                        Line = new HttpRequestLine("GET", "http://www.alan-dean.com/")
-                    }, 
-                    Response = new HttpResponse
-                    {
-                        Line = new HttpStatusLine(HttpStatusCode.SeeOther), 
-                        Headers = new HttpHeaderDictionary
-                        {
-                            new HttpHeader("Location", "http://www.alan-dean.com/example")
-                        }
-                    }
-                }
-            };
+                                  {
+                                      Exchange = new HttpExchange
+                                                     {
+                                                         Request = new HttpRequest
+                                                                       {
+                                                                           Line = new HttpRequestLine("GET", "http://www.alan-dean.com/")
+                                                                       }, 
+                                                         Response = new HttpResponse
+                                                                        {
+                                                                            Line = new HttpStatusLine(HttpStatusCode.SeeOther), 
+                                                                            Headers = new HttpHeaderDictionary
+                                                                                          {
+                                                                                              new HttpHeader("Location", "http://www.alan-dean.com/example")
+                                                                                          }
+                                                                        }
+                                                     }
+                                  };
 
             Assert.Throws<HttpTestException>(() => expectation.Verify(cookies));
         }
@@ -299,19 +301,19 @@
         {
             var cookies = new CookieContainer();
             var expectation = new HttpExpectation
-            {
-                Exchange = new HttpExchange
-                {
-                    Request = new HttpRequest
-                    {
-                        Line = new HttpRequestLine("GET", "http://www.alan-dean.com/")
-                    }, 
-                    Response = new HttpResponse
-                    {
-                        Line = new HttpStatusLine(HttpStatusCode.OK)
-                    }
-                }
-            };
+                                  {
+                                      Exchange = new HttpExchange
+                                                     {
+                                                         Request = new HttpRequest
+                                                                       {
+                                                                           Line = new HttpRequestLine("GET", "http://www.alan-dean.com/")
+                                                                       }, 
+                                                         Response = new HttpResponse
+                                                                        {
+                                                                            Line = new HttpStatusLine(HttpStatusCode.OK)
+                                                                        }
+                                                     }
+                                  };
 
             Assert.Throws<HttpTestException>(() => expectation.Verify(cookies));
         }

@@ -2,9 +2,11 @@
 {
     using System;
     using System.Xml.Serialization;
+
     using Cavity.Fluent;
     using Cavity.Tests;
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class TypeExpectationsOfTFacts

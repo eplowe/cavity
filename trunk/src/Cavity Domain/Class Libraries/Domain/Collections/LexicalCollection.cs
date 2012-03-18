@@ -6,6 +6,7 @@
 #if !NET20
     using System.Linq;
 #endif
+
     using Cavity.Models;
 
     public class LexicalCollection : IEnumerable<LexicalItem>
@@ -144,6 +145,7 @@
                 item.Invoke(func);
             }
         }
+
 #endif
 
         public LexicalMatch Match(string value)
@@ -259,9 +261,11 @@
                 .Select(item => item.MatchWithin(value))
                 .FirstOrDefault(result => null != result);
         }
+
 #endif
 
-        public virtual void MoveTo(LexicalCollection destination, LexicalItem item)
+        public virtual void MoveTo(LexicalCollection destination, 
+                                   LexicalItem item)
         {
             if (null == destination)
             {
@@ -281,7 +285,7 @@
             Remove(new[] { item });
             destination.Add(item);
         }
-        
+
         public virtual void Remove(LexicalItem item)
         {
             if (null == item)
@@ -320,6 +324,7 @@
             {
                 _items.Remove(match);
             }
+
 #endif
         }
 

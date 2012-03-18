@@ -1,6 +1,7 @@
 ﻿namespace Cavity
 {
     using System.Xml;
+
     using Xunit;
     using Xunit.Extensions;
 
@@ -62,6 +63,12 @@
             }
         }
 
+        [Fact]
+        public void op_IsWhiteSpace_char()
+        {
+            Assert.False('a'.IsWhiteSpace());
+        }
+
         [Theory]
         [InlineData('A', "ÀÂÆ")]
         [InlineData('a', "àâæ")]
@@ -77,19 +84,14 @@
         [InlineData('u', "ùûü")]
         [InlineData('Y', "Ÿ")]
         [InlineData('y', "ÿ")]
-        public void op_ToEnglishAlphabet_char(char expected, string values)
+        public void op_ToEnglishAlphabet_char(char expected, 
+                                              string values)
         {
             Assert.Equal(expected, expected.ToEnglishAlphabet());
             foreach (var value in values ?? string.Empty)
             {
                 Assert.Equal(expected, value.ToEnglishAlphabet());
             }
-        }
-
-        [Fact]
-        public void op_IsWhiteSpace_char()
-        {
-            Assert.False('a'.IsWhiteSpace());
         }
     }
 }

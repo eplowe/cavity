@@ -2,6 +2,7 @@
 {
     using Cavity.Fluent;
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class ImplementationTestOfTFacts
@@ -42,9 +43,9 @@
             var expected = typeof(IInterface1);
 
             var obj = new ImplementationTest<object>(expected)
-            {
-                Interface = expected
-            };
+                          {
+                              Interface = expected
+                          };
 
             var actual = obj.Interface;
 

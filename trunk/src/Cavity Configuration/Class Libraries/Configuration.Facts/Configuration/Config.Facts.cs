@@ -3,8 +3,10 @@
     using System;
     using System.IO;
     using System.Reflection;
+
     using Cavity.Data;
     using Cavity.IO;
+
     using Xunit;
 
     public sealed class ConfigFacts
@@ -144,11 +146,11 @@
             try
             {
                 var expected = new DataCollection
-                {
-                    {
-                        "foo", "bar"
-                        }
-                };
+                                   {
+                                       {
+                                           "foo", "bar"
+                                           }
+                                   };
                 file.Create(expected.XmlSerialize());
                 var actual = Config.Xml<DataCollection>();
 
@@ -171,11 +173,11 @@
             try
             {
                 var expected = new DataCollection
-                {
-                    {
-                        "foo", "bar"
-                        }
-                };
+                                   {
+                                       {
+                                           "foo", "bar"
+                                           }
+                                   };
                 file.Create(expected.XmlSerialize());
                 var actual = Config.Xml<DataCollection>(typeof(DataCollection).Assembly);
 
@@ -210,11 +212,11 @@
             {
                 var file = temp.Info.ToFile("example.xml");
                 var expected = new DataCollection
-                {
-                    {
-                        "foo", "bar"
-                        }
-                };
+                                   {
+                                       {
+                                           "foo", "bar"
+                                           }
+                                   };
 
                 file.Create(expected.XmlSerialize());
                 var actual = Config.Xml<DataCollection>(file);

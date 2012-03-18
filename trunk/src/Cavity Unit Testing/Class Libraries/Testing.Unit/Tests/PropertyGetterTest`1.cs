@@ -2,6 +2,7 @@
 {
     using System.Globalization;
     using System.Reflection;
+
     using Cavity.Properties;
 
     public sealed class PropertyGetterTest<T> : PropertyTestBase
@@ -15,7 +16,7 @@
 
         public override bool Check()
         {
-            if (Equals(typeof(T), Property.PropertyType))
+            if (typeof(T) == Property.PropertyType)
             {
                 return true;
             }

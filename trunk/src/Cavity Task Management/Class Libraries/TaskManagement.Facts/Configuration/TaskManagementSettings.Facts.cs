@@ -2,6 +2,7 @@
 {
     using System;
     using System.Configuration;
+
     using Xunit;
 
     public sealed class TaskManagementSettingsFacts

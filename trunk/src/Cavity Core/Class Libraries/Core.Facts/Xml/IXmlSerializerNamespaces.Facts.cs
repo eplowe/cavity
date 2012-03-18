@@ -1,7 +1,9 @@
 namespace Cavity.Xml
 {
     using System.Xml.Serialization;
+
     using Moq;
+
     using Xunit;
 
     public sealed class IXmlSerializerNamespacesFacts

@@ -4,10 +4,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.Serialization;
+
     using Cavity.Collections;
 
     [Serializable]
-    public class HttpHeaderDictionary : Dictionary<Token, string>, IHttpMessageHeaders
+    public class HttpHeaderDictionary : Dictionary<Token, string>, 
+                                        IHttpMessageHeaders
     {
         public HttpHeaderDictionary()
         {

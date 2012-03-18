@@ -4,7 +4,9 @@
     using System.Text;
     using System.Web;
     using System.Web.Mvc;
+
     using Moq;
+
     using Xunit;
 
     public sealed class XmlSerializationResultFacts
@@ -77,10 +79,10 @@
                 .Returns(response.Object)
                 .Verifiable();
 
-            new XmlSerializationResult(123).ExecuteResult(new ControllerContext()
-            {
-                HttpContext = context.Object
-            });
+            new XmlSerializationResult(123).ExecuteResult(new ControllerContext
+                                                              {
+                                                                  HttpContext = context.Object
+                                                              });
 
             response.VerifyAll();
         }

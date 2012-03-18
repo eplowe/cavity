@@ -4,9 +4,12 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Net.Mime;
+
     using Cavity.Net.Mime;
 
-    public sealed class TextPlain : ComparableObject, IContent, IMediaType
+    public sealed class TextPlain : ComparableObject, 
+                                    IContent, 
+                                    IMediaType
     {
         private ContentType _contentType;
 

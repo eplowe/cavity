@@ -4,9 +4,12 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Xml.Serialization;
+
     using Cavity.IO;
     using Cavity.Xml.XPath;
+
     using Moq;
+
     using Xunit;
 
     public sealed class CommandCollectionFacts
@@ -58,11 +61,14 @@
         {
             using (var temp = new TempDirectory())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<InvalidOperationException>(() => ("<commands>" +
                                                                 "<command i='1' type=''>" +
                                                                 @"<directory.create path='{0}' undo='false' />".FormatWith(temp.Info.FullName) +
                                                                 "</command>" +
                                                                 "</commands>").XmlDeserialize<CommandCollection>());
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -86,9 +92,9 @@
                 .Setup(x => x.Act())
                 .Returns(false);
             var obj = new CommandCollection
-            {
-                command.Object
-            };
+                          {
+                              command.Object
+                          };
 
             Assert.False(obj.Do());
         }
@@ -101,9 +107,9 @@
                 .Setup(x => x.Act())
                 .Returns(true);
             var obj = new CommandCollection
-            {
-                command.Object
-            };
+                          {
+                              command.Object
+                          };
 
             Assert.True(obj.Do());
         }
@@ -134,9 +140,9 @@
                 .Setup(x => x.Revert())
                 .Returns(false);
             var obj = new CommandCollection
-            {
-                command.Object
-            };
+                          {
+                              command.Object
+                          };
 
             Assert.False(obj.Undo());
         }
@@ -149,9 +155,9 @@
                 .Setup(x => x.Revert())
                 .Returns(true);
             var obj = new CommandCollection
-            {
-                command.Object
-            };
+                          {
+                              command.Object
+                          };
 
             Assert.True(obj.Undo());
         }
@@ -168,9 +174,9 @@
             using (var temp = new TempDirectory())
             {
                 var obj = new CommandCollection
-                {
-                    new DerivedCommand()
-                };
+                              {
+                                  new DerivedCommand()
+                              };
 
                 var navigator = obj.XmlSerialize().CreateNavigator();
 

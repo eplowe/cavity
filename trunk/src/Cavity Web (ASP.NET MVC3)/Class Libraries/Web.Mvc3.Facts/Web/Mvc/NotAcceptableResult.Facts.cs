@@ -4,7 +4,9 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
+
     using Moq;
+
     using Xunit;
 
     public sealed class NotAcceptableResultFacts
@@ -44,10 +46,10 @@
                 .Returns(response.Object)
                 .Verifiable();
 
-            new NotAcceptableResult().ExecuteResult(new ControllerContext()
-            {
-                HttpContext = context.Object
-            });
+            new NotAcceptableResult().ExecuteResult(new ControllerContext
+                                                        {
+                                                            HttpContext = context.Object
+                                                        });
 
             response.VerifyAll();
         }

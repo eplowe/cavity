@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Collections
 {
     using System;
+
     using Xunit;
 
     public sealed class LevenshteinComparerFacts
@@ -63,9 +64,9 @@
         public void op_Equals_string_string_whenEqualIgnoreCase()
         {
             var obj = new LevenshteinComparer
-            {
-                Comparison = StringComparison.OrdinalIgnoreCase
-            };
+                          {
+                              Comparison = StringComparison.OrdinalIgnoreCase
+                          };
 
             Assert.True(obj.Equals("abc", "ABC"));
         }
@@ -89,9 +90,9 @@
         public void op_Normalize_string_whenIgnoreCase()
         {
             var obj = new LevenshteinComparer
-            {
-                Comparison = StringComparison.OrdinalIgnoreCase
-            };
+                          {
+                              Comparison = StringComparison.OrdinalIgnoreCase
+                          };
             const string expected = "ABC";
             var actual = obj.Normalize("abc");
 

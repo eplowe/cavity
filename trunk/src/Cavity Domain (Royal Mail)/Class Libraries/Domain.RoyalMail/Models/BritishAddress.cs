@@ -36,9 +36,9 @@
             var buffer = new StringBuilder();
 
             foreach (var value in new[]
-            {
-                SubBuildingName, BuildingName, PostOfficeBox
-            }.Where(value => !string.IsNullOrEmpty(value)))
+                                      {
+                                          SubBuildingName, BuildingName, PostOfficeBox
+                                      }.Where(value => !string.IsNullOrEmpty(value)))
             {
                 buffer.AppendLine(value);
             }
@@ -50,9 +50,9 @@
             }
 
             foreach (var value in new[]
-            {
-                DependentStreet, MainStreet, DoubleDependentLocality, DependentLocality, PostTown, (string)Postcode, TraditionalCounty
-            }.Where(value => !string.IsNullOrEmpty(value)))
+                                      {
+                                          DependentStreet, MainStreet, DoubleDependentLocality, DependentLocality, PostTown, (string)Postcode, TraditionalCounty
+                                      }.Where(value => !string.IsNullOrEmpty(value)))
             {
                 buffer.AppendLine(value);
             }

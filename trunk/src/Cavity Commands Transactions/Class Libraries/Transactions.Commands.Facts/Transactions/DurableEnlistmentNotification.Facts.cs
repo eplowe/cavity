@@ -4,7 +4,9 @@
     using System.IO;
     using System.Threading;
     using System.Transactions;
+
     using Cavity.IO;
+
     using Xunit;
 
     public sealed class DurableEnlistmentNotificationFacts
@@ -28,6 +30,7 @@
                 Assert.NotNull(new DerivedDurableEnlistmentNotification(Guid.NewGuid(), EnlistmentOptions.None));
             }
         }
+
 #endif
 
         [Fact]
@@ -67,6 +70,7 @@
                 Recovery.MasterDirectory = null;
             }
         }
+
 #endif
 
 #if DEBUG
@@ -94,6 +98,7 @@
                 Recovery.MasterDirectory = null;
             }
         }
+
 #endif
 
         [Fact]

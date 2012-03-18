@@ -1,12 +1,14 @@
-﻿namespace Cavity.Models
+﻿namespace Cavity.Collections
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml.Serialization;
+
     using Cavity.Configuration;
     using Cavity.IO;
     using Cavity.Xml.XPath;
+
     using Xunit;
 
     public sealed class StringListFacts
@@ -65,9 +67,9 @@
         {
             const string expected = "example";
             var obj = new StringList
-            {
-                expected
-            };
+                          {
+                              expected
+                          };
 
             Assert.Equal(expected, obj.AsEnumerable().First());
         }
@@ -88,9 +90,9 @@
         public void op_ToEnumerable_ofBoolean()
         {
             var obj = new StringList
-            {
-                "true"
-            };
+                          {
+                              "true"
+                          };
 
             Assert.True(obj.ToEnumerable<bool>().First());
         }
@@ -100,9 +102,9 @@
         {
             var expected = DateTime.UtcNow;
             var obj = new StringList
-            {
-                expected.ToXmlString()
-            };
+                          {
+                              expected.ToXmlString()
+                          };
 
             Assert.Equal(expected, obj.ToEnumerable<DateTime>().First().ToUniversalTime());
         }
@@ -111,9 +113,9 @@
         public void op_ToEnumerable_ofInt32()
         {
             var obj = new StringList
-            {
-                "123"
-            };
+                          {
+                              "123"
+                          };
 
             Assert.Equal(123, obj.ToEnumerable<int>().First());
         }
@@ -128,9 +130,9 @@
         public void serialize()
         {
             var obj = new StringList
-            {
-                "example"
-            };
+                          {
+                              "example"
+                          };
 
             Assert.True(obj.XmlSerialize().CreateNavigator().Evaluate<bool>("1=count(/list/item[text()='example'])"));
         }

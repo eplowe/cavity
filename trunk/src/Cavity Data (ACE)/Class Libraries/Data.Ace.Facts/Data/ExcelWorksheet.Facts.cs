@@ -5,9 +5,10 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using Cavity;
+
     using Cavity.Collections;
     using Cavity.IO;
+
     using Xunit;
 
     public sealed class ExcelWorksheetFacts
@@ -16,13 +17,19 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<ExcelWorksheet>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .NoDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IEnumerable<KeyStringDictionary>>()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IEnumerable<KeyStringDictionary>>()
+                            .Result);
+        }
+
+        [Fact]
+        public void ctor_FileInfoNull_string()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ExcelWorksheet(null, "Sheet1$"));
         }
 
         [Fact]
@@ -36,12 +43,6 @@
         }
 
         [Fact]
-        public void ctor_FileInfoNull_string()
-        {
-            Assert.Throws<ArgumentNullException>(() => new ExcelWorksheet(null, "Sheet1$"));
-        }
-
-        [Fact]
         public void ctor_FileInfo_stringNull()
         {
             var file = new DirectoryInfo(Environment.CurrentDirectory)
@@ -52,25 +53,24 @@
         }
 
         [Fact]
-        public void op_IEnumerable_GetEnumerator()
+        public void op_GetEnumerator()
         {
             var file = new DirectoryInfo(Environment.CurrentDirectory)
                 .ToDirectory("Spreadsheets")
-                .ToFile("NameValue.xlsx");
+                .ToFile("NameValue.xls");
 
-            IEnumerable enumerable = new ExcelWorksheet(file, "Sheet1$");
-            foreach (var entry in enumerable.Cast<KeyStringDictionary>())
+            foreach (var entry in new ExcelWorksheet(file, "Sheet1$"))
             {
                 Assert.Equal("value", entry["name"]);
             }
         }
 
         [Fact]
-        public void op_GetEnumerator()
+        public void op_GetEnumerator_whenBinaryFormat()
         {
             var file = new DirectoryInfo(Environment.CurrentDirectory)
                 .ToDirectory("Spreadsheets")
-                .ToFile("NameValue.xls");
+                .ToFile("NameValue.xlsb");
 
             foreach (var entry in new ExcelWorksheet(file, "Sheet1$"))
             {
@@ -93,11 +93,11 @@
         }
 
         [Fact]
-        public void op_GetEnumerator_whenBinaryFormat()
+        public void op_GetEnumerator_whenXmlFormat()
         {
             var file = new DirectoryInfo(Environment.CurrentDirectory)
                 .ToDirectory("Spreadsheets")
-                .ToFile("NameValue.xlsb");
+                .ToFile("NameValue.xlsx");
 
             foreach (var entry in new ExcelWorksheet(file, "Sheet1$"))
             {
@@ -106,13 +106,14 @@
         }
 
         [Fact]
-        public void op_GetEnumerator_whenXmlFormat()
+        public void op_IEnumerable_GetEnumerator()
         {
             var file = new DirectoryInfo(Environment.CurrentDirectory)
                 .ToDirectory("Spreadsheets")
                 .ToFile("NameValue.xlsx");
 
-            foreach (var entry in new ExcelWorksheet(file, "Sheet1$"))
+            IEnumerable enumerable = new ExcelWorksheet(file, "Sheet1$");
+            foreach (var entry in enumerable.Cast<KeyStringDictionary>())
             {
                 Assert.Equal("value", entry["name"]);
             }
@@ -132,18 +133,18 @@
         public void prop_Info()
         {
             Assert.True(new PropertyExpectations<ExcelWorksheet>(x => x.Info)
-                .TypeIs<FileInfo>()
-                .IsNotDecorated()
-                .Result);
+                            .TypeIs<FileInfo>()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
         public void prop_Name()
         {
             Assert.True(new PropertyExpectations<ExcelWorksheet>(x => x.Name)
-                .TypeIs<string>()
-                .IsNotDecorated()
-                .Result);
+                            .TypeIs<string>()
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

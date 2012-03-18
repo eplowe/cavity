@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Net
 {
     using System.IO;
+
     using Moq;
+
     using Xunit;
 
     public sealed class IHttpMessageBodyFacts
@@ -21,10 +23,13 @@
             using (var stream = new MemoryStream())
             {
                 var mock = new Mock<IHttpMessageBody>();
+
+                // ReSharper disable AccessToDisposedClosure
                 mock
                     .Setup(x => x.Write(stream))
                     .Verifiable();
 
+                // ReSharper restore AccessToDisposedClosure
                 mock.Object.Write(stream);
 
                 mock.VerifyAll();

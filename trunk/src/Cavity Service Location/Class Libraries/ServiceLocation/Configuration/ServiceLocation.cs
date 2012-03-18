@@ -2,15 +2,16 @@
 {
     using System.Configuration;
     using System.Diagnostics;
+
     using Cavity.Diagnostics;
 
     public sealed class ServiceLocation : ConfigurationSection
     {
-        private static readonly ConfigurationProperty _provider = new ConfigurationProperty("type",
-                                                                                            typeof(ISetLocatorProvider),
-                                                                                            null,
-                                                                                            new SetLocatorProviderConverter(),
-                                                                                            new SetLocatorProviderValidator(),
+        private static readonly ConfigurationProperty _provider = new ConfigurationProperty("type", 
+                                                                                            typeof(ISetLocatorProvider), 
+                                                                                            null, 
+                                                                                            new SetLocatorProviderConverter(), 
+                                                                                            new SetLocatorProviderValidator(), 
                                                                                             ConfigurationPropertyOptions.IsRequired);
 
         public ServiceLocation()

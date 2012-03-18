@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Xml.XPath;
+
     using Moq;
+
     using Xunit;
 
     public sealed class RepositoryQueryExpressionOfTFacts
@@ -33,10 +35,10 @@
             var obj = new RepositoryQueryExpression<RandomObject>();
 
             var records = new[]
-            {
-                obj.Record1,
-                obj.Record2
-            };
+                              {
+                                  obj.Record1, 
+                                  obj.Record2
+                              };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository
