@@ -15,6 +15,21 @@ namespace Cavity
         }
 
         [Fact]
+        public void op_NullOrToString_objectNull()
+        {
+            Assert.Null((null as object).NullOrToString());
+        }
+
+        [Fact]
+        public void op_NullOrToString_object()
+        {
+            const string expected = "123";
+            var actual = 123.NullOrToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_ToXmlString_objectNull()
         {
             Assert.Null((null as object).ToXmlString());

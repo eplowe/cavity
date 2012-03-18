@@ -19,7 +19,7 @@
         {
             Access = FileAccess.Write;
             Mode = FileMode.OpenOrCreate;
-            Share = FileShare.None;
+            Share = FileShare.Read;
         }
 
         public StreamWriterDictionary(string firstLine)

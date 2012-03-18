@@ -4,6 +4,7 @@
     using System.IO;
 
     using Xunit;
+    using Xunit.Extensions;
 
     public sealed class DirectoryInfoExtensionMethodsFacts
     {
@@ -212,6 +213,53 @@
                 var destination = temp.Info.ToDirectory("destination", true);
 
                 Assert.Throws<ArgumentNullException>(() => source.CopyTo(destination, true, null));
+            }
+        }
+
+        [Theory]
+        [InlineData(0, 0, 0, SearchOption.AllDirectories)]
+        [InlineData(1, 1, 1, SearchOption.AllDirectories)]
+        [InlineData(2, 2, 1, SearchOption.AllDirectories)]
+        [InlineData(9, 3, 3, SearchOption.AllDirectories)]
+        public void op_LineCount_DirectoryInfo_string_SearchOption(int expected,
+                                                                   int files,
+                                                                   int lines,
+                                                                   SearchOption searchOption)
+        {
+            using (var temp = new TempDirectory())
+            {
+                var child = temp.Info.ToDirectory("child", true);
+                for (var i = 0; i < files; i++)
+                {
+                    var file = child.ToFile("{0}.txt".FormatWith(i));
+                    file.CreateNew();
+                    for (var j = 0; j < lines; j++)
+                    {
+                        file.AppendLine(string.Empty);
+                    }
+                }
+
+                var actual = temp.Info.LineCount("*.txt", searchOption);
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_LineCount_DirectoryInfo_string_SearchOption_throwsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).LineCount("*.*", SearchOption.AllDirectories));
+        }
+
+        [Fact]
+        public void op_LineCount_DirectoryInfo_string_SearchOption_throwsFileNotFoundException()
+        {
+            using (var temp = new TempDirectory())
+            {
+                // ReSharper disable AccessToDisposedClosure
+                Assert.Throws<DirectoryNotFoundException>(() => temp.Info.ToDirectory("example").LineCount("*.*", SearchOption.AllDirectories));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 

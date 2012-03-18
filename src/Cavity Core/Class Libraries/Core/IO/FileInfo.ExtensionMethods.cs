@@ -4,6 +4,10 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+#if !NET20
+    using System.Linq;
+#endif
+    using System.Text;
     using System.Xml.XPath;
 
     public static class FileInfoExtensionMethods
@@ -149,6 +153,65 @@
 
             return obj;
         }
+
+#if NET20
+        public static FileInfo DeduplicateLines(FileInfo obj)
+#else
+        public static FileInfo DeduplicateLines(this FileInfo obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+#if NET20
+            var lines = new List<string>();
+            foreach (var line in Lines(obj))
+            {
+                if (!lines.Contains(line))
+                {
+                    lines.Add(line);
+                }
+            }
+#else
+            var lines = new HashSet<string>();
+            foreach (var line in obj.Lines().Where(line => !lines.Contains(line)))
+            {
+                lines.Add(line);
+            }
+#endif
+
+            var buffer = new StringBuilder();
+            foreach (var line in lines)
+            {
+                buffer.AppendLine(line);
+            }
+
+#if NET20
+            return Truncate(obj, buffer.ToString());
+#else
+            return obj.Truncate(buffer.ToString());
+#endif
+        }
+
+#if NET20
+        public static int LineCount(FileInfo obj)
+        {
+            var result = 0;
+            foreach (var line in Lines(obj))
+            {
+                result++;
+            }
+
+            return result;
+        }
+#else
+        public static int LineCount(this FileInfo obj)
+        {
+            return obj.Lines().Count();
+        }
+#endif
 
 #if NET20
         public static IEnumerable<string> Lines(FileInfo obj)

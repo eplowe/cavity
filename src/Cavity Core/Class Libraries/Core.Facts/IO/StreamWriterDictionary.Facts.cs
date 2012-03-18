@@ -734,7 +734,7 @@
         public void prop_Share()
         {
             Assert.True(new PropertyExpectations<StreamWriterDictionary>(p => p.Share)
-                            .IsAutoProperty(FileShare.None)
+                            .IsAutoProperty(FileShare.Read)
                             .IsNotDecorated()
                             .Result);
         }

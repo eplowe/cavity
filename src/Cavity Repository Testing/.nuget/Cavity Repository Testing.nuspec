@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Testing.Repository</id>
-    <version>1.1.0.788</version>
+    <version>1.1.0.789</version>
     <title>Cavity Repository Testing</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,7 +17,7 @@
     <tags>Data Testing</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Repository" version="1.1.0.787" />
+      <dependency id="Cavity.Repository" version="1.1.0.789" />
     </dependencies>
   </metadata>
   <files>

@@ -23,10 +23,12 @@
     <Compile Include="IO\DirectoryInfo.ExtensionMethods.cs" />
     <Compile Include="IO\EncodedStringWriter.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
+    <Compile Include="IO\FileWriter.cs" />
     <Compile Include="IO\StreamWriterDictionary.cs" />
     <Compile Include="IO\TempDirectory.cs" />
     <Compile Include="IO\TempFile.cs" />
     <Compile Include="NullObject.cs" />
+    <Compile Include="Percentage.ExtensionMethods.cs" />
     <Compile Include="Reflection\Assembly.ExtensionMethods.cs" />
     <Compile Include="Security\Cryptography\MD5Hash.cs" />
     <Compile Include="Security\Cryptography\Salt.cs" />

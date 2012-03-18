@@ -7,6 +7,7 @@
     using System.Xml.XPath;
 
     using Xunit;
+    using Xunit.Extensions;
 
     public sealed class FileInfoExtensionMethodsFacts
     {
@@ -368,6 +369,115 @@
 
                 Assert.Equal(expected, actual);
             }
+        }
+
+        [Fact]
+        public void op_DeduplicateLines_FileInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp
+                    .Info
+                    .ToFile(Guid.NewGuid())
+                    .AppendLine("example")
+                    .AppendLine("test")
+                    .AppendLine("example")
+                    .AppendLine("test")
+                    .AppendLine("example");
+
+                Assert.Same(file, file.DeduplicateLines());
+
+                const int expected = 2;
+                var actual = file.LineCount();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_DeduplicateLines_FileInfoEmpty()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const int expected = 0;
+                var file = temp
+                    .Info
+                    .ToFile(Guid.NewGuid())
+                    .CreateNew()
+                    .DeduplicateLines();
+
+                var actual = file.LineCount();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_DeduplicateLines_FileInfoMissing()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile(Guid.NewGuid());
+
+                Assert.Throws<FileNotFoundException>(() => file.DeduplicateLines());
+            }
+        }
+
+        [Fact]
+        public void op_DeduplicateLines_FileInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).DeduplicateLines());
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void op_LineCount_FileInfo(int expected)
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile(Guid.NewGuid());
+                for (var i = 0; i < expected; i++)
+                {
+                    file.AppendLine(i);
+                }
+
+                var actual = file.LineCount();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_LineCount_FileInfoEmpty()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const int expected = 0;
+                var file = temp.Info.ToFile(Guid.NewGuid()).CreateNew();
+
+                var actual = file.LineCount();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_LineCount_FileInfoMissing()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile(Guid.NewGuid());
+
+                Assert.Throws<FileNotFoundException>(() => file.LineCount());
+            }
+        }
+
+        [Fact]
+        public void op_LineCount_FileInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).LineCount());
         }
 
         [Fact]
