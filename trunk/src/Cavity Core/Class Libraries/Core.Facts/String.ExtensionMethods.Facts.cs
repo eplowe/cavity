@@ -343,6 +343,32 @@
             Assert.False("example".ContainsAny(StringComparison.Ordinal, null as string[]));
         }
 
+#if !NET20
+        [Fact]
+        public void op_DefaultOrFromString_stringNull_Func()
+        {
+            const decimal expected = 0m;
+            var actual = (null as string).DefaultOrFromString(XmlConvert.ToDecimal);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_DefaultOrFromString_string_Func()
+        {
+            const decimal expected = 123.45m;
+            var actual = "123.45".DefaultOrFromString(XmlConvert.ToDecimal);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_DefaultOrFromString_string_FuncNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => "123.45".DefaultOrFromString<decimal>(null));
+        }
+#endif
+
         [Fact]
         public void op_EndsWithAny_stringEmpty_StringComparison_strings()
         {

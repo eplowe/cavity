@@ -23,6 +23,7 @@
     <Compile Include="Data\DataCollection.Facts.cs" />
     <Compile Include="IO\DirectoryInfo.ExtensionMethods.Facts.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.Facts.cs" />
+    <Compile Include="IO\FileWriter.Facts.cs" />
     <Compile Include="IO\TempDirectory.Facts.cs" />
     <Compile Include="IO\TempFile.Facts.cs" />
     <Compile Include="IO\EncodedStringWriter.Facts.cs" />
@@ -35,6 +36,7 @@
     <Compile Include="Security\Cryptography\SecureHash.Facts.cs" />
     <Compile Include="Text\Encoding.ExtensionMethods.Facts.cs" />
     <Compile Include="Object.ExtensionMethods.Facts.cs" />
+    <Compile Include="Percentage.ExtensionMethods.Facts.cs" />
     <Compile Include="RelativeUri.Facts.cs" />
     <Compile Include="String.ExtensionMethods.Facts.cs" />
     <Compile Include="ValueObject`1.Derived.cs" />

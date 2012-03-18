@@ -16,6 +16,17 @@ namespace Cavity
     public static class ObjectExtensionMethods
     {
 #if NET20
+        public static string NullOrToString(object value)
+#else
+        public static string NullOrToString(this object value)
+#endif
+        {
+            return ReferenceEquals(null, value)
+                       ? null
+                       : value.ToString();
+        }
+
+#if NET20
         public static string ToXmlString(object value)
 #else
         public static string ToXmlString(this object value)

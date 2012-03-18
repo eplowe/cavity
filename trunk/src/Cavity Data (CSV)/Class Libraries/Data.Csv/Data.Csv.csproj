@@ -26,7 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.787\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.789\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

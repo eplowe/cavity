@@ -3,6 +3,9 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+#if !NET20
+    using System.Linq;
+#endif
 #if NET40
     using System.Threading.Tasks;
 #endif
@@ -114,6 +117,46 @@
 
                 file.CopyTo(target.FullName);
             }
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static int LineCount(DirectoryInfo directory,
+                                    string searchPattern,
+                                    SearchOption searchOption)
+#else
+        public static int LineCount(this DirectoryInfo directory,
+                                    string searchPattern,
+                                    SearchOption searchOption)
+#endif
+        {
+            if (null == directory)
+            {
+                throw new ArgumentNullException("directory");
+            }
+
+            if (!directory.Exists)
+            {
+                throw new DirectoryNotFoundException(directory.FullName);
+            }
+
+#if NET20
+            var result = 0;
+            foreach (var file in directory.GetFiles(searchPattern, searchOption))
+            {
+                result += FileInfoExtensionMethods.LineCount(file);
+            }
+
+            return result;
+#elif NET35
+            return directory
+                .GetFiles(searchPattern, searchOption)
+                .Sum(file => file.LineCount());
+#else
+            return directory
+                .EnumerateFiles(searchPattern, searchOption)
+                .Sum(file => file.LineCount());
+#endif
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]

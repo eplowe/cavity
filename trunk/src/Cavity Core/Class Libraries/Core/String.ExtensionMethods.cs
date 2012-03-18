@@ -383,6 +383,20 @@
         }
 
 #if !NET20
+        public static T DefaultOrFromString<T>(this string value, Func<string, T> fromString)
+        {
+            if (null == fromString)
+            {
+                throw new ArgumentNullException("fromString");
+            }
+
+            return ReferenceEquals(null, value)
+                       ? default(T)
+                       : fromString(value);
+        }
+#endif
+
+#if !NET20
         public static bool IsNullOrEmpty(this string obj)
         {
             return string.IsNullOrEmpty(obj);
