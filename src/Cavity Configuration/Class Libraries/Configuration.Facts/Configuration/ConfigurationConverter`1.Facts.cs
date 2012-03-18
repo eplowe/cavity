@@ -3,8 +3,9 @@
     using System;
     using System.ComponentModel;
     using System.Globalization;
-    using Cavity;
+
     using Moq;
+
     using Xunit;
 
     public sealed class ConfigurationConverterOfTFacts

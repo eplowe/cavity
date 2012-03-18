@@ -2,7 +2,9 @@
 {
     using System;
     using System.IO;
+
     using Cavity.Xml.XPath;
+
     using Xunit;
 
     public sealed class FileMoveCommandFacts
@@ -255,11 +257,11 @@
         public void serialize()
         {
             var obj = new FileMoveCommand
-            {
-                Source = @"C:\from.txt",
-                Destination = @"C:\to.txt",
-                Undo = true
-            };
+                          {
+                              Source = @"C:\from.txt", 
+                              Destination = @"C:\to.txt", 
+                              Undo = true
+                          };
 
             var navigator = obj.XmlSerialize().CreateNavigator();
 

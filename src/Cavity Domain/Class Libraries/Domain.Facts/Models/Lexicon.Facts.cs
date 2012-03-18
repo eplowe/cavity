@@ -1,9 +1,12 @@
 ﻿namespace Cavity.Models
 {
     using System;
+
     using Cavity.Collections;
     using Cavity.Data;
+
     using Moq;
+
     using Xunit;
 
     public sealed class LexiconFacts

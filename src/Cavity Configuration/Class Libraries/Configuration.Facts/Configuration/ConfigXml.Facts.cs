@@ -2,8 +2,10 @@
 {
     using System;
     using System.IO;
+
     using Cavity.Data;
     using Cavity.IO;
+
     using Xunit;
 
     public sealed class ConfigXmlFacts
@@ -27,11 +29,11 @@
             {
                 var file = temp.Info.ToFile("example.xml");
                 var expected = new DataCollection
-                {
-                    {
-                        "foo", "bar"
-                        }
-                };
+                                   {
+                                       {
+                                           "foo", "bar"
+                                           }
+                                   };
 
                 file.Create(expected.XmlSerialize());
                 var actual = ConfigXml.Load<DataCollection>(file);
@@ -48,11 +50,11 @@
             {
                 var file = temp.Info.ToFile("example.xml");
                 var expected = new DataCollection
-                {
-                    {
-                        "foo", "bar"
-                        }
-                };
+                                   {
+                                       {
+                                           "foo", "bar"
+                                           }
+                                   };
 
                 ConfigXml.Load<DataCollection>(file);
                 file.Create(expected.XmlSerialize());
@@ -66,11 +68,11 @@
             {
                 var file = temp.Info.ToFile("example.xml");
                 var expected = new DataCollection
-                {
-                    {
-                        "foo", "bar"
-                        }
-                };
+                                   {
+                                       {
+                                           "foo", "bar"
+                                           }
+                                   };
 
                 file.Create(expected.XmlSerialize());
                 var actual = ConfigXml.Load<DataCollection>(file);
@@ -87,11 +89,11 @@
             {
                 var file = temp.Info.ToFile("example.xml");
                 var expected = new DataCollection
-                {
-                    {
-                        "foo", "bar"
-                        }
-                };
+                                   {
+                                       {
+                                           "foo", "bar"
+                                           }
+                                   };
 
                 file.Create(expected.XmlSerialize());
                 var actual = ConfigXml.Load<DataCollection>(file);

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Configuration
 {
     using System.Configuration;
+
     using Xunit;
 
     public sealed class ServiceLocationFacts

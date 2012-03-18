@@ -4,17 +4,19 @@
     using System.IO;
     using System.Text;
     using System.Web;
+
     using Moq;
+
     using Xunit;
 
     public sealed class WrappedStreamFacts
     {
-        private const string EmptyHash = "1B2M2Y8AsgTpgAmY7PhCfg==";
+        private const string _emptyHash = "1B2M2Y8AsgTpgAmY7PhCfg==";
 
         ////private const string JigsawHash = "0TMnkhCZtrIjdTtJk6x3+Q==";
 
         //// http://jigsaw.w3.org/HTTP/h-content-md5.html
-        private const string JigsawHtml = "<HTML>\n"
+        private const string _jigsawHtml = "<HTML>\n"
                                           + "<HEAD>\n  <!-- Created with 'cat' and 'vi'  -->\n"
                                           + "<TITLE>Retry-After header</TITLE>\n"
                                           + "</HEAD>\n"
@@ -207,14 +209,14 @@
         [Fact]
         public void prop_ContentMD5_get()
         {
-            const string expected = EmptyHash;
+            const string expected = _emptyHash;
             string actual;
 
             using (var stream = new MemoryStream())
             {
                 using (var writer = new StreamWriter(stream))
                 {
-                    writer.Write(JigsawHtml);
+                    writer.Write(_jigsawHtml);
                     writer.Flush();
                     stream.Position = 0;
 
@@ -228,7 +230,7 @@
         [Fact]
         public void prop_ContentMD5_getEmpty()
         {
-            const string expected = EmptyHash;
+            const string expected = _emptyHash;
             string actual;
 
             using (var stream = new MemoryStream())
@@ -263,9 +265,9 @@
             using (var stream = new MemoryStream())
             {
                 var obj = new WrappedStream(stream)
-                {
-                    Position = 0
-                };
+                              {
+                                  Position = 0
+                              };
 
                 Assert.Equal(stream.Position, obj.Position);
             }

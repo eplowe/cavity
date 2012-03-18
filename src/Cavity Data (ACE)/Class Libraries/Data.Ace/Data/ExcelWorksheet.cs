@@ -11,12 +11,14 @@
 #if !NET20
     using System.Linq;
 #endif
+
     using Cavity.Collections;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't a collection.")]
     public sealed class ExcelWorksheet : IEnumerable<KeyStringDictionary>
     {
-        public ExcelWorksheet(FileInfo info, string name)
+        public ExcelWorksheet(FileInfo info, 
+                              string name)
         {
             if (null == info)
             {

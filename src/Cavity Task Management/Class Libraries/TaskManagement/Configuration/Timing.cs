@@ -4,6 +4,7 @@
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+
     using Cavity.Diagnostics;
     using Cavity.IO;
     using Cavity.Reflection;
@@ -18,11 +19,12 @@
             var file = ToFile(typeof(T), "wait");
 
             return file.Exists
-                ? file.ReadToEnd().To<DateTime>()
-                : DateTime.MinValue;
+                       ? file.ReadToEnd().To<DateTime>()
+                       : DateTime.MinValue;
         }
 
-        public static FileInfo ToFile(Type type, string extension)
+        public static FileInfo ToFile(Type type, 
+                                      string extension)
         {
             Trace.WriteLineIf(Tracing.Is.TraceVerbose, string.Empty);
             if (null == type)

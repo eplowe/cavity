@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+
     using Castle.Windsor;
+
     using Microsoft.Practices.ServiceLocation;
 
     public sealed class WindsorServiceLocator : ServiceLocatorImplBase
@@ -19,17 +21,17 @@
             _container = container;
         }
 
-        protected override object DoGetInstance(Type serviceType,
-                                                string key)
-        {
-            return null == key
-                ? _container.Resolve(serviceType)
-                : _container.Resolve(key, serviceType);
-        }
-
         protected override IEnumerable<object> DoGetAllInstances(Type serviceType)
         {
             return (object[])_container.ResolveAll(serviceType);
+        }
+
+        protected override object DoGetInstance(Type serviceType, 
+                                                string key)
+        {
+            return null == key
+                       ? _container.Resolve(serviceType)
+                       : _container.Resolve(key, serviceType);
         }
     }
 }

@@ -4,6 +4,7 @@
 #if !NET20
     using System.Linq;
 #endif
+
     using Cavity.Properties;
 
     public static class GenericExtensionMethods

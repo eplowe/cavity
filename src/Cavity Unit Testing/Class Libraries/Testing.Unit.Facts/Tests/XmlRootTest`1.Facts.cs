@@ -2,6 +2,7 @@
 {
     using Cavity.Fluent;
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class XmlRootTestOfTFacts
@@ -90,9 +91,9 @@
             const string expected = "bar";
 
             var obj = new XmlRootTest<object>("foo")
-            {
-                ElementName = expected
-            };
+                          {
+                              ElementName = expected
+                          };
 
             var actual = obj.ElementName;
 
@@ -105,9 +106,9 @@
             const string expected = "namespace";
 
             var obj = new XmlRootTest<object>("name")
-            {
-                Namespace = expected
-            };
+                          {
+                              Namespace = expected
+                          };
 
             var actual = obj.Namespace;
 

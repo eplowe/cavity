@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Data
 {
     using System;
+
     using Moq;
+
     using Xunit;
 
     public sealed class RepositoryInsertRecordOfTFacts
@@ -29,14 +31,14 @@
         public void op_Verify_IRepository()
         {
             var obj = new RepositoryInsertRecord<RandomObject>
-            {
-                Record1 =
-                    {
-                        Created = DateTime.UtcNow,
-                        Key = AlphaDecimal.Random(),
-                        Modified = DateTime.UtcNow
-                    }
-            };
+                          {
+                              Record1 =
+                                  {
+                                      Created = DateTime.UtcNow, 
+                                      Key = AlphaDecimal.Random(), 
+                                      Modified = DateTime.UtcNow
+                                  }
+                          };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository
@@ -59,14 +61,14 @@
         public void op_Verify_IRepository_whenCreatedIsNotSet()
         {
             var obj = new RepositoryInsertRecord<RandomObject>
-            {
-                Record1 =
-                    {
-                        Created = null,
-                        Key = AlphaDecimal.Random(),
-                        Modified = DateTime.UtcNow
-                    }
-            };
+                          {
+                              Record1 =
+                                  {
+                                      Created = null, 
+                                      Key = AlphaDecimal.Random(), 
+                                      Modified = DateTime.UtcNow
+                                  }
+                          };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository
@@ -83,14 +85,14 @@
         public void op_Verify_IRepository_whenKeyIsNotSet()
         {
             var obj = new RepositoryInsertRecord<RandomObject>
-            {
-                Record1 =
-                    {
-                        Created = DateTime.UtcNow,
-                        Key = null,
-                        Modified = DateTime.UtcNow
-                    }
-            };
+                          {
+                              Record1 =
+                                  {
+                                      Created = DateTime.UtcNow, 
+                                      Key = null, 
+                                      Modified = DateTime.UtcNow
+                                  }
+                          };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository
@@ -107,14 +109,14 @@
         public void op_Verify_IRepository_whenModifiedIsNotSet()
         {
             var obj = new RepositoryInsertRecord<RandomObject>
-            {
-                Record1 =
-                    {
-                        Created = DateTime.UtcNow,
-                        Key = AlphaDecimal.Random(),
-                        Modified = null
-                    }
-            };
+                          {
+                              Record1 =
+                                  {
+                                      Created = DateTime.UtcNow, 
+                                      Key = AlphaDecimal.Random(), 
+                                      Modified = null
+                                  }
+                          };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using System.IO;
+
     using Cavity.Net.Mime;
 
     public interface IHttpMessage

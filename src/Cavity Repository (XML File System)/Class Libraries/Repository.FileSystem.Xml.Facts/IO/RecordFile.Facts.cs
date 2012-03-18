@@ -4,8 +4,10 @@
     using System.IO;
     using System.Text;
     using System.Xml.XPath;
+
     using Cavity.Collections;
     using Cavity.Data;
+
     using Xunit;
 
     public sealed class RecordFileFacts
@@ -45,17 +47,17 @@
         {
             var key = AlphaDecimal.Random();
             var expected = new Record<int>
-            {
-                Cacheability = "public",
-                Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
-                Etag = "\"xyz\"",
-                Expiration = "P1D",
-                Key = key,
-                Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
-                Status = 200,
-                Urn = "urn://example.com/abc",
-                Value = 123
-            };
+                               {
+                                   Cacheability = "public", 
+                                   Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
+                                   Etag = "\"xyz\"", 
+                                   Expiration = "P1D", 
+                                   Key = key, 
+                                   Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
+                                   Status = 200, 
+                                   Urn = "urn://example.com/abc", 
+                                   Value = 123
+                               };
 
             using (var file = new TempFile())
             {
@@ -92,17 +94,17 @@
         public void op_Save_FileSystemInfo()
         {
             var record = new Record<int>
-            {
-                Cacheability = "public",
-                Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
-                Etag = "\"xyz\"",
-                Expiration = "P1D",
-                Key = AlphaDecimal.Random(),
-                Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
-                Status = 200,
-                Urn = "urn://example.com/abc",
-                Value = 123
-            };
+                             {
+                                 Cacheability = "public", 
+                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
+                                 Etag = "\"xyz\"", 
+                                 Expiration = "P1D", 
+                                 Key = AlphaDecimal.Random(), 
+                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
+                                 Status = 200, 
+                                 Urn = "urn://example.com/abc", 
+                                 Value = 123
+                             };
 
             var expected = new StringBuilder();
             expected.AppendLine("urn: urn://example.com/abc");
@@ -132,17 +134,17 @@
         public void op_Save_FileSystemInfoNull()
         {
             var record = new Record<int>
-            {
-                Cacheability = "public",
-                Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
-                Etag = "\"xyz\"",
-                Expiration = "P1D",
-                Key = AlphaDecimal.Random(),
-                Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
-                Status = 200,
-                Urn = "urn://example.com/abc",
-                Value = 123
-            };
+                             {
+                                 Cacheability = "public", 
+                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
+                                 Etag = "\"xyz\"", 
+                                 Expiration = "P1D", 
+                                 Key = AlphaDecimal.Random(), 
+                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
+                                 Status = 200, 
+                                 Urn = "urn://example.com/abc", 
+                                 Value = 123
+                             };
 
             Assert.Throws<ArgumentNullException>(() => new RecordFile(record).Save(null));
         }
@@ -151,17 +153,17 @@
         public void op_Save_FileSystemInfo_whenNullKey()
         {
             var record = new Record<int>
-            {
-                Cacheability = "public",
-                Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
-                Etag = "\"xyz\"",
-                Expiration = "P1D",
-                Key = null,
-                Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
-                Status = 200,
-                Urn = "urn://example.com/abc",
-                Value = 123
-            };
+                             {
+                                 Cacheability = "public", 
+                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
+                                 Etag = "\"xyz\"", 
+                                 Expiration = "P1D", 
+                                 Key = null, 
+                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
+                                 Status = 200, 
+                                 Urn = "urn://example.com/abc", 
+                                 Value = 123
+                             };
 
             var root = new DirectoryInfo(Path.GetTempPath());
 
@@ -172,17 +174,17 @@
         public void op_Save_FileSystemInfo_whenNullUrn()
         {
             var record = new Record<int>
-            {
-                Cacheability = "public",
-                Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
-                Etag = "\"xyz\"",
-                Expiration = "P1D",
-                Key = AlphaDecimal.Random(),
-                Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
-                Status = 200,
-                Urn = null,
-                Value = 123
-            };
+                             {
+                                 Cacheability = "public", 
+                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
+                                 Etag = "\"xyz\"", 
+                                 Expiration = "P1D", 
+                                 Key = AlphaDecimal.Random(), 
+                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
+                                 Status = 200, 
+                                 Urn = null, 
+                                 Value = 123
+                             };
 
             var root = new DirectoryInfo(Path.GetTempPath());
 
@@ -193,17 +195,17 @@
         public void op_ToRecordOfT()
         {
             var expected = new Record<int>
-            {
-                Cacheability = "public",
-                Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
-                Etag = "\"xyz\"",
-                Expiration = "P1D",
-                Key = AlphaDecimal.Random(),
-                Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
-                Status = 200,
-                Urn = "urn://example.com/abc",
-                Value = 123
-            };
+                               {
+                                   Cacheability = "public", 
+                                   Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
+                                   Etag = "\"xyz\"", 
+                                   Expiration = "P1D", 
+                                   Key = AlphaDecimal.Random(), 
+                                   Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
+                                   Status = 200, 
+                                   Urn = "urn://example.com/abc", 
+                                   Value = 123
+                               };
 
             var obj = new RecordFile(expected);
 
@@ -216,9 +218,9 @@
         public void op_ToString()
         {
             var obj = new RecordFile
-            {
-                Body = "<root />"
-            };
+                          {
+                              Body = "<root />"
+                          };
             obj.Headers["urn"] = "urn://example.com/abc";
             obj.Headers["etag"] = "\"xyz\"";
 
@@ -267,17 +269,17 @@
         {
             var key = AlphaDecimal.Random();
             var record = new Record<int>
-            {
-                Cacheability = "public",
-                Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
-                Etag = "\"xyz\"",
-                Expiration = "P1D",
-                Key = key,
-                Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
-                Status = 200,
-                Urn = "urn://example.com/abc",
-                Value = 123
-            };
+                             {
+                                 Cacheability = "public", 
+                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
+                                 Etag = "\"xyz\"", 
+                                 Expiration = "P1D", 
+                                 Key = key, 
+                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
+                                 Status = 200, 
+                                 Urn = "urn://example.com/abc", 
+                                 Value = 123
+                             };
 
             var obj = new RecordFile(record);
 
@@ -303,17 +305,17 @@
         {
             var key = AlphaDecimal.Random();
             var record = new Record<string>
-            {
-                Cacheability = "public",
-                Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
-                Etag = "\"xyz\"",
-                Expiration = "P1D",
-                Key = key,
-                Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
-                Status = 200,
-                Urn = "urn://example.com/abc",
-                Value = null
-            };
+                             {
+                                 Cacheability = "public", 
+                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
+                                 Etag = "\"xyz\"", 
+                                 Expiration = "P1D", 
+                                 Key = key, 
+                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
+                                 Status = 200, 
+                                 Urn = "urn://example.com/abc", 
+                                 Value = null
+                             };
 
             var obj = new RecordFile(record);
 
@@ -339,9 +341,9 @@
             const string expected = "<root />";
 
             var obj = new RecordFile
-            {
-                Body = expected
-            };
+                          {
+                              Body = expected
+                          };
 
             var actual = obj.ToXml().CreateNavigator().OuterXml;
 

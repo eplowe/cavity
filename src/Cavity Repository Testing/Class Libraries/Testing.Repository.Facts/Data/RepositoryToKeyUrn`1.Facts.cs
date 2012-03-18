@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Data
 {
     using System;
+
     using Moq;
+
     using Xunit;
 
     public sealed class RepositoryToKeyUrnOfTFacts
@@ -29,12 +31,12 @@
         public void op_Verify_IRepository()
         {
             var obj = new RepositoryToKeyUrn<RandomObject>
-            {
-                Record1 =
-                    {
-                        Key = AlphaDecimal.Random()
-                    }
-            };
+                          {
+                              Record1 =
+                                  {
+                                      Key = AlphaDecimal.Random()
+                                  }
+                          };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository
@@ -61,12 +63,12 @@
         public void op_Verify_IRepository_whenKeyIsDifferent()
         {
             var obj = new RepositoryToKeyUrn<RandomObject>
-            {
-                Record1 =
-                    {
-                        Key = AlphaDecimal.Random()
-                    }
-            };
+                          {
+                              Record1 =
+                                  {
+                                      Key = AlphaDecimal.Random()
+                                  }
+                          };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository
@@ -87,12 +89,12 @@
         public void op_Verify_IRepository_whenNullIsReturned()
         {
             var obj = new RepositoryToKeyUrn<RandomObject>
-            {
-                Record1 =
-                    {
-                        Key = AlphaDecimal.Random()
-                    }
-            };
+                          {
+                              Record1 =
+                                  {
+                                      Key = AlphaDecimal.Random()
+                                  }
+                          };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository

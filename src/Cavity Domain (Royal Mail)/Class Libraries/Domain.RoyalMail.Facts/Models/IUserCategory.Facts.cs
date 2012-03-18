@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Models
 {
     using Moq;
+
     using Xunit;
 
     public sealed class IUserCategoryFacts

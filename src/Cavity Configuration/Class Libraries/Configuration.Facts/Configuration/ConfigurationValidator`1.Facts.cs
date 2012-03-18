@@ -2,6 +2,7 @@
 {
     using System;
     using System.Configuration;
+
     using Xunit;
 
     public sealed class ConfigurationValidatorOfTFacts
@@ -39,9 +40,10 @@
         [Fact]
         public void op_Validate_ObjectNull()
         {
-// ReSharper disable AssignNullToNotNullAttribute
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => new ConfigurationValidator<AbsoluteUri>().Validate(null));
-// ReSharper restore AssignNullToNotNullAttribute
+
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Fact]

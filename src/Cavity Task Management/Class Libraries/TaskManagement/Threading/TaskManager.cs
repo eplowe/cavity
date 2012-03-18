@@ -6,14 +6,17 @@
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
+
     using Cavity.Configuration;
     using Cavity.Diagnostics;
     using Cavity.Properties;
 
-    public class TaskManager : DisposableObject, IManageTasks
+    public class TaskManager : DisposableObject, 
+                               IManageTasks
     {
         public TaskManager()
         {
@@ -61,7 +64,10 @@
             {
                 var file = new FileInfo(Assembly.GetEntryAssembly().Location);
 
+                // ReSharper disable PossibleNullReferenceException
                 return new DirectoryCatalog(file.Directory.FullName);
+
+                // ReSharper restore PossibleNullReferenceException
             }
         }
 
@@ -102,10 +108,8 @@
             var combo = string.Empty;
             if (null != args)
             {
-                foreach (var arg in args)
-                {
-                    combo = "{0}{1}\"{2}\"".FormatWith(combo, null == combo ? string.Empty : ", ", arg);
-                }
+                combo = args.Aggregate(combo, (x, 
+                                               arg) => "{0}{1}\"{2}\"".FormatWith(x, null == x ? string.Empty : ", ", arg));
             }
 
             Trace.WriteLineIf(Tracing.Is.TraceVerbose, "args={0}".FormatWith(combo));
@@ -159,9 +163,9 @@
                     }
 
                     Trace.WriteLineIf(Tracing.Is.TraceVerbose, Resources.TaskManager_TaskGetTypeFullName.FormatWith(task.GetType().FullName));
-                    var factory = new TaskFactory(Cancellation.Token,
-                                                  task.CreationOptions,
-                                                  task.ContinuationOptions,
+                    var factory = new TaskFactory(Cancellation.Token, 
+                                                  task.CreationOptions, 
+                                                  task.ContinuationOptions, 
                                                   TaskScheduler.Default);
                     factory.StartNew(() => task.Run(Cancellation.Token));
                     TaskCounter.Increment();

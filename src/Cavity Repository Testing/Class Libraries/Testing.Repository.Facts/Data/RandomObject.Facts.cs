@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System.Xml;
+
     using Xunit;
 
     public sealed class RandomObjectFacts

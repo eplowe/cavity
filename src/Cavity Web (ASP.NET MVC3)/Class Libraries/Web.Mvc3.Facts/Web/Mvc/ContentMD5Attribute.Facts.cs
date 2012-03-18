@@ -4,8 +4,11 @@
     using System.IO;
     using System.Web;
     using System.Web.Mvc;
+
     using Cavity.IO;
+
     using Moq;
+
     using Xunit;
 
     public sealed class ContentMD5AttributeFacts
@@ -50,9 +53,9 @@
                     .Verifiable();
 
                 new ContentMD5Attribute().OnActionExecuted(new ActionExecutedContext
-                {
-                    HttpContext = context.Object
-                });
+                                                               {
+                                                                   HttpContext = context.Object
+                                                               });
             }
 
             response.VerifyAll();
@@ -83,9 +86,9 @@
                     .Verifiable();
 
                 new ContentMD5Attribute().OnActionExecuting(new ActionExecutingContext
-                {
-                    HttpContext = context.Object
-                });
+                                                                {
+                                                                    HttpContext = context.Object
+                                                                });
             }
 
             context.VerifyAll();

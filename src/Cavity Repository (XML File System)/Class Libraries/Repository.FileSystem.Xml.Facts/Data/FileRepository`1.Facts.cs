@@ -2,6 +2,7 @@
 {
     using Cavity.Configuration;
     using Cavity.IO;
+
     using Xunit;
 
     public sealed class FileRepositoryFacts

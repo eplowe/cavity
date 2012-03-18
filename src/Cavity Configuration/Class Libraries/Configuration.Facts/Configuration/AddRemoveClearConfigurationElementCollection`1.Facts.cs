@@ -4,6 +4,7 @@
     using System.Configuration;
     using System.IO;
     using System.Linq;
+
     using Xunit;
 
     public sealed class AddRemoveClearConfigurationElementCollectionOfTFacts
@@ -31,9 +32,9 @@
         {
             var element = new NameValueConfigurationElement<DirectoryInfo>("C", new DirectoryInfo(@"C:\"));
             var obj = new AddRemoveClearConfigurationElementCollection<DirectoryInfo>
-            {
-                element
-            };
+                          {
+                              element
+                          };
 
             Assert.True(obj.Contains(element));
         }
@@ -48,11 +49,11 @@
         public void op_Add_string_T()
         {
             var obj = new AddRemoveClearConfigurationElementCollection<DirectoryInfo>
-            {
-                {
-                    "C", new DirectoryInfo(@"C:\")
-                    }
-            };
+                          {
+                              {
+                                  "C", new DirectoryInfo(@"C:\")
+                                  }
+                          };
 
             Assert.Equal("C", obj.First().Name);
         }
@@ -61,9 +62,9 @@
         public void op_Clear()
         {
             var obj = new AddRemoveClearConfigurationElementCollection<DirectoryInfo>
-            {
-                new NameValueConfigurationElement<DirectoryInfo>("C", new DirectoryInfo(@"C:\"))
-            };
+                          {
+                              new NameValueConfigurationElement<DirectoryInfo>("C", new DirectoryInfo(@"C:\"))
+                          };
 
             Assert.NotEmpty(obj);
             obj.Clear();
@@ -75,9 +76,9 @@
         {
             var element = new NameValueConfigurationElement<DirectoryInfo>("C", new DirectoryInfo(@"C:\"));
             var obj = new AddRemoveClearConfigurationElementCollection<DirectoryInfo>
-            {
-                element
-            };
+                          {
+                              element
+                          };
 
             Assert.True(obj.Contains(element));
         }
@@ -87,10 +88,10 @@
         {
             var expected = new NameValueConfigurationElement<DirectoryInfo>("C", new DirectoryInfo(@"C:\"));
             var obj = new AddRemoveClearConfigurationElementCollection<DirectoryInfo>
-            {
-                expected,
-                new NameValueConfigurationElement<DirectoryInfo>("D", new DirectoryInfo(@"D:\"))
-            };
+                          {
+                              expected, 
+                              new NameValueConfigurationElement<DirectoryInfo>("D", new DirectoryInfo(@"D:\"))
+                          };
 
             var array = new NameValueConfigurationElement<DirectoryInfo>[obj.Count];
             obj.CopyTo(array, 0);
@@ -105,10 +106,10 @@
         {
             var element = new NameValueConfigurationElement<DirectoryInfo>("C", new DirectoryInfo(@"C:\"));
             var obj = new AddRemoveClearConfigurationElementCollection<DirectoryInfo>
-            {
-                new NameValueConfigurationElement<DirectoryInfo>("D", new DirectoryInfo(@"D:\")),
-                element
-            };
+                          {
+                              new NameValueConfigurationElement<DirectoryInfo>("D", new DirectoryInfo(@"D:\")), 
+                              element
+                          };
 
             Assert.True(obj.Remove(element));
             Assert.False(obj.Contains(element));

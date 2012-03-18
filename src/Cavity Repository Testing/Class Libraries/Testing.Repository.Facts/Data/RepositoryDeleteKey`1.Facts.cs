@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Data
 {
     using System;
+
     using Moq;
+
     using Xunit;
 
     public sealed class RepositoryDeleteKeyOfTFacts
@@ -31,12 +33,12 @@
             var key = AlphaDecimal.Random();
 
             var obj = new RepositoryDeleteKey<RandomObject>
-            {
-                Record1 =
-                    {
-                        Key = key
-                    }
-            };
+                          {
+                              Record1 =
+                                  {
+                                      Key = key
+                                  }
+                          };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository
@@ -69,12 +71,12 @@
             var key = AlphaDecimal.Random();
 
             var obj = new RepositoryDeleteKey<RandomObject>
-            {
-                Record1 =
-                    {
-                        Key = key
-                    }
-            };
+                          {
+                              Record1 =
+                                  {
+                                      Key = key
+                                  }
+                          };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository
@@ -101,12 +103,12 @@
             var key = AlphaDecimal.Random();
 
             var obj = new RepositoryDeleteKey<RandomObject>
-            {
-                Record1 =
-                    {
-                        Key = key
-                    }
-            };
+                          {
+                              Record1 =
+                                  {
+                                      Key = key
+                                  }
+                          };
 
             var repository = new Mock<IRepository<RandomObject>>();
             repository

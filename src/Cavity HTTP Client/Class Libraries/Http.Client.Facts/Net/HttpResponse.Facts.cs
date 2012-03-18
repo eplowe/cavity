@@ -3,10 +3,14 @@
     using System;
     using System.IO;
     using System.Text;
+
     using Cavity.Net.Mime;
     using Cavity.Text;
+
     using Microsoft.Practices.ServiceLocation;
+
     using Moq;
+
     using Xunit;
 
     public sealed class HttpResponseFacts
@@ -34,9 +38,9 @@
         public void opImplicit_HttpResponse_string()
         {
             var expected = new HttpResponse
-            {
-                StatusLine = new StatusLine("HTTP/1.1", 200, "OK")
-            };
+                               {
+                                   StatusLine = new StatusLine("HTTP/1.1", 200, "OK")
+                               };
             HttpResponse actual = "HTTP/1.1 200 OK";
 
             Assert.Equal(expected, actual);
@@ -136,7 +140,10 @@
                     stream.Position = 0;
                     using (var reader = new StreamReader(stream))
                     {
+                        // ReSharper disable AccessToDisposedClosure
                         Assert.Throws<ArgumentNullException>(() => new HttpResponse().Read(reader));
+
+                        // ReSharper restore AccessToDisposedClosure
                     }
                 }
             }

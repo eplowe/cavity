@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using Cavity.Fluent;
+
     using Xunit;
 
     public sealed class DefaultConstructorTestOfTFacts

@@ -4,7 +4,9 @@
     using System.Text;
     using System.Web;
     using System.Web.Mvc;
+
     using Moq;
+
     using Xunit;
 
     public sealed class TextResultFacts
@@ -59,10 +61,10 @@
                 .Returns(response.Object)
                 .Verifiable();
 
-            new TextResult("test").ExecuteResult(new ControllerContext()
-            {
-                HttpContext = context.Object
-            });
+            new TextResult("test").ExecuteResult(new ControllerContext
+                                                     {
+                                                         HttpContext = context.Object
+                                                     });
 
             context.VerifyAll();
         }

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Transactions
 {
     using System;
+
     using Xunit;
 
     public sealed class EnlistmentIdentityFacts

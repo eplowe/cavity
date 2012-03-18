@@ -2,7 +2,9 @@
 {
     using System;
     using System.Globalization;
+
     using Cavity.Xml.XPath;
+
     using Xunit;
 
     public sealed class CurrencyFacts
@@ -37,10 +39,10 @@
             var obj = new Currency("€", 2);
 
             var expected = new Money
-            {
-                Amount = -123456.78m, 
-                Currency = obj
-            };
+                               {
+                                   Amount = -123456.78m, 
+                                   Currency = obj
+                               };
 
             var actual = obj.Parse(new CultureInfo("es-ES"), "-123.456,78 €");
 
@@ -61,10 +63,10 @@
             var obj = new Currency("£", 2);
 
             var expected = new Money
-            {
-                Amount = -123456.78m, 
-                Currency = obj
-            };
+                               {
+                                   Amount = -123456.78m, 
+                                   Currency = obj
+                               };
 
             var actual = obj.Parse(new CultureInfo("en-GB"), "-£123,456.78");
 
@@ -155,13 +157,13 @@
         public void xml_deserialize()
         {
             var expected = new Currency
-            {
-                Code = "EUR", 
-                Number = "978", 
-                Significance = 2, 
-                Symbol = "€", 
-                Title = "Euro"
-            };
+                               {
+                                   Code = "EUR", 
+                                   Number = "978", 
+                                   Significance = 2, 
+                                   Symbol = "€", 
+                                   Title = "Euro"
+                               };
 
             var actual = "<currency code='EUR' number='978' significance='2' symbol='€' title='Euro' />".XmlDeserialize<Currency>();
 
@@ -181,13 +183,13 @@
         public void xml_serialize()
         {
             var obj = new Currency
-            {
-                Code = "EUR", 
-                Number = "978", 
-                Significance = 2, 
-                Symbol = "€", 
-                Title = "Euro"
-            };
+                          {
+                              Code = "EUR", 
+                              Number = "978", 
+                              Significance = 2, 
+                              Symbol = "€", 
+                              Title = "Euro"
+                          };
 
             var navigator = obj.XmlSerialize().CreateNavigator();
 

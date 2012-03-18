@@ -11,8 +11,8 @@
 
         private HttpVersion _version;
 
-        public StatusLine(HttpVersion version,
-                          int code,
+        public StatusLine(HttpVersion version, 
+                          int code, 
                           string reason)
             : this()
         {
@@ -129,8 +129,8 @@
             }
 
             return new StatusLine(
-                parts[0],
-                int.Parse(parts[1], CultureInfo.InvariantCulture),
+                parts[0], 
+                int.Parse(parts[1], CultureInfo.InvariantCulture), 
                 reason);
         }
 

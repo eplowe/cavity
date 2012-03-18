@@ -39,7 +39,7 @@
         public static FileInfo AppendLine(FileInfo obj, 
                                           object value)
 #else
-        public static FileInfo AppendLine(this FileInfo obj,
+        public static FileInfo AppendLine(this FileInfo obj, 
                                           object value)
 #endif
         {
@@ -225,7 +225,7 @@
         public static FileInfo Truncate(FileInfo obj, 
                                         IXPathNavigable xml)
 #else
-        public static FileInfo Truncate(this FileInfo obj,
+        public static FileInfo Truncate(this FileInfo obj, 
                                         IXPathNavigable xml)
 #endif
         {

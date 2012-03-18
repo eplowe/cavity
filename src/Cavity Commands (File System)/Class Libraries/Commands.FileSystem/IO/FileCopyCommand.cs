@@ -5,6 +5,7 @@
     using System.IO;
     using System.Xml;
     using System.Xml.Serialization;
+
     using Cavity.Diagnostics;
 
     [XmlRoot("file.copy")]
@@ -23,7 +24,7 @@
 #endif
         }
 
-        public FileCopyCommand(string source,
+        public FileCopyCommand(string source, 
                                string destination)
         {
 #if !NET20
@@ -33,8 +34,8 @@
             Destination = destination;
         }
 
-        public FileCopyCommand(string source,
-                               string destination,
+        public FileCopyCommand(string source, 
+                               string destination, 
                                bool unidirectional)
             : base(unidirectional)
         {
@@ -45,7 +46,7 @@
             Destination = destination;
         }
 
-        public FileCopyCommand(FileInfo source,
+        public FileCopyCommand(FileInfo source, 
                                FileInfo destination)
         {
             Source = null == source ? null : source.FullName;
@@ -55,8 +56,8 @@
 #endif
         }
 
-        public FileCopyCommand(FileInfo source,
-                               FileInfo destination,
+        public FileCopyCommand(FileInfo source, 
+                               FileInfo destination, 
                                bool unidirectional)
             : base(unidirectional)
         {

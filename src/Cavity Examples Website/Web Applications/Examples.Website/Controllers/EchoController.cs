@@ -6,12 +6,14 @@
     using System.Web.Caching;
     using System.Web.Mvc;
     using System.Web.Routing;
+
     using Cavity.Globalization;
     using Cavity.Web.Mvc;
     using Cavity.Web.Routing;
 
     [Allow("GET, HEAD, OPTIONS, POST")]
-    public sealed class EchoController : LanguageController, IRegisterRoutes
+    public sealed class EchoController : LanguageController, 
+                                         IRegisterRoutes
     {
         public override IEnumerable<Language> Languages
         {
@@ -23,7 +25,8 @@
         }
 
         [ContentNegotiation(".html", "*/*, text/*, text/html")]
-        public ActionResult HtmlRepresentation(CultureInfo language, string key)
+        public ActionResult HtmlRepresentation(CultureInfo language, 
+                                               string key)
         {
             language.SetCurrentCulture();
 
@@ -58,43 +61,43 @@
                 "Echo (POST)", 
                 "echo", 
                 new
-                {
-                    controller = "Echo", 
-                    action = "Post"
-                }, 
+                    {
+                        controller = "Echo", 
+                        action = "Post"
+                    }, 
                 new
-                {
-                    method = new HttpMethodConstraint("POST")
-                });
+                    {
+                        method = new HttpMethodConstraint("POST")
+                    });
 
             routes.MapRoute(
-                "Echo (HTML)",
-                "echo/{key}.{language}.html",
+                "Echo (HTML)", 
+                "echo/{key}.{language}.html", 
                 new
-                {
-                    controller = "Echo",
-                    action = "HtmlRepresentation",
-                    language = "fr"
-                });
+                    {
+                        controller = "Echo", 
+                        action = "HtmlRepresentation", 
+                        language = "fr"
+                    });
 
             routes.MapRoute(
-                "Echo (conneg)",
-                "echo/{key}.{language}",
+                "Echo (conneg)", 
+                "echo/{key}.{language}", 
                 new
-                {
-                    controller = "Echo",
-                    action = "ContentNegotiation",
-                    language = "fr"
-                });
+                    {
+                        controller = "Echo", 
+                        action = "ContentNegotiation", 
+                        language = "fr"
+                    });
 
             routes.MapRoute(
-                "Echo (lanneg)",
-                "echo/{key}",
+                "Echo (lanneg)", 
+                "echo/{key}", 
                 new
-                {
-                    controller = "Echo",
-                    action = "LanguageNegotiation"
-                });
+                    {
+                        controller = "Echo", 
+                        action = "LanguageNegotiation"
+                    });
         }
     }
 }

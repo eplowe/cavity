@@ -8,7 +8,9 @@
 #endif
     using System.Xml;
     using System.Xml.XPath;
+
     using Cavity.Properties;
+
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
 
@@ -56,7 +58,7 @@
                 return false;
             }
 #else
-            var result = 0 == projects.Where(project => !Execute(project)).Count();
+            var result = 0 == projects.Count(project => !Execute(project));
 #endif
 
             return result;
@@ -75,20 +77,20 @@
             return Execute(file, xml);
         }
 
-        private bool Execute(FileSystemInfo file,
+        private bool Execute(FileSystemInfo file, 
                              IXPathNavigable xml)
         {
             return Execute(file, xml.CreateNavigator());
         }
 
-        private bool Execute(FileSystemInfo file,
+        private bool Execute(FileSystemInfo file, 
                              XPathNavigator navigator)
         {
             return Execute(file, navigator, navigator.NameTable);
         }
 
-        private bool Execute(FileSystemInfo file,
-                             XPathNavigator navigator,
+        private bool Execute(FileSystemInfo file, 
+                             XPathNavigator navigator, 
                              XmlNameTable nameTable)
         {
             var namespaces = new XmlNamespaceManager(nameTable);
@@ -97,8 +99,8 @@
             return Execute(file, navigator, namespaces);
         }
 
-        private bool Execute(FileSystemInfo file,
-                             XPathNavigator navigator,
+        private bool Execute(FileSystemInfo file, 
+                             XPathNavigator navigator, 
                              IXmlNamespaceResolver namespaces)
         {
             var o = navigator.Evaluate(XPath, namespaces);

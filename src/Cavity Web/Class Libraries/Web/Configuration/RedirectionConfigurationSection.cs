@@ -3,6 +3,7 @@
     using System;
     using System.Configuration;
     using System.Linq;
+
     using Cavity.Net;
 
     public class RedirectionConfigurationSection : ConfigurationSection
@@ -57,7 +58,7 @@
                 {
                     return absolute.To;
                 }
-                
+
                 var from = new Uri(uri, new Uri(uri.AbsolutePath, UriKind.Relative));
                 if (!absolute.From.Equals(from))
                 {
@@ -75,8 +76,8 @@
             return (from host in Hosts
                     where uri.Host.Equals(host.From)
                     select new Uri("{0}://{1}".FormatWith(uri.Scheme, host.To)))
-                    .Select(baseUri => new Uri(baseUri, new Uri(uri.PathAndQuery, UriKind.Relative)))
-                    .FirstOrDefault();
+                .Select(baseUri => new Uri(baseUri, new Uri(uri.PathAndQuery, UriKind.Relative)))
+                .FirstOrDefault();
         }
 
         private AbsoluteUri Relative(Uri uri)

@@ -8,6 +8,7 @@
 #if !NET20
     using System.Linq;
 #endif
+
     using Cavity.Collections;
     using Cavity.Diagnostics;
     using Cavity.IO;
@@ -82,6 +83,18 @@
             }
         }
 
+        public virtual LexicalCollection LoadHierarchy(INormalityComparer comparer)
+        {
+            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
+            var result = new LexicalCollection(comparer);
+            foreach (var file in Hierarchy)
+            {
+                Load(result, file);
+            }
+
+            return result;
+        }
+
         public virtual void Delete(Lexicon lexicon)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
@@ -101,23 +114,11 @@
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             var result = new Lexicon(comparer)
-            {
-                Storage = this
-            };
+                             {
+                                 Storage = this
+                             };
 
             Load(result, Location);
-
-            return result;
-        }
-
-        public virtual LexicalCollection LoadHierarchy(INormalityComparer comparer)
-        {
-            Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
-            var result = new LexicalCollection(comparer);
-            foreach (var file in Hierarchy)
-            {
-                Load(result, file);
-            }
 
             return result;
         }
@@ -132,11 +133,11 @@
             }
 
             using (var writers = new StreamWriterDictionary("CANONICAL,SYNONYMS")
-            {
-                Access = FileAccess.Write,
-                Mode = FileMode.Create,
-                Share = FileShare.None
-            })
+                                     {
+                                         Access = FileAccess.Write, 
+                                         Mode = FileMode.Create, 
+                                         Share = FileShare.None
+                                     })
             {
 #if NET20
                 if (0 == IEnumerableExtensionMethods.Count(lexicon))
@@ -166,8 +167,8 @@
                     writers
                         .Item(Location.FullName)
                         .WriteLine(StringExtensionMethods.FormatWith(
-                            "{0},{1}",
-                            CsvStringExtensionMethods.FormatCommaSeparatedValue(item.Value.CanonicalForm),
+                            "{0},{1}", 
+                            CsvStringExtensionMethods.FormatCommaSeparatedValue(item.Value.CanonicalForm), 
                             CsvStringExtensionMethods.FormatCommaSeparatedValue(IEnumerableExtensionMethods.Concat(synonyms.Values, ';'))));
                 }
 #else
@@ -176,14 +177,16 @@
                     writers
                         .Item(Location.FullName)
                         .WriteLine("{0},{1}".FormatWith(
-                            item.CanonicalForm.FormatCommaSeparatedValue(),
+                            item.CanonicalForm.FormatCommaSeparatedValue(), 
                             item.Synonyms.OrderBy(x => x).Concat(';').FormatCommaSeparatedValue()));
                 }
+
 #endif
             }
         }
 
-        private static void Load(LexicalCollection lexicon, FileInfo file)
+        private static void Load(LexicalCollection lexicon, 
+                                 FileInfo file)
         {
             foreach (var data in new CsvFile(file))
             {

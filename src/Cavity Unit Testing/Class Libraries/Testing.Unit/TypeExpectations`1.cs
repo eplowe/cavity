@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
+
     using Cavity.Fluent;
     using Cavity.Properties;
     using Cavity.Tests;
@@ -20,9 +21,9 @@
     /// if any expectations are not met, a <see cref="T:Cavity.UnitTestException"/> is thrown.
     /// </remarks>
     /// <seealso href="http://code.google.com/p/cavity/wiki/TypeExpectations">Guide to asserting expectations about types.</seealso>
-    public sealed class TypeExpectations<T> : ITestClassStyle,
-                                              ITestClassSealed,
-                                              ITestClassConstruction,
+    public sealed class TypeExpectations<T> : ITestClassStyle, 
+                                              ITestClassSealed, 
+                                              ITestClassConstruction, 
                                               ITestType
     {
         /// <summary>
@@ -32,6 +33,8 @@
         {
             Items = new Collection<ITestExpectation>();
         }
+
+        private Collection<ITestExpectation> Items { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether all the expectations have been met.
@@ -44,12 +47,9 @@
         {
             get
             {
-                return 0 == Items.Where(x => !x.Check())
-                                .Count();
+                return 0 == Items.Count(x => !x.Check());
             }
         }
-
-        private Collection<ITestExpectation> Items { get; set; }
 
         /// <summary>
         /// Adds an expectation that the type derives from a specified base type.
@@ -259,7 +259,7 @@
         /// <param name="elementName">The expected <see cref="P:System.Xml.Serialization.XmlRootAttribute.ElementName"/> value.</param>
         /// <param name="namespace">The expected <see cref="P:System.Xml.Serialization.XmlRootAttribute.Namespace"/> value.</param>
         /// <returns>The current instance.</returns>
-        ITestType ITestType.XmlRoot(string elementName,
+        ITestType ITestType.XmlRoot(string elementName, 
                                     string @namespace)
         {
             (this as ITestType).Add(new XmlRootTest<T>(elementName, @namespace));

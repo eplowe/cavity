@@ -1,6 +1,7 @@
 ﻿namespace Cavity
 {
     using System.Xml;
+
     using Xunit;
 
     public sealed class CharactersFacts

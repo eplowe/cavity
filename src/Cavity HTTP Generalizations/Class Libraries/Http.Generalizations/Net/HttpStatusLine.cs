@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Net;
     using System.Xml;
+
     using Cavity.Collections;
 
     public class HttpStatusLine : ComparableObject

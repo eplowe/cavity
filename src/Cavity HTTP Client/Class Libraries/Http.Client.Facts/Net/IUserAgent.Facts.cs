@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using Moq;
+
     using Xunit;
 
     public sealed class IUserAgentFacts

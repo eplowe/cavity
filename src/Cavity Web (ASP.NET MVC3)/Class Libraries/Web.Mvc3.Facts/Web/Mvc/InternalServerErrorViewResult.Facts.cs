@@ -2,6 +2,7 @@
 {
     using System;
     using System.Web.Mvc;
+
     using Xunit;
 
     public sealed class InternalServerErrorViewResultFacts

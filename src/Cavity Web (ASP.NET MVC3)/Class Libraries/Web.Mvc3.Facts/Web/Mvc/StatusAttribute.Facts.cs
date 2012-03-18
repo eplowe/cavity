@@ -4,7 +4,9 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
+
     using Moq;
+
     using Xunit;
 
     public sealed class StatusAttributeFacts
@@ -44,9 +46,9 @@
                 .Verifiable();
 
             new StatusAttribute(code).OnActionExecuted(new ActionExecutedContext
-            {
-                HttpContext = context.Object
-            });
+                                                           {
+                                                               HttpContext = context.Object
+                                                           });
 
             context.VerifyAll();
         }

@@ -19,7 +19,7 @@
             {
                 throw new ArgumentNullException("dir");
             }
-            
+
 #if NET40
             Info = dir.CombineAsDirectory(Guid.NewGuid());
 #else
@@ -68,10 +68,10 @@
         {
 #if NET40
             Parallel.ForEach(directory.EnumerateDirectories(), subdirectory =>
-            {
-                DeleteSubdirectories(subdirectory);
-                subdirectory.Delete();
-            });
+                                                                   {
+                                                                       DeleteSubdirectories(subdirectory);
+                                                                       subdirectory.Delete();
+                                                                   });
 #else
             foreach (var subdirectory in directory.GetDirectories())
             {
@@ -84,7 +84,7 @@
         private void DeleteFiles()
         {
 #if NET40
-            Parallel.ForEach(Info.EnumerateFiles("*", SearchOption.AllDirectories),
+            Parallel.ForEach(Info.EnumerateFiles("*", SearchOption.AllDirectories), 
                              file => file.Delete());
 #else
             foreach (var file in Info.GetFiles("*", SearchOption.AllDirectories))

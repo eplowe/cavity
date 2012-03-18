@@ -2,8 +2,10 @@
 {
     using System;
     using System.IO;
+
     using Cavity.Models;
     using Cavity.Threading;
+
     using Xunit;
 
     public sealed class FileReceiverTaskOfTFacts
@@ -108,7 +110,10 @@
         {
             using (var obj = new DerivedFileReceiverTask(null, "*.csv", SearchOption.TopDirectoryOnly))
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<InvalidOperationException>(() => obj.Run());
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -136,7 +141,10 @@
             {
                 using (var obj = new DerivedFileReceiverTask(temp.Info, null, SearchOption.TopDirectoryOnly))
                 {
+                    // ReSharper disable AccessToDisposedClosure
                     Assert.Throws<ArgumentNullException>(() => obj.Run());
+
+                    // ReSharper restore AccessToDisposedClosure
                 }
             }
         }

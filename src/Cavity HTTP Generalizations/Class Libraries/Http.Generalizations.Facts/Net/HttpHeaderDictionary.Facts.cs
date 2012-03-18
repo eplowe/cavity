@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+
     using Xunit;
 
     public sealed class HttpHeaderDictionaryFacts
@@ -33,9 +34,9 @@
             var expected = new HttpHeader("name", "value");
 
             var obj = new HttpHeaderDictionary
-            {
-                expected
-            };
+                          {
+                              expected
+                          };
 
             Assert.Equal("value", obj["name"]);
         }
@@ -92,11 +93,11 @@
             var expected = new KeyValuePair<Token, string>("name", "value");
 
             var obj = new HttpHeaderDictionary
-            {
-                {
-                    "name", "value"
-                    }
-            };
+                          {
+                              {
+                                  "name", "value"
+                                  }
+                          };
 
             foreach (var actual in obj)
             {
@@ -125,11 +126,11 @@
             var expected = new HttpHeader("name", "value");
 
             var obj = new HttpHeaderDictionary
-            {
-                {
-                    "name", "value"
-                    }
-            };
+                          {
+                              {
+                                  "name", "value"
+                                  }
+                          };
 
             foreach (var actual in obj.List)
             {

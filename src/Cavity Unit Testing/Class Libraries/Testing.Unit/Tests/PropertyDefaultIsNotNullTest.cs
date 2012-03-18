@@ -14,7 +14,7 @@
         public override bool Check()
         {
             if (Equals(
-                null,
+                null, 
                 Property.GetGetMethod(true).Invoke(Activator.CreateInstance(Property.ReflectedType, true), null)))
             {
                 throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, "{0}.{1} was unexpectedly null.", Property.ReflectedType.Name, Property.Name));

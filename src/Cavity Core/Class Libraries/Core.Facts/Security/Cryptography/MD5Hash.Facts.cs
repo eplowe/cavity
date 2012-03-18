@@ -6,29 +6,30 @@
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Text;
+
     using Xunit;
 
     public sealed class MD5HashFacts
     {
-        private const string EmptyHash = "1B2M2Y8AsgTpgAmY7PhCfg==";
+        private const string _emptyHash = "1B2M2Y8AsgTpgAmY7PhCfg==";
 
-        private const string JigsawHash = "0TMnkhCZtrIjdTtJk6x3+Q==";
+        private const string _jigsawHash = "0TMnkhCZtrIjdTtJk6x3+Q==";
 
         //// http://jigsaw.w3.org/HTTP/h-content-md5.html
-        private const string JigsawHtml = "<HTML>\n"
-                                          + "<HEAD>\n  <!-- Created with 'cat' and 'vi'  -->\n"
-                                          + "<TITLE>Retry-After header</TITLE>\n"
-                                          + "</HEAD>\n"
-                                          + "<BODY>\n"
-                                          + "<P>\n"
-                                          + "<A HREF=\"..\"><IMG SRC=\"/icons/jigsaw\" ALT=\"Jigsaw\" BORDER=\"0\" WIDTH=\"212\"\n    HEIGHT=\"49\"></A>\n"
-                                          + "<H1>\nThe <I>Content-MD5</I> header\n</H1>\n"
-                                          + "<P>This pages is served along with its MD5 digest, you take\na look at the headers, as it is quite difficult to do an auto-referent\npage about its md5 signature :)\n"
-                                          + "</P>\n  <HR>\n<BR>\n"
-                                          + "<A HREF=\"mailto:jigsaw@w3.org\">jigsaw@w3.org</A>\n"
-                                          + "</BODY></HTML>\n \n";
+        private const string _jigsawHtml = "<HTML>\n"
+                                           + "<HEAD>\n  <!-- Created with 'cat' and 'vi'  -->\n"
+                                           + "<TITLE>Retry-After header</TITLE>\n"
+                                           + "</HEAD>\n"
+                                           + "<BODY>\n"
+                                           + "<P>\n"
+                                           + "<A HREF=\"..\"><IMG SRC=\"/icons/jigsaw\" ALT=\"Jigsaw\" BORDER=\"0\" WIDTH=\"212\"\n    HEIGHT=\"49\"></A>\n"
+                                           + "<H1>\nThe <I>Content-MD5</I> header\n</H1>\n"
+                                           + "<P>This pages is served along with its MD5 digest, you take\na look at the headers, as it is quite difficult to do an auto-referent\npage about its md5 signature :)\n"
+                                           + "</P>\n  <HR>\n<BR>\n"
+                                           + "<A HREF=\"mailto:jigsaw@w3.org\">jigsaw@w3.org</A>\n"
+                                           + "</BODY></HTML>\n \n";
 
-        private const string NullHash = "";
+        private const string _nullHash = "";
 
         [Fact]
         public void a_definition()
@@ -52,13 +53,13 @@
         [Fact]
         public void ctor_SerializationInfo_StreamingContext()
         {
-            MD5Hash expected = Convert.FromBase64String(JigsawHash);
+            MD5Hash expected = Convert.FromBase64String(_jigsawHash);
             MD5Hash actual;
 
             using (Stream stream = new MemoryStream())
             {
                 var formatter = new BinaryFormatter();
-                formatter.Serialize(stream, (MD5Hash)Convert.FromBase64String(JigsawHash));
+                formatter.Serialize(stream, (MD5Hash)Convert.FromBase64String(_jigsawHash));
                 stream.Position = 0;
                 actual = (MD5Hash)formatter.Deserialize(stream);
             }
@@ -69,15 +70,15 @@
         [Fact]
         public void ctor_bytes()
         {
-            Assert.NotNull(new MD5Hash(Convert.FromBase64String(JigsawHash)));
+            Assert.NotNull(new MD5Hash(Convert.FromBase64String(_jigsawHash)));
         }
 
         [Fact]
         public void ctor_bytesEmpty()
         {
             Assert.NotNull(new MD5Hash(new byte[]
-            {
-            }));
+                                           {
+                                           }));
         }
 
         [Fact]
@@ -98,8 +99,8 @@
         [Fact]
         public void opGreater_MD5Hash_MD5Hash()
         {
-            MD5Hash jigsaw = Convert.FromBase64String(JigsawHash);
-            MD5Hash empty = Convert.FromBase64String(EmptyHash);
+            MD5Hash jigsaw = Convert.FromBase64String(_jigsawHash);
+            MD5Hash empty = Convert.FromBase64String(_emptyHash);
 
             Assert.True(empty > jigsaw);
         }
@@ -116,8 +117,8 @@
         [Fact]
         public void opLesser_MD5Hash_MD5Hash()
         {
-            MD5Hash jigsaw = Convert.FromBase64String(JigsawHash);
-            MD5Hash empty = Convert.FromBase64String(EmptyHash);
+            MD5Hash jigsaw = Convert.FromBase64String(_jigsawHash);
+            MD5Hash empty = Convert.FromBase64String(_emptyHash);
 
             Assert.True(jigsaw < empty);
         }
@@ -125,8 +126,8 @@
         [Fact]
         public void op_CompareTo_MD5Hash()
         {
-            MD5Hash empty = Convert.FromBase64String(EmptyHash);
-            MD5Hash jigsaw = Convert.FromBase64String(JigsawHash);
+            MD5Hash empty = Convert.FromBase64String(_emptyHash);
+            MD5Hash jigsaw = Convert.FromBase64String(_jigsawHash);
 
             const long expected = -1;
             var actual = jigsaw.CompareTo(empty);
@@ -137,8 +138,8 @@
         [Fact]
         public void op_CompareTo_object()
         {
-            MD5Hash jigsaw = Convert.FromBase64String(JigsawHash);
-            object empty = (MD5Hash)Convert.FromBase64String(EmptyHash);
+            MD5Hash jigsaw = Convert.FromBase64String(_jigsawHash);
+            object empty = (MD5Hash)Convert.FromBase64String(_emptyHash);
 
             const long expected = -1;
             var actual = jigsaw.CompareTo(empty);
@@ -165,8 +166,8 @@
         {
             const long expected = 1;
             var actual = MD5Hash.Compare(
-                Convert.FromBase64String(EmptyHash), 
-                Convert.FromBase64String(JigsawHash));
+                Convert.FromBase64String(_emptyHash), 
+                Convert.FromBase64String(_jigsawHash));
 
             Assert.Equal(expected, actual);
         }
@@ -176,8 +177,8 @@
         {
             const long expected = -1;
             var actual = MD5Hash.Compare(
-                Convert.FromBase64String(JigsawHash), 
-                Convert.FromBase64String(EmptyHash));
+                Convert.FromBase64String(_jigsawHash), 
+                Convert.FromBase64String(_emptyHash));
 
             Assert.Equal(expected, actual);
         }
@@ -187,8 +188,8 @@
         {
             const long expected = 0;
             var actual = MD5Hash.Compare(
-                Convert.FromBase64String(JigsawHash), 
-                Convert.FromBase64String(JigsawHash));
+                Convert.FromBase64String(_jigsawHash), 
+                Convert.FromBase64String(_jigsawHash));
 
             Assert.Equal(expected, actual);
         }
@@ -196,7 +197,7 @@
         [Fact]
         public void op_Compute_FileSystemInfo()
         {
-            MD5Hash expected = Convert.FromBase64String(JigsawHash);
+            MD5Hash expected = Convert.FromBase64String(_jigsawHash);
             var actual = MD5Hash.Compute(new FileInfo(@"Security\Cryptography\jigsaw.html"));
 
             Assert.Equal(expected, actual);
@@ -205,7 +206,7 @@
         [Fact]
         public void op_Compute_FileSystemInfoEmpty()
         {
-            MD5Hash expected = Convert.FromBase64String(EmptyHash);
+            MD5Hash expected = Convert.FromBase64String(_emptyHash);
             var actual = MD5Hash.Compute(new FileInfo(@"Security\Cryptography\empty.html"));
 
             Assert.Equal(expected, actual);
@@ -222,7 +223,7 @@
         {
             try
             {
-                MD5Hash expected = Convert.FromBase64String(JigsawHash);
+                MD5Hash expected = Convert.FromBase64String(_jigsawHash);
                 var actual = MD5Hash.Compute(new Uri("http://jigsaw.w3.org/HTTP/h-content-md5.html"));
 
                 Assert.Equal(expected, actual);
@@ -241,8 +242,8 @@
         [Fact]
         public void op_Compute_byte()
         {
-            MD5Hash expected = Convert.FromBase64String(JigsawHash);
-            var actual = MD5Hash.Compute(Encoding.Default.GetBytes(JigsawHtml));
+            MD5Hash expected = Convert.FromBase64String(_jigsawHash);
+            var actual = MD5Hash.Compute(Encoding.Default.GetBytes(_jigsawHtml));
 
             Assert.Equal(expected, actual);
         }
@@ -250,10 +251,10 @@
         [Fact]
         public void op_Compute_byteEmpty()
         {
-            MD5Hash expected = Convert.FromBase64String(EmptyHash);
+            MD5Hash expected = Convert.FromBase64String(_emptyHash);
             var actual = MD5Hash.Compute(new byte[]
-            {
-            });
+                                             {
+                                             });
 
             Assert.Equal(expected, actual);
         }
@@ -267,14 +268,14 @@
         [Fact]
         public void op_Compute_stream()
         {
-            MD5Hash expected = Convert.FromBase64String(JigsawHash);
+            MD5Hash expected = Convert.FromBase64String(_jigsawHash);
             MD5Hash actual;
 
             using (var stream = new MemoryStream())
             {
                 using (var writer = new StreamWriter(stream))
                 {
-                    writer.Write(JigsawHtml);
+                    writer.Write(_jigsawHtml);
                     writer.Flush();
                     stream.Position = 0;
 
@@ -288,7 +289,7 @@
         [Fact]
         public void op_Compute_streamEmpty()
         {
-            MD5Hash expected = Convert.FromBase64String(EmptyHash);
+            MD5Hash expected = Convert.FromBase64String(_emptyHash);
             MD5Hash actual;
 
             using (var stream = new MemoryStream())
@@ -308,8 +309,8 @@
         [Fact]
         public void op_Compute_string()
         {
-            MD5Hash expected = Convert.FromBase64String(JigsawHash);
-            var actual = MD5Hash.Compute(JigsawHtml);
+            MD5Hash expected = Convert.FromBase64String(_jigsawHash);
+            var actual = MD5Hash.Compute(_jigsawHtml);
 
             Assert.Equal(expected, actual);
         }
@@ -317,7 +318,7 @@
         [Fact]
         public void op_Compute_stringEmpty()
         {
-            MD5Hash expected = Convert.FromBase64String(EmptyHash);
+            MD5Hash expected = Convert.FromBase64String(_emptyHash);
             var actual = MD5Hash.Compute(string.Empty);
 
             Assert.Equal(expected, actual);
@@ -326,7 +327,7 @@
         [Fact]
         public void op_Compute_stringEmpty_Encoding()
         {
-            MD5Hash expected = Convert.FromBase64String(EmptyHash);
+            MD5Hash expected = Convert.FromBase64String(_emptyHash);
             var actual = MD5Hash.Compute(string.Empty, Encoding.Default);
 
             Assert.Equal(expected, actual);
@@ -347,8 +348,8 @@
         [Fact]
         public void op_Compute_string_Encoding()
         {
-            MD5Hash expected = Convert.FromBase64String(JigsawHash);
-            var actual = MD5Hash.Compute(JigsawHtml, Encoding.Default);
+            MD5Hash expected = Convert.FromBase64String(_jigsawHash);
+            var actual = MD5Hash.Compute(_jigsawHtml, Encoding.Default);
 
             Assert.Equal(expected, actual);
         }
@@ -362,7 +363,7 @@
         [Fact]
         public void op_Equals_MD5Hash()
         {
-            MD5Hash obj = Convert.FromBase64String(NullHash);
+            MD5Hash obj = Convert.FromBase64String(_nullHash);
 
             Assert.True(new MD5Hash().Equals(obj));
         }
@@ -370,7 +371,7 @@
         [Fact]
         public void op_Equals_object()
         {
-            object obj = (MD5Hash)Convert.FromBase64String(NullHash);
+            object obj = (MD5Hash)Convert.FromBase64String(_nullHash);
 
             Assert.True(new MD5Hash().Equals(obj));
         }
@@ -378,7 +379,7 @@
         [Fact]
         public void op_Equals_objectDiffers()
         {
-            MD5Hash obj = Convert.FromBase64String(JigsawHash);
+            MD5Hash obj = Convert.FromBase64String(_jigsawHash);
 
             Assert.False(new MD5Hash().Equals(obj));
         }
@@ -400,8 +401,8 @@
         [Fact]
         public void op_GetHashCode()
         {
-            var expected = JigsawHash.GetHashCode();
-            var actual = new MD5Hash(Convert.FromBase64String(JigsawHash)).GetHashCode();
+            var expected = _jigsawHash.GetHashCode();
+            var actual = new MD5Hash(Convert.FromBase64String(_jigsawHash)).GetHashCode();
 
             Assert.Equal(expected, actual);
         }
@@ -420,7 +421,7 @@
         {
             var context = new StreamingContext(StreamingContextStates.All);
 
-            ISerializable value = (MD5Hash)Convert.FromBase64String(JigsawHash);
+            ISerializable value = (MD5Hash)Convert.FromBase64String(_jigsawHash);
 
             // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => value.GetObjectData(null, context));
@@ -434,9 +435,9 @@
             var info = new SerializationInfo(typeof(MD5Hash), new FormatterConverter());
             var context = new StreamingContext(StreamingContextStates.All);
 
-            const string expected = JigsawHash;
+            const string expected = _jigsawHash;
 
-            ISerializable value = (MD5Hash)Convert.FromBase64String(JigsawHash);
+            ISerializable value = (MD5Hash)Convert.FromBase64String(_jigsawHash);
 
             value.GetObjectData(info, context);
 
@@ -448,8 +449,8 @@
         [Fact]
         public void op_ToString()
         {
-            const string expected = JigsawHash;
-            var actual = new MD5Hash(Convert.FromBase64String(JigsawHash)).ToString();
+            const string expected = _jigsawHash;
+            var actual = new MD5Hash(Convert.FromBase64String(_jigsawHash)).ToString();
 
             Assert.Equal(expected, actual);
         }
@@ -457,7 +458,7 @@
         [Fact]
         public void op_ToString_whenDefault()
         {
-            const string expected = NullHash;
+            const string expected = _nullHash;
             var actual = new MD5Hash().ToString();
 
             Assert.Equal(expected, actual);
@@ -466,10 +467,10 @@
         [Fact]
         public void op_ToString_whenEmptyBytes()
         {
-            const string expected = NullHash;
+            const string expected = _nullHash;
             var actual = new MD5Hash(new byte[]
-            {
-            }).ToString();
+                                         {
+                                         }).ToString();
 
             Assert.Equal(expected, actual);
         }

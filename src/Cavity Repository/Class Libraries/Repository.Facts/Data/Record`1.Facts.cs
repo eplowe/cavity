@@ -1,8 +1,11 @@
 ﻿namespace Cavity.Data
 {
     using System;
+
     using Cavity.Net;
+
     using Moq;
+
     using Xunit;
 
     public sealed class RecordOfTFacts
@@ -24,9 +27,9 @@
         public void op_ToEntity()
         {
             var obj = new Record<int>
-            {
-                Value = 123
-            };
+                          {
+                              Value = 123
+                          };
 
             const string expected = "123";
             var actual = obj.ToEntity();
@@ -46,9 +49,9 @@
                 .Verifiable();
 
             var obj = new Record<IEntity>
-            {
-                Value = value.Object
-            };
+                          {
+                              Value = value.Object
+                          };
 
             var actual = obj.ToEntity();
 
@@ -61,9 +64,9 @@
         public void op_ToEntity_whenNullValue()
         {
             var obj = new Record<string>
-            {
-                Value = null
-            };
+                          {
+                              Value = null
+                          };
 
             Assert.Null(obj.ToEntity());
         }
@@ -72,9 +75,9 @@
         public void op_ToXml()
         {
             var obj = new Record<int>
-            {
-                Value = 123
-            };
+                          {
+                              Value = 123
+                          };
 
             var expected = 123.XmlSerialize();
             var actual = obj.ToXml();
@@ -86,9 +89,9 @@
         public void op_ToXml_whenNullValue()
         {
             var obj = new Record<string>
-            {
-                Value = null
-            };
+                          {
+                              Value = null
+                          };
 
             Assert.Null(obj.ToXml());
         }

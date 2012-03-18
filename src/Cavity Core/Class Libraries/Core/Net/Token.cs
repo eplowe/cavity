@@ -3,15 +3,20 @@
     using System;
     using System.Linq;
     using System.Runtime.Serialization;
-    using Cavity.Properties;
-
-#if NET20 || NET35
+#if NET35
     using System.Security.Permissions;
 #endif
 
+    using Cavity.Properties;
+
     [Serializable]
-    public class Token : IComparable, IComparable<Token>, IEquatable<Token>, ISerializable
+    public class Token : IComparable, 
+                         IComparable<Token>, 
+                         IEquatable<Token>, 
+                         ISerializable
     {
+        private static readonly char[] _illegal = new[] { '"', '@', '(', ')', ',', '/', ':', ';', '<', '=', '>', '?', '[', '\\', ']', '{', '}' };
+
         private string _value;
 
         public Token(string value)
@@ -52,12 +57,11 @@
                     throw new ArgumentOutOfRangeException("value");
                 }
 
-                if (0 != value.ToUpperInvariant()
-                             .ToArray()
-                             .Where(x => ' ' >= x ||
-                                         x.EqualsOneOf('"', '@', '(', ')', ',', '/', ':', ';', '<', '=', '>', '?', '[', '\\', ']', '{', '}') ||
-                                         (char)127 <= x) // DEL
-                             .Count())
+                var count = value
+                    .ToUpperInvariant()
+                    .ToArray()
+                    .Count(x => ' ' >= x || x.EqualsOneOf(_illegal) || (char)127 <= x);
+                if (0 != count)
                 {
                     throw new FormatException(Resources.Token_FormatException_Message);
                 }

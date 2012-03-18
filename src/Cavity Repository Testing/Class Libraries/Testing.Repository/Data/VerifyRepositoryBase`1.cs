@@ -32,13 +32,13 @@
         private static Record<T> NewRecord()
         {
             return new Record<T>
-            {
-                Cacheability = "public",
-                Expiration = "P1D",
-                Status = 200,
-                Urn = "urn://example.com/" + Guid.NewGuid(),
-                Value = Activator.CreateInstance<T>()
-            };
+                       {
+                           Cacheability = "public", 
+                           Expiration = "P1D", 
+                           Status = 200, 
+                           Urn = "urn://example.com/" + Guid.NewGuid(), 
+                           Value = Activator.CreateInstance<T>()
+                       };
         }
     }
 }

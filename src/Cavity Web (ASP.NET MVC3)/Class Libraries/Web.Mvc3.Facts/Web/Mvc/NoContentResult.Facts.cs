@@ -4,7 +4,9 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
+
     using Moq;
+
     using Xunit;
 
     public sealed class NoContentResultFacts
@@ -44,10 +46,10 @@
                 .Returns(response.Object)
                 .Verifiable();
 
-            new NoContentResult().ExecuteResult(new ControllerContext()
-            {
-                HttpContext = context.Object
-            });
+            new NoContentResult().ExecuteResult(new ControllerContext
+                                                    {
+                                                        HttpContext = context.Object
+                                                    });
 
             context.VerifyAll();
         }
@@ -55,7 +57,7 @@
         [Fact]
         public void op_ExecuteResult_ControllerContextNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new NoContentResult().ExecuteResult(null as ControllerContext));
+            Assert.Throws<ArgumentNullException>(() => new NoContentResult().ExecuteResult(null));
         }
     }
 }

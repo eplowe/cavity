@@ -27,13 +27,13 @@
 #endif
 
             return ' ' == value[0]
-                || ' ' == value[value.Length - 1]
+                   || ' ' == value[value.Length - 1]
 #if NET20
                 || StringExtensionMethods.ContainsAny(value, ',', '\n')
 #else
-                || value.ContainsAny(',', '\n')
+                   || value.ContainsAny(',', '\n')
 #endif
-                || value.Contains(Environment.NewLine)
+                   || value.Contains(Environment.NewLine)
                        ? string.Concat("\"", value, "\"")
                        : value;
         }

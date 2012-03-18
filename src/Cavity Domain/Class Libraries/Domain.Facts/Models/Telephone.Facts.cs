@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Models
 {
     using System;
+
     using Xunit;
 
     public sealed class TelephoneFacts

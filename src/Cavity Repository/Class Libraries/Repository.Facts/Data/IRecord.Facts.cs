@@ -1,8 +1,11 @@
 ﻿namespace Cavity.Data
 {
     using System;
+
     using Cavity.Net;
+
     using Moq;
+
     using Xunit;
 
     public sealed class IRecordFacts

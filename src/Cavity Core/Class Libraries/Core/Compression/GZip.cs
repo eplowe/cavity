@@ -4,6 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.IO.Compression;
+
     using Cavity.IO;
 
     public static class GZip

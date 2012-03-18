@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Models
 {
     using System;
+
     using Cavity.Collections;
+
     using Xunit;
 
     public sealed class LexicalMatchFacts
@@ -35,10 +37,10 @@
         {
             const string expected = "An example test";
             var obj = new LexicalMatch(new LexicalItem(NormalityComparer.Ordinal, "example"))
-            {
-                Prefix = "An", 
-                Suffix = "test"
-            };
+                          {
+                              Prefix = "An", 
+                              Suffix = "test"
+                          };
 
             var actual = obj.ToString();
 

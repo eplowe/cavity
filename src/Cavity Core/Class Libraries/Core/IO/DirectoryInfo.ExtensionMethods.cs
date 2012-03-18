@@ -11,12 +11,12 @@
     {
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
 #if NET20
-        public static void CopyTo(DirectoryInfo source,
-                                  DirectoryInfo destination,
+        public static void CopyTo(DirectoryInfo source, 
+                                  DirectoryInfo destination, 
                                   bool replace)
 #else
-        public static void CopyTo(this DirectoryInfo source,
-                                  DirectoryInfo destination,
+        public static void CopyTo(this DirectoryInfo source, 
+                                  DirectoryInfo destination, 
                                   bool replace)
 #endif
         {
@@ -25,14 +25,14 @@
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
 #if NET20
-        public static void CopyTo(DirectoryInfo source,
-                                  DirectoryInfo destination,
-                                  bool replace,
+        public static void CopyTo(DirectoryInfo source, 
+                                  DirectoryInfo destination, 
+                                  bool replace, 
                                   string pattern)
 #else
-        public static void CopyTo(this DirectoryInfo source,
-                                  DirectoryInfo destination,
-                                  bool replace,
+        public static void CopyTo(this DirectoryInfo source, 
+                                  DirectoryInfo destination, 
+                                  bool replace, 
                                   string pattern)
 #endif
         {
@@ -61,33 +61,33 @@
 #else
             foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
 #endif
-            {
-                var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
-                if (target.Exists)
-                {
-                    if (replace)
-                    {
-                        target.Delete();
-                    }
-                    else
-                    {
+                                                                                              {
+                                                                                                  var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
+                                                                                                  if (target.Exists)
+                                                                                                  {
+                                                                                                      if (replace)
+                                                                                                      {
+                                                                                                          target.Delete();
+                                                                                                      }
+                                                                                                      else
+                                                                                                      {
 #if NET40
-                        return;
+                                                                                                          return;
 #else
                         continue;
 #endif
-                    }
-                }
+                                                                                                      }
+                                                                                                  }
 
-                if (null != target.Directory &&
-                    !target.Directory.Exists)
-                {
-                    target.Directory.Create();
-                }
+                                                                                                  if (null != target.Directory &&
+                                                                                                      !target.Directory.Exists)
+                                                                                                  {
+                                                                                                      target.Directory.Create();
+                                                                                                  }
 
-                file.CopyTo(target.FullName);
+                                                                                                  file.CopyTo(target.FullName);
 #if NET40
-            });
+                                                                                              });
 #else
             }
 #endif
@@ -140,12 +140,12 @@
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
 #if NET20
-        public static void MoveTo(DirectoryInfo source,
-                                  DirectoryInfo destination,
+        public static void MoveTo(DirectoryInfo source, 
+                                  DirectoryInfo destination, 
                                   bool replace)
 #else
-        public static void MoveTo(this DirectoryInfo source,
-                                  DirectoryInfo destination,
+        public static void MoveTo(this DirectoryInfo source, 
+                                  DirectoryInfo destination, 
                                   bool replace)
 #endif
         {
@@ -154,14 +154,14 @@
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
 #if NET20
-        public static void MoveTo(DirectoryInfo source,
-                                  DirectoryInfo destination,
-                                  bool replace,
+        public static void MoveTo(DirectoryInfo source, 
+                                  DirectoryInfo destination, 
+                                  bool replace, 
                                   string pattern)
 #else
-        public static void MoveTo(this DirectoryInfo source,
-                                  DirectoryInfo destination,
-                                  bool replace,
+        public static void MoveTo(this DirectoryInfo source, 
+                                  DirectoryInfo destination, 
+                                  bool replace, 
                                   string pattern)
 #endif
         {
@@ -190,33 +190,33 @@
 #else
             foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
 #endif
-            {
-                var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
-                if (target.Exists)
-                {
-                    if (replace)
-                    {
-                        target.Delete();
-                    }
-                    else
-                    {
+                                                                                              {
+                                                                                                  var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
+                                                                                                  if (target.Exists)
+                                                                                                  {
+                                                                                                      if (replace)
+                                                                                                      {
+                                                                                                          target.Delete();
+                                                                                                      }
+                                                                                                      else
+                                                                                                      {
 #if NET40
-                        return;
+                                                                                                          return;
 #else
                         continue;
 #endif
-                    }
-                }
+                                                                                                      }
+                                                                                                  }
 
-                if (null != target.Directory &&
-                    !target.Directory.Exists)
-                {
-                    target.Directory.Create();
-                }
+                                                                                                  if (null != target.Directory &&
+                                                                                                      !target.Directory.Exists)
+                                                                                                  {
+                                                                                                      target.Directory.Create();
+                                                                                                  }
 
-                file.MoveTo(target.FullName);
+                                                                                                  file.MoveTo(target.FullName);
 #if NET40
-            });
+                                                                                              });
 #else
             }
 #endif

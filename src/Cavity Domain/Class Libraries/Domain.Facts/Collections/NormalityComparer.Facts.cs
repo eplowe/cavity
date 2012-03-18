@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Collections
 {
     using System;
+
     using Xunit;
 
     public sealed class NormalityComparerFacts
@@ -79,9 +80,9 @@
         public void op_Normalize_string_whenIgnoreCase()
         {
             var obj = new NormalityComparer
-            {
-                Comparison = StringComparison.OrdinalIgnoreCase
-            };
+                          {
+                              Comparison = StringComparison.OrdinalIgnoreCase
+                          };
             const string expected = "AN EXAMPLE.";
             var actual = obj.Normalize("An Example.");
 

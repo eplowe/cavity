@@ -7,7 +7,8 @@
     using System.Linq;
 #endif
 
-    public sealed class AddRemoveClearConfigurationElementCollection<T> : ConfigurationElementCollection, ICollection<NameValueConfigurationElement<T>>
+    public sealed class AddRemoveClearConfigurationElementCollection<T> : ConfigurationElementCollection, 
+                                                                          ICollection<NameValueConfigurationElement<T>>
     {
         public override ConfigurationElementCollectionType CollectionType
         {
@@ -25,7 +26,7 @@
             }
         }
 
-        public void Add(string name,
+        public void Add(string name, 
                         T value)
         {
             BaseAdd(new NameValueConfigurationElement<T>(name, value));
@@ -58,10 +59,13 @@
 #endif
         }
 
-        public void CopyTo(NameValueConfigurationElement<T>[] array,
+        public void CopyTo(NameValueConfigurationElement<T>[] array, 
                            int arrayIndex)
         {
+            // ReSharper disable CoVariantArrayConversion
             base.CopyTo(array, arrayIndex);
+
+            // ReSharper restore CoVariantArrayConversion
         }
 
         public bool Remove(NameValueConfigurationElement<T> item)

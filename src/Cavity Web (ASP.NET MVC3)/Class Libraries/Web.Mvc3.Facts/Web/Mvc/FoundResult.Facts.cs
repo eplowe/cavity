@@ -3,7 +3,9 @@
     using System;
     using System.Net;
     using System.Web;
+
     using Moq;
+
     using Xunit;
 
     public sealed class FoundResultFacts
@@ -31,9 +33,9 @@
         {
             var expires = DateTime.UtcNow.AddMinutes(5);
             var obj = new FoundResult("/path")
-            {
-                Expires = expires
-            };
+                          {
+                              Expires = expires
+                          };
 
             var cache = new Mock<HttpCachePolicyBase>();
             cache

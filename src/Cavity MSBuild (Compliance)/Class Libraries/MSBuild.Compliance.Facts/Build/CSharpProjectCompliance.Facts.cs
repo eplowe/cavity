@@ -3,10 +3,14 @@
     using System.IO;
     using System.Reflection;
     using System.Xml;
+
     using Cavity.IO;
+
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
+
     using Moq;
+
     using Xunit;
 
     public sealed class CSharpProjectComplianceFacts
@@ -46,14 +50,14 @@
                 }
 
                 var obj = new CSharpProjectCompliance
-                {
-                    BuildEngine = new Mock<IBuildEngine>().Object,
-                    Projects = new ITaskItem[]
-                    {
-                        new TaskItem(file.Info.FullName)
-                    },
-                    XPath = "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])"
-                };
+                              {
+                                  BuildEngine = new Mock<IBuildEngine>().Object, 
+                                  Projects = new ITaskItem[]
+                                                 {
+                                                     new TaskItem(file.Info.FullName)
+                                                 }, 
+                                  XPath = "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])"
+                              };
 
                 Assert.True(obj.Execute());
             }
@@ -63,12 +67,12 @@
         public void op_Execute_IEnumerableEmpty()
         {
             var obj = new CSharpProjectCompliance
-            {
-                BuildEngine = new Mock<IBuildEngine>().Object,
-                Projects = new ITaskItem[]
-                {
-                }
-            };
+                          {
+                              BuildEngine = new Mock<IBuildEngine>().Object, 
+                              Projects = new ITaskItem[]
+                                             {
+                                             }
+                          };
 
             Assert.True(obj.Execute());
         }
@@ -77,9 +81,9 @@
         public void op_Execute_IEnumerableNull()
         {
             var obj = new CSharpProjectCompliance
-            {
-                BuildEngine = new Mock<IBuildEngine>().Object
-            };
+                          {
+                              BuildEngine = new Mock<IBuildEngine>().Object
+                          };
 
             Assert.False(obj.Execute());
         }
@@ -101,15 +105,15 @@
                 }
 
                 var obj = new CSharpProjectCompliance
-                {
-                    BuildEngine = new Mock<IBuildEngine>().Object,
-                    Projects = new ITaskItem[]
-                    {
-                        new TaskItem(file.Info.FullName),
-                        null
-                    },
-                    XPath = "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])"
-                };
+                              {
+                                  BuildEngine = new Mock<IBuildEngine>().Object, 
+                                  Projects = new ITaskItem[]
+                                                 {
+                                                     new TaskItem(file.Info.FullName), 
+                                                     null
+                                                 }, 
+                                  XPath = "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])"
+                              };
 
                 Assert.True(obj.Execute());
             }
@@ -143,14 +147,14 @@
                 }
 
                 var obj = new CSharpProjectCompliance
-                {
-                    BuildEngine = new Mock<IBuildEngine>().Object,
-                    Projects = new ITaskItem[]
-                    {
-                        new TaskItem(file.Info.FullName)
-                    },
-                    XPath = "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])"
-                };
+                              {
+                                  BuildEngine = new Mock<IBuildEngine>().Object, 
+                                  Projects = new ITaskItem[]
+                                                 {
+                                                     new TaskItem(file.Info.FullName)
+                                                 }, 
+                                  XPath = "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])"
+                              };
 
                 Assert.False(obj.Execute());
             }

@@ -2,7 +2,9 @@
 {
     using System;
     using System.Xml.Serialization;
+
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class PropertyExpectationsOfTFacts

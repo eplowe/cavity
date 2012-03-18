@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class PropertyGetterTestOfTFacts
@@ -35,9 +36,9 @@
             var expected = typeof(PropertiedClass1).GetProperty("AutoBoolean");
 
             var obj = new PropertyGetterTest<int>(null)
-            {
-                Expected = expected
-            };
+                          {
+                              Expected = expected
+                          };
 
             var actual = obj.Expected;
 

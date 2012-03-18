@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Threading
 {
     using System.Threading;
+
     using Xunit;
 
     public sealed class ThreadedObjectFacts
@@ -28,9 +29,9 @@
         {
             var expected = new CancellationToken();
             ThreadedObject obj = new DerivedThreadedObject
-            {
-                CancellationToken = expected
-            };
+                                     {
+                                         CancellationToken = expected
+                                     };
 
             var actual = obj.CancellationToken;
 

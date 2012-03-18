@@ -1,11 +1,9 @@
 ﻿namespace Cavity.Testing
 {
-    using System;
     using System.Collections.Generic;
-    using System.IO;
-    using Cavity;
-    using Cavity.IO;
+
     using Moq;
+
     using Xunit;
 
     public sealed class IConfigureTestFacts
@@ -14,8 +12,8 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<IConfigureTest>()
-                .IsInterface()
-                .Result);
+                            .IsInterface()
+                            .Result);
         }
 
         [Fact]

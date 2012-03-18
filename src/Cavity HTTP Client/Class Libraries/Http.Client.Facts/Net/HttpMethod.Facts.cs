@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using System;
+
     using Xunit;
 
     public sealed class HttpMethodFacts

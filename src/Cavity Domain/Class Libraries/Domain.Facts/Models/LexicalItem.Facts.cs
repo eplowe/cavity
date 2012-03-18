@@ -2,7 +2,9 @@
 {
     using System;
     using System.Linq;
+
     using Cavity.Collections;
+
     using Xunit;
 
     public sealed class LexicalItemFacts
@@ -52,13 +54,13 @@
         public void op_Contains_stringEmpty_whenSynonyms()
         {
             var obj = new LexicalItem(NormalityComparer.Ordinal, "Example")
-            {
-                Synonyms =
-                    {
-                        "Foo", 
-                        "Bar"
-                    }
-            };
+                          {
+                              Synonyms =
+                                  {
+                                      "Foo", 
+                                      "Bar"
+                                  }
+                          };
 
             Assert.False(obj.Contains(string.Empty));
         }
@@ -75,13 +77,13 @@
         public void op_Contains_stringNull_whenSynonyms()
         {
             var obj = new LexicalItem(NormalityComparer.Ordinal, "Example")
-            {
-                Synonyms =
-                    {
-                        "Foo", 
-                        "Bar"
-                    }
-            };
+                          {
+                              Synonyms =
+                                  {
+                                      "Foo", 
+                                      "Bar"
+                                  }
+                          };
 
             Assert.Throws<ArgumentNullException>(() => obj.Contains(null));
         }
@@ -90,13 +92,13 @@
         public void op_Contains_string_whenMatchesSynonym()
         {
             var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "Example")
-            {
-                Synonyms =
-                    {
-                        "Foo", 
-                        "Bar"
-                    }
-            };
+                          {
+                              Synonyms =
+                                  {
+                                      "Foo", 
+                                      "Bar"
+                                  }
+                          };
 
             Assert.True(obj.Contains("Bar"));
         }
@@ -113,12 +115,12 @@
         public void op_Invoke_Func()
         {
             var obj = new LexicalItem(NormalityComparer.Ordinal, string.Concat("Foo", '\u00A0', "Bar"))
-            {
-                Synonyms =
-                    {
-                        string.Concat("Left", '\u00A0', "Right")
-                    }
-            };
+                          {
+                              Synonyms =
+                                  {
+                                      string.Concat("Left", '\u00A0', "Right")
+                                  }
+                          };
 
             obj.Invoke(x => x.NormalizeWhiteSpace());
 
@@ -157,9 +159,9 @@
             obj.Synonyms.Add("an example");
 
             var expected = new LexicalMatch(obj)
-            {
-                Suffix = "test case"
-            };
+                               {
+                                   Suffix = "test case"
+                               };
             var actual = obj.MatchBeginning("an ex_ample test case");
 
             Assert.Equal(expected, actual);
@@ -171,9 +173,9 @@
             var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Suffix = "test case"
-            };
+                               {
+                                   Suffix = "test case"
+                               };
             var actual = obj.MatchBeginning("example test case");
 
             Assert.Equal(expected, actual);
@@ -193,9 +195,9 @@
             var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Suffix = "test case"
-            };
+                               {
+                                   Suffix = "test case"
+                               };
             var actual = obj.MatchBeginning("example test case");
 
             Assert.Equal(expected, actual);
@@ -208,9 +210,9 @@
             obj.Synonyms.Add("EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Suffix = "test case"
-            };
+                               {
+                                   Suffix = "test case"
+                               };
 
             var actual = obj.MatchBeginning("example test case");
 
@@ -250,9 +252,9 @@
             obj.Synonyms.Add("an example");
 
             var expected = new LexicalMatch(obj)
-            {
-                Prefix = "This is"
-            };
+                               {
+                                   Prefix = "This is"
+                               };
             var actual = obj.MatchEnding("This is an ex_ample");
 
             Assert.Equal(expected, actual);
@@ -272,9 +274,9 @@
             var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Prefix = "This is an"
-            };
+                               {
+                                   Prefix = "This is an"
+                               };
             var actual = obj.MatchEnding("This is an example");
 
             Assert.Equal(expected, actual);
@@ -287,9 +289,9 @@
             obj.Synonyms.Add("EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Prefix = "This is an"
-            };
+                               {
+                                   Prefix = "This is an"
+                               };
 
             var actual = obj.MatchEnding("This is an example");
 
@@ -302,9 +304,9 @@
             var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Prefix = "This is an"
-            };
+                               {
+                                   Prefix = "This is an"
+                               };
             var actual = obj.MatchEnding("This is an example");
 
             Assert.Equal(expected, actual);
@@ -343,10 +345,10 @@
             obj.Synonyms.Add("an example");
 
             var expected = new LexicalMatch(obj)
-            {
-                Prefix = "This is an", 
-                Suffix = "test case"
-            };
+                               {
+                                   Prefix = "This is an", 
+                                   Suffix = "test case"
+                               };
             var actual = obj.MatchWithin("This is an ex0ample test case");
 
             Assert.Equal(expected, actual);
@@ -358,9 +360,9 @@
             var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Suffix = "test case"
-            };
+                               {
+                                   Suffix = "test case"
+                               };
             var actual = obj.MatchWithin("example test case");
 
             Assert.Equal(expected, actual);
@@ -372,9 +374,9 @@
             var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "AN EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Suffix = "test case"
-            };
+                               {
+                                   Suffix = "test case"
+                               };
             var actual = obj.MatchWithin("an example test case");
 
             Assert.Equal(expected, actual);
@@ -394,10 +396,10 @@
             var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Prefix = "This is an", 
-                Suffix = "test case"
-            };
+                               {
+                                   Prefix = "This is an", 
+                                   Suffix = "test case"
+                               };
             var actual = obj.MatchWithin("This is an example test case");
 
             Assert.Equal(expected, actual);
@@ -409,10 +411,10 @@
             var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "AN EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Prefix = "This is", 
-                Suffix = "test case"
-            };
+                               {
+                                   Prefix = "This is", 
+                                   Suffix = "test case"
+                               };
             var actual = obj.MatchWithin("This is an example test case");
 
             Assert.Equal(expected, actual);
@@ -425,10 +427,10 @@
             obj.Synonyms.Add("EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Prefix = "This is an", 
-                Suffix = "test case"
-            };
+                               {
+                                   Prefix = "This is an", 
+                                   Suffix = "test case"
+                               };
 
             var actual = obj.MatchWithin("This is an example test case");
 
@@ -441,9 +443,9 @@
             var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Prefix = "This is an"
-            };
+                               {
+                                   Prefix = "This is an"
+                               };
             var actual = obj.MatchWithin("This is an example");
 
             Assert.Equal(expected, actual);
@@ -455,9 +457,9 @@
             var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "AN EXAMPLE");
 
             var expected = new LexicalMatch(obj)
-            {
-                Prefix = "This is"
-            };
+                               {
+                                   Prefix = "This is"
+                               };
             var actual = obj.MatchWithin("This is an example");
 
             Assert.Equal(expected, actual);
@@ -485,13 +487,13 @@
         public void op_Match_stringEmpty_whenSynonyms()
         {
             var obj = new LexicalItem(NormalityComparer.Ordinal, "Example")
-            {
-                Synonyms =
-                    {
-                        "Foo", 
-                        "Bar"
-                    }
-            };
+                          {
+                              Synonyms =
+                                  {
+                                      "Foo", 
+                                      "Bar"
+                                  }
+                          };
 
             Assert.Null(obj.Match(string.Empty));
         }
@@ -508,13 +510,13 @@
         public void op_Match_stringNull_whenSynonyms()
         {
             var obj = new LexicalItem(NormalityComparer.Ordinal, "Example")
-            {
-                Synonyms =
-                    {
-                        "Foo", 
-                        "Bar"
-                    }
-            };
+                          {
+                              Synonyms =
+                                  {
+                                      "Foo", 
+                                      "Bar"
+                                  }
+                          };
 
             Assert.Throws<ArgumentNullException>(() => obj.Match(null));
         }
@@ -523,13 +525,13 @@
         public void op_Match_string_whenMatchesSynonym()
         {
             var obj = new LexicalItem(NormalityComparer.OrdinalIgnoreCase, "Example")
-            {
-                Synonyms =
-                    {
-                        "Foo", 
-                        "Bar"
-                    }
-            };
+                          {
+                              Synonyms =
+                                  {
+                                      "Foo", 
+                                      "Bar"
+                                  }
+                          };
 
             var expected = new LexicalMatch(obj);
             var actual = obj.Match("Bar");
@@ -572,13 +574,13 @@
         public void prop_Spellings()
         {
             var obj = new LexicalItem(NormalityComparer.Ordinal, "a")
-            {
-                Synonyms =
-                    {
-                        "b", 
-                        "c"
-                    }
-            };
+                          {
+                              Synonyms =
+                                  {
+                                      "b", 
+                                      "c"
+                                  }
+                          };
 
             const string expected = "abc";
             var actual = obj

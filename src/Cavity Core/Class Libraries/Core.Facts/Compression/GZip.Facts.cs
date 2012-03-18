@@ -2,7 +2,9 @@
 {
     using System;
     using System.IO;
+
     using Cavity.IO;
+
     using Xunit;
 
     public sealed class GZipFacts
@@ -20,7 +22,10 @@
             {
                 var source = new FileInfo(AlphaDecimal.Random());
 
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<FileNotFoundException>(() => GZip.Extract(source, temp.Info));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -29,7 +34,10 @@
         {
             using (var temp = new TempDirectory())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => GZip.Extract(null, temp.Info));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 

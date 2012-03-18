@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Xml.XPath;
+
     using Moq;
+
     using Xunit;
 
     public sealed class IRepositoryOfTFacts
@@ -171,9 +173,9 @@
         {
             var xpath = XPathExpression.Compile("//root");
             var expected = new List<IRecord<int>>
-            {
-                new Mock<IRecord<int>>().Object
-            };
+                               {
+                                   new Mock<IRecord<int>>().Object
+                               };
 
             var mock = new Mock<IRepository<int>>();
             mock

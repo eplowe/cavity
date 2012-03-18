@@ -3,6 +3,7 @@ namespace Cavity
     using System;
     using System.Globalization;
     using System.Xml;
+
     using Xunit;
 
     public sealed class ObjectExtensionMethodsFacts

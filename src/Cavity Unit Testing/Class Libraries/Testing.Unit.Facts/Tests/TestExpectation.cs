@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using System;
+
     using Cavity.Fluent;
 
     public sealed class TestExpectation : ITestExpectation

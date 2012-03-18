@@ -5,6 +5,7 @@
     using System.IO;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
+
     using Xunit;
 
     public sealed class LanguageFacts
@@ -176,7 +177,10 @@
         [Fact]
         public void op_Equals_objectNull()
         {
+            // ReSharper disable RedundantCast
             Assert.False(new Language().Equals(null as object));
+
+            // ReSharper restore RedundantCast
         }
 
         [Fact]

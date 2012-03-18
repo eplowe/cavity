@@ -2,7 +2,9 @@
 {
     using System;
     using System.Web;
+
     using Moq;
+
     using Xunit;
 
     public sealed class HttpRequestBaseExtensionMethodsFacts
@@ -434,11 +436,14 @@
             var expected = "?[{0}]&querystring".FormatWith(token);
 
             var request = new Mock<HttpRequestBase>(MockBehavior.Strict);
+
+            // ReSharper disable PossiblyMistakenUseOfParamsMethod
             request
                 .SetupGet(x => x.RawUrl)
                 .Returns(string.Concat("http://example.com/test?[123]&querystring"))
                 .Verifiable();
 
+            // ReSharper restore PossiblyMistakenUseOfParamsMethod
             var actual = request.Object.RawQueryString(token);
 
             Assert.Equal(expected, actual);

@@ -5,6 +5,7 @@ namespace Cavity.App_Start
 {
     using System.Web.Mvc;
     using System.Web.WebPages;
+
     using RazorGenerator.Mvc;
 
     public static class PrecompiledMvcViewEngineStart

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Models
 {
     using System;
+
     using Xunit;
 
     public sealed class BritishPostcodeFacts
@@ -54,18 +55,6 @@
         }
 
         [Fact]
-        public void op_FromString_string_WhenInvalidArea()
-        {
-            const string original = "0X 4XG";
-            var obj = BritishPostcode.FromString(original);
-
-            Assert.Null(obj.Area);
-            Assert.Null(obj.District);
-            Assert.Null(obj.Sector);
-            Assert.Null(obj.Unit);
-        }
-
-        [Fact]
         public void op_FromString_stringEmpty()
         {
             Assert.Null(BritishPostcode.FromString(string.Empty).Unit);
@@ -75,6 +64,18 @@
         public void op_FromString_stringNull()
         {
             Assert.Throws<ArgumentNullException>(() => BritishPostcode.FromString(null));
+        }
+
+        [Fact]
+        public void op_FromString_string_WhenInvalidArea()
+        {
+            const string original = "0X 4XG";
+            var obj = BritishPostcode.FromString(original);
+
+            Assert.Null(obj.Area);
+            Assert.Null(obj.District);
+            Assert.Null(obj.Sector);
+            Assert.Null(obj.Unit);
         }
 
         [Fact]

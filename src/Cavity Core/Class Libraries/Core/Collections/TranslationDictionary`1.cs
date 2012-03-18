@@ -3,10 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
+
     using Cavity.Globalization;
 
     [Serializable]
-    public class TranslationDictionary<T> : Dictionary<Language, T>, IEnumerable<Translation<T>>
+    public class TranslationDictionary<T> : Dictionary<Language, T>, 
+                                            IEnumerable<Translation<T>>
     {
         public TranslationDictionary()
         {

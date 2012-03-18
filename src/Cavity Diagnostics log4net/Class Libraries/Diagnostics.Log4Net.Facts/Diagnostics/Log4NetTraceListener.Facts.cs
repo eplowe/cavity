@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Diagnostics
 {
     using System.Diagnostics;
+
     using Xunit;
 
     public sealed class Log4NetTraceListenerFacts

@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Linq;
+
     using Xunit;
 
     public sealed class MultitonCollectionOfTFacts
@@ -31,11 +32,11 @@
             const string expected = "example";
 
             var obj = new MultitonCollection<int, string>
-            {
-                {
-                    123, expected
-                    }
-            };
+                          {
+                              {
+                                  123, expected
+                                  }
+                          };
 
             var actual = obj[123];
 
@@ -60,11 +61,11 @@
             const string expected = "example";
 
             var obj = new MultitonCollection<int, string>
-            {
-                {
-                    123, string.Empty
-                    }
-            };
+                          {
+                              {
+                                  123, string.Empty
+                                  }
+                          };
 
             obj[123] = expected;
 
@@ -103,11 +104,11 @@
         public void op_ContainsKey_TKey()
         {
             var obj = new MultitonCollection<int, DateTime>
-            {
-                {
-                    123, DateTime.Today
-                    }
-            };
+                          {
+                              {
+                                  123, DateTime.Today
+                                  }
+                          };
 
             Assert.True(obj.ContainsKey(123));
         }

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.IO
 {
     using System.IO;
+
     using Cavity.Models;
 
     public sealed class DerivedFileReceiverTask : FileReceiverTask<DummyIProcessFile>
@@ -14,7 +15,9 @@
         {
         }
 
-        public DerivedFileReceiverTask(DirectoryInfo folder, string searchPattern, SearchOption searchOption)
+        public DerivedFileReceiverTask(DirectoryInfo folder, 
+                                       string searchPattern, 
+                                       SearchOption searchOption)
             : base(folder, searchPattern, searchOption)
         {
         }

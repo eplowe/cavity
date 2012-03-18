@@ -4,7 +4,8 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
-    public sealed class HttpResponse : HttpMessage, IHttpResponse
+    public sealed class HttpResponse : HttpMessage, 
+                                       IHttpResponse
     {
         private StatusLine _statusLine;
 

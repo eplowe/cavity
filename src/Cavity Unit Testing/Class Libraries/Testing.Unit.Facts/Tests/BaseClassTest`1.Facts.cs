@@ -1,8 +1,10 @@
 ﻿namespace Cavity.Tests
 {
     using System;
+
     using Cavity.Fluent;
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class BaseClassTestOfTFacts
@@ -43,9 +45,9 @@
             var expected = typeof(string);
 
             var obj = new BaseClassTest<object>(typeof(int))
-            {
-                Is = expected
-            };
+                          {
+                              Is = expected
+                          };
 
             var actual = obj.Is;
 

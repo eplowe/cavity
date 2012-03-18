@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
     using Cavity.Models;
+
     using Xunit;
 
     public sealed class LexicalCollectionFacts
@@ -46,9 +48,9 @@
             const string expected = "Example";
 
             var obj = new LexicalCollection(NormalityComparer.Ordinal)
-            {
-                expected
-            };
+                          {
+                              expected
+                          };
 
             var actual = obj[expected].CanonicalForm;
 
@@ -81,9 +83,9 @@
             const string expected = "Example";
 
             var obj = new LexicalCollection(NormalityComparer.Ordinal)
-            {
-                new LexicalItem(NormalityComparer.CurrentCulture, expected)
-            };
+                          {
+                              new LexicalItem(NormalityComparer.CurrentCulture, expected)
+                          };
 
             var actual = obj.First().CanonicalForm;
 
@@ -95,7 +97,10 @@
         {
             var obj = new LexicalCollection(NormalityComparer.Ordinal);
 
+            // ReSharper disable RedundantCast
             Assert.Throws<ArgumentNullException>(() => obj.Add(null as LexicalItem));
+
+            // ReSharper restore RedundantCast
         }
 
         [Fact]
@@ -104,9 +109,9 @@
             const string expected = "Example";
 
             var obj = new LexicalCollection(NormalityComparer.Ordinal)
-            {
-                expected
-            };
+                          {
+                              expected
+                          };
 
             var actual = obj.First().CanonicalForm;
 
@@ -131,10 +136,10 @@
             const string expected = "Example";
 
             var obj = new LexicalCollection(NormalityComparer.Ordinal)
-            {
-                expected, 
-                expected
-            };
+                          {
+                              expected, 
+                              expected
+                          };
 
             Assert.Equal(1, obj.Count());
         }
@@ -156,9 +161,9 @@
         public void op_Contains_string()
         {
             var obj = new LexicalCollection(NormalityComparer.Ordinal)
-            {
-                "Example"
-            };
+                          {
+                              "Example"
+                          };
 
             Assert.True(obj.Contains("Example"));
         }
@@ -203,9 +208,9 @@
         public void op_Contains_string_whenOrdinalIgnoreCaseComparer()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                "Example"
-            };
+                          {
+                              "Example"
+                          };
 
             Assert.True(obj.Contains("EXAMPLE"));
         }
@@ -232,14 +237,14 @@
         public void op_MatchBeginning_string()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                new LexicalItem(NormalityComparer.Ordinal, "Example")
-            };
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "Example")
+                          };
 
             var expected = new LexicalMatch(obj.First())
-            {
-                Suffix = "test case"
-            };
+                               {
+                                   Suffix = "test case"
+                               };
             var actual = obj.MatchBeginning("example test case");
 
             Assert.Equal(expected, actual);
@@ -249,9 +254,9 @@
         public void op_MatchBeginning_stringEmpty()
         {
             var obj = new LexicalCollection(NormalityComparer.Ordinal)
-            {
-                new LexicalItem(NormalityComparer.Ordinal, "Example")
-            };
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "Example")
+                          };
 
             Assert.Null(obj.MatchBeginning(string.Empty));
         }
@@ -260,9 +265,9 @@
         public void op_MatchBeginning_stringNull()
         {
             var obj = new LexicalCollection(NormalityComparer.Ordinal)
-            {
-                new LexicalItem(NormalityComparer.Ordinal, "Example")
-            };
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "Example")
+                          };
 
             Assert.Throws<ArgumentNullException>(() => obj.MatchBeginning(null));
         }
@@ -273,9 +278,9 @@
             const string expected = "Example";
 
             var obj = new LexicalCollection(NormalityComparer.Ordinal)
-            {
-                expected
-            };
+                          {
+                              expected
+                          };
 
             Assert.Null(obj.MatchBeginning("a  z"));
         }
@@ -284,14 +289,14 @@
         public void op_MatchEnding_string()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                new LexicalItem(NormalityComparer.Ordinal, "Example")
-            };
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "Example")
+                          };
 
             var expected = new LexicalMatch(obj.First())
-            {
-                Prefix = "This is an"
-            };
+                               {
+                                   Prefix = "This is an"
+                               };
             var actual = obj.MatchEnding("This is an example");
 
             Assert.Equal(expected, actual);
@@ -301,9 +306,9 @@
         public void op_MatchEnding_stringEmpty()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                new LexicalItem(NormalityComparer.Ordinal, "Example")
-            };
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "Example")
+                          };
 
             Assert.Null(obj.MatchEnding(string.Empty));
         }
@@ -312,9 +317,9 @@
         public void op_MatchEnding_stringNull()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                new LexicalItem(NormalityComparer.Ordinal, "Example")
-            };
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "Example")
+                          };
 
             Assert.Throws<ArgumentNullException>(() => obj.MatchEnding(null));
         }
@@ -323,15 +328,15 @@
         public void op_MatchWithin_string()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                new LexicalItem(NormalityComparer.Ordinal, "Example")
-            };
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "Example")
+                          };
 
             var expected = new LexicalMatch(obj.First())
-            {
-                Prefix = "This is an", 
-                Suffix = "test case"
-            };
+                               {
+                                   Prefix = "This is an", 
+                                   Suffix = "test case"
+                               };
             var actual = obj.MatchWithin("This is an example test case");
 
             Assert.Equal(expected, actual);
@@ -341,9 +346,9 @@
         public void op_MatchWithin_stringEmpty()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                new LexicalItem(NormalityComparer.Ordinal, "Example")
-            };
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "Example")
+                          };
 
             Assert.Null(obj.MatchWithin(string.Empty));
         }
@@ -352,9 +357,9 @@
         public void op_MatchWithin_stringNull()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                new LexicalItem(NormalityComparer.Ordinal, "Example")
-            };
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "Example")
+                          };
 
             Assert.Throws<ArgumentNullException>(() => obj.MatchWithin(null));
         }
@@ -363,9 +368,9 @@
         public void op_Match_string()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                new LexicalItem(NormalityComparer.Ordinal, "Example")
-            };
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "Example")
+                          };
 
             var expected = new LexicalMatch(obj.First());
             var actual = obj.Match("EXAMPLE");
@@ -377,9 +382,9 @@
         public void op_Match_stringEmpty()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                new LexicalItem(NormalityComparer.Ordinal, "Example")
-            };
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "Example")
+                          };
 
             Assert.Null(obj.Match(string.Empty));
         }
@@ -388,9 +393,9 @@
         public void op_Match_stringNull()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
-            {
-                new LexicalItem(NormalityComparer.Ordinal, "Example")
-            };
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "Example")
+                          };
 
             Assert.Throws<ArgumentNullException>(() => obj.Match(null));
         }

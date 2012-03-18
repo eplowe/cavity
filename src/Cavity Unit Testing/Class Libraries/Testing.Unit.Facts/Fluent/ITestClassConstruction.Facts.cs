@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Fluent
 {
     using Moq;
+
     using Xunit;
 
     public sealed class ITestClassConstructionFacts

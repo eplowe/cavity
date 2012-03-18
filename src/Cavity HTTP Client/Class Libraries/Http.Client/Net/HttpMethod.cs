@@ -118,10 +118,11 @@
                     throw new ArgumentOutOfRangeException("value");
                 }
 
-                if (0 != value.ToUpperInvariant()
-                             .ToArray()
-                             .Where(index => !index.IsBoundedBy('A', 'Z'))
-                             .Count())
+                var count = value
+                    .ToUpperInvariant()
+                    .ToArray()
+                    .Count(index => !index.IsBoundedBy('A', 'Z'));
+                if (0 != count)
                 {
                     throw new FormatException("value");
                 }

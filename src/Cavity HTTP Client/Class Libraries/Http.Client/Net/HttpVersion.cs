@@ -9,7 +9,7 @@
 
         private int _minor;
 
-        public HttpVersion(int major,
+        public HttpVersion(int major, 
                            int minor)
             : this()
         {
@@ -86,7 +86,7 @@
             var parts = value.Substring("HTTP/".Length).Split('.');
 
             return new HttpVersion(
-                int.Parse(parts[0], CultureInfo.InvariantCulture),
+                int.Parse(parts[0], CultureInfo.InvariantCulture), 
                 int.Parse(parts[1], CultureInfo.InvariantCulture));
         }
 

@@ -5,8 +5,9 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using Cavity;
+
     using Cavity.IO;
+
     using Xunit;
 
     public sealed class ExcelFileFacts
@@ -15,13 +16,13 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<ExcelFile>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .NoDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IEnumerable<ExcelWorksheet>>()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IEnumerable<ExcelWorksheet>>()
+                            .Result);
         }
 
         [Fact]
@@ -38,20 +39,6 @@
         public void ctor_FileInfoNull()
         {
             Assert.Throws<ArgumentNullException>(() => new ExcelFile(null));
-        }
-
-        [Fact]
-        public void op_IEnumerable_GetEnumerator()
-        {
-            var file = new DirectoryInfo(Environment.CurrentDirectory)
-                .ToDirectory("Spreadsheets")
-                .ToFile("NameValue.xlsx");
-
-            IEnumerable enumerable = new ExcelFile(file);
-            foreach (var entry in enumerable.Cast<ExcelWorksheet>())
-            {
-                Assert.Equal("Sheet1$", entry.Name);
-            }
         }
 
         [Fact]
@@ -94,6 +81,20 @@
         }
 
         [Fact]
+        public void op_IEnumerable_GetEnumerator()
+        {
+            var file = new DirectoryInfo(Environment.CurrentDirectory)
+                .ToDirectory("Spreadsheets")
+                .ToFile("NameValue.xlsx");
+
+            IEnumerable enumerable = new ExcelFile(file);
+            foreach (var entry in enumerable.Cast<ExcelWorksheet>())
+            {
+                Assert.Equal("Sheet1$", entry.Name);
+            }
+        }
+
+        [Fact]
         public void op_IEnumerable_GetEnumerator_whenFileMissing()
         {
             var file = new FileInfo("{0}.xlsx".FormatWith(Guid.NewGuid()));
@@ -107,9 +108,9 @@
         public void prop_Info()
         {
             Assert.True(new PropertyExpectations<ExcelFile>(x => x.Info)
-                .TypeIs<FileInfo>()
-                .IsNotDecorated()
-                .Result);
+                            .TypeIs<FileInfo>()
+                            .IsNotDecorated()
+                            .Result);
         }
     }
 }

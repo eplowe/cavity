@@ -2,6 +2,7 @@
 {
     using Cavity.Fluent;
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class SealedClassTestOfTFacts
@@ -42,9 +43,9 @@
             const bool expected = true;
 
             var obj = new SealedClassTest<object>(false)
-            {
-                Value = expected
-            };
+                          {
+                              Value = expected
+                          };
 
             var actual = obj.Value;
 

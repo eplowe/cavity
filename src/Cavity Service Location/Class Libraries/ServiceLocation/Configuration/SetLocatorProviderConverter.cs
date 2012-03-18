@@ -6,14 +6,14 @@
 
     public sealed class SetLocatorProviderConverter : TypeConverter
     {
-        public override bool CanConvertFrom(ITypeDescriptorContext context,
+        public override bool CanConvertFrom(ITypeDescriptorContext context, 
                                             Type sourceType)
         {
-            return typeof(string).Equals(sourceType) || base.CanConvertFrom(context, sourceType);
+            return typeof(string) == sourceType || base.CanConvertFrom(context, sourceType);
         }
 
-        public override object ConvertFrom(ITypeDescriptorContext context,
-                                           CultureInfo culture,
+        public override object ConvertFrom(ITypeDescriptorContext context, 
+                                           CultureInfo culture, 
                                            object value)
         {
             var name = value as string;
@@ -29,9 +29,9 @@
             return base.ConvertFrom(context, culture, value);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context,
-                                         CultureInfo culture,
-                                         object value,
+        public override object ConvertTo(ITypeDescriptorContext context, 
+                                         CultureInfo culture, 
+                                         object value, 
                                          Type destinationType)
         {
             throw new NotSupportedException();

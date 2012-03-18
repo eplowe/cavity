@@ -4,6 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Xml;
     using System.Xml.XPath;
+
     using Xunit;
 
     public sealed class XPathNavigatorExtensionMethodsFacts

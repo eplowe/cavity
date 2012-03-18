@@ -2,7 +2,9 @@
 {
     using Cavity.Collections;
     using Cavity.Models;
+
     using Moq;
+
     using Xunit;
 
     public sealed class IStoreLexiconFacts

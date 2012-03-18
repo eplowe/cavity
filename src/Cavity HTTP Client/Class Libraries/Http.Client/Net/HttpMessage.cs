@@ -5,10 +5,13 @@
     using System.Globalization;
     using System.IO;
     using System.Text;
+
     using Cavity.Net.Mime;
+
     using Microsoft.Practices.ServiceLocation;
 
-    public abstract class HttpMessage : ComparableObject, IHttpMessage
+    public abstract class HttpMessage : ComparableObject, 
+                                        IHttpMessage
     {
         private IContent _body;
 
@@ -85,7 +88,7 @@
             if (null != contentType)
             {
                 Body = ToContent(
-                    reader,
+                    reader, 
                     ServiceLocator.Current.GetInstance<IMediaType>(contentType.MediaType));
             }
         }
@@ -105,7 +108,7 @@
             }
         }
 
-        private static IContent ToContent(TextReader reader,
+        private static IContent ToContent(TextReader reader, 
                                           IMediaType mediaType)
         {
             if (null == mediaType)

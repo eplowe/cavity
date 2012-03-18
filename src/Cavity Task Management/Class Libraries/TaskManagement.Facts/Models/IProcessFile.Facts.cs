@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Models
 {
     using Cavity.Threading;
+
     using Xunit;
 
     public sealed class IProcessFileFacts

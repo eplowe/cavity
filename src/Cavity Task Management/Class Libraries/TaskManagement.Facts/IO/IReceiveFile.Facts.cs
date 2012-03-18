@@ -2,7 +2,9 @@
 {
     using System;
     using System.IO;
+
     using Moq;
+
     using Xunit;
 
     public sealed class IReceiveFileFacts

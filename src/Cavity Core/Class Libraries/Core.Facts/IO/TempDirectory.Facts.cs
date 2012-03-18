@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+
     using Xunit;
 
     public sealed class TempDirectoryFacts

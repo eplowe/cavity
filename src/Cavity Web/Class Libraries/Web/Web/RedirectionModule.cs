@@ -3,25 +3,13 @@
     using System;
     using System.Net;
     using System.Web;
+
     using Cavity.Configuration;
 
     public sealed class RedirectionModule : IHttpModule
     {
-        public void Dispose()
-        {
-        }
-
-        public void Init(HttpApplication context)
-        {
-            if (null == context)
-            {
-                throw new ArgumentNullException("context");
-            }
-
-            context.BeginRequest += OnBeginRequest;
-        }
-
-        public void OnBeginRequest(object sender, EventArgs e)
+        public void OnBeginRequest(object sender, 
+                                   EventArgs e)
         {
             if (null == sender)
             {
@@ -43,6 +31,20 @@
             response.Cache.SetCacheability(HttpCacheability.Public);
             response.Cache.SetExpires(DateTime.UtcNow.AddHours(1));
             response.End();
+        }
+
+        public void Dispose()
+        {
+        }
+
+        public void Init(HttpApplication context)
+        {
+            if (null == context)
+            {
+                throw new ArgumentNullException("context");
+            }
+
+            context.BeginRequest += OnBeginRequest;
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Tests
 {
     using System;
+
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class AttributeMemberTestFacts
@@ -54,9 +56,9 @@
             var expected = typeof(Attribute1Attribute);
 
             var obj = new AttributeMemberTest(typeof(object), null)
-            {
-                Attribute = expected
-            };
+                          {
+                              Attribute = expected
+                          };
 
             var actual = obj.Attribute;
 

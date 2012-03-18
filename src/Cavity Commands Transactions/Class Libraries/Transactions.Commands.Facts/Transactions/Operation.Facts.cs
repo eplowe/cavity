@@ -3,9 +3,11 @@
     using System;
     using System.IO;
     using System.Linq;
+
     using Cavity.Collections;
     using Cavity.IO;
     using Cavity.Xml.XPath;
+
     using Xunit;
 
     public sealed class OperationFacts
@@ -70,9 +72,9 @@
                     var path1 = temp.Info.ToDirectory("1").FullName;
                     var path2 = temp.Info.ToDirectory("2").FullName;
                     var obj = new Operation(Guid.NewGuid())
-                    {
-                        Info = Guid.NewGuid().ToString()
-                    };
+                                  {
+                                      Info = Guid.NewGuid().ToString()
+                                  };
                     obj.Commands.Add(new DirectoryCreateCommand(path1));
                     obj.Commands.Add(new DirectoryCreateCommand(path2));
 
@@ -91,9 +93,9 @@
         public void op_Do_whenEmpty()
         {
             var obj = new Operation(Guid.NewGuid())
-            {
-                Info = Guid.NewGuid().ToString()
-            };
+                          {
+                              Info = Guid.NewGuid().ToString()
+                          };
 
             Assert.True(obj.Do());
         }
@@ -115,9 +117,9 @@
                     var path1 = temp.Info.ToDirectory("1").FullName;
                     var path2 = temp.Info.ToDirectory("1").ToDirectory("2").FullName;
                     var obj = new Operation(Guid.NewGuid())
-                    {
-                        Info = Guid.NewGuid().ToString()
-                    };
+                                  {
+                                      Info = Guid.NewGuid().ToString()
+                                  };
                     obj.Commands.Add(new DirectoryCreateCommand(path1));
                     obj.Commands.Add(new DirectoryCreateCommand(path2));
 
@@ -140,9 +142,9 @@
         public void op_Undo_whenEmpty()
         {
             var obj = new Operation(Guid.NewGuid())
-            {
-                Info = Guid.NewGuid().ToString()
-            };
+                          {
+                              Info = Guid.NewGuid().ToString()
+                          };
 
             Assert.True(obj.Undo());
         }
@@ -186,9 +188,9 @@
             using (var temp = new TempDirectory())
             {
                 var obj = new Operation(Guid.NewGuid())
-                {
-                    Info = "example"
-                };
+                              {
+                                  Info = "example"
+                              };
                 obj.Commands.Add(new DirectoryCreateCommand(temp.Info.FullName));
 
                 var navigator = obj.XmlSerialize().CreateNavigator();

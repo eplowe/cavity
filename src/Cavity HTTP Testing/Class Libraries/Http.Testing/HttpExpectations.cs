@@ -8,21 +8,23 @@
     using System.Linq;
     using System.Net;
     using System.Text;
+
     using Cavity.IO;
     using Cavity.Net;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't fundamentally a collection.")]
-    public sealed class HttpExpectations : Collection<HttpExpectation>, IHttpExpectations
+    public sealed class HttpExpectations : Collection<HttpExpectation>, 
+                                           IHttpExpectations
     {
         private static readonly string[] _request = new[]
-        {
-            ">request>{0}".FormatWith(Environment.NewLine)
-        };
+                                                        {
+                                                            ">request>{0}".FormatWith(Environment.NewLine)
+                                                        };
 
         private static readonly string[] _response = new[]
-        {
-            "<response<{0}".FormatWith(Environment.NewLine)
-        };
+                                                         {
+                                                             "<response<{0}".FormatWith(Environment.NewLine)
+                                                         };
 
         public HttpExpectations(IEnumerable<HttpExpectation> expectations)
         {
@@ -45,11 +47,7 @@
         {
             get
             {
-                var cookies = new CookieContainer();
-
-                return 0 == Items
-                                .Where(x => !x.Verify(cookies))
-                                .Count();
+                return 0 == Items.Count(x => !x.Verify(new CookieContainer()));
             }
         }
 
@@ -93,13 +91,13 @@
                 .Substring(0, index)
                 .RemoveFromEnd(Environment.NewLine, StringComparison.Ordinal);
             return new HttpExpectation
-            {
-                Exchange = new HttpExchange
-                {
-                    Request = HttpRequest.FromString(request), 
-                    Response = HttpResponse.FromString(response)
-                }
-            };
+                       {
+                           Exchange = new HttpExchange
+                                          {
+                                              Request = HttpRequest.FromString(request), 
+                                              Response = HttpResponse.FromString(response)
+                                          }
+                       };
         }
 
         private static IEnumerable<HttpExpectation> FromString(string value)
@@ -121,9 +119,9 @@
             var buffer = new StringBuilder();
 
             var eol = new[]
-            {
-                Environment.NewLine
-            };
+                          {
+                              Environment.NewLine
+                          };
             foreach (var line in value.Split(eol, StringSplitOptions.RemoveEmptyEntries))
             {
                 if (line.StartsWith("#", StringComparison.OrdinalIgnoreCase))

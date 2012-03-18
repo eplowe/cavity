@@ -3,6 +3,7 @@
     using System;
     using System.Globalization;
     using System.Xml.Serialization;
+
     using Cavity.Fluent;
     using Cavity.Properties;
 
@@ -13,7 +14,7 @@
         {
         }
 
-        public XmlRootTest(string elementName,
+        public XmlRootTest(string elementName, 
                            string @namespace)
         {
             ElementName = elementName;

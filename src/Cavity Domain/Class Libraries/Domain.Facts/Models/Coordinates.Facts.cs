@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Models
 {
     using System;
+
     using Cavity.Xml.XPath;
+
     using Xunit;
 
     public sealed class CoordinatesFacts
@@ -32,16 +34,16 @@
         public void opEquality_Coordinates_Coordinates()
         {
             var obj = new Coordinates
-            {
-                Latitude = 53.493192m, 
-                Longitude = -2.105470m
-            };
+                          {
+                              Latitude = 53.493192m, 
+                              Longitude = -2.105470m
+                          };
 
             var comparand = new Coordinates
-            {
-                Latitude = 53.493192m, 
-                Longitude = -2.105470m
-            };
+                                {
+                                    Latitude = 53.493192m, 
+                                    Longitude = -2.105470m
+                                };
 
             Assert.True(obj == comparand);
         }
@@ -51,10 +53,10 @@
         {
             var obj = new Coordinates();
             var comparand = new Coordinates
-            {
-                Latitude = 53.493192m, 
-                Longitude = -2.105470m
-            };
+                                {
+                                    Latitude = 53.493192m, 
+                                    Longitude = -2.105470m
+                                };
 
             Assert.True(obj != comparand);
         }
@@ -63,16 +65,16 @@
         public void op_Equals_object()
         {
             var obj = new Coordinates
-            {
-                Latitude = 53.493192m, 
-                Longitude = -2.105470m
-            };
+                          {
+                              Latitude = 53.493192m, 
+                              Longitude = -2.105470m
+                          };
 
             var comparand = new Coordinates
-            {
-                Latitude = 53.493192m, 
-                Longitude = -2.105470m
-            };
+                                {
+                                    Latitude = 53.493192m, 
+                                    Longitude = -2.105470m
+                                };
 
             Assert.True(obj.Equals(comparand));
         }
@@ -81,10 +83,10 @@
         public void op_Equals_objectDiffers()
         {
             var comparand = new Coordinates
-            {
-                Latitude = 53.493192m, 
-                Longitude = -2.105470m
-            };
+                                {
+                                    Latitude = 53.493192m, 
+                                    Longitude = -2.105470m
+                                };
 
             Assert.False(new Coordinates().Equals(comparand));
         }
@@ -108,10 +110,10 @@
         {
             const int expected = -841705376;
             var obj = new Coordinates
-            {
-                Latitude = 53.493192m, 
-                Longitude = -2.105470m
-            };
+                          {
+                              Latitude = 53.493192m, 
+                              Longitude = -2.105470m
+                          };
 
             var actual = obj.GetHashCode();
 
@@ -177,10 +179,10 @@
         public void xml_deserialize()
         {
             var expected = new Coordinates
-            {
-                Latitude = 53.493192m, 
-                Longitude = -2.105470m
-            };
+                               {
+                                   Latitude = 53.493192m, 
+                                   Longitude = -2.105470m
+                               };
             var actual = "<coordinates latitude='53.493192' longitude='-2.105470' />".XmlDeserialize<Coordinates>();
 
             Assert.Equal(expected, actual);
@@ -199,10 +201,10 @@
         public void xml_serialize()
         {
             var obj = new Coordinates
-            {
-                Latitude = 53.493192m, 
-                Longitude = -2.105470m
-            };
+                          {
+                              Latitude = 53.493192m, 
+                              Longitude = -2.105470m
+                          };
 
             var navigator = obj.XmlSerialize().CreateNavigator();
 

@@ -2,7 +2,9 @@
 {
     using System;
     using System.IO;
+
     using Cavity.Xml.XPath;
+
     using Xunit;
 
     public sealed class DirectoryCreateCommandFacts
@@ -111,10 +113,10 @@
             using (var temp = new TempDirectory())
             {
                 var obj = new DirectoryCreateCommand
-                {
-                    Path = temp.Info.ToDirectory("example").FullName,
-                    Undo = true
-                };
+                              {
+                                  Path = temp.Info.ToDirectory("example").FullName, 
+                                  Undo = true
+                              };
 
                 Assert.True(obj.Act());
                 Assert.True(obj.Undo);
@@ -128,10 +130,10 @@
             using (var temp = new TempDirectory())
             {
                 var obj = new DirectoryCreateCommand
-                {
-                    Path = temp.Info.FullName,
-                    Undo = true
-                };
+                              {
+                                  Path = temp.Info.FullName, 
+                                  Undo = true
+                              };
 
                 Assert.True(obj.Act());
                 Assert.False(obj.Undo);
@@ -157,10 +159,10 @@
             using (var temp = new TempDirectory())
             {
                 var obj = new DirectoryCreateCommand
-                {
-                    Path = temp.Info.ToDirectory("example").FullName,
-                    Undo = true
-                };
+                              {
+                                  Path = temp.Info.ToDirectory("example").FullName, 
+                                  Undo = true
+                              };
 
                 Assert.True(obj.Act());
                 Assert.True(obj.Revert());
@@ -174,10 +176,10 @@
             using (var temp = new TempDirectory())
             {
                 var obj = new DirectoryCreateCommand
-                {
-                    Path = temp.Info.ToDirectory("example").FullName,
-                    Undo = true
-                };
+                              {
+                                  Path = temp.Info.ToDirectory("example").FullName, 
+                                  Undo = true
+                              };
 
                 Assert.True(obj.Act());
                 obj.Undo = false;
@@ -193,10 +195,10 @@
             using (var temp = new TempDirectory())
             {
                 var obj = new DirectoryCreateCommand(true)
-                {
-                    Path = temp.Info.ToDirectory("example").FullName,
-                    Undo = true
-                };
+                              {
+                                  Path = temp.Info.ToDirectory("example").FullName, 
+                                  Undo = true
+                              };
 
                 Assert.True(obj.Act());
                 Assert.True(obj.Revert());
@@ -232,10 +234,10 @@
         public void serialize()
         {
             var obj = new DirectoryCreateCommand
-            {
-                Path = @"C:\",
-                Undo = true
-            };
+                          {
+                              Path = @"C:\", 
+                              Undo = true
+                          };
 
             var navigator = obj.XmlSerialize().CreateNavigator();
 

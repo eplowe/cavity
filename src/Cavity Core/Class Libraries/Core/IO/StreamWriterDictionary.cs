@@ -12,7 +12,8 @@
     using System.Text;
 
     [Serializable]
-    public class StreamWriterDictionary : Dictionary<string, StreamWriter>, IDisposable
+    public class StreamWriterDictionary : Dictionary<string, StreamWriter>, 
+                                          IDisposable
     {
         public StreamWriterDictionary()
         {

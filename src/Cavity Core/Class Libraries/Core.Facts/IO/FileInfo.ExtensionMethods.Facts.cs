@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Xml;
     using System.Xml.XPath;
+
     using Xunit;
 
     public sealed class FileInfoExtensionMethodsFacts
@@ -25,21 +26,6 @@
         public void op_AppendLine_FileInfo_object()
         {
             const string expected = "example";
-            using (var temp = new TempDirectory())
-            {
-                var file = temp.Info.ToFile(Guid.NewGuid());
-                Assert.Same(file, file.AppendLine(expected));
-
-                var actual = file.ReadToEnd();
-
-                Assert.Equal(expected + Environment.NewLine, actual);
-            }
-        }
-
-        [Fact]
-        public void op_AppendLine_FileInfo_object_whenStringEmpty()
-        {
-            var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
@@ -83,6 +69,21 @@
         }
 
         [Fact]
+        public void op_AppendLine_FileInfo_object_whenStringEmpty()
+        {
+            var expected = string.Empty;
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile(Guid.NewGuid());
+                Assert.Same(file, file.AppendLine(expected));
+
+                var actual = file.ReadToEnd();
+
+                Assert.Equal(expected + Environment.NewLine, actual);
+            }
+        }
+
+        [Fact]
         public void op_Append_FileInfoNull_object()
         {
             Assert.Throws<ArgumentNullException>(() => (null as FileInfo).Append("example"));
@@ -92,21 +93,6 @@
         public void op_Append_FileInfo_object()
         {
             const string expected = "example";
-            using (var temp = new TempDirectory())
-            {
-                var file = temp.Info.ToFile(Guid.NewGuid());
-                Assert.Same(file, file.Append(expected));
-
-                var actual = file.ReadToEnd();
-
-                Assert.Equal(expected, actual);
-            }
-        }
-
-        [Fact]
-        public void op_Append_FileInfo_object_whenStringEmpty()
-        {
-            var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
@@ -141,6 +127,21 @@
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
                 Assert.Same(file, file.CreateNew(string.Empty));
+                Assert.Same(file, file.Append(expected));
+
+                var actual = file.ReadToEnd();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_Append_FileInfo_object_whenStringEmpty()
+        {
+            var expected = string.Empty;
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile(Guid.NewGuid());
                 Assert.Same(file, file.Append(expected));
 
                 var actual = file.ReadToEnd();
@@ -192,21 +193,6 @@
         }
 
         [Fact]
-        public void op_CreateNew_FileInfo_object_whenStringEmpty()
-        {
-            var expected = string.Empty;
-            using (var temp = new TempDirectory())
-            {
-                var file = temp.Info.ToFile(Guid.NewGuid());
-                Assert.Same(file, file.CreateNew(expected));
-
-                var actual = file.ReadToEnd();
-
-                Assert.Equal(expected, actual);
-            }
-        }
-
-        [Fact]
         public void op_CreateNew_FileInfo_objectNull()
         {
             var expected = string.Empty;
@@ -230,6 +216,21 @@
                 Assert.Same(file, file.CreateNew(string.Empty));
 
                 Assert.Throws<IOException>(() => file.CreateNew("example"));
+            }
+        }
+
+        [Fact]
+        public void op_CreateNew_FileInfo_object_whenStringEmpty()
+        {
+            var expected = string.Empty;
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile(Guid.NewGuid());
+                Assert.Same(file, file.CreateNew(expected));
+
+                var actual = file.ReadToEnd();
+
+                Assert.Equal(expected, actual);
             }
         }
 
@@ -446,6 +447,25 @@
         }
 
         [Fact]
+        public void op_Truncate_FileInfoNull_IXPathNavigable()
+        {
+            const string expected = "<example />";
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile(Guid.NewGuid());
+                var xml = new XmlDocument();
+                xml.LoadXml(expected);
+
+                Assert.Same(file, file.CreateNew(string.Empty));
+                Assert.Same(file, file.Truncate(expected));
+
+                var actual = file.ReadToEnd();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
         public void op_Truncate_FileInfoNull_string()
         {
             Assert.Throws<ArgumentNullException>(() => (null as FileInfo).Truncate("example"));
@@ -492,25 +512,6 @@
                 var file = temp.Info.ToFile(Guid.NewGuid());
                 Assert.Same(file, file.CreateNew(string.Empty));
                 Assert.Same(file, file.Truncate(null as string));
-
-                var actual = file.ReadToEnd();
-
-                Assert.Equal(expected, actual);
-            }
-        }
-
-        [Fact]
-        public void op_Truncate_FileInfoNull_IXPathNavigable()
-        {
-            const string expected = "<example />";
-            using (var temp = new TempDirectory())
-            {
-                var file = temp.Info.ToFile(Guid.NewGuid());
-                var xml = new XmlDocument();
-                xml.LoadXml(expected);
-
-                Assert.Same(file, file.CreateNew(string.Empty));
-                Assert.Same(file, file.Truncate(expected));
 
                 var actual = file.ReadToEnd();
 

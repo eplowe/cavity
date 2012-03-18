@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Collections
 {
     using System.Collections.Generic;
+
     using Cavity.Globalization;
+
     using Xunit;
 
     public sealed class TranslationDictionaryOfTFacts
@@ -28,9 +30,9 @@
         public void op_Add_Translation()
         {
             var obj = new TranslationDictionary<int>
-            {
-                new Translation<int>(123, "en")
-            };
+                          {
+                              new Translation<int>(123, "en")
+                          };
 
             Assert.Equal(1, obj.Count);
         }
@@ -40,9 +42,9 @@
         {
             var item = new Translation<int>(123, "en");
             var obj = new TranslationDictionary<int>
-            {
-                item
-            };
+                          {
+                              item
+                          };
 
             Assert.True(obj.Contains(item));
         }
@@ -51,9 +53,9 @@
         public void op_GetEnumerator()
         {
             var obj = new TranslationDictionary<int>
-            {
-                new Translation<int>(123, "en")
-            };
+                          {
+                              new Translation<int>(123, "en")
+                          };
 
             foreach (var item in obj)
             {
@@ -68,9 +70,9 @@
         {
             var item = new Translation<int>(123, "en");
             var obj = new TranslationDictionary<int>
-            {
-                item
-            };
+                          {
+                              item
+                          };
 
             Assert.True(obj.Remove(item));
             Assert.Equal(0, obj.Count);

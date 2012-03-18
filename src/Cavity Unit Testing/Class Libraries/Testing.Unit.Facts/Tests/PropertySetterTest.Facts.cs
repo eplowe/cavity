@@ -2,7 +2,9 @@
 {
     using System;
     using System.Reflection;
+
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class PropertySetterTestFacts
@@ -35,9 +37,9 @@
         public void op_Check_whenExpectedException()
         {
             var obj = new PropertySetterTest(typeof(PropertiedClass1).GetProperty("AutoBoolean"), false)
-            {
-                ExpectedException = typeof(ArgumentException)
-            };
+                          {
+                              ExpectedException = typeof(ArgumentException)
+                          };
 
             Assert.Throws<UnitTestException>(() => obj.Check());
         }
@@ -60,9 +62,9 @@
             const bool expected = true;
 
             var obj = new PropertySetterTest(null, false)
-            {
-                Value = expected
-            };
+                          {
+                              Value = expected
+                          };
 
             var actual = obj.Value;
 
@@ -75,9 +77,9 @@
             var expected = typeof(ArgumentException);
 
             var obj = new PropertySetterTest(null, false)
-            {
-                ExpectedException = expected
-            };
+                          {
+                              ExpectedException = expected
+                          };
 
             var actual = obj.ExpectedException;
 

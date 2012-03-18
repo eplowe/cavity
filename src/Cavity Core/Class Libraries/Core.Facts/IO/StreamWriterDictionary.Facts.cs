@@ -6,6 +6,7 @@
     using System.IO;
     using System.Reflection;
     using System.Runtime.Serialization;
+
     using Xunit;
 
     public sealed class StreamWriterDictionaryFacts
@@ -73,7 +74,10 @@
 
                 obj.Dispose();
 
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<InvalidOperationException>(() => obj.Item(file.Info));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -106,7 +110,10 @@
         {
             using (var obj = new StreamWriterDictionary())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => obj.Item(null as FileInfo));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -147,7 +154,10 @@
         {
             using (var obj = new StreamWriterDictionary())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentException>(() => obj.Item(string.Empty));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 
@@ -156,7 +166,10 @@
         {
             using (var obj = new StreamWriterDictionary())
             {
+                // ReSharper disable AccessToDisposedClosure
                 Assert.Throws<ArgumentNullException>(() => obj.Item(null as string));
+
+                // ReSharper restore AccessToDisposedClosure
             }
         }
 

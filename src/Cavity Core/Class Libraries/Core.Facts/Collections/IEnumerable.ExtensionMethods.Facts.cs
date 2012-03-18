@@ -4,7 +4,9 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+
     using Moq;
+
     using Xunit;
 
     public sealed class IEnumerableExtensionMethodsFacts
@@ -19,8 +21,8 @@
         public void op_Concat_IEnumerableStringEmpty_char()
         {
             var array = new string[]
-            {
-            };
+                            {
+                            };
 
             var expected = string.Empty;
             var actual = array.Concat(',');
@@ -32,8 +34,8 @@
         public void op_Concat_IEnumerableStringEmpty_string()
         {
             var array = new string[]
-            {
-            };
+                            {
+                            };
 
             var expected = string.Empty;
             var actual = array.Concat(", ");
@@ -61,9 +63,9 @@
         public void op_Concat_IEnumerableString_char()
         {
             var array = new[]
-            {
-                "a", "b", "c"
-            };
+                            {
+                                "a", "b", "c"
+                            };
 
             const string expected = "a,b,c";
             var actual = array.Concat(',');
@@ -75,9 +77,9 @@
         public void op_Concat_IEnumerableString_string()
         {
             var array = new[]
-            {
-                "a", "b", "c"
-            };
+                            {
+                                "a", "b", "c"
+                            };
 
             const string expected = "a, b, c";
             var actual = array.Concat(", ");
@@ -89,9 +91,9 @@
         public void op_Concat_IEnumerableString_stringEmpty()
         {
             var array = new[]
-            {
-                "a", "b", "c"
-            };
+                            {
+                                "a", "b", "c"
+                            };
 
             const string expected = "abc";
             var actual = array.Concat(string.Empty);
@@ -103,9 +105,9 @@
         public void op_Concat_IEnumerableString_stringNull()
         {
             var array = new[]
-            {
-                "a", "b", "c"
-            };
+                            {
+                                "a", "b", "c"
+                            };
 
             Assert.Throws<ArgumentNullException>(() => array.Concat(null));
         }
@@ -114,9 +116,9 @@
         public void op_IsEmpty_IEnumerable()
         {
             var obj = new List<string>
-            {
-                "item"
-            };
+                          {
+                              "item"
+                          };
 
             Assert.False(obj.IsEmpty());
         }
@@ -153,9 +155,21 @@
         }
 
         [Fact]
+        public void op_ToHashSet_IEnumerableEmpty_IEqualityComparerOfT()
+        {
+            Assert.Empty(new List<string>().ToHashSet(new Mock<IEqualityComparer<string>>().Object));
+        }
+
+        [Fact]
         public void op_ToHashSet_IEnumerableNull()
         {
             Assert.Throws<ArgumentNullException>(() => (null as IEnumerable<int>).ToHashSet());
+        }
+
+        [Fact]
+        public void op_ToHashSet_IEnumerableNull_IEqualityComparerOfT()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as IEnumerable<int>).ToHashSet(new Mock<IEqualityComparer<int>>().Object));
         }
 
         [Fact]
@@ -169,18 +183,6 @@
 
             Assert.Equal("a", actual.First());
             Assert.Equal("z", actual.Last());
-        }
-
-        [Fact]
-        public void op_ToHashSet_IEnumerableEmpty_IEqualityComparerOfT()
-        {
-            Assert.Empty(new List<string>().ToHashSet(new Mock<IEqualityComparer<string>>().Object));
-        }
-
-        [Fact]
-        public void op_ToHashSet_IEnumerableNull_IEqualityComparerOfT()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as IEnumerable<int>).ToHashSet(new Mock<IEqualityComparer<int>>().Object));
         }
 
         [Fact]

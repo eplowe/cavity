@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Xml;
+
     using Cavity.Data;
+
     using Xunit;
 
     public sealed class KeyStringDictionaryFacts
@@ -30,10 +32,10 @@
         public void indexer_int()
         {
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("zero", "0"), 
-                new KeyStringPair("one", "1")
-            };
+                          {
+                              new KeyStringPair("zero", "0"), 
+                              new KeyStringPair("one", "1")
+                          };
 
             for (var i = 0; i < obj.Count; i++)
             {
@@ -51,9 +53,9 @@
         public void op_Add_KeyStringPair()
         {
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", "value")
-            };
+                          {
+                              new KeyStringPair("key", "value")
+                          };
 
             Assert.Equal(1, obj.Count);
         }
@@ -62,9 +64,9 @@
         public void op_ContainsKey_string()
         {
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", "value")
-            };
+                          {
+                              new KeyStringPair("key", "value")
+                          };
 
             Assert.True(obj.ContainsKey("key"));
             Assert.False(obj.ContainsKey("example"));
@@ -75,9 +77,9 @@
         {
             var item = new KeyStringPair("key", "value");
             var obj = new KeyStringDictionary
-            {
-                item
-            };
+                          {
+                              item
+                          };
 
             Assert.True(obj.Contains(item));
         }
@@ -86,9 +88,9 @@
         public void op_GetEnumerator()
         {
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", "value")
-            };
+                          {
+                              new KeyStringPair("key", "value")
+                          };
 
             foreach (var item in obj)
             {
@@ -103,9 +105,9 @@
         {
             var item = new KeyStringPair("key", "value");
             var obj = new KeyStringDictionary
-            {
-                item
-            };
+                          {
+                              item
+                          };
 
             Assert.True(obj.Remove(item));
             Assert.Equal(0, obj.Count);
@@ -116,9 +118,9 @@
         {
             var expected = DateTime.UtcNow;
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", expected.ToXmlString())
-            };
+                          {
+                              new KeyStringPair("key", expected.ToXmlString())
+                          };
 
             var actual = obj.TryValue<DateTime>(0);
 
@@ -130,9 +132,9 @@
         {
             var expected = DateTime.UtcNow;
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", expected.ToXmlString())
-            };
+                          {
+                              new KeyStringPair("key", expected.ToXmlString())
+                          };
 
             var actual = obj.TryValue<DateTime>("key");
 
@@ -144,9 +146,9 @@
         {
             const int expected = 123;
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", XmlConvert.ToString(expected))
-            };
+                          {
+                              new KeyStringPair("key", XmlConvert.ToString(expected))
+                          };
 
             var actual = obj.TryValue<int>(0);
 
@@ -158,9 +160,9 @@
         {
             const int expected = 123;
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", XmlConvert.ToString(expected))
-            };
+                          {
+                              new KeyStringPair("key", XmlConvert.ToString(expected))
+                          };
 
             var actual = obj.TryValue<int>("key");
 
@@ -172,9 +174,9 @@
         {
             const string expected = "value";
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", expected)
-            };
+                          {
+                              new KeyStringPair("key", expected)
+                          };
 
             var actual = obj.TryValue<string>(0);
 
@@ -186,9 +188,9 @@
         {
             const string expected = "value";
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", expected)
-            };
+                          {
+                              new KeyStringPair("key", expected)
+                          };
 
             var actual = obj.TryValue<string>("key");
 
@@ -200,9 +202,9 @@
         {
             var expected = DateTime.UtcNow;
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", expected.ToXmlString())
-            };
+                          {
+                              new KeyStringPair("key", expected.ToXmlString())
+                          };
 
             var actual = obj.Value<DateTime>(0);
 
@@ -214,9 +216,9 @@
         {
             var expected = DateTime.UtcNow;
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", expected.ToXmlString())
-            };
+                          {
+                              new KeyStringPair("key", expected.ToXmlString())
+                          };
 
             var actual = obj.Value<DateTime>("key");
 
@@ -228,9 +230,9 @@
         {
             const int expected = 123;
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", XmlConvert.ToString(expected))
-            };
+                          {
+                              new KeyStringPair("key", XmlConvert.ToString(expected))
+                          };
 
             var actual = obj.Value<int>(0);
 
@@ -242,9 +244,9 @@
         {
             const int expected = 123;
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", XmlConvert.ToString(expected))
-            };
+                          {
+                              new KeyStringPair("key", XmlConvert.ToString(expected))
+                          };
 
             var actual = obj.Value<int>("key");
 
@@ -256,9 +258,9 @@
         {
             const string expected = "value";
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", expected)
-            };
+                          {
+                              new KeyStringPair("key", expected)
+                          };
 
             var actual = obj.Value<string>(0);
 
@@ -270,9 +272,9 @@
         {
             const string expected = "value";
             var obj = new KeyStringDictionary
-            {
-                new KeyStringPair("key", expected)
-            };
+                          {
+                              new KeyStringPair("key", expected)
+                          };
 
             var actual = obj.Value<string>("key");
 

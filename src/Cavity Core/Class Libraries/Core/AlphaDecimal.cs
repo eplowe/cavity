@@ -3,6 +3,7 @@
     using System;
 #if NET40
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Numerics;
 #endif
@@ -25,7 +26,7 @@
                                  IComparable<AlphaDecimal>, 
                                  IEquatable<AlphaDecimal>
     {
-        private const string Chars = "0123456789abcdefghijklmnopqrstuvwxyz";
+        private const string _chars = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 #if NET20 || NET35
         private static readonly long[] _powers =
@@ -155,7 +156,10 @@
 
         public static implicit operator string(AlphaDecimal value)
         {
+            // ReSharper disable SpecifyACultureInStringConversionExplicitly
             return value.ToString();
+
+            // ReSharper restore SpecifyACultureInStringConversionExplicitly
         }
 
         public static AlphaDecimal operator ++(AlphaDecimal operand)
@@ -282,13 +286,13 @@
             while (remainder > 35)
             {
                 var index = remainder % 36;
-                buffer = Chars[(int)index] + buffer;
+                buffer = _chars[(int)index] + buffer;
                 remainder /= 36;
             }
 
             return string.Concat(
                 Value < 0 ? "-" : string.Empty, 
-                Chars[(int)remainder], 
+                _chars[(int)remainder], 
                 buffer);
         }
 
@@ -443,21 +447,21 @@
 #else
             BigInteger value = 0;
             var powers = new List<BigInteger>
-            {
-                1, 
-                36, 
-                1296, 
-                46656, 
-                1679616, 
-                60466176, 
-                2176782336, 
-                78364164096, 
-                2821109907456, 
-                101559956668416, 
-                3656158440062976, 
-                131621703842267136, 
-                4738381338321616896
-            };
+                             {
+                                 1, 
+                                 36, 
+                                 1296, 
+                                 46656, 
+                                 1679616, 
+                                 60466176, 
+                                 2176782336, 
+                                 78364164096, 
+                                 2821109907456, 
+                                 101559956668416, 
+                                 3656158440062976, 
+                                 131621703842267136, 
+                                 4738381338321616896
+                             };
             for (var i = 1; i < expression.Length + 1; i++)
             {
                 if (i > powers.Count)
@@ -470,15 +474,19 @@
 
             for (var i = expression.Length - 1; i > -1; i--)
             {
-                if (!Chars.Contains(expression[i].ToString()))
+#if NET20 || NET35
+                if (!_chars.Contains(expression[i].ToString()))
+#else
+                if (!_chars.Contains(expression[i].ToString(CultureInfo.InvariantCulture)))
+#endif
                 {
                     throw new FormatException("A base-36 string can only contain characters in the range [0-9] and [a-z].");
                 }
 
 #if NET20 || NET35
-                value += Chars.IndexOf(expression[i]) * _powers[radix++];
+                value += _chars.IndexOf(expression[i]) * _powers[radix++];
 #else
-                value += Chars.IndexOf(expression[i]) * powers[radix++];
+                value += _chars.IndexOf(expression[i]) * powers[radix++];
 #endif
             }
 

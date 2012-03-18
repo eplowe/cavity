@@ -4,10 +4,14 @@
     using System.Globalization;
     using System.IO;
     using System.Text;
+
     using Cavity.Net.Mime;
     using Cavity.Text;
+
     using Microsoft.Practices.ServiceLocation;
+
     using Moq;
+
     using Xunit;
 
     public sealed class HttpMessageFacts
@@ -107,7 +111,10 @@
                         stream.Position = 0;
                         using (var reader = new StreamReader(stream))
                         {
+                            // ReSharper disable AccessToDisposedClosure
                             Assert.Throws<ArgumentNullException>(() => new DerivedHttpMessage().Read(reader));
+
+                            // ReSharper restore AccessToDisposedClosure
                         }
                     }
                 }

@@ -1,7 +1,9 @@
 ﻿namespace Cavity
 {
     using System;
+
     using Cavity.Types;
+
     using Xunit;
 
     public sealed class TypeExtensionMethodsFacts

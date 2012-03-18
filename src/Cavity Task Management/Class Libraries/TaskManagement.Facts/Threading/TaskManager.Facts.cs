@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Threading
 {
     using System;
+
     using Xunit;
 
     public sealed class TaskManagerFacts
@@ -64,9 +65,9 @@
             using (var obj = new TaskManager())
             {
                 (obj as IManageTasks).Start(new[]
-                {
-                    "abc"
-                });
+                                                {
+                                                    "abc"
+                                                });
             }
         }
 
@@ -88,6 +89,7 @@
                 (obj as IManageTasks).Stop();
             }
         }
+
 #endif
     }
 }

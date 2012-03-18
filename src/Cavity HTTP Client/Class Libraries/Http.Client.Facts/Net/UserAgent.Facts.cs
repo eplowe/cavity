@@ -2,6 +2,7 @@
 {
     using System;
     using System.Reflection;
+
     using Xunit;
 
     public sealed class UserAgentFacts
@@ -71,7 +72,7 @@
         public void op_Format()
         {
             var expected = "CavityHttpClient/{0}.{1} (+http://code.google.com/p/cavity/)".FormatWith(
-                Assembly.GetExecutingAssembly().GetName().Version.Major,
+                Assembly.GetExecutingAssembly().GetName().Version.Major, 
                 Assembly.GetExecutingAssembly().GetName().Version.Minor);
             var actual = UserAgent.Format();
 

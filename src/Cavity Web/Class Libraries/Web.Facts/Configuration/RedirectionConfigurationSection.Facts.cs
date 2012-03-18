@@ -2,8 +2,9 @@
 {
     using System;
     using System.Configuration;
-    using Cavity;
+
     using Cavity.Net;
+
     using Xunit;
 
     public sealed class RedirectionConfigurationSectionFacts
@@ -33,12 +34,21 @@
         }
 
         [Fact]
-        public void op_Redirect_Uri_whenToAbsolutePreservingQuery()
+        public void op_Redirect_UriNull()
         {
-            AbsoluteUri expected = "http://www.example.net/to?name=value";
-            var actual = Config.ExeSection<RedirectionConfigurationSection>(GetType().Assembly).Redirect(new Uri("http://www.example.com/from?name=value"));
+            Assert.Throws<ArgumentNullException>(() => new RedirectionConfigurationSection().Redirect(null));
+        }
 
-            Assert.Equal(expected, actual);
+        [Fact]
+        public void op_Redirect_UriRelative()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new RedirectionConfigurationSection().Redirect(new Uri("/", UriKind.Relative)));
+        }
+
+        [Fact]
+        public void op_Redirect_Uri_whenNotConfigured()
+        {
+            Assert.Null(Config.ExeSection<RedirectionConfigurationSection>(GetType().Assembly).Redirect(new Uri("http://example.co.uk/")));
         }
 
         [Fact]
@@ -46,6 +56,15 @@
         {
             AbsoluteUri expected = "http://www.example.net/that?from=this";
             var actual = Config.ExeSection<RedirectionConfigurationSection>(GetType().Assembly).Redirect(new Uri("http://www.example.com/from?this=that"));
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Redirect_Uri_whenToAbsolutePreservingQuery()
+        {
+            AbsoluteUri expected = "http://www.example.net/to?name=value";
+            var actual = Config.ExeSection<RedirectionConfigurationSection>(GetType().Assembly).Redirect(new Uri("http://www.example.com/from?name=value"));
 
             Assert.Equal(expected, actual);
         }
@@ -60,15 +79,6 @@
         }
 
         [Fact]
-        public void op_Redirect_Uri_whenToRelativePreservingQuery()
-        {
-            AbsoluteUri expected = "http://www.example.net/destination?name=value";
-            var actual = Config.ExeSection<RedirectionConfigurationSection>(GetType().Assembly).Redirect(new Uri("http://www.example.net/source?name=value"));
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void op_Redirect_Uri_whenToRelativeDiscardQuery()
         {
             AbsoluteUri expected = "http://www.example.net/that?from=this";
@@ -78,21 +88,12 @@
         }
 
         [Fact]
-        public void op_Redirect_Uri_whenNotConfigured()
+        public void op_Redirect_Uri_whenToRelativePreservingQuery()
         {
-            Assert.Null(Config.ExeSection<RedirectionConfigurationSection>(GetType().Assembly).Redirect(new Uri("http://example.co.uk/")));
-        }
+            AbsoluteUri expected = "http://www.example.net/destination?name=value";
+            var actual = Config.ExeSection<RedirectionConfigurationSection>(GetType().Assembly).Redirect(new Uri("http://www.example.net/source?name=value"));
 
-        [Fact]
-        public void op_Redirect_UriNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new RedirectionConfigurationSection().Redirect(null));
-        }
-
-        [Fact]
-        public void op_Redirect_UriRelative()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new RedirectionConfigurationSection().Redirect(new Uri("/", UriKind.Relative)));
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

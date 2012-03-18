@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Models
 {
     using System;
+
     using Cavity.Collections;
+
     using Xunit;
 
     public sealed class LexiconStringExtensionMethodsFacts
@@ -32,8 +34,10 @@
         {
             const string expected = "Foo";
 
-            var lexicon = new Lexicon(NormalityComparer.Ordinal);
-            lexicon.Add("Bar");
+            var lexicon = new Lexicon(NormalityComparer.Ordinal)
+                              {
+                                  "Bar"
+                              };
 
             var actual = expected.RemoveMatch(lexicon);
 
@@ -51,8 +55,10 @@
         {
             var expected = string.Empty;
 
-            var lexicon = new Lexicon(NormalityComparer.Ordinal);
-            lexicon.Add("Example");
+            var lexicon = new Lexicon(NormalityComparer.Ordinal)
+                              {
+                                  "Example"
+                              };
 
             var actual = "Example".RemoveMatch(lexicon);
 

@@ -5,6 +5,7 @@
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
+
     using Cavity.Diagnostics;
     using Cavity.IO;
 
@@ -27,7 +28,7 @@
             }
         }
 
-        public static void Exclude(Operation operation,
+        public static void Exclude(Operation operation, 
                                    bool rollback)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
@@ -45,7 +46,7 @@
             return ItemFile(operation, null);
         }
 
-        public static FileInfo ItemFile(Operation operation,
+        public static FileInfo ItemFile(Operation operation, 
                                         string outcome)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
@@ -68,7 +69,7 @@
             return MasterDirectory.ToFile("{0}.master".FormatWith(operation.Identity.ResourceManager));
         }
 
-        private static void Amend(Operation operation,
+        private static void Amend(Operation operation, 
                                   bool? success)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
@@ -121,7 +122,7 @@
             }
         }
 
-        private static DirectoryInfo ItemDirectory(Operation operation,
+        private static DirectoryInfo ItemDirectory(Operation operation, 
                                                    string outcome)
         {
             var dir = MasterDirectory.ToDirectory(operation.Identity.ResourceManager);
@@ -131,7 +132,7 @@
                        : dir.ToDirectory(outcome);
         }
 
-        private static FileInfo Save(Operation operation,
+        private static FileInfo Save(Operation operation, 
                                      bool? success)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);

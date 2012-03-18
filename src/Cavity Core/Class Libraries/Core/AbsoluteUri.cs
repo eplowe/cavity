@@ -9,7 +9,10 @@
 #endif
 
     [Serializable]
-    public class AbsoluteUri : IComparable, IComparable<AbsoluteUri>, IEquatable<AbsoluteUri>, ISerializable
+    public class AbsoluteUri : IComparable, 
+                               IComparable<AbsoluteUri>, 
+                               IEquatable<AbsoluteUri>, 
+                               ISerializable
     {
         private Uri _value;
 

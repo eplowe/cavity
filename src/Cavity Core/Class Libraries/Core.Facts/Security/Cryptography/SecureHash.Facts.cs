@@ -1,6 +1,7 @@
 namespace Cavity.Security.Cryptography
 {
     using System;
+
     using Xunit;
 
     public sealed class SecureHashFacts

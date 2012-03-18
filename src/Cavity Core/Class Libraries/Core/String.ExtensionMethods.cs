@@ -23,7 +23,7 @@
         public static string Append(string obj, 
                                     params char[] args)
 #else
-        public static string Append(this string obj,
+        public static string Append(this string obj, 
                                     params char[] args)
 #endif
         {
@@ -74,7 +74,7 @@
         public static string Append(string obj, 
                                     params string[] args)
 #else
-        public static string Append(this string obj,
+        public static string Append(this string obj, 
                                     params string[] args)
 #endif
         {
@@ -294,7 +294,7 @@
         public static bool ContainsAny(string obj, 
                                        params char[] args)
 #else
-        public static bool ContainsAny(this string obj,
+        public static bool ContainsAny(this string obj, 
                                        params char[] args)
 #endif
         {
@@ -340,7 +340,7 @@
                                        StringComparison comparison, 
                                        params string[] args)
 #else
-        public static bool ContainsAny(this string obj,
+        public static bool ContainsAny(this string obj, 
                                        StringComparison comparison, 
                                        params string[] args)
 #endif
@@ -1143,9 +1143,9 @@
                                               StringComparison comparisonType, 
                                               params string[] beginnings)
 #else
-        public static string ReplaceBeginning(this string obj,
-                                              string newValue,
-                                              StringComparison comparisonType,
+        public static string ReplaceBeginning(this string obj, 
+                                              string newValue, 
+                                              StringComparison comparisonType, 
                                               params string[] beginnings)
 #endif
         {
@@ -1194,9 +1194,9 @@
                                            StringComparison comparisonType, 
                                            params string[] endings)
 #else
-        public static string ReplaceEnding(this string obj,
-                                           string newValue,
-                                           StringComparison comparisonType,
+        public static string ReplaceEnding(this string obj, 
+                                           string newValue, 
+                                           StringComparison comparisonType, 
                                            params string[] endings)
 #endif
         {
@@ -1240,10 +1240,10 @@
         }
 
 #if NET20
-        public static bool SameLengthAs(string obj,
+        public static bool SameLengthAs(string obj, 
                                         string value)
 #else
-        public static bool SameLengthAs(this string obj,
+        public static bool SameLengthAs(this string obj, 
                                         string value)
 #endif
         {
@@ -1415,9 +1415,9 @@
 
             return obj.Split(
                 new[]
-                {
-                    separator
-                }, 
+                    {
+                        separator
+                    }, 
                 options);
         }
 
@@ -1426,8 +1426,8 @@
                                      string separator, 
                                      StringSplitOptions options)
 #else
-        public static string[] Split(this string obj,
-                                     string separator,
+        public static string[] Split(this string obj, 
+                                     string separator, 
                                      StringSplitOptions options)
 #endif
         {
@@ -1438,9 +1438,9 @@
 
             return obj.Split(
                 new[]
-                {
-                    separator
-                },
+                    {
+                        separator
+                    }, 
                 options);
         }
 
@@ -1800,7 +1800,7 @@
 #endif
                 buffer.Append(c);
             }
-            
+
             return buffer;
         }
 
@@ -1859,7 +1859,8 @@
         }
 
         [Comment("Drop duplicate adjacent letters, except for C.")]
-        private static void MetaphoneDropDuplicates(int i, StringBuilder buffer)
+        private static void MetaphoneDropDuplicates(int i, 
+                                                    StringBuilder buffer)
         {
             if ('C' == buffer[i])
             {
@@ -1882,7 +1883,8 @@
         }
 
         [Comment("Drop all vowels unless it is the beginning.")]
-        private static void MetaphoneLetterVowel(int i, StringBuilder buffer)
+        private static void MetaphoneLetterVowel(int i, 
+                                                 StringBuilder buffer)
         {
             if (0 == i)
             {
@@ -1900,7 +1902,8 @@
         }
 
         [Comment("Drop 'B' if after 'M' and if it is at the end of the word.")]
-        private static void MetaphoneLetterB(int i, StringBuilder buffer)
+        private static void MetaphoneLetterB(int i, 
+                                             StringBuilder buffer)
         {
             if (0 == i)
             {
@@ -1946,7 +1949,8 @@
         [Comment("'C' transforms to 'S' if followed by 'I', 'E', or 'Y'.")]
         [Comment("Otherwise, 'C' transforms to 'K'.")]
         [Comment("'CK' transforms to 'K'.")]
-        private static void MetaphoneLetterC(int i, StringBuilder buffer)
+        private static void MetaphoneLetterC(int i, 
+                                             StringBuilder buffer)
         {
             if ('C' != buffer[i])
             {
@@ -2022,7 +2026,8 @@
 
         [Comment("'D' transforms to 'J' if followed by 'GE', 'GY', or 'GI'.")]
         [Comment("Otherwise, 'D' transforms to 'T'.")]
-        private static void MetaphoneLetterD(int i, StringBuilder buffer)
+        private static void MetaphoneLetterD(int i, 
+                                             StringBuilder buffer)
         {
             if ('D' != buffer[i])
             {
@@ -2056,7 +2061,8 @@
         [Comment("Drop 'G' if followed by 'N' or 'NED' and is at the end.")]
         [Comment("'G' transforms to 'J' if before 'I', 'E', or 'Y', and it is not in 'GG'.")]
         [Comment("Otherwise, 'G' transforms to 'K'.")]
-        private static void MetaphoneLetterG(int i, StringBuilder buffer)
+        private static void MetaphoneLetterG(int i, 
+                                             StringBuilder buffer)
         {
             if ('G' != buffer[i])
             {
@@ -2081,7 +2087,7 @@
                 buffer[i] = ' ';
                 return;
             }
-            
+
             if (next != buffer.Length)
             {
 #if NET20
@@ -2119,7 +2125,8 @@
         }
 
         [Comment("Drop 'H' if after vowel and not before a vowel.")]
-        private static void MetaphoneLetterH(int i, StringBuilder buffer)
+        private static void MetaphoneLetterH(int i, 
+                                             StringBuilder buffer)
         {
             if (0 == i)
             {
@@ -2157,7 +2164,8 @@
         }
 
         [Comment("'S' transforms to 'X' if followed by 'H', 'IO', or 'IA'.")]
-        private static void MetaphoneLetterS(int i, StringBuilder buffer)
+        private static void MetaphoneLetterS(int i, 
+                                             StringBuilder buffer)
         {
             if ('S' != buffer[i])
             {
@@ -2209,7 +2217,8 @@
         [Comment("'T' transforms to 'X' if followed by 'IA' or 'IO'.")]
         [Comment("'TH' transforms to '0'")]
         [Comment("Drop 'T' if followed by 'CH'.")]
-        private static void MetaphoneLetterT(int i, StringBuilder buffer)
+        private static void MetaphoneLetterT(int i, 
+                                             StringBuilder buffer)
         {
             if ('T' != buffer[i])
             {
@@ -2268,7 +2277,8 @@
 
         [Comment("'WH' transforms to 'W' if at the beginning.")]
         [Comment("Drop 'W' if not followed by a vowel.")]
-        private static void MetaphoneLetterW(int i, StringBuilder buffer)
+        private static void MetaphoneLetterW(int i, 
+                                             StringBuilder buffer)
         {
             if ('W' != buffer[i])
             {
@@ -2301,7 +2311,8 @@
         }
 
         [Comment("Drop 'Y' if not followed by a vowel.")]
-        private static void MetaphoneLetterY(int i, StringBuilder buffer)
+        private static void MetaphoneLetterY(int i, 
+                                             StringBuilder buffer)
         {
             if ('Y' != buffer[i])
             {

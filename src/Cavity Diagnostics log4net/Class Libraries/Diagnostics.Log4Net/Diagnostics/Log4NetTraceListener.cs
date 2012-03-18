@@ -5,6 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
+
     using log4net;
 
     public class Log4NetTraceListener : TraceListener
@@ -14,7 +15,7 @@
             Fail(message, string.Empty);
         }
 
-        public override void Fail(string message,
+        public override void Fail(string message, 
                                   string detailMessage)
         {
             var stack = new StackTrace();
@@ -35,28 +36,28 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Temporary")]
-        public override void TraceData(TraceEventCache eventCache,
-                                       string source,
-                                       TraceEventType eventType,
-                                       int id,
+        public override void TraceData(TraceEventCache eventCache, 
+                                       string source, 
+                                       TraceEventType eventType, 
+                                       int id, 
                                        object data)
         {
             var array = new[]
-            {
-                data
-            };
-            TraceData(eventCache,
-                      source,
-                      eventType,
-                      id,
+                            {
+                                data
+                            };
+            TraceData(eventCache, 
+                      source, 
+                      eventType, 
+                      id, 
                       array);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Temporary")]
-        public override void TraceData(TraceEventCache eventCache,
-                                       string source,
-                                       TraceEventType eventType,
-                                       int id,
+        public override void TraceData(TraceEventCache eventCache, 
+                                       string source, 
+                                       TraceEventType eventType, 
+                                       int id, 
                                        params object[] data)
         {
             if (null == data ||
@@ -78,34 +79,35 @@
                 {
                     datum
                 };
-                TraceEvent(eventCache,
-                           source,
-                           eventType,
-                           id,
-                           "{0}",
+                TraceEvent(eventCache, 
+                           source, 
+                           eventType, 
+                           id, 
+                           "{0}", 
                            array);
             }
 #else
             foreach (var datum in data.Where(x => !TraceException(eventType, x)))
             {
                 var array = new[]
-                {
-                    datum
-                };
-                TraceEvent(eventCache,
-                           source,
-                           eventType,
-                           id,
-                           "{0}",
+                                {
+                                    datum
+                                };
+                TraceEvent(eventCache, 
+                           source, 
+                           eventType, 
+                           id, 
+                           "{0}", 
                            array);
             }
+
 #endif
         }
 
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Temporary")]
-        public override void TraceEvent(TraceEventCache eventCache,
-                                        string source,
-                                        TraceEventType eventType,
+        public override void TraceEvent(TraceEventCache eventCache, 
+                                        string source, 
+                                        TraceEventType eventType, 
                                         int id)
         {
             var frame = GetTracingStackFrame(new StackTrace());
@@ -186,13 +188,15 @@
 
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Argument cannot be null")]
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "5", Justification = "Argument cannot be null")]
-        public override void TraceEvent(TraceEventCache eventCache,
-                                        string source,
-                                        TraceEventType eventType,
-                                        int id,
-                                        string format,
+        public override void TraceEvent(TraceEventCache eventCache, 
+                                        string source, 
+                                        TraceEventType eventType, 
+                                        int id, 
+                                        string format, 
+                                        // ReSharper disable MethodOverloadWithOptionalParameter
                                         params object[] args)
         {
+            // ReSharper restore MethodOverloadWithOptionalParameter
             if (0 == args.Length)
             {
                 TraceEvent(eventCache, source, eventType, id);
@@ -258,40 +262,43 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Temporary")]
-        public override void TraceEvent(TraceEventCache eventCache,
-                                        string source,
-                                        TraceEventType eventType,
-                                        int id,
+        public override void TraceEvent(TraceEventCache eventCache, 
+                                        string source, 
+                                        TraceEventType eventType, 
+                                        int id, 
                                         string message)
         {
             var array = new[]
-            {
-                message
-            };
-            TraceEvent(eventCache,
-                       source,
-                       eventType,
-                       id,
-                       "{0}",
+                            {
+                                message
+                            };
+            TraceEvent(eventCache, 
+                       source, 
+                       eventType, 
+                       id, 
+                       "{0}", 
+                       // ReSharper disable CoVariantArrayConversion
                        array);
+
+            // ReSharper restore CoVariantArrayConversion
         }
 
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Temporary")]
-        public override void TraceTransfer(TraceEventCache eventCache,
-                                           string source,
-                                           int id,
-                                           string message,
+        public override void TraceTransfer(TraceEventCache eventCache, 
+                                           string source, 
+                                           int id, 
+                                           string message, 
                                            Guid relatedActivityId)
         {
             var array = new object[]
-            {
-                message, relatedActivityId
-            };
-            TraceEvent(eventCache,
-                       source,
-                       TraceEventType.Transfer,
-                       id,
-                       "{0}",
+                            {
+                                message, relatedActivityId
+                            };
+            TraceEvent(eventCache, 
+                       source, 
+                       TraceEventType.Transfer, 
+                       id, 
+                       "{0}", 
                        array);
         }
 
@@ -300,7 +307,7 @@
             WriteLine(o, string.Empty);
         }
 
-        public override void Write(object o,
+        public override void Write(object o, 
                                    string category)
         {
             WriteLine(o, category);
@@ -311,7 +318,7 @@
             WriteLine(message, string.Empty);
         }
 
-        public override void Write(string message,
+        public override void Write(string message, 
                                    string category)
         {
             WriteLine((object)message, category);
@@ -323,7 +330,7 @@
         }
 
         [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "log4net.Util.ThreadContextStack.Push(System.String)", Justification = "Temporary")]
-        public override void WriteLine(object o,
+        public override void WriteLine(object o, 
                                        string category)
         {
             var stack = new StackTrace();
@@ -347,7 +354,7 @@
             }
         }
 
-        public override void WriteLine(string message,
+        public override void WriteLine(string message, 
                                        string category)
         {
             WriteLine((object)message, category);
@@ -369,8 +376,10 @@
                     continue;
                 }
 
+                // ReSharper disable PossibleNullReferenceException
                 if ("System.Diagnostics" == method.DeclaringType.Namespace)
                 {
+                    // ReSharper restore PossibleNullReferenceException
                     continue;
                 }
 
@@ -390,7 +399,7 @@
             return null;
         }
 
-        private static bool TraceException(TraceEventType eventType,
+        private static bool TraceException(TraceEventType eventType, 
                                            object datum)
         {
             if (TraceEventType.Critical != eventType &&

@@ -1,4 +1,4 @@
-﻿namespace Cavity.Models
+﻿namespace Cavity.Collections
 {
     using System;
     using System.Collections.Generic;
@@ -13,7 +13,8 @@
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
     [XmlRoot("list")]
-    public class StringList : List<string>, IXmlSerializable
+    public class StringList : List<string>, 
+                              IXmlSerializable
     {
         public virtual IEnumerable<T> ToEnumerable<T>()
         {

@@ -2,13 +2,15 @@
 {
     using System;
     using System.Runtime.Serialization;
-
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
 
     [Serializable]
-    public class RelativeUri : IComparable, IComparable<RelativeUri>, IEquatable<RelativeUri>, ISerializable
+    public class RelativeUri : IComparable, 
+                               IComparable<RelativeUri>, 
+                               IEquatable<RelativeUri>, 
+                               ISerializable
     {
         private Uri _value;
 

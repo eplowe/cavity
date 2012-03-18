@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using System.Reflection;
+
     using Xunit;
 
     public sealed class AssemblyExtensionMethodsFacts
@@ -19,7 +20,10 @@
             var assembly = typeof(AbsoluteUri).Assembly;
             var location = new FileInfo(assembly.Location);
 
+            // ReSharper disable PossibleNullReferenceException
             var expected = location.Directory.FullName;
+
+            // ReSharper restore PossibleNullReferenceException
             var actual = assembly.Directory().FullName;
 
             Assert.Equal(expected, actual);

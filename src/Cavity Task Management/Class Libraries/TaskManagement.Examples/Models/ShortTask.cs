@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Models
 {
     using System.Diagnostics;
+
     using Cavity.Threading;
 
     public sealed class ShortTask : StandardTask
