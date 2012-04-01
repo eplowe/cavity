@@ -7,6 +7,7 @@
 #if !NET20
     using System.Linq;
 #endif
+    using System.Text;
     using System.Xml;
     using System.Xml.Schema;
     using System.Xml.Serialization;
@@ -40,6 +41,40 @@
             }
 
             return true;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            var cast = obj as CommandCollection;
+
+            return !ReferenceEquals(null, cast)
+                   && string.Equals(ToString(), cast.ToString(), StringComparison.Ordinal);
+        }
+
+        public override int GetHashCode()
+        {
+            return ToString().GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            var buffer = new StringBuilder();
+            foreach (var item in this)
+            {
+                buffer.AppendLine(item.ToString());
+            }
+
+            return buffer.ToString();
         }
 
         public virtual bool Undo()

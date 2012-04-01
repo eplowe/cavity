@@ -14,7 +14,7 @@
                             .IsConcreteClass()
                             .IsSealed()
                             .NoDefaultConstructor()
-                            .IsDecoratedWith<AttributeUsageAttribute>()
+                            .AttributeUsage(AttributeTargets.Method, true, false)
                             .Result);
         }
 

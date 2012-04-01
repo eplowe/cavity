@@ -5,6 +5,11 @@
 
     public class FileWriter : StreamWriter
     {
+        public FileWriter(string path)
+            : this(new FileInfo(path))
+        {
+        }
+
         public FileWriter(FileInfo file)
             : base(FromFile(file))
         {

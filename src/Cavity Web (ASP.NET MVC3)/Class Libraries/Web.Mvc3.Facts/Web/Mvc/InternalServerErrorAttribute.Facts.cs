@@ -20,7 +20,7 @@
                             .IsSealed()
                             .HasDefaultConstructor()
                             .Implements<IExceptionFilter>()
-                            .IsDecoratedWith<AttributeUsageAttribute>()
+                            .AttributeUsage(AttributeTargets.Class, false, false)
                             .Result);
         }
 

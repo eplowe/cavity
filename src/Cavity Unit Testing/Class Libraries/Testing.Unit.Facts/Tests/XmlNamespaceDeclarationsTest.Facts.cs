@@ -9,19 +9,19 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new XmlNamespaceDeclarationsTest(typeof(XmlSerializableClass1).GetProperty("Array1")));
+            Assert.NotNull(new XmlNamespaceDeclarationsTest(typeof(XmlDecorationClass1).GetProperty("Array1")));
         }
 
         [Fact]
         public void is_AttributePropertyTest()
         {
-            Assert.IsAssignableFrom<MemberTestBase>(new XmlNamespaceDeclarationsTest(typeof(XmlSerializableClass1).GetProperty("Array1")));
+            Assert.IsAssignableFrom<MemberTestBase>(new XmlNamespaceDeclarationsTest(typeof(XmlDecorationClass1).GetProperty("Array1")));
         }
 
         [Fact]
         public void op_Check_whenTrue()
         {
-            var obj = new XmlNamespaceDeclarationsTest(typeof(XmlSerializableClass1).GetProperty("Array1"));
+            var obj = new XmlNamespaceDeclarationsTest(typeof(XmlDecorationClass1).GetProperty("Array1"));
 
             Assert.True(obj.Check());
         }

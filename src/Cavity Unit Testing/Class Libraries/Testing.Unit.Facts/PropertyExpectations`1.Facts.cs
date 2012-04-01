@@ -131,7 +131,7 @@
         [Fact]
         public void prop_Result_whenIsDecoratedWithXmlArray()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlSerializableClass1>("Array1")
+            Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlDecorationClass1>("Array1")
                                                                  .TypeIs<string[]>()
                                                                  .DefaultValueIsNull()
                                                                  .IsDecoratedWith<XmlArrayAttribute>());
@@ -140,7 +140,7 @@
         [Fact]
         public void prop_Result_whenIsDecoratedWithXmlAttribute()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlSerializableClass1>("Attribute")
+            Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlDecorationClass1>("Attribute")
                                                                  .TypeIs<string>()
                                                                  .DefaultValueIsNull()
                                                                  .IsDecoratedWith<XmlAttributeAttribute>());
@@ -149,7 +149,7 @@
         [Fact]
         public void prop_Result_whenIsDecoratedWithXmlElement()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlSerializableClass1>("Element")
+            Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlDecorationClass1>("Element")
                                                                  .TypeIs<string>()
                                                                  .DefaultValueIsNull()
                                                                  .IsDecoratedWith<XmlElementAttribute>());
@@ -158,7 +158,7 @@
         [Fact]
         public void prop_Result_whenIsDecoratedWithXmlIgnore()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlSerializableClass1>("Ignore")
+            Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlDecorationClass1>("Ignore")
                                                                  .TypeIs<string>()
                                                                  .DefaultValueIsNull()
                                                                  .IsDecoratedWith<XmlIgnoreAttribute>());
@@ -167,7 +167,7 @@
         [Fact]
         public void prop_Result_whenIsDecoratedWithXmlNamespaceDeclarations()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlSerializableClass1>("Array1")
+            Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlDecorationClass1>("Array1")
                                                                  .TypeIs<string[]>()
                                                                  .DefaultValueIsNull()
                                                                  .IsDecoratedWith<XmlNamespaceDeclarationsAttribute>());
@@ -176,16 +176,31 @@
         [Fact]
         public void prop_Result_whenIsDecoratedWithXmlText()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlSerializableClass1>("Text")
+            Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlDecorationClass1>("Text")
                                                                  .TypeIs<string>()
                                                                  .DefaultValueIsNull()
                                                                  .IsDecoratedWith<XmlTextAttribute>());
         }
 
+        /// <summary>
+        /// Replicating issue #1.
+        /// </summary>
+        /// <see href="http://code.google.com/p/cavity/issues/detail?id=1" />
+        [Fact]
+        public void prop_Result_whenMultipleXmlArrayItems()
+        {
+            Assert.True(new PropertyExpectations<XmlDecorationClass2>("Array1")
+                            .TypeIs<string[]>()
+                            .DefaultValueIsNull()
+                            .XmlArray("array1", "item")
+                            .XmlArray("array1", "derived")
+                            .Result);
+        }
+
         [Fact]
         public void prop_Result_whenNamespaceXmlAttribute()
         {
-            Assert.True(new PropertyExpectations<XmlSerializableClass1>("NamespaceAttribute")
+            Assert.True(new PropertyExpectations<XmlDecorationClass1>("NamespaceAttribute")
                             .TypeIs<string>()
                             .DefaultValueIsNull()
                             .XmlAttribute("attribute", "urn:example.org")
@@ -195,7 +210,7 @@
         [Fact]
         public void prop_Result_whenNamespaceXmlElement()
         {
-            Assert.True(new PropertyExpectations<XmlSerializableClass1>("NamespaceElement")
+            Assert.True(new PropertyExpectations<XmlDecorationClass1>("NamespaceElement")
                             .TypeIs<string>()
                             .DefaultValueIsNull()
                             .XmlElement("element", "urn:example.org")
@@ -205,7 +220,7 @@
         [Fact]
         public void prop_Result_whenXmlArray()
         {
-            Assert.True(new PropertyExpectations<XmlSerializableClass1>("Array1")
+            Assert.True(new PropertyExpectations<XmlDecorationClass1>("Array1")
                             .TypeIs<string[]>()
                             .DefaultValueIsNull()
                             .XmlArray("array1", "item1")
@@ -216,7 +231,7 @@
         [Fact]
         public void prop_Result_whenXmlAttribute()
         {
-            Assert.True(new PropertyExpectations<XmlSerializableClass1>("Attribute")
+            Assert.True(new PropertyExpectations<XmlDecorationClass1>("Attribute")
                             .TypeIs<string>()
                             .DefaultValueIsNull()
                             .XmlAttribute("attribute")
@@ -226,7 +241,7 @@
         [Fact]
         public void prop_Result_whenXmlElement()
         {
-            Assert.True(new PropertyExpectations<XmlSerializableClass1>("Element")
+            Assert.True(new PropertyExpectations<XmlDecorationClass1>("Element")
                             .TypeIs<string>()
                             .DefaultValueIsNull()
                             .XmlElement("element")
@@ -236,7 +251,7 @@
         [Fact]
         public void prop_Result_whenXmlIgnore()
         {
-            Assert.True(new PropertyExpectations<XmlSerializableClass1>("Ignore")
+            Assert.True(new PropertyExpectations<XmlDecorationClass1>("Ignore")
                             .TypeIs<string>()
                             .DefaultValueIsNull()
                             .XmlIgnore()
@@ -246,7 +261,7 @@
         [Fact]
         public void prop_Result_whenXmlText()
         {
-            Assert.True(new PropertyExpectations<XmlSerializableClass1>("Text")
+            Assert.True(new PropertyExpectations<XmlDecorationClass1>("Text")
                             .TypeIs<string>()
                             .DefaultValueIsNull()
                             .XmlText()

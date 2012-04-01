@@ -34,8 +34,6 @@
             Items = new Collection<ITestExpectation>();
         }
 
-        private Collection<ITestExpectation> Items { get; set; }
-
         /// <summary>
         /// Gets a value indicating whether all the expectations have been met.
         /// </summary>
@@ -50,6 +48,8 @@
                 return 0 == Items.Count(x => !x.Check());
             }
         }
+
+        private Collection<ITestExpectation> Items { get; set; }
 
         /// <summary>
         /// Adds an expectation that the type derives from a specified base type.
@@ -171,6 +171,34 @@
         }
 
         /// <summary>
+        /// Adds an expectation that the type is decorated with the  <see cref="T:System.AttributeUsageAttribute"/>.
+        /// </summary>
+        /// <param name="validOn">The expected value of the <see cref="P:System.AttributeUsageAttribute.ValidOn"/> property.</param>
+        /// <returns>The current instance.</returns>
+        /// <seealso href="http://msdn.microsoft.com/library/system.attributeusageattribute">AttributeUsageAttribute Class</seealso>
+        ITestType ITestType.AttributeUsage(AttributeTargets validOn)
+        {
+            return (this as ITestType).AttributeUsage(validOn, false, true);
+        }
+
+        /// <summary>
+        /// Adds an expectation that the type is decorated with the  <see cref="T:System.AttributeUsageAttribute"/>.
+        /// </summary>
+        /// <param name="validOn">The expected value of the <see cref="P:System.AttributeUsageAttribute.ValidOn"/> property.</param>
+        /// <param name="allowMultiple">The expected value of the <see cref="P:System.AttributeUsageAttribute.AllowMultiple"/> property.</param>
+        /// <param name="inherited">The expected value of the <see cref="P:System.AttributeUsageAttribute.Inherited"/> property.</param>
+        /// <returns>The current instance.</returns>
+        /// <seealso href="http://msdn.microsoft.com/library/system.attributeusageattribute">AttributeUsageAttribute Class</seealso>
+        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
+        ITestType ITestType.AttributeUsage(AttributeTargets validOn, 
+                                           bool allowMultiple, 
+                                           bool inherited)
+        {
+            (this as ITestType).Add(new AttributeUsageTest(typeof(T), validOn, allowMultiple, inherited));
+            return this;
+        }
+
+        /// <summary>
         /// Adds an expectation that the type implements the specified interface.
         /// </summary>
         /// <typeparam name="TInterface">The expected type of the interface.</typeparam>
@@ -182,6 +210,11 @@
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
         ITestType ITestType.Implements<TInterface>()
         {
+            if (!typeof(T).IsInterface && typeof(TInterface) == typeof(IXmlSerializable))
+            {
+                throw new NotSupportedException(Resources.Implements_IXmlSerializable);
+            }
+
             if (!typeof(TInterface).IsInterface)
             {
                 throw new ArgumentOutOfRangeException(Resources.TypeExpectationsException_InterfaceMessage);
@@ -202,14 +235,19 @@
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
         ITestType ITestType.IsDecoratedWith<TAttribute>()
         {
+            if (typeof(AttributeUsageAttribute).IsAssignableFrom(typeof(TAttribute)))
+            {
+                throw new NotSupportedException(Resources.TypeExpectations_IsDecoratedWithAttributeUsage);
+            }
+
             if (typeof(SerializableAttribute).IsAssignableFrom(typeof(TAttribute)))
             {
-                throw new ArgumentOutOfRangeException(Resources.TypeExpectations_IsDecoratedWithSerializable);
+                throw new NotSupportedException(Resources.TypeExpectations_IsDecoratedWithSerializable);
             }
 
             if (typeof(XmlRootAttribute).IsAssignableFrom(typeof(TAttribute)))
             {
-                throw new ArgumentOutOfRangeException(Resources.TypeExpectations_IsDecoratedWithXmlRoot);
+                throw new NotSupportedException(Resources.TypeExpectations_IsDecoratedWithXmlRoot);
             }
 
             (this as ITestType).Add(new AttributeMemberTest(typeof(T), typeof(TAttribute)));
@@ -263,6 +301,17 @@
                                     string @namespace)
         {
             (this as ITestType).Add(new XmlRootTest<T>(elementName, @namespace));
+            return this;
+        }
+
+        /// <summary>
+        /// Adds an expectation that the type implements <see cref="T:System.Xml.Serialization.IXmlSerializable"/>.
+        /// </summary>
+        /// <returns>The current instance.</returns>
+        ITestType ITestType.XmlSerializable()
+        {
+            (this as ITestType).Add(new XmlSerializableTest(typeof(T)));
+            (this as ITestType).Add(new ImplementationTest<T>(typeof(IXmlSerializable)));
             return this;
         }
     }

@@ -9,19 +9,19 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute")));
+            Assert.NotNull(new XmlAttributeTest(typeof(XmlDecorationClass1).GetProperty("Attribute")));
         }
 
         [Fact]
         public void is_AttributePropertyTest()
         {
-            Assert.IsAssignableFrom<MemberTestBase>(new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute")));
+            Assert.IsAssignableFrom<MemberTestBase>(new XmlAttributeTest(typeof(XmlDecorationClass1).GetProperty("Attribute")));
         }
 
         [Fact]
         public void op_Check_whenNameWrong()
         {
-            var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute"))
+            var obj = new XmlAttributeTest(typeof(XmlDecorationClass1).GetProperty("Attribute"))
                           {
                               AttributeName = "xxx"
                           };
@@ -32,7 +32,7 @@
         [Fact]
         public void op_Check_whenNamespaceWrong()
         {
-            var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute"))
+            var obj = new XmlAttributeTest(typeof(XmlDecorationClass1).GetProperty("Attribute"))
                           {
                               AttributeName = "attribute", 
                               Namespace = "xxx"
@@ -44,7 +44,7 @@
         [Fact]
         public void op_Check_whenTrue()
         {
-            var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("NamespaceAttribute"))
+            var obj = new XmlAttributeTest(typeof(XmlDecorationClass1).GetProperty("NamespaceAttribute"))
                           {
                               AttributeName = "attribute", 
                               Namespace = "urn:example.org"
@@ -66,7 +66,7 @@
         {
             const string expected = "example";
 
-            var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute"))
+            var obj = new XmlAttributeTest(typeof(XmlDecorationClass1).GetProperty("Attribute"))
                           {
                               AttributeName = expected
                           };
@@ -81,7 +81,7 @@
         {
             const string expected = "example";
 
-            var obj = new XmlAttributeTest(typeof(XmlSerializableClass1).GetProperty("Attribute"))
+            var obj = new XmlAttributeTest(typeof(XmlDecorationClass1).GetProperty("Attribute"))
                           {
                               Namespace = expected
                           };

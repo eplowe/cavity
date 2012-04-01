@@ -7,6 +7,7 @@
 #if !NET20
     using System.Linq;
 #endif
+    using System.Text;
     using System.Xml;
     using System.Xml.Schema;
     using System.Xml.Serialization;
@@ -16,6 +17,29 @@
     public class StringList : List<string>, 
                               IXmlSerializable
     {
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            var cast = obj as StringList;
+
+            return !ReferenceEquals(null, cast)
+                   && string.Equals(ToString(), cast.ToString(), StringComparison.Ordinal);
+        }
+
+        public override int GetHashCode()
+        {
+            return ToString().GetHashCode();
+        }
+
         public virtual IEnumerable<T> ToEnumerable<T>()
         {
 #if NET20
@@ -26,6 +50,17 @@
 #else
             return this.Select(item => (T)Convert.ChangeType(item, typeof(T), CultureInfo.InvariantCulture));
 #endif
+        }
+
+        public override string ToString()
+        {
+            var buffer = new StringBuilder();
+            foreach (var item in this)
+            {
+                buffer.AppendLine(item);
+            }
+
+            return buffer.ToString();
         }
 
         public virtual XmlSchema GetSchema()

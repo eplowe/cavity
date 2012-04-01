@@ -3,12 +3,12 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
-#if !NET20
     using System.Linq;
-#endif
     using System.Reflection;
 
     using Cavity.Properties;
+#if !NET20
+#endif
 
     public sealed class AttributeMemberTest : MemberTestBase
     {
@@ -32,7 +32,7 @@
             }
             else
             {
-                if (null == System.Attribute.GetCustomAttribute(Member, Attribute, false))
+                if (0 == System.Attribute.GetCustomAttributes(Member, Attribute, false).Length)
                 {
                     throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.DecorationTestException_MissingMessage, Member.Name, Attribute.Name));
                 }

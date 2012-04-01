@@ -120,6 +120,21 @@
   <data name="AbstractBaseClassTestException_Message" xml:space="preserve">
     <value>{0} is not an abstract base class.</value>
   </data>
+  <data name="AttributeUsage_AllowMultipleFalse" xml:space="preserve">
+    <value>{0} should not allow multiple usage.</value>
+  </data>
+  <data name="AttributeUsage_AllowMultipleTrue" xml:space="preserve">
+    <value>{0} should allow multiple usage.</value>
+  </data>
+  <data name="AttributeUsage_InheritedFalse" xml:space="preserve">
+    <value>{0} should not allow inheritance.</value>
+  </data>
+  <data name="AttributeUsage_InheritedTrue" xml:space="preserve">
+    <value>{0} should allow inheritance.</value>
+  </data>
+  <data name="AttributeUsage_ValidOn" xml:space="preserve">
+    <value>{0} does not have the expected attribute usage targets.</value>
+  </data>
   <data name="BaseClassTestException_Message" xml:space="preserve">
     <value>{0} is not derived from {1}.</value>
   </data>
@@ -127,7 +142,7 @@
     <value>{0} is not a concrete class.</value>
   </data>
   <data name="DecorationTestException_MissingMessage" xml:space="preserve">
-    <value>{0} is not decorated with {1}.</value>
+    <value>{0} is not decorated with [{1}].</value>
   </data>
   <data name="DecorationTestException_UnexpectedMessage" xml:space="preserve">
     <value>{0} is unexpectedly decorated with at least one attribute.</value>
@@ -140,6 +155,9 @@
   </data>
   <data name="ImplementationTestException_UnexpectedMessage" xml:space="preserve">
     <value>{0} unexpectedly implements at least one interface.</value>
+  </data>
+  <data name="Implements_IXmlSerializable" xml:space="preserve">
+    <value>Please use the XmlSerializable(...) method instead of the Implements&lt;T&gt;() method.</value>
   </data>
   <data name="InterfaceTestException_Message" xml:space="preserve">
     <value>{0} is not an interface.</value>
@@ -180,11 +198,14 @@
   <data name="TypeExpectationsException_InterfaceMessage" xml:space="preserve">
     <value>An interface type must be specified.</value>
   </data>
+  <data name="TypeExpectations_IsDecoratedWithAttributeUsage" xml:space="preserve">
+    <value>Please use the AttributeUsage(...) method instead of the IsDecoratedWith&lt;T&gt;() method.</value>
+  </data>
   <data name="TypeExpectations_IsDecoratedWithSerializable" xml:space="preserve">
-    <value>Please use the Serializable() method instead of this generic method.</value>
+    <value>Please use the Serializable() method instead of the IsDecoratedWith&lt;T&gt;() method.</value>
   </data>
   <data name="TypeExpectations_IsDecoratedWithXmlRoot" xml:space="preserve">
-    <value>Please use the XmlRoot(...) method instead of this generic method.</value>
+    <value>Please use the XmlRoot(...) method instead of the IsDecoratedWith&lt;T&gt;() method.</value>
   </data>
   <data name="ValueTypeTestException_Message" xml:space="preserve">
     <value>{0} is not a value type.</value>
@@ -233,6 +254,18 @@
   </data>
   <data name="XmlRootDecorationTestException_UndecoratedMessage" xml:space="preserve">
     <value>{0} is not decorated with [XmlRoot].</value>
+  </data>
+  <data name="XmlSerialization_EqualsNew" xml:space="preserve">
+    <value>{0} is not equal to new {1}().</value>
+  </data>
+  <data name="XmlSerialization_GetSchema" xml:space="preserve">
+    <value>{0} does not throw an NotSupportedException.</value>
+  </data>
+  <data name="XmlSerialization_ReadXmlNull" xml:space="preserve">
+    <value>{0} does not throw an ArgumentNullException when ReadXml(...) is invoked with a null reader.</value>
+  </data>
+  <data name="XmlSerialization_WriteXmlNull" xml:space="preserve">
+    <value>{0} does not throw an ArgumentNullException when WriteXml(...) is invoked with a null writer.</value>
   </data>
   <data name="XmlTextDecorationTestException_Message" xml:space="preserve">
     <value>{0} is not decorated with [XmlText].</value>

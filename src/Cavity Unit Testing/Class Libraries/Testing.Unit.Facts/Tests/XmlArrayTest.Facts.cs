@@ -9,19 +9,19 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1")));
+            Assert.NotNull(new XmlArrayTest(typeof(XmlDecorationClass1).GetProperty("Array1")));
         }
 
         [Fact]
         public void is_AttributePropertyTest()
         {
-            Assert.IsAssignableFrom<MemberTestBase>(new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1")));
+            Assert.IsAssignableFrom<MemberTestBase>(new XmlArrayTest(typeof(XmlDecorationClass1).GetProperty("Array1")));
         }
 
         [Fact]
         public void op_Check_whenItemsWrong()
         {
-            var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"))
+            var obj = new XmlArrayTest(typeof(XmlDecorationClass1).GetProperty("Array1"))
                           {
                               ArrayElementName = "array1", 
                               ArrayItemElementName = "xxx"
@@ -33,7 +33,7 @@
         [Fact]
         public void op_Check_whenNameWrong()
         {
-            var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"))
+            var obj = new XmlArrayTest(typeof(XmlDecorationClass1).GetProperty("Array1"))
                           {
                               ArrayElementName = "xxx"
                           };
@@ -44,7 +44,7 @@
         [Fact]
         public void op_Check_whenTrue()
         {
-            var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"))
+            var obj = new XmlArrayTest(typeof(XmlDecorationClass1).GetProperty("Array1"))
                           {
                               ArrayElementName = "array1", 
                               ArrayItemElementName = "item1"
@@ -56,7 +56,7 @@
         [Fact]
         public void op_Check_whenXmlArrayItemMissing()
         {
-            var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array2"))
+            var obj = new XmlArrayTest(typeof(XmlDecorationClass1).GetProperty("Array2"))
                           {
                               ArrayElementName = "array2", 
                               ArrayItemElementName = "item2"
@@ -78,7 +78,7 @@
         {
             const string expected = "example";
 
-            var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"))
+            var obj = new XmlArrayTest(typeof(XmlDecorationClass1).GetProperty("Array1"))
                           {
                               ArrayElementName = expected
                           };
@@ -93,7 +93,7 @@
         {
             const string expected = "example";
 
-            var obj = new XmlArrayTest(typeof(XmlSerializableClass1).GetProperty("Array1"))
+            var obj = new XmlArrayTest(typeof(XmlDecorationClass1).GetProperty("Array1"))
                           {
                               ArrayItemElementName = expected
                           };

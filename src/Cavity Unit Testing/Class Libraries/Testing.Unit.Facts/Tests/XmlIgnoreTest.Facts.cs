@@ -9,19 +9,19 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new XmlIgnoreTest(typeof(XmlSerializableClass1).GetProperty("Ignore")));
+            Assert.NotNull(new XmlIgnoreTest(typeof(XmlDecorationClass1).GetProperty("Ignore")));
         }
 
         [Fact]
         public void is_AttributePropertyTest()
         {
-            Assert.IsAssignableFrom<MemberTestBase>(new XmlIgnoreTest(typeof(XmlSerializableClass1).GetProperty("Ignore")));
+            Assert.IsAssignableFrom<MemberTestBase>(new XmlIgnoreTest(typeof(XmlDecorationClass1).GetProperty("Ignore")));
         }
 
         [Fact]
         public void op_Check_whenTrue()
         {
-            var obj = new XmlIgnoreTest(typeof(XmlSerializableClass1).GetProperty("Ignore"));
+            var obj = new XmlIgnoreTest(typeof(XmlDecorationClass1).GetProperty("Ignore"));
 
             Assert.True(obj.Check());
         }
