@@ -12,7 +12,7 @@ http://nuget.org/List/Packages/Cavity.Data.Csv.Xunit
 {{{
 [Theory]
 [CsvFile("example.csv")]
-public void usage(CsvFile csv)
+public void test(CsvFile csv)
 {
     foreach (var entry in csv)
     {
@@ -24,7 +24,7 @@ public void usage(CsvFile csv)
 {{{
 [Theory]
 [CsvFile("one.csv", "two.csv")]
-public void usage(CsvFile one, CsvFile two)
+public void test(CsvFile one, CsvFile two)
 {
     foreach (var entry in csv)
     {
@@ -36,7 +36,7 @@ public void usage(CsvFile one, CsvFile two)
 {{{
 [Theory]
 [CsvFile("example.csv")]
-public void usage(DataTable table)
+public void test(DataTable table)
 {
     foreach (DataRow row in table.Rows)
     {
@@ -48,7 +48,7 @@ public void usage(DataTable table)
 {{{
 [Theory]
 [CsvFile("one.csv", "two.csv")]
-public void usage(DataTable one, DataTable two)
+public void test(DataTable one, DataTable two)
 {
     foreach (DataRow row in one.Rows)
     {
@@ -60,7 +60,7 @@ public void usage(DataTable one, DataTable two)
 {{{
 [Theory]
 [CsvFile("one.csv", "two.csv")]
-public void usage(DataSet one)
+public void test(DataSet one)
 {
     foreach (DataRow row in data.Tables["one.csv"].Rows)
     {
