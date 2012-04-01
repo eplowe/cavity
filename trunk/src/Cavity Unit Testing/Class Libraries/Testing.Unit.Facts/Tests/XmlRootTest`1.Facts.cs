@@ -64,19 +64,19 @@
         [Fact]
         public void op_Check()
         {
-            Assert.True(new XmlRootTest<XmlSerializableClass1>("root", "urn:example.net").Check());
+            Assert.True(new XmlRootTest<XmlDecorationClass1>("root", "urn:example.net").Check());
         }
 
         [Fact]
         public void op_Check_whenNameWrong()
         {
-            Assert.Throws<UnitTestException>(() => new XmlRootTest<XmlSerializableClass1>("xxx").Check());
+            Assert.Throws<UnitTestException>(() => new XmlRootTest<XmlDecorationClass1>("xxx").Check());
         }
 
         [Fact]
         public void op_Check_whenNamespaceIsWrong()
         {
-            Assert.Throws<UnitTestException>(() => new XmlRootTest<XmlSerializableClass1>("root").Check());
+            Assert.Throws<UnitTestException>(() => new XmlRootTest<XmlDecorationClass1>("root").Check());
         }
 
         [Fact]

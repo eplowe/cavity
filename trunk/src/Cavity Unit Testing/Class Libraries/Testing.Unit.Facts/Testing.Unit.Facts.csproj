@@ -57,7 +57,7 @@
     <Compile Include="Types\IInterface1.cs" />
     <Compile Include="Types\InterfacedClass1.cs" />
     <Compile Include="Types\PropertiedClass1.cs" />
-    <Compile Include="Types\XmlSerializableClass1.cs" />
+    <Compile Include="Types\XmlDecorationClass1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Testing.Unit\Testing.Unit.csproj">
@@ -77,6 +77,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Tests\AttributeUsageTest.Facts.cs" />
+    <Compile Include="Tests\XmlSerializableTest.Facts.cs" />
+    <Compile Include="Types\IInterface2.cs" />
+    <Compile Include="Types\XmlSerializationClass5.cs" />
+    <Compile Include="Types\XmlSerializationClass3.cs" />
+    <Compile Include="Types\XmlSerializationClass2.cs" />
+    <Compile Include="Types\XmlSerializationClass4.cs" />
+    <Compile Include="Types\XmlDecorationClass2.cs" />
+    <Compile Include="Types\XmlSerializationClass1.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.Project" />

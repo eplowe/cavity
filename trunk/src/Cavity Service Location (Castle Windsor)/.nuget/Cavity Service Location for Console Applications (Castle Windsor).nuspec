@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.ServiceLocation.CastleWindsor.Console</id>
-    <version>1.1.0.789</version>
+    <version>1.1.0.790</version>
     <title>Cavity Service Location for Console Applications (Castle Windsor)</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -12,13 +12,13 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides a Castle Windsor XML configuration of the common service locator for console applications.</description>
     <summary />
-    <copyright>Copyright © 2010 - 2011 Alan Dean</copyright>
+    <copyright>Copyright © 2010 - 2012 Alan Dean</copyright>
     <language />
     <tags>IoC</tags>
     <releaseNotes />
     <dependencies>
       <dependency id="Castle.Windsor" version="3.0.0.4001" />
-      <dependency id="Cavity.Configuration" version="1.1.0.789" />
+      <dependency id="Cavity.Configuration" version="1.1.0.790" />
       <dependency id="Cavity.ServiceLocation" version="1.1.0.438" />
       <dependency id="CommonServiceLocator" version="1.0" />
     </dependencies>

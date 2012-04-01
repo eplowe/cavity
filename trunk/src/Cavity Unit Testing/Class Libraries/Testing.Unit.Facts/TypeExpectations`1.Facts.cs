@@ -65,6 +65,54 @@
         }
 
         [Fact]
+        public void op_AttributeUsage_AttributeTargets()
+        {
+            Assert.True(new TypeExpectations<Attribute2Attribute>()
+                            .DerivesFrom<Attribute1Attribute>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .AttributeUsage(AttributeTargets.All)
+                            .Result);
+        }
+
+        [Fact]
+        public void op_AttributeUsage_AttributeTargets_bool_bool()
+        {
+            Assert.True(new TypeExpectations<Attribute2Attribute>()
+                            .DerivesFrom<Attribute1Attribute>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .AttributeUsage(AttributeTargets.All, false, true)
+                            .Result);
+        }
+
+        [Fact]
+        public void op_AttributeUsage_AttributeTargets_whenFalse()
+        {
+            Assert.Throws<UnitTestException>(() => new TypeExpectations<Class1>()
+                                                       .DerivesFrom<object>()
+                                                       .IsConcreteClass()
+                                                       .IsUnsealed()
+                                                       .HasDefaultConstructor()
+                                                       .AttributeUsage(AttributeTargets.Class)
+                                                       .Result);
+        }
+
+        [Fact]
+        public void op_DerivesFromOfAttribute()
+        {
+            var obj = new TypeExpectations<Attribute1Attribute>()
+                .DerivesFrom<object>()
+                .IsConcreteClass()
+                .IsUnsealed()
+                .HasDefaultConstructor();
+
+            Assert.Throws<NotSupportedException>(() => obj.IsDecoratedWith<AttributeUsageAttribute>());
+        }
+
+        [Fact]
         public void op_ImplementsOfT_whenNotInterface()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new TypeExpectations<Class1>()
@@ -73,6 +121,39 @@
                                                                  .IsUnsealed()
                                                                  .HasDefaultConstructor()
                                                                  .Implements<string>());
+        }
+
+        [Fact]
+        public void op_Implements_whenIXmlSerializable()
+        {
+            Assert.Throws<NotSupportedException>(() => new TypeExpectations<XmlSerializationClass5>()
+                                                           .DerivesFrom<object>()
+                                                           .IsConcreteClass()
+                                                           .IsSealed()
+                                                           .HasDefaultConstructor()
+                                                           .Implements<IXmlSerializable>()
+                                                           .Result);
+        }
+
+        [Fact]
+        public void op_Implements_whenInterfaceAndIXmlSerializable()
+        {
+            Assert.True(new TypeExpectations<IInterface2>()
+                            .IsInterface()
+                            .Implements<IXmlSerializable>()
+                            .Result);
+        }
+
+        [Fact]
+        public void op_XmlSerializable()
+        {
+            Assert.True(new TypeExpectations<XmlSerializationClass5>()
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .XmlSerializable()
+                            .Result);
         }
 
         [Fact]
@@ -131,25 +212,25 @@
         [Fact]
         public void prop_Result_whenIsDecoratedWithSerializableAttribute()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new TypeExpectations<UnitTestException>()
-                                                                 .DerivesFrom<object>()
-                                                                 .IsConcreteClass()
-                                                                 .IsUnsealed()
-                                                                 .HasDefaultConstructor()
-                                                                 .IsDecoratedWith<SerializableAttribute>()
-                                                                 .Result);
+            Assert.Throws<NotSupportedException>(() => new TypeExpectations<UnitTestException>()
+                                                           .DerivesFrom<object>()
+                                                           .IsConcreteClass()
+                                                           .IsUnsealed()
+                                                           .HasDefaultConstructor()
+                                                           .IsDecoratedWith<SerializableAttribute>()
+                                                           .Result);
         }
 
         [Fact]
         public void prop_Result_whenIsDecoratedWithXmlRootAttribute()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new TypeExpectations<XmlSerializableClass1>()
-                                                                 .DerivesFrom<object>()
-                                                                 .IsConcreteClass()
-                                                                 .IsUnsealed()
-                                                                 .HasDefaultConstructor()
-                                                                 .IsDecoratedWith<XmlRootAttribute>()
-                                                                 .Result);
+            Assert.Throws<NotSupportedException>(() => new TypeExpectations<XmlDecorationClass1>()
+                                                           .DerivesFrom<object>()
+                                                           .IsConcreteClass()
+                                                           .IsUnsealed()
+                                                           .HasDefaultConstructor()
+                                                           .IsDecoratedWith<XmlRootAttribute>()
+                                                           .Result);
         }
 
         [Fact]
@@ -211,7 +292,7 @@
         [Fact]
         public void prop_Result_whenXmlRootWithNamespace()
         {
-            Assert.True(new TypeExpectations<XmlSerializableClass1>()
+            Assert.True(new TypeExpectations<XmlDecorationClass1>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
                             .IsSealed()

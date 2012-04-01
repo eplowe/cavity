@@ -2,6 +2,7 @@ namespace Cavity.Tests
 {
     using System;
     using System.Globalization;
+    using System.Linq;
     using System.Reflection;
     using System.Xml.Serialization;
 
@@ -42,13 +43,13 @@ namespace Cavity.Tests
 
         private void CheckArrayItems()
         {
-            var attribute = Attribute.GetCustomAttribute(Member, typeof(XmlArrayItemAttribute), false) as XmlArrayItemAttribute;
-            if (null == attribute)
+            var attributes = Attribute.GetCustomAttributes(Member, typeof(XmlArrayItemAttribute), false).Cast<XmlArrayItemAttribute>().ToList();
+            if (0 == attributes.Count)
             {
                 throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.XmlArrayDecorationTestException_Message3, Member.Name));
             }
 
-            if (ArrayItemElementName != attribute.ElementName)
+            if (0 == attributes.Count(x => x.ElementName == ArrayItemElementName))
             {
                 throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.XmlArrayDecorationTestException_Message4, Member.Name, ArrayItemElementName));
             }

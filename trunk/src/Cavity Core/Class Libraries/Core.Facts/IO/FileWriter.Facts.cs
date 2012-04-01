@@ -3,7 +3,6 @@
     using System;
     using System.IO;
 
-    using Cavity;
     using Xunit;
 
     public sealed class FileWriterFacts
@@ -12,12 +11,12 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<FileWriter>()
-                .DerivesFrom<StreamWriter>()
-                .IsConcreteClass()
-                .IsUnsealed()
-                .NoDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<StreamWriter>()
+                            .IsConcreteClass()
+                            .IsUnsealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
@@ -36,7 +35,26 @@
         [Fact]
         public void ctor_FileInfoNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new FileWriter(null));
+            Assert.Throws<ArgumentNullException>(() => new FileWriter(null as FileInfo));
+        }
+
+        [Fact]
+        public void ctor_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").FullName;
+                using (var writer = new FileWriter(file))
+                {
+                    Assert.NotNull(writer);
+                }
+            }
+        }
+
+        [Fact]
+        public void ctor_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new FileWriter(null as string));
         }
 
         [Fact]

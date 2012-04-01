@@ -9,19 +9,19 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element")));
+            Assert.NotNull(new XmlElementTest(typeof(XmlDecorationClass1).GetProperty("Element")));
         }
 
         [Fact]
         public void is_AttributePropertyTest()
         {
-            Assert.IsAssignableFrom<MemberTestBase>(new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element")));
+            Assert.IsAssignableFrom<MemberTestBase>(new XmlElementTest(typeof(XmlDecorationClass1).GetProperty("Element")));
         }
 
         [Fact]
         public void op_Check_whenNameWrong()
         {
-            var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element"))
+            var obj = new XmlElementTest(typeof(XmlDecorationClass1).GetProperty("Element"))
                           {
                               ElementName = "xxx"
                           };
@@ -32,7 +32,7 @@
         [Fact]
         public void op_Check_whenNamespaceWrong()
         {
-            var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element"))
+            var obj = new XmlElementTest(typeof(XmlDecorationClass1).GetProperty("Element"))
                           {
                               ElementName = "element", 
                               Namespace = "xxx"
@@ -44,7 +44,7 @@
         [Fact]
         public void op_Check_whenTrue()
         {
-            var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("NamespaceElement"))
+            var obj = new XmlElementTest(typeof(XmlDecorationClass1).GetProperty("NamespaceElement"))
                           {
                               ElementName = "element", 
                               Namespace = "urn:example.org"
@@ -66,7 +66,7 @@
         {
             const string expected = "example";
 
-            var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element"))
+            var obj = new XmlElementTest(typeof(XmlDecorationClass1).GetProperty("Element"))
                           {
                               ElementName = expected
                           };
@@ -81,7 +81,7 @@
         {
             const string expected = "example";
 
-            var obj = new XmlElementTest(typeof(XmlSerializableClass1).GetProperty("Element"))
+            var obj = new XmlElementTest(typeof(XmlDecorationClass1).GetProperty("Element"))
                           {
                               Namespace = expected
                           };

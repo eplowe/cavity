@@ -3,7 +3,9 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Data;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.IO;
 #if !NET20
     using System.Linq;
@@ -219,6 +221,35 @@
             {
                 Info.Delete();
             }
+        }
+
+        public DataTable ToDataTable()
+        {
+            DataTable result = null;
+            foreach (var entry in this)
+            {
+                if (null == result)
+                {
+                    result = new DataTable(Info.Name)
+                                 {
+                                     Locale = CultureInfo.InvariantCulture
+                                 };
+                    foreach (var key in entry.Keys)
+                    {
+                        result.Columns.Add(key);
+                    }
+                }
+
+                var row = result.NewRow();
+                foreach (var key in entry.Keys)
+                {
+                    row[key] = entry[key];
+                }
+
+                result.Rows.Add(row);
+            }
+
+            return result;
         }
 
         IEnumerator IEnumerable.GetEnumerator()

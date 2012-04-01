@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{407AA08B-608C-481C-A98E-4AB32FAB30F8}</ProjectGuid>
+    <AssemblyName>Cavity.Data.Csv.Xunit</AssemblyName>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Data (CSV)\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.790\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit">
+      <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.extensions">
+      <HintPath>..\..\packages\xunit.extensions.1.9.0.1566\lib\xunit.extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data.Csv\Data.Csv.csproj">
+      <Project>{1ACBDACF-14B0-4B7E-9FCA-9ADFB0F803E0}</Project>
+      <Name>Data.Csv</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\CsvFileAttribute.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.references" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!--
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

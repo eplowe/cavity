@@ -1,5 +1,7 @@
 ﻿namespace Cavity.Fluent
 {
+    using System;
+
     using Cavity.Types;
 
     using Moq;
@@ -30,6 +32,46 @@
                 .Verifiable();
 
             var actual = mock.Object.Add(expectation);
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_AttributeUsage_AttributeTargets()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            const AttributeTargets validOn = AttributeTargets.All;
+
+            var mock = new Mock<ITestType>();
+            mock
+                .Setup(x => x.AttributeUsage(validOn))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.AttributeUsage(validOn);
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_AttributeUsage_AttributeTargets_bool_bool()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            const AttributeTargets validOn = AttributeTargets.All;
+
+            var mock = new Mock<ITestType>();
+            mock
+                .Setup(x => x.AttributeUsage(validOn, true, false))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.AttributeUsage(validOn, true, false);
 
             Assert.Same(expected, actual);
 
@@ -142,6 +184,24 @@
                 .Verifiable();
 
             var actual = mock.Object.XmlRoot(elementName, "namespace");
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_XmlSerializable()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            var mock = new Mock<ITestType>();
+            mock
+                .Setup(x => x.XmlSerializable())
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.XmlSerializable();
 
             Assert.Same(expected, actual);
 

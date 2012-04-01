@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Xml.Serialization;
 
     using Cavity.Configuration;
     using Cavity.IO;
@@ -22,7 +21,7 @@
                             .IsUnsealed()
                             .HasDefaultConstructor()
                             .XmlRoot("list")
-                            .Implements<IXmlSerializable>()
+                            .XmlSerializable()
                             .Result);
         }
 
@@ -45,24 +44,6 @@
         }
 
         [Fact]
-        public void deserialize()
-        {
-            var obj = ("<list>" +
-                       "<item>first</item>" +
-                       "<item>last</item>" +
-                       "</list>").XmlDeserialize<StringList>();
-
-            Assert.Equal("first", obj.First());
-            Assert.Equal("last", obj.Last());
-        }
-
-        [Fact]
-        public void deserializeEmpty()
-        {
-            Assert.Equal(0, "<list />".XmlDeserialize<StringList>().Count);
-        }
-
-        [Fact]
         public void op_AsEnumerable_ofString()
         {
             const string expected = "example";
@@ -75,15 +56,61 @@
         }
 
         [Fact]
-        public void op_GetSchema()
+        public void op_Equals_object()
         {
-            Assert.Throws<NotSupportedException>(() => (new StringList() as IXmlSerializable).GetSchema());
+            var obj = new StringList
+                          {
+                              "example"
+                          };
+
+            var comparand = new StringList
+                                {
+                                    "example"
+                                };
+
+            Assert.True(obj.Equals(comparand));
         }
 
         [Fact]
-        public void op_ReadXml_XmlReaderNull()
+        public void op_Equals_objectNull()
         {
-            Assert.Throws<ArgumentNullException>(() => (new StringList() as IXmlSerializable).ReadXml(null));
+            Assert.False(new StringList().Equals(null));
+        }
+
+        [Fact]
+        public void op_Equals_objectSame()
+        {
+            var obj = new StringList();
+
+            // ReSharper disable EqualExpressionComparison
+            Assert.True(obj.Equals(obj));
+
+            // ReSharper restore EqualExpressionComparison
+        }
+
+        [Fact]
+        public void op_Equals_object_whenFalse()
+        {
+            var obj = new StringList
+                          {
+                              "123"
+                          };
+
+            var comparand = new StringList
+                                {
+                                    "456"
+                                };
+
+            Assert.False(obj.Equals(comparand));
+        }
+
+        [Fact]
+        public void op_GetHashCode()
+        {
+            var expected = string.Empty.GetHashCode();
+            var actual = new StringList().GetHashCode();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -121,13 +148,57 @@
         }
 
         [Fact]
-        public void op_WriteXml_XmlWriterNull()
+        public void op_ToString()
         {
-            Assert.Throws<ArgumentNullException>(() => (new StringList() as IXmlSerializable).WriteXml(null));
+            var expected = string.Empty;
+            var actual = new StringList().ToString();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void serialize()
+        public void op_ToString_whenMultipleItems()
+        {
+            var expected = "123{0}456{0}".FormatWith(Environment.NewLine);
+
+            var obj = new StringList
+                          {
+                              "123", 
+                              "456"
+                          };
+            var actual = obj.ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToString_whenSingleItem()
+        {
+            var expected = "example" + Environment.NewLine;
+
+            var obj = new StringList
+                          {
+                              "example"
+                          };
+            var actual = obj.ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void xml_deserialize()
+        {
+            var obj = ("<list>" +
+                       "<item>first</item>" +
+                       "<item>last</item>" +
+                       "</list>").XmlDeserialize<StringList>();
+
+            Assert.Equal("first", obj.First());
+            Assert.Equal("last", obj.Last());
+        }
+
+        [Fact]
+        public void xml_serialize()
         {
             var obj = new StringList
                           {

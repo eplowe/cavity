@@ -3,7 +3,7 @@
     using System;
 
     [AttributeUsage(AttributeTargets.All)]
-    public sealed class Attribute2Attribute : Attribute
+    public sealed class Attribute2Attribute : Attribute1Attribute
     {
     }
 }

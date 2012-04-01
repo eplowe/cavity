@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Data;
     using System.IO;
     using System.Linq;
 
@@ -134,8 +135,8 @@
         {
             using (var file = new TempFile())
             {
-                file.Info.Append("name");
-                file.Info.Append("value");
+                file.Info.AppendLine("name");
+                file.Info.AppendLine("value");
                 IEnumerable enumerable = new CsvFile(file.Info);
                 foreach (var entry in enumerable.Cast<KeyStringDictionary>())
                 {
@@ -214,6 +215,28 @@
         }
 
         [Fact]
+        public void op_Line_KeyStringDictionary_IListOfString()
+        {
+            var obj = new KeyStringDictionary
+                          {
+                              new KeyStringPair("A", "123"), 
+                              new KeyStringPair("B", "ignore"), 
+                              new KeyStringPair("C", "left,right")
+                          };
+
+            const string expected = "123,\"left,right\"";
+            var actual = CsvFile.Line(obj, "A,C".Split(',').ToList());
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Line_KeyStringDictionary_IListOfString_whenColumnsNotFound()
+        {
+            Assert.Throws<KeyNotFoundException>(() => CsvFile.Line(new KeyStringDictionary(), "A,B".Split(',').ToList()));
+        }
+
+        [Fact]
         public void op_Line_KeyStringDictionary_string()
         {
             var obj = new KeyStringDictionary
@@ -245,28 +268,6 @@
         public void op_Line_KeyStringDictionary_string_whenColumnsNotFound()
         {
             Assert.Throws<KeyNotFoundException>(() => CsvFile.Line(new KeyStringDictionary(), "A"));
-        }
-
-        [Fact]
-        public void op_Line_KeyStringDictionary_IListOfString()
-        {
-            var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("A", "123"), 
-                              new KeyStringPair("B", "ignore"), 
-                              new KeyStringPair("C", "left,right")
-                          };
-
-            const string expected = "123,\"left,right\"";
-            var actual = CsvFile.Line(obj, "A,C".Split(',').ToList());
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Line_KeyStringDictionary_IListOfString_whenColumnsNotFound()
-        {
-            Assert.Throws<KeyNotFoundException>(() => CsvFile.Line(new KeyStringDictionary(), "A,B".Split(',').ToList()));
         }
 
         [Fact]
@@ -357,6 +358,21 @@
                 var actual = file.ReadToEnd();
 
                 Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_ToDataTable()
+        {
+            using (var file = new TempFile())
+            {
+                file.Info.AppendLine("name");
+                file.Info.AppendLine("value");
+                var csv = new CsvFile(file.Info);
+                foreach (DataRow row in csv.ToDataTable().Rows)
+                {
+                    Assert.Equal("value", row.Field<string>("name"));
+                }
             }
         }
 

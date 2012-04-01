@@ -22,7 +22,7 @@
                             .HasDefaultConstructor()
                             .XmlRoot("data")
                             .Implements<IEnumerable<KeyStringPair>>()
-                            .Implements<IXmlSerializable>()
+                            .XmlSerializable()
                             .Result);
         }
 
@@ -607,18 +607,6 @@
         }
 
         [Fact]
-        public void op_GetSchema()
-        {
-            Assert.Throws<NotSupportedException>(() => (new DataCollection() as IXmlSerializable).GetSchema());
-        }
-
-        [Fact]
-        public void op_ReadXml_XmlReaderNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (new DataCollection() as IXmlSerializable).ReadXml(null));
-        }
-
-        [Fact]
         public void op_ToString()
         {
             var obj = new DataCollection
@@ -638,12 +626,6 @@
         }
 
         [Fact]
-        public void op_WriteXml_XmlWriterNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (new DataCollection() as IXmlSerializable).WriteXml(null));
-        }
-
-        [Fact]
         public void prop_Count()
         {
             Assert.True(new PropertyExpectations<DataCollection>(p => p.Count)
@@ -654,7 +636,7 @@
         }
 
         [Fact]
-        public void serialize()
+        public void xml_serialize()
         {
             var obj = new DataCollection
                           {

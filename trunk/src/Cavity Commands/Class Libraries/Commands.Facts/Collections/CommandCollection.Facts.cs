@@ -3,7 +3,6 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Xml.Serialization;
 
     using Cavity.IO;
     using Cavity.Xml.XPath;
@@ -23,7 +22,7 @@
                             .IsUnsealed()
                             .HasDefaultConstructor()
                             .XmlRoot("commands")
-                            .Implements<IXmlSerializable>()
+                            .XmlSerializable()
                             .Result);
         }
 
@@ -31,51 +30,6 @@
         public void ctor()
         {
             Assert.NotNull(new CommandCollection());
-        }
-
-        [Fact]
-        public void deserialize()
-        {
-            var obj = ("<commands>" +
-                       "<command i='1' type='{0}'>".FormatWith(typeof(DerivedCommand).AssemblyQualifiedName) +
-                       @"<command.derived undo='false' />" +
-                       "</command>" +
-                       "<command i='1' type='{0}'>".FormatWith(typeof(DerivedCommand).AssemblyQualifiedName) +
-                       @"<command.derived undo='true' />" +
-                       "</command>" +
-                       "</commands>").XmlDeserialize<CommandCollection>();
-
-            Assert.Equal(2, obj.Count);
-            Assert.IsType<DerivedCommand>(obj.First());
-            Assert.IsType<DerivedCommand>(obj.Last());
-        }
-
-        [Fact]
-        public void deserialize_whenEmpty()
-        {
-            Assert.NotNull("<commands />".XmlDeserialize<CommandCollection>());
-        }
-
-        [Fact]
-        public void deserialize_whenEmptyType()
-        {
-            using (var temp = new TempDirectory())
-            {
-                // ReSharper disable AccessToDisposedClosure
-                Assert.Throws<InvalidOperationException>(() => ("<commands>" +
-                                                                "<command i='1' type=''>" +
-                                                                @"<directory.create path='{0}' undo='false' />".FormatWith(temp.Info.FullName) +
-                                                                "</command>" +
-                                                                "</commands>").XmlDeserialize<CommandCollection>());
-
-                // ReSharper restore AccessToDisposedClosure
-            }
-        }
-
-        [Fact]
-        public void deserialize_whenOpenClose()
-        {
-            Assert.NotNull("<commands></commands>".XmlDeserialize<CommandCollection>());
         }
 
         [Fact]
@@ -115,15 +69,84 @@
         }
 
         [Fact]
-        public void op_GetSchema()
+        public void op_Equals_object()
         {
-            Assert.Throws<NotSupportedException>(() => (new CommandCollection() as IXmlSerializable).GetSchema());
+            var obj = new CommandCollection
+                          {
+                              new DerivedCommand()
+                          };
+
+            var comparand = new CommandCollection
+                                {
+                                    new DerivedCommand()
+                                };
+
+            Assert.True(obj.Equals(comparand));
         }
 
         [Fact]
-        public void op_ReadXml_XmlReaderNull()
+        public void op_Equals_objectNull()
         {
-            Assert.Throws<ArgumentNullException>(() => (new CommandCollection() as IXmlSerializable).ReadXml(null));
+            Assert.False(new CommandCollection().Equals(null));
+        }
+
+        [Fact]
+        public void op_Equals_objectSame()
+        {
+            var obj = new CommandCollection();
+
+            // ReSharper disable EqualExpressionComparison
+            Assert.True(obj.Equals(obj));
+
+            // ReSharper restore EqualExpressionComparison
+        }
+
+        [Fact]
+        public void op_Equals_object_whenFalse()
+        {
+            var obj = new CommandCollection
+                          {
+                              new Mock<ICommand>().Object
+                          };
+
+            var comparand = new CommandCollection
+                                {
+                                    new DerivedCommand()
+                                };
+
+            Assert.False(obj.Equals(comparand));
+        }
+
+        [Fact]
+        public void op_GetHashCode()
+        {
+            var expected = string.Empty.GetHashCode();
+            var actual = new CommandCollection().GetHashCode();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToString()
+        {
+            var expected = string.Empty;
+            var actual = new CommandCollection().ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToString_whenSingleItem()
+        {
+            var expected = "Cavity.DerivedCommand" + Environment.NewLine;
+
+            var obj = new CommandCollection
+                          {
+                              new DerivedCommand()
+                          };
+            var actual = obj.ToString();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -163,13 +186,40 @@
         }
 
         [Fact]
-        public void op_WriteXml_XmlWriterNull()
+        public void xml_deserialize()
         {
-            Assert.Throws<ArgumentNullException>(() => (new CommandCollection() as IXmlSerializable).WriteXml(null));
+            var obj = ("<commands>" +
+                       "<command i='1' type='{0}'>".FormatWith(typeof(DerivedCommand).AssemblyQualifiedName) +
+                       @"<command.derived undo='false' />" +
+                       "</command>" +
+                       "<command i='1' type='{0}'>".FormatWith(typeof(DerivedCommand).AssemblyQualifiedName) +
+                       @"<command.derived undo='true' />" +
+                       "</command>" +
+                       "</commands>").XmlDeserialize<CommandCollection>();
+
+            Assert.Equal(2, obj.Count);
+            Assert.IsType<DerivedCommand>(obj.First());
+            Assert.IsType<DerivedCommand>(obj.Last());
         }
 
         [Fact]
-        public void serialize()
+        public void xml_deserialize_whenEmptyType()
+        {
+            using (var temp = new TempDirectory())
+            {
+                // ReSharper disable AccessToDisposedClosure
+                Assert.Throws<InvalidOperationException>(() => ("<commands>" +
+                                                                "<command i='1' type=''>" +
+                                                                @"<directory.create path='{0}' undo='false' />".FormatWith(temp.Info.FullName) +
+                                                                "</command>" +
+                                                                "</commands>").XmlDeserialize<CommandCollection>());
+
+                // ReSharper restore AccessToDisposedClosure
+            }
+        }
+
+        [Fact]
+        public void xml_serialize()
         {
             using (var temp = new TempDirectory())
             {
@@ -184,16 +234,6 @@
                 var xpath = "1 = count(/commands/command[@type='{0}']/command.derived[@undo='false'])".FormatWith(typeof(DerivedCommand).AssemblyQualifiedName, temp.Info.FullName);
                 Assert.True(navigator.Evaluate<bool>(xpath));
             }
-        }
-
-        [Fact]
-        public void serialize_whenEmpty()
-        {
-            var obj = new CommandCollection();
-
-            var navigator = obj.XmlSerialize().CreateNavigator();
-
-            Assert.True(navigator.Evaluate<bool>("1 = count(/commands)"));
         }
     }
 }
