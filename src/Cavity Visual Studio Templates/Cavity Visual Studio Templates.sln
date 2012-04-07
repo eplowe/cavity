@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Cavity Visual Studio 2010 Templates Setup", "Installation\Cavity Visual Studio 2010 Templates Setup\Cavity Visual Studio 2010 Templates Setup.wixproj", "{5831D6D4-F8BF-45EC-A73A-54CD07FFFB8D}"
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Cavity Visual Studio Templates Setup", "Installation\Cavity Visual Studio Templates Setup\Cavity Visual Studio Templates Setup.wixproj", "{5831D6D4-F8BF-45EC-A73A-54CD07FFFB8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
