@@ -11,3 +11,5 @@ FOR /f "tokens=1-2 delims=/:" %%a IN ("%TIME%") DO (SET t=%%a%%b)
 SET utc=%y%-%m%-%d%+%t%
 
 MSBUILD /m build.xml /l:FileLogger,Microsoft.Build.Engine;logfile="%utc% build.log";append=true;verbosity=diagnostic;encoding=utf-8
+
+:END
