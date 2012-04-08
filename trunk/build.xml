@@ -6,10 +6,10 @@
     <Import Project="$(MSBuildProjectDirectory)\version.xml" />
   </ImportGroup>
   <ImportGroup>
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\Import.tasks" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity\MSBuild.tasks" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Version.xml" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Clean.all" />
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.test" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity\Test.all" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Bundle.all" />
   </ImportGroup>
   <PropertyGroup>
@@ -19,7 +19,7 @@
   <Target Name="Run" DependsOnTargets="Version">
     <CallTarget Targets="Clean" />
     <CallTarget Targets="Build" />
-    <CallTarget Targets="Test Facts" />
+    <CallTarget Targets="Test" />
     <CallTarget Targets="Bundle" />
     <CallTarget Targets="Copy MSI" />
   </Target>

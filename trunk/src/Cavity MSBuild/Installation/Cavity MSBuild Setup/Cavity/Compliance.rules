@@ -17,8 +17,8 @@
                                           XPath="1=count(//b:ProjectGuid[text()])"
                                           Explanation="the ProjectGuid property is required"/>
     <Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)"
-                                          XPath="1=(count(//b:Import[@Project='%24(SolutionDir)Import\trove\Code.project']) + count(//b:Import[@Project='%24(SolutionDir)Import\trove\Facts.project']) + count(//b:Import[@Project='%24(SolutionDir)Import\trove\Mvc.project']))"
-                                          Explanation="the project must import one of Code.project, Facts.project or Mvc.project"/>
+                                          XPath="1=(count(//b:Import[@Project='%24(SolutionDir)Import\trove\Code.project']) + count(//b:Import[@Project='%24(SolutionDir)Import\trove\Tests.project']) + count(//b:Import[@Project='%24(SolutionDir)Import\trove\Mvc.project']))"
+                                          Explanation="the project must import one of Code.project, Tests.project or Mvc.project"/>
     <Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)"
                                           XPath="1=(count(//b:Import[@Project='%24(SolutionDir)Import\trove\AnyCPU.platform']) + count(//b:Import[@Project='%24(SolutionDir)Import\trove\MixedCPU.platform']) + count(//b:Import[@Project='%24(SolutionDir)Import\trove\x64.platform']) + count(//b:Import[@Project='%24(SolutionDir)Import\trove\x86.platform']))"
                                           Explanation="the project must import one of AnyCPU.platform, MixedCPU.platform, x64.platform or x86.platform"/>

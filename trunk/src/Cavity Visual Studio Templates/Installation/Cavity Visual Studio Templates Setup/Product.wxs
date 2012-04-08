@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="Cavity Visual Studio Templates" Language="1033" Version="1.1.0.798" Manufacturer="Alan Dean" UpgradeCode="186aa0a5-64b0-4867-a3de-019502de9336">
+  <Product Id="*" Name="Cavity Visual Studio Templates" Language="1033" Version="1.1.0.799" Manufacturer="Alan Dean" UpgradeCode="186aa0a5-64b0-4867-a3de-019502de9336">
     <Package InstallerVersion="300" InstallScope="perUser" Compressed="yes" Description="Installs the Cavity Visual Studio Templates." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
@@ -9,11 +9,20 @@
         <Directory Id="VisualStudio2010" Name="Visual Studio 2010">
           <Directory Id="Templates" Name="Templates">
             <Directory Id="ItemTemplates" Name="ItemTemplates">
-              <Directory Id="VisualCS" Name="Visual C#">
-                <Component Id="Content" Guid="9584039a-a660-48ae-98a0-58830b89002b">
-                  <RegistryValue Root="HKCU" Key="Software\Cavity\Visual Studio 2010 Templates" Type="string" Value="" KeyPath="yes" />
-                  <File Id="SimpleClassFactsZip" Name="Simple Class Facts.zip" Source="Content\Simple Class Facts.zip" />
-                  <File Id="SimpleClassZip" Name="Simple Class.zip" Source="Content\Simple Class.zip" />
+              <Directory Id="VisualCSItemTemplates" Name="Visual C#">
+                <Component Id="VisualStudio2010ItemTemplates" Guid="9584039a-a660-48ae-98a0-58830b89002b">
+                  <RegistryValue Root="HKCU" Key="Software\Cavity\Visual Studio 2010 Item Templates" Type="string" Value="" KeyPath="yes" />
+                  <File Id="SimpleClassFactsZip" Name="Simple Class Facts.zip" Source="Simple Class Facts\Simple Class Facts.zip" />
+                  <File Id="SimpleClassZip" Name="Simple Class.zip" Source="Simple Class\Simple Class.zip" />
+                </Component>
+              </Directory>
+            </Directory>
+            <Directory Id="ProjectTemplates" Name="ProjectTemplates">
+              <Directory Id="VisualCSProjectTemplates" Name="Visual C#">
+                <Component Id="VisualStudio2010ProjectTemplates" Guid="b85c73a6-f5e2-4fa7-b06c-faa3a2eaa171">
+                  <RegistryValue Root="HKCU" Key="Software\Trove\Visual Studio 2010 Project Templates" Type="string" Value="" KeyPath="yes" />
+                  <File Id="ClassLibraryZip" Name="Cavity Class Library.zip" Source="Class Library\Cavity Class Library.zip" />
+                  <File Id="TestLibraryZip" Name="Cavity Test Library.zip" Source="Test Library\Cavity Test Library.zip" />
                 </Component>
               </Directory>
             </Directory>
@@ -23,7 +32,8 @@
     </Directory>
     <Feature Id="ProductFeature" Title="Cavity Visual Studio Templates" Level="1">
       <ComponentGroupRef Id="Product.Generated" />
-      <ComponentRef Id="Content" />
+      <ComponentRef Id="VisualStudio2010ItemTemplates" />
+      <ComponentRef Id="VisualStudio2010ProjectTemplates" />
     </Feature>
   </Product>
 </Wix>

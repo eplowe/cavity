@@ -14,11 +14,16 @@
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\" />
+    <Folder Include="Class Library\" />
+    <Folder Include="Simple Class Facts\" />
+    <Folder Include="Simple Class\" />
+    <Folder Include="Test Library\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Simple Class Facts.zip" />
-    <Content Include="Content\Simple Class.zip" />
+    <Content Include="Class Library\Cavity Class Library.zip" />
+    <Content Include="Simple Class Facts\Simple Class Facts.zip" />
+    <Content Include="Simple Class\Simple Class.zip" />
+    <Content Include="Test Library\Cavity Test Library.zip" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--

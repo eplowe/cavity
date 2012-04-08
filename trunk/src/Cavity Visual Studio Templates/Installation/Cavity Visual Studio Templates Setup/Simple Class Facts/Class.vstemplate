@@ -1,0 +1,15 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
+  <TemplateData>
+    <DefaultName>Class</DefaultName>
+    <Name>Simple Class Facts</Name>
+    <Description>Creates a new xunit facts class for a simple class.</Description>
+    <ProjectType>CSharp</ProjectType>
+    <SortOrder>10</SortOrder>
+    <Icon Package="{52CBD135-1F97-2580-011F-C7CD052E44DE}" ID="216"/>
+  </TemplateData>
+  <TemplateContent>
+    <References>
+    </References>
+    <ProjectItem SubType="Code" TargetFileName="$fileinputname$.Facts.cs" ReplaceParameters="true">Class.cs</ProjectItem>
+  </TemplateContent>
+</VSTemplate>
