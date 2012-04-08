@@ -12,8 +12,8 @@
     <NET40 Condition="'$(NET40)'==''">true</NET40>
   </PropertyGroup>
   <PropertyGroup>
-    <AnyCPU Condition="'$(AnyCPU)'==''">false</AnyCPU>
-    <MixedPlatforms Condition="'$(MixedPlatforms)'==''">true</MixedPlatforms>
+    <AnyCPU Condition="'$(AnyCPU)'==''">true</AnyCPU>
+    <MixedPlatforms Condition="'$(MixedPlatforms)'==''">false</MixedPlatforms>
     <x86 Condition="'$(x86)'==''">false</x86>
     <x64 Condition="'$(x64)'==''">false</x64>
   </PropertyGroup>

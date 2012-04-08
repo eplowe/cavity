@@ -1,11 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
     <ProjectGuid>{E8E036AD-06D6-41A8-972C-A7840EC1437B}</ProjectGuid>
     <AssemblyName>Cavity.TestController.Abstractions</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Test Controller Abstractions\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\CodeAnalysis.dictionary" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Testing\IConfigureTest.cs" />
     <Compile Include="Testing\IRunTest.cs" />

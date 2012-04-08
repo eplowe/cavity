@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
     <ProjectGuid>{330F7265-626C-4BC8-8710-C9C96EFA7ED7}</ProjectGuid>
     <AssemblyName>Cavity.Commands.FileSystem</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Commands (File System)\</SolutionDir>
@@ -19,6 +20,10 @@
     <Reference Include="Cavity.Core">
       <HintPath>..\..\packages\Cavity.Core.1.1.0.790\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

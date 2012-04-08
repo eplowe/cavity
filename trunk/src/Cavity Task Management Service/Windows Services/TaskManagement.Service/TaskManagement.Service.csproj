@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
     <ProjectGuid>{6E1FEB48-28DE-49E6-83BD-08D272F8C43E}</ProjectGuid>
     <AssemblyName>Cavity.TaskManagement.Service</AssemblyName>
     <OutputType>WinExe</OutputType>
@@ -77,6 +78,10 @@
     <EmbeddedResource Include="TaskManagementService.resx">
       <DependentUpon>TaskManagementService.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

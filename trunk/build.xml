@@ -6,6 +6,7 @@
     <Import Project="$(MSBuildProjectDirectory)\version.xml" />
   </ImportGroup>
   <ImportGroup>
+    <Import Project="$(MSBuildExtensionsPath)\Cavity\Import.tasks" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Version.xml" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Clean.all" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.test" />
@@ -20,6 +21,7 @@
     <CallTarget Targets="Build" />
     <CallTarget Targets="Test Facts" />
     <CallTarget Targets="Bundle" />
+    <CallTarget Targets="Copy MSI" />
   </Target>
   <Target Name="Build">
     <MSBuild Projects="$(MSBuildProjectDirectory)\build.AnyCPU.xml"
@@ -42,5 +44,15 @@
              Targets="Rebuild"
              Properties="$(MSBuildProperties)"
              BuildInParallel="true" />
+  </Target>
+  <Target Name="Copy MSI">
+    <ItemGroup>
+      <MsiFiles Include="$(MSBuildProjectDirectory)\src\Cavity MSBuild\Installation\Cavity MSBuild Setup\bin\Release NET40 x86\Cavity MSBuild Extensions.msi" />
+      <MsiFiles Include="$(MSBuildProjectDirectory)\src\Cavity Task Management Service\Installation\TaskManagement.Setup\bin\Release NET40 x86\Cavity Task Management Service.msi" />
+      <MsiFiles Include="$(MSBuildProjectDirectory)\src\Cavity Task Management Service\Installation\TaskManagement.Setup\bin\Release NET40 x64\Cavity Task Management Service (x64).msi" />
+      <MsiFiles Include="$(MSBuildProjectDirectory)\src\Cavity Visual Studio Templates\Installation\Cavity Visual Studio Templates Setup\bin\Release NET40 x86\Cavity Visual Studio Templates.msi" />
+    </ItemGroup>
+    <Copy SourceFiles="%(MsiFiles.Identity)"
+          DestinationFolder="$(MSBuildProjectDirectory)\bundles" />
   </Target>
 </Project>

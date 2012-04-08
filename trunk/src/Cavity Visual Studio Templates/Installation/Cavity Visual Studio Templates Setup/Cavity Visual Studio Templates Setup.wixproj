@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Wix.setup" />
   <PropertyGroup>
     <ProjectGuid>{5831d6d4-f8bf-45ec-a73a-54cd07fffb8d}</ProjectGuid>
-    <OutputName>Cavity Visual Studio 2010 Templates</OutputName>
+    <OutputName>Cavity Visual Studio Templates</OutputName>
     <Name>Cavity Visual Studio Templates Setup</Name>
   </PropertyGroup>
   <PropertyGroup>
