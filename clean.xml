@@ -3,24 +3,10 @@
          DefaultTargets="Run"
          ToolsVersion="4.0">
   <ImportGroup>
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\Import.tasks" />
     <Import Project="$(MSBuildExtensionsPath)\Cavity\Clean.all" />
   </ImportGroup>
-  <PropertyGroup>
-    <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
-    <MSBuildProperties>$(MSBuildProperties);CommandLineBuild=true;Configuration=$(Configuration)</MSBuildProperties>
-  </PropertyGroup>
   <Target Name="Run">
     <CallTarget Targets="Clean" />
-    <CallTarget Targets="Clean Packages" />
-  </Target>
-  <Target Name="Clean Packages">
-    <ItemGroup>
-      <PackageFiles Include="$(MSBuildProjectDirectory)\src\**\packages\**" />
-      <PackageDirectories Include="@(PackageFiles->'%(Directory)')"
-      	       Condition=" %(PackageFiles.Filename) != 'repositories' " />
-    </ItemGroup>
-    <RemoveDir Directories="%(PackageDirectories.RootDir)%(PackageDirectories.Identity)"
-      	       Condition=" Exists('%(PackageDirectories.RootDir)%(PackageDirectories.Identity)') " />
+    <CallTarget Targets="Clean packages" />
   </Target>
 </Project>

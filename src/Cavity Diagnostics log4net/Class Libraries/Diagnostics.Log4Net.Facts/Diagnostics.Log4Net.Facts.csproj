@@ -40,7 +40,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.Project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Tests.Project" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">

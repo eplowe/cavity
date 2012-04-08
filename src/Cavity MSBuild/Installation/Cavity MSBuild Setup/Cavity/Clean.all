@@ -36,4 +36,13 @@
              Targets="Clean"
              BuildInParallel="true" />
   </Target>
+  <Target Name="Clean packages">
+    <ItemGroup>
+      <PackageFiles Include="$(MSBuildProjectDirectory)\src\**\packages\**" />
+      <PackageDirectories Include="@(PackageFiles->'%(Directory)')"
+      	       Condition=" %(PackageFiles.Filename) != 'repositories' " />
+    </ItemGroup>
+    <RemoveDir Directories="%(PackageDirectories.RootDir)%(PackageDirectories.Identity)"
+      	       Condition=" Exists('%(PackageDirectories.RootDir)%(PackageDirectories.Identity)') " />
+  </Target>
 </Project>

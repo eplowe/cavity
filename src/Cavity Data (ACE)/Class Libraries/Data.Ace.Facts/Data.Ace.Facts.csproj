@@ -56,7 +56,7 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Facts.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity\Tests.project" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.references" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
