@@ -41,6 +41,8 @@
                                                    InputItems1="@(NuSpecFiles)">
       <Output TaskParameter="ItemCount" PropertyName="NuSpecFilesCount"/>
     </MSBuild.ExtensionPack.Framework.MsBuildHelper>
+    <MakeDir Directories="$(BundleDirectory)"
+             Condition="'$(NuSpecFilesCount)' != '0' And !Exists('$(BundleDirectory)')" />
     <Exec Command="nuget pack &quot;%(NuSpecFiles.Identity)&quot;"
           WorkingDirectory="$(BundleDirectory)"
           Condition="'$(NuSpecFilesCount)' != '0'" />
