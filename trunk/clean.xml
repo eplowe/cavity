@@ -18,10 +18,9 @@
     <ItemGroup>
       <PackageFiles Include="$(MSBuildProjectDirectory)\src\**\packages\**" />
       <PackageDirectories Include="@(PackageFiles->'%(Directory)')"
-      	                  Condition=" %(PackageFiles.Filename) != 'repositories.config' " />
+      	       Condition=" %(PackageFiles.Filename) != 'repositories' " />
     </ItemGroup>
-    <!-- Message Text="%(PackageDirectories.Identity)" / -->
-    <RemoveDir Directories="%(PackageDirectories.Identity)"
-      	       Condition=" Exists('%(PackageDirectories.Identity)') " />
+    <RemoveDir Directories="%(PackageDirectories.RootDir)%(PackageDirectories.Identity)"
+      	       Condition=" Exists('%(PackageDirectories.RootDir)%(PackageDirectories.Identity)') " />
   </Target>
 </Project>
