@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define UpgradeCode="{f5481b90-9cbd-456f-96df-e2165b8d9af5}"?>
-  <Product Id="*" Name="Cavity MSBuild Extensions" Language="1033" Version="1.1.0.796" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
+  <Product Id="*" Name="Cavity MSBuild Extensions" Language="1033" Version="1.1.0.798" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" InstallPrivileges="elevated" Compressed="yes" Description="Installs the Cavity MSBuild extensions." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
