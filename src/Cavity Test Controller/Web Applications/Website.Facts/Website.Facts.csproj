@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
     <ProjectGuid>{CFF7B717-2F16-42D9-BCB7-FE258BE5B3BC}</ProjectGuid>
     <AssemblyName>Cavity.TestController.Website.Facts</AssemblyName>
     <SignAssembly>false</SignAssembly>
@@ -46,6 +47,10 @@
       <Project>{16C24F2A-C2D3-47AE-AD6A-CE444806DD8A}</Project>
       <Name>Website</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

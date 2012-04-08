@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
     <ProjectGuid>{087F141B-93D3-4D0F-873E-A176DC98C161}</ProjectGuid>
     <AssemblyName>Cavity.Repository.FileSystem.Xml</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Repository (XML File System)\</SolutionDir>
@@ -29,6 +30,10 @@
     <Reference Include="Cavity.Repository">
       <HintPath>..\..\packages\Cavity.Repository.1.1.0.790\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

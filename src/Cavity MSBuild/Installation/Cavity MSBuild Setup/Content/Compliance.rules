@@ -46,9 +46,6 @@
                                           XPath="0=count(//b:SchemaVersion)"
                                           Explanation="it is not necessary to set the SchemaVersion property"/>
     <Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)"
-                                          XPath="0=count(//b:AppDesignerFolder)"
-                                          Explanation="it is not necessary to set the AppDesignerFolder property"/>
-    <Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)"
                                           XPath="0=count(//b:OutputType[text()='Library'])"
                                           Explanation="it is not necessary to set the OutputType property as Library"/>
     <Cavity.Build.CSharpProjectCompliance Projects="$(ProjectPath)"

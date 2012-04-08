@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
     <ProjectGuid>{02AC0AB1-A2F4-4B34-B0FA-E004EB1A60DA}</ProjectGuid>
     <AssemblyName>Cavity.Core</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Core\</SolutionDir>
@@ -63,6 +64,10 @@
     <Compile Include="Dynamic\DynamicData.cs" />
     <Compile Include="Threading\IThreadedObject.cs" />
     <Compile Include="Threading\ThreadedObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

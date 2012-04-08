@@ -24,6 +24,7 @@
     <Content Include="Content\Code.stylecop" />
     <Content Include="Content\Compliance.include" />
     <Content Include="Content\Compliance.rules" />
+    <Content Include="Content\Import.tasks" />
     <Content Include="Content\Data.references" />
     <Content Include="Content\Facts.project" />
     <Content Include="Content\Facts.ruleset" />

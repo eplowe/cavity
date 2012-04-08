@@ -6,7 +6,6 @@
     <FileAlignment>512</FileAlignment>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <OutputType Condition=" '$(OutputType)' == '' ">Library</OutputType>
     <RootNamespace Condition=" '$(RootNamespace)' == '' ">Cavity</RootNamespace>
     <DefineConstants Condition=" '$(SuppressTrace)' != 'true' ">TRACE;$(DefineConstants)</DefineConstants>
@@ -54,7 +53,6 @@
              Include="$(SolutionDir)$(RootNamespace).cs">
       <Link>Properties\$(RootNamespace).cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
