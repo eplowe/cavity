@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Cavity.Data.Xml.Xunit</id>
+    <version>1.1.0.801</version>
+    <title>Cavity Data (XML) xUnit Extensions</title>
+    <authors>Alan Dean</authors>
+    <owners />
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://code.google.com/p/cavity/</projectUrl>
+    <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides xUnit extensions for XML files or data.</description>
+    <summary />
+    <copyright>Copyright © 2010 - 2012 Alan Dean</copyright>
+    <language />
+    <tags>XML Data TDD xUnit</tags>
+    <releaseNotes />
+    <dependencies>
+      <dependency id="Cavity.Core" version="1.1.0.790" />
+      <dependency id="xunit.extensions" version="1.9.0.1566" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="lib\net20\Cavity.Data.Xml.Xunit.dll" target="lib\net20\Cavity.Data.Xml.Xunit.dll" />
+    <file src="lib\net35\Cavity.Data.Xml.Xunit.dll" target="lib\net35\Cavity.Data.Xml.Xunit.dll" />
+    <file src="lib\net40\Cavity.Data.Xml.Xunit.dll" target="lib\net40\Cavity.Data.Xml.Xunit.dll" />
+  </files>
+</package>

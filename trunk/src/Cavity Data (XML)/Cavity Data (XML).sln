@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Class Libraries", "Class Libraries", "{8ECE1CC7-54DD-4C9E-AFE2-472193D2ED6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Xml.Xunit", "Class Libraries\Data.Xml.Xunit\Data.Xml.Xunit.csproj", "{1464833C-FB44-44F5-8D49-331CDC76A725}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Xml.Xunit.Facts", "Class Libraries\Data.Xml.Xunit.Facts\Data.Xml.Xunit.Facts.csproj", "{115EF4EC-3413-4845-9B73-3FDBC565F781}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F06A0ED4-9506-453A-A1F1-784E1109FC9E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\Cavity Data (XML) xUnit Extensions.nuspec = .nuget\Cavity Data (XML) xUnit Extensions.nuspec
+		Cavity Data (XML).bundle = Cavity Data (XML).bundle
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1464833C-FB44-44F5-8D49-331CDC76A725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1464833C-FB44-44F5-8D49-331CDC76A725}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1464833C-FB44-44F5-8D49-331CDC76A725}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1464833C-FB44-44F5-8D49-331CDC76A725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{115EF4EC-3413-4845-9B73-3FDBC565F781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{115EF4EC-3413-4845-9B73-3FDBC565F781}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{115EF4EC-3413-4845-9B73-3FDBC565F781}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{115EF4EC-3413-4845-9B73-3FDBC565F781}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1464833C-FB44-44F5-8D49-331CDC76A725} = {8ECE1CC7-54DD-4C9E-AFE2-472193D2ED6F}
+		{115EF4EC-3413-4845-9B73-3FDBC565F781} = {8ECE1CC7-54DD-4C9E-AFE2-472193D2ED6F}
+	EndGlobalSection
+EndGlobal

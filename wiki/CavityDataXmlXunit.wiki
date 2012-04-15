@@ -1,0 +1,146 @@
+#summary Provides xUnit extensions for XML files and data.
+#labels Phase-Implementation
+
+== !NuGet Packages ==
+
+http://nuget.org/List/Packages/Cavity.Data.Xml.Xunit
+
+== using Cavity.Data _[http://code.google.com/p/cavity/source/browse/#svn%2Ftrunk%2Fsrc%2FCavity%20Data%20(XML)%2FClass%20Libraries%2FData.Xml.Xunit.Facts%2FData Facts]_ ==
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Data%20(XML)/Class%20Libraries/Data.Xml.Xunit/Data/XmlDataAttribute.cs XmlDataAttribute]
+
+To get the native XML types:
+
+{{{
+[Theory]
+[XmlData("<example />")]
+public void test(XmlDocument xml)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlData("<example />")]
+public void test(IXPathNavigable xml)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlData("<example />")]
+public void test(XPathNavigator xml)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlData("<example />")]
+public void test(XDocument xml)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlData("<one />", "<two />")]
+public void test(XmlDocument one, XmlDocument two)
+{
+    ...
+}
+}}}
+
+Or deserialize the Xml:
+
+{{{
+[Theory]
+[XmlData("<example />")]
+public void test(Example obj)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlData("<one />", "<two />")]
+public void test(Class1 one, Class2 two)
+{
+    ...
+}
+}}}
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Data%20(Xml)/Class%20Libraries/Data.Xml.Xunit/Data/XmlFileAttribute.cs XmlFileAttribute]
+
+To get the native XML types:
+
+{{{
+[Theory]
+[XmlFile("example.xml")]
+public void test(XmlDocument xml)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlFile("example.xml")]
+public void test(IXPathNavigable xml)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlFile("example.xml")]
+public void test(XPathNavigator xml)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlFile("example.xml")]
+public void test(XDocument xml)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlData("one.xml", "two.xml")]
+public void test(XmlDocument one, XmlDocument two)
+{
+    ...
+}
+}}}
+
+Or deserialize the Xml:
+
+{{{
+[Theory]
+[XmlFile("example.xml")]
+public void test(Example obj)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlData("one.xml", "two.xml")]
+public void test(Class1 one, Class2 two)
+{
+    ...
+}
+}}}

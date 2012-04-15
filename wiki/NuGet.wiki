@@ -27,6 +27,12 @@
  * Cavity.Data.Csv
   (Cavity.Core)
 
+*1.1.0.801* Cavity.Data.Json.Xunit
+ * Cavity.Core
+
+*1.1.0.801* Cavity.Data.Xml.Xunit
+ * Cavity.Core
+
 *1.1.0.790* Cavity Repository
  * Cavity.Core
 
