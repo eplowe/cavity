@@ -9,6 +9,7 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Example.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
