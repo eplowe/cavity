@@ -43,7 +43,7 @@
             {
                 var obj = ("<operation completed='true' info='example'>" +
                            "<commands>" +
-                           "<command type='Cavity.IO.DirectoryCreateCommand, Cavity.Commands.FileSystem, Culture=neutral, PublicKeyToken=c0c289e4846931e8'>" +
+                           "<command type='Cavity.IO.DirectoryCreateCommand, Cavity.Commands.FileSystem'>" +
                            @"<directory.create path='{0}' undo='false' />".FormatWith(temp.Info.FullName) +
                            "</command>" +
                            "</commands>" +

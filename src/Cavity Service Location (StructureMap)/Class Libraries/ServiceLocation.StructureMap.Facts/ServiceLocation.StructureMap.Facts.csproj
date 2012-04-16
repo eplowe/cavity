@@ -37,10 +37,10 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Cavity.ServiceLocation">
-      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.ServiceLocation.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Testing.Unit">
-      <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.790\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>

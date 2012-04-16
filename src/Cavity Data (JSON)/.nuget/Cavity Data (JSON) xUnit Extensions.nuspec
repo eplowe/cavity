@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Data.Json.Xunit</id>
-    <version>1.1.0.803</version>
+    <version>1.1.0.804</version>
     <title>Cavity Data (JSON) xUnit Extensions</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,7 +17,7 @@
     <tags>JSON Data TDD xUnit</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Core" version="1.1.0.790" />
+      <dependency id="Cavity.Core" version="1.1.0.804" />
       <dependency id="Newtonsoft.Json" version="4.5.3" />
       <dependency id="xunit.extensions" version="1.9.0.1566" />
     </dependencies>
