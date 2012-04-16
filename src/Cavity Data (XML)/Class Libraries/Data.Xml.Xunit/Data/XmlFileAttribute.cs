@@ -18,7 +18,7 @@
 
     using Xunit.Extensions;
 
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public sealed class XmlFileAttribute : DataAttribute
     {
         public XmlFileAttribute(params string[] files)

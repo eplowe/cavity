@@ -20,7 +20,7 @@
                             .IsConcreteClass()
                             .IsSealed()
                             .NoDefaultConstructor()
-                            .AttributeUsage(AttributeTargets.Method, false, true)
+                            .AttributeUsage(AttributeTargets.Method, true, true)
                             .Result);
         }
 
@@ -84,6 +84,7 @@
         }
 
         [Theory]
+        [JsonFile("example.json")]
         [JsonFile("example.json")]
         public void usage(JObject obj)
         {

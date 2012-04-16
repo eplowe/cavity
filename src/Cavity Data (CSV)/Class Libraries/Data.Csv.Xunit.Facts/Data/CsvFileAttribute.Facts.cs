@@ -20,7 +20,7 @@
                             .IsConcreteClass()
                             .IsSealed()
                             .NoDefaultConstructor()
-                            .AttributeUsage(AttributeTargets.Method, false, true)
+                            .AttributeUsage(AttributeTargets.Method, true, true)
                             .Result);
         }
 
@@ -105,6 +105,7 @@
         }
 
         [Theory]
+        [CsvFile("example.csv")]
         [CsvFile("example.csv")]
         public void usage_whenDataTable(DataTable table)
         {

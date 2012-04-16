@@ -14,7 +14,7 @@
 
     using Xunit.Extensions;
 
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public sealed class CsvFileAttribute : DataAttribute
     {
         public CsvFileAttribute(params string[] files)
