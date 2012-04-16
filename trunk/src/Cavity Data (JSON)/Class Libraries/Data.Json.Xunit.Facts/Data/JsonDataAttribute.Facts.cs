@@ -20,7 +20,7 @@
                             .IsConcreteClass()
                             .IsSealed()
                             .NoDefaultConstructor()
-                            .AttributeUsage(AttributeTargets.Method, false, true)
+                            .AttributeUsage(AttributeTargets.Method, true, true)
                             .Result);
         }
 
@@ -84,6 +84,7 @@
         }
 
         [Theory]
+        [JsonData("{ \"Value\": 999 }")]
         [JsonData("{ \"Value\": 999 }")]
         public void usage(JObject obj)
         {

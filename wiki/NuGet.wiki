@@ -23,14 +23,14 @@
 
 *1.1.0.790* Cavity.Data.Csv
  * Cavity.Core
-*1.1.0.790* Cavity.Data.Csv.Xunit
+*1.1.0.803* Cavity.Data.Csv.Xunit
  * Cavity.Data.Csv
   (Cavity.Core)
 
-*1.1.0.801* Cavity.Data.Json.Xunit
+*1.1.0.803* Cavity.Data.Json.Xunit
  * Cavity.Core
 
-*1.1.0.801* Cavity.Data.Xml.Xunit
+*1.1.0.803* Cavity.Data.Xml.Xunit
  * Cavity.Core
 
 *1.1.0.790* Cavity Repository
