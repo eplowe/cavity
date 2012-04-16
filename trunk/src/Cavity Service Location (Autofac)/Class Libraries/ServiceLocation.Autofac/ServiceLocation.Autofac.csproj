@@ -14,7 +14,7 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Cavity.ServiceLocation">
-      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.438\lib\$(TargetFrameworkVersionName)\Cavity.ServiceLocation.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>

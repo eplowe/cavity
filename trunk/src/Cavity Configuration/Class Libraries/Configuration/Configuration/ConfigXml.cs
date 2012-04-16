@@ -4,12 +4,14 @@
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Security.Permissions;
 
     using Cavity.Diagnostics;
     using Cavity.IO;
 
     public class ConfigXml
     {
+        [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
         private ConfigXml(FileInfo file)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
