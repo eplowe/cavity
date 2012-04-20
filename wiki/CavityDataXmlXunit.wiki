@@ -118,7 +118,7 @@ public void test(XDocument xml)
 
 {{{
 [Theory]
-[XmlData("one.xml", "two.xml")]
+[XmlFile("one.xml", "two.xml")]
 public void test(XmlDocument one, XmlDocument two)
 {
     ...
@@ -138,7 +138,76 @@ public void test(Example obj)
 
 {{{
 [Theory]
-[XmlData("one.xml", "two.xml")]
+[XmlFile("one.xml", "two.xml")]
+public void test(Class1 one, Class2 two)
+{
+    ...
+}
+}}}
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Data%20(Xml)/Class%20Libraries/Data.Xml.Xunit/Data/XmlUriAttribute.cs XmlUriAttribute]
+
+To get the native XML types:
+
+{{{
+[Theory]
+[XmlUri("http://www.alan-dean.com/example.xml")]
+public void test(XmlDocument xml)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlUri("http://www.alan-dean.com/example.xml")]
+public void test(IXPathNavigable xml)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlUri("http://www.alan-dean.com/example.xml")]
+public void test(XPathNavigator xml)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlUri("http://www.alan-dean.com/example.xml")]
+public void test(XDocument xml)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlUri("http://www.alan-dean.com/one.xml", "http://www.alan-dean.com/two.xml")]
+public void test(XmlDocument one, XmlDocument two)
+{
+    ...
+}
+}}}
+
+Or deserialize the Xml:
+
+{{{
+[Theory]
+[XmlUri("http://www.alan-dean.com/example.xml")]
+public void test(Example obj)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[XmlUri("http://www.alan-dean.com/one.xml", "http://www.alan-dean.com/two.xml")]
 public void test(Class1 one, Class2 two)
 {
     ...

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\CsvFileAttribute.Facts.cs" />
+    <Compile Include="Data\CsvUriAttribute.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Tests.project" />

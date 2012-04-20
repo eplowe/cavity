@@ -16,6 +16,7 @@
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\JsonDataAttribute.Facts.cs" />
     <Compile Include="Data\JsonFileAttribute.Facts.cs" />
+    <Compile Include="Data\JsonUriAttribute.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="example.json">

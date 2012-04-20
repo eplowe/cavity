@@ -90,3 +90,45 @@ public void test(Class1 one, Class1 two)
     ...
 }
 }}}
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Data%20(JSON)/Class%20Libraries/Data.Json.Xunit/Data/JsonUriAttribute.cs JsonUriAttribute]
+
+To get the Json.NET object:
+
+{{{
+[Theory]
+[JsonUri("http://www.alan-dean.com/example.json")]
+public void test(JObject obj)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[JsonUri("http://www.alan-dean.com/one.json", "http://www.alan-dean.com/two.json")]
+public void test(JObject one, JObject two)
+{
+    ...
+}
+}}}
+
+Or deserialize the JSON:
+
+{{{
+[Theory]
+[JsonUri("http://www.alan-dean.com/example.json")]
+public void test(Class1 obj)
+{
+    ...
+}
+}}}
+
+{{{
+[Theory]
+[JsonUri("http://www.alan-dean.com/one.json", "http://www.alan-dean.com/two.json")]
+public void test(Class1 one, Class1 two)
+{
+    ...
+}
+}}}

@@ -68,3 +68,65 @@ public void test(DataSet one)
     }
 }
 }}}
+
+[http://code.google.com/p/cavity/source/browse/trunk/src/Cavity%20Data%20(CSV)/Class%20Libraries/Data.Csv.Xunit/Data/CsvUriAttribute.cs CsvUriAttribute]
+
+{{{
+[Theory]
+[CsvUri("http://www.alan-dean.com/example.csv")]
+public void test(CsvFile csv)
+{
+    foreach (var entry in csv)
+    {
+    	...
+    }
+}
+}}}
+
+{{{
+[Theory]
+[CsvUri("http://www.alan-dean.com/one.csv", "http://www.alan-dean.com/two.csv")]
+public void test(CsvFile one, CsvFile two)
+{
+    foreach (var entry in csv)
+    {
+    	...
+    }
+}
+}}}
+
+{{{
+[Theory]
+[CsvUri("http://www.alan-dean.com/example.csv")]
+public void test(DataTable table)
+{
+    foreach (DataRow row in table.Rows)
+    {
+    	...
+    }
+}
+}}}
+
+{{{
+[Theory]
+[CsvUri("http://www.alan-dean.com/one.csv", "http://www.alan-dean.com/two.csv")]
+public void test(DataTable one, DataTable two)
+{
+    foreach (DataRow row in one.Rows)
+    {
+    	...
+    }
+}
+}}}
+
+{{{
+[Theory]
+[CsvUri("http://www.alan-dean.com/one.csv", "http://www.alan-dean.com/two.csv")]
+public void test(DataSet one)
+{
+    foreach (DataRow row in data.Tables[0].Rows)
+    {
+    	...
+    }
+}
+}}}
