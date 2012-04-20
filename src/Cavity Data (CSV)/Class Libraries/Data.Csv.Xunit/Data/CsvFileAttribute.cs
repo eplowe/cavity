@@ -84,7 +84,8 @@
                 foreach (var file in Files)
                 {
                     index++;
-                    if (parameterTypes[index] == typeof(CsvFile) || parameterTypes[index] == typeof(IEnumerable<KeyStringDictionary>))
+                    if (parameterTypes[index] == typeof(CsvFile) ||
+                        parameterTypes[index] == typeof(IEnumerable<KeyStringDictionary>))
                     {
                         list.Add(new CsvFile(file));
                         continue;
@@ -96,10 +97,7 @@
                         continue;
                     }
 
-                    if (parameterTypes[index] != typeof(CsvFile))
-                    {
-                        throw new InvalidOperationException(Resources.CsvFileAttribute_UnsupportedParameterType);
-                    }
+                    throw new InvalidOperationException(Resources.CsvFileAttribute_UnsupportedParameterType);
                 }
             }
 

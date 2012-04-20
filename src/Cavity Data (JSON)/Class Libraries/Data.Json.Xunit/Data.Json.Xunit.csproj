@@ -9,6 +9,7 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data\JsonUriAttribute.cs" />
     <Compile Include="Data\JsonDataAttribute.cs" />
     <Compile Include="Data\JsonFileAttribute.cs" />
   </ItemGroup>

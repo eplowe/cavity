@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Data.Csv</id>
-    <version>1.1.0.804</version>
+    <version>1.1.0.806</version>
     <title>Cavity Data (CSV)</title>
     <authors>Alan Dean</authors>
     <owners />

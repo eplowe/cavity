@@ -9,6 +9,7 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data\XmlUriAttribute.cs" />
     <Compile Include="Data\XmlDataAttribute.cs" />
     <Compile Include="Data\XmlFileAttribute.cs" />
   </ItemGroup>

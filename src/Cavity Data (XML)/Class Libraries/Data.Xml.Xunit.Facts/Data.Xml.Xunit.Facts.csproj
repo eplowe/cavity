@@ -30,6 +30,7 @@
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\XmlDataAttribute.Facts.cs" />
     <Compile Include="Data\XmlFileAttribute.Facts.cs" />
+    <Compile Include="Data\XmlUriAttribute.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="xunit">
