@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.IO;
 #if !NET20
     using System.Linq;
@@ -74,6 +75,16 @@
             {
                 var info = new FileInfo(file);
                 index++;
+
+                if (parameterTypes[index] == typeof(DataSet))
+                {
+                    var data = new DataSet();
+                    data.ReadXml(info.FullName, XmlReadMode.Auto);
+
+                    list.Add(data);
+                    continue;
+                }
+                
                 if (parameterTypes[index] == typeof(XmlDocument) || parameterTypes[index] == typeof(IXPathNavigable))
                 {
                     var xml = new XmlDocument();
@@ -91,7 +102,7 @@
                     list.Add(xml.CreateNavigator());
                     continue;
                 }
-                
+
 #if !NET20
                 if (parameterTypes[index] == typeof(XDocument))
                 {

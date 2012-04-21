@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<data>
+  <xs:schema id="data" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="data" msdata:IsDataSet="true" msdata:Locale="">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Example" msdata:Locale="">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Id" type="xs:int" minOccurs="0" />
+                <xs:element name="When" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="Comment" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <Example>
+    <Id>123</Id>
+    <When>1999-12-31T00:00:00+00:00</When>
+    <Comment>New Years Eve</Comment>
+  </Example>
+</data>

@@ -5,7 +5,11 @@
     using System.Data;
     using System.Globalization;
     using System.Linq;
+#if NET40
     using System.Net;
+#else
+    using System.Web;
+#endif
     using System.Xml;
 
     using HtmlAgilityPack;
@@ -117,7 +121,11 @@
 
                 var attribute = heading.Attributes["rowspan"];
                 span = null == attribute ? 1 : XmlConvert.ToInt32(attribute.Value);
+#if NET40
                 var text = WebUtility.HtmlDecode(heading.InnerText);
+#else
+                var text = HttpUtility.HtmlDecode(heading.InnerText);
+#endif
                 if (1 == span)
                 {
                     obj.Columns.Add(text, typeof(HtmlNode));
@@ -226,7 +234,11 @@
             {
                 var attribute = heading.Attributes["colspan"];
                 var span = null == attribute ? 1 : XmlConvert.ToInt32(attribute.Value);
+#if NET40
                 var text = WebUtility.HtmlDecode(heading.InnerText);
+#else
+                var text = HttpUtility.HtmlDecode(heading.InnerText);
+#endif
                 if (1 == span)
                 {
                     obj.Columns[i++].ColumnName = text;

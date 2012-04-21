@@ -56,7 +56,7 @@ public void test(XmlDocument one, XmlDocument two)
 }
 }}}
 
-Or deserialize the Xml:
+or deserialize the Xml:
 
 {{{
 [Theory]
@@ -125,7 +125,7 @@ public void test(XmlDocument one, XmlDocument two)
 }
 }}}
 
-Or deserialize the Xml:
+or deserialize the Xml:
 
 {{{
 [Theory]
@@ -140,6 +140,17 @@ public void test(Example obj)
 [Theory]
 [XmlFile("one.xml", "two.xml")]
 public void test(Class1 one, Class2 two)
+{
+    ...
+}
+}}}
+
+or deserialize a serialized DataSet:
+
+{{{
+[Theory]
+[XmlFile("dataset.xml")]
+public void test(DataSet data)
 {
     ...
 }
@@ -194,7 +205,7 @@ public void test(XmlDocument one, XmlDocument two)
 }
 }}}
 
-Or deserialize the Xml:
+or deserialize the Xml:
 
 {{{
 [Theory]
@@ -209,6 +220,17 @@ public void test(Example obj)
 [Theory]
 [XmlUri("http://www.alan-dean.com/one.xml", "http://www.alan-dean.com/two.xml")]
 public void test(Class1 one, Class2 two)
+{
+    ...
+}
+}}}
+
+or deserialize a serialized DataSet:
+
+{{{
+[Theory]
+[XmlUri("http://www.alan-dean.com/dataset.xml")]
+public void test(DataSet data)
 {
     ...
 }

@@ -4,7 +4,6 @@
          ToolsVersion="4.0">
   <ItemGroup>
   	<Solutions Include="Cavity Commands Transactions" />
-  	<Solutions Include="Cavity Data (HTML)" />
   	<Solutions Include="Cavity Examples Website" />
   	<Solutions Include="Cavity HTTP Generalizations" />
   	<Solutions Include="Cavity HTTP Testing" />
