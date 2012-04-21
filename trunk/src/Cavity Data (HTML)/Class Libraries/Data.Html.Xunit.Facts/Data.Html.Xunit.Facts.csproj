@@ -9,7 +9,6 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Data\HtmlUriAttribute.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="tabular.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -31,6 +30,7 @@
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\HtmlDocument.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\HtmlFileAttribute.Facts.cs" />
+    <Compile Include="Data\HtmlUriAttribute.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">

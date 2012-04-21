@@ -4,11 +4,16 @@
     using System.Collections.Generic;
     using System.Data;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using System.Net;
     using System.Reflection;
     using System.Xml.XPath;
 
+#if NET20
+    using Cavity.Collections;
+#endif
     using Cavity.IO;
     using Cavity.Properties;
 
@@ -59,8 +64,13 @@
                     {
                         using (var reader = new StreamReader(stream))
                         {
+#if NET20
+                            var file = new FileInfo(StringExtensionMethods.FormatWith("{0}.html", AlphaDecimal.Random()));
+                            FileInfoExtensionMethods.Create(file, reader.ReadToEnd());
+#else
                             var file = new FileInfo("{0}.html".FormatWith(AlphaDecimal.Random()));
                             file.Create(reader.ReadToEnd());
+#endif
 
                             html = new HtmlDocument();
                             html.Load(file.FullName);
@@ -85,10 +95,17 @@
                 throw new ArgumentNullException("parameterTypes");
             }
 
+#if NET20
+            if (IEnumerableExtensionMethods.Count(Locations) != parameterTypes.Length)
+            {
+                throw new InvalidOperationException(StringExtensionMethods.FormatWith(Resources.Attribute_CountsDiffer, IEnumerableExtensionMethods.Count(Locations), parameterTypes.Length));
+            }
+#else
             if (Locations.Count() != parameterTypes.Length)
             {
                 throw new InvalidOperationException(Resources.Attribute_CountsDiffer.FormatWith(Locations.Count(), parameterTypes.Length));
             }
+#endif
 
             var list = new List<object>();
             var index = -1;
@@ -110,7 +127,11 @@
 
                 if (parameterTypes[index] == typeof(DataSet))
                 {
+#if NET20
+                    list.Add(HtmlDocumentExtensionMethods.TabularData(Download(location)));
+#else
                     list.Add(Download(location).TabularData());
+#endif
                     continue;
                 }
 
