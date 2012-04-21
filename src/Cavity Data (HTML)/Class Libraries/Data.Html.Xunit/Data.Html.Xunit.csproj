@@ -9,6 +9,8 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data\HtmlDocument.ExtensionMethods.cs" />
+    <Compile Include="Data\HtmlFileAttribute.cs" />
     <Compile Include="Data\HtmlUriAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -17,10 +19,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Compile Include="Data\HtmlDocument.ExtensionMethods.cs" />
-    <Compile Include="Data\HtmlFileAttribute.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &lt; '4.0' ">
     <Reference Include="System.Web" />

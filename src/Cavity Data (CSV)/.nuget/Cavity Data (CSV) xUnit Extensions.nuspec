@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Data.Csv.Xunit</id>
-    <version>1.1.0.810</version>
+    <version>1.1.0.811</version>
     <title>Cavity Data (CSV) xUnit Extensions</title>
     <authors>Alan Dean</authors>
     <owners />

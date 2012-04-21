@@ -4,10 +4,15 @@
     using System.Collections.Generic;
     using System.Data;
     using System.IO;
+#if !NET20
     using System.Linq;
+#endif
     using System.Reflection;
     using System.Xml.XPath;
 
+#if NET20
+    using Cavity.Collections;
+#endif
     using Cavity.Properties;
 
     using HtmlAgilityPack;
@@ -52,10 +57,17 @@
                 throw new ArgumentNullException("parameterTypes");
             }
 
+#if NET20
+            if (IEnumerableExtensionMethods.Count(Files) != parameterTypes.Length)
+            {
+                throw new InvalidOperationException(StringExtensionMethods.FormatWith(Resources.Attribute_CountsDiffer, IEnumerableExtensionMethods.Count(Files), parameterTypes.Length));
+            }
+#else
             if (Files.Count() != parameterTypes.Length)
             {
                 throw new InvalidOperationException(Resources.Attribute_CountsDiffer.FormatWith(Files.Count(), parameterTypes.Length));
             }
+#endif
 
             var list = new List<object>();
             var index = -1;
@@ -85,8 +97,11 @@
                 {
                     var html = new HtmlDocument();
                     html.Load(info.FullName);
-
+#if NET20
+                    list.Add(HtmlDocumentExtensionMethods.TabularData(html));
+#else
                     list.Add(html.TabularData());
+#endif
                     continue;
                 }
 
