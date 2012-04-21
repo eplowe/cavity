@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.IO;
 #if !NET20
     using System.Linq;
@@ -108,6 +109,16 @@
             {
                 var file = Download(location);
                 index++;
+
+                if (parameterTypes[index] == typeof(DataSet))
+                {
+                    var data = new DataSet();
+                    data.ReadXml(file.FullName, XmlReadMode.Auto);
+
+                    list.Add(data);
+                    continue;
+                }
+
                 if (parameterTypes[index] == typeof(XmlDocument) || parameterTypes[index] == typeof(IXPathNavigable))
                 {
                     var xml = new XmlDocument();

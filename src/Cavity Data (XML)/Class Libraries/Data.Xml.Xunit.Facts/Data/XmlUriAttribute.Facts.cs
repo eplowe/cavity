@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.IO;
     using System.Linq;
     using System.Net;
@@ -47,9 +48,12 @@
         }
 
         [Fact]
-        public void op_Download_AbsoluteUriNull()
+        public void op_Download_AbsoluteUri()
         {
-            Assert.Throws<ArgumentNullException>(() => XmlUriAttribute.Download(null));
+            var expected = new FileInfo("example.xml").ReadToEnd();
+            var actual = XmlUriAttribute.Download("http://www.alan-dean.com/example.xml").ReadToEnd();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -59,12 +63,9 @@
         }
 
         [Fact]
-        public void op_Download_AbsoluteUri()
+        public void op_Download_AbsoluteUriNull()
         {
-            var expected = new FileInfo("example.xml").ReadToEnd();
-            var actual = XmlUriAttribute.Download("http://www.alan-dean.com/example.xml").ReadToEnd();
-
-            Assert.Equal(expected, actual);
+            Assert.Throws<ArgumentNullException>(() => XmlUriAttribute.Download(null));
         }
 
         [Fact]
@@ -116,6 +117,15 @@
         }
 
         [Theory]
+        [XmlUri("http://www.alan-dean.com/dataset.xml")]
+        public void usage_whenDataSet(DataSet data)
+        {
+            Assert.Equal(123, data.Tables["Example"].Rows[0].Field<int>("Id"));
+            Assert.Equal(new DateTime(1999, 12, 31), data.Tables["Example"].Rows[0].Field<DateTime>("When"));
+            Assert.Equal("New Years Eve", data.Tables["Example"].Rows[0].Field<string>("Comment"));
+        }
+
+        [Theory]
         [XmlUri("http://www.alan-dean.com/example.xml")]
         [XmlUri("http://www.alan-dean.com/example.xml")]
         public void usage_whenIXPathNavigable(IXPathNavigable xml)
@@ -141,16 +151,16 @@
 
         [Theory]
         [XmlUri("http://www.alan-dean.com/example.xml")]
-        public void usage_whenXmlDeserialize(Example example)
+        public void usage_whenXPathNavigator(XPathNavigator navigator)
         {
-            Assert.NotNull(example);
+            Assert.Equal("<example />", navigator.OuterXml);
         }
 
         [Theory]
         [XmlUri("http://www.alan-dean.com/example.xml")]
-        public void usage_whenXPathNavigator(XPathNavigator navigator)
+        public void usage_whenXmlDeserialize(Example example)
         {
-            Assert.Equal("<example />", navigator.OuterXml);
+            Assert.NotNull(example);
         }
     }
 }

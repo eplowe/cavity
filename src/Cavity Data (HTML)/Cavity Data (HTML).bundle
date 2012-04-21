@@ -3,12 +3,15 @@
          DefaultTargets="Run"
          ToolsVersion="4.0">
   <ItemGroup>
-    <NuGetLibDir Include="$(MSBuildProjectDirectory)\.nuget\lib\net20" />
+    <NuGetLibDir Include="$(MSBuildProjectDirectory)\.nuget\lib\net35" />
+    <NuGetLibDir Include="$(MSBuildProjectDirectory)\.nuget\lib\net40" />
   </ItemGroup>
   <Target Name="Run">
     <MakeDir Directories="%(NuGetLibDir.Identity)"
              Condition="!Exists('%(NuGetLibDir.Identity)')"/>
              
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Html.Xunit\bin\Release net35 AnyCPU\Cavity.Data.Html.Xunit.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\.nuget\lib\net35" />
     <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Html.Xunit\bin\Release net40 AnyCPU\Cavity.Data.Html.Xunit.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\.nuget\lib\net40" />
   </Target>

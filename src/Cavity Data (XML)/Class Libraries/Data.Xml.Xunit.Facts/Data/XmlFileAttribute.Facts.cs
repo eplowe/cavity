@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Linq;
     using System.Xml;
     using System.Xml.Linq;
@@ -91,6 +92,15 @@
         }
 
         [Theory]
+        [XmlFile("dataset.xml")]
+        public void usage_whenDataSet(DataSet data)
+        {
+            Assert.Equal(123, data.Tables["Example"].Rows[0].Field<int>("Id"));
+            Assert.Equal(new DateTime(1999, 12, 31), data.Tables["Example"].Rows[0].Field<DateTime>("When"));
+            Assert.Equal("New Years Eve", data.Tables["Example"].Rows[0].Field<string>("Comment"));
+        }
+
+        [Theory]
         [XmlFile("example.xml")]
         [XmlFile("example.xml")]
         public void usage_whenIXPathNavigable(IXPathNavigable xml)
@@ -116,16 +126,16 @@
 
         [Theory]
         [XmlFile("example.xml")]
-        public void usage_whenXmlDeserialize(Example example)
+        public void usage_whenXPathNavigator(XPathNavigator navigator)
         {
-            Assert.NotNull(example);
+            Assert.Equal("<example />", navigator.OuterXml);
         }
 
         [Theory]
         [XmlFile("example.xml")]
-        public void usage_whenXPathNavigator(XPathNavigator navigator)
+        public void usage_whenXmlDeserialize(Example example)
         {
-            Assert.Equal("<example />", navigator.OuterXml);
+            Assert.NotNull(example);
         }
     }
 }
