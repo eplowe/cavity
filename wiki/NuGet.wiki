@@ -10,7 +10,7 @@
 
 *1.1.0.804* Cavity.Testing.Unit
 
-*1.1.0.804* Cavity.Core
+*1.1.0.814* Cavity.Core
 
 *1.1.0.804* Cavity Configuration
  * Cavity.Core
@@ -27,7 +27,7 @@
  * Cavity.Data.Csv
   (Cavity.Core)
 
-*1.1.0.807* Cavity.Data.Html.Xunit
+*1.1.0.815* Cavity.Data.Html.Xunit
  * Cavity.Core
 
 *1.1.0.806* Cavity.Data.Json.Xunit
