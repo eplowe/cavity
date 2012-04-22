@@ -150,6 +150,12 @@
   <data name="ObjectExtensionMethods_IsBoundedBy_Message" xml:space="preserve">
     <value>The upper bound must be greater than the lower bound.</value>
   </data>
+  <data name="Parameter_FormatException_Message" xml:space="preserve">
+    <value>HTTP parameters should in the form: name=value</value>
+  </data>
+  <data name="Parameter_FormatException_MessageSemicolon" xml:space="preserve">
+    <value>HTTP parameters should not contain semicolons.</value>
+  </data>
   <data name="Token_FormatException_Message" xml:space="preserve">
     <value>A token is restricted to any char except control keys or separators.</value>
   </data>
