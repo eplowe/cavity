@@ -8,5 +8,12 @@
   <Target Name="Run">
     <CallTarget Targets="Clean" />
     <CallTarget Targets="Clean packages" />
+    <CallTarget Targets="Clean logs" />
+  </Target>
+  <Target Name="Clean logs">
+    <ItemGroup>
+      <LogFiles Include="$(MSBuildProjectDirectory)\**\*.log" />
+    </ItemGroup>
+    <Delete Files="@(LogFiles)" />
   </Target>
 </Project>

@@ -160,6 +160,24 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HTTP parameters should in the form: name=value.
+        /// </summary>
+        internal static string Parameter_FormatException_Message {
+            get {
+                return ResourceManager.GetString("Parameter_FormatException_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTTP parameters should not contain semicolons..
+        /// </summary>
+        internal static string Parameter_FormatException_MessageSemicolon {
+            get {
+                return ResourceManager.GetString("Parameter_FormatException_MessageSemicolon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A token is restricted to any char except control keys or separators..
         /// </summary>
         internal static string Token_FormatException_Message {

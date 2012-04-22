@@ -29,6 +29,7 @@
     <Compile Include="IO\TempDirectory.cs" />
     <Compile Include="IO\TempFile.cs" />
     <Compile Include="Net\EntityTag.cs" />
+    <Compile Include="Net\Quality.cs" />
     <Compile Include="Net\Token.cs" />
     <Compile Include="NullObject.cs" />
     <Compile Include="Percentage.ExtensionMethods.cs" />
