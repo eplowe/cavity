@@ -52,10 +52,10 @@
                             }
                         }
 
-#if NET40
-                        file = destination.CombineAsFile(decompressed.Name);
-#else
+#if NET20 || NET35
                         file = new FileInfo(Path.Combine(destination.FullName, decompressed.Name));
+#else
+                        file = destination.CombineAsFile(decompressed.Name);
 #endif
 
                         decompressed.MoveTo(file.FullName);

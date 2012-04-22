@@ -1,7 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
-#if NET40
+#if !NET20 && !NET35
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
@@ -136,7 +136,7 @@
             return new AlphaDecimal(value);
         }
 
-#if NET40
+#if !NET20 && !NET35
         public static implicit operator BigInteger(AlphaDecimal value)
         {
             return value.Value;

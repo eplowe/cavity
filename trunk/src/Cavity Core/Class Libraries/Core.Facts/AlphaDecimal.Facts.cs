@@ -3,7 +3,7 @@
     using System;
     using System.Globalization;
     using System.IO;
-#if NET40
+#if !NET20 && !NET35
     using System.Numerics;
 #endif
     using System.Runtime.Serialization;
@@ -137,7 +137,7 @@
             Assert.Equal(expected, actual);
         }
 
-#if NET40
+#if !NET20 && !NET35
         [Fact]
         public void opImplicit_AlphaDecimal_BigInteger()
         {
@@ -466,7 +466,7 @@
             Assert.Equal(expected, actual);
         }
 
-#if NET40
+#if !NET20 && !NET35
         [Fact]
         public void op_FromString_stringBig()
         {

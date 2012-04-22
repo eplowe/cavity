@@ -2553,7 +2553,7 @@
                            : default(T);
             }
 
-#if NET40
+#if !NET20 && !NET35
             if (typeof(Guid) == type)
             {
                 Guid guidResult;
@@ -2608,7 +2608,7 @@
                 return (T)Convert.ChangeType(obj, type, CultureInfo.InvariantCulture);
             }
 
-#if NET40
+#if !NET20 && !NET35
             if (typeof(TimeSpan) == type)
             {
                 TimeSpan timeSpanResult;

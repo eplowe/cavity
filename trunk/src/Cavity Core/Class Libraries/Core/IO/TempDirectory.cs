@@ -2,7 +2,7 @@
 {
     using System;
     using System.IO;
-#if NET40
+#if !NET20 && !NET35
     using System.Threading.Tasks;
 #endif
 
@@ -20,10 +20,10 @@
                 throw new ArgumentNullException("dir");
             }
 
-#if NET40
-            Info = dir.CombineAsDirectory(Guid.NewGuid());
-#else
+#if NET20 || NET35
             Info = new DirectoryInfo(Path.Combine(dir.FullName, Guid.NewGuid().ToString()));
+#else
+            Info = dir.CombineAsDirectory(Guid.NewGuid());
 #endif
             Info.Create();
         }
@@ -66,31 +66,32 @@
 
         private static void DeleteSubdirectories(DirectoryInfo directory)
         {
-#if NET40
-            Parallel.ForEach(directory.EnumerateDirectories(), subdirectory =>
-                                                                   {
-                                                                       DeleteSubdirectories(subdirectory);
-                                                                       subdirectory.Delete();
-                                                                   });
-#else
+#if NET20 || NET35
             foreach (var subdirectory in directory.GetDirectories())
             {
                 DeleteSubdirectories(subdirectory);
                 subdirectory.Delete();
             }
+#else
+            Parallel.ForEach(directory.EnumerateDirectories(),
+                             subdirectory =>
+                                                                   {
+                                                                       DeleteSubdirectories(subdirectory);
+                                                                       subdirectory.Delete();
+                                                                   });
 #endif
         }
 
         private void DeleteFiles()
         {
-#if NET40
-            Parallel.ForEach(Info.EnumerateFiles("*", SearchOption.AllDirectories), 
-                             file => file.Delete());
-#else
+#if NET20 || NET35
             foreach (var file in Info.GetFiles("*", SearchOption.AllDirectories))
             {
                 file.Delete();
             }
+#else
+            Parallel.ForEach(Info.EnumerateFiles("*", SearchOption.AllDirectories), 
+                             file => file.Delete());
 #endif
         }
     }

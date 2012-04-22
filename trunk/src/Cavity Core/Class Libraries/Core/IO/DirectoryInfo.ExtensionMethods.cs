@@ -6,7 +6,7 @@
 #if !NET20
     using System.Linq;
 #endif
-#if NET40
+#if !NET20 && !NET35
     using System.Threading.Tasks;
 #endif
 
@@ -59,10 +59,10 @@
                 throw new ArgumentOutOfRangeException("pattern");
             }
 
-#if NET40
-            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories), file =>
-#else
+#if NET20 || NET35
             foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
+#else
+            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories), file =>
 #endif
                                                                                               {
                                                                                                   var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
@@ -74,10 +74,10 @@
                                                                                                       }
                                                                                                       else
                                                                                                       {
-#if NET40
-                                                                                                          return;
-#else
+#if NET20 || NET35
                         continue;
+#else
+                                                                                                          return;
 #endif
                                                                                                       }
                                                                                                   }
@@ -89,10 +89,10 @@
                                                                                                   }
 
                                                                                                   file.CopyTo(target.FullName);
-#if NET40
-                                                                                              });
-#else
+#if NET20 || NET35
             }
+#else
+                                                                                              });
 #endif
             foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
             {
@@ -227,11 +227,11 @@
             {
                 throw new ArgumentOutOfRangeException("pattern");
             }
-
-#if NET40
-            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories), file =>
-#else
+            
+#if NET20 || NET35
             foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
+#else
+            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories), file =>
 #endif
                                                                                               {
                                                                                                   var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
@@ -243,10 +243,10 @@
                                                                                                       }
                                                                                                       else
                                                                                                       {
-#if NET40
-                                                                                                          return;
-#else
+#if NET20 || NET35
                         continue;
+#else
+                                                                                                          return;
 #endif
                                                                                                       }
                                                                                                   }
@@ -258,10 +258,10 @@
                                                                                                   }
 
                                                                                                   file.MoveTo(target.FullName);
-#if NET40
-                                                                                              });
-#else
+#if NET20 || NET35
             }
+#else
+                                                                                              });
 #endif
             foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
             {
@@ -316,15 +316,15 @@
                 throw new ArgumentNullException("name");
             }
 
-#if NET40
-            var dir = obj.CombineAsDirectory(name);
-#else
+#if NET20 || NET35
             if (null == obj)
             {
                 throw new ArgumentNullException("obj");
             }
 
             var dir = new DirectoryInfo(Path.Combine(obj.FullName, StringExtensionMethods.RemoveIllegalFileCharacters(name.ToString())));
+#else
+            var dir = obj.CombineAsDirectory(name);
 #endif
             if (create)
             {
@@ -348,15 +348,15 @@
                 throw new ArgumentNullException("name");
             }
 
-#if NET40
-            return obj.CombineAsFile(name);
-#else
+#if NET20 || NET35
             if (null == obj)
             {
                 throw new ArgumentNullException("obj");
             }
 
             return new FileInfo(Path.Combine(obj.FullName, StringExtensionMethods.RemoveIllegalFileCharacters(name.ToString())));
+#else
+            return obj.CombineAsFile(name);
 #endif
         }
     }
