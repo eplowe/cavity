@@ -74,7 +74,7 @@
             else
             {
 #if NET20
-                var caption = FirstOrDefault(table.Descendants("caption"));
+                var caption = IEnumerableExtensionMethods.FirstOrDefault(table.Descendants("caption"));
 #else
                 var caption = table.Descendants("caption").FirstOrDefault();
 #endif
@@ -135,7 +135,7 @@
                 }
 
 #if NET20
-                var heading = FirstOrDefault(row.Descendants("th"));
+                var heading = IEnumerableExtensionMethods.FirstOrDefault(row.Descendants("th"));
 #else
                 var heading = row.Descendants("th").FirstOrDefault();
 #endif
@@ -233,7 +233,7 @@
         {
 #if NET20
             var body = 0 != IEnumerableExtensionMethods.Count(table.Descendants("thead"))
-                           ? FirstOrDefault(table.Descendants("tbody"))
+                           ? IEnumerableExtensionMethods.First(table.Descendants("tbody"))
                            : table;
             var rows = IEnumerableExtensionMethods.ToList(body.Descendants("tr"));
 #else
@@ -251,7 +251,7 @@
 
             AddNormalDataColumns(obj, rows);
 #if NET20
-            FillNormalDataColumns(obj, FirstOrDefault(table.Descendants("thead")));
+            FillNormalDataColumns(obj, IEnumerableExtensionMethods.FirstOrDefault(table.Descendants("thead")));
 #else
             FillNormalDataColumns(obj, table.Descendants("thead").FirstOrDefault());
 #endif
@@ -277,7 +277,7 @@
             }
 
 #if NET20
-            var headings = IEnumerableExtensionMethods.ToList(LastOrDefault(rows).Descendants("th"));
+            var headings = IEnumerableExtensionMethods.ToList(IEnumerableExtensionMethods.Last(rows).Descendants("th"));
 #else
             var headings = rows.Last().Descendants("th").ToList();
 #endif
@@ -341,32 +341,6 @@
             return obj;
         }
 
-#if NET20
-        private static HtmlNode FirstOrDefault(IEnumerable<HtmlNode> nodes)
-        {
-            HtmlNode result = null;
-
-            foreach (var node in nodes)
-            {
-                return node;
-            }
-
-            return result;
-        }
-
-        private static HtmlNode LastOrDefault(IEnumerable<HtmlNode> nodes)
-        {
-            HtmlNode result = null;
-
-            foreach (var node in nodes)
-            {
-                result = node;
-            }
-
-            return result;
-        }
-#endif
-
         private static bool HasVerticalColumns(HtmlNode table)
         {
 #if NET20
@@ -379,7 +353,7 @@
             }
 
 #if NET20
-            var row = FirstOrDefault(table.Descendants("tr"));
+            var row = IEnumerableExtensionMethods.FirstOrDefault(table.Descendants("tr"));
 #else
             var row = table.Descendants("tr").FirstOrDefault();
 #endif
