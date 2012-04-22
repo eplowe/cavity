@@ -6,13 +6,13 @@
     using System.Text;
 
     [Serializable]
-    public class ParameterDictionary : Dictionary<Token, string>
+    public class HttpParameterDictionary : Dictionary<Token, string>
     {
-        public ParameterDictionary()
+        public HttpParameterDictionary()
         {
         }
 
-        protected ParameterDictionary(SerializationInfo info, 
+        protected HttpParameterDictionary(SerializationInfo info, 
                                       StreamingContext context)
             : base(info, context)
         {
@@ -36,7 +36,7 @@
             }
         }
 
-        public virtual void Add(Parameter parameter)
+        public virtual void Add(HttpParameter parameter)
         {
             if (null == parameter)
             {

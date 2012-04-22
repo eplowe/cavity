@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
-[assembly: CLSCompliant(true)]
+[assembly: CLSCompliant(false)]
 [assembly: AssemblyDefaultAlias("Cavity.Http.Generalizations.Facts.dll")]
 [assembly: AssemblyTitle("Cavity.Http.Generalizations.Facts.dll")]
 
