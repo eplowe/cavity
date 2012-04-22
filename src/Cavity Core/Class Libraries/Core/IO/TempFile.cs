@@ -17,10 +17,10 @@
                 throw new ArgumentNullException("directory");
             }
 
-#if NET40
-            Info = directory.CombineAsFile(Guid.NewGuid());
-#else
+#if NET20 || NET35
             Info = new FileInfo(Path.Combine(directory.FullName, Guid.NewGuid().ToString()));
+#else
+            Info = directory.CombineAsFile(Guid.NewGuid());
 #endif
         }
 

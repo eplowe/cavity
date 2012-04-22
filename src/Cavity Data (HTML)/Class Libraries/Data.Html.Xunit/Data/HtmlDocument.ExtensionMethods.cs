@@ -7,10 +7,10 @@
 #if !NET20
     using System.Linq;
 #endif
-#if NET40
-    using System.Net;
-#else
+#if NET20 || NET35
     using System.Web;
+#else
+    using System.Net;
 #endif
     using System.Xml;
 
@@ -147,10 +147,10 @@
 
                 var attribute = heading.Attributes["rowspan"];
                 span = null == attribute ? 1 : XmlConvert.ToInt32(attribute.Value);
-#if NET40
-                var text = WebUtility.HtmlDecode(heading.InnerText);
-#else
+#if NET20 || NET35
                 var text = HttpUtility.HtmlDecode(heading.InnerText);
+#else
+                var text = WebUtility.HtmlDecode(heading.InnerText);
 #endif
                 if (1 == span)
                 {
@@ -291,10 +291,10 @@
             {
                 var attribute = heading.Attributes["colspan"];
                 var span = null == attribute ? 1 : XmlConvert.ToInt32(attribute.Value);
-#if NET40
-                var text = WebUtility.HtmlDecode(heading.InnerText);
-#else
+#if NET20 || NET35
                 var text = HttpUtility.HtmlDecode(heading.InnerText);
+#else
+                var text = WebUtility.HtmlDecode(heading.InnerText);
 #endif
                 if (1 == span)
                 {

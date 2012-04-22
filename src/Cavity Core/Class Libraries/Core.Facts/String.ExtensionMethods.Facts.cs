@@ -2367,7 +2367,7 @@
             Assert.Equal(expected, actual);
         }
 
-#if NET40
+#if !NET20 && !NET35
         [Fact]
         public void op_TryToOfGuid_string()
         {
@@ -2535,7 +2535,7 @@
             Assert.Null((null as string).TryTo<string>());
         }
 
-#if NET40
+#if !NET20 && !NET35
         [Fact]
         public void op_TryToOfTimeSpan_string()
         {

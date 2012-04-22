@@ -3,7 +3,7 @@
     using System;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-#if NET40
+#if !NET20 && !NET35
     using System.Security;
 #endif
     using System.Security.Permissions;
@@ -13,12 +13,11 @@
 
     public abstract class DurableEnlistmentNotification : IEnlistmentNotification
     {
-#if NET40
-        [SecurityCritical]
-        [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
-#endif
 #if NET20 || NET35
         [PermissionSet(SecurityAction.LinkDemand, Name = "FullTrust")]
+#else
+        [SecurityCritical]
+        [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
 #endif
         protected DurableEnlistmentNotification(Guid resourceManager, 
                                                 EnlistmentOptions enlistmentOptions)
