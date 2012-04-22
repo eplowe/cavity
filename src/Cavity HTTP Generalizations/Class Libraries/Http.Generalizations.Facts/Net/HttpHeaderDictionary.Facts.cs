@@ -48,13 +48,31 @@
         }
 
         [Fact]
+        public void op_Contains_Token()
+        {
+            var obj = new HttpHeaderDictionary();
+
+            Assert.False(obj.Contains("name"));
+
+            obj.Add(new HttpHeader("name", "value"));
+
+            Assert.True(obj.Contains("name"));
+        }
+
+        [Fact]
+        public void op_Contains_TokenNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HttpHeaderDictionary().Contains(null));
+        }
+
+        [Fact]
         public void op_FromString_string()
         {
             HttpHeader expected = "name: value";
 
             var obj = HttpHeaderDictionary.FromString(expected);
 
-            var actual = obj.List.First();
+            var actual = obj.First<HttpHeader>();
 
             Assert.Equal(expected, actual);
         }
@@ -62,7 +80,7 @@
         [Fact]
         public void op_FromString_stringEmpty()
         {
-            Assert.Empty(HttpHeaderDictionary.FromString(string.Empty).List);
+            Assert.Empty(HttpHeaderDictionary.FromString(string.Empty).ToList<HttpHeader>());
         }
 
         [Fact]
@@ -83,8 +101,8 @@
 
             var obj = HttpHeaderDictionary.FromString(buffer.ToString());
 
-            Assert.Equal(host, obj.List.First());
-            Assert.Equal(ua, obj.List.Last());
+            Assert.Equal(host, obj.First<HttpHeader>());
+            Assert.Equal(ua, obj.Last<HttpHeader>());
         }
 
         [Fact]
@@ -109,33 +127,6 @@
         public void op_HttpHeaderDictionary_stringNull()
         {
             Assert.Throws<ArgumentNullException>(() => HttpHeaderDictionary.FromString(null));
-        }
-
-        [Fact]
-        public void prop_List()
-        {
-            Assert.True(new PropertyExpectations<HttpHeaderDictionary>(p => p.List)
-                            .TypeIs<IEnumerable<HttpHeader>>()
-                            .IsNotDecorated()
-                            .Result);
-        }
-
-        [Fact]
-        public void prop_List_get()
-        {
-            var expected = new HttpHeader("name", "value");
-
-            var obj = new HttpHeaderDictionary
-                          {
-                              {
-                                  "name", "value"
-                                  }
-                          };
-
-            foreach (var actual in obj.List)
-            {
-                Assert.Equal(expected, actual);
-            }
         }
     }
 }

@@ -64,7 +64,11 @@
                 throw new ArgumentOutOfRangeException("value");
             }
 
+#if NET20
+            var parts = StringExtensionMethods.Split(value, ' ', StringSplitOptions.RemoveEmptyEntries);
+#else
             var parts = value.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+#endif
             if (2 == parts.Length)
             {
                 return new HttpRequestLine(parts[0], parts[1], HttpVersion.Latest);
@@ -80,7 +84,11 @@
 
         public override string ToString()
         {
+#if NET20
+            return StringExtensionMethods.FormatWith("{0} {1} {2}", Method, RequestUri, Version);
+#else
             return "{0} {1} {2}".FormatWith(Method, RequestUri, Version);
+#endif
         }
     }
 }

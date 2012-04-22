@@ -86,7 +86,11 @@
 
         public override string ToString()
         {
+#if NET20
+            return StringExtensionMethods.FormatWith("{0}: {1}", Name, Value);
+#else
             return "{0}: {1}".FormatWith(Name, Value);
+#endif
         }
     }
 }

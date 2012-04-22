@@ -53,8 +53,8 @@
             var obj = HttpResponse.FromString(buffer.ToString());
 
             Assert.Equal(line, obj.Line);
-            Assert.Equal(control, obj.Headers.List.First());
-            Assert.Equal(length, obj.Headers.List.Last());
+            Assert.Equal(control, obj.Headers.First());
+            Assert.Equal(length, obj.Headers.Last());
             Assert.Null(obj.Body);
         }
 
@@ -75,8 +75,8 @@
             var obj = HttpResponse.FromString(buffer.ToString());
 
             Assert.Equal(line, obj.Line);
-            Assert.Equal(type, obj.Headers.List.First());
-            Assert.Equal(length, obj.Headers.List.Last());
+            Assert.Equal(type, obj.Headers.First());
+            Assert.Equal(length, obj.Headers.Last());
 
             Assert.Equal("example", ((TextBody)obj.Body).Text);
         }
@@ -89,7 +89,7 @@
             var obj = HttpResponse.FromString(line);
 
             Assert.Equal(line, obj.Line);
-            Assert.Empty(obj.Headers.List);
+            Assert.Empty(obj.Headers.ToList());
             Assert.Null(obj.Body);
         }
 

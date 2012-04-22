@@ -53,8 +53,8 @@
             var obj = HttpRequest.FromString(buffer.ToString());
 
             Assert.Equal(line, obj.Line);
-            Assert.Equal(host, obj.Headers.List.First());
-            Assert.Equal(ua, obj.Headers.List.Last());
+            Assert.Equal(host, obj.Headers.First());
+            Assert.Equal(ua, obj.Headers.Last());
             Assert.Null(obj.Body);
         }
 
@@ -75,8 +75,8 @@
             var obj = HttpRequest.FromString(buffer.ToString());
 
             Assert.Equal(line, obj.Line);
-            Assert.Equal(host, obj.Headers.List.First());
-            Assert.Equal(type, obj.Headers.List.Last());
+            Assert.Equal(host, obj.Headers.First());
+            Assert.Equal(type, obj.Headers.Last());
 
             Assert.Equal("example", ((TextBody)obj.Body).Text);
         }
@@ -89,7 +89,7 @@
             var obj = HttpRequest.FromString(line);
 
             Assert.Equal(line, obj.Line);
-            Assert.Empty(obj.Headers.List);
+            Assert.Empty(obj.Headers.ToList());
             Assert.Null(obj.Body);
         }
 
@@ -100,6 +100,45 @@
                             .IsAutoProperty<HttpRequestLine>()
                             .IsNotDecorated()
                             .Result);
+        }
+
+        [Fact]
+        public void prop_UserAgent()
+        {
+            Assert.True(new PropertyExpectations<HttpRequest>(x => x.UserAgent)
+                            .TypeIs<string>()
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_UserAgent_get()
+        {
+            const string expected = "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)";
+
+            var obj = HttpRequest.FromString("GET http://example.com/ HTTP/1.1");
+            Assert.Null(obj.UserAgent);
+
+            obj.Headers.Add(new HttpHeader(HttpRequestHeaders.UserAgent, expected));
+            var actual = obj.UserAgent;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void prop_UserAgent_set()
+        {
+            const string expected = "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)";
+
+            var buffer = new StringBuilder();
+            buffer.AppendLine("GET http://example.com/ HTTP/1.1");
+
+            var obj = HttpRequest.FromString(buffer.ToString());
+
+            obj.UserAgent = expected;
+            var actual = obj.UserAgent;
+
+            Assert.Equal(expected, actual);
         }
     }
 }

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.Serialization;
 
     using Cavity.Collections;
@@ -21,14 +20,6 @@
         {
         }
 
-        public IEnumerable<HttpHeader> List
-        {
-            get
-            {
-                return this.Select(item => new HttpHeader(item.Key, item.Value));
-            }
-        }
-
         public static HttpHeaderDictionary FromString(string value)
         {
             if (null == value)
@@ -37,7 +28,11 @@
             }
 
             var result = new HttpHeaderDictionary();
+#if NET20
+            var lines = IEnumerableExtensionMethods.ToQueue(StringExtensionMethods.Split(value, Environment.NewLine, StringSplitOptions.None));
+#else
             var lines = value.Split(Environment.NewLine, StringSplitOptions.None).ToQueue();
+#endif
             if (0 == lines.Count)
             {
                 return result;
@@ -65,6 +60,24 @@
             }
 
             Add(header.Name, header.Value);
+        }
+
+        public bool Contains(Token name)
+        {
+            if (null == name)
+            {
+                throw new ArgumentNullException("name");
+            }
+
+            return ContainsKey(name);
+        }
+
+        IEnumerator<HttpHeader> IEnumerable<HttpHeader>.GetEnumerator()
+        {
+            foreach (var item in this)
+            {
+                yield return new HttpHeader(item.Key, item.Value);
+            }
         }
     }
 }

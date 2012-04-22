@@ -3,6 +3,7 @@
   <Words>
     <Recognized>
       <Word>ctor</Word>
+      <Word>HttpRequest</Word>
     </Recognized>
   </Words>
 </Dictionary>

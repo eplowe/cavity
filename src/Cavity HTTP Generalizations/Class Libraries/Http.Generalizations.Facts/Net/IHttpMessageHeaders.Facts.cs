@@ -13,6 +13,7 @@
         {
             Assert.True(new TypeExpectations<IHttpMessageHeaders>()
                             .IsInterface()
+                            .Implements<IEnumerable<HttpHeader>>()
                             .Result);
         }
 
@@ -61,18 +62,15 @@
         }
 
         [Fact]
-        public void prop_List()
+        public void op_Contains_Token()
         {
-            var expected = new List<HttpHeader>();
+            Token name = "name";
             var mock = new Mock<IHttpMessageHeaders>();
             mock
-                .Setup(x => x.List)
-                .Returns(expected)
+                .Setup(x => x.Contains(name))
                 .Verifiable();
 
-            var actual = mock.Object.List;
-
-            Assert.Equal(expected, actual);
+            mock.Object.Contains(name);
 
             mock.VerifyAll();
         }

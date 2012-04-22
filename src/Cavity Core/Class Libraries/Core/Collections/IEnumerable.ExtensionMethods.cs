@@ -80,6 +80,40 @@
 #endif
 
 #if NET20
+        public static T First<T>(IEnumerable<T> items)
+        {
+            if (null == items)
+            {
+                throw new ArgumentNullException("items");
+            }
+
+            foreach (var item in items)
+            {
+                return item;
+            }
+        
+            throw new InvalidOperationException("Sequence contains no elements");
+        }
+
+        public static T FirstOrDefault<T>(IEnumerable<T> items)
+        {
+            if (null == items)
+            {
+                throw new ArgumentNullException("items");
+            }
+
+            T result = default(T);
+
+            foreach (var item in items)
+            {
+                return item;
+            }
+
+            return result;
+        }
+#endif
+
+#if NET20
         public static bool IsEmpty(IEnumerable obj)
         {
             if (null == obj)
@@ -103,6 +137,47 @@
             return null == obj || !obj.Cast<object>().Any();
         }
 
+#endif
+
+#if NET20
+        public static T Last<T>(IEnumerable<T> items)
+        {
+            if (null == items)
+            {
+                throw new ArgumentNullException("items");
+            }
+
+            T result = default(T);
+
+            foreach (var item in items)
+            {
+                result = item;
+            }
+
+            if (null == result)
+            {
+                throw new InvalidOperationException("Sequence contains no elements");
+            }
+
+            return result;
+        }
+
+        public static T LastOrDefault<T>(IEnumerable<T> items)
+        {
+            if (null == items)
+            {
+                throw new ArgumentNullException("items");
+            }
+
+            T result = default(T);
+
+            foreach (var item in items)
+            {
+                result = item;
+            }
+
+            return result;
+        }
 #endif
 
 #if NET20
