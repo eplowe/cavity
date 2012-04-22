@@ -42,7 +42,7 @@
 *1.1.0.804* Cavity Web (ASP.NET MVC3)
  * Cavity.Core
 
-*1.1.0.804* Cavity HTTP Generalizations
+*1.1.0.816* Cavity HTTP Generalizations
  * Cavity.Core
 
 *1.1.0.804* Cavity Service Location (Autofac)

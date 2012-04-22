@@ -10,7 +10,7 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<ParameterDictionary>()
+            Assert.True(new TypeExpectations<HttpParameterDictionary>()
                             .DerivesFrom<Dictionary<Token, string>>()
                             .IsConcreteClass()
                             .IsUnsealed()
@@ -22,15 +22,15 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new ParameterDictionary());
+            Assert.NotNull(new HttpParameterDictionary());
         }
 
         [Fact]
         public void op_Add_Parameter()
         {
-            var obj = new ParameterDictionary
+            var obj = new HttpParameterDictionary
                           {
-                              new Parameter("name", "value")
+                              new HttpParameter("name", "value")
                           };
 
             Assert.Equal("value", obj["name"]);
@@ -39,7 +39,7 @@
         [Fact]
         public void op_Add_ParameterNull()
         {
-            var obj = new ParameterDictionary();
+            var obj = new HttpParameterDictionary();
 
             Assert.Throws<ArgumentNullException>(() => obj.Add(null));
         }
@@ -47,7 +47,7 @@
         [Fact]
         public void op_ToString()
         {
-            var obj = new ParameterDictionary
+            var obj = new HttpParameterDictionary
                           {
                               { "a", "1" }, 
                               { "b", "2" }
@@ -62,7 +62,7 @@
         [Fact]
         public void prop_Quality()
         {
-            Assert.True(new PropertyExpectations<ParameterDictionary>(x => x.Quality)
+            Assert.True(new PropertyExpectations<HttpParameterDictionary>(x => x.Quality)
                             .IsAutoProperty(Quality.One)
                             .IsNotDecorated()
                             .Result);
@@ -73,7 +73,7 @@
         {
             Quality expected = 0.123f;
 
-            var obj = new ParameterDictionary
+            var obj = new HttpParameterDictionary
                           {
                               Quality = expected
                           };

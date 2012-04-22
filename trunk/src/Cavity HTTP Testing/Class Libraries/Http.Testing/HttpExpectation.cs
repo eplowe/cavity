@@ -10,95 +10,16 @@
     {
         public HttpExchange Exchange { get; set; }
 
-        public static HttpWebRequest GetRequest(HttpRequest request, 
-                                                CookieContainer cookies)
-        {
-            if (null == request)
-            {
-                throw new ArgumentNullException("request");
-            }
-
-            if (null == cookies)
-            {
-                throw new ArgumentNullException("cookies");
-            }
-
-            if (null == request.Line)
-            {
-                throw new InvalidOperationException();
-            }
-
-            var result = (HttpWebRequest)WebRequest.Create((Uri)request.Line.RequestUri);
-            result.Method = request.Line.Method;
-            result.CookieContainer = cookies;
-            result.AllowAutoRedirect = false;
-            if (null == request.Headers)
-            {
-                return result;
-            }
-
-            foreach (var header in request.Headers.List)
-            {
-                switch (header.Name)
-                {
-                    case "AllowAutoRedirect":
-                        result.AllowAutoRedirect = true;
-                        break;
-
-                    case "Accept":
-                        result.Accept = header.Value;
-                        break;
-
-                    case "Content-Type":
-                        result.ContentType = header.Value;
-                        break;
-
-                    case "Date":
-                        result.Date = DateTime.Parse(header.Value, CultureInfo.InvariantCulture);
-                        break;
-
-                    case "If-Modified-Since":
-                        result.IfModifiedSince = DateTime.Parse(header.Value, CultureInfo.InvariantCulture);
-                        break;
-
-                    case "Range":
-                        break;
-
-                    case "Referer":
-                        result.Referer = header.Value;
-                        break;
-
-                    case "Transfer-Encoding":
-                        break;
-
-                    case "User-Agent":
-                        result.UserAgent = header.Value;
-                        break;
-
-                    case "Connection":
-                    case "Content-Length":
-                    case "Expect":
-                    case "Host":
-                    case "Retry-After":
-                    case "Trailer":
-                    case "Vary":
-                        break;
-
-                    default:
-                        result.Headers.Add(header.Name, header.Value);
-                        break;
-                }
-            }
-
-            return result;
-        }
-
         public static HttpWebResponse GetResponse(HttpRequest request, 
                                                   CookieContainer cookies)
         {
             try
             {
-                return (HttpWebResponse)GetRequest(request, cookies).GetResponse();
+#if NET20
+                return (HttpWebResponse)HttpRequestExtensionMethods.ToWebRequest(request, cookies).GetResponse();
+#else
+                return (HttpWebResponse)request.ToWebRequest(cookies).GetResponse();
+#endif
             }
             catch (WebException exception)
             {
@@ -141,7 +62,7 @@
                     throw new HttpTestException(message);
                 }
 
-                foreach (var header in Exchange.Response.Headers.List)
+                foreach (var header in Exchange.Response.Headers)
                 {
                     if (response.Headers[header.Name] ==
                         header.Value)
