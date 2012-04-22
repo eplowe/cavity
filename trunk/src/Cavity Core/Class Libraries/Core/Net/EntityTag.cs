@@ -95,7 +95,11 @@
 
         public static implicit operator EntityTag(MD5Hash value)
         {
+#if NET20
+            return new EntityTag(StringExtensionMethods.FormatWith("\"{0}\"", value));
+#else
             return new EntityTag("\"{0}\"".FormatWith(value));
+#endif
         }
 
         public static bool operator !=(EntityTag obj, 

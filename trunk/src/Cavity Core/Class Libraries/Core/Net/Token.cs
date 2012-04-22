@@ -1,9 +1,11 @@
 ﻿namespace Cavity.Net
 {
     using System;
+#if !NET20
     using System.Linq;
+#endif
     using System.Runtime.Serialization;
-#if NET35
+#if NET20 || NET35
     using System.Security.Permissions;
 #endif
 
@@ -57,14 +59,22 @@
                     throw new ArgumentOutOfRangeException("value");
                 }
 
-                var count = value
+#if NET20
+                foreach (var c in value.ToUpperInvariant())
+                {
+                    if (' ' >= c || GenericExtensionMethods.EqualsOneOf(c, _illegal) || (char)127 <= c)
+                    {
+                        throw new FormatException(Resources.Token_FormatException_Message);
+                    }
+                }
+#else
+                if (value
                     .ToUpperInvariant()
-                    .ToArray()
-                    .Count(x => ' ' >= x || x.EqualsOneOf(_illegal) || (char)127 <= x);
-                if (0 != count)
+                    .Any(c => ' ' >= c || c.EqualsOneOf(_illegal) || (char)127 <= c))
                 {
                     throw new FormatException(Resources.Token_FormatException_Message);
                 }
+#endif
 
                 _value = value;
             }

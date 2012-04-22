@@ -2,7 +2,9 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+#if !NET20
     using System.Linq;
+#endif
     using System.Net;
     using System.Xml;
 
@@ -86,7 +88,11 @@
                 throw new ArgumentOutOfRangeException("value");
             }
 
+#if NET20
+            var parts = IEnumerableExtensionMethods.ToQueue(StringExtensionMethods.Split(value, ' ', StringSplitOptions.RemoveEmptyEntries));
+#else
             var parts = value.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToQueue();
+#endif
             var version = parts.Peek().StartsWith("HTTP/", StringComparison.Ordinal)
                               ? (HttpVersion)parts.Dequeue()
                               : HttpVersion.Latest;
@@ -102,9 +108,17 @@
                 return new HttpStatusLine(version, (HttpStatusCode)code);
             }
 
-            var reason = parts.Aggregate(string.Empty, 
-                                         (current, 
+#if NET20
+            var reason = string.Empty;
+            foreach (var part in parts)
+            {
+                reason += " " + part;
+            }
+#else
+            var reason = parts.Aggregate(string.Empty,
+                                         (current,
                                           part) => current + (" " + part));
+#endif
 
             return new HttpStatusLine(version, code, reason.Trim());
         }
@@ -225,7 +239,11 @@
 
         public override string ToString()
         {
+#if NET20
+            return StringExtensionMethods.FormatWith("{0} {1} {2}", Version, Code, Reason);
+#else
             return "{0} {1} {2}".FormatWith(Version, Code, Reason);
+#endif
         }
     }
 }

@@ -196,6 +196,7 @@
         }
 
 #if NET20
+        [SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "line", Justification = "There is no other way to count the lines.")]
         public static int LineCount(FileInfo obj)
         {
             var result = 0;

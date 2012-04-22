@@ -4,7 +4,11 @@
 
     public abstract class HttpMessage
     {
+#if NET20
+        private static readonly string _break = StringExtensionMethods.FormatWith("{0}{0}", Environment.NewLine);
+#else
         private static readonly string _break = "{0}{0}".FormatWith(Environment.NewLine);
+#endif
 
         public IHttpMessageBody Body { get; set; }
 
@@ -54,6 +58,25 @@
                        : new TextBody(body);
 
             return line;
+        }
+        
+        protected string GetHeader(Token name)
+        {
+            return Headers.Contains(name)
+                       ? Headers[name]
+                       : null;
+        }
+
+        protected void SetHeader(Token name, string value)
+        {
+            if (Headers.Contains(name))
+            {
+                Headers[name] = value;
+            }
+            else
+            {
+                Headers.Add(new HttpHeader(name, value));
+            }
         }
     }
 }

@@ -4,6 +4,19 @@
     {
         public HttpRequestLine Line { get; set; }
 
+        public string UserAgent
+        {
+            get
+            {
+                return GetHeader(HttpRequestHeaders.UserAgent);
+            }
+
+            set
+            {
+                SetHeader(HttpRequestHeaders.UserAgent, value);
+            }
+        }
+
         public static HttpRequest FromString(string value)
         {
             var result = new HttpRequest();

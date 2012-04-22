@@ -14,6 +14,8 @@
   	<Solutions Include="Cavity Data (XML)" />
   	<Solutions Include="Cavity Diagnostics log4net" />
   	<Solutions Include="Cavity Domain" />
+  	<Solutions Include="Cavity HTTP Generalizations" />
+  	<Solutions Include="Cavity HTTP Testing" />
   	<Solutions Include="Cavity Service Location" />
   </ItemGroup>
   <Target Name="Rebuild">

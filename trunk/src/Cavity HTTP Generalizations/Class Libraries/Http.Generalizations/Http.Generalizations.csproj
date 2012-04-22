@@ -8,11 +8,16 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\CodeAnalysis.dictionary" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Net\HttpExchange.cs" />
     <Compile Include="Net\HttpHeader.cs" />
     <Compile Include="Net\HttpHeaderDictionary.cs" />
     <Compile Include="Net\HttpMessage.cs" />
     <Compile Include="Net\HttpRequest.cs" />
+    <Compile Include="Net\HttpRequestHeaders.cs" />
     <Compile Include="Net\HttpRequestLine.cs" />
     <Compile Include="Net\HttpResponse.cs" />
     <Compile Include="Net\HttpStatusLine.cs" />
@@ -23,12 +28,8 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.813\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

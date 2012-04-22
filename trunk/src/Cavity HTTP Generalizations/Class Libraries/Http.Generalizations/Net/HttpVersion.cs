@@ -77,7 +77,11 @@
                 return Latest;
             }
 
+#if NET20
+            var parts = StringExtensionMethods.Split(value.Substring("HTTP/".Length), '.', StringSplitOptions.RemoveEmptyEntries);
+#else
             var parts = value.Substring("HTTP/".Length).Split('.', StringSplitOptions.RemoveEmptyEntries);
+#endif
             if (2 != parts.Length)
             {
                 throw new FormatException();
@@ -88,7 +92,11 @@
 
         public override string ToString()
         {
+#if NET20
+            return StringExtensionMethods.FormatWith("HTTP/{0}.{1}", Major, Minor);
+#else
             return "HTTP/{0}.{1}".FormatWith(Major, Minor);
+#endif
         }
     }
 }
