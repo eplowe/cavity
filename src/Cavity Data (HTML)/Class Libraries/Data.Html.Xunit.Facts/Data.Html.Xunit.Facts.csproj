@@ -28,7 +28,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Compile Include="Data\HtmlDocument.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\HtmlFileAttribute.Facts.cs" />
     <Compile Include="Data\HtmlUriAttribute.Facts.cs" />
   </ItemGroup>
@@ -58,6 +57,10 @@
     <ProjectReference Include="..\Data.Html.Xunit\Data.Html.Xunit.csproj">
       <Project>{DFC8B0D7-BE08-4904-8C9F-3EA8C15B83BA}</Project>
       <Name>Data.Html.Xunit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data.Html\Data.Html.csproj">
+      <Project>{2D8B9EC7-DD20-44E3-A8CF-D4D598EE0440}</Project>
+      <Name>Data.Html</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
