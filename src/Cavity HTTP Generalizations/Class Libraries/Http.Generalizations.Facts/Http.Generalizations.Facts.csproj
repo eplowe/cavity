@@ -27,6 +27,8 @@
     <Compile Include="Net\HttpResponse.Facts.cs" />
     <Compile Include="Net\HttpStatusLine.Facts.cs" />
     <Compile Include="Net\HttpVersion.Facts.cs" />
+    <Compile Include="Net\HttpWebClient.Facts.cs" />
+    <Compile Include="Net\IHttpClient.Facts.cs" />
     <Compile Include="Net\IHttpMessageBody.Facts.cs" />
     <Compile Include="Net\IHttpMessageHeaders.Facts.cs" />
     <Compile Include="Net\TextBody.Facts.cs" />

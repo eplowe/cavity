@@ -7,6 +7,15 @@
     public static class HttpRequestExtensionMethods
     {
 #if NET20
+        public static HttpWebRequest ToWebRequest(HttpRequest request)
+#else
+        public static HttpWebRequest ToWebRequest(this HttpRequest request)
+#endif
+        {
+            return ToWebRequest(request, new CookieContainer());
+        }
+
+#if NET20
         public static HttpWebRequest ToWebRequest(HttpRequest request,
                                                   CookieContainer cookies)
 #else
@@ -95,6 +104,37 @@
             }
 
             return result;
+        }
+
+#if NET20
+        public static HttpWebResponse ToWebResponse(HttpRequest request)
+#else
+        public static HttpWebResponse ToWebResponse(this HttpRequest request)
+#endif
+        {
+            return ToWebResponse(request, new CookieContainer());
+        }
+
+#if NET20
+        public static HttpWebResponse ToWebResponse(HttpRequest request,
+                                                    CookieContainer cookies)
+#else
+        public static HttpWebResponse ToWebResponse(this HttpRequest request,
+                                                    CookieContainer cookies)
+#endif
+        {
+            try
+            {
+#if NET20
+                return (HttpWebResponse)ToWebRequest(request, cookies).GetResponse();
+#else
+                return (HttpWebResponse)request.ToWebRequest(cookies).GetResponse();
+#endif
+            }
+            catch (WebException exception)
+            {
+                return (HttpWebResponse)exception.Response;
+            }
         }
     }
 }

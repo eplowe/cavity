@@ -3,7 +3,6 @@
     using System;
     using System.Net;
 
-    using Cavity;
     using Xunit;
 
     public sealed class HttpRequestExtensionMethodsFacts
@@ -15,11 +14,35 @@
         }
 
         [Fact]
+        public void op_ToWebRequest_HttpRequest()
+        {
+            var request = new HttpRequest
+                              {
+                                  Line = new HttpRequestLine("GET", "http://example.com/"), 
+                                  Headers = new HttpHeaderDictionary()
+                              };
+
+            Assert.NotNull(request.ToWebRequest().CookieContainer);
+        }
+
+        [Fact]
+        public void op_ToWebRequest_HttpRequestEmpty()
+        {
+            Assert.Throws<InvalidOperationException>(() => new HttpRequest().ToWebRequest());
+        }
+
+        [Fact]
         public void op_ToWebRequest_HttpRequestEmpty_CookieContainer()
         {
             var cookies = new CookieContainer();
 
             Assert.Throws<InvalidOperationException>(() => new HttpRequest().ToWebRequest(cookies));
+        }
+
+        [Fact]
+        public void op_ToWebRequest_HttpRequestNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as HttpRequest).ToWebRequest());
         }
 
         [Fact]
@@ -31,20 +54,14 @@
         }
 
         [Fact]
-        public void op_ToWebRequest_HttpRequest_CookieContainerNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new HttpRequest().ToWebRequest(null));
-        }
-
-        [Fact]
         public void op_ToWebRequest_HttpRequest_CookieContainer()
         {
             var cookies = new CookieContainer();
             var request = new HttpRequest
-            {
-                Line = new HttpRequestLine("GET", "http://example.com/"),
-                Headers = new HttpHeaderDictionary()
-            };
+                              {
+                                  Line = new HttpRequestLine("GET", "http://example.com/"), 
+                                  Headers = new HttpHeaderDictionary()
+                              };
 
             request.Headers[HttpGeneralHeaders.CacheControl] = "no-cache";
             request.Headers[HttpGeneralHeaders.Date] = "Tue, 15 Nov 1994 08:12:31 GMT";
@@ -115,6 +132,116 @@
             Assert.Equal(request.Headers[HttpRequestHeaders.Referer], actual.Headers[HttpRequestHeader.Referer]);
             Assert.Equal(request.Headers[HttpRequestHeaders.TE], actual.Headers[HttpRequestHeader.Te]);
             Assert.Equal(request.Headers[HttpRequestHeaders.UserAgent], actual.Headers[HttpRequestHeader.UserAgent]);
+        }
+
+        [Fact]
+        public void op_ToWebRequest_HttpRequest_CookieContainerNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HttpRequest().ToWebRequest(null));
+        }
+
+        [Fact]
+        public void op_ToWebRequest_HttpRequest_CookieContainer_whenOnlyLine()
+        {
+            var cookies = new CookieContainer();
+            var request = new HttpRequest
+                              {
+                                  Line = new HttpRequestLine("GET", "http://example.com/")
+                              };
+
+            var actual = request.ToWebRequest(cookies);
+
+            Assert.Equal((string)request.Line.Method, actual.Method);
+            Assert.Equal((string)request.Line.RequestUri, actual.Address.AbsoluteUri);
+
+            Assert.Same(cookies, actual.CookieContainer);
+        }
+
+        [Fact]
+        public void op_ToWebRequest_HttpRequest_CookieContainer_whenTrace()
+        {
+            var cookies = new CookieContainer();
+            var request = new HttpRequest
+                              {
+                                  Line = new HttpRequestLine("TRACE", "http://example.com/"), 
+                                  Headers = new HttpHeaderDictionary()
+                              };
+
+            request.Headers["Max-Forwards"] = "3";
+
+            var actual = request.ToWebRequest(cookies);
+
+            Assert.Equal((string)request.Line.Method, actual.Method);
+            Assert.Equal((string)request.Line.RequestUri, actual.Address.AbsoluteUri);
+
+            Assert.Same(cookies, actual.CookieContainer);
+
+            Assert.Equal(request.Headers["Max-Forwards"], actual.Headers[HttpRequestHeader.MaxForwards]);
+        }
+
+        [Fact]
+        public void op_ToWebResponse_HttpRequestEmpty()
+        {
+            Assert.Throws<InvalidOperationException>(() => new HttpRequest().ToWebResponse());
+        }
+
+        [Fact]
+        public void op_ToWebResponse_HttpRequestEmpty_CookieContainer()
+        {
+            var cookies = new CookieContainer();
+
+            Assert.Throws<InvalidOperationException>(() => new HttpRequest().ToWebResponse(cookies));
+        }
+
+        [Fact]
+        public void op_ToWebResponse_HttpRequestNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as HttpRequest).ToWebResponse());
+        }
+
+        [Fact]
+        public void op_ToWebResponse_HttpRequestNull_CookieContainer()
+        {
+            var cookies = new CookieContainer();
+
+            Assert.Throws<ArgumentNullException>(() => (null as HttpRequest).ToWebResponse(cookies));
+        }
+
+        [Fact]
+        public void op_ToWebResponse_HttpRequest_CookieContainerNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HttpRequest().ToWebResponse(null));
+        }
+
+        [Fact]
+        public void op_ToWebResponse_HttpRequest_CookieContainer_whenNotFound()
+        {
+            var cookies = new CookieContainer();
+            var request = new HttpRequest
+                              {
+                                  Line = new HttpRequestLine("GET", "http://www.alan-dean.com/{0}".FormatWith(AlphaDecimal.Random()))
+                              };
+
+            using (var response = request.ToWebResponse(cookies))
+            {
+                Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            }
+        }
+
+        [Fact]
+        public void op_ToWebResponse_HttpRequest_CookieContainer_whenOnlyLine()
+        {
+            var cookies = new CookieContainer();
+            var request = new HttpRequest
+                              {
+                                  Line = new HttpRequestLine("GET", "http://www.alan-dean.com/")
+                              };
+
+            using (var response = request.ToWebResponse(cookies))
+            {
+                Assert.Equal(HttpStatusCode.SeeOther, response.StatusCode);
+                Assert.Equal("http://www.alan-dean.com/about", response.Headers[HttpResponseHeader.Location]);
+            }
         }
     }
 }
