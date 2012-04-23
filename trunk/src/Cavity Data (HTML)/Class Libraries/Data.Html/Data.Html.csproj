@@ -1,26 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{DFC8B0D7-BE08-4904-8C9F-3EA8C15B83BA}</ProjectGuid>
+    <ProjectGuid>{2D8B9EC7-DD20-44E3-A8CF-D4D598EE0440}</ProjectGuid>
     <RootNamespace>Cavity</RootNamespace>
-    <AssemblyName>Cavity.Data.Html.Xunit</AssemblyName>
+    <AssemblyName>Cavity.Data.Html</AssemblyName>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Data\HtmlFileAttribute.cs" />
-    <Compile Include="Data\HtmlUriAttribute.cs" />
+    <Compile Include="Data\HtmlDocument.ExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &lt; '4.0' ">
-    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
@@ -29,27 +20,12 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\packages\HtmlAgilityPack.1.4.3\lib\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="xunit">
-      <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.extensions">
-      <HintPath>..\..\packages\xunit.extensions.1.9.0.1566\lib\xunit.extensions.dll</HintPath>
-    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &lt; '4.0' ">
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Data.Html\Data.Html.csproj">
-      <Project>{2D8B9EC7-DD20-44E3-A8CF-D4D598EE0440}</Project>
-      <Name>Data.Html</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />

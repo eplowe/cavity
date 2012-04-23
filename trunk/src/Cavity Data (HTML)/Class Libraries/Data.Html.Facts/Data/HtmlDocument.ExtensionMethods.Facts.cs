@@ -2,6 +2,7 @@
 {
     using System;
     using System.Data;
+    using System.IO;
 
     using HtmlAgilityPack;
 
@@ -22,20 +23,24 @@
             Assert.Throws<ArgumentNullException>(() => (null as HtmlDocument).TabularData());
         }
 
-        [Theory]
-        [HtmlFile("tabular.html")]
-        public void op_TabularData_HtmlDocument_whenCaption(HtmlDocument html)
+        [Fact]
+        public void op_TabularData_HtmlDocument_whenCaption()
         {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular.html").FullName);
+
             var table = html.TabularData().Tables["Caption"];
 
             Assert.Equal(1, table.Rows.Count);
             Assert.Equal("data", table.Rows[0].Field<HtmlNode>(0).InnerText);
         }
 
-        [Theory]
-        [HtmlFile("tabular.html")]
-        public void op_TabularData_HtmlDocument_whenCellColumnSpanning(HtmlDocument html)
+        [Fact]
+        public void op_TabularData_HtmlDocument_whenCellColumnSpanning()
         {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular.html").FullName);
+
             var table = html.TabularData().Tables["cell-colspan"];
 
             Assert.Equal(2, table.Rows.Count);
@@ -49,35 +54,43 @@
             Assert.Equal("2D", table.Rows[1].Field<HtmlNode>("Column D").InnerText);
         }
 
-        [Theory]
-        [HtmlFile("tabular.html")]
-        public void op_TabularData_HtmlDocument_whenDuplicateId(DataSet data)
+        [Fact]
+        public void op_TabularData_HtmlDocument_whenDuplicateId()
         {
-            Assert.NotNull(data.Tables["duplicate"]);
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular.html").FullName);
+
+            Assert.NotNull(html.TabularData().Tables["duplicate"]);
         }
 
-        [Theory]
-        [HtmlFile("tabular.html")]
-        public void op_TabularData_HtmlDocument_whenEmptyRow(HtmlDocument html)
+        [Fact]
+        public void op_TabularData_HtmlDocument_whenEmptyRow()
         {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular.html").FullName);
+
             var table = html.TabularData().Tables["empty-row"];
 
             Assert.Empty(table.Rows);
         }
 
-        [Theory]
-        [HtmlFile("tabular.html")]
-        public void op_TabularData_HtmlDocument_whenEmptyTable(HtmlDocument html)
+        [Fact]
+        public void op_TabularData_HtmlDocument_whenEmptyTable()
         {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular.html").FullName);
+
             var table = html.TabularData().Tables["empty-table"];
 
             Assert.Empty(table.Rows);
         }
 
-        [Theory]
-        [HtmlFile("tabular.html")]
-        public void op_TabularData_HtmlDocument_whenHeadingColumnSpanning(HtmlDocument html)
+        [Fact]
+        public void op_TabularData_HtmlDocument_whenHeadingColumnSpanning()
         {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular.html").FullName);
+
             var table = html.TabularData().Tables["heading-colspan"];
 
             Assert.Equal(2, table.Rows.Count);
@@ -91,10 +104,12 @@
             Assert.Equal("2D", table.Rows[1].Field<HtmlNode>("Column D").InnerText);
         }
 
-        [Theory]
-        [HtmlFile("tabular.html")]
-        public void op_TabularData_HtmlDocument_whenId(HtmlDocument html)
+        [Fact]
+        public void op_TabularData_HtmlDocument_whenId()
         {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular.html").FullName);
+
             var table = html.TabularData().Tables["example"];
 
             Assert.Equal(2, table.Rows.Count);
@@ -103,10 +118,12 @@
             Assert.Equal("2A", table.Rows[1].Field<HtmlNode>("Column A").InnerText);
         }
 
-        [Theory]
-        [HtmlFile("tabular.html")]
-        public void op_TabularData_HtmlDocument_whenVertical(HtmlDocument html)
+        [Fact]
+        public void op_TabularData_HtmlDocument_whenVertical()
         {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular.html").FullName);
+
             var table = html.TabularData().Tables["vertical"];
 
             Assert.Equal(2, table.Rows.Count);
@@ -115,10 +132,12 @@
             Assert.Equal("2B", table.Rows[1].Field<HtmlNode>("Value B").InnerText);
         }
 
-        [Theory]
-        [HtmlFile("tabular.html")]
-        public void op_TabularData_HtmlDocument_whenVerticalCellRowSpanning(HtmlDocument html)
+        [Fact]
+        public void op_TabularData_HtmlDocument_whenVerticalCellRowSpanning()
         {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular.html").FullName);
+
             var table = html.TabularData().Tables["vertical-cell-rowspan"];
 
             Assert.Equal(2, table.Rows.Count);
@@ -132,10 +151,12 @@
             Assert.Equal("2D", table.Rows[1].Field<HtmlNode>("Value D").InnerText);
         }
 
-        [Theory]
-        [HtmlFile("tabular.html")]
-        public void op_TabularData_HtmlDocument_whenVerticalHeadingRowSpanning(HtmlDocument html)
+        [Fact]
+        public void op_TabularData_HtmlDocument_whenVerticalHeadingRowSpanning()
         {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular.html").FullName);
+
             var table = html.TabularData().Tables["vertical-heading-rowspan"];
 
             Assert.Equal(2, table.Rows.Count);
@@ -149,10 +170,12 @@
             Assert.Equal("2D", table.Rows[1].Field<HtmlNode>("Value D").InnerText);
         }
 
-        [Theory]
-        [HtmlFile("tabular.html")]
-        public void op_TabularData_HtmlDocument_withoutId(HtmlDocument html)
+        [Fact]
+        public void op_TabularData_HtmlDocument_withoutId()
         {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular.html").FullName);
+
             var table = html.TabularData().Tables[1];
 
             Assert.Equal(1, table.Rows.Count);
@@ -160,10 +183,12 @@
             Assert.Equal("_<em>_</em>_", table.Rows[0].Field<HtmlNode>(0).InnerHtml);
         }
 
-        [Theory]
-        [HtmlFile("example.html")]
-        public void op_TabularData_HtmlDocument_withoutTables(HtmlDocument html)
+        [Fact]
+        public void op_TabularData_HtmlDocument_withoutTables()
         {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("example.html").FullName);
+
             Assert.Empty(html.TabularData().Tables);
         }
     }
