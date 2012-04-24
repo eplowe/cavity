@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Build
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -14,7 +15,7 @@
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
 
-    public sealed class CSharpProjectCompliance : Task
+    public sealed class MSBuildCompliance : Task
     {
         [Required]
         public string Explanation { get; set; }
@@ -23,12 +24,14 @@
         public ITaskItem[] Projects { get; set; }
 
         [Required]
+        public string Warning { get; set; }
+
+        [Required]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Justification = "Following the Microsoft naming convention.")]
         public string XPath { get; set; }
 
         public override bool Execute()
         {
-            Log.LogMessage(MessageImportance.Normal, Resources.CSharpProjectCompliance_Execute_Message, XPath);
             return Execute(Projects);
         }
 
@@ -36,7 +39,7 @@
         {
             if (null == projects)
             {
-                Log.LogError(Resources.CSharpProjectCompliance_PathsNull_Message);
+                Log.LogError(Resources.MSBuildCompliance_PathsNull_Message);
                 return false;
             }
 
@@ -71,43 +74,48 @@
 
         private bool Execute(FileSystemInfo file)
         {
+            Log.LogMessage(MessageImportance.Normal, Resources.MSBuildCompliance_Execute_Message, file.FullName);
+            Log.LogMessage(MessageImportance.Normal, XPath);
             var xml = new XmlDocument();
             xml.Load(file.FullName);
 
-            return Execute(file, xml);
+            return Execute(xml);
         }
 
-        private bool Execute(FileSystemInfo file, 
-                             IXPathNavigable xml)
+        private bool Execute(IXPathNavigable xml)
         {
-            return Execute(file, xml.CreateNavigator());
+            return Execute(xml.CreateNavigator());
         }
 
-        private bool Execute(FileSystemInfo file, 
-                             XPathNavigator navigator)
+        private bool Execute(XPathNavigator navigator)
         {
-            return Execute(file, navigator, navigator.NameTable);
+            return Execute(navigator, navigator.NameTable);
         }
 
-        private bool Execute(FileSystemInfo file, 
-                             XPathNavigator navigator, 
+        private bool Execute(XPathNavigator navigator, 
                              XmlNameTable nameTable)
         {
             var namespaces = new XmlNamespaceManager(nameTable);
+
             namespaces.AddNamespace("b", "http://schemas.microsoft.com/developer/msbuild/2003");
 
-            return Execute(file, navigator, namespaces);
+            return Execute(navigator, namespaces);
         }
 
-        private bool Execute(FileSystemInfo file, 
-                             XPathNavigator navigator, 
+        private bool Execute(XPathNavigator navigator, 
                              IXmlNamespaceResolver namespaces)
         {
             var o = navigator.Evaluate(XPath, namespaces);
             if (o != null && !(bool)o)
             {
-                Log.LogError(Resources.CSharpProjectCompliance_XPath_Message, file, XPath, Explanation);
-                return false;
+                if (string.IsNullOrWhiteSpace(Warning) ||
+                    !XmlConvert.ToBoolean(Warning))
+                {
+                    Log.LogError(Explanation);
+                    return false;
+                }
+
+                Log.LogWarning(Explanation);
             }
 
             return true;

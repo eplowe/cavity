@@ -13,12 +13,12 @@
 
     using Xunit;
 
-    public sealed class CSharpProjectComplianceFacts
+    public sealed class MSBuildComplianceFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<CSharpProjectCompliance>()
+            Assert.True(new TypeExpectations<MSBuildCompliance>()
                             .DerivesFrom<Task>()
                             .IsConcreteClass()
                             .IsSealed()
@@ -30,7 +30,7 @@
         [Fact]
         public void ctor()
         {
-            Assert.NotNull(new CSharpProjectCompliance());
+            Assert.NotNull(new MSBuildCompliance());
         }
 
         [Fact]
@@ -38,7 +38,7 @@
         {
             using (var file = new TempFile())
             {
-                using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream(@"Cavity.Build.CSharpProjectCompliance.xml"))
+                using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream(@"Cavity.Build.MSBuildCompliance.xml"))
                 {
                     if (null != resource)
                     {
@@ -49,7 +49,7 @@
                     }
                 }
 
-                var obj = new CSharpProjectCompliance
+                var obj = new MSBuildCompliance
                               {
                                   BuildEngine = new Mock<IBuildEngine>().Object, 
                                   Projects = new ITaskItem[]
@@ -66,7 +66,7 @@
         [Fact]
         public void op_Execute_IEnumerableEmpty()
         {
-            var obj = new CSharpProjectCompliance
+            var obj = new MSBuildCompliance
                           {
                               BuildEngine = new Mock<IBuildEngine>().Object, 
                               Projects = new ITaskItem[]
@@ -80,7 +80,7 @@
         [Fact]
         public void op_Execute_IEnumerableNull()
         {
-            var obj = new CSharpProjectCompliance
+            var obj = new MSBuildCompliance
                           {
                               BuildEngine = new Mock<IBuildEngine>().Object
                           };
@@ -93,7 +93,7 @@
         {
             using (var file = new TempFile())
             {
-                using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream(@"Cavity.Build.CSharpProjectCompliance.xml"))
+                using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream(@"Cavity.Build.MSBuildCompliance.xml"))
                 {
                     if (null != resource)
                     {
@@ -104,7 +104,7 @@
                     }
                 }
 
-                var obj = new CSharpProjectCompliance
+                var obj = new MSBuildCompliance
                               {
                                   BuildEngine = new Mock<IBuildEngine>().Object, 
                                   Projects = new ITaskItem[]
@@ -124,7 +124,7 @@
         {
             using (var file = new TempFile())
             {
-                using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream(@"Cavity.Build.CSharpProjectCompliance.xml"))
+                using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream(@"Cavity.Build.MSBuildCompliance.xml"))
                 {
                     if (null != resource)
                     {
@@ -146,13 +146,14 @@
                     }
                 }
 
-                var obj = new CSharpProjectCompliance
+                var obj = new MSBuildCompliance
                               {
                                   BuildEngine = new Mock<IBuildEngine>().Object, 
                                   Projects = new ITaskItem[]
                                                  {
                                                      new TaskItem(file.Info.FullName)
-                                                 }, 
+                                                 },
+                                  Explanation = "This is a test",
                                   XPath = "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])"
                               };
 
@@ -163,7 +164,7 @@
         [Fact]
         public void prop_Explanation()
         {
-            Assert.True(new PropertyExpectations<CSharpProjectCompliance>(p => p.Explanation)
+            Assert.True(new PropertyExpectations<MSBuildCompliance>(p => p.Explanation)
                             .IsAutoProperty<string>()
                             .IsDecoratedWith<RequiredAttribute>()
                             .Result);
@@ -172,8 +173,17 @@
         [Fact]
         public void prop_Projects()
         {
-            Assert.True(new PropertyExpectations<CSharpProjectCompliance>(p => p.Projects)
+            Assert.True(new PropertyExpectations<MSBuildCompliance>(p => p.Projects)
                             .IsAutoProperty<ITaskItem[]>()
+                            .IsDecoratedWith<RequiredAttribute>()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_Warning()
+        {
+            Assert.True(new PropertyExpectations<MSBuildCompliance>(p => p.Warning)
+                            .IsAutoProperty<string>()
                             .IsDecoratedWith<RequiredAttribute>()
                             .Result);
         }
@@ -181,7 +191,7 @@
         [Fact]
         public void prop_XPath()
         {
-            Assert.True(new PropertyExpectations<CSharpProjectCompliance>(p => p.XPath)
+            Assert.True(new PropertyExpectations<MSBuildCompliance>(p => p.XPath)
                             .IsAutoProperty<string>()
                             .IsDecoratedWith<RequiredAttribute>()
                             .Result);

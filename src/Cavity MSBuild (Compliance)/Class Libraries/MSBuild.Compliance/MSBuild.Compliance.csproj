@@ -12,7 +12,7 @@
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Build\CSharpProjectCompliance.cs" />
+    <Compile Include="Build\MSBuildCompliance.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Cavity.MSBuild.Compliance.targets">
