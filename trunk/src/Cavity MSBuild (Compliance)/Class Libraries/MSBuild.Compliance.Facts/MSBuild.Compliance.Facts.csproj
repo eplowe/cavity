@@ -8,7 +8,7 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
-    <Compile Include="Build\CSharpProjectCompliance.Facts.cs" />
+    <Compile Include="Build\MSBuildCompliance.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSBuild.Compliance\MSBuild.Compliance.csproj">
@@ -17,7 +17,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Build\CSharpProjectCompliance.xml" />
+    <EmbeddedResource Include="Build\MSBuildCompliance.xml" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Cavity.Testing.Unit">
