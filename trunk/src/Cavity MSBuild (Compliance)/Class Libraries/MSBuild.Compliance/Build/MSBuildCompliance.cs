@@ -1,6 +1,5 @@
 ﻿namespace Cavity.Build
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -23,7 +22,6 @@
         [Required]
         public ITaskItem[] Projects { get; set; }
 
-        [Required]
         public string Warning { get; set; }
 
         [Required]
@@ -79,43 +77,48 @@
             var xml = new XmlDocument();
             xml.Load(file.FullName);
 
-            return Execute(xml);
+            return Execute(file, xml);
         }
 
-        private bool Execute(IXPathNavigable xml)
+        private bool Execute(FileSystemInfo file,
+                             IXPathNavigable xml)
         {
-            return Execute(xml.CreateNavigator());
+            return Execute(file, xml.CreateNavigator());
         }
 
-        private bool Execute(XPathNavigator navigator)
+        private bool Execute(FileSystemInfo file,
+                             XPathNavigator navigator)
         {
-            return Execute(navigator, navigator.NameTable);
+            return Execute(file, navigator, navigator.NameTable);
         }
 
-        private bool Execute(XPathNavigator navigator, 
+        private bool Execute(FileSystemInfo file,
+                             XPathNavigator navigator, 
                              XmlNameTable nameTable)
         {
             var namespaces = new XmlNamespaceManager(nameTable);
 
             namespaces.AddNamespace("b", "http://schemas.microsoft.com/developer/msbuild/2003");
 
-            return Execute(navigator, namespaces);
+            return Execute(file, navigator, namespaces);
         }
 
-        private bool Execute(XPathNavigator navigator, 
+        private bool Execute(FileSystemInfo file,
+                             XPathNavigator navigator, 
                              IXmlNamespaceResolver namespaces)
         {
             var o = navigator.Evaluate(XPath, namespaces);
             if (o != null && !(bool)o)
             {
+                var message = string.Concat(Explanation, Resources.Colon, file.FullName);
                 if (string.IsNullOrWhiteSpace(Warning) ||
                     !XmlConvert.ToBoolean(Warning))
                 {
-                    Log.LogError(Explanation);
+                    Log.LogError(message);
                     return false;
                 }
 
-                Log.LogWarning(Explanation);
+                Log.LogWarning(message);
             }
 
             return true;

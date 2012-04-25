@@ -61,6 +61,15 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  : .
+        /// </summary>
+        internal static string Colon {
+            get {
+                return ResourceManager.GetString("Colon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} failed compliance with {1} because {2}..
         /// </summary>
         internal static string CSharpProjectCompliance_XPath_Message {
