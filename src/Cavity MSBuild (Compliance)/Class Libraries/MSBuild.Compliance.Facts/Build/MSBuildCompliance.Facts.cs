@@ -184,7 +184,7 @@
         {
             Assert.True(new PropertyExpectations<MSBuildCompliance>(p => p.Warning)
                             .IsAutoProperty<string>()
-                            .IsDecoratedWith<RequiredAttribute>()
+                            .IsNotDecorated()
                             .Result);
         }
 

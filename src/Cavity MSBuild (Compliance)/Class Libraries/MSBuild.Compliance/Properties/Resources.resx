@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Colon" xml:space="preserve">
+    <value> : </value>
+  </data>
   <data name="CSharpProjectCompliance_XPath_Message" xml:space="preserve">
     <value>{0} failed compliance with {1} because {2}.</value>
   </data>
