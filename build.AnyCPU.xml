@@ -3,6 +3,7 @@
          DefaultTargets="Rebuild"
          ToolsVersion="4.0">
   <ItemGroup>
+  	<Solutions Include="Cavity Caching" />
   	<Solutions Include="Cavity Commands" />
   	<Solutions Include="Cavity Commands (File System)" />
   	<Solutions Include="Cavity Configuration" />
