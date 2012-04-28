@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Cavity.Caching.Memory</id>
+    <version>1.1.0.822</version>
+    <title>Cavity Caching (Memory)</title>
+    <authors>Alan Dean</authors>
+    <owners />
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://code.google.com/p/cavity/</projectUrl>
+    <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides a concrete implementation of the caching interface using the System.Runtime in-memory cache.</description>
+    <summary />
+    <copyright>Copyright © 2010 - 2012 Alan Dean</copyright>
+    <language />
+    <tags>Cache</tags>
+    <releaseNotes />
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Runtime.Caching" targetFramework="net40" />
+    </frameworkAssemblies>
+    <dependencies>
+      <dependency id="Cavity.Caching.Abstractions" version="1.1.0.822" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="lib\net40\Cavity.Caching.Memory.dll" target="lib\net40\Cavity.Caching.Memory.dll" />
+  </files>
+</package>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Cavity.Caching.Web</id>
+    <version>1.1.0.822</version>
+    <title>Cavity Caching (Web)</title>
+    <authors>Alan Dean</authors>
+    <owners />
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://code.google.com/p/cavity/</projectUrl>
+    <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides a concrete implementation of the caching interface using the System.Web HTTP cache.</description>
+    <summary />
+    <copyright>Copyright © 2010 - 2012 Alan Dean</copyright>
+    <language />
+    <tags>Cache</tags>
+    <releaseNotes />
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Web" />
+    </frameworkAssemblies>
+    <dependencies>
+      <dependency id="Cavity.Caching.Abstractions" version="1.1.0.822" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="lib\net20\Cavity.Caching.Web.dll" target="lib\net20\Cavity.Caching.Web.dll" />
+    <file src="lib\net35\Cavity.Caching.Web.dll" target="lib\net35\Cavity.Caching.Web.dll" />
+    <file src="lib\net40\Cavity.Caching.Web.dll" target="lib\net40\Cavity.Caching.Web.dll" />
+  </files>
+</package>

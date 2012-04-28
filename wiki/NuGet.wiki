@@ -10,6 +10,14 @@
 
 *1.1.0.804* Cavity.Testing.Unit
 
+*1.1.0.822* Cavity.Caching.Abstractions
+
+*1.1.0.822* Cavity.Caching.Memory
+ * Cavity.Caching.Abstractions
+
+*1.1.0.822* Cavity.Caching.Web
+ * Cavity.Caching.Abstractions
+
 *1.1.0.814* Cavity.Core
 
 *1.1.0.804* Cavity Configuration
