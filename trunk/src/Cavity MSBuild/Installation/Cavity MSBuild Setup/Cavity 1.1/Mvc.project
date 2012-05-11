@@ -11,6 +11,6 @@
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Mvc.references" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 1.1\Code.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 1.1\Mvc.references" />
 </Project>

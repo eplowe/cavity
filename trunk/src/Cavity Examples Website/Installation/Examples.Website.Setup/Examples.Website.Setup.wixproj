@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Wix.setup" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Wix.setup" />
   <PropertyGroup>
     <ProjectGuid>{b7b41425-66fd-46af-99dc-1371bbe67099}</ProjectGuid>
     <OutputName>Cavity Examples Website</OutputName>

@@ -7,6 +7,10 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity MSBuild (Compliance)\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\CodeAnalysis.dictionary" />
+  </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Build\MSBuildCompliance.Facts.cs" />
   </ItemGroup>
@@ -19,6 +23,43 @@
   <ItemGroup>
     <EmbeddedResource Include="Build\MSBuildCompliance.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System"/>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Reference Include="System.Numerics" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
+  </ItemGroup>
+  <Choose>
+    <When Condition=" '$(TargetFrameworkVersion)' == 'v2.0' ">
+      <ItemGroup>
+        <Reference Include="Microsoft.Build.Utilities" />
+      </ItemGroup>
+    </When>
+    <When Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
+      <ItemGroup>
+        <Reference Include="Microsoft.Build.Utilities.v3.5" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.Build.Utilities.v4.0" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
@@ -36,15 +77,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Tests.project" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\MSBuild.references" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Tests.project" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">

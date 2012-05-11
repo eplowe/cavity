@@ -106,6 +106,7 @@
                 throw new ArgumentNullException("value");
             }
 
+            value = value.Trim();
             if (0 == value.Length)
             {
                 throw new ArgumentOutOfRangeException("value");

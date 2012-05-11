@@ -8,10 +8,32 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Transactions.Commands\Transactions.Commands.csproj">
-      <Project>{6EBDA186-5D36-45F6-A3EF-743097747BEB}</Project>
-      <Name>Transactions.Commands</Name>
-    </ProjectReference>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\CodeAnalysis.dictionary" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+    <Compile Include="Transactions\DurableEnlistmentNotification.Derived.cs" />
+    <Compile Include="Transactions\DurableEnlistmentNotification.Facts.cs" />
+    <Compile Include="Transactions\EnlistmentIdentity.Facts.cs" />
+    <Compile Include="Transactions\Operation.Facts.cs" />
+    <Compile Include="Transactions\Recovery.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System"/>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Reference Include="System.Numerics" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Commands">
@@ -36,21 +58,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
+    <ProjectReference Include="..\Transactions.Commands\Transactions.Commands.csproj">
+      <Project>{6EBDA186-5D36-45F6-A3EF-743097747BEB}</Project>
+      <Name>Transactions.Commands</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
-    <Compile Include="Transactions\DurableEnlistmentNotification.Derived.cs" />
-    <Compile Include="Transactions\DurableEnlistmentNotification.Facts.cs" />
-    <Compile Include="Transactions\EnlistmentIdentity.Facts.cs" />
-    <Compile Include="Transactions\Operation.Facts.cs" />
-    <Compile Include="Transactions\Recovery.Facts.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\AnyCPU.platform" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Tests.project" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Tests.project" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!--
   <Target Name="BeforeBuild">

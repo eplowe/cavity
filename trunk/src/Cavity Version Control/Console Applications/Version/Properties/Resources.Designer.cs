@@ -70,6 +70,24 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to     {0} {1}.
+        /// </summary>
+        internal static string PackageInfo {
+            get {
+                return ResourceManager.GetString("PackageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to     {0} {1} is not in use..
+        /// </summary>
+        internal static string PackageUnused {
+            get {
+                return ResourceManager.GetString("PackageUnused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Available parameters:.
         /// </summary>
         internal static string Parameters {
@@ -93,6 +111,15 @@ namespace Cavity.Properties {
         internal static string ParametersInfo {
             get {
                 return ResourceManager.GetString("ParametersInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press the enter / return key to exit....
+        /// </summary>
+        internal static string PressEnterToExit {
+            get {
+                return ResourceManager.GetString("PressEnterToExit", resourceCulture);
             }
         }
         

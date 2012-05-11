@@ -62,61 +62,39 @@
 #if NET20 || NET35
             foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
 #else
-            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories), file =>
+            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories),
+                file =>
 #endif
-                                                                                              {
-                                                                                                  var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
-                                                                                                  if (target.Exists)
-                                                                                                  {
-                                                                                                      if (replace)
-                                                                                                      {
-                                                                                                          target.Delete();
-                                                                                                      }
-                                                                                                      else
-                                                                                                      {
-#if NET20 || NET35
-                        continue;
-#else
-                                                                                                          return;
-#endif
-                                                                                                      }
-                                                                                                  }
-
-                                                                                                  if (null != target.Directory &&
-                                                                                                      !target.Directory.Exists)
-                                                                                                  {
-                                                                                                      target.Directory.Create();
-                                                                                                  }
-
-                                                                                                  file.CopyTo(target.FullName);
-#if NET20 || NET35
-            }
-#else
-                                                                                              });
-#endif
-            foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
-            {
-                var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
-                if (target.Exists)
                 {
-                    if (replace)
+                    var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
+                    if (target.Exists)
                     {
-                        target.Delete();
+                        if (replace)
+                        {
+                            target.Delete();
+                        }
+                        else
+                        {
+#if NET20 || NET35
+                            continue;
+#else
+                            return;
+#endif
+                        }
                     }
-                    else
+
+                    if (null != target.Directory &&
+                        !target.Directory.Exists)
                     {
-                        continue;
+                        target.Directory.Create();
                     }
-                }
 
-                if (null != target.Directory &&
-                    !target.Directory.Exists)
-                {
-                    target.Directory.Create();
+                    file.CopyTo(target.FullName);
+#if NET20 || NET35
                 }
-
-                file.CopyTo(target.FullName);
-            }
+#else
+                });
+#endif
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
@@ -231,61 +209,39 @@
 #if NET20 || NET35
             foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
 #else
-            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories), file =>
+            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories),
+                file =>
 #endif
-                                                                                              {
-                                                                                                  var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
-                                                                                                  if (target.Exists)
-                                                                                                  {
-                                                                                                      if (replace)
-                                                                                                      {
-                                                                                                          target.Delete();
-                                                                                                      }
-                                                                                                      else
-                                                                                                      {
-#if NET20 || NET35
-                        continue;
-#else
-                                                                                                          return;
-#endif
-                                                                                                      }
-                                                                                                  }
-
-                                                                                                  if (null != target.Directory &&
-                                                                                                      !target.Directory.Exists)
-                                                                                                  {
-                                                                                                      target.Directory.Create();
-                                                                                                  }
-
-                                                                                                  file.MoveTo(target.FullName);
-#if NET20 || NET35
-            }
-#else
-                                                                                              });
-#endif
-            foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
-            {
-                var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
-                if (target.Exists)
                 {
-                    if (replace)
+                    var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
+                    if (target.Exists)
                     {
-                        target.Delete();
+                        if (replace)
+                        {
+                            target.Delete();
+                        }
+                        else
+                        {
+#if NET20 || NET35
+                            continue;
+#else
+                            return;
+#endif
+                        }
                     }
-                    else
+
+                    if (null != target.Directory &&
+                        !target.Directory.Exists)
                     {
-                        continue;
+                        target.Directory.Create();
                     }
-                }
 
-                if (null != target.Directory &&
-                    !target.Directory.Exists)
-                {
-                    target.Directory.Create();
+                    file.MoveTo(target.FullName);
+#if NET20 || NET35
                 }
-
-                file.CopyTo(target.FullName);
-            }
+#else
+                });
+#endif
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]

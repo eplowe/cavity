@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime.Serialization.Formatters.Binary;
     using System.Xml;
 
     using Cavity.Data;
@@ -26,6 +28,30 @@
         public void ctor()
         {
             Assert.NotNull(new KeyStringDictionary());
+        }
+
+        [Fact]
+        public void ctor_SerializationInfo_StreamingContext()
+        {
+            var expected = new KeyStringDictionary
+                          {
+                              new KeyStringPair("key", "value")
+                          };
+            KeyStringDictionary actual;
+
+            using (Stream stream = new MemoryStream())
+            {
+                var formatter = new BinaryFormatter();
+                var obj = new KeyStringDictionary
+                          {
+                              new KeyStringPair("key", "value")
+                          };
+                formatter.Serialize(stream, obj);
+                stream.Position = 0;
+                actual = (KeyStringDictionary)formatter.Deserialize(stream);
+            }
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

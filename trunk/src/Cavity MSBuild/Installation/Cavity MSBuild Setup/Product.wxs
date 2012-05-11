@@ -1,55 +1,91 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define UpgradeCode="{f5481b90-9cbd-456f-96df-e2165b8d9af5}"?>
-  <Product Id="*" Name="Cavity MSBuild Extensions" Language="1033" Version="1.1.0.815" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
+  <Product Id="*" Name="Cavity MSBuild Extensions" Language="1033" Version="2.0.0.825" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" InstallPrivileges="elevated" Compressed="yes" Description="Installs the Cavity MSBuild extensions." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
         <Directory Id="MSBuildExtensionsPath" Name="MSBuild">
-          <Directory Id="INSTALLLOCATION" Name="Cavity">
-            <Directory Id="NET40LOCATION" Name="net40">
-              <Component Id="NET40" Guid="9584039a-a660-48ae-98a0-58830b89002b">
-                <RegistryValue Root="HKLM" Key="Software\Cavity\MSBuild Extensions (Compliance)" Type="string" Value="Installed" KeyPath="yes" />
-                <File Id="CavityMSBuildCompliance" Name="Cavity.MSBuild.Compliance.dll" Source="Cavity\net40\Cavity.MSBuild.Compliance.dll" />
-                <File Id="CavityMSBuildComplianceTargets" Name="Cavity.MSBuild.Compliance.targets" Source="Cavity\net40\Cavity.MSBuild.Compliance.targets" />
+          <Directory Id="INSTALLLOCATION11" Name="Cavity 1.1">
+            <Directory Id="NET40LOCATION11" Name="net40">
+              <Component Id="NET4011" Guid="9584039a-a660-48ae-98a0-58830b89002b">
+                <RegistryValue Root="HKLM" Key="Software\Cavity 1.1\MSBuild Extensions (Compliance)" Type="string" Value="Installed" KeyPath="yes" />
+                <File Id="CavityMSBuildCompliance" Name="Cavity.MSBuild.Compliance.dll" Source="Cavity 1.1\net40\Cavity.MSBuild.Compliance.dll" />
+                <File Id="CavityMSBuildComplianceTargets" Name="Cavity.MSBuild.Compliance.targets" Source="Cavity 1.1\net40\Cavity.MSBuild.Compliance.targets" />
               </Component>
             </Directory>
-            <Component Id="Cavity" Guid="69b3bf14-0198-4279-9932-2260f7b238de">
-              <RegistryValue Root="HKLM" Key="Software\Cavity\MSBuild Extensions" Type="string" Value="Installed" KeyPath="yes" />
-              <File Id="AnyInclude" Name="Any.include" Source="Cavity\Any.include" />
-              <File Id="AnyReferences" Name="Any.references" Source="Cavity\Any.references" />
-              <File Id="AnyCpuPlatform" Name="AnyCPU.platform" Source="Cavity\AnyCPU.platform" />
-              <File Id="BuildAll" Name="Build.all" Source="Cavity\Build.all" />
-              <File Id="BundleAll" Name="Bundle.all" Source="Cavity\Bundle.all" />
-              <File Id="CleanAll" Name="Clean.all" Source="Cavity\Clean.all" />
-              <File Id="CodeProject" Name="Code.project" Source="Cavity\Code.project" />
-              <File Id="CodeRuleset" Name="Code.ruleset" Source="Cavity\Code.ruleset" />
-              <File Id="CodeStyleCop" Name="Code.stylecop" Source="Cavity\Code.stylecop" />
-              <File Id="ComplianceInclude" Name="Compliance.include" Source="Cavity\Compliance.include" />
-              <File Id="ComplianceRules" Name="Compliance.rules" Source="Cavity\Compliance.rules" />
-              <File Id="DataReferences" Name="Data.references" Source="Cavity\Data.references" />
-              <File Id="MefReferences" Name="MEF.references" Source="Cavity\MEF.references" />
-              <File Id="MixedCpuPlatform" Name="MixedCPU.platform" Source="Cavity\MixedCPU.platform" />
-              <File Id="MSBuildReferences" Name="MSBuild.references" Source="Cavity\MSBuild.references" />
-              <File Id="MSBuildTasks" Name="MSBuild.tasks" Source="Cavity\MSBuild.tasks" />
-              <File Id="MvcProject" Name="Mvc.project" Source="Cavity\Mvc.project" />
-              <File Id="MvcReferences" Name="Mvc.references" Source="Cavity\Mvc.references" />
-              <File Id="NUnitTest" Name="NUnit.test" Source="Cavity\NUnit.test" />
-              <File Id="ServiceReferences" Name="Service.references" Source="Cavity\Service.references" />
-              <File Id="TargetFramework" Name="Target.framework" Source="Cavity\Target.framework" />
-              <File Id="TestAll" Name="Test.all" Source="Cavity\Test.all" />
-              <File Id="TestsProject" Name="Tests.project" Source="Cavity\Tests.project" />
-              <File Id="TestsRuleset" Name="Tests.ruleset" Source="Cavity\Tests.ruleset" />
-              <File Id="TestsStyleCop" Name="Tests.stylecop" Source="Cavity\Tests.stylecop" />
-              <File Id="VersionXml" Name="Version.xml" Source="Cavity\Version.xml" />
-              <File Id="WebReferences" Name="Web.references" Source="Cavity\Web.references" />
-              <File Id="WindowsReferences" Name="Windows.references" Source="Cavity\Windows.references" />
-              <File Id="WixSetup" Name="WiX.setup" Source="Cavity\WiX.setup" />
-              <File Id="x64Platform" Name="x64.platform" Source="Cavity\x64.platform" />
-              <File Id="x86Platform" Name="x86.platform" Source="Cavity\x86.platform" />
-              <File Id="XunitTest" Name="Xunit.test" Source="Cavity\Xunit.test" />
+            <Component Id="Cavity11" Guid="69b3bf14-0198-4279-9932-2260f7b238de">
+              <RegistryValue Root="HKLM" Key="Software\Cavity 1.1\MSBuild Extensions" Type="string" Value="Installed" KeyPath="yes" />
+              <File Id="AnyInclude" Name="Any.include" Source="Cavity 1.1\Any.include" />
+              <File Id="AnyReferences" Name="Any.references" Source="Cavity 1.1\Any.references" />
+              <File Id="AnyCpuPlatform" Name="AnyCPU.platform" Source="Cavity 1.1\AnyCPU.platform" />
+              <File Id="BuildAll" Name="Build.all" Source="Cavity 1.1\Build.all" />
+              <File Id="BundleAll" Name="Bundle.all" Source="Cavity 1.1\Bundle.all" />
+              <File Id="CleanAll" Name="Clean.all" Source="Cavity 1.1\Clean.all" />
+              <File Id="CodeProject" Name="Code.project" Source="Cavity 1.1\Code.project" />
+              <File Id="CodeRuleset" Name="Code.ruleset" Source="Cavity 1.1\Code.ruleset" />
+              <File Id="CodeStyleCop" Name="Code.stylecop" Source="Cavity 1.1\Code.stylecop" />
+              <File Id="ComplianceInclude" Name="Compliance.include" Source="Cavity 1.1\Compliance.include" />
+              <File Id="ComplianceRules" Name="Compliance.rules" Source="Cavity 1.1\Compliance.rules" />
+              <File Id="DataReferences" Name="Data.references" Source="Cavity 1.1\Data.references" />
+              <File Id="MefReferences" Name="MEF.references" Source="Cavity 1.1\MEF.references" />
+              <File Id="MixedCpuPlatform" Name="MixedCPU.platform" Source="Cavity 1.1\MixedCPU.platform" />
+              <File Id="MSBuildReferences" Name="MSBuild.references" Source="Cavity 1.1\MSBuild.references" />
+              <File Id="MSBuildTasks" Name="MSBuild.tasks" Source="Cavity 1.1\MSBuild.tasks" />
+              <File Id="MvcProject" Name="Mvc.project" Source="Cavity 1.1\Mvc.project" />
+              <File Id="MvcReferences" Name="Mvc.references" Source="Cavity 1.1\Mvc.references" />
+              <File Id="NUnitTest" Name="NUnit.test" Source="Cavity 1.1\NUnit.test" />
+              <File Id="ServiceReferences" Name="Service.references" Source="Cavity 1.1\Service.references" />
+              <File Id="TargetFramework" Name="Target.framework" Source="Cavity 1.1\Target.framework" />
+              <File Id="TestAll" Name="Test.all" Source="Cavity 1.1\Test.all" />
+              <File Id="TestsProject" Name="Tests.project" Source="Cavity 1.1\Tests.project" />
+              <File Id="TestsRuleset" Name="Tests.ruleset" Source="Cavity 1.1\Tests.ruleset" />
+              <File Id="TestsStyleCop" Name="Tests.stylecop" Source="Cavity 1.1\Tests.stylecop" />
+              <File Id="VersionXml" Name="Version.xml" Source="Cavity 1.1\Version.xml" />
+              <File Id="WebReferences" Name="Web.references" Source="Cavity 1.1\Web.references" />
+              <File Id="WindowsReferences" Name="Windows.references" Source="Cavity 1.1\Windows.references" />
+              <File Id="WixSetup" Name="WiX.setup" Source="Cavity 1.1\WiX.setup" />
+              <File Id="x64Platform" Name="x64.platform" Source="Cavity 1.1\x64.platform" />
+              <File Id="x86Platform" Name="x86.platform" Source="Cavity 1.1\x86.platform" />
+              <File Id="XunitTest" Name="Xunit.test" Source="Cavity 1.1\Xunit.test" />
+            </Component>
+          </Directory>
+          <Directory Id="INSTALLLOCATION20" Name="Cavity 2.0">
+            <Directory Id="NET40LOCATION20" Name="net40">
+              <Component Id="NET4020" Guid="20f7fd4f-9eb4-4d11-b678-2c026fb48060">
+                <RegistryValue Root="HKLM" Key="Software\Cavity 2.0\MSBuild Extensions (Compliance)" Type="string" Value="Installed" KeyPath="yes" />
+                <File Id="CavityMSBuildCompliance20" Name="Cavity.MSBuild.Compliance.dll" Source="Cavity 2.0\net40\Cavity.MSBuild.Compliance.dll" />
+                <File Id="CavityMSBuildComplianceTargets20" Name="Cavity.MSBuild.Compliance.targets" Source="Cavity 2.0\net40\Cavity.MSBuild.Compliance.targets" />
+              </Component>
+            </Directory>
+            <Component Id="Cavity20" Guid="46fd19ef-410b-48aa-98d8-87ffccea95ad">
+              <RegistryValue Root="HKLM" Key="Software\Cavity 2.0\MSBuild Extensions" Type="string" Value="Installed" KeyPath="yes" />
+              <File Id="AnyInclude20" Name="Any.include" Source="Cavity 2.0\Any.include" />
+              <File Id="AnyCpuPlatform20" Name="AnyCPU.platform" Source="Cavity 2.0\AnyCPU.platform" />
+              <File Id="BuildAll20" Name="Build.all" Source="Cavity 2.0\Build.all" />
+              <File Id="BundleAll20" Name="Bundle.all" Source="Cavity 2.0\Bundle.all" />
+              <File Id="CleanAll20" Name="Clean.all" Source="Cavity 2.0\Clean.all" />
+              <File Id="CodeProject20" Name="Code.project" Source="Cavity 2.0\Code.project" />
+              <File Id="CodeRuleset20" Name="Code.ruleset" Source="Cavity 2.0\Code.ruleset" />
+              <File Id="CodeStyleCop20" Name="Code.stylecop" Source="Cavity 2.0\Code.stylecop" />
+              <File Id="ComplianceInclude20" Name="Compliance.include" Source="Cavity 2.0\Compliance.include" />
+              <File Id="ComplianceRules20" Name="Compliance.rules" Source="Cavity 2.0\Compliance.rules" />
+              <File Id="MixedCpuPlatform20" Name="MixedCPU.platform" Source="Cavity 2.0\MixedCPU.platform" />
+              <File Id="MSBuildTasks20" Name="MSBuild.tasks" Source="Cavity 2.0\MSBuild.tasks" />
+              <File Id="MvcProject20" Name="Mvc.project" Source="Cavity 2.0\Mvc.project" />
+              <File Id="NUnitTest20" Name="NUnit.test" Source="Cavity 2.0\NUnit.test" />
+              <File Id="TargetFramework20" Name="Target.framework" Source="Cavity 2.0\Target.framework" />
+              <File Id="TestAll20" Name="Test.all" Source="Cavity 2.0\Test.all" />
+              <File Id="TestsProject20" Name="Tests.project" Source="Cavity 2.0\Tests.project" />
+              <File Id="TestsRuleset20" Name="Tests.ruleset" Source="Cavity 2.0\Tests.ruleset" />
+              <File Id="TestsStyleCop20" Name="Tests.stylecop" Source="Cavity 2.0\Tests.stylecop" />
+              <File Id="VersionXml20" Name="Version.xml" Source="Cavity 2.0\Version.xml" />
+              <File Id="WixSetup20" Name="WiX.setup" Source="Cavity 2.0\WiX.setup" />
+              <File Id="x64Platform20" Name="x64.platform" Source="Cavity 2.0\x64.platform" />
+              <File Id="x86Platform20" Name="x86.platform" Source="Cavity 2.0\x86.platform" />
+              <File Id="XunitTest20" Name="Xunit.test" Source="Cavity 2.0\Xunit.test" />
             </Component>
           </Directory>
           <Directory Id="NUNITLOCATION" Name="NUnit 2.6">
@@ -79,8 +115,10 @@
     </Directory>
     <Feature Id="ProductFeature" Title="MSBuild Files" Level="1">
       <ComponentGroupRef Id="Product.Generated" />
-      <ComponentRef Id="Cavity" />
-      <ComponentRef Id="NET40" />
+      <ComponentRef Id="Cavity11" />
+      <ComponentRef Id="NET4011" />
+      <ComponentRef Id="Cavity20" />
+      <ComponentRef Id="NET4020" />
       <ComponentRef Id="NUnit" />
       <ComponentRef Id="NUnitLib" />
     </Feature>

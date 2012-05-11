@@ -3,7 +3,7 @@
          DefaultTargets="Run"
          ToolsVersion="4.0">
   <ImportGroup>
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\Clean.all" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Clean.all" />
   </ImportGroup>
   <Target Name="Run">
     <CallTarget Targets="Clean" />

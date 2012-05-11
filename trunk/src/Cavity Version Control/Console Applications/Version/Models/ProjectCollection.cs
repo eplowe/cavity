@@ -14,11 +14,6 @@
             return Load(new DirectoryInfo(working));
         }
 
-        public void Add(FileInfo project)
-        {
-            Add(Project.Load(project));
-        }
-
         private static ProjectCollection Load(DirectoryInfo working)
         {
             var result = new ProjectCollection();
@@ -29,6 +24,11 @@
             }
 
             return result;
+        }
+
+        private void Add(FileInfo project)
+        {
+            Add(Project.Load(project));
         }
     }
 }

@@ -7,6 +7,7 @@
     using System.Runtime.Serialization.Formatters.Binary;
 
     using Xunit;
+    using Xunit.Extensions;
 
     public sealed class QualityFacts
     {
@@ -29,15 +30,16 @@
         [Fact]
         public void ctor_SerializationInfo_StreamingContext()
         {
-            const float expected = 0.25f;
-            float actual;
+            var expected = new Quality(0.23f);
+            Quality actual;
 
             using (Stream stream = new MemoryStream())
             {
                 var formatter = new BinaryFormatter();
-                formatter.Serialize(stream, expected);
+                var obj = new Quality(0.23f);
+                formatter.Serialize(stream, obj);
                 stream.Position = 0;
-                actual = (float)formatter.Deserialize(stream);
+                actual = (Quality)formatter.Deserialize(stream);
             }
 
             Assert.Equal(expected, actual);
@@ -139,6 +141,29 @@
         public void op_Equals_objectNull()
         {
             Assert.False(new Quality().Equals(null as object));
+        }
+
+        [Fact]
+        public void op_FromString_string()
+        {
+            var expected = new Quality(0.45f);
+            var actual = Quality.FromString("0.45");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void op_FromString_stringEmpty(string value)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Quality.FromString(value));
+        }
+
+        [Fact]
+        public void op_FromString_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => Quality.FromString(null));
         }
 
         [Fact]

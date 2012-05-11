@@ -120,6 +120,12 @@
   <data name="HelpLink" xml:space="preserve">
     <value>For more information, http://code.google.com/p/cavity/wiki/VersionControl</value>
   </data>
+  <data name="PackageInfo" xml:space="preserve">
+    <value>    {0} {1}</value>
+  </data>
+  <data name="PackageUnused" xml:space="preserve">
+    <value>    {0} {1} is not in use.</value>
+  </data>
   <data name="Parameters" xml:space="preserve">
     <value>Available parameters:</value>
   </data>
@@ -128,6 +134,9 @@
   </data>
   <data name="ParametersInfo" xml:space="preserve">
     <value>  /i          Displays package version information.</value>
+  </data>
+  <data name="PressEnterToExit" xml:space="preserve">
+    <value>Press the enter / return key to exit...</value>
   </data>
   <data name="Splash" xml:space="preserve">
     <value>Cavity Version Control {0}</value>
