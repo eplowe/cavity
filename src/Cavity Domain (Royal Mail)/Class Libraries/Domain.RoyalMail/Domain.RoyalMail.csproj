@@ -2,10 +2,12 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <ProjectGuid>{166775FD-D5EB-4233-88B8-4B14E9001252}</ProjectGuid>
-    <AssemblyName>Cavity.Domain.RoyalMail</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Domain (Royal Mail)\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Cavity.Domain.RoyalMail</AssemblyName>
+    <ProjectGuid>{166775FD-D5EB-4233-88B8-4B14E9001252}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Diagnostics\Tracing.cs" />

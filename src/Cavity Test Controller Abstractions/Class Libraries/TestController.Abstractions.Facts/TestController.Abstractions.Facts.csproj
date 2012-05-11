@@ -2,10 +2,12 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <ProjectGuid>{46F86585-BFDE-41A1-B12C-1B770FDCA2DA}</ProjectGuid>
-    <AssemblyName>Cavity.TestController.Abstractions.Facts</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Test Controller Abstractions\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Cavity.TestController.Abstractions.Facts</AssemblyName>
+    <ProjectGuid>{46F86585-BFDE-41A1-B12C-1B770FDCA2DA}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System"/>

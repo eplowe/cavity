@@ -2,10 +2,12 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <ProjectGuid>{3C12CE19-B51C-4959-B581-756E59A98F78}</ProjectGuid>
-    <AssemblyName>Cavity.Http.Generalizations</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity HTTP Generalizations\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Cavity.Http.Generalizations</AssemblyName>
+    <ProjectGuid>{3C12CE19-B51C-4959-B581-756E59A98F78}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Net\HttpEntityHeaders.cs" />

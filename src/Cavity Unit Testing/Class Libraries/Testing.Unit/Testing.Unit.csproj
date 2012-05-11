@@ -2,10 +2,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <ProjectGuid>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</ProjectGuid>
-    <AssemblyName>Cavity.Testing.Unit</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Unit Testing\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Cavity.Testing.Unit</AssemblyName>
+    <ProjectGuid>{006D53FD-73F1-47F9-B17E-E858B3DC52D8}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Fluent\ITestClassConstruction.cs" />

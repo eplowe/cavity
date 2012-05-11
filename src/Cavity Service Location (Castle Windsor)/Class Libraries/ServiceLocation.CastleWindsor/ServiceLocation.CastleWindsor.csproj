@@ -2,11 +2,12 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <ProjectGuid>{DAA78F38-1405-4971-AB8D-1D42FD41B848}</ProjectGuid>
-    <AssemblyName>Cavity.ServiceLocation.CastleWindsor</AssemblyName>
-    <SignAssembly>false</SignAssembly>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Service Location (Castle Windsor)\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Cavity.ServiceLocation.CastleWindsor</AssemblyName>
+    <ProjectGuid>{DAA78F38-1405-4971-AB8D-1D42FD41B848}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

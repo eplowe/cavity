@@ -2,10 +2,12 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <ProjectGuid>{CFF72223-C8ED-4010-A5B5-57845F2AD577}</ProjectGuid>
-    <AssemblyName>Cavity.Http.Client.Facts</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity HTTP Client\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Cavity.Http.Client.Facts</AssemblyName>
+    <ProjectGuid>{CFF72223-C8ED-4010-A5B5-57845F2AD577}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

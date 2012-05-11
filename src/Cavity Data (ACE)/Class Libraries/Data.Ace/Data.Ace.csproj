@@ -2,11 +2,12 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <ProjectGuid>{94A4843F-2FCA-48D9-84EF-4250D51DB2EF}</ProjectGuid>
-    <AssemblyName>Cavity.Data.Ace</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Data (ACE)\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <ServiceLocation>false</ServiceLocation>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Cavity.Data.Ace</AssemblyName>
+    <ProjectGuid>{94A4843F-2FCA-48D9-84EF-4250D51DB2EF}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
