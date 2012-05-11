@@ -2,10 +2,12 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <ProjectGuid>{18FCB723-73DA-4544-87A3-41F6A9EE70DC}</ProjectGuid>
-    <AssemblyName>Cavity.TaskManagement.Examples</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Task Management\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Cavity.TaskManagement.Examples</AssemblyName>
+    <ProjectGuid>{18FCB723-73DA-4544-87A3-41F6A9EE70DC}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\TaskManagement\TaskManagement.csproj">

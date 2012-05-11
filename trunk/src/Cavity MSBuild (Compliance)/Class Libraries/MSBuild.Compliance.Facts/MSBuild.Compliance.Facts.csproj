@@ -2,10 +2,12 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <ProjectGuid>{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}</ProjectGuid>
-    <AssemblyName>Cavity.MSBuild.Compliance.Facts</AssemblyName>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity MSBuild (Compliance)\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Cavity.MSBuild.Compliance.Facts</AssemblyName>
+    <ProjectGuid>{14BB7A5D-3FED-49A7-9BE1-B4F6BF8BF557}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

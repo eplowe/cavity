@@ -2,11 +2,12 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <ProjectGuid>{CFF7B717-2F16-42D9-BCB7-FE258BE5B3BC}</ProjectGuid>
-    <AssemblyName>Cavity.TestController.Website.Facts</AssemblyName>
-    <SignAssembly>false</SignAssembly>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Test Controller\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Cavity.TestController.Website.Facts</AssemblyName>
+    <ProjectGuid>{CFF7B717-2F16-42D9-BCB7-FE258BE5B3BC}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System"/>

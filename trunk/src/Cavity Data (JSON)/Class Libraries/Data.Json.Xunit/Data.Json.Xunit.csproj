@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{1332A985-A8D4-4057-9E9F-60511798F674}</ProjectGuid>
-    <RootNamespace>Cavity</RootNamespace>
-    <AssemblyName>Cavity.Data.Json.Xunit</AssemblyName>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Cavity.Data.Json.Xunit</AssemblyName>
+    <ProjectGuid>{1332A985-A8D4-4057-9E9F-60511798F674}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Data\JsonUriAttribute.cs" />

@@ -2,12 +2,14 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <ProjectGuid>{6E1FEB48-28DE-49E6-83BD-08D272F8C43E}</ProjectGuid>
-    <AssemblyName>Cavity.TaskManagement.Service</AssemblyName>
-    <OutputType>WinExe</OutputType>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\Cavity Task Management Service\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Cavity.TaskManagement.Service</AssemblyName>
+    <ProjectGuid>{6E1FEB48-28DE-49E6-83BD-08D272F8C43E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Diagnostics\Tracing.cs" />
