@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-  </PropertyGroup>
-  <PropertyGroup>
     <AssemblyName>Cavity.$safeprojectname$</AssemblyName>
     <ProjectGuid>{$guid1$}</ProjectGuid>
   </PropertyGroup>

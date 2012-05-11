@@ -2,11 +2,9 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RestorePackages>true</RestorePackages>
-  </PropertyGroup>
-  <PropertyGroup>
     <AssemblyName>Version</AssemblyName>
     <ProjectGuid>{4F25E53F-10AB-4AAE-A230-BC2E5A6878DE}</ProjectGuid>
+    <RestorePackages>true</RestorePackages>
     <OutputType>Exe</OutputType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
