@@ -6,6 +6,7 @@
     using System.Runtime.Serialization.Formatters.Binary;
 
     using Xunit;
+    using Xunit.Extensions;
 
     public sealed class DateFacts
     {
@@ -168,6 +169,29 @@
         public void op_Equals_objectNull()
         {
             Assert.False(new Date().Equals(null as object));
+        }
+
+        [Fact]
+        public void op_FromString_string()
+        {
+            var expected = new Date(1999, 12, 31);
+            var actual = Date.FromString("1999-12-31");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("    ")]
+        public void op_FromString_stringEmpty(string value)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Date.FromString(value));
+        }
+
+        [Fact]
+        public void op_FromString_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => Date.FromString(null));
         }
 
         [Fact]

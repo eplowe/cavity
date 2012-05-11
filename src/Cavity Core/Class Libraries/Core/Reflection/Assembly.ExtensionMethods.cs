@@ -17,13 +17,29 @@
                 throw new ArgumentNullException("obj");
             }
 
-            var location = new FileInfo(obj.Location);
-            if (null == location.Directory)
+            return ToDirectory(obj.Location);
+        }
+
+        public static DirectoryInfo ToDirectory(string location)
+        {
+            if (null == location)
             {
-                throw new DirectoryNotFoundException(obj.Location);
+                throw new ArgumentNullException("location");
             }
 
-            return new DirectoryInfo(location.Directory.FullName);
+            location = location.Trim();
+            if (0 == location.Length)
+            {
+                throw new ArgumentOutOfRangeException("location");
+            }
+
+            var file = new FileInfo(location);
+            if (null == file.Directory)
+            {
+                throw new DirectoryNotFoundException(location);
+            }
+
+            return new DirectoryInfo(file.Directory.FullName);
         }
     }
 }

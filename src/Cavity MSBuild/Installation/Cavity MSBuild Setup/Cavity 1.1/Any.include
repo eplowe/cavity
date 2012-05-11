@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Any.references" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Compliance.include" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 1.1\Any.references" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 1.1\Compliance.include" />
   <PropertyGroup>
     <FileAlignment>512</FileAlignment>
     <ProductVersion>8.0.30703</ProductVersion>

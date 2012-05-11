@@ -5,11 +5,11 @@
 
     public static class CommandCounter
     {
+        private static readonly bool _exists = CounterExists;
+
         private const string _category = "Cavity";
 
         private const string _counter = "Commands/sec";
-
-        private static readonly bool _exists = CounterExists;
 
         private static bool CounterExists
         {
@@ -28,17 +28,15 @@
 
         public static void Increment()
         {
-            if (!_exists)
+            if (_exists)
             {
-                return;
-            }
-
-            using (var counter = new PerformanceCounter(_category, _counter, false)
-                                     {
-                                         MachineName = "."
-                                     })
-            {
-                counter.Increment();
+                using (var counter = new PerformanceCounter(_category, _counter, false)
+                {
+                    MachineName = "."
+                })
+                {
+                    counter.Increment();
+                }
             }
         }
     }

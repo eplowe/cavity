@@ -128,12 +128,6 @@ namespace Cavity
                 return true;
             }
 
-            if (Properties.Count !=
-                other.Properties.Count)
-            {
-                return false;
-            }
-
             return !(from property in Properties
                      let left = property.GetValue(this, null)
                      let right = property.GetValue(other, null)

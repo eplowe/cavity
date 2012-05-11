@@ -5,11 +5,13 @@
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Text;
     using System.Xml;
 
     using Cavity.IO;
 
     using Xunit;
+    using Xunit.Extensions;
 
     public sealed class StringExtensionMethodsFacts
     {
@@ -424,6 +426,12 @@
         }
 
         [Fact]
+        public void op_EqualsAny_string_StringComparison_stringsNull()
+        {
+            Assert.False("cat".EqualsAny(StringComparison.Ordinal, null as string[]));
+        }
+
+        [Fact]
         public void op_FormatWith_stringEmpty_objects()
         {
             var expected = string.Empty;
@@ -607,12 +615,223 @@
         }
 
         [Fact]
+        public void op_Caverphone_string_whenAnd()
+        {
+            const string expected = "aNT111";
+            var actual = "And".Caverphone();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Caverphone_string_whenMohawk()
+        {
+            const string expected = "aL1111";
+            var actual = "hello".Caverphone();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Caverphone_string_whenFlack()
+        {
+            const string expected = "FLK111";
+            var actual = "Flack".Caverphone();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Caverphone_string_whenJazz()
+        {
+            const string expected = "YS1111";
+            var actual = "Jazz".Caverphone();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_Caverphone_string_whenThompson()
         {
             const string expected = "TMPSN1";
             var actual = "Thompson".Caverphone();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_CaverphoneStart_stringEmpty()
+        {
+            var expected = string.Empty;
+            var actual = StringExtensionMethods.CaverphoneStart(expected);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("cou2f", "cough")]
+        [InlineData("rou2f", "rough")]
+        [InlineData("tou2f", "tough")]
+        [InlineData("enou2f", "enough")]
+        [InlineData("2nocchi", "gnocchi")]
+        public void op_CaverphoneStart_stringMappings(string expected, string value)
+        {
+            var actual = StringExtensionMethods.CaverphoneStart(value);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("a", "a")]
+        [InlineData("example", "example")]
+        [InlineData("plum2", "plumb")]
+        [InlineData("plums", "plums")]
+        public void op_CaverphoneEndings_StringBuilder(string expected, string value)
+        {
+            var buffer = new StringBuilder(value);
+
+            StringExtensionMethods.CaverphoneEndings(buffer);
+
+            var actual = buffer.ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_CaverphoneEndings_StringBuilderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => StringExtensionMethods.CaverphoneEndings(null));
+        }
+
+        [Fact]
+        public void op_MetaphoneFirstLetters_StringBuilderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => StringExtensionMethods.MetaphoneFirstLetters(null));
+        }
+
+        [Theory]
+        [InlineData("", "")]
+        [InlineData("a", "a")]
+        [InlineData("Smas", "Xmas")]
+        [InlineData("Esop", "AEsop")]
+        [InlineData("Nocchi", "GNocchi")]
+        [InlineData("Now", "KNow")]
+        [InlineData("Neumatic", "PNeumatic")]
+        [InlineData("Rong", "WRong")]
+        public void op_MetaphoneFirstLetters_StringBuilder(string expected, string value)
+        {
+            var buffer = new StringBuilder(value);
+
+            StringExtensionMethods.MetaphoneFirstLetters(buffer);
+
+            var actual = buffer.ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MetaphoneLetterB_int_StringBuilderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => StringExtensionMethods.MetaphoneLetterB(1, null));
+        }
+
+        [Theory]
+        [InlineData("pluM ", 4, "pluMB")]
+        [InlineData("pluMBer", 4, "pluMBer")]
+        [InlineData("boM E", 3, "boMBE")]
+        [InlineData("cruMBs", 4, "cruMBs")]
+        public void op_MetaphoneLetterB_int_StringBuilder(string expected, int index, string value)
+        {
+            var buffer = new StringBuilder(value);
+
+            StringExtensionMethods.MetaphoneLetterB(index, buffer);
+
+            var actual = buffer.ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MetaphoneLetterC_int_StringBuilderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => StringExtensionMethods.MetaphoneLetterC(1, null));
+        }
+
+        [Fact]
+        public void op_MetaphoneLetterC_intMax_StringBuilderNull()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => StringExtensionMethods.MetaphoneLetterC(int.MaxValue, new StringBuilder()));
+        }
+
+        [Fact]
+        public void op_MetaphoneLetterC_intMin_StringBuilderNull()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => StringExtensionMethods.MetaphoneLetterC(int.MinValue, new StringBuilder()));
+        }
+
+        [Theory]
+        [InlineData("Lanx  ", 3, "LanCIA")]
+        public void op_MetaphoneLetterC_int_StringBuilder(string expected, int index, string value)
+        {
+            var buffer = new StringBuilder(value);
+
+            StringExtensionMethods.MetaphoneLetterC(index, buffer);
+
+            var actual = buffer.ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MetaphoneLetterG_int_StringBuilderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => StringExtensionMethods.MetaphoneLetterG(1, null));
+        }
+
+        [Fact]
+        public void op_MetaphoneLetterG_intMax_StringBuilderNull()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => StringExtensionMethods.MetaphoneLetterG(int.MaxValue, new StringBuilder()));
+        }
+
+        [Theory]
+        [InlineData("dou Hnut", 3, "douGHnut")]
+        [InlineData("ali N", 3, "aliGN")]
+        [InlineData("ali NED", 3, "aliGNED")]
+        public void op_MetaphoneLetterG_int_StringBuilder(string expected, int index, string value)
+        {
+            var buffer = new StringBuilder(value);
+
+            StringExtensionMethods.MetaphoneLetterG(index, buffer);
+
+            var actual = buffer.ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MetaphoneEnd_StringBuilderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => StringExtensionMethods.MetaphoneEnd(null));
+        }
+
+        [Theory]
+        [InlineData("", "")]
+        public void op_MetaphoneEnd_StringBuilder(string expected, string value)
+        {
+            var buffer = new StringBuilder(value);
+
+            StringExtensionMethods.MetaphoneEnd(buffer);
+
+            var actual = buffer.ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_CaverphoneStart_stringNull()
+        {
+            Assert.Null(StringExtensionMethods.CaverphoneStart(null));
         }
 
         [Fact]
@@ -1061,7 +1280,7 @@
         }
 
         [Fact]
-        public void op_ReplaceBeginning_strings()
+        public void op_ReplaceBeginning_string_string_StringComparison_strings()
         {
             const string expected = "Success Test";
             var actual = "Example Test".ReplaceBeginning("Success ", StringComparison.Ordinal, "xxx", "Example ");
@@ -1070,7 +1289,7 @@
         }
 
         [Fact]
-        public void op_ReplaceBeginning_strings_whenNoMatch()
+        public void op_ReplaceBeginning_string_string_StringComparison_strings_whenNoMatch()
         {
             const string expected = "Example";
             var actual = expected.ReplaceBeginning("xxx", StringComparison.Ordinal, "yyy");
@@ -1079,7 +1298,37 @@
         }
 
         [Fact]
-        public void op_ReplaceBeginning_strings_whenStringNullOrEmpty()
+        public void op_ReplaceBeginning_stringEmpty_string_StringComparison_strings_whenStringNullOrEmpty()
+        {
+            var expected = string.Empty;
+            var actual = expected.ReplaceBeginning("xxx", StringComparison.Ordinal, string.Empty, null);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceBeginning_stringNull_string_StringComparison_strings()
+        {
+            Assert.Null((null as string).ReplaceBeginning("xxx", StringComparison.Ordinal, "yyy"));
+        }
+
+        [Fact]
+        public void op_ReplaceBeginning_stringEmpty_string_StringComparison_strings()
+        {
+            var expected = string.Empty;
+            var actual = expected.ReplaceBeginning("xxx", StringComparison.Ordinal, "yyy");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceBeginning_string_stringNull_StringComparison_strings()
+        {
+            Assert.Throws<ArgumentNullException>(() => "Example".ReplaceBeginning(null, StringComparison.Ordinal, "yyy"));
+        }
+
+        [Fact]
+        public void op_ReplaceBeginning_string_string_StringComparison_strings_whenStringNullOrEmpty()
         {
             const string expected = "Example";
             var actual = expected.ReplaceBeginning("xxx", StringComparison.Ordinal, string.Empty, null);
@@ -1088,13 +1337,34 @@
         }
 
         [Fact]
-        public void op_ReplaceBeginning_stringsNull()
+        public void op_ReplaceBeginning_string_string_StringComparison_stringsNull()
         {
             Assert.Throws<ArgumentNullException>(() => "Example".ReplaceBeginning("xxx", StringComparison.Ordinal, null as string[]));
         }
 
         [Fact]
-        public void op_ReplaceEnding_strings()
+        public void op_ReplaceEnding_stringNull_string_StringComparison_strings()
+        {
+            Assert.Null((null as string).ReplaceEnding("xxx", StringComparison.Ordinal, "yyy"));
+        }
+
+        [Fact]
+        public void op_ReplaceEnding_stringEmpty_string_StringComparison_strings()
+        {
+            var expected = string.Empty;
+            var actual = expected.ReplaceEnding("xxx", StringComparison.Ordinal, "yyy");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ReplaceEnding_string_stringNull_StringComparison_strings()
+        {
+            Assert.Throws<ArgumentNullException>(() => "Example".ReplaceEnding(null, StringComparison.Ordinal, "yyy"));
+        }
+
+        [Fact]
+        public void op_ReplaceEnding_string_string_StringComparison_strings()
         {
             const string expected = "Test Success";
             var actual = "Test Example".ReplaceEnding(" Success", StringComparison.Ordinal, "xxx", " Example");
@@ -1103,7 +1373,7 @@
         }
 
         [Fact]
-        public void op_ReplaceEnding_strings_whenNoMatch()
+        public void op_ReplaceEnding_string_string_StringComparison_strings_whenNoMatch()
         {
             const string expected = "Example";
             var actual = expected.ReplaceEnding("xxx", StringComparison.Ordinal, "yyy");
@@ -1112,7 +1382,7 @@
         }
 
         [Fact]
-        public void op_ReplaceEnding_strings_whenStringNullOrEmpty()
+        public void op_ReplaceEnding_string_string_StringComparison_strings_whenStringNullOrEmpty()
         {
             const string expected = "Example";
             var actual = expected.ReplaceEnding("xxx", StringComparison.Ordinal, string.Empty, null);
@@ -1121,7 +1391,7 @@
         }
 
         [Fact]
-        public void op_ReplaceEnding_stringsNull()
+        public void op_ReplaceEnding_string_string_StringComparison_stringsNull()
         {
             Assert.Throws<ArgumentNullException>(() => "Example".ReplaceEnding("xxx", StringComparison.Ordinal, null as string[]));
         }

@@ -41,8 +41,7 @@
                 .Trim()
                 .ToUpperInvariant()
                 .Where(c => ' '.Equals(c) || char.IsLetterOrDigit(c))
-                .Aggregate(string.Empty, (current, 
-                                          c) => current + c);
+                .Aggregate(string.Empty, (current, c) => current + c);
 
             if (0 == value.Length)
             {
@@ -105,8 +104,8 @@
 #else
             return value
                 .TakeWhile(c => c >= 'A' && c <= 'Z')
-                .Aggregate<char, string>(null, (x, 
-                                                c) => x + c);
+                .Aggregate<char, string>(null,
+                (x, c) => x + c);
 #endif
         }
 
@@ -126,8 +125,8 @@
 #else
             return value
                 .Where(c => c >= '0' && c <= '9')
-                .Aggregate<char, string>(null, (x, 
-                                                c) => x + c);
+                .Aggregate<char, string>(null,
+                (x, c) => x + c);
 #endif
         }
     }

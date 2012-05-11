@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup>
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\NUnit.test" />
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\xUnit.test" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity 1.1\NUnit.test" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity 1.1\xUnit.test" />
   </ImportGroup>
   <Target Name="Test">
     <CallTarget Targets="NUnit Tests" />

@@ -39,6 +39,12 @@
         }
 
         [Fact]
+        public void ctor_DirectoryInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new TempDirectory(null));
+        }
+
+        [Fact]
         public void op_Dispose()
         {
             TempDirectory directory = null;

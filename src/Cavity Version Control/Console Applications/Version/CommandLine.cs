@@ -6,14 +6,19 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Security;
+
+    using Cavity.Properties;
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
 
-    using Cavity.Properties;
-
     public sealed class CommandLine
     {
+        private CommandLine()
+        {
+            Parameters = new List<string>();
+        }
+
         private CommandLine(IEnumerable<string> parameters)
         {
             Parameters = parameters;
@@ -50,7 +55,7 @@
 
                     if (parameter.StartsWith(string.Concat('/', key, ':'), StringComparison.OrdinalIgnoreCase))
                     {
-                        return parameter.Substring(parameter.IndexOf(':'));
+                        return parameter.Substring(parameter.IndexOf(':') + 1);
                     }
                 }
 
@@ -66,16 +71,15 @@
 #endif
         public static CommandLine Load(ICollection<string> args)
         {
-            var result = new CommandLine(args);
-
             var assembly = Assembly.GetExecutingAssembly();
             var info = FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion;
             Console.WriteLine(Resources.Splash, info);
             if (null == args)
             {
-                return result;
+                return new CommandLine();
             }
 
+            var result = new CommandLine(args);
             if (!result.Help)
             {
                 Console.WriteLine(string.Empty);

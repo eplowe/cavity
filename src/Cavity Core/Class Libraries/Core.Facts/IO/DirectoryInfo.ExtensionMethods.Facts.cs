@@ -69,6 +69,24 @@
         }
 
         [Fact]
+        public void op_CopyTo_DirectoryInfo_DirectoryInfoNestedMissing_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "copied";
+                var source = temp.Info.ToDirectory("source").ToDirectory("parent").ToDirectory("child", true);
+                source.ToFile("example.txt").Append(expected);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("parent").ToDirectory("child");
+
+                source.CopyTo(destination, false);
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
         public void op_CopyTo_DirectoryInfo_DirectoryInfoMissing_bool_string()
         {
             using (var temp = new TempDirectory())

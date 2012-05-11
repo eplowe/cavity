@@ -133,10 +133,6 @@
             }
 
             var buffer = new StringBuilder(CaverphoneStart(obj));
-            if (0 == buffer.Length)
-            {
-                return string.Empty;
-            }
 
             CaverphoneEndings(buffer);
             buffer.Replace("cq", "2q");
@@ -606,10 +602,6 @@
             }
 
             var buffer = MetaphoneAlphabet(obj);
-            if (0 == buffer.Length)
-            {
-                return string.Empty;
-            }
 
             MetaphoneFirstLetters(buffer);
 
@@ -1733,7 +1725,7 @@
         [Comment("If the name starts with tough make it tou2f")]
         [Comment("If the name starts with enough make it enou2f")]
         [Comment("If the name starts with gn make it 2n")]
-        private static string CaverphoneStart(string value)
+        public static string CaverphoneStart(string value)
         {
             if (null == value)
             {
@@ -1745,14 +1737,7 @@
                 return value;
             }
 
-            value = ToEnglishAlphabet(value);
-
-            if (0 == value.Length)
-            {
-                return value;
-            }
-
-            value = value.ToLowerInvariant();
+            value = ToEnglishAlphabet(value).ToLowerInvariant();
 
             if (StartsWithAny(value, StringComparison.Ordinal, "cough", "rough", "tough"))
             {
@@ -1773,8 +1758,13 @@
         }
 
         [Comment("If the name ends with mb make it m2")]
-        private static void CaverphoneEndings(StringBuilder buffer)
+        public static void CaverphoneEndings(StringBuilder buffer)
         {
+            if (null == buffer)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
             if (2 > buffer.Length)
             {
                 return;
@@ -1796,30 +1786,68 @@
             buffer[last] = '2';
         }
 
-        private static StringBuilder MetaphoneAlphabet(string value)
+        public static string MetaphoneEnd(StringBuilder buffer)
         {
-            var buffer = new StringBuilder();
-            const string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
-            value = ToEnglishAlphabet(NormalizeWhiteSpace(value)).ToUpperInvariant();
-#if NET20
-            foreach (var c in value)
+            if (null == buffer)
             {
-                if (-1 == alphabet.IndexOf(c))
-                {
-                    continue;
-                }
-#else
-            foreach (var c in value.Where(c => alphabet.Contains(c)))
-            {
-#endif
-                buffer.Append(c);
+                throw new ArgumentNullException("buffer");
             }
 
-            return buffer;
+            if (0 == buffer.Length)
+            {
+                return string.Empty;
+            }
+
+            buffer.Replace("CK", "K");
+            buffer.Replace("PH", "F");
+            buffer.Replace("X", "KS");
+
+            for (var i = buffer.Length; i > 0; i--)
+            {
+                switch (buffer[i - 1])
+                {
+                    case ' ':
+                        buffer.Remove(i - 1, 1);
+                        break;
+
+                    case 'j':
+                        buffer[i - 1] = 'J';
+                        break;
+                    case 'k':
+                        buffer[i - 1] = 'K';
+                        break;
+                    case 's':
+                        buffer[i - 1] = 'S';
+                        break;
+                    case 't':
+                        buffer[i - 1] = 'T';
+                        break;
+                    case 'x':
+                        buffer[i - 1] = 'X';
+                        break;
+
+                    case 'V':
+                        buffer[i - 1] = 'F';
+                        break;
+                    case 'Q':
+                        buffer[i - 1] = 'K';
+                        break;
+                    case 'Z':
+                        buffer[i - 1] = 'S';
+                        break;
+                }
+            }
+
+            return buffer.ToString();
         }
 
-        private static void MetaphoneFirstLetters(StringBuilder buffer)
+        public static void MetaphoneFirstLetters(StringBuilder buffer)
         {
+            if (null == buffer)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
             if (0 == buffer.Length)
             {
                 return;
@@ -1872,6 +1900,258 @@
             }
         }
 
+        [Comment("Drop 'B' if after 'M' and if it is at the end of the word.")]
+        public static void MetaphoneLetterB(int index,
+                                            StringBuilder buffer)
+        {
+            if (null == buffer)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
+            if (0 == index)
+            {
+                return;
+            }
+
+            if (int.MaxValue == index)
+            {
+                throw new ArgumentOutOfRangeException("index");
+            }
+
+            if (int.MinValue == index)
+            {
+                throw new ArgumentOutOfRangeException("index");
+            }
+
+            var previous = int.MinValue == index ? index : index - 1;
+            var next = int.MaxValue == index ? index : index + 1;
+            var last = buffer.Length - 1;
+
+            if ('M' != buffer[previous])
+            {
+                return;
+            }
+
+            if ('B' != buffer[index])
+            {
+                return;
+            }
+
+            if (index == last)
+            {
+                //// -MB
+                buffer[index] = ' ';
+                return;
+            }
+
+            if (next != last)
+            {
+                return;
+            }
+
+            if ('E' != buffer[next])
+            {
+                return;
+            }
+
+            //// -MBE
+            buffer[index] = ' ';
+        }
+
+        [Comment("'C' transforms to 'X' if followed by 'IA' or 'H' (unless in latter case, it is part of '-SCH-', in which case it transforms to 'K').")]
+        [Comment("'C' transforms to 'S' if followed by 'I', 'E', or 'Y'.")]
+        [Comment("Otherwise, 'C' transforms to 'K'.")]
+        [Comment("'CK' transforms to 'K'.")]
+        public static void MetaphoneLetterC(int index,
+                                            StringBuilder buffer)
+        {
+            if (null == buffer)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
+            if (int.MaxValue == index)
+            {
+                throw new ArgumentOutOfRangeException("index");
+            }
+
+            if (int.MinValue == index)
+            {
+                throw new ArgumentOutOfRangeException("index");
+            }
+
+            if ('C' != buffer[index])
+            {
+                return;
+            }
+
+            var previous = int.MinValue == index ? index : index - 1;
+            var next = int.MaxValue == index ? index : index + 1;
+
+            if (next == buffer.Length)
+            {
+                buffer[index] = 'k';
+                return;
+            }
+
+            if ('I' == buffer[next])
+            {
+                if (next + 1 != buffer.Length &&
+                    'A' == buffer[next + 1])
+                {
+                    //// -CIA-
+                    buffer[index] = 'x';
+                    buffer[next] = ' ';
+                    buffer[next + 1] = ' ';
+                    return;
+                }
+
+                //// -CI-
+                buffer[index] = 's';
+                buffer[next] = ' ';
+                return;
+            }
+
+#if NET20
+            if (GenericExtensionMethods.In(buffer[next], 'E', 'Y'))
+#else
+            if (buffer[next].In('E', 'Y'))
+#endif
+            {
+                //// -CE-, -CY-
+                buffer[index] = 's';
+                buffer[next] = ' ';
+                return;
+            }
+
+            if ('K' == buffer[next])
+            {
+                //// -CK-
+                buffer[index] = 'k';
+                buffer[next] = ' ';
+                return;
+            }
+
+            if ('H' == buffer[next])
+            {
+                if (index == 0 || 'S' != buffer[previous])
+                {
+                    //// -CH-
+                    buffer[index] = 'x';
+                    buffer[next] = ' ';
+                    return;
+                }
+
+                if (index != 0 || 'S' == buffer[previous])
+                {
+                    //// -SCH-
+                    buffer[next] = ' ';
+                }
+            }
+
+            buffer[index] = 'k';
+        }
+
+        [Comment("Drop 'G' if followed by 'H' and 'H' is not at the end or before a vowel.")]
+        [Comment("Drop 'G' if followed by 'N' or 'NED' and is at the end.")]
+        [Comment("'G' transforms to 'J' if before 'I', 'E', or 'Y', and it is not in 'GG'.")]
+        [Comment("Otherwise, 'G' transforms to 'K'.")]
+        public static void MetaphoneLetterG(int index,
+                                            StringBuilder buffer)
+        {
+            if (null == buffer)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+
+            if (int.MaxValue == index)
+            {
+                throw new ArgumentOutOfRangeException("index");
+            }
+
+            if ('G' != buffer[index])
+            {
+                return;
+            }
+
+            var next = int.MaxValue == index ? index : index + 1;
+            var last = buffer.Length - 1;
+
+            if (next == last)
+            {
+                if ('N' == buffer[next])
+                {
+                    //// -GN
+                    buffer[index] = ' ';
+                    return;
+                }
+            }
+            else if (next + 2 == last && 'N' == buffer[next] && 'E' == buffer[next + 1] && 'D' == buffer[next + 2])
+            {
+                //// -GNED
+                buffer[index] = ' ';
+                return;
+            }
+
+            if (next != buffer.Length)
+            {
+#if NET20
+                if (GenericExtensionMethods.In(buffer[next], 'E', 'I', 'Y'))
+#else
+                if (buffer[next].In('E', 'I', 'Y'))
+#endif
+                {
+                    //// -GE-, -GY-, -GI-
+                    buffer[index] = 'j';
+                    buffer[next] = ' ';
+                    return;
+                }
+
+                if ('H' == buffer[next])
+                {
+                    if (next + 1 != buffer.Length &&
+#if NET20
+                        GenericExtensionMethods.In(buffer[next + 1], 'A', 'E', 'I', 'O', 'U'))
+#else
+ buffer[next + 1].In('A', 'E', 'I', 'O', 'U'))
+#endif
+                    {
+                        buffer[index] = 'k';
+                        return;
+                    }
+
+                    //// -GH-
+                    buffer[index] = ' ';
+                    return;
+                }
+            }
+
+            buffer[index] = 'k';
+        }
+
+        private static StringBuilder MetaphoneAlphabet(string value)
+        {
+            var buffer = new StringBuilder();
+            const string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+            value = ToEnglishAlphabet(NormalizeWhiteSpace(value)).ToUpperInvariant();
+#if NET20
+            foreach (var c in value)
+            {
+                if (-1 == alphabet.IndexOf(c))
+                {
+                    continue;
+                }
+#else
+            foreach (var c in value.Where(c => alphabet.Contains(c)))
+            {
+#endif
+                buffer.Append(c);
+            }
+
+            return buffer;
+        }
+
         [Comment("Drop duplicate adjacent letters, except for C.")]
         private static void MetaphoneDropDuplicates(int i, 
                                                     StringBuilder buffer)
@@ -1915,129 +2195,6 @@
             }
         }
 
-        [Comment("Drop 'B' if after 'M' and if it is at the end of the word.")]
-        private static void MetaphoneLetterB(int i, 
-                                             StringBuilder buffer)
-        {
-            if (0 == i)
-            {
-                return;
-            }
-
-            var previous = i - 1;
-            var next = i + 1;
-            var last = buffer.Length - 1;
-
-            if ('M' != buffer[previous])
-            {
-                return;
-            }
-
-            if ('B' != buffer[i])
-            {
-                return;
-            }
-
-            if (i == last)
-            {
-                //// -MB
-                buffer[i] = ' ';
-                return;
-            }
-
-            if (next != last)
-            {
-                return;
-            }
-
-            if ('E' != buffer[next])
-            {
-                return;
-            }
-
-            //// -MBE
-            buffer[i] = ' ';
-        }
-
-        [Comment("'C' transforms to 'X' if followed by 'IA' or 'H' (unless in latter case, it is part of '-SCH-', in which case it transforms to 'K').")]
-        [Comment("'C' transforms to 'S' if followed by 'I', 'E', or 'Y'.")]
-        [Comment("Otherwise, 'C' transforms to 'K'.")]
-        [Comment("'CK' transforms to 'K'.")]
-        private static void MetaphoneLetterC(int i, 
-                                             StringBuilder buffer)
-        {
-            if ('C' != buffer[i])
-            {
-                return;
-            }
-
-            var previous = i - 1;
-            var next = i + 1;
-
-            if (next == buffer.Length)
-            {
-                buffer[i] = 'k';
-                return;
-            }
-
-            if ('I' == buffer[next])
-            {
-                if (next + 1 != buffer.Length &&
-                    'A' == buffer[next + 1])
-                {
-                    //// -CIA-
-                    buffer[i] = 'x';
-                    buffer[next] = ' ';
-                    buffer[next + 1] = ' ';
-                    return;
-                }
-
-                //// -CI-
-                buffer[i] = 's';
-                buffer[next] = ' ';
-                return;
-            }
-
-#if NET20
-            if (GenericExtensionMethods.In(buffer[next], 'E', 'Y'))
-#else
-            if (buffer[next].In('E', 'Y'))
-#endif
-            {
-                //// -CE-, -CY-
-                buffer[i] = 's';
-                buffer[next] = ' ';
-                return;
-            }
-
-            if ('K' == buffer[next])
-            {
-                //// -CK-
-                buffer[i] = 'k';
-                buffer[next] = ' ';
-                return;
-            }
-
-            if ('H' == buffer[next])
-            {
-                if (i == 0 || 'S' != buffer[previous])
-                {
-                    //// -CH-
-                    buffer[i] = 'x';
-                    buffer[next] = ' ';
-                    return;
-                }
-
-                if (i != 0 || 'S' == buffer[previous])
-                {
-                    //// -SCH-
-                    buffer[next] = ' ';
-                }
-            }
-
-            buffer[i] = 'k';
-        }
-
         [Comment("'D' transforms to 'J' if followed by 'GE', 'GY', or 'GI'.")]
         [Comment("Otherwise, 'D' transforms to 'T'.")]
         private static void MetaphoneLetterD(int i, 
@@ -2069,73 +2226,6 @@
             }
 
             buffer[i] = 't';
-        }
-
-        [Comment("Drop 'G' if followed by 'H' and 'H' is not at the end or before a vowel.")]
-        [Comment("Drop 'G' if followed by 'N' or 'NED' and is at the end.")]
-        [Comment("'G' transforms to 'J' if before 'I', 'E', or 'Y', and it is not in 'GG'.")]
-        [Comment("Otherwise, 'G' transforms to 'K'.")]
-        private static void MetaphoneLetterG(int i, 
-                                             StringBuilder buffer)
-        {
-            if ('G' != buffer[i])
-            {
-                return;
-            }
-
-            var next = i + 1;
-            var last = buffer.Length - 1;
-
-            if (next == last)
-            {
-                if ('N' == buffer[next])
-                {
-                    //// -GN
-                    buffer[i] = ' ';
-                    return;
-                }
-            }
-            else if (next + 2 == last && 'N' == buffer[next] && 'E' == buffer[next + 1] && 'D' == buffer[next + 2])
-            {
-                //// -GNED
-                buffer[i] = ' ';
-                return;
-            }
-
-            if (next != buffer.Length)
-            {
-#if NET20
-                if (GenericExtensionMethods.In(buffer[next], 'E', 'I', 'Y'))
-#else
-                if (buffer[next].In('E', 'I', 'Y'))
-#endif
-                {
-                    //// -GE-, -GY-, -GI-
-                    buffer[i] = 'j';
-                    buffer[next] = ' ';
-                    return;
-                }
-
-                if ('H' == buffer[next])
-                {
-                    if (next + 1 != buffer.Length &&
-#if NET20
-                        GenericExtensionMethods.In(buffer[next + 1], 'A', 'E', 'I', 'O', 'U'))
-#else
-                        buffer[next + 1].In('A', 'E', 'I', 'O', 'U'))
-#endif
-                    {
-                        buffer[i] = 'k';
-                        return;
-                    }
-
-                    //// -GH-
-                    buffer[i] = ' ';
-                    return;
-                }
-            }
-
-            buffer[i] = 'k';
         }
 
         [Comment("Drop 'H' if after vowel and not before a vowel.")]
@@ -2211,10 +2301,6 @@
                 return;
             }
 
-            if (next + 1 > last)
-            {
-            }
-
 #if NET20
             if (GenericExtensionMethods.In(buffer[next + 1], 'A', 'O'))
 #else
@@ -2270,10 +2356,6 @@
             if ('I' != buffer[next])
             {
                 return;
-            }
-
-            if (next + 1 > last)
-            {
             }
 
 #if NET20
@@ -2346,56 +2428,6 @@
             }
 
             buffer[i] = ' ';
-        }
-
-        private static string MetaphoneEnd(StringBuilder buffer)
-        {
-            if (0 == buffer.Length)
-            {
-                return string.Empty;
-            }
-
-            buffer.Replace("CK", "K");
-            buffer.Replace("PH", "F");
-            buffer.Replace("X", "KS");
-
-            for (var i = buffer.Length; i > 0; i--)
-            {
-                switch (buffer[i - 1])
-                {
-                    case ' ':
-                        buffer.Remove(i - 1, 1);
-                        break;
-
-                    case 'j':
-                        buffer[i - 1] = 'J';
-                        break;
-                    case 'k':
-                        buffer[i - 1] = 'K';
-                        break;
-                    case 's':
-                        buffer[i - 1] = 'S';
-                        break;
-                    case 't':
-                        buffer[i - 1] = 'T';
-                        break;
-                    case 'x':
-                        buffer[i - 1] = 'X';
-                        break;
-
-                    case 'V':
-                        buffer[i - 1] = 'F';
-                        break;
-                    case 'Q':
-                        buffer[i - 1] = 'K';
-                        break;
-                    case 'Z':
-                        buffer[i - 1] = 'S';
-                        break;
-                }
-            }
-
-            return buffer.ToString();
         }
 
 #if NET20

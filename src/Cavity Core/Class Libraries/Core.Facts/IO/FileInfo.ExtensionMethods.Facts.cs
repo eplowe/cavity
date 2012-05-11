@@ -557,7 +557,7 @@
         }
 
         [Fact]
-        public void op_Truncate_FileInfoNull_IXPathNavigable()
+        public void op_Truncate_FileInfo_IXPathNavigable()
         {
             const string expected = "<example />";
             using (var temp = new TempDirectory())
@@ -567,11 +567,31 @@
                 xml.LoadXml(expected);
 
                 Assert.Same(file, file.CreateNew(string.Empty));
-                Assert.Same(file, file.Truncate(expected));
+                Assert.Same(file, file.Truncate(xml));
 
                 var actual = file.ReadToEnd();
 
                 Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_Truncate_FileInfoNull_IXPathNavigable()
+        {
+            var xml = new XmlDocument();
+            xml.LoadXml("<example />");
+
+            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).Truncate(xml));
+        }
+
+        [Fact]
+        public void op_Truncate_FileInfo_IXPathNavigableNull()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile(Guid.NewGuid());
+
+                Assert.Throws<ArgumentNullException>(() => file.Truncate(null as IXPathNavigable));
             }
         }
 

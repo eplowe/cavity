@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <CodeAnalysisAdditionalOptions>/assemblyCompareMode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
-    <StyleCopOverrideSettingsFile>$(MSBuildExtensionsPath)\Cavity\Tests.stylecop</StyleCopOverrideSettingsFile>
+    <StyleCopOverrideSettingsFile>$(MSBuildExtensionsPath)\Cavity 1.1\Tests.stylecop</StyleCopOverrideSettingsFile>
   </PropertyGroup>
   <Choose>
     <When Condition="Exists('Properties\CodeAnalysis.ruleset')">
@@ -12,7 +12,7 @@
     </When>
     <Otherwise>
       <PropertyGroup>
-        <CodeAnalysisRuleSet>$(MSBuildExtensionsPath)\Cavity\Tests.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>$(MSBuildExtensionsPath)\Cavity 1.1\Tests.ruleset</CodeAnalysisRuleSet>
       </PropertyGroup>
     </Otherwise>
   </Choose>

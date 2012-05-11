@@ -3,5 +3,5 @@
   <ItemGroup>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Web.references" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 1.1\Web.references" />
 </Project>

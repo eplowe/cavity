@@ -6,11 +6,11 @@
     <Import Project="$(MSBuildProjectDirectory)\version.xml" />
   </ImportGroup>
   <ImportGroup>
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\MSBuild.tasks" />
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\Version.xml" />
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\Clean.all" />
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\Test.all" />
-    <Import Project="$(MSBuildExtensionsPath)\Cavity\Bundle.all" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\MSBuild.tasks" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Version.xml" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Clean.all" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Test.all" />
+    <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Bundle.all" />
   </ImportGroup>
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Release</Configuration>

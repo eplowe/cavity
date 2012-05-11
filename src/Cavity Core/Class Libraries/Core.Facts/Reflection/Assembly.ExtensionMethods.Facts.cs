@@ -5,6 +5,7 @@
     using System.Reflection;
 
     using Xunit;
+    using Xunit.Extensions;
 
     public sealed class AssemblyExtensionMethodsFacts
     {
@@ -33,6 +34,26 @@
         public void op_Directory_AssemblyNull()
         {
             Assert.Throws<ArgumentNullException>(() => (null as Assembly).Directory());
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void op_ToDirectory_stringEmpty(string value)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => AssemblyExtensionMethods.ToDirectory(value));
+        }
+
+        [Fact]
+        public void op_ToDirectory_stringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => AssemblyExtensionMethods.ToDirectory(null));
+        }
+
+        [Fact]
+        public void op_ToDirectory_stringDirectoryRoot()
+        {
+            Assert.Throws<DirectoryNotFoundException>(() => AssemblyExtensionMethods.ToDirectory(@"C:\"));
         }
     }
 }

@@ -253,6 +253,12 @@
         }
 
         [Fact]
+        public void op_Line_KeyStringDictionaryNull_string()
+        {
+            Assert.Throws<ArgumentNullException>(() => CsvFile.Line(null, "A,C"));
+        }
+
+        [Fact]
         public void op_Line_KeyStringDictionary_stringEmpty()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => CsvFile.Line(new KeyStringDictionary(), string.Empty));
@@ -268,6 +274,28 @@
         public void op_Line_KeyStringDictionary_string_whenColumnsNotFound()
         {
             Assert.Throws<KeyNotFoundException>(() => CsvFile.Line(new KeyStringDictionary(), "A"));
+        }
+
+        [Fact]
+        public void op_Line_KeyStringDictionaryNull_IListOfString()
+        {
+            var columns = new List<string>
+                              {
+                                  "A"
+                              };
+            Assert.Throws<ArgumentNullException>(() => CsvFile.Line(null, columns));
+        }
+
+        [Fact]
+        public void op_Line_KeyStringDictionary_IListOfStringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => CsvFile.Line(new KeyStringDictionary(), null as IList<string>));
+        }
+
+        [Fact]
+        public void op_Line_KeyStringDictionary_IListOfStringEmpty()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => CsvFile.Line(new KeyStringDictionary(), new List<string>()));
         }
 
         [Fact]
@@ -333,6 +361,12 @@
 
                 Assert.Throws<ArgumentNullException>(() => obj.Save(FileMode.Create, null as IEnumerable<KeyStringDictionary>));
             }
+        }
+
+        [Fact]
+        public void op_Save_FileMode_IEnumerableKeyValuePairNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => CsvFile.Save(FileMode.Create, null as IEnumerable<KeyValuePair<FileInfo, KeyStringDictionary>>));
         }
 
         [Fact]

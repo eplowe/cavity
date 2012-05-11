@@ -10,42 +10,6 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.Configuration">
-      <HintPath>..\..\packages\Cavity.Configuration.1.1.0.804\lib\net40\Cavity.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.804\lib\net40\Cavity.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.Diagnostics.Log4Net">
-      <HintPath>..\..\packages\Cavity.Diagnostics.Log4Net.Console.1.1.0.804\lib\net40\Cavity.Diagnostics.Log4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.ServiceLocation">
-      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.804\lib\net40\Cavity.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.ServiceLocation.CastleWindsor">
-      <HintPath>..\..\packages\Cavity.ServiceLocation.CastleWindsor.Console.1.1.0.804\lib\net40\Cavity.ServiceLocation.CastleWindsor.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.TaskManagement">
-      <HintPath>..\..\packages\Cavity.TaskManagement.1.1.0.804\lib\net40\Cavity.TaskManagement.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.TaskManagement.Abstractions">
-      <HintPath>..\..\packages\Cavity.TaskManagement.Abstractions.1.1.0.804\lib\net40\Cavity.TaskManagement.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Configuration.Install" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Properties\log4net.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -98,11 +62,76 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\x86.platform" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Code.project" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Data.references" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\MEF.references" />
-  <Import Project="$(MSBuildExtensionsPath)\Cavity\Service.references" />
+  <ItemGroup>
+    <Reference Include="System"/>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Reference Include="System.Numerics" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.ServiceProcess" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+    <Reference Include="System.ComponentModel.Composition" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\packages\Castle.Windsor.3.0.0.4001\lib\net40\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Configuration">
+      <HintPath>..\..\packages\Cavity.Configuration.1.1.0.804\lib\net40\Cavity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.804\lib\net40\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Diagnostics.Log4Net">
+      <HintPath>..\..\packages\Cavity.Diagnostics.Log4Net.Console.1.1.0.804\lib\net40\Cavity.Diagnostics.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.ServiceLocation">
+      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.804\lib\net40\Cavity.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.ServiceLocation.CastleWindsor">
+      <HintPath>..\..\packages\Cavity.ServiceLocation.CastleWindsor.Console.1.1.0.804\lib\net40\Cavity.ServiceLocation.CastleWindsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.TaskManagement">
+      <HintPath>..\..\packages\Cavity.TaskManagement.1.1.0.804\lib\net40\Cavity.TaskManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.TaskManagement.Abstractions">
+      <HintPath>..\..\packages\Cavity.TaskManagement.Abstractions.1.1.0.804\lib\net40\Cavity.TaskManagement.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.Install" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\x86.platform" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Code.project" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

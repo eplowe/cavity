@@ -212,6 +212,30 @@
         }
 
         [Fact]
+        public void indexer_string_set_whenAddNull()
+        {
+            var expected = new DataCollection
+                               {
+                                   {
+                                       "one", "1"
+                                       }, 
+                                   {
+                                       "two", null
+                                       }
+                               };
+
+            var actual = new DataCollection
+                             {
+                                 {
+                                     "one", "1"
+                                     }
+                             };
+            actual["two"] = null;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void indexer_string_set_whenMultiple()
         {
             var obj = new DataCollection();
@@ -569,6 +593,26 @@
             Assert.Equal("first", obj[1].Value);
             Assert.Equal("checkbox", obj[2].Key);
             Assert.Equal("second", obj[2].Value);
+        }
+
+        [Fact]
+        public void op_FromPostData_NameValueCollection_whenContainsNullValue()
+        {
+            var form = new NameValueCollection
+                           {
+                               {
+                                   "foo", "bar"
+                                   }, 
+                               {
+                                   "example", null
+                                   }
+                           };
+
+            var obj = DataCollection.FromPostData(form);
+
+            Assert.Equal("bar", obj["foo"]);
+            Assert.Equal("example", obj[1].Key);
+            Assert.Null(obj[1].Value);
         }
 
         [Fact]
