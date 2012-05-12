@@ -8,7 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Net\Http.Facts.cs" />
@@ -36,6 +35,9 @@
     <Compile Include="Net\UserAgent.Facts.cs" />
     <Compile Include="Text\TextPlain.Facts.cs" />
     <Compile Include="Xml\ApplicationXml.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>

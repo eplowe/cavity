@@ -9,6 +9,13 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="paths.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Collections\StringList.Facts.cs" />
@@ -64,15 +71,6 @@
       <Project>{0069A77A-0500-413A-8253-35018ED877DD}</Project>
       <Name>Configuration</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-    <None Include="paths.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Tests.project" />

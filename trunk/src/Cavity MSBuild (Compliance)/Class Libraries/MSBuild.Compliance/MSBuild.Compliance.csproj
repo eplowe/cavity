@@ -8,28 +8,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Build\MSBuildCompliance.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Cavity.MSBuild.Compliance.targets">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Build\MSBuildCompliance.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Cavity.MSBuild.Compliance.targets">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>

@@ -8,12 +8,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Configuration\ISetLocatorProvider.Dummy.cs" />
     <Compile Include="Configuration\ServiceLocation.Facts.cs" />
     <Compile Include="Configuration\ISetLocatorProvider.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>

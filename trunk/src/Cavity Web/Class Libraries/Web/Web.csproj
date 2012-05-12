@@ -8,18 +8,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Configuration\RedirectionConfigurationElementCollection`1.cs" />
     <Compile Include="Configuration\RedirectionConfigurationElement`1.cs" />
     <Compile Include="Configuration\RedirectionConfigurationSection.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Net\Host.cs" />
     <Compile Include="Web\RedirectionModule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>

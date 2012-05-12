@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Caching\ICacheCollection.Facts.cs" />
@@ -49,9 +50,6 @@
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.0.10827\lib\$(TargetFrameworkVersionName)\Moq.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Tests.project" />

@@ -7,6 +7,16 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '2.0' ">
+    <Compile Include="Testing\IConfigureTest.Facts.cs" />
+    <Compile Include="Testing\IRunTest.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System"/>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
@@ -47,15 +57,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Testing\IConfigureTest.Facts.cs" />
-    <Compile Include="Testing\IRunTest.Facts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Tests.project" />

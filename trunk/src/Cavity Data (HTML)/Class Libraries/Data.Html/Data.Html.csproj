@@ -9,6 +9,8 @@
   <ItemGroup>
     <Compile Include="Data\HtmlDocument.ExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>

@@ -8,11 +8,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Testing\IConfigureTest.cs" />
     <Compile Include="Testing\IRunTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>

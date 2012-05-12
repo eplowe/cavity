@@ -8,6 +8,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Configuration\RedirectionConfigurationSection.Derived.cs" />
+    <Compile Include="Configuration\RedirectionConfigurationElementCollection`1.Facts.cs" />
+    <Compile Include="Configuration\RedirectionConfigurationElement`1.Facts.cs" />
+    <Compile Include="Configuration\RedirectionConfigurationSection.Facts.cs" />
+    <Compile Include="Web\RedirectionModule.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
@@ -16,13 +25,6 @@
     <None Include="redirection.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Compile Include="Configuration\RedirectionConfigurationSection.Derived.cs" />
-    <Compile Include="Configuration\RedirectionConfigurationElementCollection`1.Facts.cs" />
-    <Compile Include="Configuration\RedirectionConfigurationElement`1.Facts.cs" />
-    <Compile Include="Configuration\RedirectionConfigurationSection.Facts.cs" />
-    <Compile Include="Web\RedirectionModule.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>

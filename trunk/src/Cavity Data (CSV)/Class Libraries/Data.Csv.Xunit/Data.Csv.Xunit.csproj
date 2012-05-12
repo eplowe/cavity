@@ -7,23 +7,21 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data\CsvFileAttribute.cs" />
     <Compile Include="Data\CsvUriAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Data\CsvFileAttribute.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>

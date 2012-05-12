@@ -8,7 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\DummyRepository`1.cs" />
@@ -69,6 +68,9 @@
     <Compile Include="Data\RepositoryUpsertUpdateRecord`1.Facts.cs" />
     <Compile Include="Data\VerifyRepositoryBase`1.Facts.cs" />
     <Compile Include="RepositoryTestException.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>

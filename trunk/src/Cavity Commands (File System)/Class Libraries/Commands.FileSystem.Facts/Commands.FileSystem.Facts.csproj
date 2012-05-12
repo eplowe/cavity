@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="IO\DirectoryCreateCommand.Facts.cs" />
@@ -56,11 +57,6 @@
       <Project>{330F7265-626C-4BC8-8710-C9C96EFA7ED7}</Project>
       <Name>Commands.FileSystem</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Tests.project" />

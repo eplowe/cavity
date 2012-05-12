@@ -7,16 +7,16 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Examples\ITest.cs" />
     <Compile Include="Examples\Tester.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Configuration\XmlServiceLocatorProvider.Facts.cs" />
     <Compile Include="Practices\ServiceLocation\WindsorServiceLocator.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

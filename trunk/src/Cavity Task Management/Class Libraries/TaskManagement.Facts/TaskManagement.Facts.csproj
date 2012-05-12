@@ -7,14 +7,8 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Cavity.TaskManagement.dll.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="Configuration\Timing.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Configuration\TaskManagementExtension.Facts.cs" />
@@ -35,7 +29,13 @@
     <Compile Include="Threading\TaskManager.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\Timing.Facts.cs" />
+    <None Include="Cavity.TaskManagement.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>

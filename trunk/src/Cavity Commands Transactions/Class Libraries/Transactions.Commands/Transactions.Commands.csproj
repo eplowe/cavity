@@ -8,7 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Diagnostics\Tracing.cs" />
@@ -16,6 +15,9 @@
     <Compile Include="Transactions\EnlistmentIdentity.cs" />
     <Compile Include="Transactions\Operation.cs" />
     <Compile Include="Transactions\Recovery.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>

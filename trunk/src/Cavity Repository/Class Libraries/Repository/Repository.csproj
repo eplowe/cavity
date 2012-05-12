@@ -6,6 +6,9 @@
     <ProjectGuid>{48565F37-92B3-4C45-8F8E-E64F20F6F0BC}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\IEntity.cs" />
     <Compile Include="Data\IRecord.cs" />
@@ -13,6 +16,9 @@
     <Compile Include="Data\IRepository`1.cs" />
     <Compile Include="Data\Record`1.cs" />
     <Compile Include="Data\RepositoryException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>
@@ -35,10 +41,6 @@
     <Reference Include="Cavity.Core">
       <HintPath>..\..\packages\Cavity.Core.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

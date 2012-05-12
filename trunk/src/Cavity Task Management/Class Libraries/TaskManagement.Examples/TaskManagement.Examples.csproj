@@ -7,21 +7,17 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TaskManagement\TaskManagement.csproj">
-      <Project>{7D95675C-9277-4AA6-9A78-2F5522D78207}</Project>
-      <Name>TaskManagement</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Models\LongTask.cs" />
     <Compile Include="Models\ShortTask.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>
@@ -53,6 +49,12 @@
     <Reference Include="Cavity.TaskManagement.Abstractions">
       <HintPath>..\..\packages\Cavity.TaskManagement.Abstractions.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.TaskManagement.Abstractions.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManagement\TaskManagement.csproj">
+      <Project>{7D95675C-9277-4AA6-9A78-2F5522D78207}</Project>
+      <Name>TaskManagement</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Code.project" />
