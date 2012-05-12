@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Repository</id>
-    <version>2.0.0.828</version>
+    <version>2.0.0.829</version>
     <title>Cavity Repository</title>
     <authors>Alan Dean</authors>
     <owners />
