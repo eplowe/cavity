@@ -13,9 +13,21 @@
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Caching\MemoryCacheCollection.cs" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+  <ItemGroup>
+    <Reference Include="System"/>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '2.0' ">
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Runtime.Caching" />
   </ItemGroup>
+  <!--
+
+
   <ItemGroup>
     <Reference Include="System"/>
     <Reference Include="System.Configuration" />
@@ -33,6 +45,9 @@
     <Reference Include="System.Numerics" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
+
+
+  -->
   <ItemGroup>
     <ProjectReference Include="..\Caching.Abstractions\Caching.Abstractions.csproj">
       <Project>{3DBD5DB9-F4A4-485C-BD54-5993DA57A51D}</Project>

@@ -10,15 +10,7 @@
     <Compile Include="Examples\ITest.cs" />
     <Compile Include="Examples\Tester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
-    <Compile Include="Configuration\XmlServiceLocatorProvider.Facts.cs" />
-    <Compile Include="Practices\ServiceLocation\UnityServiceLocator.Facts.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -30,9 +22,39 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+    <Compile Include="Configuration\XmlServiceLocatorProvider.Facts.cs" />
+    <Compile Include="Practices\ServiceLocation\UnityServiceLocator.Facts.cs" />
+  </ItemGroup>
   <ItemGroup>
+    <Reference Include="Cavity.ServiceLocation">
+      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="System"/>
     <Reference Include="System.Configuration" />
+    <Reference Include="xunit">
+      <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Reference Include="Cavity.Testing.Unit">
+      <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.0.10827\lib\$(TargetFrameworkVersionName)\Moq.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <!--
+
+
+  <ItemGroup>
+    <Reference Include="System"/>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Transactions" />
@@ -47,18 +69,10 @@
     <Reference Include="System.Numerics" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="xunit">
-      <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+
+
+  -->
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Reference Include="Cavity.ServiceLocation">
-      <HintPath>..\..\packages\Cavity.ServiceLocation.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.Testing.Unit">
-      <HintPath>..\..\packages\Cavity.Testing.Unit.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -67,9 +81,6 @@
     </Reference>
     <Reference Include="Microsoft.Practices.Unity.Configuration">
       <HintPath>..\..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\..\packages\Moq.4.0.10827\lib\$(TargetFrameworkVersionName)\Moq.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -8,12 +8,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\CodeAnalysis.dictionary" />
     <Compile Include="Testing\IConfigureTest.cs" />
     <Compile Include="Testing\IRunTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\CodeAnalysis.dictionary" />
+    <Reference Include="System"/>
   </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '2.0' ">
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.Composition" />
+  </ItemGroup>
+  <!--
+
+
   <ItemGroup>
     <Reference Include="System"/>
     <Reference Include="System.Configuration" />
@@ -31,9 +44,9 @@
     <Reference Include="System.Numerics" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
-    <Reference Include="System.ComponentModel.Composition" />
-  </ItemGroup>
+
+
+  -->
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Code.project" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
