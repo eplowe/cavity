@@ -10,7 +10,7 @@
     <DefaultName>TestLibrary</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <ProjectSubType>Windows</ProjectSubType>
-    <SortOrder>1001</SortOrder>
+    <SortOrder>1</SortOrder>
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
   </TemplateData>
