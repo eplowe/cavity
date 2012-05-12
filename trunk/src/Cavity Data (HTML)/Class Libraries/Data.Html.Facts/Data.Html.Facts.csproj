@@ -54,33 +54,6 @@
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-  <!--
-
-
-  <ItemGroup>
-    <Reference Include="System"/>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-    <Reference Include="System.Transactions" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
-    <Reference Include="System.Numerics" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Data.Linq" />
-  </ItemGroup>
-
-
-  -->
   <ItemGroup>
     <ProjectReference Include="..\Data.Html\Data.Html.csproj">
       <Project>{2D8B9EC7-DD20-44E3-A8CF-D4D598EE0440}</Project>

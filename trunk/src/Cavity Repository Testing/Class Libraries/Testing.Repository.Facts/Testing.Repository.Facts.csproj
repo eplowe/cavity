@@ -100,23 +100,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Numerics" />
   </ItemGroup>
-  <!--
-
-
-  <ItemGroup>
-    <Reference Include="System"/>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-  </ItemGroup>
-
-
-  -->
   <ItemGroup>
     <ProjectReference Include="..\Testing.Repository\Testing.Repository.csproj">
       <Project>{25964BBC-AD2A-4ACE-9158-7C74915FC398}</Project>

@@ -54,32 +54,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Numerics" />
   </ItemGroup>
-  <!--
-
-
-  <ItemGroup>
-    <Reference Include="System"/>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-    <Reference Include="System.Transactions" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Data.Linq" />
-  </ItemGroup>
-
-
-  -->
   <ItemGroup>
     <ProjectReference Include="..\Data.Csv.Xunit\Data.Csv.Xunit.csproj">
       <Project>{407AA08B-608C-481C-A98E-4AB32FAB30F8}</Project>
