@@ -8,19 +8,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
+    <EmbeddedResource Include="Build\MSBuildCompliance.xml" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Build\MSBuildCompliance.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MSBuild.Compliance\MSBuild.Compliance.csproj">
-      <Project>{0FF43960-7762-46A3-BA82-DBA2161DBAC9}</Project>
-      <Name>MSBuild.Compliance</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Build\MSBuildCompliance.xml" />
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>
@@ -74,6 +68,12 @@
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSBuild.Compliance\MSBuild.Compliance.csproj">
+      <Project>{0FF43960-7762-46A3-BA82-DBA2161DBAC9}</Project>
+      <Name>MSBuild.Compliance</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

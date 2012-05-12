@@ -7,12 +7,16 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Examples\ITest.cs" />
+    <Compile Include="Examples\Tester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Configuration\XmlServiceLocatorProvider.Facts.cs" />
     <Compile Include="Practices\ServiceLocation\UnityServiceLocator.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -25,10 +29,6 @@
     <None Include="unity.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Examples\ITest.cs" />
-    <Compile Include="Examples\Tester.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>

@@ -6,6 +6,9 @@
     <ProjectGuid>{166775FD-D5EB-4233-88B8-4B14E9001252}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Models\BritishAddress.cs" />
@@ -17,6 +20,9 @@
     <Compile Include="Models\Organization.cs" />
     <Compile Include="Models\PostalAddressFileEntry.cs" />
     <Compile Include="Models\UserCategory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>
@@ -42,10 +48,6 @@
     <Reference Include="Cavity.Data.Csv">
       <HintPath>..\..\packages\Cavity.Data.Csv.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Data.Csv.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

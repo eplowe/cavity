@@ -9,6 +9,24 @@
     <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="App_Start\CavityDiagnosticsStart.cs" />
+    <Compile Include="App_Start\CavityServiceLocationStart.cs" />
+    <Compile Include="App_Start\PrecompiledMvcViewEngineStart.cs" />
+    <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="Controllers\DateController.cs" />
+    <Compile Include="Controllers\RootController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\log4net.cs" />
+    <Compile Include="Views\NotFound\HtmlRepresentation.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HtmlRepresentation.cshtml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System"/>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
@@ -91,25 +109,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="App_Start\CavityDiagnosticsStart.cs" />
-    <Compile Include="App_Start\CavityServiceLocationStart.cs" />
-    <Compile Include="App_Start\PrecompiledMvcViewEngineStart.cs" />
-    <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
-    <Compile Include="Controllers\DateController.cs" />
-    <Compile Include="Controllers\RootController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\log4net.cs" />
-    <Compile Include="Views\NotFound\HtmlRepresentation.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HtmlRepresentation.cshtml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />

@@ -9,6 +9,16 @@
   <ItemGroup>
     <Compile Include="Example.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Data\XmlDataAttribute.Facts.cs" />
+    <Compile Include="Data\XmlFileAttribute.Facts.cs" />
+    <Compile Include="Data\XmlUriAttribute.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\CodeAnalysis.dictionary" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="dataset.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -18,17 +28,9 @@
     <Content Include="one.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Properties\CodeAnalysis.dictionary">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="two.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Compile Include="Data\XmlDataAttribute.Facts.cs" />
-    <Compile Include="Data\XmlFileAttribute.Facts.cs" />
-    <Compile Include="Data\XmlUriAttribute.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>

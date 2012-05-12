@@ -9,18 +9,13 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Collections\CommandCollection.Facts.cs" />
     <Compile Include="Command.Derived.cs" />
     <Compile Include="Command.Facts.cs" />
     <Compile Include="ICommand.Facts.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Commands\Commands.csproj">
-      <Project>{C5D47F15-C43B-4607-BC40-91206D4AD503}</Project>
-      <Name>Commands</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>
@@ -56,7 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Commands\Commands.csproj">
+      <Project>{C5D47F15-C43B-4607-BC40-91206D4AD503}</Project>
+      <Name>Commands</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Tests.project" />

@@ -8,6 +8,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Data\HtmlFileAttribute.Facts.cs" />
+    <Compile Include="Data\HtmlUriAttribute.Facts.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="tabular.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -21,10 +27,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Properties\CodeAnalysis.dictionary" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Compile Include="Data\HtmlFileAttribute.Facts.cs" />
-    <Compile Include="Data\HtmlUriAttribute.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System"/>
