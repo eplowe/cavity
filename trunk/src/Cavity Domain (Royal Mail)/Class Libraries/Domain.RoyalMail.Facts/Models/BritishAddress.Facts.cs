@@ -2,6 +2,8 @@
 {
     using System;
 
+    using Cavity.Collections;
+
     using Xunit;
 
     public sealed class BritishAddressFacts
@@ -10,11 +12,11 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<BritishAddress>()
-                            .DerivesFrom<ComparableObject>()
+                            .DerivesFrom<KeyStringDictionary>()
                             .IsConcreteClass()
                             .IsUnsealed()
                             .HasDefaultConstructor()
-                            .IsNotDecorated()
+                            .Serializable()
                             .Result);
         }
 

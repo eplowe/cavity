@@ -29,12 +29,6 @@
 *1.1.0.804* Cavity.Data.Ace
  * Cavity.Core
 
-*1.1.0.804* Cavity.Data.Csv
- * Cavity.Core
-*1.1.0.806* Cavity.Data.Csv.Xunit
- * Cavity.Data.Csv
-  (Cavity.Core)
-
 *1.1.0.818* Cavity.Data.Html
  * Cavity.Core
 *1.1.0.818* Cavity.Data.Html.Xunit
@@ -99,14 +93,6 @@
  * Cavity.Commands
    * Cavity.Core
 
-*1.1.0.804* Cavity.Domain
- * Cavity.Data.Csv
-   * Cavity.Core
-
-*1.1.0.804* Cavity.Domain.RoyalMail
- * Cavity.Data.Csv
-   * Cavity.Core
-
 *1.1.0.804* Cavity Commands Transactions
  * Cavity.Commands
    * Cavity.Core
@@ -116,6 +102,20 @@
  * Cavity.Repository
    * Cavity.Core
  + Cavity Repository Testing
+
+*2.0.0.831* Cavity.Data.Csv
+ * Cavity.Core
+*2.0.0.831* Cavity.Data.Csv.Xunit
+ * Cavity.Data.Csv
+  (Cavity.Core)
+
+*2.0.0.831* Cavity.Domain
+ * Cavity.Data.Csv
+   * Cavity.Core
+
+*2.0.0.831* Cavity.Domain.RoyalMail
+ * Cavity.Data.Csv
+   * Cavity.Core
 
 *1.1.0.___* Cavity MSBuild (Compliance)
  * Cavity.Core
