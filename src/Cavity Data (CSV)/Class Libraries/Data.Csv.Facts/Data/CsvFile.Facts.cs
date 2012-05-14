@@ -4,11 +4,16 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Data;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
 
     using Cavity.Collections;
+    using Cavity.Data.Sharding;
+    using Cavity.Data.Transformation;
     using Cavity.IO;
+
+    using Moq;
 
     using Xunit;
 
@@ -215,6 +220,22 @@
         }
 
         [Fact]
+        public void op_Line_KeyStringDictionaryNull_IListOfString()
+        {
+            var columns = new List<string>
+                              {
+                                  "A"
+                              };
+            Assert.Throws<ArgumentNullException>(() => CsvFile.Line(null, columns));
+        }
+
+        [Fact]
+        public void op_Line_KeyStringDictionaryNull_string()
+        {
+            Assert.Throws<ArgumentNullException>(() => CsvFile.Line(null, "A,C"));
+        }
+
+        [Fact]
         public void op_Line_KeyStringDictionary_IListOfString()
         {
             var obj = new KeyStringDictionary
@@ -228,6 +249,18 @@
             var actual = CsvFile.Line(obj, "A,C".Split(',').ToList());
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Line_KeyStringDictionary_IListOfStringEmpty()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => CsvFile.Line(new KeyStringDictionary(), new List<string>()));
+        }
+
+        [Fact]
+        public void op_Line_KeyStringDictionary_IListOfStringNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => CsvFile.Line(new KeyStringDictionary(), null as IList<string>));
         }
 
         [Fact]
@@ -253,12 +286,6 @@
         }
 
         [Fact]
-        public void op_Line_KeyStringDictionaryNull_string()
-        {
-            Assert.Throws<ArgumentNullException>(() => CsvFile.Line(null, "A,C"));
-        }
-
-        [Fact]
         public void op_Line_KeyStringDictionary_stringEmpty()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => CsvFile.Line(new KeyStringDictionary(), string.Empty));
@@ -277,28 +304,6 @@
         }
 
         [Fact]
-        public void op_Line_KeyStringDictionaryNull_IListOfString()
-        {
-            var columns = new List<string>
-                              {
-                                  "A"
-                              };
-            Assert.Throws<ArgumentNullException>(() => CsvFile.Line(null, columns));
-        }
-
-        [Fact]
-        public void op_Line_KeyStringDictionary_IListOfStringNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => CsvFile.Line(new KeyStringDictionary(), null as IList<string>));
-        }
-
-        [Fact]
-        public void op_Line_KeyStringDictionary_IListOfStringEmpty()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => CsvFile.Line(new KeyStringDictionary(), new List<string>()));
-        }
-
-        [Fact]
         public void op_Line_KeyStringDictionary_whenEmptyValue()
         {
             var obj = new KeyStringDictionary
@@ -311,6 +316,84 @@
             var actual = CsvFile.Line(obj);
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Save_FileInfoExists_DataTable()
+        {
+            var table = new DataTable
+                            {
+                                Locale = CultureInfo.InvariantCulture
+                            };
+            table.Columns.Add("A");
+            table.Columns.Add("B");
+            var row = table.NewRow();
+            row["A"] = "A2";
+            row["B"] = "B2";
+            table.Rows.Add(row);
+
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.csv");
+                file.AppendLine("A,B");
+                file.AppendLine("A1,B1");
+                CsvFile.Save(file, table);
+
+                var entries = new CsvFile(file).ToList();
+
+                Assert.Equal("A1", entries.First()["A"]);
+                Assert.Equal("B2", entries.Last()["B"]);
+            }
+        }
+
+        [Fact]
+        public void op_Save_FileInfoNull_DataTable()
+        {
+            var table = new DataTable
+                            {
+                                Locale = CultureInfo.InvariantCulture
+                            };
+
+            Assert.Throws<ArgumentNullException>(() => CsvFile.Save(null, table));
+        }
+
+        [Fact]
+        public void op_Save_FileInfo_DataTable()
+        {
+            var table = new DataTable
+                            {
+                                Locale = CultureInfo.InvariantCulture
+                            };
+            table.Columns.Add("A");
+            table.Columns.Add("B");
+            var row = table.NewRow();
+            row["A"] = "1";
+            row["B"] = "2";
+            table.Rows.Add(row);
+
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.csv");
+
+                CsvFile.Save(file, table);
+
+                var expected = "A,B{0}1,2{0}".FormatWith(Environment.NewLine);
+                var actual = file.ReadToEnd();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_Save_FileInfo_DataTableNull()
+        {
+            using (var temp = new TempDirectory())
+            {
+                // ReSharper disable AccessToDisposedClosure
+                Assert.Throws<ArgumentNullException>(() => CsvFile.Save(temp.Info.ToFile("example.csv"), null));
+
+                // ReSharper restore AccessToDisposedClosure
+            }
         }
 
         [Fact]
@@ -364,12 +447,6 @@
         }
 
         [Fact]
-        public void op_Save_FileMode_IEnumerableKeyValuePairNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => CsvFile.Save(FileMode.Create, null as IEnumerable<KeyValuePair<FileInfo, KeyStringDictionary>>));
-        }
-
-        [Fact]
         public void op_Save_FileMode_IEnumerableKeyValuePairFileInfoKeyStringDictionary()
         {
             using (var temp = new TempDirectory())
@@ -396,6 +473,56 @@
         }
 
         [Fact]
+        public void op_Save_FileMode_IEnumerableKeyValuePairNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => CsvFile.Save(FileMode.Create, null as IEnumerable<KeyValuePair<FileInfo, KeyStringDictionary>>));
+        }
+
+        [Fact]
+        public void op_Shard_IIdentifyShard()
+        {
+            using (var file = new TempFile())
+            {
+                file.Info.AppendLine("EXAMPLE");
+                file.Info.AppendLine("abc");
+                file.Info.AppendLine("xyz");
+                var csv = new CsvFile(file.Info);
+                var tables = csv.Shard(new ShardByValue("EXAMPLE")).ToList();
+
+                Assert.Equal("abc", tables.First().TableName);
+                Assert.Equal("abc", tables.First().Rows[0].Field<string>("EXAMPLE"));
+
+                Assert.Equal("xyz", tables.Last().TableName);
+                Assert.Equal("xyz", tables.Last().Rows[0].Field<string>("EXAMPLE"));
+            }
+        }
+
+        [Fact]
+        public void op_Shard_IIdentifyShardNull()
+        {
+            using (var file = new TempFile())
+            {
+                file.Info.AppendLine("name");
+                file.Info.AppendLine("value");
+                var csv = new CsvFile(file.Info);
+
+                Assert.Throws<ArgumentNullException>(() => csv.Shard(null).ToList());
+            }
+        }
+
+        [Fact]
+        public void op_Shard_IIdentifyShard_whenEmpty()
+        {
+            using (var file = new TempFile())
+            {
+                var csv = new CsvFile(file.Info);
+                var identifier = new Mock<IIdentifyShard>().Object;
+
+                Assert.Empty(csv.Shard(identifier).ToList());
+            }
+        }
+
+        [Fact]
         public void op_ToDataTable()
         {
             using (var file = new TempFile())
@@ -407,6 +534,62 @@
                 {
                     Assert.Equal("value", row.Field<string>("name"));
                 }
+            }
+        }
+
+        [Fact]
+        public void op_Transform_ITransformEntries()
+        {
+            using (var file = new TempFile())
+            {
+                file.Info.AppendLine("A,B,C");
+                file.Info.AppendLine("a,b,c");
+                file.Info.AppendLine("x,y,z");
+                var csv = new CsvFile(file.Info);
+
+                var entries = csv.Transform(new ConcatenationTransformer()).ToList();
+
+                Assert.Equal("abc", entries.First()["CONCAT"]);
+                Assert.Equal("xyz", entries.Last()["CONCAT"]);
+            }
+        }
+
+        [Fact]
+        public void op_Transform_ITransformEntriesNull()
+        {
+            using (var file = new TempFile())
+            {
+                var csv = new CsvFile(file.Info);
+
+                Assert.Throws<ArgumentNullException>(() => csv.Transform(null).ToList());
+            }
+        }
+
+        [Fact]
+        public void op_Transform_ITransformEntriesOfT()
+        {
+            using (var file = new TempFile())
+            {
+                file.Info.AppendLine("A,B,C");
+                file.Info.AppendLine("1,2,3");
+                file.Info.AppendLine("4,5,0");
+                var csv = new CsvFile(file.Info);
+
+                var entries = csv.Transform(new AdditionTransformer()).ToList();
+
+                Assert.Equal(6, entries.First());
+                Assert.Equal(9, entries.Last());
+            }
+        }
+
+        [Fact]
+        public void op_Transform_ITransformEntriesOfTNull()
+        {
+            using (var file = new TempFile())
+            {
+                var csv = new CsvFile(file.Info);
+
+                Assert.Throws<ArgumentNullException>(() => csv.Transform<int>(null).ToList());
             }
         }
 

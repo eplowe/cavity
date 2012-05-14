@@ -1,35 +1,194 @@
 ﻿namespace Cavity.Models
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Runtime.Serialization;
     using System.Text;
 
-    public class BritishAddress : ComparableObject
+    using Cavity.Collections;
+
+    [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
+    [Serializable]
+    public class BritishAddress : KeyStringDictionary
     {
-        public virtual string AdministrativeCounty { get; set; }
+        public BritishAddress()
+        {
+        }
 
-        public virtual string BuildingName { get; set; }
+        protected BritishAddress(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
 
-        public virtual string BuildingNumber { get; set; }
+        public virtual string AdministrativeCounty
+        {
+            get
+            {
+                return ContainsKey("CTA") ? this["CTA"] : null;
+            }
 
-        public virtual string DependentLocality { get; set; }
+            set
+            {
+                this["CTA"] = value;
+            }
+        }
 
-        public virtual string DependentStreet { get; set; }
+        public virtual string BuildingName
+        {
+            get
+            {
+                return ContainsKey("BNA") ? this["BNA"] : null;
+            }
 
-        public virtual string DoubleDependentLocality { get; set; }
+            set
+            {
+                this["BNA"] = value;
+            }
+        }
 
-        public virtual string FormerPostalCounty { get; set; }
+        public virtual string BuildingNumber
+        {
+            get
+            {
+                return ContainsKey("NUM") ? this["NUM"] : null;
+            }
 
-        public virtual string MainStreet { get; set; }
+            set
+            {
+                this["NUM"] = value;
+            }
+        }
 
-        public virtual string PostOfficeBox { get; set; }
+        public virtual string DependentLocality
+        {
+            get
+            {
+                return ContainsKey("DLO") ? this["DLO"] : null;
+            }
 
-        public virtual string PostTown { get; set; }
+            set
+            {
+                this["DLO"] = value;
+            }
+        }
 
-        public virtual BritishPostcode Postcode { get; set; }
+        public virtual string DependentStreet
+        {
+            get
+            {
+                return ContainsKey("DST") ? this["DST"] : null;
+            }
 
-        public virtual string SubBuildingName { get; set; }
+            set
+            {
+                this["DST"] = value;
+            }
+        }
 
-        public virtual string TraditionalCounty { get; set; }
+        public virtual string DoubleDependentLocality
+        {
+            get
+            {
+                return ContainsKey("DDL") ? this["DDL"] : null;
+            }
+
+            set
+            {
+                this["DDL"] = value;
+            }
+        }
+
+        public virtual string FormerPostalCounty
+        {
+            get
+            {
+                return ContainsKey("CTP") ? this["CTP"] : null;
+            }
+
+            set
+            {
+                this["CTP"] = value;
+            }
+        }
+
+        public virtual string MainStreet
+        {
+            get
+            {
+                return ContainsKey("STM") ? this["STM"] : null;
+            }
+
+            set
+            {
+                this["STM"] = value;
+            }
+        }
+
+        public virtual string PostOfficeBox
+        {
+            get
+            {
+                return ContainsKey("POB") ? this["POB"] : null;
+            }
+
+            set
+            {
+                this["POB"] = value;
+            }
+        }
+
+        public virtual string PostTown
+        {
+            get
+            {
+                return ContainsKey("PTN") ? this["PTN"] : null;
+            }
+
+            set
+            {
+                this["PTN"] = value;
+            }
+        }
+
+        public virtual BritishPostcode Postcode
+        {
+            get
+            {
+                return ContainsKey("PCD") ? this["PCD"] : null;
+            }
+
+            set
+            {
+                this["PCD"] = value;
+            }
+        }
+
+        public virtual string SubBuildingName
+        {
+            get
+            {
+                return ContainsKey("SBN") ? this["SBN"] : null;
+            }
+
+            set
+            {
+                this["SBN"] = value;
+            }
+        }
+
+        public virtual string TraditionalCounty
+        {
+            get
+            {
+                return ContainsKey("CTT") ? this["CTT"] : null;
+            }
+
+            set
+            {
+                this["CTT"] = value;
+            }
+        }
 
         public override string ToString()
         {

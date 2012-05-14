@@ -5,11 +5,16 @@
     <AssemblyName>Cavity.Data.Csv</AssemblyName>
     <ProjectGuid>{1ACBDACF-14B0-4B7E-9FCA-9ADFB0F803E0}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Data\Csv.String.ExtensionMethods.cs" />
     <Compile Include="Data\CsvFile.cs" />
     <Compile Include="Data\CsvStreamReader.cs" />
+    <Compile Include="Data\Sharding\IIdentifyShard.cs" />
+    <Compile Include="Data\Sharding\ShardByValue.cs" />
+    <Compile Include="Data\Transformation\ITransformCsv`1.cs" />
+    <Compile Include="Data\Transformation\ITransformCsv.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -21,13 +26,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.814\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -36,6 +40,9 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
     <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Code.project" />

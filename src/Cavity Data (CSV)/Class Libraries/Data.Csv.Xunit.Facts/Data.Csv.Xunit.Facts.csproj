@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.Data.Csv.Xunit.Facts</AssemblyName>
     <ProjectGuid>{C486CD57-6CFF-4F15-AC83-2F43F58C1036}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -26,9 +27,9 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.814\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="xunit">

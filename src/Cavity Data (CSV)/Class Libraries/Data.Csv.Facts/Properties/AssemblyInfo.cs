@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-[assembly: CLSCompliant(true)]
+[assembly: CLSCompliant(false)]
 [assembly: AssemblyDefaultAlias("Cavity.Data.Csv.Facts.dll")]
 [assembly: AssemblyTitle("Cavity.Data.Csv.Facts.dll")]
 
