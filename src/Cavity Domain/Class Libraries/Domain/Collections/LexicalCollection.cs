@@ -207,6 +207,7 @@
             return null;
 #else
             return this
+                .OrderByDescending(x => x.CanonicalForm.Length)
                 .Select(item => item.MatchBeginning(value))
                 .FirstOrDefault(result => null != result);
 #endif
@@ -239,6 +240,7 @@
             return null;
 #else
             return this
+                .OrderByDescending(x => x.CanonicalForm.Length)
                 .Select(item => item.MatchEnding(value))
                 .FirstOrDefault(result => null != result);
 #endif
@@ -258,6 +260,7 @@
             }
 
             return this
+                .OrderByDescending(x => x.CanonicalForm.Length)
                 .Select(item => item.MatchWithin(value))
                 .FirstOrDefault(result => null != result);
         }
