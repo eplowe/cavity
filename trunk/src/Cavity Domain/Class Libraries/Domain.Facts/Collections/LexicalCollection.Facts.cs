@@ -251,6 +251,44 @@
         }
 
         [Fact]
+        public void op_MatchBeginning_string_whenShorterAndLonger()
+        {
+            var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "one"),
+                              new LexicalItem(NormalityComparer.Ordinal, "one two")
+                          };
+
+            var expected = new LexicalMatch(obj.Last())
+            {
+                Suffix = "3"
+            };
+            var actual = obj.MatchBeginning("one two 3");
+
+            Assert.Equal(expected, actual);
+            Assert.Equal("3", actual.Suffix);
+        }
+
+        [Fact]
+        public void op_MatchBeginning_string_whenLongerAndShorter()
+        {
+            var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "one two"),
+                              new LexicalItem(NormalityComparer.Ordinal, "one")
+                          };
+
+            var expected = new LexicalMatch(obj.First())
+            {
+                Suffix = "3"
+            };
+            var actual = obj.MatchBeginning("one two 3");
+
+            Assert.Equal(expected, actual);
+            Assert.Equal("3", actual.Suffix);
+        }
+
+        [Fact]
         public void op_MatchBeginning_stringEmpty()
         {
             var obj = new LexicalCollection(NormalityComparer.Ordinal)
@@ -303,6 +341,44 @@
         }
 
         [Fact]
+        public void op_MatchEnding_string_whenShorterAndLonger()
+        {
+            var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "two"),
+                              new LexicalItem(NormalityComparer.Ordinal, "two three")
+                          };
+
+            var expected = new LexicalMatch(obj.Last())
+            {
+                Prefix = "1"
+            };
+            var actual = obj.MatchEnding("1 two three");
+
+            Assert.Equal(expected, actual);
+            Assert.Equal("1", actual.Prefix);
+        }
+
+        [Fact]
+        public void op_MatchEnding_string_whenLongerAndShorter()
+        {
+            var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "two three"),
+                              new LexicalItem(NormalityComparer.Ordinal, "two")
+                          };
+
+            var expected = new LexicalMatch(obj.First())
+            {
+                Prefix = "1"
+            };
+            var actual = obj.MatchEnding("1 two three");
+
+            Assert.Equal(expected, actual);
+            Assert.Equal("1", actual.Prefix);
+        }
+
+        [Fact]
         public void op_MatchEnding_stringEmpty()
         {
             var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
@@ -340,6 +416,48 @@
             var actual = obj.MatchWithin("This is an example test case");
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchWithin_string_whenLongerAndShorter()
+        {
+            var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "two three"),
+                              new LexicalItem(NormalityComparer.Ordinal, "three")
+                          };
+
+            var expected = new LexicalMatch(obj.First())
+            {
+                Prefix = "1",
+                Suffix = "4"
+            };
+            var actual = obj.MatchWithin("1 two three 4");
+
+            Assert.Equal(expected, actual);
+            Assert.Equal("1", actual.Prefix);
+            Assert.Equal("4", actual.Suffix);
+        }
+
+        [Fact]
+        public void op_MatchWithin_string_whenShorterAndLonger()
+        {
+            var obj = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
+                          {
+                              new LexicalItem(NormalityComparer.Ordinal, "three"),
+                              new LexicalItem(NormalityComparer.Ordinal, "two three")
+                          };
+
+            var expected = new LexicalMatch(obj.Last())
+            {
+                Prefix = "1",
+                Suffix = "4"
+            };
+            var actual = obj.MatchWithin("1 two three 4");
+
+            Assert.Equal(expected, actual);
+            Assert.Equal("1", actual.Prefix);
+            Assert.Equal("4", actual.Suffix);
         }
 
         [Fact]
