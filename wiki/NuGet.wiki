@@ -109,7 +109,7 @@
  * Cavity.Data.Csv
   (Cavity.Core)
 
-*2.0.0.831* Cavity.Domain
+*2.0.0.832* Cavity.Domain
  * Cavity.Data.Csv
    * Cavity.Core
 
