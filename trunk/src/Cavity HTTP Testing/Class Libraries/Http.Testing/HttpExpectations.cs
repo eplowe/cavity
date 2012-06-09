@@ -53,7 +53,11 @@
 
         public static IHttpExpectations Load(FileInfo file)
         {
-            return Load(file.ReadToEnd());
+            var value = file
+                .ReadToEnd()
+                .Replace("\r\n", "\n", StringComparison.Ordinal)
+                .Replace("\n", Environment.NewLine, StringComparison.Ordinal);
+            return Load(value);
         }
 
         public static IHttpExpectations Load(string value)
@@ -118,11 +122,7 @@
         {
             var buffer = new StringBuilder();
 
-            var eol = new[]
-                          {
-                              Environment.NewLine
-                          };
-            foreach (var line in value.Split(eol, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var line in value.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries))
             {
                 if (line.StartsWith("#", StringComparison.OrdinalIgnoreCase))
                 {

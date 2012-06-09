@@ -20,7 +20,7 @@
 
 *1.1.0.814* Cavity.Core
 
-*2.0.0.833* Cavity Configuration
+*1.1.0.833* Cavity Configuration
  * Cavity.Core
 
 *1.1.0.833* Cavity Commands
@@ -95,10 +95,6 @@
  * Cavity.Configuration
    * Cavity.Core
 
-*1.1.0.816* Cavity HTTP Testing
- * Cavity.Http.Generalizations
-   * Cavity.Core
-
 *1.1.0.833* Cavity Repository Testing
  * Cavity.Repository
    * Cavity.Core
@@ -116,6 +112,10 @@
  * Cavity.Repository
    * Cavity.Core
  + Cavity Repository Testing
+
+*1.1.0.835* Cavity HTTP Testing
+ * Cavity.Http.Generalizations
+   * Cavity.Core
 
 *1.1.0.___* Cavity MSBuild (Compliance)
  * Cavity.Core

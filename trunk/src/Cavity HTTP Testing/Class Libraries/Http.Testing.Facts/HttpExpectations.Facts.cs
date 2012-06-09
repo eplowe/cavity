@@ -7,6 +7,7 @@
     using System.Text;
 
     using Xunit;
+    using Xunit.Extensions;
 
     public sealed class HttpExpectationsFacts
     {
@@ -41,10 +42,12 @@
             Assert.Throws<ArgumentNullException>(() => new HttpExpectations(null));
         }
 
-        [Fact]
-        public void op_Load_FileInfo()
+        [Theory]
+        [InlineData("example.crlf.http")]
+        [InlineData("example.lf.http")]
+        public void op_Load_FileInfo(string name)
         {
-            Assert.True(HttpExpectations.Load(new FileInfo("example.http")).Result);
+            Assert.True(HttpExpectations.Load(new FileInfo(name)).Result);
         }
 
         [Fact]
