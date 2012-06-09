@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.Testing.Repository</AssemblyName>
     <ProjectGuid>{25964BBC-AD2A-4ACE-9158-7C74915FC398}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,12 +82,12 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.814\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Repository">
-      <HintPath>..\..\packages\Cavity.Repository.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Repository.2.0.0.833\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
     </Reference>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
   </ItemGroup>

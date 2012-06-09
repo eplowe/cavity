@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.Repository.FileSystem.Xml</AssemblyName>
     <ProjectGuid>{087F141B-93D3-4D0F-873E-A176DC98C161}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -27,12 +28,12 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.814\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Repository">
-      <HintPath>..\..\packages\Cavity.Repository.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Repository.2.0.0.833\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
     </Reference>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Xml" />
   </ItemGroup>

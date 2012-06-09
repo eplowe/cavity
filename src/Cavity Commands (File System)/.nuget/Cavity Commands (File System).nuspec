@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Commands.FileSystem</id>
-    <version>2.0.0.831</version>
+    <version>2.0.0.833</version>
     <title>Cavity Commands (File System)</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,7 +17,7 @@
     <tags />
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Commands" version="1.1.0.804" />
+      <dependency id="Cavity.Commands" version="1.1.0.833" />
     </dependencies>
   </metadata>
   <files>

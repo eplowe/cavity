@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.Transactions.Commands</AssemblyName>
     <ProjectGuid>{6EBDA186-5D36-45F6-A3EF-743097747BEB}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Properties\CodeAnalysis.dictionary" />
@@ -20,12 +21,12 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Commands">
-      <HintPath>..\..\packages\Cavity.Commands.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Commands.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Commands.2.0.0.833\lib\$(TargetFrameworkVersionName)\Cavity.Commands.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.814\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
   </ItemGroup>

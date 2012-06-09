@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.Testing.Repository.Facts</AssemblyName>
     <ProjectGuid>{C562E0DE-4257-4D12-AB3C-8EEB298A6D01}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,12 +74,12 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.814\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Repository">
-      <HintPath>..\..\packages\Cavity.Repository.1.1.0.804\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Repository.2.0.0.833\lib\$(TargetFrameworkVersionName)\Cavity.Repository.dll</HintPath>
     </Reference>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
     <Reference Include="xunit">
