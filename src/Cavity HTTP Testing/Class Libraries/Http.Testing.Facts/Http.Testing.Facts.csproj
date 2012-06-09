@@ -10,10 +10,13 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
+    <None Include="example.lf.http">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="example.request">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="example.http">
+    <None Include="example.crlf.http">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
