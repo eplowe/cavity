@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.ServiceLocation.StructureMap.Facts</AssemblyName>
     <ProjectGuid>{095E71A3-34EE-4741-8C04-5E6D96E43B2F}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Examples\ITest.cs" />
@@ -32,7 +33,7 @@
     <Reference Include="StructureMapAdapter">
       <HintPath>..\..\packages\CommonServiceLocator.StructureMapAdapter.1.1.0.3\lib\StructureMapAdapter.dll</HintPath>
     </Reference>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>

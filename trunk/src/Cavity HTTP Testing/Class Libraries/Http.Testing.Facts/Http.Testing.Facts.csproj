@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.Http.Testing.Facts</AssemblyName>
     <ProjectGuid>{224F5934-9295-41A5-BA7B-F0589C63CD3A}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -33,7 +34,7 @@
     <Reference Include="Cavity.Http.Generalizations">
       <HintPath>..\..\packages\Cavity.Http.Generalizations.1.1.0.816\lib\$(TargetFrameworkVersionName)\Cavity.Http.Generalizations.dll</HintPath>
     </Reference>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>
     </Reference>

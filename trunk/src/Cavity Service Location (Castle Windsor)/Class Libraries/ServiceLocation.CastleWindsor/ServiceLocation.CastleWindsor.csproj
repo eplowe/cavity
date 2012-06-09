@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.ServiceLocation.CastleWindsor</AssemblyName>
     <ProjectGuid>{DAA78F38-1405-4971-AB8D-1D42FD41B848}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -17,7 +18,7 @@
     <Compile Include="Practices\ServiceLocation\WindsorServiceLocator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">

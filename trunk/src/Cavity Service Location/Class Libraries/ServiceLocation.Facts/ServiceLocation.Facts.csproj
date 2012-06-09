@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.ServiceLocation.Facts</AssemblyName>
     <ProjectGuid>{9E656B3A-FF1E-4CA4-8E6B-4BD7ADF1809F}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -17,7 +18,7 @@
     <Compile Include="Configuration\ISetLocatorProvider.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>

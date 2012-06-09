@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.ServiceLocation.CastleWindsor.Facts</AssemblyName>
     <ProjectGuid>{7DD77C51-A1D5-486A-948A-20AA80C4D55E}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Examples\ITest.cs" />
@@ -24,7 +25,7 @@
     <Compile Include="Practices\ServiceLocation\WindsorServiceLocator.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="xunit">
       <HintPath>..\..\packages\xunit.1.9.0.1566\lib\xunit.dll</HintPath>

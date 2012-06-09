@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.Data.Html.Xunit</AssemblyName>
     <ProjectGuid>{DFC8B0D7-BE08-4904-8C9F-3EA8C15B83BA}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Data\HtmlFileAttribute.cs" />
@@ -29,7 +30,7 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\packages\HtmlAgilityPack.1.4.3\lib\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="xunit">

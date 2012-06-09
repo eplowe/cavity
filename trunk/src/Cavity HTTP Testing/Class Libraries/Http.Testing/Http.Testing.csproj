@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.Http.Testing</AssemblyName>
     <ProjectGuid>{C1B76C56-2E8D-4F9E-8EEA-FFB9E6A92715}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -25,7 +26,7 @@
     <Reference Include="Cavity.Http.Generalizations">
       <HintPath>..\..\packages\Cavity.Http.Generalizations.1.1.0.816\lib\$(TargetFrameworkVersionName)\Cavity.Http.Generalizations.dll</HintPath>
     </Reference>
-    <Reference Include="System"/>
+    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
     <Reference Include="System.Core" />
