@@ -138,3 +138,4 @@
  * Cavity.ServiceLocation.CastleWindsor.Console
  * Cavity.Web
  * Cavity.Web.Mvc3
+.
