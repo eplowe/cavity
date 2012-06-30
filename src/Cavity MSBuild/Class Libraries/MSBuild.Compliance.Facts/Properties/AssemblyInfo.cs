@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Reflection;
 
-[assembly: CLSCompliant(true)]
-[assembly: AssemblyDefaultAlias("Cavity.Build.Facts.dll")]
-[assembly: AssemblyTitle("Cavity.Build.Facts.dll")]
+[assembly: CLSCompliant(false)]
+[assembly: AssemblyDefaultAlias("Cavity.MSBuild.Facts.dll")]
+[assembly: AssemblyTitle("Cavity.MSBuild.Facts.dll")]
 
 #if (DEBUG)
 
-[assembly: AssemblyDescription("Cavity : Build Facts Library (Debug)")]
+[assembly: AssemblyDescription("Cavity : MSBuild Facts Library (Debug)")]
 
 #else
 
-[assembly: AssemblyDescription("Cavity : Build Facts Library (Release)")]
+[assembly: AssemblyDescription("Cavity : MSBuild Facts Library (Release)")]
 
 #endif

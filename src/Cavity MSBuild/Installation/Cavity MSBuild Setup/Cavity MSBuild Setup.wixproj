@@ -12,7 +12,6 @@
     <Folder Include="Cavity 1.1" />
     <Folder Include="Cavity 1.1\net40\" />
     <Folder Include="Cavity 2.0" />
-    <Folder Include="Cavity 2.0\net40\" />
     <Folder Include="NUnit 2.6\" />
     <Folder Include="NUnit 2.6\lib\" />
   </ItemGroup>
@@ -64,8 +63,6 @@
     <Content Include="Cavity 2.0\MixedCPU.platform" />
     <Content Include="Cavity 2.0\MSBuild.tasks" />
     <Content Include="Cavity 2.0\Mvc.project" />
-    <Content Include="Cavity 2.0\net40\Cavity.MSBuild.Compliance.dll" />
-    <Content Include="Cavity 2.0\net40\Cavity.MSBuild.Compliance.targets" />
     <Content Include="Cavity 2.0\NUnit.test" />
     <Content Include="Cavity 2.0\Target.framework" />
     <Content Include="Cavity 2.0\Test.all" />
@@ -89,6 +86,16 @@
     <Content Include="NUnit 2.6\nunit-console-x86.exe.config" />
     <Content Include="NUnit 2.6\nunit-console.exe" />
     <Content Include="NUnit 2.6\nunit-console.exe.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Class Libraries\MSBuild.Compliance\MSBuild.csproj">
+      <Name>MSBuild</Name>
+      <Project>{0ff43960-7762-46a3-ba82-dba2161dbac9}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--

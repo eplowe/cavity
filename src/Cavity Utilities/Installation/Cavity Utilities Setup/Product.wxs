@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define UpgradeCode="{fdbbf990-3f9b-4851-bf48-ca10fa4cca7e}"?>
+  <Product Id="*" Name="Cavity Utilities" Language="1033" Version="2.0.0.840" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
+    <Package InstallerVersion="200" InstallScope="perMachine" InstallPrivileges="elevated" Compressed="yes" Description="Installs the Cavity Utilities." />
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+    <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="Company" Name="Cavity">
+          <Directory Id="INSTALLLOCATION" Name="Utilities">
+            <Component Id="CRLF" Guid="00527092-32fd-4136-a6ed-716eba7e0890">
+              <RegistryValue Root="HKLM" Key="Software\Cavity\Utilities" Type="string" Value="Installed" KeyPath="yes" />
+              <File Id="App" Name="CRLF.exe" Source="$(var.CRLF.TargetDir)\CRLF.exe" />
+              <File Id="AppConfig" Name="CRLF.exe.config" Source="$(var.CRLF.TargetDir)\CRLF.exe.config" />
+              <File Id="CavityCore" Name="Cavity.Core.dll" Source="$(var.CRLF.TargetDir)\Cavity.Core.dll" />
+              <File Id="CavityDiagnosticsLog4Net" Name="Cavity.Diagnostics.Log4Net.dll" Source="$(var.CRLF.TargetDir)\Cavity.Diagnostics.Log4Net.dll" />
+              <File Id="Log4Net" Name="log4net.dll" Source="$(var.CRLF.TargetDir)\log4net.dll" />
+              <File Id="Log4NetConfig" Name="log4net.config" Source="$(var.CRLF.TargetDir)\log4net.config" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature Id="ProductFeature" Title="MSBuild Files" Level="1">
+      <ComponentGroupRef Id="Product.Generated" />
+      <ComponentRef Id="CRLF" />
+    </Feature>
+  </Product>
+</Wix>

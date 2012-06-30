@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define UpgradeCode="{f5481b90-9cbd-456f-96df-e2165b8d9af5}"?>
-  <Product Id="*" Name="Cavity MSBuild Extensions" Language="1033" Version="2.0.0.833" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
+  <Product Id="*" Name="Cavity MSBuild Extensions" Language="1033" Version="2.0.0.840" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" InstallPrivileges="elevated" Compressed="yes" Description="Installs the Cavity MSBuild extensions." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
@@ -55,9 +55,10 @@
           <Directory Id="INSTALLLOCATION20" Name="Cavity 2.0">
             <Directory Id="NET40LOCATION20" Name="net40">
               <Component Id="NET4020" Guid="20f7fd4f-9eb4-4d11-b678-2c026fb48060">
-                <RegistryValue Root="HKLM" Key="Software\Cavity 2.0\MSBuild Extensions (Compliance)" Type="string" Value="Installed" KeyPath="yes" />
-                <File Id="CavityMSBuildCompliance20" Name="Cavity.MSBuild.Compliance.dll" Source="Cavity 2.0\net40\Cavity.MSBuild.Compliance.dll" />
-                <File Id="CavityMSBuildComplianceTargets20" Name="Cavity.MSBuild.Compliance.targets" Source="Cavity 2.0\net40\Cavity.MSBuild.Compliance.targets" />
+                <RegistryValue Root="HKLM" Key="Software\Cavity 2.0\MSBuild Extensions (NET40)" Type="string" Value="Installed" KeyPath="yes" />
+                <File Id="CavityCore" Name="Cavity.Core.dll" Source="$(var.MSBuild.TargetDir)\Cavity.Core.dll" />
+                <File Id="CavityMSBuild20" Name="Cavity.MSBuild.dll" Source="$(var.MSBuild.TargetDir)\Cavity.MSBuild.dll" />
+                <File Id="CavityMSBuildTargets20" Name="Cavity.MSBuild.targets" Source="$(var.MSBuild.TargetDir)\Cavity.MSBuild.targets" />
               </Component>
             </Directory>
             <Component Id="Cavity20" Guid="46fd19ef-410b-48aa-98d8-87ffccea95ad">
