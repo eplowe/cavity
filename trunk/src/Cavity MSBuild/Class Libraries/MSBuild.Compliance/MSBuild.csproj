@@ -2,11 +2,15 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Cavity.MSBuild.Compliance</AssemblyName>
+    <AssemblyName>Cavity.MSBuild</AssemblyName>
     <ProjectGuid>{0FF43960-7762-46A3-BA82-DBA2161DBAC9}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Build\CRLF.cs" />
+    <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
+    <Compile Include="IO\Name.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -19,13 +23,17 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Compile Include="Build\MSBuildCompliance.cs" />
-    <None Include="Cavity.MSBuild.Compliance.targets">
+    <None Include="Cavity.MSBuild.targets">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.814\lib\net40\Cavity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Build.Framework" />
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' == '2.0' ">

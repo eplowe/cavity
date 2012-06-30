@@ -5,7 +5,6 @@
   <ItemGroup>
   	<Solutions Include="Cavity Commands Transactions" />
   	<Solutions Include="Cavity Examples Website" />
-  	<Solutions Include="Cavity MSBuild (Compliance)" />
   	<Solutions Include="Cavity MSBuild (Domain)" />
   	<Solutions Include="Cavity Task Management" />
   	<Solutions Include="Cavity Task Management Abstractions" />
