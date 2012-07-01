@@ -61,15 +61,6 @@ namespace Cavity.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No files were processed..
-        /// </summary>
-        internal static string NoFiles {
-            get {
-                return ResourceManager.GetString("NoFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Press any key to exit....
         /// </summary>
         internal static string PressAnyKeyToExit {

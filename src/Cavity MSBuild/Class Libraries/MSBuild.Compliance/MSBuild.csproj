@@ -10,7 +10,7 @@
   <ItemGroup>
     <Compile Include="Build\CRLF.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
-    <Compile Include="IO\Name.cs" />
+    <Compile Include="IO\FileSpec.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
     <Compile Include="Properties\Resources.Designer.cs">

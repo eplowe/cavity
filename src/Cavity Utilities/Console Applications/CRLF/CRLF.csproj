@@ -33,8 +33,8 @@
     <Compile Include="..\..\..\Cavity MSBuild\Class Libraries\MSBuild.Compliance\IO\FileInfo.ExtensionMethods.cs">
       <Link>IO\FileInfo.ExtensionMethods.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\Cavity MSBuild\Class Libraries\MSBuild.Compliance\IO\Name.cs">
-      <Link>IO\Name.cs</Link>
+    <Compile Include="..\..\..\Cavity MSBuild\Class Libraries\MSBuild.Compliance\IO\FileSpec.cs">
+      <Link>IO\FileSpec.cs</Link>
     </Compile>
     <Compile Include="Arguments.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />

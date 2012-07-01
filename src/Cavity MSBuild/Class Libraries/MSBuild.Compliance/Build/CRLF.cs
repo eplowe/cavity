@@ -25,7 +25,7 @@
                 }
                 finally
                 {
-                    Log.LogMessage(MessageImportance.Normal, "[{0}] {1}".FormatWith(changed ? 'Δ' : ' ', item.ItemSpec));
+                    Log.LogMessage(MessageImportance.Normal, "[{0}] {1}".FormatWith(changed ? '¤' : ' ', item.ItemSpec));
                 }
             }
 

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
-    using System.Linq;
+    using System.Threading.Tasks;
 
     using Cavity.Diagnostics;
     using Cavity.IO;
@@ -14,10 +14,10 @@
     {
         public Arguments()
         {
-            Files = new List<FileInfo>();
+            Specs = new List<FileSpec>();
         }
 
-        public IList<FileInfo> Files { get; private set; }
+        public IList<FileSpec> Specs { get; private set; }
 
         public bool Help { get; private set; }
 
@@ -25,43 +25,28 @@
 
         public static Arguments Load(string[] args)
         {
-            if (null == args)
+            if (null == args || 0 == args.Length)
             {
                 return new Arguments
                            {
                                Help = true
                            };
-            }
-
-            if (0 == args.Length)
-            {
-                return new Arguments
-                {
-                    Help = true
-                };
             }
 
             var result = new Arguments();
-            if (args.Any(arg => arg.EqualsAny(StringComparison.OrdinalIgnoreCase, "/?", "/help", "-help")))
-            {
-                return new Arguments
-                           {
-                               Help = true
-                           };
-            }
-
             foreach (var arg in args)
             {
-                if (string.Equals("/Q", arg, StringComparison.OrdinalIgnoreCase))
+                if (arg.EqualsAny(StringComparison.OrdinalIgnoreCase, "/?", "/help", "-help"))
+                {
+                    result.Help = true;
+                }
+                else if (arg.EqualsAny(StringComparison.OrdinalIgnoreCase, "/Q", "/quiet", "-quiet"))
                 {
                     result.Quiet = true;
-                    continue;
                 }
-
-                var name = Name.Load(arg);
-                foreach (var file in name.Files)
+                else
                 {
-                    result.Files.Add(file);
+                    result.Specs.Add(new FileSpec(arg));
                 }
             }
 
@@ -79,23 +64,18 @@
                 return;
             }
 
-            if (0 == Files.Count)
+            foreach (var spec in Specs)
             {
-                if (!Quiet)
-                {
-                    Console.WriteLine(Resources.NoFiles);
-                }
-
-                return;
+                Parallel.ForEach(spec, Process);
             }
+        }
 
-            foreach (var file in Files)
+        private void Process(FileInfo file)
+        {
+            var changed = file.FixNewLine();
+            if (!Quiet)
             {
-                var changed = file.FixNewLine();
-                if (!Quiet)
-                {
-                    Console.WriteLine("[{0}] {1}".FormatWith(changed ? 'Δ' : ' ', file.FullName));
-                }
+                Console.WriteLine("[{0}] {1}".FormatWith(changed ? '¤' : ' ', file.FullName));
             }
         }
     }
