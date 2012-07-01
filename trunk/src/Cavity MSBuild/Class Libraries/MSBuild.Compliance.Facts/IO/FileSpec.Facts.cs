@@ -8,17 +8,18 @@
     using Xunit;
     using Xunit.Extensions;
 
-    public sealed class NameFacts
+    public sealed class FileSpecFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<Name>()
+            Assert.True(new TypeExpectations<FileSpec>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
                             .IsSealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
+                            .Implements<IEnumerable<FileInfo>>()
                             .Result);
         }
 
@@ -27,13 +28,13 @@
         [InlineData("   ")]
         public void op_Load_stringEmpty(string name)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Name.Load(name));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new FileSpec(name));
         }
 
         [Fact]
         public void op_Load_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => Name.Load(null));
+            Assert.Throws<ArgumentNullException>(() => new FileSpec(null));
         }
 
         [Fact]
@@ -47,7 +48,7 @@
                     .AppendLine(string.Empty)
                     .FullName;
 
-                var actual = Name.Load(expected).Files.First().FullName;
+                var actual = new FileSpec(expected).First().FullName;
 
                 Assert.Equal(expected, actual);
             }
@@ -63,7 +64,7 @@
                     .ToFile("example.txt")
                     .FullName;
 
-                Assert.Throws<FileNotFoundException>(() => Name.Load(name));
+                Assert.Throws<FileNotFoundException>(() => new FileSpec(name).ToList());
             }
         }
 
@@ -80,7 +81,7 @@
 
                 var name = @"{0}\*.txt".FormatWith(temp.Info.FullName);
 
-                var actual = Name.Load(name).Files.First().FullName;
+                var actual = new FileSpec(name).First().FullName;
 
                 Assert.Equal(expected, actual);
             }
@@ -99,7 +100,7 @@
 
                 var name = @"{0}\*.txt".FormatWith(temp.Info.FullName);
 
-                Assert.Empty(Name.Load(name).Files);
+                Assert.Empty(new FileSpec(name));
             }
         }
 
@@ -117,20 +118,10 @@
 
                 var name = @"{0}\**\*.txt".FormatWith(temp.Info.FullName);
 
-                var actual = Name.Load(name).Files.First().FullName;
+                var actual = new FileSpec(name).First().FullName;
 
                 Assert.Equal(expected, actual);
             }
-        }
-
-        [Fact]
-        public void prop_Files()
-        {
-            Assert.True(new PropertyExpectations<Name>(x => x.Files)
-                            .TypeIs<IList<FileInfo>>()
-                            .DefaultValueIsNotNull()
-                            .IsNotDecorated()
-                            .Result);
         }
     }
 }
