@@ -1,6 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
+    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Runtime.Serialization;
@@ -9,9 +10,12 @@
 #endif
 
     [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Date", Justification = "This name is intentional.")]
+    [ImmutableObject(true)]
     [Serializable]
-    public struct Date : ISerializable, 
-                         IEquatable<Date>
+    public struct Date : IComparable,
+                         IComparable<Date>,
+                         IEquatable<Date>,
+                         ISerializable
     {
         private DateTime _date;
 
@@ -88,6 +92,12 @@
             return obj.Equals(comparand);
         }
 
+        public static bool operator >(Date operand1,
+                                      Date operand2)
+        {
+            return operand1.ToDateTime() > operand2.ToDateTime();
+        }
+
         public static implicit operator DateTime(Date value)
         {
             return value.ToDateTime();
@@ -114,6 +124,17 @@
             return !obj.Equals(comparand);
         }
 
+        public static bool operator <(Date operand1,
+                                      Date operand2)
+        {
+            return operand1.ToDateTime() < operand2.ToDateTime();
+        }
+
+        public static int Compare(Date operand1, Date operand2)
+        {
+            return DateTime.Compare(operand1.ToDateTime(), operand2.ToDateTime());
+        }
+
         public static Date FromString(string value)
         {
             if (null == value)
@@ -128,6 +149,21 @@
             }
 
             return new Date(DateTime.Parse(value, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal));
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return CompareTo((Date)obj);
+        }
+
+        public int CompareTo(Date other)
+        {
+            return Compare(this, other);
         }
 
         public override bool Equals(object obj)

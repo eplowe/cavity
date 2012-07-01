@@ -7,7 +7,7 @@
     using System.IO;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
-    public sealed class FileSpec : IEnumerable<FileInfo>
+    public class FileSpec : IEnumerable<FileInfo>
     {
         public FileSpec(string value)
         {
@@ -58,7 +58,11 @@
                 pattern = Value.Substring(index);
             }
 
+#if NET20 || NET35
+            foreach (var file in directory.GetFiles(pattern, option))
+#else
             foreach (var file in directory.EnumerateFiles(pattern, option))
+#endif
             {
                 yield return file;
             }

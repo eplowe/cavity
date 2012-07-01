@@ -34,5 +34,7 @@
                           string @namespace);
 
         ITestType XmlSerializable();
+
+        ITestType XmlSerializable(bool verifyDeserialization);
     }
 }

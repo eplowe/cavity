@@ -21,10 +21,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.814\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.2.0.0.845\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Http.Generalizations">
-      <HintPath>..\..\packages\Cavity.Http.Generalizations.1.1.0.816\lib\$(TargetFrameworkVersionName)\Cavity.Http.Generalizations.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Http.Generalizations.2.0.0.845\lib\$(TargetFrameworkVersionName)\Cavity.Http.Generalizations.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -33,6 +33,7 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Code.project" />

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using System.ComponentModel;
     using System.IO;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
@@ -27,6 +28,7 @@
                             .Implements<IComparable<EntityTag>>()
                             .Implements<IEquatable<EntityTag>>()
                             .Serializable()
+                            .IsDecoratedWith<ImmutableObjectAttribute>()
                             .Result);
         }
 

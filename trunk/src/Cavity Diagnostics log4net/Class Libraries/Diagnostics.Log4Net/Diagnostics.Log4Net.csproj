@@ -5,6 +5,7 @@
     <AssemblyName>Cavity.Diagnostics.Log4Net</AssemblyName>
     <ProjectGuid>{5960B260-2521-4C8A-BF81-F5BDBADC065D}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -18,7 +19,7 @@
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.2.0.0\lib\$(TargetFrameworkVersionName)-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="System"/>
+    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
     <Reference Include="System.Core" />

@@ -20,10 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Configuration">
-      <HintPath>..\..\packages\Cavity.Configuration.2.0.0.833\lib\$(TargetFrameworkVersionName)\Cavity.Configuration.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Configuration.2.0.0.845\lib\$(TargetFrameworkVersionName)\Cavity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.814\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.2.0.0.845\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Code.project" />

@@ -16,7 +16,7 @@
             Assert.True(new TypeExpectations<FileSpec>()
                             .DerivesFrom<object>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Implements<IEnumerable<FileInfo>>()

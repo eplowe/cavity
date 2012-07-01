@@ -43,5 +43,10 @@
                             .IsAutoProperty<string>()
                             .Result);
         }
+
+        [Comment("An example.")]
+        public void usage()
+        {
+        }
     }
 }

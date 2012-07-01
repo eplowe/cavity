@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
@@ -20,6 +21,7 @@
                             .IsUnsealed()
                             .NoDefaultConstructor()
                             .Serializable()
+                            .IsDecoratedWith<ImmutableObjectAttribute>()
                             .Implements<IComparable>()
                             .Implements<IComparable<Token>>()
                             .Implements<IEquatable<Token>>()

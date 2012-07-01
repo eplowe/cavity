@@ -1,6 +1,7 @@
 namespace Cavity.Security.Cryptography
 {
     using System;
+    using System.ComponentModel;
 
     using Xunit;
 
@@ -14,6 +15,7 @@ namespace Cavity.Security.Cryptography
                             .IsConcreteClass()
                             .IsSealed()
                             .NoDefaultConstructor()
+                            .IsDecoratedWith<ImmutableObjectAttribute>()
                             .Result);
         }
 

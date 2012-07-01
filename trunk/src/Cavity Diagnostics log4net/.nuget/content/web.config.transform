@@ -6,6 +6,12 @@
   </configSections>
   <log4net configSource="log4net.config" />
   <system.diagnostics>
+    <switches>
+      <!-- Off, Error, Warning, Info, Verbose -->
+      <!--
+      <add name="Default" value="Info" />
+      -->
+    </switches>
     <trace autoflush="true">
       <listeners>
         <add name="log4net"

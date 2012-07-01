@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Globalization
 {
     using System;
+    using System.ComponentModel;
     using System.IO;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
@@ -16,6 +17,7 @@
                             .IsValueType()
                             .Implements<IEquatable<Translation<int>>>()
                             .Serializable()
+                            .IsDecoratedWith<ImmutableObjectAttribute>()
                             .Result);
         }
 

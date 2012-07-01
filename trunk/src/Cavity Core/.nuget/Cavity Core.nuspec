@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Core</id>
-    <version>2.0.0.833</version>
+    <version>2.0.0.845</version>
     <title>Cavity Core</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -16,6 +16,11 @@
     <language />
     <tags />
     <releaseNotes />
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Numerics" targetFramework="net40" />
+      <frameworkAssembly assemblyName="System.Runtime.Serialization.Formatters.Soap" />
+      <frameworkAssembly assemblyName="System.Xml" />
+    </frameworkAssemblies>
   </metadata>
   <files>
     <file src="lib\net20\Cavity.Core.dll" target="lib\net20\Cavity.Core.dll" />

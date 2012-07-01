@@ -1,8 +1,10 @@
 namespace Cavity.Security.Cryptography
 {
     using System;
+    using System.ComponentModel;
     using System.Security.Cryptography;
 
+    [ImmutableObject(true)]
     public sealed class Salt
     {
         private readonly byte[] _bytes;

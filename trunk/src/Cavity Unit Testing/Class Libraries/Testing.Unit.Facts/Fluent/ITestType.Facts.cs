@@ -209,6 +209,24 @@
         }
 
         [Fact]
+        public void op_XmlSerializable_bool()
+        {
+            var expected = new Mock<ITestType>().Object;
+
+            var mock = new Mock<ITestType>();
+            mock
+                .Setup(x => x.XmlSerializable(true))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.XmlSerializable(true);
+
+            Assert.Same(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
         public void prop_Result_get()
         {
             const bool expected = true;

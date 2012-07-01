@@ -1,11 +1,13 @@
 ﻿namespace Cavity.Globalization
 {
     using System;
+    using System.ComponentModel;
     using System.Runtime.Serialization;
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
 
+    [ImmutableObject(true)]
     [Serializable]
     public struct Translation<T> : ISerializable, 
                                    IEquatable<Translation<T>>
@@ -31,9 +33,9 @@
             Value = (T)info.GetValue("_value", typeof(T));
         }
 
-        public Language Language { get; set; }
+        public Language Language { get; private set; }
 
-        public T Value { get; set; }
+        public T Value { get; private set; }
 
         public static bool operator ==(Translation<T> obj, 
                                        Translation<T> comparand)

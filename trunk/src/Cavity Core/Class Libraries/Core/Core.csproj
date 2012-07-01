@@ -7,11 +7,11 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Collections\TranslationDictionary`1.cs" />
     <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
     <Compile Include="Collections\Generic\Tree`1.cs" />
     <Compile Include="Collections\KeyStringDictionary.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.cs" />
+    <Compile Include="UserStoryAttribute.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\KeyStringPair.cs" />
     <Compile Include="Date.cs" />
@@ -20,13 +20,17 @@
     <Compile Include="Globalization\CultureInfo.ExtensionMethods.cs" />
     <Compile Include="Globalization\Language.cs" />
     <Compile Include="Globalization\Translation`1.cs" />
+    <Compile Include="Globalization\TranslationDictionary`1.cs" />
+    <Compile Include="Globalization\TranslationException.cs" />
     <Compile Include="IO\DirectoryInfo.ExtensionMethods.cs" />
     <Compile Include="IO\EncodedStringWriter.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
+    <Compile Include="IO\FileSpec.cs" />
     <Compile Include="IO\FileWriter.cs" />
     <Compile Include="IO\StreamWriterDictionary.cs" />
     <Compile Include="IO\TempDirectory.cs" />
     <Compile Include="IO\TempFile.cs" />
+    <Compile Include="IssueAttribute.cs" />
     <Compile Include="Net\EntityTag.cs" />
     <Compile Include="Net\Quality.cs" />
     <Compile Include="Net\Token.cs" />
@@ -77,7 +81,7 @@
     <Compile Include="Threading\ThreadedObject.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System"/>
+    <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml" />
   </ItemGroup>

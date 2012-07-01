@@ -3,6 +3,9 @@
     using System;
 #if !NET20 && !NET35
     using System.Collections.Generic;
+#endif
+    using System.ComponentModel;
+#if !NET20 && !NET35
     using System.Globalization;
     using System.Linq;
     using System.Numerics;
@@ -19,6 +22,7 @@
     /// <remarks>
     /// Wikipedia: <see href="http://wikipedia.org/wiki/Base_36">Base 36</see>.
     /// </remarks>
+    [ImmutableObject(true)]
     [Serializable]
     public struct AlphaDecimal : ISerializable, 
                                  IConvertible, 

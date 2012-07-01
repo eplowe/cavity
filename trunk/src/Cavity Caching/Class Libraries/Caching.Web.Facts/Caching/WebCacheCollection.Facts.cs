@@ -64,7 +64,7 @@
             }
         }
 
-        [Fact(Skip = "Doesn't play nice with command-line build.")]
+        [Comment("Doesn't play nice with command-line build.")]
         public void op_Add_string_object_TimeSpan()
         {
             var obj = new WebCacheCollection();
