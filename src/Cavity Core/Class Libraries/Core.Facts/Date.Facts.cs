@@ -1,6 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
+    using System.ComponentModel;
     using System.IO;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
@@ -17,6 +18,9 @@
                             .IsValueType()
                             .Implements<IEquatable<Date>>()
                             .Serializable()
+                            .IsDecoratedWith<ImmutableObjectAttribute>()
+                            .Implements<IComparable>()
+                            .Implements<IComparable<Date>>()
                             .Result);
         }
 
@@ -89,6 +93,15 @@
         }
 
         [Fact]
+        public void opGreater_AlphaDecimal_AlphaDecimal()
+        {
+            Date one = "1999-12-31";
+            Date two = "2000-01-01";
+
+            Assert.True(two > one);
+        }
+
+        [Fact]
         public void opImplicit_DateTime_Date()
         {
             var expected = DateTime.Today;
@@ -131,6 +144,62 @@
             var comparand = new Date();
 
             Assert.False(obj != comparand);
+        }
+
+        [Fact]
+        public void opLesser_AlphaDecimal_AlphaDecimal()
+        {
+            Date one = "1999-12-31";
+            Date two = "2000-01-01";
+
+            Assert.True(one < two);
+        }
+
+        [Fact]
+        public void op_Compare_Date_Date()
+        {
+            var expected = DateTime.Compare(new DateTime(1999, 12, 31), new DateTime(2000, 1, 1));
+            var actual = Date.Compare("1999-12-31", "2000-01-01");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_CompareTo_AlphaDecimal()
+        {
+            Date one = "1999-12-31";
+            Date two = "2000-01-01";
+
+            const long expected = -1;
+            var actual = one.CompareTo(two);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_CompareTo_object()
+        {
+            Date one = "1999-12-31";
+            object two = (Date)"2000-01-01";
+
+            const long expected = -1;
+            var actual = one.CompareTo(two);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_CompareTo_objectInvalidCast()
+        {
+            var obj = new Uri("http://example.com/");
+
+            Assert.Throws<InvalidCastException>(() => new Date().CompareTo(obj));
+        }
+
+        [Fact]
+        public void op_CompareTo_objectNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Date().CompareTo(null));
         }
 
         [Fact]

@@ -13,7 +13,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.814\lib\net40\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.2.0.0.845\lib\net40\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Diagnostics.Log4Net">
       <HintPath>..\..\packages\Cavity.Diagnostics.Log4Net.Console.1.1.0.804\lib\net40\Cavity.Diagnostics.Log4Net.dll</HintPath>
@@ -23,6 +23,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -30,12 +31,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\Cavity MSBuild\Class Libraries\MSBuild.Compliance\IO\FileInfo.ExtensionMethods.cs">
-      <Link>IO\FileInfo.ExtensionMethods.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Cavity MSBuild\Class Libraries\MSBuild.Compliance\IO\FileSpec.cs">
-      <Link>IO\FileSpec.cs</Link>
-    </Compile>
     <Compile Include="Arguments.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Program.cs" />
@@ -61,6 +56,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\x86.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Code.project" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

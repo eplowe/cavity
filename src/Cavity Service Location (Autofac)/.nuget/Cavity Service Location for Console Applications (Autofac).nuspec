@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.ServiceLocation.Autofac.Console</id>
-    <version>2.0.0.833</version>
+    <version>2.0.0.845</version>
     <title>Cavity Service Location for Console Applications (Autofac)</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,14 +17,11 @@
     <tags>IoC</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="Autofac" version="2.6.2.859" />
-      <dependency id="Cavity.Configuration" version="1.1.0.804" />
-      <dependency id="Cavity.ServiceLocation" version="1.1.0.804" />
+      <dependency id="Autofac" version="2.6.3.862" />
+      <dependency id="Cavity.Configuration" version="2.0.0.845" />
+      <dependency id="Cavity.ServiceLocation" version="2.0.0.845" />
       <dependency id="CommonServiceLocator" version="1.0" />
     </dependencies>
-    <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System.Configuration" targetFramework="net40" />
-    </frameworkAssemblies>
   </metadata>
   <files>
     <file src="content\app.config.transform" target="content\app.config.transform" />

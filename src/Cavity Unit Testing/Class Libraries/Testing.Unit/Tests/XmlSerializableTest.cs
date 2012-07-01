@@ -10,12 +10,15 @@
 
     public sealed class XmlSerializableTest : ITestExpectation
     {
-        public XmlSerializableTest(Type type)
+        public XmlSerializableTest(Type type, bool verifyDeserialization)
         {
             Type = type;
+            VerifyDeserialization = verifyDeserialization;
         }
 
         private Type Type { get; set; }
+
+        private bool VerifyDeserialization { get; set; }
 
         public bool Check()
         {
@@ -32,6 +35,11 @@
 
         private bool CheckDeserialization(string format)
         {
+            if (!VerifyDeserialization)
+            {
+                return true;
+            }
+
             var attribute = Attribute.GetCustomAttribute(Type, typeof(XmlRootAttribute)) as XmlRootAttribute;
 
             return CheckDeserialization(format, null == attribute ? Type.Name : attribute.ElementName);

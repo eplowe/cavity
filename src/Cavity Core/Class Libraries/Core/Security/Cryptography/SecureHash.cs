@@ -1,9 +1,11 @@
 namespace Cavity.Security.Cryptography
 {
     using System;
+    using System.ComponentModel;
     using System.Security.Cryptography;
     using System.Text;
 
+    [ImmutableObject(true)]
     public sealed class SecureHash
     {
         private readonly byte[] _bytes;

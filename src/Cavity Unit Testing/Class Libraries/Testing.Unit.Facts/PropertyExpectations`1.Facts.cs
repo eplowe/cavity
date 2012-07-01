@@ -1,8 +1,10 @@
 ﻿namespace Cavity
 {
     using System;
+    using System.ComponentModel;
     using System.Xml.Serialization;
 
+    using Cavity.Tests;
     using Cavity.Types;
 
     using Xunit;
@@ -129,6 +131,35 @@
         }
 
         [Fact]
+        public void prop_Result_whenIgnoreAttributeType()
+        {
+            Assert.True(new PropertyExpectations<IgnoreAttributeTest>(x => x.Value)
+                            .TypeIs<string>()
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+#if !NET20 && !NET35
+        [Fact]
+        public void prop_Result_whenDynamicProperty()
+        {
+            Assert.True(new PropertyExpectations<IgnoreAttributeTest>(x => x.Data)
+                            .TypeIs<dynamic>()
+                            .IsNotDecorated()
+                            .Result);
+        }
+#endif
+
+        [Fact]
+        public void prop_Result_whenIgnoreSomeAttributeType()
+        {
+            Assert.True(new PropertyExpectations<IgnoreAttributeTest>(x => x.Value)
+                            .TypeIs<string>()
+                            .IsDecoratedWith<DescriptionAttribute>()
+                            .Result);
+        }
+
+        [Fact]
         public void prop_Result_whenIsDecoratedWithXmlArray()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new PropertyExpectations<XmlDecorationClass1>("Array1")
@@ -182,11 +213,8 @@
                                                                  .IsDecoratedWith<XmlTextAttribute>());
         }
 
-        /// <summary>
-        /// Replicating issue #1.
-        /// </summary>
-        /// <see href="http://code.google.com/p/cavity/issues/detail?id=1" />
         [Fact]
+        [Issue("Multiple XmlArray() attributes not handled.", Reference = "http://code.google.com/p/cavity/issues/detail?id=1")]
         public void prop_Result_whenMultipleXmlArrayItems()
         {
             Assert.True(new PropertyExpectations<XmlDecorationClass2>("Array1")

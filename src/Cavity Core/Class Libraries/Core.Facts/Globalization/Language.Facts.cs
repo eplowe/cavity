@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Globalization
 {
     using System;
+    using System.ComponentModel;
     using System.Globalization;
     using System.IO;
     using System.Runtime.Serialization;
@@ -15,8 +16,9 @@
         {
             Assert.True(new TypeExpectations<Language>()
                             .IsValueType()
-                            .Implements<IEquatable<Language>>()
                             .Serializable()
+                            .IsDecoratedWith<ImmutableObjectAttribute>()
+                            .Implements<IEquatable<Language>>()
                             .Result);
         }
 

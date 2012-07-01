@@ -1,6 +1,8 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using System.ComponentModel;
+    using System.Globalization;
     using System.Runtime.Serialization;
 #if NET20 || NET35
     using System.Security.Permissions;
@@ -15,6 +17,7 @@
     /// <remarks>
     /// <see href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19">HTTP/1.1 ETag</see>
     /// </remarks>
+    [ImmutableObject(true)]
     [Serializable]
     public struct EntityTag : ISerializable, 
                               IComparable, 
@@ -95,11 +98,7 @@
 
         public static implicit operator EntityTag(MD5Hash value)
         {
-#if NET20
-            return new EntityTag(StringExtensionMethods.FormatWith("\"{0}\"", value));
-#else
-            return new EntityTag("\"{0}\"".FormatWith(value));
-#endif
+            return new EntityTag(string.Format(CultureInfo.InvariantCulture, "\"{0}\"", value));
         }
 
         public static bool operator !=(EntityTag obj, 

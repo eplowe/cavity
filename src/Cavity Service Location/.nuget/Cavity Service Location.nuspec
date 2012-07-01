@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.ServiceLocation</id>
-    <version>2.0.0.833</version>
+    <version>2.0.0.845</version>
     <title>Cavity Service Location</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -16,6 +16,9 @@
     <language />
     <tags>IoC</tags>
     <releaseNotes />
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Configuration" />
+    </frameworkAssemblies>
   </metadata>
   <files>
     <file src="lib\net20\Cavity.ServiceLocation.dll" target="lib\net20\Cavity.ServiceLocation.dll" />

@@ -1,6 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
+    using System.Diagnostics;
     using System.Xml.Serialization;
 
     using Cavity.Fluent;
@@ -157,6 +158,30 @@
         }
 
         [Fact]
+        public void op_XmlSerializable_boolFalse()
+        {
+            Assert.True(new TypeExpectations<XmlSerializationClass6>()
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .XmlSerializable(false)
+                            .Result);
+        }
+
+        [Fact]
+        public void op_XmlSerializable_boolTrue()
+        {
+            Assert.True(new TypeExpectations<XmlSerializationClass5>()
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .XmlSerializable(true)
+                            .Result);
+        }
+
+        [Fact]
         public void prop_Result_whenAbstractBaseClass()
         {
             Assert.True(new TypeExpectations<AbstractBaseClass1>()
@@ -174,6 +199,30 @@
                             .IsSealed()
                             .HasDefaultConstructor()
                             .IsDecoratedWith<Attribute1Attribute>()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_Result_whenDecoratedWithIgnoredAttributeTypes()
+        {
+            Assert.True(new TypeExpectations<IgnoreAttributeTest>()
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_Result_whenDecoratedWithSomeIgnoredAttributeTypes()
+        {
+            Assert.True(new TypeExpectations<IgnoreAttributeTest>()
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsDecoratedWith<DebuggerDisplayAttribute>()
                             .Result);
         }
 

@@ -1,6 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
+    using System.ComponentModel;
     using System.Globalization;
     using System.IO;
 #if !NET20 && !NET35
@@ -19,6 +20,7 @@
         {
             Assert.True(new TypeExpectations<AlphaDecimal>()
                             .IsValueType()
+                            .IsDecoratedWith<ImmutableObjectAttribute>()
                             .Implements<ISerializable>()
                             .Implements<IConvertible>()
                             .Implements<IComparable>()

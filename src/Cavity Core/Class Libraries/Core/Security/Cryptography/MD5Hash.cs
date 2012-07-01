@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Security.Cryptography
 {
     using System;
+    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Net;
@@ -17,6 +18,7 @@
     /// <remarks>
     /// <see href="http://wikipedia.org/wiki/MD5">MD5 Message-Digest Algorithm</see>
     /// </remarks>
+    [ImmutableObject(true)]
     [Serializable]
     public struct MD5Hash : ISerializable, 
                             IComparable, 

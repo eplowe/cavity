@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using System;
+    using System.ComponentModel;
 #if !NET20
     using System.Linq;
 #endif
@@ -11,6 +12,7 @@
 
     using Cavity.Properties;
 
+    [ImmutableObject(true)]
     [Serializable]
     public class Token : IComparable, 
                          IComparable<Token>, 

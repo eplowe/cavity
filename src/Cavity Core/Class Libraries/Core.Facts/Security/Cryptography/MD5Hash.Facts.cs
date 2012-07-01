@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Security.Cryptography
 {
     using System;
+    using System.ComponentModel;
     using System.IO;
     using System.Net.Sockets;
     using System.Runtime.Serialization;
@@ -15,7 +16,7 @@
 
         private const string _jigsawHash = "0TMnkhCZtrIjdTtJk6x3+Q==";
 
-        //// http://jigsaw.w3.org/HTTP/h-content-md5.html
+        [Comment("http://jigsaw.w3.org/HTTP/h-content-md5.html")]
         private const string _jigsawHtml = "<HTML>\n"
                                            + "<HEAD>\n  <!-- Created with 'cat' and 'vi'  -->\n"
                                            + "<TITLE>Retry-After header</TITLE>\n"
@@ -36,11 +37,12 @@
         {
             Assert.True(new TypeExpectations<MD5Hash>()
                             .IsValueType()
+                            .Serializable()
+                            .IsDecoratedWith<ImmutableObjectAttribute>()
                             .Implements<ISerializable>()
                             .Implements<IComparable>()
                             .Implements<IComparable<MD5Hash>>()
                             .Implements<IEquatable<MD5Hash>>()
-                            .Serializable()
                             .Result);
         }
 

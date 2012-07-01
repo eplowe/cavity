@@ -40,14 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.814\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.2.0.0.845\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Web.Mvc" />
-    <Reference Include="System.Web.WebPages" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
@@ -56,6 +52,10 @@
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Mvc" />
+    <Reference Include="System.Web.WebPages" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

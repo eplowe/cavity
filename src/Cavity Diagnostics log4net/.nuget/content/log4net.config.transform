@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <log4net>
+  <!--
   <appender name="trace" type="log4net.Appender.RollingFileAppender">
     <file value="trace.log" />
     <appendToFile value="true" />
@@ -9,8 +10,8 @@
       <conversionPattern value="%date [%thread] %-5level %logger :: %property{signature} &gt; %message%newline" />
     </layout>
   </appender>
-  <appender name="exception" type="log4net.Appender.RollingFileAppender">
-    <file value="exception.log" />
+  <appender name="warnings" type="log4net.Appender.RollingFileAppender">
+    <file value="warnings.log" />
     <appendToFile value="true" />
     <rollingStyle value="Date" />
     <datePattern value=" yyyy-MM-dd+HHmm'.log'" />
@@ -19,9 +20,21 @@
     </layout>
     <threshold value="WARN" />
   </appender>
+  <appender name="errors" type="log4net.Appender.RollingFileAppender">
+    <file value="errors.log" />
+    <appendToFile value="true" />
+    <rollingStyle value="Date" />
+    <datePattern value=" yyyy-MM-dd+HHmm'.log'" />
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%date [%thread] %-5level %logger :: %property{signature} &gt; %message%newline" />
+    </layout>
+    <threshold value="ERROR" />
+  </appender>
   <root>
     <appender-ref ref="trace" />
-    <appender-ref ref="exception" />
+    <appender-ref ref="warnings" />
+    <appender-ref ref="errors" />
     <level value="ALL" />
   </root>
+  -->
 </log4net>

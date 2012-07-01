@@ -8,9 +8,14 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\IssueAttribute.cs">
+      <Link>IssueAttribute.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\AttributeUsageTest.Facts.cs" />
+    <Compile Include="Tests\IgnoreAttributeTest.cs" />
     <Compile Include="Tests\XmlSerializableTest.Facts.cs" />
+    <Compile Include="Types\XmlSerializationClass6.cs" />
     <Compile Include="Types\IInterface2.cs" />
     <Compile Include="Types\XmlSerializationClass5.cs" />
     <Compile Include="Types\XmlSerializationClass3.cs" />

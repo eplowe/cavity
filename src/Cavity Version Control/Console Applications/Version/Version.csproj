@@ -29,7 +29,8 @@
     <None Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System"/>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
     <Reference Include="System.Core" />

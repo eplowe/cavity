@@ -310,7 +310,17 @@
         /// <returns>The current instance.</returns>
         ITestType ITestType.XmlSerializable()
         {
-            (this as ITestType).Add(new XmlSerializableTest(typeof(T)));
+            return (this as ITestType).XmlSerializable(true);
+        }
+
+        /// <summary>
+        /// Adds an expectation that the type implements <see cref="T:System.Xml.Serialization.IXmlSerializable"/>.
+        /// </summary>
+        /// <param name="verifyDeserialization">Indicates whether XML deserialization should be verified.</param>
+        /// <returns>The current instance.</returns>
+        ITestType ITestType.XmlSerializable(bool verifyDeserialization)
+        {
+            (this as ITestType).Add(new XmlSerializableTest(typeof(T), verifyDeserialization));
             (this as ITestType).Add(new ImplementationTest<T>(typeof(IXmlSerializable)));
             return this;
         }
