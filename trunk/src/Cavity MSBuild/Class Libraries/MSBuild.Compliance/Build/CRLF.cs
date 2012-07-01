@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Build
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
@@ -12,24 +13,24 @@
     public sealed class CRLF : Task
     {
         [Required]
-        public ITaskItem[] Files { get; set; }
+        public string Spec { get; set; }
 
         public override bool Execute()
         {
-            foreach (var item in Files)
-            {
-                var changed = false;
-                try
-                {
-                    changed = new FileInfo(item.ItemSpec).FixNewLine();
-                }
-                finally
-                {
-                    Log.LogMessage(MessageImportance.Normal, "[{0}] {1}".FormatWith(changed ? '¤' : ' ', item.ItemSpec));
-                }
-            }
+            Log.LogMessage(MessageImportance.Normal, Spec);
+            Execute(new FileSpec(Spec));
 
             return true;
+        }
+
+        private void Execute(IEnumerable<FileInfo> spec)
+        {
+            System.Threading.Tasks.Parallel.ForEach(spec, Process);
+        }
+
+        private void Process(FileInfo file)
+        {
+            Log.LogMessage(MessageImportance.Normal, "[{0}] {1}".FormatWith(file.FixNewLine() ? '¤' : ' ', file.FullName));
         }
     }
 }

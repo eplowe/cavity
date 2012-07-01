@@ -8,9 +8,11 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\IO\FileSpec.cs">
+      <Link>IO\FileSpec.cs</Link>
+    </Compile>
     <Compile Include="Build\CRLF.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
-    <Compile Include="IO\FileSpec.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
     <Compile Include="Properties\Resources.Designer.cs">
