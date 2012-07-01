@@ -9,7 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="IO\FileInfo.ExtensionMethods.Facts.cs" />
-    <Compile Include="IO\FileSpec.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
     <EmbeddedResource Include="Build\MSBuildCompliance.xml" />
