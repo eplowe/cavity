@@ -4,7 +4,7 @@
 
 *1.1.0.804* Cavity Test Controller Abstractions
 
-*1.1.0.804* Cavity log4net trace listener
+*1.1.0.804* Cavity Diagnostics log4net
 
 *1.1.0.822* Cavity.Caching.Abstractions
 
@@ -31,20 +31,20 @@
 
 *2.0.0.845* Cavity.Data.Csv
  * Cavity.Core
-*2.0.0.845* Cavity.Data.Csv.Xunit
+*2.0.0.847* Cavity.Data.Csv.Xunit
  * Cavity.Data.Csv
   (Cavity.Core)
 
-*2.0.0.845* Cavity.Data.Html
+*2.0.0.847* Cavity.Data.Html
  * Cavity.Core
-*2.0.0.845* Cavity.Data.Html.Xunit
+*2.0.0.847* Cavity.Data.Html.Xunit
  * Cavity.Data.Html
   (Cavity.Core)
 
-*2.0.0.845* Cavity.Data.Json.Xunit
+*2.0.0.847* Cavity.Data.Json.Xunit
  * Cavity.Core
 
-*2.0.0.845* Cavity.Data.Xml.Xunit
+*2.0.0.847* Cavity.Data.Xml.Xunit
  * Cavity.Core
 
 *2.0.0.845* Cavity Repository
@@ -117,7 +117,7 @@
 *2.0.0.845* Cavity HTTP Testing
  * Cavity.Http.Generalizations
    * Cavity.Core
- 
+
 *2.0.0.845* Cavity Task Management Service
  * Cavity.Diagnostics.Log4Net.Console
  * Cavity.ServiceLocation.CastleWindsor.Console
@@ -126,6 +126,9 @@
 *2.0.0.845* Cavity Utilities
 
 *2.0.0.845* Cavity Visual Studio Templates
+
+*2.0.0.847* Cavity MSBuild
+ * Cavity.Core
 
 *???* Cavity Examples Website
  * Cavity.Diagnostics.Log4Net.Console

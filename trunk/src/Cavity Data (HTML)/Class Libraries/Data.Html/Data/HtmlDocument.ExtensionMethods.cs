@@ -89,28 +89,6 @@
             data.Tables.Add(result);
         }
 
-        private static void AddNormalDataColumns(DataTable obj, 
-                                                 IEnumerable<HtmlNode> rows)
-        {
-#if NET20
-            var columns = 0;
-            foreach (var row in rows)
-            {
-                columns = Math.Max(columns, IEnumerableExtensionMethods.Count(row.Descendants("td")));
-            }
-#else
-            var columns = rows
-                .Select(row => row.Descendants("td").Count())
-                .Concat(new[] { 0 })
-                .Max();
-#endif
-
-            for (var i = 0; i < columns; i++)
-            {
-                obj.Columns.Add(XmlConvert.ToString(i), typeof(HtmlNode));
-            }
-        }
-
         private static void AddNormalDataRows(DataTable obj, 
                                               IEnumerable<HtmlNode> rows)
         {
@@ -249,68 +227,20 @@
                 return;
             }
 
-            AddNormalDataColumns(obj, rows);
-#if NET20
-            FillNormalDataColumns(obj, IEnumerableExtensionMethods.FirstOrDefault(table.Descendants("thead")));
-#else
-            FillNormalDataColumns(obj, table.Descendants("thead").FirstOrDefault());
-#endif
-            AddNormalDataRows(obj, rows);
-        }
-
-        private static void FillNormalDataColumns(DataTable obj, 
-                                                  HtmlNode head)
-        {
-            if (null == head)
+            var columns = Columns(table);
+            for (var i = 0; i < columns.Count; i++)
             {
-                return;
-            }
-
-#if NET20
-            var rows = IEnumerableExtensionMethods.ToList(head.Descendants("tr"));
-#else
-            var rows = head.Descendants("tr").ToList();
-#endif
-            if (0 == rows.Count)
-            {
-                return;
-            }
-
-#if NET20
-            var headings = IEnumerableExtensionMethods.ToList(IEnumerableExtensionMethods.Last(rows).Descendants("th"));
-#else
-            var headings = rows.Last().Descendants("th").ToList();
-#endif
-            if (0 == headings.Count)
-            {
-                return;
-            }
-
-            var i = 0;
-            foreach (var heading in headings)
-            {
-                var attribute = heading.Attributes["colspan"];
-                var span = null == attribute ? 1 : XmlConvert.ToInt32(attribute.Value);
 #if NET20 || NET35
-                var text = HttpUtility.HtmlDecode(heading.InnerText);
+                var name = string.IsNullOrEmpty(columns[i])
 #else
-                var text = WebUtility.HtmlDecode(heading.InnerText);
+                var name = string.IsNullOrWhiteSpace(columns[i])
 #endif
-                if (1 == span)
-                {
-                    obj.Columns[i++].ColumnName = text;
-                    continue;
-                }
-
-                for (var s = 0; s < span; s++)
-                {
-#if NET20
-                    obj.Columns[i++].ColumnName = StringExtensionMethods.FormatWith("{0} ({1})", text, s + 1);
-#else
-                    obj.Columns[i++].ColumnName = "{0} ({1})".FormatWith(text, s + 1);
-#endif
-                }
+                    ? XmlConvert.ToString(i)
+                    : columns[i];
+                obj.Columns.Add(name, typeof(HtmlNode));
             }
+
+            AddNormalDataRows(obj, rows);
         }
 
         private static DataRow FillNormalDataRow(DataRow obj, 
@@ -366,6 +296,154 @@
             return 0 != IEnumerableExtensionMethods.Count(row.Descendants("th"));
 #else
             return row.Descendants("th").Any();
+#endif
+        }
+
+        private static IList<string> Columns(HtmlNode table)
+        {
+#if NET20
+            var head = IEnumerableExtensionMethods.FirstOrDefault(table.Descendants("thead"));
+#else
+            var head = table.Descendants("thead").FirstOrDefault();
+#endif
+
+            return null == head ? ColumnsRow(table) : ColumnsHead(head);
+        }
+
+        private static IList<string> ColumnsHead(HtmlNode head)
+        {
+#if NET20
+            var rows = IEnumerableExtensionMethods.ToList(head.Descendants("tr"));
+#else
+            var rows = head.Descendants("tr").ToList();
+#endif
+            if (0 == rows.Count)
+            {
+                return new List<string>();
+            }
+
+            var matrix = new DataTable
+                             {
+                                 Locale = CultureInfo.InvariantCulture
+                             };
+            foreach (var cell in rows[0].Descendants("th"))
+            {
+                var colspan = cell.Attributes["colspan"];
+                if (null == colspan)
+                {
+                    matrix.Columns.Add();
+                    continue;
+                }
+
+                for (var i = 0; i < XmlConvert.ToInt32(colspan.Value); i++)
+                {
+                    matrix.Columns.Add();
+                }
+            }
+
+#if NET20
+            var carry = new List<int>();
+            for (var i = 0; i < matrix.Columns.Count; i++)
+            {
+                carry.Add(0);
+            }
+#else
+            var carry = (from object t in matrix.Columns
+                         select 0).ToList();
+#endif
+
+            var y = 0;
+            foreach (var row in rows)
+            {
+                var x = 0;
+                matrix.Rows.Add(matrix.NewRow());
+                foreach (var cell in row.Descendants("th"))
+                {
+                    while (0 != carry[x])
+                    {
+                        matrix.Rows[y][x] = matrix.Rows[y - 1][x];
+                        carry[x]--;
+                        x++;
+                    }
+
+                    var rowspan = cell.Attributes["rowspan"];
+                    if (null != rowspan)
+                    {
+                        carry[x] = XmlConvert.ToInt32(rowspan.Value);
+                    }
+
+                    var colspan = cell.Attributes["colspan"];
+                    var name = ColumnName(cell);
+                    var index = 1;
+                    for (var i = 0; i < (null == colspan ? 1 : XmlConvert.ToInt32(colspan.Value)); i++)
+                    {
+                        matrix.Rows[y][x++] = string.Format(CultureInfo.InvariantCulture, null == colspan ? "{0}" : "{0} ({1})", name, index++);
+                    }
+                }
+
+                y++;
+            }
+
+            var last = matrix.Rows[matrix.Rows.Count - 1];
+#if NET20
+            var list = new List<string>();
+            foreach (DataColumn column in matrix.Columns)
+            {
+                list.Add(last[column].ToString());
+            }
+            
+            return list;
+#else
+            return (from DataColumn column in matrix.Columns
+                    select last[column].ToString()).ToList();
+#endif
+        }
+
+        private static IList<string> ColumnsRow(HtmlNode table)
+        {
+            var list = new List<string>();
+#if NET20
+            var row = IEnumerableExtensionMethods.FirstOrDefault(table.Descendants("tr"));
+#else
+            var row = table.Descendants("tr").FirstOrDefault();
+#endif
+            if (null == row)
+            {
+                return list;
+            }
+
+#if NET20
+            var headers = IEnumerableExtensionMethods.ToList(row.Descendants("th"));
+#else
+            var headers = row.Descendants("th").ToList();
+#endif
+            if (0 == headers.Count)
+            {
+#if NET20
+                headers = IEnumerableExtensionMethods.ToList(row.Descendants("td"));
+#else
+                headers = row.Descendants("td").ToList();
+#endif
+            }
+
+#if NET20
+            foreach (var header in headers)
+            {
+                list.Add(ColumnName(header));
+            }
+#else
+            list.AddRange(headers.Select(ColumnName));
+#endif
+            return list;
+        }
+
+        private static string ColumnName(HtmlNode header)
+        {
+            var id = header.Attributes["id"];
+#if NET20 || NET35
+            return null == id ? HttpUtility.HtmlDecode(header.InnerText) : id.Value;
+#else
+            return null == id ? WebUtility.HtmlDecode(header.InnerText) : id.Value;
 #endif
         }
     }
