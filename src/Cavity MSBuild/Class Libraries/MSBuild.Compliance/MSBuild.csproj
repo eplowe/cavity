@@ -8,11 +8,7 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\IO\FileSpec.cs">
-      <Link>IO\FileSpec.cs</Link>
-    </Compile>
     <Compile Include="Build\CRLF.cs" />
-    <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -31,11 +27,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.814\lib\net40\Cavity.Core.dll</HintPath>
+    <Reference Include="Cavity.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Cavity.Core.2.0.0.845\lib\net40\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="System" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' == '2.0' ">
