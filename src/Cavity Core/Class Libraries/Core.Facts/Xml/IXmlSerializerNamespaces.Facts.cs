@@ -13,6 +13,7 @@ namespace Cavity.Xml
         {
             Assert.True(new TypeExpectations<IXmlSerializerNamespaces>()
                             .IsInterface()
+                            .IsNotDecorated()
                             .Result);
         }
 

@@ -7,7 +7,6 @@
     using HtmlAgilityPack;
 
     using Xunit;
-    using Xunit.Extensions;
 
     public sealed class HtmlDocumentExtensionMethodsFacts
     {

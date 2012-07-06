@@ -13,6 +13,7 @@
         {
             Assert.True(new TypeExpectations<IManageTasks>()
                             .IsInterface()
+                            .IsNotDecorated()
                             .Result);
         }
 

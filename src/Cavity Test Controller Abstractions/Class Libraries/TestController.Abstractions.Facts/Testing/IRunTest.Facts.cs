@@ -1,5 +1,6 @@
 ﻿namespace Cavity.Testing
 {
+    using System.ComponentModel.Composition;
     using System.IO;
 
     using Cavity.IO;
@@ -15,6 +16,7 @@
         {
             Assert.True(new TypeExpectations<IRunTest>()
                             .IsInterface()
+                            .IsDecoratedWith<InheritedExportAttribute>()
                             .Result);
         }
 

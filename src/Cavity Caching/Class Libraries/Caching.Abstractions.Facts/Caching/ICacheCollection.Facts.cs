@@ -17,6 +17,7 @@
         {
             Assert.True(new TypeExpectations<ICacheCollection>()
                             .IsInterface()
+                            .IsNotDecorated()
                             .Implements<IEnumerable<object>>()
                             .Result);
         }

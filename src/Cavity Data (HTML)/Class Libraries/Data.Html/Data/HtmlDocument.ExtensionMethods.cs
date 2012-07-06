@@ -17,6 +17,7 @@
 #if NET20
     using Cavity.Collections;
 #endif
+    using Cavity.Collections.Generic;
 
     using HtmlAgilityPack;
 
@@ -322,46 +323,38 @@
                 return new List<string>();
             }
 
-            var matrix = new DataTable
-                             {
-                                 Locale = CultureInfo.InvariantCulture
-                             };
+            var matrix = new Matrix<string>();
             foreach (var cell in rows[0].Descendants("th"))
             {
                 var colspan = cell.Attributes["colspan"];
                 if (null == colspan)
                 {
-                    matrix.Columns.Add();
+                    matrix.Width++;
                     continue;
                 }
 
                 for (var i = 0; i < XmlConvert.ToInt32(colspan.Value); i++)
                 {
-                    matrix.Columns.Add();
+                    matrix.Width++;
                 }
             }
 
-#if NET20
             var carry = new List<int>();
-            for (var i = 0; i < matrix.Columns.Count; i++)
+            for (var i = 0; i < matrix.Width; i++)
             {
                 carry.Add(0);
             }
-#else
-            var carry = (from object t in matrix.Columns
-                         select 0).ToList();
-#endif
 
             var y = 0;
             foreach (var row in rows)
             {
                 var x = 0;
-                matrix.Rows.Add(matrix.NewRow());
+                matrix.Height++;
                 foreach (var cell in row.Descendants("th"))
                 {
                     while (0 != carry[x])
                     {
-                        matrix.Rows[y][x] = matrix.Rows[y - 1][x];
+                        matrix[x, y] = matrix[x, y - 1];
                         carry[x]--;
                         x++;
                     }
@@ -377,25 +370,23 @@
                     var index = 1;
                     for (var i = 0; i < (null == colspan ? 1 : XmlConvert.ToInt32(colspan.Value)); i++)
                     {
-                        matrix.Rows[y][x++] = string.Format(CultureInfo.InvariantCulture, null == colspan ? "{0}" : "{0} ({1})", name, index++);
+                        matrix[x++, y] = string.Format(CultureInfo.InvariantCulture, null == colspan ? "{0}" : "{0} ({1})", name, index++);
                     }
                 }
 
                 y++;
             }
 
-            var last = matrix.Rows[matrix.Rows.Count - 1];
 #if NET20
             var list = new List<string>();
-            foreach (DataColumn column in matrix.Columns)
+            foreach (var element in matrix.Row(matrix.Height - 1))
             {
-                list.Add(last[column].ToString());
+                list.Add(element);
             }
-            
+
             return list;
 #else
-            return (from DataColumn column in matrix.Columns
-                    select last[column].ToString()).ToList();
+            return matrix.Row(matrix.Height - 1).ToList();
 #endif
         }
 

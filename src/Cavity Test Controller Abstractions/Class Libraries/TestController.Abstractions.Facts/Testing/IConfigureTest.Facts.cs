@@ -13,6 +13,7 @@
         {
             Assert.True(new TypeExpectations<IConfigureTest>()
                             .IsInterface()
+                            .IsNotDecorated()
                             .Result);
         }
 

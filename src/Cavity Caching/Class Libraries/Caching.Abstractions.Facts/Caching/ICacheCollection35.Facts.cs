@@ -16,6 +16,7 @@
         {
             Assert.True(new TypeExpectations<ICacheCollection35>()
                             .IsInterface()
+                            .IsNotDecorated()
                             .Implements<ICacheCollection>()
                             .Result);
         }
