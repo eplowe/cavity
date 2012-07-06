@@ -7,6 +7,7 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collections\Generic\Matrix`1.cs" />
     <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
     <Compile Include="Collections\Generic\Tree`1.cs" />
     <Compile Include="Collections\KeyStringDictionary.cs" />
@@ -82,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml" />
   </ItemGroup>

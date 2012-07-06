@@ -4,7 +4,6 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.Specialized;
-    using System.Xml.Serialization;
 
     using Cavity.Xml.XPath;
 

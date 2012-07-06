@@ -11,6 +11,7 @@
         {
             Assert.True(new TypeExpectations<ISetLocatorProvider>()
                             .IsInterface()
+                            .IsNotDecorated()
                             .Result);
         }
 

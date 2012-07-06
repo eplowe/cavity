@@ -28,6 +28,7 @@
     <Compile Include="AbsoluteUri.Facts.cs" />
     <Compile Include="AlphaDecimal.Facts.cs" />
     <Compile Include="Char.ExtensionMethods.Facts.cs" />
+    <Compile Include="Collections\Generic\Matrix`1.Facts.cs" />
     <Compile Include="Collections\Generic\MultitonCollection`1.Facts.cs" />
     <Compile Include="CommentAttribute.Facts.cs" />
     <Compile Include="ComparableObject.Derived.cs" />
@@ -90,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml" />
     <Reference Include="xunit, Version=1.9.1.1600, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
@@ -103,7 +105,7 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Cavity.Testing.Unit">
-      <HintPath>..\..\packages\Cavity.Testing.Unit.2.0.0.845\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Testing.Unit.2.0.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\packages\Moq.4.0.10827\lib\$(TargetFrameworkVersionName)\Moq.dll</HintPath>

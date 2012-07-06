@@ -19,6 +19,7 @@
             "CompilerGeneratedAttribute",
             "DebuggerDisplayAttribute",
             "DebuggerStepThroughAttribute",
+            "DefaultMemberAttribute",
             "DescriptionAttribute",
             "DynamicAttribute",
             "EditorAttribute",

@@ -12,12 +12,13 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<WebCacheCollection>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .Implements<ICacheCollection35>()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<ICacheCollection35>()
+                            .Result);
         }
 
         [Fact]

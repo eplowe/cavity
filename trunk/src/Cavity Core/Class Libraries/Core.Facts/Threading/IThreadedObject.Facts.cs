@@ -15,6 +15,7 @@
             Assert.True(new TypeExpectations<IThreadedObject>()
                             .IsInterface()
                             .Implements<IDisposable>()
+                            .IsNotDecorated()
                             .Result);
         }
 

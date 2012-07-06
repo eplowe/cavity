@@ -16,6 +16,7 @@
                             .IsConcreteClass()
                             .IsUnsealed()
                             .HasDefaultConstructor()
+                            .IsNotDecorated()
                             .Implements<IEnumerable>()
                             .Result);
         }
