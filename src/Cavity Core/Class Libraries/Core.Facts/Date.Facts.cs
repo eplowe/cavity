@@ -93,7 +93,7 @@
         }
 
         [Fact]
-        public void opGreater_AlphaDecimal_AlphaDecimal()
+        public void opGreater_Date_Date()
         {
             Date one = "1999-12-31";
             Date two = "2000-01-01";
@@ -147,7 +147,7 @@
         }
 
         [Fact]
-        public void opLesser_AlphaDecimal_AlphaDecimal()
+        public void opLesser_Date_Date()
         {
             Date one = "1999-12-31";
             Date two = "2000-01-01";
@@ -165,7 +165,7 @@
         }
 
         [Fact]
-        public void op_CompareTo_AlphaDecimal()
+        public void op_CompareTo_Date()
         {
             Date one = "1999-12-31";
             Date two = "2000-01-01";
