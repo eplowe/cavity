@@ -8,10 +8,12 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Data\JsonStreamReader.cs" />
-    <Compile Include="Dynamic\DynamicJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Compile Include="Data\JsonStreamReader.cs" />
+    <Compile Include="Dynamic\DynamicJson.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
