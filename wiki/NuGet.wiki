@@ -46,7 +46,7 @@
 *2.0.0.848* Cavity Configuration
  * Cavity.Core
 
-*2.0.0.848* Cavity Commands
+*2.0.0.851* Cavity Commands
  * Cavity.Core
 
 *2.0.0.848* Cavity.Data.Ace
@@ -100,15 +100,15 @@
  * Cavity.Repository
    * Cavity.Core
 
-*2.0.0.848* Cavity Commands (File System)
- * Cavity.Commands
-   * Cavity.Core
-
 *2.0.0.848* Cavity HTTP Testing
  * Cavity.Http.Generalizations
    * Cavity.Core
 
-*2.0.0.848* Cavity Commands Transactions
+*2.0.0.851* Cavity Commands (File System)
+ * Cavity.Commands
+   * Cavity.Core
+
+*2.0.0.851* Cavity Commands Transactions
  * Cavity.Commands
    * Cavity.Core
  + Cavity Commands (File System)
