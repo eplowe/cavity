@@ -58,6 +58,8 @@
                         _reader.Read();
                         NodeType = JsonNodeType.EndObject;
                         IsEmptyObject = false;
+                        Name = null;
+                        Value = null;
                         break;
                     case '[':
                         _reader.Read();
@@ -77,7 +79,7 @@
                         Value = null;
                         break;
                     case '"':
-                        if (null != Name)
+                        if (NodeType != JsonNodeType.Object && null != Name)
                         {
                             break;
                         }
@@ -107,7 +109,7 @@
                         continue;
                 }
 
-                if (0 != Nesting.Count)
+                if (!NodeType.In(JsonNodeType.Object, JsonNodeType.EndObject) && 0 != Nesting.Count)
                 {
                     Name = Nesting.Peek();
                     Value = ReadValue();
