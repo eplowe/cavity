@@ -65,7 +65,55 @@
 
                         Assert.False(reader.Read());
                         Assert.Equal(JsonNodeType.EndArray, reader.NodeType);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{\"Values\" : []}")]
+        public void op_Read_whenEmptyArray(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonReader(stream))
+                    {
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Object, reader.NodeType);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Name, reader.NodeType);
+                        Assert.Equal("Values", reader.Name);
+                        Assert.Null(reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Array, reader.NodeType);
+                        Assert.Equal("Values", reader.Name);
+                        Assert.Null(reader.Value);
                         Assert.True(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.EndArray, reader.NodeType);
+                        Assert.Equal("Values", reader.Name);
+                        Assert.Null(reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.False(reader.Read());
+                        Assert.Equal(JsonNodeType.EndObject, reader.NodeType);
+                        Assert.False(reader.IsEmptyArray);
                         Assert.False(reader.IsEmptyObject);
                     }
                 }
@@ -114,6 +162,89 @@
                         Assert.Equal(JsonNodeType.FalseValue, reader.NodeType);
                         Assert.Equal("Name", reader.Name);
                         Assert.Equal("false", reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.False(reader.Read());
+                        Assert.Equal(JsonNodeType.EndObject, reader.NodeType);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{\"Values\" : [\"abc\", 123, null, true, false]}")]
+        public void op_Read_whenMixedArray(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonReader(stream))
+                    {
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Object, reader.NodeType);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Name, reader.NodeType);
+                        Assert.Equal("Values", reader.Name);
+                        Assert.Null(reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Array, reader.NodeType);
+                        Assert.Equal("Values", reader.Name);
+                        Assert.Null(reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.StringValue, reader.NodeType);
+                        Assert.Equal("Values", reader.Name);
+                        Assert.Equal("abc", reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.NumberValue, reader.NodeType);
+                        Assert.Equal("Values", reader.Name);
+                        Assert.Equal("123", reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.NullValue, reader.NodeType);
+                        Assert.Equal("Values", reader.Name);
+                        Assert.Null(reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.TrueValue, reader.NodeType);
+                        Assert.Equal("Values", reader.Name);
+                        Assert.Equal("true", reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.FalseValue, reader.NodeType);
+                        Assert.Equal("Values", reader.Name);
+                        Assert.Equal("false", reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.EndArray, reader.NodeType);
+                        Assert.Equal("Values", reader.Name);
+                        Assert.Null(reader.Value);
                         Assert.False(reader.IsEmptyArray);
                         Assert.False(reader.IsEmptyObject);
 
@@ -335,151 +466,6 @@
         }
 
         [Theory]
-        [InlineData("a,b,c", "{\"Letters\" : [\"a\",\"b\",\"c\"]}")]
-        [InlineData("a,b,c", "{\"Letters\" : [ \"a\",\"b\",\"c\" ]}")]
-        [InlineData("a,b,c", "{\"Letters\" : [ \"a\", \"b\", \"c\" ]}")]
-        [InlineData("a,b,c", "{\"Letters\" : [ \"a\" , \"b\" , \"c\" ]}")]
-        public void op_Read_whenStringArray(string values,
-                                            string json)
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Write(json);
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new JsonReader(stream))
-                    {
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.Object, reader.NodeType);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.Name, reader.NodeType);
-                        Assert.Equal("Letters", reader.Name);
-                        Assert.Null(reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.Array, reader.NodeType);
-                        Assert.Equal("Letters", reader.Name);
-                        Assert.Null(reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        foreach (var value in values.Split(','))
-                        {
-                            Assert.True(reader.Read());
-                            Assert.Equal(JsonNodeType.StringValue, reader.NodeType);
-                            Assert.Equal("Letters", reader.Name);
-                            Assert.Equal(value, reader.Value);
-                            Assert.False(reader.IsEmptyArray);
-                            Assert.False(reader.IsEmptyObject);
-                        }
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.EndArray, reader.NodeType);
-                        Assert.Equal("Letters", reader.Name);
-                        Assert.Null(reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.False(reader.Read());
-                        Assert.Equal(JsonNodeType.EndObject, reader.NodeType);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-                    }
-                }
-            }
-        }
-
-        [Theory]
-        [InlineData("{\"Values\" : [\"abc\", 123, null, true, false]}")]
-        public void op_Read_whenMixedArray(string json)
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Write(json);
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new JsonReader(stream))
-                    {
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.Object, reader.NodeType);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.Name, reader.NodeType);
-                        Assert.Equal("Values", reader.Name);
-                        Assert.Null(reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.Array, reader.NodeType);
-                        Assert.Equal("Values", reader.Name);
-                        Assert.Null(reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.StringValue, reader.NodeType);
-                        Assert.Equal("Values", reader.Name);
-                        Assert.Equal("abc", reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.NumberValue, reader.NodeType);
-                        Assert.Equal("Values", reader.Name);
-                        Assert.Equal("123", reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.NullValue, reader.NodeType);
-                        Assert.Equal("Values", reader.Name);
-                        Assert.Null(reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.TrueValue, reader.NodeType);
-                        Assert.Equal("Values", reader.Name);
-                        Assert.Equal("true", reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.FalseValue, reader.NodeType);
-                        Assert.Equal("Values", reader.Name);
-                        Assert.Equal("false", reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.EndArray, reader.NodeType);
-                        Assert.Equal("Values", reader.Name);
-                        Assert.Null(reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.False(reader.Read());
-                        Assert.Equal(JsonNodeType.EndObject, reader.NodeType);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-                    }
-                }
-            }
-        }
-
-        [Theory]
         [InlineData("123", "{\"Name\" : 123}")]
         [InlineData("1.23", "{\"Name\" : 1.23}")]
         [InlineData("1e3", "{\"Name\" : 1e3}")]
@@ -556,7 +542,69 @@
                         Assert.False(reader.Read());
                         Assert.Equal(JsonNodeType.EndObject, reader.NodeType);
                         Assert.False(reader.IsEmptyArray);
-                        Assert.True(reader.IsEmptyObject);
+                        Assert.False(reader.IsEmptyObject);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("a,b,c", "{\"Letters\" : [\"a\",\"b\",\"c\"]}")]
+        [InlineData("a,b,c", "{\"Letters\" : [ \"a\",\"b\",\"c\" ]}")]
+        [InlineData("a,b,c", "{\"Letters\" : [ \"a\", \"b\", \"c\" ]}")]
+        [InlineData("a,b,c", "{\"Letters\" : [ \"a\" , \"b\" , \"c\" ]}")]
+        public void op_Read_whenStringArray(string values, 
+                                            string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonReader(stream))
+                    {
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Object, reader.NodeType);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Name, reader.NodeType);
+                        Assert.Equal("Letters", reader.Name);
+                        Assert.Null(reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Array, reader.NodeType);
+                        Assert.Equal("Letters", reader.Name);
+                        Assert.Null(reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        foreach (var value in values.Split(','))
+                        {
+                            Assert.True(reader.Read());
+                            Assert.Equal(JsonNodeType.StringValue, reader.NodeType);
+                            Assert.Equal("Letters", reader.Name);
+                            Assert.Equal(value, reader.Value);
+                            Assert.False(reader.IsEmptyArray);
+                            Assert.False(reader.IsEmptyObject);
+                        }
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.EndArray, reader.NodeType);
+                        Assert.Equal("Letters", reader.Name);
+                        Assert.Null(reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.False(reader.Read());
+                        Assert.Equal(JsonNodeType.EndObject, reader.NodeType);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
                     }
                 }
             }
