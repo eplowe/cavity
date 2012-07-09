@@ -42,73 +42,58 @@
             while (!_reader.EndOfStream)
             {
                 var p = (char)_reader.Peek();
-                if (p.In(' ', '\r', '\n'))
+                switch (p)
                 {
-                    _reader.Read();
-                    continue;
-                }
-
-                if (',' == p)
-                {
-                    NodeType = JsonNodeType.None;
-                    Name = null;
-                    Value = null;
-                    _reader.Read();
-                    continue;
-                }
-
-                if ('{' == p)
-                {
-                    NodeType = JsonNodeType.Object;
-                    _reader.Read();
-                    IsEmptyObject = '}' == PeekNext();
-                }
-
-                if ('[' == p)
-                {
-                    NodeType = JsonNodeType.Array;
-                    _reader.Read();
-                    if (']' == PeekNext())
-                    {
-                        IsEmptyArray = true;
-                    }
-
-                    Nesting.Push(Name);
-                    return true;
-                }
-
-                if ('}' == p)
-                {
-                    NodeType = JsonNodeType.EndObject;
-                    _reader.Read();
-                }
-
-                if (']' == p)
-                {
-                    NodeType = JsonNodeType.EndArray;
-                    _reader.Read();
-                    Nesting.Pop();
-                    Value = null;
-                }
-
-                if ('"' == p)
-                {
-                    NodeType = JsonNodeType.Name;
-                    _reader.Read();
-                    Name = ReadQuoted();
-                    return true;
-                }
-
-                if (':' == p)
-                {
-                    _reader.Read();
-                    if ('[' == PeekNext())
-                    {
+                    case ' ':
+                    case '\r':
+                    case '\n':
+                        _reader.Read();
                         continue;
-                    }
+                    case '{':
+                        _reader.Read();
+                        NodeType = JsonNodeType.Object;
+                        IsEmptyObject = '}' == PeekNext();
+                        break;
+                    case '}':
+                        _reader.Read();
+                        NodeType = JsonNodeType.EndObject;
+                        break;
+                    case '[':
+                        _reader.Read();
+                        NodeType = JsonNodeType.Array;
+                        if (']' == PeekNext())
+                        {
+                            IsEmptyArray = true;
+                        }
 
-                    Value = ReadValue();
-                    return true;
+                        Nesting.Push(Name);
+                        return true;
+                    case ']':
+                        _reader.Read();
+                        NodeType = JsonNodeType.EndArray;
+                        Nesting.Pop();
+                        Value = null;
+                        break;
+                    case '"':
+                        _reader.Read();
+                        NodeType = JsonNodeType.Name;
+                        Name = ReadQuoted();
+                        return true;
+                    case ':':
+                        _reader.Read();
+                        if ('[' == PeekNext())
+                        {
+                            continue;
+                        }
+
+                        Value = ReadValue();
+                        return true;
+                    case ',':
+                        _reader.Read();
+                        NodeType = JsonNodeType.None;
+                        Name = null;
+                        Value = null;
+                        continue;
                 }
 
                 if (0 != Nesting.Count)
