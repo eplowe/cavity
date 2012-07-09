@@ -273,60 +273,12 @@
         }
 
         [Theory]
-        [InlineData("123", "{\"Name\" : 123}")]
-        [InlineData("1.23", "{\"Name\" : 1.23}")]
-        [InlineData("1e3", "{\"Name\" : 1e3}")]
-        [InlineData("1E3", "{\"Name\" : 1E3}")]
-        [InlineData("1e+3", "{\"Name\" : 1e+3}")]
-        [InlineData("1E+3", "{\"Name\" : 1E+3}")]
-        [InlineData("1e-3", "{\"Name\" : 1e-3}")]
-        [InlineData("1E-3", "{\"Name\" : 1E-3}")]
-        public void op_Read_whenNumberValue(string value, 
-                                            string json)
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Write(json);
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new JsonReader(stream))
-                    {
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.Object, reader.NodeType);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.Name, reader.NodeType);
-                        Assert.Equal("Name", reader.Name);
-                        Assert.Null(reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.NumberValue, reader.NodeType);
-                        Assert.Equal("Name", reader.Name);
-                        Assert.Equal(value, reader.Value);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-
-                        Assert.False(reader.Read());
-                        Assert.Equal(JsonNodeType.EndObject, reader.NodeType);
-                        Assert.False(reader.IsEmptyArray);
-                        Assert.False(reader.IsEmptyObject);
-                    }
-                }
-            }
-        }
-
-        [Theory]
         [InlineData("123,456,789", "{\"Numbers\" : [123,456,789]}")]
         [InlineData("123,456,789", "{\"Numbers\" : [ 123,456,789 ]}")]
         [InlineData("123,456,789", "{\"Numbers\" : [ 123, 456, 789 ]}")]
         [InlineData("123,456,789", "{\"Numbers\" : [ 123 , 456 , 789 ]}")]
-        public void op_Read_whenNumberArray(string values, string json)
+        public void op_Read_whenNumberArray(string values, 
+                                            string json)
         {
             using (var stream = new MemoryStream())
             {
@@ -370,6 +322,55 @@
                         Assert.Equal(JsonNodeType.EndArray, reader.NodeType);
                         Assert.Equal("Numbers", reader.Name);
                         Assert.Null(reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.False(reader.Read());
+                        Assert.Equal(JsonNodeType.EndObject, reader.NodeType);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("123", "{\"Name\" : 123}")]
+        [InlineData("1.23", "{\"Name\" : 1.23}")]
+        [InlineData("1e3", "{\"Name\" : 1e3}")]
+        [InlineData("1E3", "{\"Name\" : 1E3}")]
+        [InlineData("1e+3", "{\"Name\" : 1e+3}")]
+        [InlineData("1E+3", "{\"Name\" : 1E+3}")]
+        [InlineData("1e-3", "{\"Name\" : 1e-3}")]
+        [InlineData("1E-3", "{\"Name\" : 1E-3}")]
+        public void op_Read_whenNumberValue(string value, 
+                                            string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonReader(stream))
+                    {
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Object, reader.NodeType);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Name, reader.NodeType);
+                        Assert.Equal("Name", reader.Name);
+                        Assert.Null(reader.Value);
+                        Assert.False(reader.IsEmptyArray);
+                        Assert.False(reader.IsEmptyObject);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.NumberValue, reader.NodeType);
+                        Assert.Equal("Name", reader.Name);
+                        Assert.Equal(value, reader.Value);
                         Assert.False(reader.IsEmptyArray);
                         Assert.False(reader.IsEmptyObject);
 
