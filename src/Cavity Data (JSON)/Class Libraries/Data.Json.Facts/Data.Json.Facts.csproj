@@ -12,6 +12,7 @@
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Compile Include="Data\JsonReader.Facts.cs" />
     <Compile Include="Data\JsonStreamReader.Facts.cs" />
     <Compile Include="Dynamic\DynamicJson.Derived.cs" />
     <Compile Include="Dynamic\DynamicJson.Facts.cs" />

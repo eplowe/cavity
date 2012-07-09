@@ -18,6 +18,11 @@
             return Data.Keys;
         }
 
+        ////public override bool TryInvoke(InvokeBinder binder, object[] args, out object result)
+        ////{
+        ////    return base.TryInvoke(binder, args, out result);
+        ////}
+
         public override bool TryGetMember(GetMemberBinder binder, 
                                           out object result)
         {

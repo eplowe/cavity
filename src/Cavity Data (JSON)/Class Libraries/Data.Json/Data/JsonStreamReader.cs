@@ -4,6 +4,7 @@
     using System.Globalization;
     using System.IO;
     using System.Text;
+    using System.Xml;
 
     using Cavity.Dynamic;
 
@@ -19,6 +20,45 @@
         private bool Escape { get; set; }
 
         private MutableString Name { get; set; }
+
+        private object PropertyValue
+        {
+            get
+            {
+                switch (Value)
+                {
+                    case "null":
+                        return null;
+                    case "false":
+                        return false;
+                    case "true":
+                        return true;
+                    default:
+                        if (0 == Value.Clone().RemoveWhiteSpace().Length)
+                        {
+                            return (string)Value;
+                        }
+
+                        var number = (string)Value.Clone().RemoveDigits().NormalizeToLowerInvariant();
+                        if (0 == number.Length)
+                        {
+                            return XmlConvert.ToInt64(Value);
+                        }
+
+                        if ("." == number)
+                        {
+                            return XmlConvert.ToDecimal(Value);
+                        }
+
+                        if (number.In("e", "e+", "e-", ".e", ".e+", ".e-"))
+                        {
+                            return XmlConvert.ToDouble(Value);
+                        }
+
+                        return (string)Value;
+                }
+            }
+        }
 
         private int Quote { get; set; }
 
@@ -68,7 +108,7 @@
                     case '}':
                         if (null != Name)
                         {
-                            Current.SetMember(Name, Value);
+                            Current.SetMember(Name, PropertyValue);
                         }
 
                         return Current;

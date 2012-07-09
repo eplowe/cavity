@@ -2,8 +2,8 @@
 {
     using System;
     using System.IO;
+    using System.Xml;
 
-    using Cavity;
     using Xunit;
     using Xunit.Extensions;
 
@@ -37,9 +37,10 @@
         }
 
         [Theory]
-        [InlineData("")]
-        [InlineData(" ")]
-        public void op_ReadEntry_whenObjectNull(string json)
+        [InlineData(true, "{ \"Name\"=\"true\" }")]
+        [InlineData(false, "{ \"Name\"=\"false\" }")]
+        public void op_ReadEntry_whenBooleanProperty(bool expected, 
+                                                     string json)
         {
             using (var stream = new MemoryStream())
             {
@@ -50,7 +51,114 @@
                     stream.Position = 0;
                     using (var reader = new JsonStreamReader(stream))
                     {
-                        Assert.Null(reader.ReadEntry());
+                        var actual = (bool)reader.ReadEntry().Name;
+
+                        Assert.Equal(expected, actual);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData(".12345", "{ \"Name\"=\".12345\" }")]
+        [InlineData("1.2345", "{ \"Name\"=\"1.2345\" }")]
+        public void op_ReadEntry_whenDecimalProperty(string expected, 
+                                                     string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonStreamReader(stream))
+                    {
+                        var actual = (decimal)reader.ReadEntry().Name;
+
+                        Assert.Equal(XmlConvert.ToDecimal(expected), actual);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("1e+3", "{ \"Name\"=\"1e03\" }")]
+        [InlineData("1e+3", "{ \"Name\"=\"1E03\" }")]
+        [InlineData("1e+3", "{ \"Name\"=\"1e+03\" }")]
+        [InlineData("1e+3", "{ \"Name\"=\"1E+03\" }")]
+        [InlineData("1e-3", "{ \"Name\"=\"1e-03\" }")]
+        [InlineData("1e-3", "{ \"Name\"=\"1E-03\" }")]
+        [InlineData(".12345e+3", "{ \"Name\"=\".12345e03\" }")]
+        [InlineData(".12345e+3", "{ \"Name\"=\".12345E03\" }")]
+        [InlineData(".12345e+3", "{ \"Name\"=\".12345e+03\" }")]
+        [InlineData(".12345e+3", "{ \"Name\"=\".12345E+03\" }")]
+        [InlineData(".12345e-3", "{ \"Name\"=\".12345e-03\" }")]
+        [InlineData(".12345e-3", "{ \"Name\"=\".12345E-03\" }")]
+        [InlineData("1.2345e+3", "{ \"Name\"=\"1.2345e03\" }")]
+        [InlineData("1.2345e+3", "{ \"Name\"=\"1.2345E03\" }")]
+        [InlineData("1.2345e+3", "{ \"Name\"=\"1.2345e+03\" }")]
+        [InlineData("1.2345e+3", "{ \"Name\"=\"1.2345E+03\" }")]
+        [InlineData("1.2345e-3", "{ \"Name\"=\"1.2345e-03\" }")]
+        [InlineData("1.2345e-3", "{ \"Name\"=\"1.2345E-03\" }")]
+        public void op_ReadEntry_whenExponentProperty(string expected, 
+                                                      string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonStreamReader(stream))
+                    {
+                        var actual = (double)reader.ReadEntry().Name;
+
+                        Assert.Equal(XmlConvert.ToDouble(expected), actual);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData(12345, "{ \"Name\"=\"12345\" }")]
+        public void op_ReadEntry_whenIntegerProperty(long expected, 
+                                                     string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonStreamReader(stream))
+                    {
+                        var actual = (long)reader.ReadEntry().Name;
+
+                        Assert.Equal(expected, actual);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{ \"Name\"=\"null\" }")]
+        public void op_ReadEntry_whenNullProperty(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonStreamReader(stream))
+                    {
+                        var actual = reader.ReadEntry().Name;
+
+                        Assert.Null(actual);
                     }
                 }
             }
@@ -79,6 +187,26 @@
         }
 
         [Theory]
+        [InlineData("")]
+        [InlineData(" ")]
+        public void op_ReadEntry_whenObjectNull(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonStreamReader(stream))
+                    {
+                        Assert.Null(reader.ReadEntry());
+                    }
+                }
+            }
+        }
+
+        [Theory]
         [InlineData("", "{ \"Name\"=\"\" }")]
         [InlineData(" ", "{ \"Name\"=\" \" }")]
         [InlineData("\"", "{ \"Name\"=\"\\\"\" }")]
@@ -93,7 +221,11 @@
         [InlineData("Value", "{ \"Name\"=\"Value\" }")]
         [InlineData("Value", "{\r\"Name\"=\"Value\"\r}")]
         [InlineData("Value", "{\r\n\"Name\"=\"Value\"\r\n}")]
-        public void op_ReadEntry_whenStringProperty(string expected, string json)
+        [InlineData("True", "{ \"Name\"=\"True\" }")]
+        [InlineData("False", "{ \"Name\"=\"False\" }")]
+        [InlineData("Null", "{ \"Name\"=\"Null\" }")]
+        public void op_ReadEntry_whenStringProperty(string expected, 
+                                                    string json)
         {
             using (var stream = new MemoryStream())
             {
