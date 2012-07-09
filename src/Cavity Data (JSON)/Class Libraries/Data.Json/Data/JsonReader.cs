@@ -57,6 +57,7 @@
                     case '}':
                         _reader.Read();
                         NodeType = JsonNodeType.EndObject;
+                        IsEmptyObject = false;
                         break;
                     case '[':
                         _reader.Read();
@@ -71,6 +72,7 @@
                     case ']':
                         _reader.Read();
                         NodeType = JsonNodeType.EndArray;
+                        IsEmptyArray = false;
                         Nesting.Pop();
                         Value = null;
                         break;
