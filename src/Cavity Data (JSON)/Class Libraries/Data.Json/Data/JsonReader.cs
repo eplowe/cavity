@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
 
@@ -21,7 +22,10 @@
 
         private JsonReader()
         {
+            Nesting = new Stack<string>();
         }
+
+        public bool IsEmptyArray { get; private set; }
 
         public bool IsEmptyObject { get; private set; }
 
@@ -31,55 +35,85 @@
 
         public string Value { get; private set; }
 
+        private Stack<string> Nesting { get; set; }
+
         public bool Read()
         {
             while (!_reader.EndOfStream)
             {
-                var c = (char)_reader.Read();
-                if (c.In(' ', '\r', '\n'))
+                var p = (char)_reader.Peek();
+                if (p.In(' ', '\r', '\n'))
                 {
+                    _reader.Read();
                     continue;
                 }
 
-                if (',' == c)
+                if (',' == p)
                 {
                     NodeType = JsonNodeType.None;
                     Name = null;
                     Value = null;
+                    _reader.Read();
                     continue;
                 }
 
-                if ('{' == c)
+                if ('{' == p)
                 {
                     NodeType = JsonNodeType.Object;
+                    _reader.Read();
                     IsEmptyObject = '}' == PeekNext();
                 }
 
-                if ('[' == c)
+                if ('[' == p)
                 {
                     NodeType = JsonNodeType.Array;
-                    IsEmptyObject = ']' == PeekNext();
+                    _reader.Read();
+                    if (']' == PeekNext())
+                    {
+                        IsEmptyArray = true;
+                    }
+
+                    Nesting.Push(Name);
+                    return true;
                 }
 
-                if ('}' == c)
+                if ('}' == p)
                 {
                     NodeType = JsonNodeType.EndObject;
+                    _reader.Read();
                 }
 
-                if (']' == c)
+                if (']' == p)
                 {
                     NodeType = JsonNodeType.EndArray;
+                    _reader.Read();
+                    Nesting.Pop();
+                    Value = null;
                 }
 
-                if ('"' == c)
+                if ('"' == p)
                 {
                     NodeType = JsonNodeType.Name;
+                    _reader.Read();
                     Name = ReadQuoted();
                     return true;
                 }
 
-                if (':' == c)
+                if (':' == p)
                 {
+                    _reader.Read();
+                    if ('[' == PeekNext())
+                    {
+                        continue;
+                    }
+
+                    Value = ReadValue();
+                    return true;
+                }
+
+                if (0 != Nesting.Count)
+                {
+                    Name = Nesting.Peek();
                     Value = ReadValue();
                     return true;
                 }
