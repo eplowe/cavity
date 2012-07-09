@@ -75,6 +75,11 @@
                         Value = null;
                         break;
                     case '"':
+                        if (null != Name)
+                        {
+                            break;
+                        }
+
                         _reader.Read();
                         NodeType = JsonNodeType.Name;
                         Name = ReadQuoted();
@@ -91,8 +96,12 @@
                     case ',':
                         _reader.Read();
                         NodeType = JsonNodeType.None;
-                        Name = null;
                         Value = null;
+                        if (Name != (0 == Nesting.Count ? null : Nesting.Peek()))
+                        {
+                            Name = null;
+                        }
+
                         continue;
                 }
 
