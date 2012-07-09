@@ -87,30 +87,11 @@
                         return true;
                     case ',':
                         _reader.Read();
-                        if (NodeType == JsonNodeType.EndObject && 0 != Nesting.Count)
-                        {
-                            Name = Nesting.Peek();
-                            continue;
-                        }
-
-                        NodeType = JsonNodeType.None;
-                        Value = null;
-                        if (Name != (0 == Nesting.Count ? null : Nesting.Peek()))
-                        {
-                            Name = null;
-                        }
-
+                        Comma();
                         continue;
                 }
 
-                if (!NodeType.In(JsonNodeType.Object, JsonNodeType.EndObject) && 0 != Nesting.Count)
-                {
-                    Name = Nesting.Peek();
-                    Value = ReadValue();
-                    return true;
-                }
-
-                PeekNext();
+                EndChar();
                 return true;
             }
 
@@ -145,6 +126,22 @@
             IsEmptyObject = '}' == PeekNext();
         }
 
+        private void Comma()
+        {
+            if (NodeType == JsonNodeType.EndObject && 0 != Nesting.Count)
+            {
+                Name = Nesting.Peek();
+                return;
+            }
+
+            NodeType = JsonNodeType.None;
+            Value = null;
+            if (Name != (0 == Nesting.Count ? null : Nesting.Peek()))
+            {
+                Name = null;
+            }
+        }
+
         private void EndArray()
         {
             NodeType = JsonNodeType.EndArray;
@@ -152,6 +149,18 @@
             Nesting.Pop();
             Name = null;
             Value = null;
+        }
+
+        private void EndChar()
+        {
+            if (!NodeType.In(JsonNodeType.Object, JsonNodeType.EndObject) && 0 != Nesting.Count)
+            {
+                Name = Nesting.Peek();
+                Value = ReadValue();
+                return;
+            }
+
+            PeekNext();
         }
 
         private void EndObject()
