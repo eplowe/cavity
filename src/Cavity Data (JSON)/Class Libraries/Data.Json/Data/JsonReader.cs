@@ -37,6 +37,7 @@
 
         private Stack<string> Nesting { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "TODO")]
         public bool Read()
         {
             while (!_reader.EndOfStream)
@@ -99,6 +100,12 @@
                         return true;
                     case ',':
                         _reader.Read();
+                        if (NodeType == JsonNodeType.EndObject && 0 != Nesting.Count)
+                        {
+                            Name = Nesting.Peek();
+                            continue;
+                        }
+
                         NodeType = JsonNodeType.None;
                         Value = null;
                         if (Name != (0 == Nesting.Count ? null : Nesting.Peek()))
