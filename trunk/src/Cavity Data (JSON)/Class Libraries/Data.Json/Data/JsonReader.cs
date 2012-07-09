@@ -37,7 +37,6 @@
 
         private Stack<string> Nesting { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "TODO")]
         public bool Read()
         {
             while (!_reader.EndOfStream)
@@ -48,36 +47,24 @@
                     case ' ':
                     case '\r':
                     case '\n':
+                    case '\t':
                         _reader.Read();
                         continue;
                     case '{':
                         _reader.Read();
-                        NodeType = JsonNodeType.Object;
-                        IsEmptyObject = '}' == PeekNext();
+                        BeginObject();
                         break;
                     case '}':
                         _reader.Read();
-                        NodeType = JsonNodeType.EndObject;
-                        IsEmptyObject = false;
-                        Name = null;
-                        Value = null;
+                        EndObject();
                         break;
                     case '[':
                         _reader.Read();
-                        NodeType = JsonNodeType.Array;
-                        if (']' == PeekNext())
-                        {
-                            IsEmptyArray = true;
-                        }
-
-                        Nesting.Push(Name);
+                        BeginArray();
                         return true;
                     case ']':
                         _reader.Read();
-                        NodeType = JsonNodeType.EndArray;
-                        IsEmptyArray = false;
-                        Nesting.Pop();
-                        Value = null;
+                        EndArray();
                         break;
                     case '"':
                         if (NodeType != JsonNodeType.Object && null != Name)
@@ -91,7 +78,7 @@
                         return true;
                     case ':':
                         _reader.Read();
-                        if ('[' == PeekNext())
+                        if (PeekNext().In('{', '['))
                         {
                             continue;
                         }
@@ -124,10 +111,10 @@
                 }
 
                 PeekNext();
-                return !_reader.EndOfStream;
+                return true;
             }
 
-            return false;
+            return !_reader.EndOfStream;
         }
 
         protected override void OnDispose()
@@ -139,6 +126,40 @@
 
             _reader.Dispose();
             _reader = null;
+        }
+
+        private void BeginArray()
+        {
+            NodeType = JsonNodeType.Array;
+            if (']' == PeekNext())
+            {
+                IsEmptyArray = true;
+            }
+
+            Nesting.Push(Name);
+        }
+
+        private void BeginObject()
+        {
+            NodeType = JsonNodeType.Object;
+            IsEmptyObject = '}' == PeekNext();
+        }
+
+        private void EndArray()
+        {
+            NodeType = JsonNodeType.EndArray;
+            IsEmptyArray = false;
+            Nesting.Pop();
+            Name = null;
+            Value = null;
+        }
+
+        private void EndObject()
+        {
+            NodeType = JsonNodeType.EndObject;
+            IsEmptyObject = false;
+            Name = null;
+            Value = null;
         }
 
         private char PeekNext()
