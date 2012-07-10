@@ -21,6 +21,7 @@
                             .HasDefaultConstructor()
                             .IsNotDecorated()
                             .Implements<IEnumerable<JsonPair>>()
+                            .Implements<IJsonSerializable>()
                             .Result);
         }
 

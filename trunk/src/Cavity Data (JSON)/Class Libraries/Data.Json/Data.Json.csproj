@@ -12,6 +12,8 @@
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Compile Include="Data\JsonWriter.cs" />
+    <Compile Include="Data\JsonWriterState.cs" />
     <Compile Include="Data\IJsonSerializable.cs" />
     <Compile Include="Data\JsonArray.cs" />
     <Compile Include="Data\JsonPair.cs" />

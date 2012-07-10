@@ -12,6 +12,7 @@
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Compile Include="Data\JsonWriter.Facts.cs" />
     <Compile Include="Data\JsonTrue.Facts.cs" />
     <Compile Include="Data\JsonString.Facts.cs" />
     <Compile Include="Data\JsonArray.Facts.cs" />

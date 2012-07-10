@@ -105,7 +105,7 @@
                 return;
             }
 
-            _reader.Dispose();
+            ////_reader.Dispose();
             _reader = null;
         }
 
