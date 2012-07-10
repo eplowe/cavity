@@ -216,5 +216,96 @@
                 }
             }
         }
+
+        public void WriteJson(JsonWriter writer)
+        {
+            if (null == writer)
+            {
+                throw new ArgumentNullException("writer");
+            }
+
+            writer.Object();
+            foreach (var pair in this)
+            {
+                var number = pair.Value as JsonNumber;
+                if (null != number)
+                {
+                    writer.NumberPair(pair.Name, number.Value);
+                    continue;
+                }
+
+                var str = pair.Value as JsonString;
+                if (null != str)
+                {
+                    writer.Pair(pair.Name, str.Value);
+                    continue;
+                }
+
+                var array = pair.Value as JsonArray;
+                if (null != array)
+                {
+                    WriteJsonArray(writer, pair.Name, array);
+                    continue;
+                }
+
+                if (pair.Value is JsonNull)
+                {
+                    writer.Pair(pair.Name, null);
+                }
+                else if (pair.Value is JsonTrue)
+                {
+                    writer.Pair(pair.Name, true);
+                }
+                else if (pair.Value is JsonFalse)
+                {
+                    writer.Pair(pair.Name, false);
+                }
+            }
+
+            writer.EndObject();
+        }
+        
+        private static void WriteJsonArray(JsonWriter writer, string name, JsonArray value)
+        {
+            writer.Array(name);
+            foreach (var item in value.Values)
+            {
+                var number = item as JsonNumber;
+                if (null != number)
+                {
+                    writer.ArrayNumber(number.Value);
+                    continue;
+                }
+
+                var str = item as JsonString;
+                if (null != str)
+                {
+                    writer.ArrayValue(str.Value);
+                    continue;
+                }
+
+                ////var array = item as JsonArray;
+                ////if (null != array)
+                ////{
+                ////    WriteJsonArray(writer, array);
+                ////    continue;
+                ////}
+
+                if (item is JsonNull)
+                {
+                    writer.ArrayNull();
+                }
+                else if (item is JsonTrue)
+                {
+                    writer.ArrayValue(true);
+                }
+                else if (item is JsonFalse)
+                {
+                    writer.ArrayValue(false);
+                }
+            }
+
+            writer.EndArray();
+        }
     }
 }

@@ -397,6 +397,52 @@
             Assert.Null(document.String(name));
         }
 
+        [Theory]
+        [InlineData("{\"id\": 123, \"title\": \"\", \"value\": null, \"list\": [1, \"\", null, true, false], \"visible\": true, \"enabled\": false}")]
+        public void op_WriteJson_JsonWriter(string expected)
+        {
+            var obj = new JsonObject
+                          {
+                              new JsonPair("id", new JsonNumber("123")), 
+                              new JsonPair("title", new JsonString(string.Empty)), 
+                              new JsonPair("value", new JsonNull()), 
+                              new JsonPair("list", new JsonArray
+                                                       {
+                                                           Values =
+                                                               {
+                                                                   new JsonNumber("1"),
+                                                                   new JsonString(string.Empty),
+                                                                   new JsonNull(),
+                                                                   new JsonTrue(),
+                                                                   new JsonFalse()
+                                                               }
+                                                       }), 
+                              new JsonPair("visible", new JsonTrue()), 
+                              new JsonPair("enabled", new JsonFalse())
+                          };
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    obj.WriteJson(writer);
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Fact]
+        public void op_WriteJson_JsonWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new JsonObject().WriteJson(null));
+        }
+
         [Fact]
         public void prop_Count()
         {
