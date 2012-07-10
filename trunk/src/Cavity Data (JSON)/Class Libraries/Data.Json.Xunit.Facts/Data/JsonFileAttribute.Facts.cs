@@ -92,19 +92,19 @@
         }
 
         [Theory]
-        [JsonFile("one.json", "two.json")]
-        public void usage_whenMultipleParameters(Example one,
-                                                 Example two)
-        {
-            Assert.Equal(1, one.Value);
-            Assert.Equal(2, two.Value);
-        }
-
-        [Theory]
         [JsonFile("example.json")]
         public void usage_whenJsonDeserialize(Example example)
         {
             Assert.Equal(999, example.Value);
+        }
+
+        [Theory]
+        [JsonFile("one.json", "two.json")]
+        public void usage_whenMultipleParameters(Example one, 
+                                                 Example two)
+        {
+            Assert.Equal(1, one.Value);
+            Assert.Equal(2, two.Value);
         }
     }
 }

@@ -12,8 +12,18 @@
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Compile Include="Data\JsonTrue.Facts.cs" />
+    <Compile Include="Data\JsonString.Facts.cs" />
+    <Compile Include="Data\JsonArray.Facts.cs" />
+    <Compile Include="Data\JsonFalse.Facts.cs" />
+    <Compile Include="Data\JsonNodeType.Facts.cs" />
+    <Compile Include="Data\JsonNull.Facts.cs" />
+    <Compile Include="Data\JsonNumber.Facts.cs" />
+    <Compile Include="Data\JsonObject.Facts.cs" />
+    <Compile Include="Data\JsonPair.Facts.cs" />
+    <Compile Include="Data\JsonValue.Facts.cs" />
+    <Compile Include="Data\JsonDocument.Facts.cs" />
     <Compile Include="Data\JsonReader.Facts.cs" />
-    <Compile Include="Data\JsonStreamReader.Facts.cs" />
     <Compile Include="Dynamic\DynamicJson.Derived.cs" />
     <Compile Include="Dynamic\DynamicJson.Facts.cs" />
   </ItemGroup>
@@ -23,6 +33,9 @@
     </Reference>
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.2.0.0.848\lib\net40\Cavity.Testing.Unit.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Numerics" />

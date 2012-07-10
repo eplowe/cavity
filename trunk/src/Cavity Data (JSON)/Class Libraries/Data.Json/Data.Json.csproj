@@ -12,9 +12,19 @@
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Compile Include="Data\IJsonSerializable.cs" />
+    <Compile Include="Data\JsonArray.cs" />
+    <Compile Include="Data\JsonPair.cs" />
+    <Compile Include="Data\JsonObject.cs" />
+    <Compile Include="Data\JsonNumber.cs" />
+    <Compile Include="Data\JsonString.cs" />
+    <Compile Include="Data\JsonNull.cs" />
+    <Compile Include="Data\JsonTrue.cs" />
+    <Compile Include="Data\JsonFalse.cs" />
+    <Compile Include="Data\JsonValue.cs" />
+    <Compile Include="Data\JsonDocument.cs" />
     <Compile Include="Data\JsonNodeType.cs" />
     <Compile Include="Data\JsonReader.cs" />
-    <Compile Include="Data\JsonStreamReader.cs" />
     <Compile Include="Dynamic\DynamicJson.cs" />
   </ItemGroup>
   <ItemGroup>

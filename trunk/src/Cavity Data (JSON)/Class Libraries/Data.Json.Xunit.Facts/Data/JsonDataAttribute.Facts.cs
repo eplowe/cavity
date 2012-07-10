@@ -92,19 +92,19 @@
         }
 
         [Theory]
-        [JsonData("{ \"Value\": 1 }", "{ \"Value\": 2 }")]
-        public void usage_whenMultipleParameters(Example one,
-                                                 Example two)
-        {
-            Assert.Equal(1, one.Value);
-            Assert.Equal(2, two.Value);
-        }
-
-        [Theory]
         [JsonData("{ \"Value\": 999 }")]
         public void usage_whenJsonDeserialize(Example example)
         {
             Assert.Equal(999, example.Value);
+        }
+
+        [Theory]
+        [JsonData("{ \"Value\": 1 }", "{ \"Value\": 2 }")]
+        public void usage_whenMultipleParameters(Example one, 
+                                                 Example two)
+        {
+            Assert.Equal(1, one.Value);
+            Assert.Equal(2, two.Value);
         }
     }
 }
