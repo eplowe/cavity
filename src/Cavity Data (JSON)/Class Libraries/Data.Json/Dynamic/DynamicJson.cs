@@ -22,6 +22,11 @@
         ////{
         ////    return base.TryInvoke(binder, args, out result);
         ////}
+        public void SetMember(string name, 
+                              object value)
+        {
+            Data[name] = value;
+        }
 
         public override bool TryGetMember(GetMemberBinder binder, 
                                           out object result)
@@ -34,11 +39,6 @@
             result = Data.ContainsKey(binder.Name) ? Data[binder.Name] : null;
 
             return true;
-        }
-
-        public void SetMember(string name, object value)
-        {
-            Data[name] = value;
         }
 
         public override bool TrySetMember(SetMemberBinder binder, 

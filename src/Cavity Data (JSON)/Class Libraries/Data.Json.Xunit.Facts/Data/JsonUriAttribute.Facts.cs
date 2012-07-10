@@ -47,9 +47,12 @@
         }
 
         [Fact]
-        public void op_Download_AbsoluteUriNull()
+        public void op_Download_AbsoluteUri()
         {
-            Assert.Throws<ArgumentNullException>(() => JsonUriAttribute.Download(null));
+            var expected = new FileInfo("example.json").ReadToEnd();
+            var actual = JsonUriAttribute.Download("http://www.alan-dean.com/example.json").ReadToEnd();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -59,12 +62,9 @@
         }
 
         [Fact]
-        public void op_Download_AbsoluteUri()
+        public void op_Download_AbsoluteUriNull()
         {
-            var expected = new FileInfo("example.json").ReadToEnd();
-            var actual = JsonUriAttribute.Download("http://www.alan-dean.com/example.json").ReadToEnd();
-
-            Assert.Equal(expected, actual);
+            Assert.Throws<ArgumentNullException>(() => JsonUriAttribute.Download(null));
         }
 
         [Fact]
@@ -117,19 +117,19 @@
         }
 
         [Theory]
-        [JsonUri("http://www.alan-dean.com/one.json", "http://www.alan-dean.com/two.json")]
-        public void usage_whenMultipleParameters(Example one,
-                                                 Example two)
-        {
-            Assert.Equal(1, one.Value);
-            Assert.Equal(2, two.Value);
-        }
-
-        [Theory]
         [JsonUri("http://www.alan-dean.com/example.json")]
         public void usage_whenJsonDeserialize(Example example)
         {
             Assert.Equal(999, example.Value);
+        }
+
+        [Theory]
+        [JsonUri("http://www.alan-dean.com/one.json", "http://www.alan-dean.com/two.json")]
+        public void usage_whenMultipleParameters(Example one, 
+                                                 Example two)
+        {
+            Assert.Equal(1, one.Value);
+            Assert.Equal(2, two.Value);
         }
     }
 }

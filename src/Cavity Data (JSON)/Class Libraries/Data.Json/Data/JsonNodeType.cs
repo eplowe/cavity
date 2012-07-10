@@ -2,26 +2,26 @@
 {
     public enum JsonNodeType
     {
-        None = 0,
+        None = 0, 
 
-        Object,
+        Array = 1, 
 
-        EndObject,
+        Object = 2, 
 
-        Array,
+        Name = 3, 
 
-        EndArray,
+        NullValue = 4, 
 
-        Name,
+        TrueValue = 5, 
 
-        StringValue,
+        FalseValue = 6, 
 
-        NumberValue,
+        NumberValue = 7, 
 
-        NullValue,
+        StringValue = 8, 
 
-        TrueValue,
+        EndObject = 9, 
 
-        FalseValue
+        EndArray = 10
     }
 }
