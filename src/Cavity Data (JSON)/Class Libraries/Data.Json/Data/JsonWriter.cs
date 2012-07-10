@@ -52,7 +52,7 @@
                 throw new ArgumentNullException("name");
             }
 
-            _writer.Write("\"{0}\": [".FormatWith(name));
+            _writer.Write("{0}\"{1}\": [".FormatWith(Nesting.Peek().Previous.In(JsonNodeType.None) ? string.Empty : ", ", name));
             Nesting.Push(new JsonWriterState(JsonNodeType.Array));
         }
 
@@ -76,6 +76,11 @@
             }
 
             Array(value, JsonNodeType.NumberValue);
+        }
+
+        public void ArrayValue(DateTime value)
+        {
+            ArrayValue(XmlConvert.ToString(value, XmlDateTimeSerializationMode.Utc));
         }
 
         public void ArrayValue(bool value)
@@ -109,10 +114,9 @@
             Array("\"{0}\"".FormatWith(value), JsonNodeType.StringValue);
         }
 
-        public void BooleanPair(string name, 
-                                bool value)
+        public void ArrayValue(TimeSpan value)
         {
-            Pair(name, XmlConvert.ToString(value), value ? JsonNodeType.TrueValue : JsonNodeType.FalseValue);
+            ArrayValue(XmlConvert.ToString(value));
         }
 
         public void EndArray()
@@ -142,24 +146,6 @@
         public void NullPair(string name)
         {
             Pair(name, "null", JsonNodeType.NullValue);
-        }
-
-        public void NumberPair(string name, 
-                               decimal value)
-        {
-            NumberPair(name, XmlConvert.ToString(value));
-        }
-
-        public void NumberPair(string name, 
-                               double value)
-        {
-            NumberPair(name, XmlConvert.ToString(value));
-        }
-
-        public void NumberPair(string name, 
-                               long value)
-        {
-            NumberPair(name, XmlConvert.ToString(value));
         }
 
         public void NumberPair(string name, 
@@ -206,8 +192,44 @@
             Nesting.Push(new JsonWriterState(JsonNodeType.Object));
         }
 
-        public void StringPair(string name, 
-                               string value)
+        public void Pair(string name, 
+                         bool value)
+        {
+            Pair(name, XmlConvert.ToString(value), value ? JsonNodeType.TrueValue : JsonNodeType.FalseValue);
+        }
+
+        public void Pair(string name, 
+                         DateTime value)
+        {
+            Pair(name, XmlConvert.ToString(value, XmlDateTimeSerializationMode.Utc));
+        }
+
+        public void Pair(string name, 
+                         decimal value)
+        {
+            NumberPair(name, XmlConvert.ToString(value));
+        }
+
+        public void Pair(string name, 
+                         double value)
+        {
+            NumberPair(name, XmlConvert.ToString(value));
+        }
+
+        public void Pair(string name, 
+                         long value)
+        {
+            NumberPair(name, XmlConvert.ToString(value));
+        }
+
+        public void Pair(string name, 
+                         TimeSpan value)
+        {
+            Pair(name, XmlConvert.ToString(value));
+        }
+
+        public void Pair(string name, 
+                         string value)
         {
             if (null == value)
             {
@@ -242,8 +264,9 @@
             Nesting.Peek().Previous = type;
         }
 
-        public void Pair(string name,
-                               string value, JsonNodeType type)
+        private void Pair(string name, 
+                          string value, 
+                          JsonNodeType type)
         {
             if (null == name)
             {
@@ -255,7 +278,7 @@
                 throw new InvalidOperationException("Named values cannot be added to an array.");
             }
 
-            _writer.Write("\"{0}\": {1}".FormatWith(name, value));
+            _writer.Write("{0}\"{1}\": {2}".FormatWith(Nesting.Peek().Previous.In(JsonNodeType.None) ? string.Empty : ", ", name, value));
             Nesting.Peek().Previous = type;
         }
     }

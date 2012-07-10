@@ -121,6 +121,88 @@
         }
 
         [Theory]
+        [InlineData("{\"example\": [\"2011-07-14T19:43:37Z\"]}")]
+        public void op_ArrayValue_DateTime(string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Array("example");
+                    writer.ArrayValue(new DateTime(2011, 7, 14, 19, 43, 37, DateTimeKind.Utc));
+                    writer.EndArray();
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Fact]
+        public void op_ArrayValue_DateTime_whenParentNotArray()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+
+                    // ReSharper disable AccessToDisposedClosure
+                    Assert.Throws<InvalidOperationException>(() => writer.ArrayValue(DateTime.UtcNow));
+
+                    // ReSharper restore AccessToDisposedClosure
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{\"example\": [\"PT17H9M43.089S\"]}")]
+        public void op_ArrayValue_TimeSpan(string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Array("example");
+                    writer.ArrayValue(new TimeSpan(0, 17, 9, 43, 89));
+                    writer.EndArray();
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Fact]
+        public void op_ArrayValue_TimeSpan_whenParentNotArray()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+
+                    // ReSharper disable AccessToDisposedClosure
+                    Assert.Throws<InvalidOperationException>(() => writer.ArrayValue(TimeSpan.Zero));
+
+                    // ReSharper restore AccessToDisposedClosure
+                }
+            }
+        }
+
+        [Theory]
         [InlineData(true, "{\"example\": [true]}")]
         [InlineData(false, "{\"example\": [false]}")]
         public void op_ArrayValue_bool(bool value, 
@@ -381,63 +463,6 @@
         }
 
         [Fact]
-        public void op_BooleanPair_stringNull_bool()
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new JsonWriter(stream))
-                {
-                    // ReSharper disable AccessToDisposedClosure
-                    Assert.Throws<ArgumentNullException>(() => writer.BooleanPair(null, true));
-
-                    // ReSharper restore AccessToDisposedClosure
-                }
-            }
-        }
-
-        [Theory]
-        [InlineData(true, "{\"example\": true}")]
-        [InlineData(false, "{\"example\": false}")]
-        public void op_BooleanPair_string_bool(bool value, 
-                                               string expected)
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new JsonWriter(stream))
-                {
-                    writer.Object();
-                    writer.BooleanPair("example", value);
-                    writer.EndObject();
-                }
-
-                using (var reader = new StreamReader(stream))
-                {
-                    var actual = reader.ReadToEnd();
-
-                    Assert.Equal(expected, actual);
-                }
-            }
-        }
-
-        [Fact]
-        public void op_BooleanPair_string_bool_whenArrayParent()
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new JsonWriter(stream))
-                {
-                    writer.Object();
-                    writer.Array("example");
-
-                    // ReSharper disable AccessToDisposedClosure
-                    Assert.Throws<InvalidOperationException>(() => writer.BooleanPair("name", true));
-
-                    // ReSharper restore AccessToDisposedClosure
-                }
-            }
-        }
-
-        [Fact]
         public void op_EndArray_whenParentNone()
         {
             using (var stream = new MemoryStream())
@@ -533,128 +558,6 @@
                     Assert.Throws<ArgumentNullException>(() => writer.NumberPair(null, "123"));
 
                     // ReSharper restore AccessToDisposedClosure
-                }
-            }
-        }
-
-        [Theory]
-        [InlineData("0", "{\"example\": 0}")]
-        [InlineData("0.0", "{\"example\": 0.0}")]
-        [InlineData("1.2345", "{\"example\": 1.2345}")]
-        public void op_NumberPair_string_decimal(string value, 
-                                                 string expected)
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new JsonWriter(stream))
-                {
-                    writer.Object();
-                    writer.NumberPair("example", XmlConvert.ToDecimal(value));
-                    writer.EndObject();
-                }
-
-                using (var reader = new StreamReader(stream))
-                {
-                    var actual = reader.ReadToEnd();
-
-                    Assert.Equal(expected, actual);
-                }
-            }
-        }
-
-        [Theory]
-        [InlineData(0, "{\"example\": 0}")]
-        [InlineData(1.2345, "{\"example\": 1.2345}")]
-        [InlineData(1230000000000000000, "{\"example\": 1.23E+18}")]
-        [InlineData(0.00000000000000123, "{\"example\": 1.23E-15}")]
-        public void op_NumberPair_string_double(double value, 
-                                                string expected)
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new JsonWriter(stream))
-                {
-                    writer.Object();
-                    writer.NumberPair("example", value);
-                    writer.EndObject();
-                }
-
-                using (var reader = new StreamReader(stream))
-                {
-                    var actual = reader.ReadToEnd();
-
-                    Assert.Equal(expected, actual);
-                }
-            }
-        }
-
-        [Theory]
-        [InlineData(12345, "{\"example\": 12345}")]
-        public void op_NumberPair_string_int(int value, 
-                                             string expected)
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new JsonWriter(stream))
-                {
-                    writer.Object();
-                    writer.NumberPair("example", value);
-                    writer.EndObject();
-                }
-
-                using (var reader = new StreamReader(stream))
-                {
-                    var actual = reader.ReadToEnd();
-
-                    Assert.Equal(expected, actual);
-                }
-            }
-        }
-
-        [Theory]
-        [InlineData(12345, "{\"example\": 12345}")]
-        public void op_NumberPair_string_long(long value, 
-                                              string expected)
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new JsonWriter(stream))
-                {
-                    writer.Object();
-                    writer.NumberPair("example", value);
-                    writer.EndObject();
-                }
-
-                using (var reader = new StreamReader(stream))
-                {
-                    var actual = reader.ReadToEnd();
-
-                    Assert.Equal(expected, actual);
-                }
-            }
-        }
-
-        [Theory]
-        [InlineData(0f, "{\"example\": 0}")]
-        [InlineData(1.2f, "{\"example\": 1.2000000476837158}")]
-        [InlineData(123000000f, "{\"example\": 123000000}")]
-        public void op_NumberPair_string_single(float value, 
-                                                string expected)
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new JsonWriter(stream))
-                {
-                    writer.Object();
-                    writer.NumberPair("example", value);
-                    writer.EndObject();
-                }
-
-                using (var reader = new StreamReader(stream))
-                {
-                    var actual = reader.ReadToEnd();
-
-                    Assert.Equal(expected, actual);
                 }
             }
         }
@@ -773,7 +676,7 @@
                 using (var writer = new JsonWriter(stream))
                 {
                     writer.Object();
-                    writer.NumberPair("one", 1);
+                    writer.Pair("one", 1);
 
                     // ReSharper disable AccessToDisposedClosure
                     Assert.Throws<InvalidOperationException>(() => writer.Object());
@@ -802,14 +705,237 @@
         }
 
         [Fact]
-        public void op_StringPair_stringNull_string()
+        public void op_Pair_stringNull_bool()
         {
             using (var stream = new MemoryStream())
             {
                 using (var writer = new JsonWriter(stream))
                 {
                     // ReSharper disable AccessToDisposedClosure
-                    Assert.Throws<ArgumentNullException>(() => writer.StringPair(null, "123"));
+                    Assert.Throws<ArgumentNullException>(() => writer.Pair(null, true));
+
+                    // ReSharper restore AccessToDisposedClosure
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{\"example\": \"2011-07-14T19:43:37Z\"}")]
+        public void op_Pair_string_DateTime(string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Pair("example", new DateTime(2011, 7, 14, 19, 43, 37, DateTimeKind.Utc));
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{\"example\": \"PT17H9M43.089S\"}")]
+        public void op_Pair_string_TimeSpan(string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Pair("example", new TimeSpan(0, 17, 9, 43, 89));
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData(true, "{\"example\": true}")]
+        [InlineData(false, "{\"example\": false}")]
+        public void op_Pair_string_bool(bool value, 
+                                        string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Pair("example", value);
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Fact]
+        public void op_Pair_string_bool_whenArrayParent()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Array("example");
+
+                    // ReSharper disable AccessToDisposedClosure
+                    Assert.Throws<InvalidOperationException>(() => writer.Pair("name", true));
+
+                    // ReSharper restore AccessToDisposedClosure
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("0", "{\"example\": 0}")]
+        [InlineData("0.0", "{\"example\": 0.0}")]
+        [InlineData("1.2345", "{\"example\": 1.2345}")]
+        public void op_Pair_string_decimal(string value, 
+                                           string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Pair("example", XmlConvert.ToDecimal(value));
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData(0, "{\"example\": 0}")]
+        [InlineData(1.2345, "{\"example\": 1.2345}")]
+        [InlineData(1230000000000000000, "{\"example\": 1.23E+18}")]
+        [InlineData(0.00000000000000123, "{\"example\": 1.23E-15}")]
+        public void op_Pair_string_double(double value, 
+                                          string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Pair("example", value);
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData(12345, "{\"example\": 12345}")]
+        public void op_Pair_string_int(int value, 
+                                       string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Pair("example", value);
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData(12345, "{\"example\": 12345}")]
+        public void op_Pair_string_long(long value, 
+                                        string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Pair("example", value);
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData(0f, "{\"example\": 0}")]
+        [InlineData(1.2f, "{\"example\": 1.2000000476837158}")]
+        [InlineData(123000000f, "{\"example\": 123000000}")]
+        public void op_Pair_string_single(float value, 
+                                          string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Pair("example", value);
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Fact]
+        public void op_Pair_stringNull_string()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    // ReSharper disable AccessToDisposedClosure
+                    Assert.Throws<ArgumentNullException>(() => writer.Pair(null, "value"));
 
                     // ReSharper restore AccessToDisposedClosure
                 }
@@ -830,7 +956,7 @@
                 using (var writer = new JsonWriter(stream))
                 {
                     writer.Object();
-                    writer.StringPair("example", value);
+                    writer.Pair("example", value);
                     writer.EndObject();
                 }
 
@@ -854,7 +980,7 @@
                     writer.Array("example");
 
                     // ReSharper disable AccessToDisposedClosure
-                    Assert.Throws<InvalidOperationException>(() => writer.StringPair("name", null));
+                    Assert.Throws<InvalidOperationException>(() => writer.Pair("name", null));
 
                     // ReSharper restore AccessToDisposedClosure
                 }
@@ -872,7 +998,7 @@
                     writer.Array("example");
 
                     // ReSharper disable AccessToDisposedClosure
-                    Assert.Throws<InvalidOperationException>(() => writer.StringPair("name", "value"));
+                    Assert.Throws<InvalidOperationException>(() => writer.Pair("name", "value"));
 
                     // ReSharper restore AccessToDisposedClosure
                 }
@@ -964,7 +1090,7 @@
                     writer.ArrayValue(" ");
                     writer.ArrayValue(true);
                     writer.Object();
-                    writer.NumberPair("one", 1);
+                    writer.Pair("one", 1);
                     writer.EndObject();
                     writer.EndArray();
                     writer.EndObject();
@@ -990,11 +1116,74 @@
                     writer.Object();
                     writer.Array("example");
                     writer.Object();
-                    writer.NumberPair("one", 1);
+                    writer.Pair("one", 1);
                     writer.EndObject();
                     writer.Object();
-                    writer.NumberPair("two", 2);
+                    writer.Pair("two", 2);
                     writer.EndObject();
+                    writer.EndArray();
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{\"id\": 123, \"title\": \"\", \"value\": null, \"list\": [1, \"\", null, true, false], \"visible\": true, \"enabled\": false}")]
+        public void write_object_with_pairs(string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Pair("id", 123);
+                    writer.Pair("title", string.Empty);
+                    writer.Pair("value", null);
+                    writer.Array("list");
+                    writer.ArrayValue(1);
+                    writer.ArrayValue(string.Empty);
+                    writer.ArrayNull();
+                    writer.ArrayValue(true);
+                    writer.ArrayValue(false);
+                    writer.EndArray();
+                    writer.Pair("visible", true);
+                    writer.Pair("enabled", false);
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory(Skip = "TODO")]
+        [InlineData("{\"list\": [true, [1, 2, 3], false]}")]
+        public void write_object_with_nested_arrays(string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Array("list");
+                    writer.ArrayValue(true);
+                    writer.Array();
+                    writer.ArrayValue(1);
+                    writer.ArrayValue(2);
+                    writer.ArrayValue(3);
+                    writer.EndArray();
+                    writer.ArrayValue(false);
                     writer.EndArray();
                     writer.EndObject();
                 }
