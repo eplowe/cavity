@@ -17,7 +17,6 @@
         {
             ColonPadding = string.Empty;
             CommaPadding = string.Empty;
-            EncodeValues = true;
             Indent = string.Empty;
         }
 
@@ -42,7 +41,6 @@
                            {
                                ColonPadding = " ", 
                                CommaPadding = Environment.NewLine,
-                               EncodeValues = false, 
                                Indent = "\t"
                            };
             }
@@ -121,8 +119,6 @@
                 _commaPadding = value;
             }
         }
-
-        public bool EncodeValues { get; set; }
 
         public string Indent
         {
