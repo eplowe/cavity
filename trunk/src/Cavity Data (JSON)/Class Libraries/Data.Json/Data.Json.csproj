@@ -9,9 +9,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\CodeAnalysis.dictionary" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Content Include="Properties\CodeAnalysis.dictionary">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Compile Include="Data\JsonWriterSettings.cs" />
     <Compile Include="Data\JsonReaderState.cs" />
     <Compile Include="Data\JsonWriter.cs" />
     <Compile Include="Data\JsonWriterState.cs" />
@@ -46,6 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Code.project" />

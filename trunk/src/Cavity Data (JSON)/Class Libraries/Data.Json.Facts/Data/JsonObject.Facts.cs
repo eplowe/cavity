@@ -286,7 +286,7 @@
         }
 
         [Theory]
-        [InlineData("{\"name\": \"value\", \"range\": [1,2,3], \"id\": 123, \"visible\": true, \"enabled\": false, \"check\": null, \"child\": { \"value\" : 1.23 }}")]
+        [InlineData("{\"name\":\"value\",\"range\":[1,2,3],\"id\":123,\"visible\":true,\"enabled\":false,\"check\":null,\"child\":{ \"value\":1.23 }}")]
         public void op_ReadJson_JsonReader(string json)
         {
             using (var stream = new MemoryStream())
@@ -312,6 +312,36 @@
                         Assert.False(obj.Boolean("enabled"));
                         Assert.Null(obj.String("check"));
                         Assert.Equal("1.23", obj.Object("child").Number("value").Value);
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_ReadJson_JsonReaderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new JsonObject().ReadJson(null));
+        }
+
+        [Theory]
+        [InlineData("{}")]
+        public void op_ReadJson_JsonReader_whenEmpty(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonReader(stream))
+                    {
+                        reader.Read();
+
+                        var obj = new JsonObject();
+                        obj.ReadJson(reader);
+
+                        Assert.Empty(obj);
                     }
                 }
             }
@@ -377,36 +407,6 @@
         }
 
         [Fact]
-        public void op_ReadJson_JsonReaderNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new JsonObject().ReadJson(null));
-        }
-
-        [Theory]
-        [InlineData("{}")]
-        public void op_ReadJson_JsonReader_whenEmpty(string json)
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Write(json);
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new JsonReader(stream))
-                    {
-                        reader.Read();
-
-                        var obj = new JsonObject();
-                        obj.ReadJson(reader);
-
-                        Assert.Empty(obj);
-                    }
-                }
-            }
-        }
-
-        [Fact]
         public void op_ReadJson_JsonReader_whenNotObjectNode()
         {
             using (var stream = new MemoryStream())
@@ -457,68 +457,28 @@
         }
 
         [Theory]
-        [InlineData("{\"id\": 123, \"title\": \"\", \"value\": null, \"list\": [1, \"\", null, true, false], \"visible\": true, \"enabled\": false}")]
+        [InlineData("{\"id\":123,\"title\":\"\",\"value\":null,\"list\":[1,\"\",null,true,false],\"visible\":true,\"enabled\":false}")]
         public void op_WriteJson_JsonWriter(string expected)
         {
             var obj = new JsonObject
                           {
-                              new JsonPair("id", new JsonNumber("123")), 
-                              new JsonPair("title", new JsonString(string.Empty)), 
-                              new JsonPair("value", new JsonNull()), 
-                              new JsonPair("list", new JsonArray
+                              new JsonPair("id", new JsonNumber("123")),
+                              new JsonPair("title", new JsonString(string.Empty)),
+                              new JsonPair("value", new JsonNull()),
+                              new JsonPair("list",
+                                           new JsonArray
+                                               {
+                                                   Values =
                                                        {
-                                                           Values =
-                                                               {
-                                                                   new JsonNumber("1"),
-                                                                   new JsonString(string.Empty),
-                                                                   new JsonNull(),
-                                                                   new JsonTrue(),
-                                                                   new JsonFalse()
-                                                               }
-                                                       }), 
-                              new JsonPair("visible", new JsonTrue()), 
+                                                           new JsonNumber("1"),
+                                                           new JsonString(string.Empty),
+                                                           new JsonNull(),
+                                                           new JsonTrue(),
+                                                           new JsonFalse()
+                                                       }
+                                               }),
+                              new JsonPair("visible", new JsonTrue()),
                               new JsonPair("enabled", new JsonFalse())
-                          };
-
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new JsonWriter(stream))
-                {
-                    obj.WriteJson(writer);
-                }
-
-                using (var reader = new StreamReader(stream))
-                {
-                    var actual = reader.ReadToEnd();
-
-                    Assert.Equal(expected, actual);
-                }
-            }
-        }
-
-        [Theory]
-        [InlineData("{\"list\": [true, [1, 2, 3], false]}")]
-        public void op_WriteJson_JsonWriter_whenNestedArrays(string expected)
-        {
-            var obj = new JsonObject
-                          {
-                              new JsonPair("list", new JsonArray
-                                                       {
-                                                           Values =
-                                                               {
-                                                                   new JsonTrue(),
-                                                                   new JsonArray
-                                                                       {
-                                                                           Values =
-                                                                               {
-                                                                                   new JsonNumber("1"),
-                                                                                   new JsonNumber("2"),
-                                                                                   new JsonNumber("3")
-                                                                               }
-                                                                       },
-                                                                   new JsonFalse()
-                                                               }
-                                                       })
                           };
 
             using (var stream = new MemoryStream())
@@ -541,6 +501,48 @@
         public void op_WriteJson_JsonWriterNull()
         {
             Assert.Throws<ArgumentNullException>(() => new JsonObject().WriteJson(null));
+        }
+
+        [Theory]
+        [InlineData("{\"list\":[true,[1,2,3],false]}")]
+        public void op_WriteJson_JsonWriter_whenNestedArrays(string expected)
+        {
+            var obj = new JsonObject
+                          {
+                              new JsonPair("list",
+                                           new JsonArray
+                                               {
+                                                   Values =
+                                                       {
+                                                           new JsonTrue(),
+                                                           new JsonArray
+                                                               {
+                                                                   Values =
+                                                                       {
+                                                                           new JsonNumber("1"),
+                                                                           new JsonNumber("2"),
+                                                                           new JsonNumber("3")
+                                                                       }
+                                                               },
+                                                           new JsonFalse()
+                                                       }
+                                               })
+                          };
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    obj.WriteJson(writer);
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
         }
 
         [Fact]

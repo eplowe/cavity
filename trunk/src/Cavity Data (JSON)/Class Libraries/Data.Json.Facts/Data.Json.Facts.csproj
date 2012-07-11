@@ -12,6 +12,7 @@
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Compile Include="Data\JsonWriterSettings.Facts.cs" />
     <Compile Include="Data\IJsonSerializable.Facts.cs" />
     <Compile Include="Data\JsonWriter.Facts.cs" />
     <Compile Include="Data\JsonTrue.Facts.cs" />
@@ -56,6 +57,12 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="pretty object.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="pretty array.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="rfc4627 example 2.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

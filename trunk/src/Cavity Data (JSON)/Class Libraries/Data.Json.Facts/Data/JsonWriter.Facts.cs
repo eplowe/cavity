@@ -4,6 +4,8 @@
     using System.IO;
     using System.Xml;
 
+    using Cavity.IO;
+
     using Xunit;
     using Xunit.Extensions;
 
@@ -40,6 +42,36 @@
         }
 
         [Fact]
+        public void ctor_Stream_JsonWriterSettings()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream, new JsonWriterSettings()))
+                {
+                    Assert.NotNull(writer);
+                }
+            }
+        }
+
+        [Fact]
+        public void ctor_Stream_JsonWriterSettingsNull()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream, null))
+                {
+                    Assert.NotNull(writer);
+                }
+            }
+        }
+
+        [Fact]
+        public void ctor_StreamNull_JsonWriterSettings()
+        {
+            Assert.Throws<ArgumentNullException>(() => new JsonWriter(null, new JsonWriterSettings()));
+        }
+
+        [Fact]
         public void op_ArrayNull_whenParentNotArray()
         {
             using (var stream = new MemoryStream())
@@ -57,9 +89,9 @@
         }
 
         [Theory]
-        [InlineData(null, "{\"example\": [null]}")]
-        [InlineData("123", "{\"example\": [123]}")]
-        [InlineData(" 123 ", "{\"example\": [123]}")]
+        [InlineData(null, "{\"example\":[null]}")]
+        [InlineData("123", "{\"example\":[123]}")]
+        [InlineData(" 123 ", "{\"example\":[123]}")]
         public void op_ArrayNumber_string(string value, 
                                           string expected)
         {
@@ -121,7 +153,7 @@
         }
 
         [Theory]
-        [InlineData("{\"example\": [\"2011-07-14T19:43:37Z\"]}")]
+        [InlineData("{\"example\":[\"2011-07-14T19:43:37Z\"]}")]
         public void op_ArrayValue_DateTime(string expected)
         {
             using (var stream = new MemoryStream())
@@ -162,7 +194,7 @@
         }
 
         [Theory]
-        [InlineData("{\"example\": [\"PT17H9M43.089S\"]}")]
+        [InlineData("{\"example\":[\"PT17H9M43.089S\"]}")]
         public void op_ArrayValue_TimeSpan(string expected)
         {
             using (var stream = new MemoryStream())
@@ -203,8 +235,8 @@
         }
 
         [Theory]
-        [InlineData(true, "{\"example\": [true]}")]
-        [InlineData(false, "{\"example\": [false]}")]
+        [InlineData(true, "{\"example\":[true]}")]
+        [InlineData(false, "{\"example\":[false]}")]
         public void op_ArrayValue_bool(bool value, 
                                        string expected)
         {
@@ -246,7 +278,7 @@
         }
 
         [Theory]
-        [InlineData("{\"example\": [1.0]}")]
+        [InlineData("{\"example\":[1.0]}")]
         public void op_ArrayValue_decimal(string expected)
         {
             using (var stream = new MemoryStream())
@@ -287,7 +319,7 @@
         }
 
         [Theory]
-        [InlineData("{\"example\": [1.23]}")]
+        [InlineData("{\"example\":[1.23]}")]
         public void op_ArrayValue_double(string expected)
         {
             using (var stream = new MemoryStream())
@@ -328,7 +360,7 @@
         }
 
         [Theory]
-        [InlineData("{\"example\": [12345]}")]
+        [InlineData("{\"example\":[12345]}")]
         public void op_ArrayValue_long(string expected)
         {
             using (var stream = new MemoryStream())
@@ -369,10 +401,10 @@
         }
 
         [Theory]
-        [InlineData(null, "{\"example\": [null]}")]
-        [InlineData("", "{\"example\": [\"\"]}")]
-        [InlineData(" ", "{\"example\": [\" \"]}")]
-        [InlineData("value", "{\"example\": [\"value\"]}")]
+        [InlineData(null, "{\"example\":[null]}")]
+        [InlineData("", "{\"example\":[\"\"]}")]
+        [InlineData(" ", "{\"example\":[\" \"]}")]
+        [InlineData("value", "{\"example\":[\"value\"]}")]
         public void op_ArrayValue_string(string value, 
                                          string expected)
         {
@@ -493,7 +525,7 @@
         }
 
         [Theory]
-        [InlineData("{\"example\": null}")]
+        [InlineData("{\"example\":null}")]
         public void op_NullPair_string(string expected)
         {
             using (var stream = new MemoryStream())
@@ -563,11 +595,11 @@
         }
 
         [Theory]
-        [InlineData(null, "{\"example\": null}")]
-        [InlineData(" 123 ", "{\"example\": 123}")]
-        [InlineData("123", "{\"example\": 123}")]
-        [InlineData("1.23", "{\"example\": 1.23}")]
-        [InlineData("1e3", "{\"example\": 1e3}")]
+        [InlineData(null, "{\"example\":null}")]
+        [InlineData(" 123 ", "{\"example\":123}")]
+        [InlineData("123", "{\"example\":123}")]
+        [InlineData("1.23", "{\"example\":1.23}")]
+        [InlineData("1e3", "{\"example\":1e3}")]
         public void op_NumberPair_string_string(string value, 
                                                 string expected)
         {
@@ -719,8 +751,23 @@
             }
         }
 
+        [Fact]
+        public void op_Pair_stringNull_string()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    // ReSharper disable AccessToDisposedClosure
+                    Assert.Throws<ArgumentNullException>(() => writer.Pair(null, "value"));
+
+                    // ReSharper restore AccessToDisposedClosure
+                }
+            }
+        }
+
         [Theory]
-        [InlineData("{\"example\": \"2011-07-14T19:43:37Z\"}")]
+        [InlineData("{\"example\":\"2011-07-14T19:43:37Z\"}")]
         public void op_Pair_string_DateTime(string expected)
         {
             using (var stream = new MemoryStream())
@@ -742,7 +789,7 @@
         }
 
         [Theory]
-        [InlineData("{\"example\": \"PT17H9M43.089S\"}")]
+        [InlineData("{\"example\":\"PT17H9M43.089S\"}")]
         public void op_Pair_string_TimeSpan(string expected)
         {
             using (var stream = new MemoryStream())
@@ -764,8 +811,8 @@
         }
 
         [Theory]
-        [InlineData(true, "{\"example\": true}")]
-        [InlineData(false, "{\"example\": false}")]
+        [InlineData(true, "{\"example\":true}")]
+        [InlineData(false, "{\"example\":false}")]
         public void op_Pair_string_bool(bool value, 
                                         string expected)
         {
@@ -806,9 +853,9 @@
         }
 
         [Theory]
-        [InlineData("0", "{\"example\": 0}")]
-        [InlineData("0.0", "{\"example\": 0.0}")]
-        [InlineData("1.2345", "{\"example\": 1.2345}")]
+        [InlineData("0", "{\"example\":0}")]
+        [InlineData("0.0", "{\"example\":0.0}")]
+        [InlineData("1.2345", "{\"example\":1.2345}")]
         public void op_Pair_string_decimal(string value, 
                                            string expected)
         {
@@ -831,10 +878,10 @@
         }
 
         [Theory]
-        [InlineData(0, "{\"example\": 0}")]
-        [InlineData(1.2345, "{\"example\": 1.2345}")]
-        [InlineData(1230000000000000000, "{\"example\": 1.23E+18}")]
-        [InlineData(0.00000000000000123, "{\"example\": 1.23E-15}")]
+        [InlineData(0, "{\"example\":0}")]
+        [InlineData(1.2345, "{\"example\":1.2345}")]
+        [InlineData(1230000000000000000, "{\"example\":1.23E+18}")]
+        [InlineData(0.00000000000000123, "{\"example\":1.23E-15}")]
         public void op_Pair_string_double(double value, 
                                           string expected)
         {
@@ -857,7 +904,7 @@
         }
 
         [Theory]
-        [InlineData(12345, "{\"example\": 12345}")]
+        [InlineData(12345, "{\"example\":12345}")]
         public void op_Pair_string_int(int value, 
                                        string expected)
         {
@@ -880,7 +927,7 @@
         }
 
         [Theory]
-        [InlineData(12345, "{\"example\": 12345}")]
+        [InlineData(12345, "{\"example\":12345}")]
         public void op_Pair_string_long(long value, 
                                         string expected)
         {
@@ -903,9 +950,9 @@
         }
 
         [Theory]
-        [InlineData(0f, "{\"example\": 0}")]
-        [InlineData(1.2f, "{\"example\": 1.2000000476837158}")]
-        [InlineData(123000000f, "{\"example\": 123000000}")]
+        [InlineData(0f, "{\"example\":0}")]
+        [InlineData(1.2f, "{\"example\":1.2000000476837158}")]
+        [InlineData(123000000f, "{\"example\":123000000}")]
         public void op_Pair_string_single(float value, 
                                           string expected)
         {
@@ -927,27 +974,12 @@
             }
         }
 
-        [Fact]
-        public void op_Pair_stringNull_string()
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new JsonWriter(stream))
-                {
-                    // ReSharper disable AccessToDisposedClosure
-                    Assert.Throws<ArgumentNullException>(() => writer.Pair(null, "value"));
-
-                    // ReSharper restore AccessToDisposedClosure
-                }
-            }
-        }
-
         [Theory]
-        [InlineData(null, "{\"example\": null}")]
-        [InlineData("", "{\"example\": \"\"}")]
-        [InlineData(" ", "{\"example\": \" \"}")]
-        [InlineData("value", "{\"example\": \"value\"}")]
-        [InlineData(" value ", "{\"example\": \" value \"}")]
+        [InlineData(null, "{\"example\":null}")]
+        [InlineData("", "{\"example\":\"\"}")]
+        [InlineData(" ", "{\"example\":\" \"}")]
+        [InlineData("value", "{\"example\":\"value\"}")]
+        [InlineData(" value ", "{\"example\":\" value \"}")]
         public void op_StringPair_string_string(string value, 
                                                 string expected)
         {
@@ -1006,7 +1038,7 @@
         }
 
         [Theory]
-        [InlineData("[{}, {}]")]
+        [InlineData("[{},{}]")]
         public void write_array_with_two_empty_objects(string expected)
         {
             using (var stream = new MemoryStream())
@@ -1073,7 +1105,7 @@
         }
 
         [Theory]
-        [InlineData("{\"example\": [null, 1, 2, 3, 4, \" \", true, {\"one\": 1}]}")]
+        [InlineData("{\"example\":[null,1,2,3,4,\" \",true,{\"one\":1}]}")]
         public void write_object_with_array(string expected)
         {
             using (var stream = new MemoryStream())
@@ -1106,7 +1138,7 @@
         }
 
         [Theory]
-        [InlineData("{\"example\": [{\"one\": 1}, {\"two\": 2}]}")]
+        [InlineData("{\"example\":[{\"one\":1},{\"two\":2}]}")]
         public void write_object_with_array_of_objects(string expected)
         {
             using (var stream = new MemoryStream())
@@ -1135,7 +1167,37 @@
         }
 
         [Theory]
-        [InlineData("{\"id\": 123, \"title\": \"\", \"value\": null, \"list\": [1, \"\", null, true, false], \"visible\": true, \"enabled\": false}")]
+        [InlineData("{\"list\":[true,[1,2,3],false]}")]
+        public void write_object_with_nested_arrays(string expected)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    writer.Object();
+                    writer.Array("list");
+                    writer.ArrayValue(true);
+                    writer.Array();
+                    writer.ArrayValue(1);
+                    writer.ArrayValue(2);
+                    writer.ArrayValue(3);
+                    writer.EndArray();
+                    writer.ArrayValue(false);
+                    writer.EndArray();
+                    writer.EndObject();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{\"id\":123,\"title\":\"\",\"value\":null,\"list\":[1,\"\",null,true,false],\"visible\":true,\"enabled\":false}")]
         public void write_object_with_pairs(string expected)
         {
             using (var stream = new MemoryStream())
@@ -1168,28 +1230,71 @@
         }
 
         [Theory]
-        [InlineData("{\"list\": [true, [1, 2, 3], false]}")]
-        public void write_object_with_nested_arrays(string expected)
+        [InlineData("pretty array.json")]
+        public void write_pretty_array(string json)
         {
             using (var stream = new MemoryStream())
             {
-                using (var writer = new JsonWriter(stream))
+                using (var writer = new JsonWriter(stream, JsonWriterSettings.Debug))
                 {
-                    writer.Object();
-                    writer.Array("list");
-                    writer.ArrayValue(true);
                     writer.Array();
+                    writer.Object();
+                    writer.Pair("id", 0);
+                    writer.EndObject();
+                    writer.Object();
+                    writer.Pair("id", 123);
+                    writer.Pair("title", string.Empty);
+                    writer.Pair("value", null);
+                    writer.Array("list");
                     writer.ArrayValue(1);
-                    writer.ArrayValue(2);
-                    writer.ArrayValue(3);
-                    writer.EndArray();
+                    writer.ArrayValue(string.Empty);
+                    writer.ArrayNull();
+                    writer.ArrayValue(true);
                     writer.ArrayValue(false);
                     writer.EndArray();
+                    writer.Pair("visible", true);
+                    writer.Pair("enabled", false);
+                    writer.EndObject();
+                    writer.EndArray();
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var expected = new FileInfo(json).ReadToEnd();
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("pretty object.json")]
+        public void write_pretty_object(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream, JsonWriterSettings.Debug))
+                {
+                    writer.Object();
+                    writer.Pair("id", 123);
+                    writer.Pair("title", string.Empty);
+                    writer.Pair("value", null);
+                    writer.Array("list");
+                    writer.ArrayValue(1);
+                    writer.ArrayValue(string.Empty);
+                    writer.ArrayNull();
+                    writer.ArrayValue(true);
+                    writer.ArrayValue(false);
+                    writer.EndArray();
+                    writer.Pair("visible", true);
+                    writer.Pair("enabled", false);
                     writer.EndObject();
                 }
 
                 using (var reader = new StreamReader(stream))
                 {
+                    var expected = new FileInfo(json).ReadToEnd();
                     var actual = reader.ReadToEnd();
 
                     Assert.Equal(expected, actual);
