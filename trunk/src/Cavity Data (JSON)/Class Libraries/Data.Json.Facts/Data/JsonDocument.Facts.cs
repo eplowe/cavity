@@ -230,6 +230,27 @@
         }
 
         [Theory]
+        [InlineData("[{\"one\":1},{\"two\":2}]")]
+        public void op_ToString(string expected)
+        {
+            var document = new JsonDocument
+                               {
+                                   new JsonObject
+                                       {
+                                           new JsonPair("one", new JsonNumber("1"))
+                                       }, 
+                                   new JsonObject
+                                       {
+                                           new JsonPair("two", new JsonNumber("2"))
+                                       }
+                               };
+
+            var actual = document.ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData("{\"id\":123}")]
         public void op_WriteJson_JsonWriter(string expected)
         {
@@ -364,6 +385,34 @@
         }
 
         [Theory]
+        [InlineData("facebook.json", "facebook.pretty.json")]
+        [InlineData("flickr.json", "flickr.pretty.json")]
+        [InlineData("yahoo pipes.json", "yahoo pipes.pretty.json")]
+        public void roundtrip_pretty(string source, 
+                                     string destination)
+        {
+            var expected = new FileInfo(destination).ReadToEnd();
+
+            var document = JsonDocument.Load(new FileInfo(source).ReadToEnd());
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream, JsonWriterSettings.Pretty))
+                {
+                    document.WriteJson(writer);
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    ////new FileInfo("{0}.txt".FormatWith(source)).Append(actual);
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
         [InlineData("youtube.json")]
         [InlineData("google developer calendar.json")]
         public void roundtrip_terse(string json)
@@ -383,33 +432,6 @@
                 {
                     var actual = reader.ReadToEnd();
 
-                    Assert.Equal(expected, actual);
-                }
-            }
-        }
-
-        [Theory]
-        [InlineData("facebook.json", "facebook.pretty.json")]
-        [InlineData("flickr.json", "flickr.pretty.json")]
-        [InlineData("yahoo pipes.json", "yahoo pipes.pretty.json")]
-        public void roundtrip_pretty(string source, string destination)
-        {
-            var expected = new FileInfo(destination).ReadToEnd();
-
-            var document = JsonDocument.Load(new FileInfo(source).ReadToEnd());
-
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new JsonWriter(stream, JsonWriterSettings.Pretty))
-                {
-                    document.WriteJson(writer);
-                }
-
-                using (var reader = new StreamReader(stream))
-                {
-                    var actual = reader.ReadToEnd();
-
-                    ////new FileInfo("{0}.txt".FormatWith(source)).Append(actual);
                     Assert.Equal(expected, actual);
                 }
             }

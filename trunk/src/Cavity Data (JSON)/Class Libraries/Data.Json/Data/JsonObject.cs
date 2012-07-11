@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Linq;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
@@ -123,6 +124,22 @@
             }
 
             return (JsonString)this[name].Value;
+        }
+
+        public override string ToString()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    WriteJson(writer);
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()

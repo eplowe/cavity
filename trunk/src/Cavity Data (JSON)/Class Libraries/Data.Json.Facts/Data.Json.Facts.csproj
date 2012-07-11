@@ -9,9 +9,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Testing\FundamentalTypes.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Compile Include="Json.Object.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\JsonWriterSettings.Facts.cs" />
     <Compile Include="Data\IJsonSerializable.Facts.cs" />
     <Compile Include="Data\JsonWriter.Facts.cs" />

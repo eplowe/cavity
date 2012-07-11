@@ -40,7 +40,7 @@
                 return new JsonWriterSettings
                            {
                                ColonPadding = " ", 
-                               CommaPadding = Environment.NewLine,
+                               CommaPadding = Environment.NewLine, 
                                Indent = "\t"
                            };
             }
