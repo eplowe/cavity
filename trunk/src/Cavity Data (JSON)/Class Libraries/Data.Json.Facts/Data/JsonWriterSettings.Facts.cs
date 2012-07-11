@@ -57,6 +57,15 @@
         }
 
         [Fact]
+        public void prop_EncodeValues()
+        {
+            Assert.True(new PropertyExpectations<JsonWriterSettings>(x => x.EncodeValues)
+                            .IsAutoProperty(true)
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
         public void prop_Indent()
         {
             Assert.True(new PropertyExpectations<JsonWriterSettings>(x => x.Indent)
@@ -79,6 +88,7 @@
 
             Assert.Equal(" ", settings.ColonPadding);
             Assert.Equal(Environment.NewLine, settings.CommaPadding);
+            Assert.False(settings.EncodeValues);
             Assert.Equal("\t", settings.Indent);
         }
     }

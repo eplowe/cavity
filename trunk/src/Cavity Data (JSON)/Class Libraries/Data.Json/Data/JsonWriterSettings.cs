@@ -17,6 +17,7 @@
         {
             ColonPadding = string.Empty;
             CommaPadding = string.Empty;
+            EncodeValues = true;
             Indent = string.Empty;
         }
 
@@ -40,7 +41,8 @@
                 return new JsonWriterSettings
                            {
                                ColonPadding = " ", 
-                               CommaPadding = Environment.NewLine, 
+                               CommaPadding = Environment.NewLine,
+                               EncodeValues = false, 
                                Indent = "\t"
                            };
             }
@@ -119,6 +121,8 @@
                 _commaPadding = value;
             }
         }
+
+        public bool EncodeValues { get; set; }
 
         public string Indent
         {

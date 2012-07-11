@@ -142,7 +142,7 @@
                 return;
             }
 
-            Array("\"{0}\"".FormatWith(value), JsonNodeType.StringValue);
+            Array("\"{0}\"".FormatWith(Encode(value)), JsonNodeType.StringValue);
         }
 
         public void ArrayValue(TimeSpan value)
@@ -273,7 +273,21 @@
                 return;
             }
 
-            Pair(name, "\"{0}\"".FormatWith(value), JsonNodeType.StringValue);
+            Pair(name, "\"{0}\"".FormatWith(Encode(value)), JsonNodeType.StringValue);
+        }
+
+        public void Pair(string name,
+                         IJsonSerializable value)
+        {
+            if (null == value)
+            {
+                NullPair(name);
+                return;
+            }
+
+            _writer.Write("{0}\"{1}\":".FormatWith(Punctuation, name));
+            Nesting.Peek().Previous = JsonNodeType.None;
+            value.WriteJson(this);
         }
 
         protected override void OnDispose()
@@ -338,6 +352,24 @@
 
             _writer.Write("{0}\"{1}\":{2}{3}".FormatWith(Punctuation, name, Settings.ColonPadding, value));
             Nesting.Peek().Previous = type;
+        }
+
+        private string Encode(MutableString value)
+        {
+            value = value
+                .Replace("\\", "\\\\")
+                .Replace("\"", "\\\"");
+
+            if (Settings.EncodeValues)
+            {
+                value = value
+                    .Replace("\r", "\\r")
+                    .Replace("\n", "\\n")
+                    .Replace("\t", "\\t")
+                    .Replace("\v", "\\v");
+            }
+
+            return value;
         }
     }
 }
