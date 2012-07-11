@@ -12,6 +12,16 @@
 
         public IList<JsonValue> Values { get; private set; }
 
+        public JsonArray Array(int index)
+        {
+            if (IsNull(index))
+            {
+                return null;
+            }
+
+            return (JsonArray)Values[index];
+        }
+
         public bool Boolean(int index)
         {
             var value = Values[index];

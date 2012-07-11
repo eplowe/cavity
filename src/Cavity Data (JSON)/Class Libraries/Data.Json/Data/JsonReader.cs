@@ -22,7 +22,8 @@
 
         private JsonReader()
         {
-            Nesting = new Stack<string>();
+            Nesting = new Stack<JsonReaderState>();
+            Nesting.Push(new JsonReaderState(JsonNodeType.None));
         }
 
         public bool IsEmptyArray { get; private set; }
@@ -31,11 +32,11 @@
 
         public string Name { get; private set; }
 
-        public JsonNodeType NodeType { get; private set; }
+        public JsonNodeType NodeType { get; set; }
 
         public string Value { get; private set; }
 
-        private Stack<string> Nesting { get; set; }
+        private Stack<JsonReaderState> Nesting { get; set; }
 
         public bool Read()
         {
@@ -67,7 +68,7 @@
                         EndArray();
                         break;
                     case '"':
-                        if (NodeType != JsonNodeType.Object && null != Name)
+                        if (JsonNodeType.Array == Nesting.Peek().Current)
                         {
                             break;
                         }
@@ -105,57 +106,59 @@
                 return;
             }
 
-            ////_reader.Dispose();
             _reader = null;
         }
 
         private void BeginArray()
         {
+            Nesting.Push(new JsonReaderState(JsonNodeType.Array));
             NodeType = JsonNodeType.Array;
             if (']' == PeekNext())
             {
                 IsEmptyArray = true;
             }
-
-            Nesting.Push(Name);
         }
 
         private void BeginObject()
         {
+            Nesting.Push(new JsonReaderState(JsonNodeType.Object));
             NodeType = JsonNodeType.Object;
             IsEmptyObject = '}' == PeekNext();
         }
 
         private void Comma()
         {
-            if (NodeType == JsonNodeType.EndObject && 0 != Nesting.Count)
+            if (JsonNodeType.EndObject == NodeType && JsonNodeType.Array != Nesting.Peek().Current)
             {
-                Name = Nesting.Peek();
+                Name = null;
                 return;
             }
 
             NodeType = JsonNodeType.None;
+            Name = null;
             Value = null;
-            if (Name != (0 == Nesting.Count ? null : Nesting.Peek()))
-            {
-                Name = null;
-            }
         }
 
         private void EndArray()
         {
+            Nesting.Pop();
             NodeType = JsonNodeType.EndArray;
             IsEmptyArray = false;
-            Nesting.Pop();
             Name = null;
             Value = null;
         }
 
         private void EndChar()
         {
-            if (!NodeType.In(JsonNodeType.Object, JsonNodeType.EndObject) && 0 != Nesting.Count)
+            if (NodeType.In(JsonNodeType.EndArray))
             {
-                Name = Nesting.Peek();
+                Name = null;
+                return;
+            }
+
+            if (!NodeType.In(JsonNodeType.Object, JsonNodeType.EndObject))
+            {
+                Name = null;
                 Value = ReadValue();
                 return;
             }
@@ -165,6 +168,7 @@
 
         private void EndObject()
         {
+            Nesting.Pop();
             NodeType = JsonNodeType.EndObject;
             IsEmptyObject = false;
             Name = null;

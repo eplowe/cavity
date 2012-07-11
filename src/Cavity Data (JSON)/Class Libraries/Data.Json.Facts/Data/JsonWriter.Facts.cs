@@ -1167,7 +1167,7 @@
             }
         }
 
-        [Theory(Skip = "TODO")]
+        [Theory]
         [InlineData("{\"list\": [true, [1, 2, 3], false]}")]
         public void write_object_with_nested_arrays(string expected)
         {
