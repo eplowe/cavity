@@ -228,6 +228,31 @@
             Nest(JsonNodeType.Object);
         }
 
+        public void Object(string name)
+        {
+            if (JsonNodeType.Object != Nesting.Peek().Parent)
+            {
+                throw new InvalidOperationException("Named objects can only be started inside an object.");
+            }
+
+            switch (Nesting.Peek().Previous)
+            {
+                case JsonNodeType.EndObject:
+                case JsonNodeType.NullValue:
+                case JsonNodeType.TrueValue:
+                case JsonNodeType.FalseValue:
+                case JsonNodeType.NumberValue:
+                case JsonNodeType.StringValue:
+                    _writer.Write(',');
+                    break;
+            }
+
+            _writer.Write("{0}{1}\"{2}\":{3}".FormatWith(Settings.CommaPadding, Indent, name, '{'));
+
+            Nesting.Peek().Previous = JsonNodeType.Object;
+            Nest(JsonNodeType.Object);
+        }
+
         public void Pair(string name, 
                          bool value)
         {
@@ -235,9 +260,27 @@
         }
 
         public void Pair(string name, 
+                         char value)
+        {
+            if ((char)0 == value)
+            {
+                NullPair(name);
+                return;
+            }
+
+            Pair(name, XmlConvert.ToString(value));
+        }
+
+        public void Pair(string name, 
                          DateTime value)
         {
             Pair(name, XmlConvert.ToString(value, XmlDateTimeSerializationMode.Utc));
+        }
+
+        public void Pair(string name, 
+                         DateTimeOffset value)
+        {
+            Pair(name, XmlConvert.ToString(value));
         }
 
         public void Pair(string name, 
@@ -250,6 +293,12 @@
                          double value)
         {
             NumberPair(name, XmlConvert.ToString(value));
+        }
+
+        public void Pair(string name, 
+                         Guid value)
+        {
+            Pair(name, XmlConvert.ToString(value));
         }
 
         public void Pair(string name, 

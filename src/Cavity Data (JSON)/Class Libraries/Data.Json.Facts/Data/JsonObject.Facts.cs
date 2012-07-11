@@ -457,6 +457,37 @@
         }
 
         [Theory]
+        [InlineData("{\"list\":[true,[1,2,3],false]}")]
+        public void op_ToString(string expected)
+        {
+            var obj = new JsonObject
+                          {
+                              new JsonPair("list", 
+                                           new JsonArray
+                                               {
+                                                   Values =
+                                                       {
+                                                           new JsonTrue(), 
+                                                           new JsonArray
+                                                               {
+                                                                   Values =
+                                                                       {
+                                                                           new JsonNumber("1"), 
+                                                                           new JsonNumber("2"), 
+                                                                           new JsonNumber("3")
+                                                                       }
+                                                               }, 
+                                                           new JsonFalse()
+                                                       }
+                                               })
+                          };
+
+            var actual = obj.ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData("{\"id\":123,\"title\":\"\",\"value\":null,\"list\":[1,\"\",null,true,false],\"visible\":true,\"enabled\":false}")]
         public void op_WriteJson_JsonWriter(string expected)
         {
