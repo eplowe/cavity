@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Xml;
 
@@ -31,6 +32,48 @@
         public void op_JsonSerialize_objectNull()
         {
             Assert.Null((null as object).JsonSerialize());
+        }
+
+        [Theory]
+        [InlineData("[{},{}]")]
+        public void op_JsonSerialize_object_whenArrayObject(string expected)
+        {
+            var obj = new List<object>
+                          {
+                              new object(), 
+                              new object()
+                          };
+            var actual = obj.ToArray().JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[1.23,4.56]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfDecimal(string expected)
+        {
+            var obj = new Collection<decimal>
+                          {
+                              1.23m, 
+                              4.56m
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[{},{}]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfObject(string expected)
+        {
+            var obj = new Collection<object>
+                          {
+                              new object(), 
+                              new object()
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -66,20 +109,6 @@
                               };
 
             var actual = example.JsonSerialize();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [InlineData("[{},{}]")]
-        public void op_JsonSerialize_object_whenListOfObject(string expected)
-        {
-            var obj = new List<object>
-                          {
-                              new object(), 
-                              new object()
-                          };
-            var actual = obj.JsonSerialize();
 
             Assert.Equal(expected, actual);
         }

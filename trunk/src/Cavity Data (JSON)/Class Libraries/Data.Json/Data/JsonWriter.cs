@@ -109,14 +109,24 @@
             Array(value, JsonNodeType.NumberValue);
         }
 
+        public void ArrayValue(bool value)
+        {
+            Array(XmlConvert.ToString(value), value ? JsonNodeType.TrueValue : JsonNodeType.FalseValue);
+        }
+
+        public void ArrayValue(char value)
+        {
+            ArrayValue(XmlConvert.ToString(value));
+        }
+
         public void ArrayValue(DateTime value)
         {
             ArrayValue(XmlConvert.ToString(value, XmlDateTimeSerializationMode.Utc));
         }
 
-        public void ArrayValue(bool value)
+        public void ArrayValue(DateTimeOffset value)
         {
-            Array(XmlConvert.ToString(value), value ? JsonNodeType.TrueValue : JsonNodeType.FalseValue);
+            ArrayValue(XmlConvert.ToString(value));
         }
 
         public void ArrayValue(decimal value)
@@ -127,6 +137,11 @@
         public void ArrayValue(double value)
         {
             ArrayNumber(XmlConvert.ToString(value));
+        }
+
+        public void ArrayValue(Guid value)
+        {
+            ArrayValue(XmlConvert.ToString(value));
         }
 
         public void ArrayValue(long value)
