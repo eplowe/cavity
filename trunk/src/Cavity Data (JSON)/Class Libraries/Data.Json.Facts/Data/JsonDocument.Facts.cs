@@ -390,6 +390,8 @@
 
         [Theory]
         [InlineData("facebook.json", "facebook.pretty.json")]
+        [InlineData("flickr.json", "flickr.pretty.json")]
+        [InlineData("yahoo pipes.json", "yahoo pipes.pretty.json")]
         public void roundtrip_pretty(string source, string destination)
         {
             var expected = new FileInfo(destination).ReadToEnd();
@@ -406,6 +408,8 @@
                 using (var reader = new StreamReader(stream))
                 {
                     var actual = reader.ReadToEnd();
+
+                    ////new FileInfo("{0}.txt".FormatWith(source)).Append(actual);
                     Assert.Equal(expected, actual);
                 }
             }
