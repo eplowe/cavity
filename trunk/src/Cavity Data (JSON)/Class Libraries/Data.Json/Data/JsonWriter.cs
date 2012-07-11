@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Xml;
 
@@ -149,6 +150,7 @@
             ArrayNumber(XmlConvert.ToString(value));
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1057:StringUriOverloadsCallSystemUriOverloads", Justification = "This is not a URI.")]
         public void ArrayValue(string value)
         {
             if (null == value)
@@ -163,6 +165,17 @@
         public void ArrayValue(TimeSpan value)
         {
             ArrayValue(XmlConvert.ToString(value));
+        }
+
+        public void ArrayValue(Uri value)
+        {
+            if (null == value)
+            {
+                ArrayNull();
+                return;
+            }
+
+            ArrayValue(value.IsAbsoluteUri ? value.AbsoluteUri : value.OriginalString);
         }
 
         public void EndArray()
@@ -352,6 +365,18 @@
             _writer.Write("{0}\"{1}\":".FormatWith(Punctuation, name));
             Nesting.Peek().Previous = JsonNodeType.None;
             value.WriteJson(this);
+        }
+
+        public void Pair(string name,
+                         Uri value)
+        {
+            if (null == value)
+            {
+                NullPair(name);
+                return;
+            }
+
+            Pair(name, value.IsAbsoluteUri ? value.AbsoluteUri : value.AbsolutePath);
         }
 
         protected override void OnDispose()
