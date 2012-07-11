@@ -276,7 +276,7 @@
             Pair(name, "\"{0}\"".FormatWith(Encode(value)), JsonNodeType.StringValue);
         }
 
-        public void Pair(string name,
+        public void Pair(string name, 
                          IJsonSerializable value)
         {
             if (null == value)
@@ -300,6 +300,18 @@
             _writer.Flush();
             _writer.BaseStream.Position = 0;
             _writer = null;
+        }
+
+        private static string Encode(MutableString value)
+        {
+            return value
+                .Replace("\\", "\\\\")
+                .Replace("\"", "\\\"")
+                .Replace("\b", "\\b")
+                .Replace("\f", "\\f")
+                .Replace("\n", "\\n")
+                .Replace("\r", "\\r")
+                .Replace("\t", "\\t");
         }
 
         private void Array(string value, 
@@ -352,24 +364,6 @@
 
             _writer.Write("{0}\"{1}\":{2}{3}".FormatWith(Punctuation, name, Settings.ColonPadding, value));
             Nesting.Peek().Previous = type;
-        }
-
-        private string Encode(MutableString value)
-        {
-            value = value
-                .Replace("\\", "\\\\")
-                .Replace("\"", "\\\"");
-
-            if (Settings.EncodeValues)
-            {
-                value = value
-                    .Replace("\r", "\\r")
-                    .Replace("\n", "\\n")
-                    .Replace("\t", "\\t")
-                    .Replace("\v", "\\v");
-            }
-
-            return value;
         }
     }
 }

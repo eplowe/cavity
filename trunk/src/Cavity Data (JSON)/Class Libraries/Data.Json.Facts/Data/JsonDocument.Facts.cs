@@ -364,6 +364,7 @@
         }
 
         [Theory]
+        [InlineData("youtube.json")]
         [InlineData("google developer calendar.json")]
         public void roundtrip_terse(string json)
         {
@@ -382,6 +383,29 @@
                 {
                     var actual = reader.ReadToEnd();
 
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("facebook.json", "facebook.pretty.json")]
+        public void roundtrip_pretty(string source, string destination)
+        {
+            var expected = new FileInfo(destination).ReadToEnd();
+
+            var document = JsonDocument.Load(new FileInfo(source).ReadToEnd());
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream, JsonWriterSettings.Pretty))
+                {
+                    document.WriteJson(writer);
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
                     Assert.Equal(expected, actual);
                 }
             }
