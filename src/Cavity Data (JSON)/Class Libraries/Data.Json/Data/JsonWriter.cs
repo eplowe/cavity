@@ -10,6 +10,12 @@
         private StreamWriter _writer;
 
         public JsonWriter(Stream stream)
+            : this(stream, null)
+        {
+        }
+
+        public JsonWriter(Stream stream, 
+                          JsonWriterSettings settings)
             : this()
         {
             if (null == stream)
@@ -18,6 +24,8 @@
             }
 
             _writer = new StreamWriter(stream);
+            Indent = new MutableString();
+            Settings = settings ?? new JsonWriterSettings();
         }
 
         private JsonWriter()
@@ -26,15 +34,26 @@
             Nesting.Push(new JsonWriterState(JsonNodeType.None));
         }
 
+        private MutableString Indent { get; set; }
+
         private Stack<JsonWriterState> Nesting { get; set; }
 
         private string Punctuation
         {
             get
             {
-                return Nesting.Peek().Previous.In(JsonNodeType.None) ? string.Empty : ", ";
+                if (JsonNodeType.None == Nesting.Peek().Previous)
+                {
+                    return Nesting.Peek().Parent.In(JsonNodeType.Array, JsonNodeType.Object)
+                               ? "{0}{1}".FormatWith(Settings.CommaPadding, Indent)
+                               : string.Empty;
+                }
+
+                return ",{0}{1}".FormatWith(Settings.CommaPadding, Indent);
             }
         }
+
+        private JsonWriterSettings Settings { get; set; }
 
         public void Array()
         {
@@ -46,6 +65,10 @@
             _writer.Write("{0}[".FormatWith(Punctuation));
 
             Nesting.Push(new JsonWriterState(JsonNodeType.Array));
+            if (0 != Settings.Indent.Length)
+            {
+                Indent += Settings.Indent;
+            }
         }
 
         public void Array(string name)
@@ -60,8 +83,8 @@
                 throw new ArgumentNullException("name");
             }
 
-            _writer.Write("{0}\"{1}\": [".FormatWith(Punctuation, name));
-            Nesting.Push(new JsonWriterState(JsonNodeType.Array));
+            _writer.Write("{0}\"{1}\":{2}[".FormatWith(Punctuation, name, Settings.ColonPadding));
+            Nest(JsonNodeType.Array);
         }
 
         public void ArrayNull()
@@ -134,9 +157,7 @@
                 throw new InvalidOperationException("The current context is not an array.");
             }
 
-            _writer.Write(']');
-            Nesting.Pop();
-            Nesting.Peek().Previous = JsonNodeType.EndArray;
+            End(']', JsonNodeType.EndArray);
         }
 
         public void EndObject()
@@ -146,9 +167,7 @@
                 throw new InvalidOperationException("The current context is not an object.");
             }
 
-            _writer.Write('}');
-            Nesting.Pop();
-            Nesting.Peek().Previous = JsonNodeType.EndObject;
+            End('}', JsonNodeType.EndObject);
         }
 
         public void NullPair(string name)
@@ -186,7 +205,7 @@
                     case JsonNodeType.FalseValue:
                     case JsonNodeType.NumberValue:
                     case JsonNodeType.StringValue:
-                        _writer.Write(", ");
+                        _writer.Write(',');
                         break;
                 }
             }
@@ -195,9 +214,18 @@
                 throw new InvalidOperationException("Objects can only be started after the previous object has been ended or in an array.");
             }
 
-            _writer.Write('{');
+            if (JsonNodeType.None == Nesting.Peek().Parent &&
+                JsonNodeType.None == Nesting.Peek().Previous)
+            {
+                _writer.Write('{');
+            }
+            else
+            {
+                _writer.Write("{0}{1}{2}".FormatWith(Settings.CommaPadding, Indent, '{'));
+            }
+
             Nesting.Peek().Previous = JsonNodeType.Object;
-            Nesting.Push(new JsonWriterState(JsonNodeType.Object));
+            Nest(JsonNodeType.Object);
         }
 
         public void Pair(string name, 
@@ -272,6 +300,28 @@
             Nesting.Peek().Previous = type;
         }
 
+        private void End(char value, 
+                         JsonNodeType previous)
+        {
+            Nesting.Pop();
+            Nesting.Peek().Previous = previous;
+            if (0 != Settings.Indent.Length)
+            {
+                Indent.RemoveFromEnd(Settings.Indent);
+            }
+
+            _writer.Write("{0}{1}{2}".FormatWith(Settings.CommaPadding, Indent, value));
+        }
+
+        private void Nest(JsonNodeType type)
+        {
+            Nesting.Push(new JsonWriterState(type));
+            if (0 != Settings.Indent.Length)
+            {
+                Indent += Settings.Indent;
+            }
+        }
+
         private void Pair(string name, 
                           string value, 
                           JsonNodeType type)
@@ -286,7 +336,7 @@
                 throw new InvalidOperationException("Named values cannot be added to an array.");
             }
 
-            _writer.Write("{0}\"{1}\": {2}".FormatWith(Punctuation, name, value));
+            _writer.Write("{0}\"{1}\":{2}{3}".FormatWith(Punctuation, name, Settings.ColonPadding, value));
             Nesting.Peek().Previous = type;
         }
     }

@@ -305,7 +305,9 @@
             return array;
         }
 
-        private static void WriteJsonArray(JsonWriter writer, string name, JsonArray value)
+        private static void WriteJsonArray(JsonWriter writer, 
+                                           string name, 
+                                           JsonArray value)
         {
             if (null == name)
             {
