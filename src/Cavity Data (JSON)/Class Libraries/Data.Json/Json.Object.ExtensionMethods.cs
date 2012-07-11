@@ -24,7 +24,12 @@
                 using (var writer = new JsonWriter(stream))
                 {
                     var list = value as IEnumerable;
-                    if (null == list)
+                    if (value.GetType().IsArray)
+                    {
+                        writer.Array();
+                        writer.JsonSerializeList(list);
+                    }
+                    else if (null == list)
                     {
                         writer.Object();
                         writer.JsonSerializeObject(value);
@@ -32,7 +37,9 @@
                     else
                     {
                         writer.Array();
-                        writer.JsonSerializeList(list);
+                        writer.Object();
+                        writer.JsonSerializeObject(value);
+                        writer.EndArray();
                     }
                 }
 
@@ -41,6 +48,102 @@
                     return reader.ReadToEnd();
                 }
             }
+        }
+
+        private static bool JsonSerializeBaseClassLibraryType(this JsonWriter writer, 
+                                                              string name, 
+                                                              object value)
+        {
+            if (null == value)
+            {
+                if (null == name)
+                {
+                    writer.ArrayNull();
+                }
+                else
+                {
+                    writer.NullPair(name);
+                }
+
+                return true;
+            }
+
+            if (writer.JsonSerializeBuiltInType(name, value))
+            {
+                return true;
+            }
+
+            if (value is DateTime)
+            {
+                if (null == name)
+                {
+                    writer.ArrayValue((DateTime)value);
+                }
+                else
+                {
+                    writer.Pair(name, (DateTime)value);
+                }
+
+                return true;
+            }
+
+            if (value is DateTimeOffset)
+            {
+                if (null == name)
+                {
+                    writer.ArrayValue((DateTimeOffset)value);
+                }
+                else
+                {
+                    writer.Pair(name, (DateTimeOffset)value);
+                }
+
+                return true;
+            }
+
+            if (value is Guid)
+            {
+                if (null == name)
+                {
+                    writer.ArrayValue((Guid)value);
+                }
+                else
+                {
+                    writer.Pair(name, (Guid)value);
+                }
+
+                return true;
+            }
+
+            if (value is TimeSpan)
+            {
+                if (null == name)
+                {
+                    writer.ArrayValue((TimeSpan)value);
+                }
+                else
+                {
+                    writer.Pair(name, (TimeSpan)value);
+                }
+
+                return true;
+            }
+
+            if (value is Enum)
+            {
+                if (null == name)
+                {
+                    writer.ArrayValue(value.ToString());
+                }
+                else
+                {
+                    writer.Pair(name, value.ToString());
+                }
+
+                return true;
+            }
+
+            return false;
         }
 
         private static bool JsonSerializeBuiltInType(this JsonWriter writer, 
@@ -59,20 +162,44 @@
 
             if (value is bool)
             {
-                writer.Pair(name, (bool)value);
+                if (null == name)
+                {
+                    writer.ArrayValue((bool)value);
+                }
+                else
+                {
+                    writer.Pair(name, (bool)value);
+                }
+
                 return true;
             }
 
             if (value is decimal)
             {
-                writer.Pair(name, (decimal)value);
+                if (null == name)
+                {
+                    writer.ArrayValue((decimal)value);
+                }
+                else
+                {
+                    writer.Pair(name, (decimal)value);
+                }
+
                 return true;
             }
 
             var str = value as string;
             if (null != str)
             {
-                writer.Pair(name, str);
+                if (null == name)
+                {
+                    writer.ArrayValue(str);
+                }
+                else
+                {
+                    writer.Pair(name, str);
+                }
+
                 return true;
             }
 
@@ -85,13 +212,29 @@
         {
             if (value is double)
             {
-                writer.Pair(name, (double)value);
+                if (null == name)
+                {
+                    writer.ArrayValue((double)value);
+                }
+                else
+                {
+                    writer.Pair(name, (double)value);
+                }
+
                 return true;
             }
 
             if (value is float)
             {
-                writer.Pair(name, (float)value);
+                if (null == name)
+                {
+                    writer.ArrayValue((float)value);
+                }
+                else
+                {
+                    writer.Pair(name, (float)value);
+                }
+
                 return true;
             }
 
@@ -104,31 +247,71 @@
         {
             if (value is byte)
             {
-                writer.Pair(name, (byte)value);
+                if (null == name)
+                {
+                    writer.ArrayValue((byte)value);
+                }
+                else
+                {
+                    writer.Pair(name, (byte)value);
+                }
+
                 return true;
             }
 
             if (value is char)
             {
-                writer.Pair(name, (char)value);
+                if (null == name)
+                {
+                    writer.ArrayValue((char)value);
+                }
+                else
+                {
+                    writer.Pair(name, (char)value);
+                }
+
                 return true;
             }
 
             if (value is short)
             {
-                writer.Pair(name, (short)value);
+                if (null == name)
+                {
+                    writer.ArrayValue((short)value);
+                }
+                else
+                {
+                    writer.Pair(name, (short)value);
+                }
+
                 return true;
             }
 
             if (value is int)
             {
-                writer.Pair(name, (int)value);
+                if (null == name)
+                {
+                    writer.ArrayValue((int)value);
+                }
+                else
+                {
+                    writer.Pair(name, (int)value);
+                }
+
                 return true;
             }
 
             if (value is long)
             {
-                writer.Pair(name, (long)value);
+                if (null == name)
+                {
+                    writer.ArrayValue((long)value);
+                }
+                else
+                {
+                    writer.Pair(name, (long)value);
+                }
+
                 return true;
             }
 
@@ -161,46 +344,21 @@
                 .ToList();
             foreach (var property in properties)
             {
+                if (!property.CanRead)
+                {
+                    continue;
+                }
+
+                if (0 != property.GetIndexParameters().Length)
+                {
+                    continue;
+                }
+
                 var name = property.Name.ToCamelCase();
                 var value = property.GetValue(obj, null);
-                if (null == value)
-                {
-                    writer.NullPair(name);
-                    continue;
-                }
 
-                if (writer.JsonSerializeBuiltInType(name, value))
+                if (writer.JsonSerializeBaseClassLibraryType(name, value))
                 {
-                    continue;
-                }
-
-                if (value is DateTime)
-                {
-                    writer.Pair(name, (DateTime)value);
-                    continue;
-                }
-
-                if (value is DateTimeOffset)
-                {
-                    writer.Pair(name, (DateTimeOffset)value);
-                    continue;
-                }
-
-                if (value is Guid)
-                {
-                    writer.Pair(name, (Guid)value);
-                    continue;
-                }
-
-                if (value is TimeSpan)
-                {
-                    writer.Pair(name, (TimeSpan)value);
-                    continue;
-                }
-
-                if (value is Enum)
-                {
-                    writer.Pair(name, value.ToString());
                     continue;
                 }
 
@@ -211,10 +369,37 @@
                         writer.Pair(name, value.ToString());
                         continue;
                     }
-
-                    writer.Object(name);
-                    writer.JsonSerializeObject(value);
                 }
+
+                writer.Object(name);
+                writer.JsonSerializeObject(value);
+            }
+
+            var list = obj as IEnumerable;
+            if (null != list)
+            {
+                writer.Array("items");
+                foreach (var item in list)
+                {
+                    if (writer.JsonSerializeBaseClassLibraryType(null, item))
+                    {
+                        continue;
+                    }
+
+                    if (item is ValueType)
+                    {
+                        if (0 == properties.Count)
+                        {
+                            writer.ArrayValue(item.ToString());
+                            continue;
+                        }
+                    }
+
+                    writer.Object();
+                    writer.JsonSerializeObject(item);
+                }
+
+                writer.EndArray();
             }
 
             writer.EndObject();
