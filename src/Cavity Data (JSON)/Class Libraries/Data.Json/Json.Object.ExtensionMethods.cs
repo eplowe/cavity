@@ -143,6 +143,37 @@
                 return true;
             }
 
+            var uri = value as Uri;
+            if (null != uri)
+            {
+                if (null == name)
+                {
+                    writer.ArrayValue(uri);
+                }
+                else
+                {
+                    writer.Pair(name, uri);
+                }
+
+                return true;
+            }
+
+            if (0 == value.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance).Length)
+            {
+                if (null == name)
+                {
+                    writer.ArrayValue(value.ToString());
+                }
+                else
+                {
+                    writer.Pair(name, value.ToString());
+                }
+
+                return true;
+            }
+
+            ////writer.Object();
+            ////writer.JsonSerializeObject(value);
             return false;
         }
 
@@ -323,6 +354,11 @@
         {
             foreach (var item in list)
             {
+                if (null == item)
+                {
+                    continue;
+                }
+
                 writer.Object();
                 writer.JsonSerializeObject(item);
             }
@@ -362,15 +398,20 @@
                     continue;
                 }
 
-                if (value is ValueType)
-                {
-                    if (0 == properties.Count)
-                    {
-                        writer.Pair(name, value.ToString());
-                        continue;
-                    }
-                }
+                ////if (0 == value.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance).Length)
+                ////{
+                ////    writer.Pair(name, value.ToString());
+                ////    continue;
+                ////}
 
+                ////if (value is ValueType)
+                ////{
+                ////    if (0 == properties.Count)
+                ////    {
+                ////        writer.Pair(name, value.ToString());
+                ////        continue;
+                ////    }
+                ////}
                 writer.Object(name);
                 writer.JsonSerializeObject(value);
             }
@@ -386,15 +427,14 @@
                         continue;
                     }
 
-                    if (item is ValueType)
-                    {
-                        if (0 == properties.Count)
-                        {
-                            writer.ArrayValue(item.ToString());
-                            continue;
-                        }
-                    }
-
+                    ////if (item is ValueType)
+                    ////{
+                    ////    if (0 == properties.Count)
+                    ////    {
+                    ////        writer.ArrayValue(item.ToString());
+                    ////        continue;
+                    ////    }
+                    ////}
                     writer.Object();
                     writer.JsonSerializeObject(item);
                 }

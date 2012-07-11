@@ -7,6 +7,7 @@
     using System.Xml;
 
     using Cavity.Testing;
+    using Cavity.Xml;
 
     using Xunit;
     using Xunit.Extensions;
@@ -35,8 +36,36 @@
         }
 
         [Theory]
+        [InlineData("[]")]
+        public void op_JsonSerialize_object_whenArrayOfNull(string expected)
+        {
+            var obj = new List<object>
+                          {
+                              null, 
+                              null
+                          };
+            var actual = obj.ToArray().JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{}]")]
+        public void op_JsonSerialize_object_whenArrayOfObjectAndNull(string expected)
+        {
+            var obj = new List<object>
+                          {
+                              new object(), 
+                              null
+                          };
+            var actual = obj.ToArray().JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData("[{},{}]")]
-        public void op_JsonSerialize_object_whenArrayObject(string expected)
+        public void op_JsonSerialize_object_whenArrayOfObjectType(string expected)
         {
             var obj = new List<object>
                           {
@@ -44,6 +73,89 @@
                               new object()
                           };
             var actual = obj.ToArray().JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{}]")]
+        public void op_JsonSerialize_object_whenArrayOfValueType(string expected)
+        {
+            var obj = new List<object>
+                          {
+                              123
+                          };
+            var actual = obj.ToArray().JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[true,false]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfBoolean(string expected)
+        {
+            var obj = new Collection<bool>
+                          {
+                              true, 
+                              false
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[1,255]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfByte(string expected)
+        {
+            var obj = new Collection<byte>
+                          {
+                              1, 
+                              255
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[\"a\",\"z\"]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfChar(string expected)
+        {
+            var obj = new Collection<char>
+                          {
+                              'a', 
+                              'z'
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[\"1999-12-31T00:00:00Z\",\"2000-01-01T00:00:00Z\"]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfDateTime(string expected)
+        {
+            var obj = new Collection<DateTime>
+                          {
+                              new DateTime(1999, 12, 31), 
+                              new DateTime(2000, 1, 1)
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[\"1999-12-31T00:00:00Z\",\"2000-01-01T00:00:00Z\"]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfDateTimeOffset(string expected)
+        {
+            var obj = new Collection<DateTimeOffset>
+                          {
+                              new DateTime(1999, 12, 31), 
+                              new DateTime(2000, 1, 1)
+                          };
+            var actual = obj.JsonSerialize();
 
             Assert.Equal(expected, actual);
         }
@@ -63,13 +175,195 @@
         }
 
         [Theory]
-        [InlineData("[{\"count\":2,\"items\":[{},{}]}]")]
+        [InlineData("[{\"count\":2,\"items\":[1.23,4.56]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfDouble(string expected)
+        {
+            var obj = new Collection<double>
+                          {
+                              1.23d, 
+                              4.56d
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[\"Monday\",\"Friday\"]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfEnum(string expected)
+        {
+            var obj = new Collection<DayOfWeek>
+                          {
+                              DayOfWeek.Monday, 
+                              DayOfWeek.Friday
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[\"b75a9ea5-01ca-4a61-b299-8d0823a4a64a\",\"ce6a8e72-b5dc-4682-b9ce-23351d9d2f4a\"]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfGuid(string expected)
+        {
+            var obj = new Collection<Guid>
+                          {
+                              XmlConvert.ToGuid("b75a9ea5-01ca-4a61-b299-8d0823a4a64a"), 
+                              XmlConvert.ToGuid("ce6a8e72-b5dc-4682-b9ce-23351d9d2f4a")
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[123,456]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfInt16(string expected)
+        {
+            var obj = new Collection<short>
+                          {
+                              123, 
+                              456
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[1234,5678]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfInt32(string expected)
+        {
+            var obj = new Collection<int>
+                          {
+                              1234, 
+                              5678
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[12345,67890]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfInt64(string expected)
+        {
+            var obj = new Collection<long>
+                          {
+                              12345, 
+                              67890
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[null,null]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfNull(string expected)
+        {
+            var obj = new Collection<object>
+                          {
+                              null, 
+                              null
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[{\"prefix\":\"com\",\"uri\":\"http://example.com/\"},{\"prefix\":\"net\",\"uri\":\"http://example.net/\"}]}]")]
         public void op_JsonSerialize_object_whenCollectionOfObject(string expected)
+        {
+            var obj = new Collection<XmlNamespace>
+                          {
+                              new XmlNamespace("com", "http://example.com"), 
+                              new XmlNamespace("net", "http://example.net")
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[\"System.Object\",\"System.Object\"]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfObjectType(string expected)
         {
             var obj = new Collection<object>
                           {
                               new object(), 
                               new object()
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[1.2300000190734863,4.559999942779541]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfSingle(string expected)
+        {
+            var obj = new Collection<float>
+                          {
+                              1.23f, 
+                              4.56f
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[\"abc\",\"xyz\"]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfString(string expected)
+        {
+            var obj = new Collection<string>
+                          {
+                              "abc", 
+                              "xyz"
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[\"PT1H2M3S\",\"PT4H5M6S\"]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfTimeSpan(string expected)
+        {
+            var obj = new Collection<TimeSpan>
+                          {
+                              new TimeSpan(1, 2, 3), 
+                              new TimeSpan(4, 5, 6)
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[\"http://example.com/\",\"/path\"]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfUri(string expected)
+        {
+            var obj = new Collection<Uri>
+                          {
+                              new Uri("http://example.com"), 
+                              new Uri("/path", UriKind.Relative)
+                          };
+            var actual = obj.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("[{\"count\":2,\"items\":[{\"day\":31,\"month\":12,\"year\":1999},{\"day\":1,\"month\":1,\"year\":2000}]}]")]
+        public void op_JsonSerialize_object_whenCollectionOfValueType(string expected)
+        {
+            var obj = new Collection<Date>
+                          {
+                              new Date(1999, 12, 31), 
+                              new Date(2000, 1, 1)
                           };
             var actual = obj.JsonSerialize();
 
