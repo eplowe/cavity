@@ -214,6 +214,13 @@
             writer.Object();
             foreach (var pair in this)
             {
+                var obj = pair.Value as IJsonSerializable;
+                if (null != obj)
+                {
+                    writer.Pair(pair.Name, obj);
+                    continue;
+                }
+
                 var number = pair.Value as JsonNumber;
                 if (null != number)
                 {
@@ -237,7 +244,7 @@
 
                 if (pair.Value is JsonNull)
                 {
-                    writer.Pair(pair.Name, null);
+                    writer.NullPair(pair.Name);
                 }
                 else if (pair.Value is JsonTrue)
                 {
@@ -320,6 +327,13 @@
 
             foreach (var item in value.Values)
             {
+                var obj = item as IJsonSerializable;
+                if (null != obj)
+                {
+                    obj.WriteJson(writer);
+                    continue;
+                }
+
                 var number = item as JsonNumber;
                 if (null != number)
                 {

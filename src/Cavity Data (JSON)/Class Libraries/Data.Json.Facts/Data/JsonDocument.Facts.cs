@@ -6,6 +6,8 @@
     using System.IO;
     using System.Linq;
 
+    using Cavity.IO;
+
     using Xunit;
     using Xunit.Extensions;
 
@@ -359,6 +361,30 @@
             document.Add(new JsonObject());
 
             Assert.Equal(1, document.Count);
+        }
+
+        [Theory]
+        [InlineData("google developer calendar.json")]
+        public void roundtrip_terse(string json)
+        {
+            var expected = new FileInfo(json).ReadToEnd();
+
+            var document = JsonDocument.Load(expected);
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    document.WriteJson(writer);
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
         }
     }
 }

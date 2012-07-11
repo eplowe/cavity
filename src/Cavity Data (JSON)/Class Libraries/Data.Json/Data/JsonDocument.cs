@@ -91,24 +91,16 @@
                 throw new InvalidOperationException();
             }
 
-            ////if (reader.IsEmptyObject)
-            ////{
-            ////    reader.Read();
-            ////    return;
-            ////}
-            JsonObject obj = null;
             while (reader.Read())
             {
-                if (JsonNodeType.Object == reader.NodeType)
+                if (JsonNodeType.Object != reader.NodeType)
                 {
-                    obj = new JsonObject();
-                    obj.ReadJson(reader);
+                    continue;
                 }
 
-                if (JsonNodeType.EndObject == reader.NodeType)
-                {
-                    Objects.Add(obj);
-                }
+                var obj = new JsonObject();
+                obj.ReadJson(reader);
+                Add(obj);
             }
         }
 

@@ -405,6 +405,7 @@
         [InlineData("", "{\"example\":[\"\"]}")]
         [InlineData(" ", "{\"example\":[\" \"]}")]
         [InlineData("value", "{\"example\":[\"value\"]}")]
+        [InlineData("foo\"bar", "{\"example\":[\"foo\\\"bar\"]}")]
         public void op_ArrayValue_string(string value, 
                                          string expected)
         {
@@ -980,6 +981,8 @@
         [InlineData(" ", "{\"example\":\" \"}")]
         [InlineData("value", "{\"example\":\"value\"}")]
         [InlineData(" value ", "{\"example\":\" value \"}")]
+        [InlineData("foo\"bar", "{\"example\":\"foo\\\"bar\"}")]
+        [InlineData("and\\or", "{\"example\":\"and\\\\or\"}")]
         public void op_StringPair_string_string(string value, 
                                                 string expected)
         {
@@ -1012,7 +1015,7 @@
                     writer.Array("example");
 
                     // ReSharper disable AccessToDisposedClosure
-                    Assert.Throws<InvalidOperationException>(() => writer.Pair("name", null));
+                    Assert.Throws<InvalidOperationException>(() => writer.Pair("name", null as string));
 
                     // ReSharper restore AccessToDisposedClosure
                 }
@@ -1207,7 +1210,7 @@
                     writer.Object();
                     writer.Pair("id", 123);
                     writer.Pair("title", string.Empty);
-                    writer.Pair("value", null);
+                    writer.NullPair("value");
                     writer.Array("list");
                     writer.ArrayValue(1);
                     writer.ArrayValue(string.Empty);
@@ -1244,7 +1247,7 @@
                     writer.Object();
                     writer.Pair("id", 123);
                     writer.Pair("title", string.Empty);
-                    writer.Pair("value", null);
+                    writer.NullPair("value");
                     writer.Array("list");
                     writer.ArrayValue(1);
                     writer.ArrayValue(string.Empty);
@@ -1279,7 +1282,7 @@
                     writer.Object();
                     writer.Pair("id", 123);
                     writer.Pair("title", string.Empty);
-                    writer.Pair("value", null);
+                    writer.NullPair("value");
                     writer.Array("list");
                     writer.ArrayValue(1);
                     writer.ArrayValue(string.Empty);
