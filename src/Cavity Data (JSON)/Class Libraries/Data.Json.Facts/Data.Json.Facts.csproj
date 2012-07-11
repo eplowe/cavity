@@ -57,6 +57,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="google developer calendar.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="pretty object.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

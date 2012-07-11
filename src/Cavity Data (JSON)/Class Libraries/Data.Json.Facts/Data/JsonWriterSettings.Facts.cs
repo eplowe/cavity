@@ -1,7 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using Cavity;
+
     using Xunit;
 
     public sealed class JsonWriterSettingsFacts
@@ -25,19 +25,9 @@
         }
 
         [Fact]
-        public void prop_Pretty()
+        public void prop_ColonPadding()
         {
-            var settings = JsonWriterSettings.Pretty;
-
-            Assert.Equal(" ", settings.ColonPadding);
-            Assert.Equal(Environment.NewLine, settings.CommaPadding);
-            Assert.Equal("\t", settings.Indent);
-        }
-
-        [Fact]
-        public void prop_CommaPadding()
-        {
-            Assert.True(new PropertyExpectations<JsonWriterSettings>(x => x.CommaPadding)
+            Assert.True(new PropertyExpectations<JsonWriterSettings>(x => x.ColonPadding)
                             .IsNotDecorated()
                             .TypeIs<string>()
                             .DefaultValueIs(string.Empty)
@@ -51,9 +41,9 @@
         }
 
         [Fact]
-        public void prop_ColonPadding()
+        public void prop_CommaPadding()
         {
-            Assert.True(new PropertyExpectations<JsonWriterSettings>(x => x.ColonPadding)
+            Assert.True(new PropertyExpectations<JsonWriterSettings>(x => x.CommaPadding)
                             .IsNotDecorated()
                             .TypeIs<string>()
                             .DefaultValueIs(string.Empty)
@@ -80,6 +70,16 @@
                             .Set(Environment.NewLine)
                             .Set("\t")
                             .Result);
+        }
+
+        [Fact]
+        public void prop_Pretty()
+        {
+            var settings = JsonWriterSettings.Pretty;
+
+            Assert.Equal(" ", settings.ColonPadding);
+            Assert.Equal(Environment.NewLine, settings.CommaPadding);
+            Assert.Equal("\t", settings.Indent);
         }
     }
 }

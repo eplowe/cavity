@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
 
     using Xunit;
@@ -20,6 +21,7 @@
                             .HasDefaultConstructor()
                             .IsNotDecorated()
                             .Implements<IEnumerable<JsonObject>>()
+                            .Implements<IJsonSerializable>()
                             .Result);
         }
 
@@ -126,6 +128,216 @@
         public void op_Load_string_whenZeroObjects(string json)
         {
             Assert.Empty(JsonDocument.Load(json));
+        }
+
+        [Theory]
+        [InlineData("{\"name\":\"value\"}")]
+        public void op_ReadJson_JsonReader(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonReader(stream))
+                    {
+                        var document = new JsonDocument();
+                        document.ReadJson(reader);
+
+                        Assert.Equal("value", document.First().String("name").Value);
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_ReadJson_JsonReaderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new JsonDocument().ReadJson(null));
+        }
+
+        [Theory]
+        [InlineData("[{\"one\":1},{\"two\":2}]")]
+        public void op_ReadJson_JsonReader_whenArray(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonReader(stream))
+                    {
+                        var document = new JsonDocument();
+                        document.ReadJson(reader);
+
+                        Assert.Equal("1", document.First().Number("one").Value);
+                        Assert.Equal("2", document.Last().Number("two").Value);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("")]
+        public void op_ReadJson_JsonReader_whenEmpty(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonReader(stream))
+                    {
+                        reader.Read();
+
+                        var document = new JsonDocument();
+                        document.ReadJson(reader);
+
+                        Assert.Empty(document);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{}")]
+        public void op_ReadJson_JsonReader_whenEmptyObject(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonReader(stream))
+                    {
+                        var document = new JsonDocument();
+                        document.ReadJson(reader);
+
+                        Assert.Equal(1, document.Count);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{\"id\":123}")]
+        public void op_WriteJson_JsonWriter(string expected)
+        {
+            var document = new JsonDocument
+                               {
+                                   new JsonObject
+                                       {
+                                           new JsonPair("id", new JsonNumber("123"))
+                                       }
+                               };
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    document.WriteJson(writer);
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Fact]
+        public void op_WriteJson_JsonWriterNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new JsonDocument().WriteJson(null));
+        }
+
+        [Theory]
+        [InlineData("[{\"one\":1},{\"two\":2}]")]
+        public void op_WriteJson_JsonWriter_whenArray(string expected)
+        {
+            var document = new JsonDocument
+                               {
+                                   new JsonObject
+                                       {
+                                           new JsonPair("one", new JsonNumber("1"))
+                                       }, 
+                                   new JsonObject
+                                       {
+                                           new JsonPair("two", new JsonNumber("2"))
+                                       }
+                               };
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    document.WriteJson(writer);
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("")]
+        public void op_WriteJson_JsonWriter_whenEmpty(string expected)
+        {
+            var document = new JsonDocument();
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    document.WriteJson(writer);
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{}")]
+        public void op_WriteJson_JsonWriter_whenEmptyObject(string expected)
+        {
+            var document = new JsonDocument
+                               {
+                                   new JsonObject()
+                               };
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    document.WriteJson(writer);
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
         }
 
         [Fact]
