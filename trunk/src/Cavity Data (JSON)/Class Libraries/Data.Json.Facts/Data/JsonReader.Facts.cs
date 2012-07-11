@@ -1405,6 +1405,51 @@
         }
 
         [Theory]
+        [InlineData("{\"list\": [true,, false]}")]
+        [InlineData("{\"list\": [true, , false]}")]
+        public void read_double_comma(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonReader(stream))
+                    {
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Object, reader.NodeType);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Name, reader.NodeType);
+                        Assert.Equal("list", reader.Name);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.Array, reader.NodeType);
+                        Assert.Equal("list", reader.Name);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.TrueValue, reader.NodeType);
+                        Assert.Null(reader.Name);
+                        Assert.Equal("true", reader.Value);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.FalseValue, reader.NodeType);
+                        Assert.Null(reader.Name);
+                        Assert.Equal("false", reader.Value);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.EndArray, reader.NodeType);
+
+                        Assert.True(reader.Read());
+                        Assert.Equal(JsonNodeType.EndObject, reader.NodeType);
+                    }
+                }
+            }
+        }
+
+        [Theory]
         [InlineData("{\"list\": [true, [1, 2, 3], false]}")]
         public void read_nested_arrays(string json)
         {
@@ -1450,51 +1495,6 @@
 
                         Assert.True(reader.Read());
                         Assert.Equal(JsonNodeType.EndArray, reader.NodeType);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.FalseValue, reader.NodeType);
-                        Assert.Null(reader.Name);
-                        Assert.Equal("false", reader.Value);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.EndArray, reader.NodeType);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.EndObject, reader.NodeType);
-                    }
-                }
-            }
-        }
-
-        [Theory]
-        [InlineData("{\"list\": [true,, false]}")]
-        [InlineData("{\"list\": [true, , false]}")]
-        public void read_double_comma(string json)
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Write(json);
-                    writer.Flush();
-                    stream.Position = 0;
-                    using (var reader = new JsonReader(stream))
-                    {
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.Object, reader.NodeType);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.Name, reader.NodeType);
-                        Assert.Equal("list", reader.Name);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.Array, reader.NodeType);
-                        Assert.Equal("list", reader.Name);
-
-                        Assert.True(reader.Read());
-                        Assert.Equal(JsonNodeType.TrueValue, reader.NodeType);
-                        Assert.Null(reader.Name);
-                        Assert.Equal("true", reader.Value);
 
                         Assert.True(reader.Read());
                         Assert.Equal(JsonNodeType.FalseValue, reader.NodeType);

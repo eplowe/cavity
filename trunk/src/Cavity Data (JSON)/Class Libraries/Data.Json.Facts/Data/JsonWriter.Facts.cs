@@ -42,6 +42,12 @@
         }
 
         [Fact]
+        public void ctor_StreamNull_JsonWriterSettings()
+        {
+            Assert.Throws<ArgumentNullException>(() => new JsonWriter(null, new JsonWriterSettings()));
+        }
+
+        [Fact]
         public void ctor_Stream_JsonWriterSettings()
         {
             using (var stream = new MemoryStream())
@@ -63,12 +69,6 @@
                     Assert.NotNull(writer);
                 }
             }
-        }
-
-        [Fact]
-        public void ctor_StreamNull_JsonWriterSettings()
-        {
-            Assert.Throws<ArgumentNullException>(() => new JsonWriter(null, new JsonWriterSettings()));
         }
 
         [Fact]

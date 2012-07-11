@@ -7,7 +7,8 @@
     using System.IO;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
-    public class JsonDocument : IEnumerable<JsonObject>
+    public class JsonDocument : IEnumerable<JsonObject>, 
+                                IJsonSerializable
     {
         public JsonDocument()
         {
@@ -39,7 +40,7 @@
                 throw new ArgumentNullException("json");
             }
 
-            var result = new JsonDocument();
+            var document = new JsonDocument();
 
             using (var stream = new MemoryStream())
             {
@@ -50,25 +51,12 @@
                     stream.Position = 0;
                     using (var reader = new JsonReader(stream))
                     {
-                        JsonObject obj = null;
-                        while (reader.Read())
-                        {
-                            if (JsonNodeType.Object == reader.NodeType)
-                            {
-                                obj = new JsonObject();
-                                obj.ReadJson(reader);
-                            }
-
-                            if (JsonNodeType.EndObject == reader.NodeType)
-                            {
-                                result.Objects.Add(obj);
-                            }
-                        }
+                        document.ReadJson(reader);
                     }
                 }
             }
 
-            return result;
+            return document;
         }
 
         public void Add(JsonObject item)
@@ -89,6 +77,67 @@
         public IEnumerator<JsonObject> GetEnumerator()
         {
             return ((IEnumerable<JsonObject>)Objects).GetEnumerator();
+        }
+
+        public void ReadJson(JsonReader reader)
+        {
+            if (null == reader)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
+            if (JsonNodeType.None != reader.NodeType)
+            {
+                throw new InvalidOperationException();
+            }
+
+            ////if (reader.IsEmptyObject)
+            ////{
+            ////    reader.Read();
+            ////    return;
+            ////}
+            JsonObject obj = null;
+            while (reader.Read())
+            {
+                if (JsonNodeType.Object == reader.NodeType)
+                {
+                    obj = new JsonObject();
+                    obj.ReadJson(reader);
+                }
+
+                if (JsonNodeType.EndObject == reader.NodeType)
+                {
+                    Objects.Add(obj);
+                }
+            }
+        }
+
+        public void WriteJson(JsonWriter writer)
+        {
+            if (null == writer)
+            {
+                throw new ArgumentNullException("writer");
+            }
+
+            if (0 == Count)
+            {
+                return;
+            }
+
+            if (1 < Count)
+            {
+                writer.Array();
+            }
+
+            foreach (IJsonSerializable item in this)
+            {
+                item.WriteJson(writer);
+            }
+
+            if (1 < Count)
+            {
+                writer.EndArray();
+            }
         }
     }
 }

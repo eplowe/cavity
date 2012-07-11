@@ -25,11 +25,11 @@
             get
             {
                 return new JsonWriterSettings
-                {
-                    ColonPadding = " ",
-                    CommaPadding = Environment.NewLine,
-                    Indent = "·"
-                };
+                           {
+                               ColonPadding = " ", 
+                               CommaPadding = Environment.NewLine, 
+                               Indent = "·"
+                           };
             }
         }
 
@@ -39,8 +39,8 @@
             {
                 return new JsonWriterSettings
                            {
-                               ColonPadding = " ",
-                               CommaPadding = Environment.NewLine,
+                               ColonPadding = " ", 
+                               CommaPadding = Environment.NewLine, 
                                Indent = "\t"
                            };
             }
@@ -76,6 +76,7 @@
                 {
                     throw new FormatException(Resources.PaddingFormatExceptionMessage);
                 }
+
 #endif
 
                 _colonPadding = value;
@@ -112,6 +113,7 @@
                 {
                     throw new FormatException(Resources.PaddingFormatExceptionMessage);
                 }
+
 #endif
 
                 _commaPadding = value;
@@ -148,6 +150,7 @@
                 {
                     throw new FormatException(Resources.PaddingFormatExceptionMessage);
                 }
+
 #endif
 
                 _indent = value;
