@@ -286,7 +286,7 @@
         }
 
         [Theory]
-        [InlineData("{\"name\" : \"value\", \"range\" : [1,2,3], \"id\" : 123, \"visible\" : true, \"enabled\" : false, \"check\" : null, \"child\" : { \"value\" : 1.23 }}")]
+        [InlineData("{\"name\": \"value\", \"range\": [1,2,3], \"id\": 123, \"visible\": true, \"enabled\": false, \"check\": null, \"child\": { \"value\" : 1.23 }}")]
         public void op_ReadJson_JsonReader(string json)
         {
             using (var stream = new MemoryStream())
@@ -312,6 +312,65 @@
                         Assert.False(obj.Boolean("enabled"));
                         Assert.Null(obj.String("check"));
                         Assert.Equal("1.23", obj.Object("child").Number("value").Value);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{\"list\": [true, [1, 2, 3], false, null, \"abc\", {\"count\": 123 }, {\"count\": 456 }, true, {\"count\": 789 }]}")]
+        public void op_ReadJson_JsonReader_whenNestedArray(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonReader(stream))
+                    {
+                        reader.Read();
+
+                        var obj = new JsonObject();
+                        obj.ReadJson(reader);
+
+                        Assert.True(obj.Array("list").Boolean(0));
+                        Assert.Equal("1", obj.Array("list").Array(1).Number(0).Value);
+                        Assert.Equal("2", obj.Array("list").Array(1).Number(1).Value);
+                        Assert.Equal("3", obj.Array("list").Array(1).Number(2).Value);
+                        Assert.False(obj.Array("list").Boolean(2));
+                        Assert.True(obj.Array("list").IsNull(3));
+                        Assert.Equal("abc", obj.Array("list").String(4).Value);
+                        Assert.Equal("123", obj.Array("list").Object(5).Number("count").Value);
+                        Assert.Equal("456", obj.Array("list").Object(6).Number("count").Value);
+                        Assert.True(obj.Array("list").Boolean(7));
+                        Assert.Equal("789", obj.Array("list").Object(8).Number("count").Value);
+                    }
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{\"list\": [{\"count\": 123},true]}")]
+        public void op_ReadJson_JsonReader_whenNestedArrayBug(string json)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                    stream.Position = 0;
+                    using (var reader = new JsonReader(stream))
+                    {
+                        reader.Read();
+
+                        var obj = new JsonObject();
+                        obj.ReadJson(reader);
+
+                        Assert.Equal("123", obj.Array("list").Object(0).Number("count").Value);
+                        Assert.True(obj.Array("list").Boolean(1));
                     }
                 }
             }
@@ -419,6 +478,47 @@
                                                        }), 
                               new JsonPair("visible", new JsonTrue()), 
                               new JsonPair("enabled", new JsonFalse())
+                          };
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    obj.WriteJson(writer);
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    var actual = reader.ReadToEnd();
+
+                    Assert.Equal(expected, actual);
+                }
+            }
+        }
+
+        [Theory]
+        [InlineData("{\"list\": [true, [1, 2, 3], false]}")]
+        public void op_WriteJson_JsonWriter_whenNestedArrays(string expected)
+        {
+            var obj = new JsonObject
+                          {
+                              new JsonPair("list", new JsonArray
+                                                       {
+                                                           Values =
+                                                               {
+                                                                   new JsonTrue(),
+                                                                   new JsonArray
+                                                                       {
+                                                                           Values =
+                                                                               {
+                                                                                   new JsonNumber("1"),
+                                                                                   new JsonNumber("2"),
+                                                                                   new JsonNumber("3")
+                                                                               }
+                                                                       },
+                                                                   new JsonFalse()
+                                                               }
+                                                       })
                           };
 
             using (var stream = new MemoryStream())

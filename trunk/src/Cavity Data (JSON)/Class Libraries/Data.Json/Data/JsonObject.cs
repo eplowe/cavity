@@ -154,7 +154,6 @@
             }
 
             string name = null;
-            JsonArray array = null;
             while (reader.Read())
             {
                 JsonValue value = null;
@@ -185,12 +184,7 @@
                         break;
 
                     case JsonNodeType.Array:
-                        array = new JsonArray();
-                        continue;
-
-                    case JsonNodeType.EndArray:
-                        value = array;
-                        array = null;
+                        value = ReadJsonArray(reader);
                         break;
 
                     case JsonNodeType.Object:
@@ -200,14 +194,7 @@
                         break;
 
                     case JsonNodeType.EndObject:
-                        reader.Read();
                         return;
-                }
-
-                if (null != array)
-                {
-                    array.Values.Add(value);
-                    continue;
                 }
 
                 if (null != value)
@@ -264,10 +251,71 @@
 
             writer.EndObject();
         }
-        
+
+        private static JsonArray ReadJsonArray(JsonReader reader)
+        {
+            var array = new JsonArray();
+            while (reader.Read())
+            {
+                switch (reader.NodeType)
+                {
+                    case JsonNodeType.NullValue:
+                        array.Values.Add(new JsonNull());
+                        break;
+
+                    case JsonNodeType.TrueValue:
+                        array.Values.Add(new JsonTrue());
+                        break;
+
+                    case JsonNodeType.FalseValue:
+                        array.Values.Add(new JsonFalse());
+                        break;
+
+                    case JsonNodeType.NumberValue:
+                        array.Values.Add(new JsonNumber(reader.Value));
+                        break;
+
+                    case JsonNodeType.StringValue:
+                        array.Values.Add(new JsonString(reader.Value));
+                        break;
+
+                    case JsonNodeType.Array:
+                        array.Values.Add(ReadJsonArray(reader));
+                        break;
+
+                    case JsonNodeType.EndArray:
+                        return array;
+
+                    case JsonNodeType.Object:
+                        while (JsonNodeType.Object == reader.NodeType)
+                        {
+                            var obj = new JsonObject();
+                            obj.ReadJson(reader);
+                            array.Values.Add(obj);
+                            if (JsonNodeType.EndArray == reader.NodeType)
+                            {
+                                return array;
+                            }
+                        }
+
+                        continue;
+                }
+            }
+
+            return array;
+        }
+
         private static void WriteJsonArray(JsonWriter writer, string name, JsonArray value)
         {
-            writer.Array(name);
+            if (null == name)
+            {
+                writer.Array();
+            }
+            else
+            {
+                writer.Array(name);
+            }
+
             foreach (var item in value.Values)
             {
                 var number = item as JsonNumber;
@@ -284,12 +332,12 @@
                     continue;
                 }
 
-                ////var array = item as JsonArray;
-                ////if (null != array)
-                ////{
-                ////    WriteJsonArray(writer, array);
-                ////    continue;
-                ////}
+                var array = item as JsonArray;
+                if (null != array)
+                {
+                    WriteJsonArray(writer, null, array);
+                    continue;
+                }
 
                 if (item is JsonNull)
                 {

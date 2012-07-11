@@ -96,6 +96,38 @@
         }
 
         [Fact]
+        public void op_Array_int()
+        {
+            var expected = new JsonArray();
+
+            var document = new JsonArray
+                               {
+                                   Values =
+                                       {
+                                           expected
+                                       }
+                               };
+
+            var actual = document.Array(0);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Array_int_whenNullValue()
+        {
+            var document = new JsonArray
+                               {
+                                   Values =
+                                       {
+                                           new JsonNull()
+                                       }
+                               };
+
+            Assert.Null(document.Array(0));
+        }
+
+        [Fact]
         public void op_Number_int()
         {
             var expected = new JsonNumber("value");

@@ -28,14 +28,22 @@
 
         private Stack<JsonWriterState> Nesting { get; set; }
 
+        private string Punctuation
+        {
+            get
+            {
+                return Nesting.Peek().Previous.In(JsonNodeType.None) ? string.Empty : ", ";
+            }
+        }
+
         public void Array()
         {
-            if (JsonNodeType.None != Nesting.Peek().Parent)
+            if (!Nesting.Peek().Parent.In(JsonNodeType.None, JsonNodeType.Array))
             {
-                throw new InvalidOperationException("A nameless array is only permitted as a root container.");
+                throw new InvalidOperationException("A nameless array is only permitted as a root container or within another array.");
             }
 
-            _writer.Write('[');
+            _writer.Write("{0}[".FormatWith(Punctuation));
 
             Nesting.Push(new JsonWriterState(JsonNodeType.Array));
         }
@@ -52,7 +60,7 @@
                 throw new ArgumentNullException("name");
             }
 
-            _writer.Write("{0}\"{1}\": [".FormatWith(Nesting.Peek().Previous.In(JsonNodeType.None) ? string.Empty : ", ", name));
+            _writer.Write("{0}\"{1}\": [".FormatWith(Punctuation, name));
             Nesting.Push(new JsonWriterState(JsonNodeType.Array));
         }
 
@@ -260,7 +268,7 @@
                 throw new InvalidOperationException("Array values can only be added to an array.");
             }
 
-            _writer.Write("{0}{1}".FormatWith(Nesting.Peek().Previous.In(JsonNodeType.None) ? string.Empty : ", ", value));
+            _writer.Write("{0}{1}".FormatWith(Punctuation, value));
             Nesting.Peek().Previous = type;
         }
 
@@ -278,7 +286,7 @@
                 throw new InvalidOperationException("Named values cannot be added to an array.");
             }
 
-            _writer.Write("{0}\"{1}\": {2}".FormatWith(Nesting.Peek().Previous.In(JsonNodeType.None) ? string.Empty : ", ", name, value));
+            _writer.Write("{0}\"{1}\": {2}".FormatWith(Punctuation, name, value));
             Nesting.Peek().Previous = type;
         }
     }
