@@ -1304,5 +1304,16 @@
                 }
             }
         }
+
+        [Fact]
+        public void prop_Settings()
+        {
+            Assert.True(new PropertyExpectations<JsonWriter>(x => x.Settings)
+                            .IsNotDecorated()
+                            .TypeIs<JsonWriterSettings>()
+                            .DefaultValueIsNotNull()
+                            .Result);
+        }
+
     }
 }

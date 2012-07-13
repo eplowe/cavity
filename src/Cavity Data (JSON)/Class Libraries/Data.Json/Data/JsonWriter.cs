@@ -25,15 +25,18 @@
             }
 
             _writer = new StreamWriter(stream);
-            Indent = new MutableString();
-            Settings = settings ?? new JsonWriterSettings();
+            Settings = settings ?? JsonWriterSettings.Terse;
         }
 
         private JsonWriter()
         {
             Nesting = new Stack<JsonWriterState>();
             Nesting.Push(new JsonWriterState(JsonNodeType.None));
+            Indent = new MutableString();
+            Settings = Settings ?? JsonWriterSettings.Terse;
         }
+
+        public JsonWriterSettings Settings { get; private set; }
 
         private MutableString Indent { get; set; }
 
@@ -53,8 +56,6 @@
                 return ",{0}{1}".FormatWith(Settings.CommaPadding, Indent);
             }
         }
-
-        private JsonWriterSettings Settings { get; set; }
 
         public void Array()
         {
