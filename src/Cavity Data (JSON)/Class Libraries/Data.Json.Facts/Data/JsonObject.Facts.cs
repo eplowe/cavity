@@ -516,6 +516,7 @@
             {
                 using (var writer = new JsonWriter(stream))
                 {
+                    writer.Object();
                     obj.WriteJson(writer);
                 }
 
@@ -564,6 +565,7 @@
             {
                 using (var writer = new JsonWriter(stream))
                 {
+                    writer.Object();
                     obj.WriteJson(writer);
                 }
 

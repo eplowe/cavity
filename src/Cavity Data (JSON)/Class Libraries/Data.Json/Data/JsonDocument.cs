@@ -137,9 +137,11 @@
                 writer.Array();
             }
 
-            foreach (IJsonSerializable item in this)
+            foreach (var item in this)
             {
+                writer.Object();
                 item.WriteJson(writer);
+                ////writer.EndObject();
             }
 
             if (1 < Count)

@@ -364,7 +364,10 @@
 
             _writer.Write("{0}\"{1}\":".FormatWith(Punctuation, name));
             Nesting.Peek().Previous = JsonNodeType.None;
+            
+            Object();
             value.WriteJson(this);
+            ////EndObject();
         }
 
         public void Pair(string name,

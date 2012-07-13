@@ -6,6 +6,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Xml;
 
+    using Cavity.Data;
     using Cavity.Testing;
     using Cavity.Xml;
 
@@ -547,6 +548,23 @@
             {
                 Ignore = "ignore",
                 Value = "value"
+            };
+
+            var actual = example.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("{\"value\":{\"price\":1.23}}")]
+        public void op_JsonSerialize_object_whenSerializableType(string expected)
+        {
+            var example = new SerializableType
+            {
+                Value = new JsonObject
+                            {
+                                new JsonPair("price", 1.23m)
+                            }
             };
 
             var actual = example.JsonSerialize();

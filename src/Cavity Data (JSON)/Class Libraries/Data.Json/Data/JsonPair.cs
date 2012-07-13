@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System;
+    using System.Xml;
 
     public sealed class JsonPair
     {
@@ -9,6 +10,64 @@
         private JsonValue _value;
 
         public JsonPair(string name, 
+                        bool value)
+            : this(name)
+        {
+            if (value)
+            {
+                Value = new JsonTrue();
+            }
+            else
+            {
+                Value = new JsonFalse();
+            }
+        }
+
+        public JsonPair(string name,
+                        char value)
+            : this(name)
+        {
+            if ((char)0 == value)
+            {
+                Value = new JsonNull();
+            }
+            else
+            {
+                Value = new JsonString(XmlConvert.ToString(value));
+            }
+        }
+
+        public JsonPair(string name,
+                        DateTime value)
+            : this(name, XmlConvert.ToString(value, XmlDateTimeSerializationMode.Utc))
+        {
+        }
+
+        public JsonPair(string name,
+                        DateTimeOffset value)
+            : this(name, XmlConvert.ToString(value))
+        {
+        }
+
+        public JsonPair(string name,
+                        decimal value)
+            : this(name, new JsonNumber(value))
+        {
+        }
+
+        public JsonPair(string name,
+                        double value)
+            : this(name, new JsonNumber(value))
+        {
+        }
+
+        public JsonPair(string name,
+                        long value)
+            : this(name, new JsonNumber(value))
+        {
+        }
+
+        public JsonPair(string name,
                         string value)
             : this(name, new JsonString(value))
         {
@@ -16,10 +75,15 @@
 
         public JsonPair(string name, 
                         JsonValue value)
+            : this(name)
+        {
+            Value = value;
+        }
+
+        private JsonPair(string name)
             : this()
         {
             Name = name;
-            Value = value;
         }
 
         private JsonPair()

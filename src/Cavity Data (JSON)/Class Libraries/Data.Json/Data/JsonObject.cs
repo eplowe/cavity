@@ -132,6 +132,7 @@
             {
                 using (var writer = new JsonWriter(stream))
                 {
+                    writer.Object();
                     WriteJson(writer);
                 }
 
@@ -228,7 +229,6 @@
                 throw new ArgumentNullException("writer");
             }
 
-            writer.Object();
             foreach (var pair in this)
             {
                 var obj = pair.Value as IJsonSerializable;
@@ -347,7 +347,9 @@
                 var obj = item as IJsonSerializable;
                 if (null != obj)
                 {
+                    writer.Object();
                     obj.WriteJson(writer);
+                    ////writer.EndObject();
                     continue;
                 }
 

@@ -7,6 +7,21 @@
     {
         private string _value;
 
+        public JsonNumber(decimal value)
+            : this(XmlConvert.ToString(value))
+        {
+        }
+
+        public JsonNumber(double value)
+            : this(XmlConvert.ToString(value))
+        {
+        }
+
+        public JsonNumber(long value)
+            : this(XmlConvert.ToString(value))
+        {
+        }
+
         public JsonNumber(string value)
             : this()
         {
