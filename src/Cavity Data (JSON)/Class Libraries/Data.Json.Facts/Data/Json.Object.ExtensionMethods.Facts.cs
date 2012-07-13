@@ -1,4 +1,4 @@
-﻿namespace Cavity
+﻿namespace Cavity.Data
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,6 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Xml;
 
-    using Cavity.Data;
     using Cavity.Testing;
     using Cavity.Xml;
 
@@ -92,7 +91,22 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[true,false]}")]
+        [InlineData("{\"example\":\"value\"}")]
+        public void op_JsonSerialize_object_whenAttributedType(string expected)
+        {
+            var example = new AttributedType
+                              {
+                                  Ignore = "ignore", 
+                                  Value = "value"
+                              };
+
+            var actual = example.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("{\"count\":2,\"\":[true,false]}")]
         public void op_JsonSerialize_object_whenCollectionOfBoolean(string expected)
         {
             var obj = new Collection<bool>
@@ -106,7 +120,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[1,255]}")]
+        [InlineData("{\"count\":2,\"\":[1,255]}")]
         public void op_JsonSerialize_object_whenCollectionOfByte(string expected)
         {
             var obj = new Collection<byte>
@@ -120,7 +134,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[\"a\",\"z\"]}")]
+        [InlineData("{\"count\":2,\"\":[\"a\",\"z\"]}")]
         public void op_JsonSerialize_object_whenCollectionOfChar(string expected)
         {
             var obj = new Collection<char>
@@ -134,7 +148,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[\"1999-12-31T00:00:00Z\",\"2000-01-01T00:00:00Z\"]}")]
+        [InlineData("{\"count\":2,\"\":[\"1999-12-31T00:00:00Z\",\"2000-01-01T00:00:00Z\"]}")]
         public void op_JsonSerialize_object_whenCollectionOfDateTime(string expected)
         {
             var obj = new Collection<DateTime>
@@ -148,7 +162,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[\"1999-12-31T00:00:00Z\",\"2000-01-01T00:00:00Z\"]}")]
+        [InlineData("{\"count\":2,\"\":[\"1999-12-31T00:00:00Z\",\"2000-01-01T00:00:00Z\"]}")]
         public void op_JsonSerialize_object_whenCollectionOfDateTimeOffset(string expected)
         {
             var obj = new Collection<DateTimeOffset>
@@ -162,7 +176,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[1.23,4.56]}")]
+        [InlineData("{\"count\":2,\"\":[1.23,4.56]}")]
         public void op_JsonSerialize_object_whenCollectionOfDecimal(string expected)
         {
             var obj = new Collection<decimal>
@@ -176,7 +190,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[1.23,4.56]}")]
+        [InlineData("{\"count\":2,\"\":[1.23,4.56]}")]
         public void op_JsonSerialize_object_whenCollectionOfDouble(string expected)
         {
             var obj = new Collection<double>
@@ -190,7 +204,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[\"Monday\",\"Friday\"]}")]
+        [InlineData("{\"count\":2,\"\":[\"Monday\",\"Friday\"]}")]
         public void op_JsonSerialize_object_whenCollectionOfEnum(string expected)
         {
             var obj = new Collection<DayOfWeek>
@@ -204,7 +218,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[\"b75a9ea5-01ca-4a61-b299-8d0823a4a64a\",\"ce6a8e72-b5dc-4682-b9ce-23351d9d2f4a\"]}")]
+        [InlineData("{\"count\":2,\"\":[\"b75a9ea5-01ca-4a61-b299-8d0823a4a64a\",\"ce6a8e72-b5dc-4682-b9ce-23351d9d2f4a\"]}")]
         public void op_JsonSerialize_object_whenCollectionOfGuid(string expected)
         {
             var obj = new Collection<Guid>
@@ -218,7 +232,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[123,456]}")]
+        [InlineData("{\"count\":2,\"\":[123,456]}")]
         public void op_JsonSerialize_object_whenCollectionOfInt16(string expected)
         {
             var obj = new Collection<short>
@@ -232,7 +246,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[1234,5678]}")]
+        [InlineData("{\"count\":2,\"\":[1234,5678]}")]
         public void op_JsonSerialize_object_whenCollectionOfInt32(string expected)
         {
             var obj = new Collection<int>
@@ -246,7 +260,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[12345,67890]}")]
+        [InlineData("{\"count\":2,\"\":[12345,67890]}")]
         public void op_JsonSerialize_object_whenCollectionOfInt64(string expected)
         {
             var obj = new Collection<long>
@@ -260,7 +274,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[null,null]}")]
+        [InlineData("{\"count\":2,\"\":[null,null]}")]
         public void op_JsonSerialize_object_whenCollectionOfNull(string expected)
         {
             var obj = new Collection<object>
@@ -274,7 +288,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[{\"prefix\":\"com\",\"uri\":\"http://example.com/\"},{\"prefix\":\"net\",\"uri\":\"http://example.net/\"}]}")]
+        [InlineData("{\"count\":2,\"\":[{\"prefix\":\"com\",\"uri\":\"http://example.com/\"},{\"prefix\":\"net\",\"uri\":\"http://example.net/\"}]}")]
         public void op_JsonSerialize_object_whenCollectionOfObject(string expected)
         {
             var obj = new Collection<XmlNamespace>
@@ -288,7 +302,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[\"System.Object\",\"System.Object\"]}")]
+        [InlineData("{\"count\":2,\"\":[\"System.Object\",\"System.Object\"]}")]
         public void op_JsonSerialize_object_whenCollectionOfObjectType(string expected)
         {
             var obj = new Collection<object>
@@ -302,7 +316,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[1.2300000190734863,4.559999942779541]}")]
+        [InlineData("{\"count\":2,\"\":[1.2300000190734863,4.559999942779541]}")]
         public void op_JsonSerialize_object_whenCollectionOfSingle(string expected)
         {
             var obj = new Collection<float>
@@ -316,7 +330,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[\"abc\",\"xyz\"]}")]
+        [InlineData("{\"count\":2,\"\":[\"abc\",\"xyz\"]}")]
         public void op_JsonSerialize_object_whenCollectionOfString(string expected)
         {
             var obj = new Collection<string>
@@ -330,7 +344,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[\"PT1H2M3S\",\"PT4H5M6S\"]}")]
+        [InlineData("{\"count\":2,\"\":[\"PT1H2M3S\",\"PT4H5M6S\"]}")]
         public void op_JsonSerialize_object_whenCollectionOfTimeSpan(string expected)
         {
             var obj = new Collection<TimeSpan>
@@ -344,7 +358,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[\"http://example.com/\",\"/path\"]}")]
+        [InlineData("{\"count\":2,\"\":[\"http://example.com/\",\"/path\"]}")]
         public void op_JsonSerialize_object_whenCollectionOfUri(string expected)
         {
             var obj = new Collection<Uri>
@@ -358,7 +372,7 @@
         }
 
         [Theory]
-        [InlineData("{\"count\":2,\"items\":[{\"day\":31,\"month\":12,\"year\":1999},{\"day\":1,\"month\":1,\"year\":2000}]}")]
+        [InlineData("{\"count\":2,\"\":[{\"day\":31,\"month\":12,\"year\":1999},{\"day\":1,\"month\":1,\"year\":2000}]}")]
         public void op_JsonSerialize_object_whenCollectionOfValueType(string expected)
         {
             var obj = new Collection<Date>
@@ -523,57 +537,7 @@
         }
 
         [Theory]
-        [InlineData("null", null)]
-        [InlineData("\"\"", "")]
-        [InlineData("\" \"", " ")]
-        [InlineData("\"abc\"", "abc")]
-        public void op_JsonSerialize_object_whenString(string expected, 
-                                                       string value)
-        {
-            var example = new FundamentalTypes
-                              {
-                                  Value = value
-                              };
-
-            var actual = example.JsonSerialize();
-
-            Assert.Equal("{{\"boolean\":false,\"byte\":0,\"character\":null,\"date\":{{\"day\":1,\"month\":1,\"year\":1}},\"day\":\"Sunday\",\"decimal\":0,\"double\":0,\"duration\":\"PT0S\",\"int16\":0,\"int32\":0,\"int64\":0,\"offset\":\"0001-01-01T00:00:00Z\",\"single\":0,\"unique\":\"00000000-0000-0000-0000-000000000000\",\"value\":{0},\"when\":\"0001-01-01T00:00:00Z\"}}".FormatWith(expected), actual);
-        }
-
-        [Theory]
-        [InlineData("{\"example\":\"value\"}")]
-        public void op_JsonSerialize_object_whenAttributedType(string expected)
-        {
-            var example = new AttributedType
-            {
-                Ignore = "ignore",
-                Value = "value"
-            };
-
-            var actual = example.JsonSerialize();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [InlineData("{\"value\":{\"price\":1.23}}")]
-        public void op_JsonSerialize_object_whenSerializableType(string expected)
-        {
-            var example = new SerializableType
-            {
-                Value = new JsonObject
-                            {
-                                new JsonPair("price", 1.23m)
-                            }
-            };
-
-            var actual = example.JsonSerialize();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [InlineData("{\"count\":1,\"items\":[{\"value\":{\"price\":1.23}}]}")]
+        [InlineData("{\"count\":1,\"\":[{\"value\":{\"price\":1.23}}]}")]
         public void op_JsonSerialize_object_whenSerializableCollection(string expected)
         {
             var example = new SerializableCollection
@@ -590,6 +554,41 @@
             var actual = example.JsonSerialize();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("{\"value\":{\"price\":1.23}}")]
+        public void op_JsonSerialize_object_whenSerializableType(string expected)
+        {
+            var example = new SerializableType
+                              {
+                                  Value = new JsonObject
+                                              {
+                                                  new JsonPair("price", 1.23m)
+                                              }
+                              };
+
+            var actual = example.JsonSerialize();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("null", null)]
+        [InlineData("\"\"", "")]
+        [InlineData("\" \"", " ")]
+        [InlineData("\"abc\"", "abc")]
+        public void op_JsonSerialize_object_whenString(string expected, 
+                                                       string value)
+        {
+            var example = new FundamentalTypes
+                              {
+                                  Value = value
+                              };
+
+            var actual = example.JsonSerialize();
+
+            Assert.Equal("{{\"boolean\":false,\"byte\":0,\"character\":null,\"date\":{{\"day\":1,\"month\":1,\"year\":1}},\"day\":\"Sunday\",\"decimal\":0,\"double\":0,\"duration\":\"PT0S\",\"int16\":0,\"int32\":0,\"int64\":0,\"offset\":\"0001-01-01T00:00:00Z\",\"single\":0,\"unique\":\"00000000-0000-0000-0000-000000000000\",\"value\":{0},\"when\":\"0001-01-01T00:00:00Z\"}}".FormatWith(expected), actual);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Cavity
+﻿namespace Cavity.Data
 {
     using System;
     using System.Collections;
@@ -8,15 +8,24 @@
     using System.Linq;
     using System.Reflection;
 
-    using Cavity.Data;
-
     public static class JsonObjectExtensionMethods
     {
         public static string JsonSerialize(this object value)
         {
+            return value.JsonSerialize(new JsonSerializationSettings());
+        }
+
+        public static string JsonSerialize(this object value, 
+                                           JsonSerializationSettings settings)
+        {
             if (null == value)
             {
                 return null;
+            }
+
+            if (null == settings)
+            {
+                throw new ArgumentNullException("settings");
             }
 
             using (var stream = new MemoryStream())
@@ -27,12 +36,12 @@
                     if (value.GetType().IsArray)
                     {
                         writer.Array();
-                        writer.JsonSerializeList(list);
+                        writer.JsonSerializeList(list, settings);
                     }
                     else
                     {
                         writer.Object();
-                        writer.JsonSerializeObject(value);
+                        writer.JsonSerializeObject(value, settings);
                     }
                 }
 
@@ -341,7 +350,8 @@
         }
 
         private static void JsonSerializeList(this JsonWriter writer, 
-                                              IEnumerable list)
+                                              IEnumerable list, 
+                                              JsonSerializationSettings settings)
         {
             foreach (var item in list)
             {
@@ -351,14 +361,15 @@
                 }
 
                 writer.Object();
-                writer.JsonSerializeObject(item);
+                writer.JsonSerializeObject(item, settings);
             }
 
             writer.EndArray();
         }
 
         private static void JsonSerializeObject(this JsonWriter writer, 
-                                                object obj)
+                                                object obj, 
+                                                JsonSerializationSettings settings)
         {
             if (null == obj)
             {
@@ -405,7 +416,7 @@
                 var serializable = value as IJsonSerializable;
                 if (null == serializable)
                 {
-                    writer.JsonSerializeObject(value);
+                    writer.JsonSerializeObject(value, settings);
                 }
                 else
                 {
@@ -417,7 +428,7 @@
             var list = obj as IEnumerable;
             if (null != list)
             {
-                writer.Array("items");
+                writer.Array(settings.ItemsName);
                 foreach (var item in list)
                 {
                     if (writer.JsonSerializeBaseClassLibraryType(null, item))
@@ -426,7 +437,7 @@
                     }
 
                     writer.Object();
-                    writer.JsonSerializeObject(item);
+                    writer.JsonSerializeObject(item, settings);
                 }
 
                 writer.EndArray();

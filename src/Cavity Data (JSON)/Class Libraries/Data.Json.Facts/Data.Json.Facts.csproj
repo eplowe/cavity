@@ -12,10 +12,11 @@
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Compile Include="Data\JsonSerializationSettings.Facts.cs" />
     <Compile Include="Data\JsonIgnoreAttribute.Facts.cs" />
     <Compile Include="Data\JsonNameAttribute.Facts.cs" />
     <Compile Include="Testing\FundamentalTypes.cs" />
-    <Compile Include="Json.Object.ExtensionMethods.Facts.cs" />
+    <Compile Include="Data\Json.Object.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\JsonWriterSettings.Facts.cs" />
     <Compile Include="Data\IJsonSerializable.Facts.cs" />
     <Compile Include="Data\JsonWriter.Facts.cs" />
