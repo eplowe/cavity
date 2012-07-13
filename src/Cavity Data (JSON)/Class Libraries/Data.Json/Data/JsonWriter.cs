@@ -367,7 +367,7 @@
             
             Object();
             value.WriteJson(this);
-            ////EndObject();
+            EndObject();
         }
 
         public void Pair(string name,

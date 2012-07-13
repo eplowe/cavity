@@ -23,7 +23,6 @@
                             .HasDefaultConstructor()
                             .IsNotDecorated()
                             .Implements<IEnumerable<JsonObject>>()
-                            .Implements<IJsonSerializable>()
                             .Result);
         }
 

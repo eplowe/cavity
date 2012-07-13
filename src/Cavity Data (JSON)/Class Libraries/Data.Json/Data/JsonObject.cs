@@ -134,6 +134,7 @@
                 {
                     writer.Object();
                     WriteJson(writer);
+                    writer.EndObject();
                 }
 
                 using (var reader = new StreamReader(stream))
@@ -222,7 +223,7 @@
             }
         }
 
-        public void WriteJson(JsonWriter writer)
+        public virtual void WriteJson(JsonWriter writer)
         {
             if (null == writer)
             {
@@ -272,8 +273,6 @@
                     writer.Pair(pair.Name, false);
                 }
             }
-
-            writer.EndObject();
         }
 
         private static JsonArray ReadJsonArray(JsonReader reader)
@@ -349,7 +348,7 @@
                 {
                     writer.Object();
                     obj.WriteJson(writer);
-                    ////writer.EndObject();
+                    writer.EndObject();
                     continue;
                 }
 
