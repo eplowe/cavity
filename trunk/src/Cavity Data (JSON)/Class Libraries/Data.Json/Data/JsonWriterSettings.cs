@@ -13,11 +13,14 @@
 
         private string _indent;
 
+        private string _itemsName;
+
         public JsonWriterSettings()
         {
             ColonPadding = string.Empty;
             CommaPadding = string.Empty;
             Indent = string.Empty;
+            ItemsName = string.Empty;
         }
 
         public static JsonWriterSettings Debug
@@ -43,6 +46,14 @@
                                CommaPadding = Environment.NewLine, 
                                Indent = "\t"
                            };
+            }
+        }
+
+        public static JsonWriterSettings Terse
+        {
+            get
+            {
+                return new JsonWriterSettings();
             }
         }
 
@@ -154,6 +165,24 @@
 #endif
 
                 _indent = value;
+            }
+        }
+
+        public string ItemsName
+        {
+            get
+            {
+                return _itemsName;
+            }
+
+            set
+            {
+                if (null == value)
+                {
+                    throw new ArgumentNullException("value");
+                }
+
+                _itemsName = value;
             }
         }
     }
