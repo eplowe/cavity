@@ -7,8 +7,7 @@
     using System.IO;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
-    public class JsonDocument : IEnumerable<JsonObject>, 
-                                IJsonSerializable
+    public class JsonDocument : IEnumerable<JsonObject>
     {
         public JsonDocument()
         {
@@ -137,11 +136,11 @@
                 writer.Array();
             }
 
-            foreach (var item in this)
+            foreach (IJsonSerializable item in this)
             {
                 writer.Object();
                 item.WriteJson(writer);
-                ////writer.EndObject();
+                writer.EndObject();
             }
 
             if (1 < Count)

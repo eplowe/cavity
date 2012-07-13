@@ -33,14 +33,12 @@
                     {
                         writer.Object();
                         writer.JsonSerializeObject(value);
-                        ////writer.EndObject();
                     }
                     else
                     {
                         writer.Array();
                         writer.Object();
                         writer.JsonSerializeObject(value);
-                        ////writer.EndObject();
                         writer.EndArray();
                     }
                 }
@@ -361,7 +359,6 @@
 
                 writer.Object();
                 writer.JsonSerializeObject(item);
-                ////writer.EndObject();
             }
 
             writer.EndArray();
@@ -420,9 +417,8 @@
                 else
                 {
                     serializable.WriteJson(writer);
+                    writer.EndObject();
                 }
-
-                ////writer.EndObject();
             }
 
             var list = obj as IEnumerable;
@@ -438,7 +434,6 @@
 
                     writer.Object();
                     writer.JsonSerializeObject(item);
-                    ////writer.EndObject();
                 }
 
                 writer.EndArray();

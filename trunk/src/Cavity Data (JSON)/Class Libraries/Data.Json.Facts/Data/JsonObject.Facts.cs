@@ -518,6 +518,7 @@
                 {
                     writer.Object();
                     obj.WriteJson(writer);
+                    writer.EndObject();
                 }
 
                 using (var reader = new StreamReader(stream))
@@ -567,6 +568,7 @@
                 {
                     writer.Object();
                     obj.WriteJson(writer);
+                    writer.EndObject();
                 }
 
                 using (var reader = new StreamReader(stream))
