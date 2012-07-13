@@ -390,7 +390,18 @@
                     continue;
                 }
 
+                var ignore = property.GetCustomAttributes(typeof(JsonIgnoreAttribute), true);
+                if (0 != ignore.Length)
+                {
+                    continue;
+                }
+
                 var name = property.Name.ToCamelCase();
+                foreach (JsonNameAttribute attribute in property.GetCustomAttributes(typeof(JsonNameAttribute), true))
+                {
+                    name = attribute.Name;
+                }
+
                 var value = property.GetValue(obj, null);
 
                 if (writer.JsonSerializeBaseClassLibraryType(name, value))

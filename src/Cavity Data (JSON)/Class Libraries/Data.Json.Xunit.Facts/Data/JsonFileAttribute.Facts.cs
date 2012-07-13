@@ -78,8 +78,8 @@
         public void prop_FileName()
         {
             Assert.True(new PropertyExpectations<JsonFileAttribute>(x => x.Files)
-                            .TypeIs<IEnumerable<string>>()
                             .IsNotDecorated()
+                            .TypeIs<IEnumerable<string>>()
                             .Result);
         }
 

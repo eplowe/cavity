@@ -103,8 +103,8 @@
         public void prop_FileName()
         {
             Assert.True(new PropertyExpectations<JsonUriAttribute>(x => x.Locations)
-                            .TypeIs<IEnumerable<string>>()
                             .IsNotDecorated()
+                            .TypeIs<IEnumerable<string>>()
                             .Result);
         }
 

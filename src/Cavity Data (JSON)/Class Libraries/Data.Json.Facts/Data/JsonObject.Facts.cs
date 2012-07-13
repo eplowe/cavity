@@ -580,9 +580,9 @@
         public void prop_Count()
         {
             Assert.True(new PropertyExpectations<JsonObject>(x => x.Count)
+                            .IsNotDecorated()
                             .TypeIs<int>()
                             .DefaultValueIs(0)
-                            .IsNotDecorated()
                             .Result);
         }
 

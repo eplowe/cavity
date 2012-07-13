@@ -69,11 +69,11 @@
         public void prop_Value()
         {
             Assert.True(new PropertyExpectations<JsonString>(x => x.Value)
+                            .IsNotDecorated()
                             .TypeIs<string>()
                             .ArgumentNullException()
                             .Set(string.Empty)
                             .Set("Example")
-                            .IsNotDecorated()
                             .Result);
         }
     }

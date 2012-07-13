@@ -227,8 +227,8 @@
         public void prop_Values()
         {
             Assert.True(new PropertyExpectations<JsonArray>(x => x.Values)
-                            .TypeIs<IList<JsonValue>>()
                             .IsNotDecorated()
+                            .TypeIs<IList<JsonValue>>()
                             .Result);
         }
     }
