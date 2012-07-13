@@ -37,6 +37,7 @@
     <Compile Include="Testing\GenericType.cs" />
     <Compile Include="Testing\NullableTypes.cs" />
     <Compile Include="Testing\SerializableType.cs" />
+    <Compile Include="Testing\SerializableCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">

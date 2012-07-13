@@ -29,17 +29,10 @@
                         writer.Array();
                         writer.JsonSerializeList(list);
                     }
-                    else if (null == list)
-                    {
-                        writer.Object();
-                        writer.JsonSerializeObject(value);
-                    }
                     else
                     {
-                        writer.Array();
                         writer.Object();
                         writer.JsonSerializeObject(value);
-                        writer.EndArray();
                     }
                 }
 
