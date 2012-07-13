@@ -21,9 +21,64 @@
         }
 
         [Fact]
+        public void ctor_decimal()
+        {
+            const string expected = "1.23";
+            var actual = new JsonNumber(1.23m).Value;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ctor_double()
+        {
+            const string expected = "1.23";
+            var actual = new JsonNumber(1.23d).Value;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ctor_int()
+        {
+            const string expected = "123";
+            var actual = new JsonNumber(123).Value;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ctor_long()
+        {
+            const string expected = "123";
+            var actual = new JsonNumber(123L).Value;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ctor_short()
+        {
+            const short value = 123;
+            const string expected = "123";
+            var actual = new JsonNumber(value).Value;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ctor_single()
+        {
+            const string expected = "1.2300000190734863";
+            var actual = new JsonNumber(1.23f).Value;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void ctor_string()
         {
-            const string expected = "Example";
+            const string expected = "123";
             var actual = new JsonNumber(expected).Value;
 
             Assert.Equal(expected, actual);

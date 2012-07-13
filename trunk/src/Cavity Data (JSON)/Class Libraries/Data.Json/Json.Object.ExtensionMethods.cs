@@ -33,12 +33,14 @@
                     {
                         writer.Object();
                         writer.JsonSerializeObject(value);
+                        ////writer.EndObject();
                     }
                     else
                     {
                         writer.Array();
                         writer.Object();
                         writer.JsonSerializeObject(value);
+                        ////writer.EndObject();
                         writer.EndArray();
                     }
                 }
@@ -172,8 +174,6 @@
                 return true;
             }
 
-            ////writer.Object();
-            ////writer.JsonSerializeObject(value);
             return false;
         }
 
@@ -361,6 +361,7 @@
 
                 writer.Object();
                 writer.JsonSerializeObject(item);
+                ////writer.EndObject();
             }
 
             writer.EndArray();
@@ -409,22 +410,19 @@
                     continue;
                 }
 
-                ////if (0 == value.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance).Length)
-                ////{
-                ////    writer.Pair(name, value.ToString());
-                ////    continue;
-                ////}
-
-                ////if (value is ValueType)
-                ////{
-                ////    if (0 == properties.Count)
-                ////    {
-                ////        writer.Pair(name, value.ToString());
-                ////        continue;
-                ////    }
-                ////}
                 writer.Object(name);
-                writer.JsonSerializeObject(value);
+
+                var serializable = value as IJsonSerializable;
+                if (null == serializable)
+                {
+                    writer.JsonSerializeObject(value);
+                }
+                else
+                {
+                    serializable.WriteJson(writer);
+                }
+
+                ////writer.EndObject();
             }
 
             var list = obj as IEnumerable;
@@ -438,16 +436,9 @@
                         continue;
                     }
 
-                    ////if (item is ValueType)
-                    ////{
-                    ////    if (0 == properties.Count)
-                    ////    {
-                    ////        writer.ArrayValue(item.ToString());
-                    ////        continue;
-                    ////    }
-                    ////}
                     writer.Object();
                     writer.JsonSerializeObject(item);
+                    ////writer.EndObject();
                 }
 
                 writer.EndArray();
