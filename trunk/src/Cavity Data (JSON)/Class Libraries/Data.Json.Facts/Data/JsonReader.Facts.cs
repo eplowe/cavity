@@ -1358,9 +1358,9 @@
         public void prop_IsEmptyArray()
         {
             Assert.True(new PropertyExpectations<JsonReader>(x => x.IsEmptyArray)
+                            .IsNotDecorated()
                             .TypeIs<bool>()
                             .DefaultValueIs(false)
-                            .IsNotDecorated()
                             .Result);
         }
 
@@ -1368,9 +1368,9 @@
         public void prop_IsEmptyObject()
         {
             Assert.True(new PropertyExpectations<JsonReader>(x => x.IsEmptyObject)
+                            .IsNotDecorated()
                             .TypeIs<bool>()
                             .DefaultValueIs(false)
-                            .IsNotDecorated()
                             .Result);
         }
 
@@ -1378,9 +1378,9 @@
         public void prop_Name()
         {
             Assert.True(new PropertyExpectations<JsonReader>(x => x.Name)
+                            .IsNotDecorated()
                             .TypeIs<string>()
                             .DefaultValueIsNull()
-                            .IsNotDecorated()
                             .Result);
         }
 
@@ -1388,9 +1388,9 @@
         public void prop_NodeType()
         {
             Assert.True(new PropertyExpectations<JsonReader>(x => x.NodeType)
+                            .IsNotDecorated()
                             .TypeIs<JsonNodeType>()
                             .DefaultValueIs(JsonNodeType.None)
-                            .IsNotDecorated()
                             .Result);
         }
 
@@ -1398,9 +1398,9 @@
         public void prop_Value()
         {
             Assert.True(new PropertyExpectations<JsonReader>(x => x.Value)
+                            .IsNotDecorated()
                             .TypeIs<string>()
                             .DefaultValueIsNull()
-                            .IsNotDecorated()
                             .Result);
         }
 

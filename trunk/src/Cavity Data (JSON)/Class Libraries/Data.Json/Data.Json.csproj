@@ -19,6 +19,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
+    <Compile Include="Data\JsonIgnoreAttribute.cs" />
+    <Compile Include="Data\JsonNameAttribute.cs" />
     <Compile Include="Json.Object.ExtensionMethods.cs" />
     <Compile Include="Data\JsonWriterSettings.cs" />
     <Compile Include="Data\JsonReaderState.cs" />

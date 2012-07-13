@@ -367,9 +367,9 @@
         public void prop_Count()
         {
             Assert.True(new PropertyExpectations<JsonDocument>(x => x.Count)
+                            .IsNotDecorated()
                             .TypeIs<int>()
                             .DefaultValueIs(0)
-                            .IsNotDecorated()
                             .Result);
         }
 

@@ -50,11 +50,11 @@
         public void prop_Name()
         {
             Assert.True(new PropertyExpectations<JsonPair>(x => x.Name)
+                            .IsNotDecorated()
                             .TypeIs<string>()
                             .ArgumentNullException()
                             .Set(string.Empty)
                             .Set("Example")
-                            .IsNotDecorated()
                             .Result);
         }
 
@@ -62,10 +62,10 @@
         public void prop_Value()
         {
             Assert.True(new PropertyExpectations<JsonPair>(x => x.Value)
+                            .IsNotDecorated()
                             .TypeIs<JsonValue>()
                             .ArgumentNullException()
                             .Set(new Mock<JsonValue>().Object)
-                            .IsNotDecorated()
                             .Result);
         }
     }

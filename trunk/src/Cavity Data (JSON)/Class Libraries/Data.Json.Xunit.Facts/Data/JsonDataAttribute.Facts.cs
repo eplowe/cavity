@@ -78,8 +78,8 @@
         public void prop_Values()
         {
             Assert.True(new PropertyExpectations<JsonDataAttribute>(x => x.Values)
-                            .TypeIs<IEnumerable<string>>()
                             .IsNotDecorated()
+                            .TypeIs<IEnumerable<string>>()
                             .Result);
         }
 
