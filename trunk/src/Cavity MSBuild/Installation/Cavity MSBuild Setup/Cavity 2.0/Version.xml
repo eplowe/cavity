@@ -5,6 +5,10 @@
     <MinorVersion Condition="'$(MinorVersion)'==''">0</MinorVersion>
     <BuildVersion Condition="'$(BuildVersion)'==''">0</BuildVersion>
     <Revision Condition="'$(Revision)'==''">0</Revision>
+    <MajorVersion Condition="'$(RevisionSource)'=='DateTime'">$([System.DateTime]::Now.ToString("yyyy"))</MajorVersion>
+    <MinorVersion Condition="'$(RevisionSource)'=='DateTime'">$([System.DateTime]::Now.ToString("MM"))</MinorVersion>
+    <BuildVersion Condition="'$(RevisionSource)'=='DateTime'">$([System.DateTime]::Now.ToString("dd"))</BuildVersion>
+    <Revision Condition="'$(RevisionSource)'=='DateTime'">$([System.DateTime]::Now.ToString("HHmm"))</Revision>
   </PropertyGroup>
   <ItemGroup>
     <NuSpecFiles Include="$(MSBuildProjectDirectory)\**\*.nuspec" />
@@ -12,6 +16,7 @@
     <WixFiles Include="$(MSBuildProjectDirectory)\**\Product.wxs" />
   </ItemGroup>
   <Target Name="Version" DependsOnTargets="Subversion">
+    <CallTarget Targets="AssemblyInfo" />
     <CallTarget Targets="NuSpec" />
     <CallTarget Targets="Version XML" />
     <CallTarget Targets="Wix" />
@@ -22,6 +27,8 @@
       <Output TaskParameter="Revision"
               PropertyName="Revision" />
     </MSBuild.Community.Tasks.Subversion.SvnVersion>
+  </Target>
+  <Target Name="AssemblyInfo">
     <MSBuild.Community.Tasks.AssemblyInfo Condition="'$(Revision)' &gt; '0'"
                                           CodeLanguage="CS"
                                           OutputFile="%(VersionCsFiles.Identity)"
