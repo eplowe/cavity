@@ -58,9 +58,9 @@
  * Cavity.Data.Csv
   (Cavity.Core)
 
-*2.0.0.848* Cavity.Data.Html
+*2.0.0.883* Cavity.Data.Html
  * Cavity.Core
-*2.0.0.848* Cavity.Data.Html.Xunit
+*2.0.0.883* Cavity.Data.Html.Xunit
  * Cavity.Data.Html
   (Cavity.Core)
 
