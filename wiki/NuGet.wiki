@@ -67,6 +67,9 @@
 *2.0.0.848* Cavity.Data.Json.Xunit
  * Cavity.Core
 
+*2.0.0.885* Cavity.Data.Tsv
+ * Cavity.Core
+
 *2.0.0.848* Cavity.Data.Xml.Xunit
  * Cavity.Core
 

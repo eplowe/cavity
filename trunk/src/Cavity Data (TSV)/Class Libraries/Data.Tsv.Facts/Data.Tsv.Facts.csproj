@@ -12,6 +12,9 @@
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Data\TestTsvEntry.cs" />
+    <Compile Include="Data\TsvFile.Facts.cs" />
+    <Compile Include="Data\TsvStreamReader.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">

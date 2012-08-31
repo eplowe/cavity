@@ -12,6 +12,7 @@
   	<Solutions Include="Cavity Data (CSV)" />
   	<Solutions Include="Cavity Data (HTML)" />
   	<Solutions Include="Cavity Data (JSON)" />
+  	<Solutions Include="Cavity Data (TSV)" />
   	<Solutions Include="Cavity Data (XML)" />
   	<Solutions Include="Cavity Diagnostics log4net" />
   	<Solutions Include="Cavity Domain" />
