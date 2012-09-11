@@ -8,6 +8,9 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data\DataShard.cs" />
+    <Compile Include="Data\IIdentifyShard.cs" />
+    <Compile Include="Data\ITransformData`1.cs" />
     <Compile Include="Data\Csv.cs" />
     <Compile Include="Data\Csv.String.ExtensionMethods.cs" />
     <Compile Include="Data\CsvDataFile.cs" />
@@ -16,6 +19,8 @@
     <Compile Include="Data\DataFile.cs" />
     <Compile Include="Data\DataSheet.cs" />
     <Compile Include="Data\IDataSheet.cs" />
+    <Compile Include="Data\ITransformData.cs" />
+    <Compile Include="Data\ShardByValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

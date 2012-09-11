@@ -4,11 +4,9 @@
     using System.IO;
     using System.Linq;
 
-    using Cavity;
     using Cavity.IO;
 
     using Xunit;
-    using Xunit.Extensions;
 
     public sealed class CsvDataFileFacts
     {
@@ -50,22 +48,19 @@
             Assert.Throws<ArgumentNullException>(() => new CsvDataFile(null));
         }
 
-        [Theory]
-        [InlineData("Data", "Data")]
-        [InlineData("Data", "Data.csv")]
-        [InlineData("", ".csv")]
-        public void op_IEnumerable_GetEnumerator(string title, string fileName)
+        [Fact]
+        public void op_IEnumerable_GetEnumerator()
         {
             using (var temp = new TempDirectory())
             {
                 var file = temp
                     .Info
-                    .ToFile(fileName)
+                    .ToFile("Data.csv")
                     .AppendLine("name")
                     .AppendLine("Example");
                 var sheet = new CsvDataFile(file).First();
 
-                Assert.Equal(title, sheet.Title);
+                Assert.Equal("Data", sheet.Title);
                 Assert.Equal("Example", sheet.First()["name"]);
             }
         }

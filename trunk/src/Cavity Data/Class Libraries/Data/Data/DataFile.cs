@@ -26,11 +26,25 @@
 
         public FileInfo Info { get; private set; }
 
-        public abstract IEnumerator<IDataSheet> GetEnumerator();
+        public string Title
+        {
+            get
+            {
+                return 0 == Info.Extension.Length
+                           ? Info.Name
+#if NET20
+                           : StringExtensionMethods.RemoveFromEnd(Info.Name, Info.Extension, StringComparison.OrdinalIgnoreCase);
+#else
+                           : Info.Name.RemoveFromEnd(Info.Extension, StringComparison.OrdinalIgnoreCase);
+#endif
+            }
+        }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
+
+        public abstract IEnumerator<IDataSheet> GetEnumerator();
     }
 }
