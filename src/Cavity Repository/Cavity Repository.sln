@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Class Libraries\Repository\Repository.csproj", "{48565F37-92B3-4C45-8F8E-E64F20F6F0BC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Facts", "Class Libraries\Repository.Facts\Repository.Facts.csproj", "{37953AEC-7887-4D9E-8658-A834CA45A936}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2EE328EC-1C14-451C-A011-A4DC9BCDD1A7}"
 	ProjectSection(SolutionItems) = preProject
 		Cavity Repository.bundle = Cavity Repository.bundle
@@ -12,6 +8,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2EE328
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Class Libraries\Repository\Repository.csproj", "{48565F37-92B3-4C45-8F8E-E64F20F6F0BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Facts", "Class Libraries\Repository.Facts\Repository.Facts.csproj", "{37953AEC-7887-4D9E-8658-A834CA45A936}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

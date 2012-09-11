@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Csv", "Class Libraries\Data.Csv\Data.Csv.csproj", "{1ACBDACF-14B0-4B7E-9FCA-9ADFB0F803E0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Csv.Facts", "Class Libraries\Data.Csv.Facts\Data.Csv.Facts.csproj", "{2B199291-145D-49DE-BC52-522DFA986945}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0A05FDA9-C3DD-4390-ACF3-8CC1E3C15F64}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\Cavity Data (CSV) xUnit Extensions.nuspec = .nuget\Cavity Data (CSV) xUnit Extensions.nuspec
@@ -13,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0A05FD
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Csv", "Class Libraries\Data.Csv\Data.Csv.csproj", "{1ACBDACF-14B0-4B7E-9FCA-9ADFB0F803E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Csv.Facts", "Class Libraries\Data.Csv.Facts\Data.Csv.Facts.csproj", "{2B199291-145D-49DE-BC52-522DFA986945}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Csv.Xunit", "Class Libraries\Data.Csv.Xunit\Data.Csv.Xunit.csproj", "{407AA08B-608C-481C-A98E-4AB32FAB30F8}"
 EndProject

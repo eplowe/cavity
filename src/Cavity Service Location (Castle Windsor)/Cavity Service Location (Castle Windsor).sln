@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.CastleWindsor", "Class Libraries\ServiceLocation.CastleWindsor\ServiceLocation.CastleWindsor.csproj", "{DAA78F38-1405-4971-AB8D-1D42FD41B848}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.CastleWindsor.Facts", "Class Libraries\ServiceLocation.CastleWindsor.Facts\ServiceLocation.CastleWindsor.Facts.csproj", "{7DD77C51-A1D5-486A-948A-20AA80C4D55E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4BAF87B4-8F31-49AE-BB1A-33D21825184B}"
 	ProjectSection(SolutionItems) = preProject
 		Cavity Service Location (Castle Windsor).bundle = Cavity Service Location (Castle Windsor).bundle
@@ -31,6 +27,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{
 	ProjectSection(SolutionItems) = preProject
 		.nuget\content\App_Start\CavityServiceLocationStart.cs.pp = .nuget\content\App_Start\CavityServiceLocationStart.cs.pp
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.CastleWindsor", "Class Libraries\ServiceLocation.CastleWindsor\ServiceLocation.CastleWindsor.csproj", "{DAA78F38-1405-4971-AB8D-1D42FD41B848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.CastleWindsor.Facts", "Class Libraries\ServiceLocation.CastleWindsor.Facts\ServiceLocation.CastleWindsor.Facts.csproj", "{7DD77C51-A1D5-486A-948A-20AA80C4D55E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

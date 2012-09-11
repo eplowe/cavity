@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Ace", "Class Libraries\Data.Ace\Data.Ace.csproj", "{94A4843F-2FCA-48D9-84EF-4250D51DB2EF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Ace.Facts", "Class Libraries\Data.Ace.Facts\Data.Ace.Facts.csproj", "{EFFAFE17-5D62-4B78-AC53-04CBCBB6A369}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C2E8314A-751C-4877-9275-9D861C8E7401}"
 	ProjectSection(SolutionItems) = preProject
 		Cavity Data (ACE).bundle = Cavity Data (ACE).bundle
@@ -12,6 +8,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C2E831
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Ace", "Class Libraries\Data.Ace\Data.Ace.csproj", "{94A4843F-2FCA-48D9-84EF-4250D51DB2EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Ace.Facts", "Class Libraries\Data.Ace.Facts\Data.Ace.Facts.csproj", "{EFFAFE17-5D62-4B78-AC53-04CBCBB6A369}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Mvc3", "Class Libraries\Web.Mvc3\Web.Mvc3.csproj", "{E6E202AC-321A-4307-B45B-D9ED3DCB88C9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Mvc3.Facts", "Class Libraries\Web.Mvc3.Facts\Web.Mvc3.Facts.csproj", "{31A2B757-45AF-4E46-97F2-88320E57DE5B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{127EEE45-E8D1-49F2-AF3E-511094A4DBC8}"
 	ProjectSection(SolutionItems) = preProject
 		Cavity Web (ASP.NET MVC3).bundle = Cavity Web (ASP.NET MVC3).bundle
@@ -12,6 +8,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{127EEE
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Mvc3", "Class Libraries\Web.Mvc3\Web.Mvc3.csproj", "{E6E202AC-321A-4307-B45B-D9ED3DCB88C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Mvc3.Facts", "Class Libraries\Web.Mvc3.Facts\Web.Mvc3.Facts.csproj", "{31A2B757-45AF-4E46-97F2-88320E57DE5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration", "Class Libraries\Configuration\Configuration.csproj", "{0069A77A-0500-413A-8253-35018ED877DD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration.Facts", "Class Libraries\Configuration.Facts\Configuration.Facts.csproj", "{ED57D96C-E503-48FB-856B-7599B2F75850}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3D01878A-C1F3-4300-8471-8824334AFD03}"
 	ProjectSection(SolutionItems) = preProject
 		Cavity Configuration.bundle = Cavity Configuration.bundle
@@ -12,6 +8,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3D0187
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration", "Class Libraries\Configuration\Configuration.csproj", "{0069A77A-0500-413A-8253-35018ED877DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration.Facts", "Class Libraries\Configuration.Facts\Configuration.Facts.csproj", "{ED57D96C-E503-48FB-856B-7599B2F75850}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

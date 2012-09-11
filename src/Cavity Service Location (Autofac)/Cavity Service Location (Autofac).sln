@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.Autofac", "Class Libraries\ServiceLocation.Autofac\ServiceLocation.Autofac.csproj", "{6BCF22E0-E321-431B-AEE2-981A03C66E09}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.Autofac.Facts", "Class Libraries\ServiceLocation.Autofac.Facts\ServiceLocation.Autofac.Facts.csproj", "{D0299C27-537C-42CE-B313-9F4D34EF8395}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{23B7740E-238D-48E2-830C-378CFDA0B5DA}"
 	ProjectSection(SolutionItems) = preProject
 		Cavity Service Location (Autofac).bundle = Cavity Service Location (Autofac).bundle
@@ -31,6 +27,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{
 	ProjectSection(SolutionItems) = preProject
 		.nuget\content\App_Start\CavityServiceLocationStart.cs.pp = .nuget\content\App_Start\CavityServiceLocationStart.cs.pp
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.Autofac", "Class Libraries\ServiceLocation.Autofac\ServiceLocation.Autofac.csproj", "{6BCF22E0-E321-431B-AEE2-981A03C66E09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLocation.Autofac.Facts", "Class Libraries\ServiceLocation.Autofac.Facts\ServiceLocation.Autofac.Facts.csproj", "{D0299C27-537C-42CE-B313-9F4D34EF8395}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
