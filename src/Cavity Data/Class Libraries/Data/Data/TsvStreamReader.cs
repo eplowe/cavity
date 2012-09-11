@@ -5,26 +5,28 @@
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Text;
+#if !NET20
+    using System.Linq;
+#endif
 
     using Cavity.Collections;
     using Cavity.Properties;
 
-    public class CsvStreamReader : StreamReader
+    public class TsvStreamReader : StreamReader
     {
-        public CsvStreamReader(Stream stream)
+        public TsvStreamReader(Stream stream)
             : base(stream)
         {
         }
 
-        public CsvStreamReader(Stream stream,
+        public TsvStreamReader(Stream stream,
                                string header)
             : this(stream, ParseHeader(header))
         {
             Header = header;
         }
 
-        public CsvStreamReader(Stream stream,
+        public TsvStreamReader(Stream stream,
                                IEnumerable<string> columns)
             : base(stream)
         {
@@ -37,7 +39,7 @@
             foreach (var header in columns)
             {
                 Columns.Add(header);
-                Header += (string.IsNullOrEmpty(Header) ? string.Empty : ",") + header;
+                Header += (string.IsNullOrEmpty(Header) ? string.Empty : "\t") + header;
             }
 
             if (0 == Columns.Count)
@@ -87,8 +89,7 @@
             if (0 != entry.Count)
             {
                 EntryNumber++;
-                if (Columns.Count !=
-                    entry.Count)
+                if (Columns.Count != entry.Count)
                 {
 #if NET20
                     throw new FormatException(StringExtensionMethods.FormatWith(Resources.ReadEntry_FormatException, LineNumber));
@@ -119,86 +120,13 @@
                 }
             }
 
-            return Parse(Line);
-        }
-
-        protected virtual IList<string> Parse(string line)
-        {
-            if (string.IsNullOrEmpty(line))
-            {
-                return null;
-            }
-
-            IList<string> result = new List<string>();
-
-            var trim = true;
-            var buffer = new StringBuilder();
-            var quote = false;
-            for (var i = 0; i < line.Length; i++)
-            {
-                var c = line[i];
-                switch (c)
-                {
-                    case ',':
-                        if (quote)
-                        {
-                            buffer.Append(c);
-                            break;
-                        }
-
-                        result.Add(trim ? buffer.ToString().Trim() : buffer.ToString());
-                        buffer.Remove(0, buffer.Length);
-                        trim = true;
-                        break;
-
-                    case '"':
-                        trim = false;
-                        if (quote)
-                        {
-                            if (i == line.Length - 1)
-                            {
-                                quote = false;
-                                break;
-                            }
-
-                            if ('"' == line[i + 1])
-                            {
-                                buffer.Append(c);
-                                i++;
-                                break;
-                            }
-
-                            quote = false;
-                            break;
-                        }
-
-                        if (0 == buffer.Length)
-                        {
-                            quote = true;
-                        }
-
-                        break;
-
-                    default:
-                        buffer.Append(c);
-                        break;
-                }
-            }
-
-            if (quote)
-            {
+            return string.IsNullOrEmpty(Line)
+                       ? null
 #if NET20
-                Line = StringExtensionMethods.Append(line, Environment.NewLine, ReadLine());
+                       : IEnumerableExtensionMethods.ToList(Line.Split('\t'));
 #else
-                Line = line.Append(Environment.NewLine, ReadLine());
+                       : Line.Split('\t').ToList();
 #endif
-                LineNumber++;
-                return Parse(Line);
-            }
-
-            result.Add(trim ? buffer.ToString().Trim() : buffer.ToString());
-
-            return result;
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
@@ -221,7 +149,7 @@
                     writer.WriteLine(header);
                     writer.Flush();
                     stream.Position = 0;
-                    using (var reader = new CsvStreamReader(stream))
+                    using (var reader = new TsvStreamReader(stream))
                     {
                         reader.ReadEntry();
                         return reader.Columns;

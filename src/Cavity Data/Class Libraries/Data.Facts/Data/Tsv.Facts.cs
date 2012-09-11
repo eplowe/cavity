@@ -12,12 +12,12 @@
 
     using Xunit;
 
-    public sealed class CsvFacts
+    public sealed class TsvFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(typeof(Csv).IsStatic());
+            Assert.True(typeof(Tsv).IsStatic());
         }
 
         [Fact]
@@ -25,12 +25,12 @@
         {
             var obj = new KeyStringDictionary
                           {
-                              new KeyStringPair("A,B", string.Empty),
-                              new KeyStringPair("C", string.Empty)
+                              new KeyStringPair("A", string.Empty),
+                              new KeyStringPair("B", string.Empty)
                           };
 
-            const string expected = "\"A,B\",C";
-            var actual = Csv.Header(obj);
+            const string expected = "A\tB";
+            var actual = Tsv.Header(obj);
 
             Assert.Equal(expected, actual);
         }
@@ -38,13 +38,13 @@
         [Fact]
         public void op_Header_KeyStringDictionaryEmpty()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Csv.Header(new KeyStringDictionary()));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Tsv.Header(new KeyStringDictionary()));
         }
 
         [Fact]
         public void op_Header_KeyStringDictionaryNull()
         {
-            Assert.Throws<ArgumentNullException>(() => Csv.Header(null));
+            Assert.Throws<ArgumentNullException>(() => Tsv.Header(null));
         }
 
         [Fact]
@@ -53,11 +53,11 @@
             var obj = new KeyStringDictionary
                           {
                               new KeyStringPair(string.Empty, "x"),
-                              new KeyStringPair("A,B", "x")
+                              new KeyStringPair("ABC", "x")
                           };
 
-            const string expected = ",\"A,B\"";
-            var actual = Csv.Header(obj);
+            const string expected = "\tABC";
+            var actual = Tsv.Header(obj);
 
             Assert.Equal(expected, actual);
         }
@@ -68,11 +68,11 @@
             var obj = new List<string>
                           {
                               "123",
-                              "left,right"
+                              "ABC"
                           };
 
-            const string expected = "123,\"left,right\"";
-            var actual = Csv.Line(obj);
+            const string expected = "123\tABC";
+            var actual = Tsv.Line(obj);
 
             Assert.Equal(expected, actual);
         }
@@ -80,13 +80,13 @@
         [Fact]
         public void op_Line_IEnumerableStringEmpty()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Csv.Line(new List<string>()));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Tsv.Line(new List<string>()));
         }
 
         [Fact]
         public void op_Line_IEnumerableStringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => Csv.Line(null as IEnumerable<string>));
+            Assert.Throws<ArgumentNullException>(() => Tsv.Line(null as IEnumerable<string>));
         }
 
         [Fact]
@@ -95,11 +95,11 @@
             var obj = new List<string>
                           {
                               string.Empty,
-                              "left,right"
+                              "ABC"
                           };
 
-            const string expected = ",\"left,right\"";
-            var actual = Csv.Line(obj);
+            const string expected = "\tABC";
+            var actual = Tsv.Line(obj);
 
             Assert.Equal(expected, actual);
         }
@@ -110,11 +110,11 @@
             var obj = new KeyStringDictionary
                           {
                               new KeyStringPair("A", "123"),
-                              new KeyStringPair("B", "left,right")
+                              new KeyStringPair("B", "XYZ")
                           };
 
-            const string expected = "123,\"left,right\"";
-            var actual = Csv.Line(obj);
+            const string expected = "123\tXYZ";
+            var actual = Tsv.Line(obj);
 
             Assert.Equal(expected, actual);
         }
@@ -122,13 +122,13 @@
         [Fact]
         public void op_Line_KeyStringDictionaryEmpty()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Csv.Line(new KeyStringDictionary()));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Tsv.Line(new KeyStringDictionary()));
         }
 
         [Fact]
         public void op_Line_KeyStringDictionaryNull()
         {
-            Assert.Throws<ArgumentNullException>(() => Csv.Line(null as KeyStringDictionary));
+            Assert.Throws<ArgumentNullException>(() => Tsv.Line(null as KeyStringDictionary));
         }
 
         [Fact]
@@ -138,13 +138,13 @@
                               {
                                   "A"
                               };
-            Assert.Throws<ArgumentNullException>(() => Csv.Line(null, columns));
+            Assert.Throws<ArgumentNullException>(() => Tsv.Line(null, columns));
         }
 
         [Fact]
         public void op_Line_KeyStringDictionaryNull_string()
         {
-            Assert.Throws<ArgumentNullException>(() => Csv.Line(null, "A,C"));
+            Assert.Throws<ArgumentNullException>(() => Tsv.Line(null, "A\tC"));
         }
 
         [Fact]
@@ -154,11 +154,11 @@
                           {
                               new KeyStringPair("A", "123"),
                               new KeyStringPair("B", "ignore"),
-                              new KeyStringPair("C", "left,right")
+                              new KeyStringPair("C", "XYZ")
                           };
 
-            const string expected = "123,\"left,right\"";
-            var actual = Csv.Line(obj, "A,C".Split(',').ToList());
+            const string expected = "123\tXYZ";
+            var actual = Tsv.Line(obj, "A|C".Split('|').ToList());
 
             Assert.Equal(expected, actual);
         }
@@ -166,19 +166,19 @@
         [Fact]
         public void op_Line_KeyStringDictionary_IListOfStringEmpty()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Csv.Line(new KeyStringDictionary(), new List<string>()));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Tsv.Line(new KeyStringDictionary(), new List<string>()));
         }
 
         [Fact]
         public void op_Line_KeyStringDictionary_IListOfStringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => Csv.Line(new KeyStringDictionary(), null as IList<string>));
+            Assert.Throws<ArgumentNullException>(() => Tsv.Line(new KeyStringDictionary(), null as IList<string>));
         }
 
         [Fact]
         public void op_Line_KeyStringDictionary_IListOfString_whenColumnsNotFound()
         {
-            Assert.Throws<KeyNotFoundException>(() => Csv.Line(new KeyStringDictionary(), "A,B".Split(',').ToList()));
+            Assert.Throws<KeyNotFoundException>(() => Tsv.Line(new KeyStringDictionary(), "A,B".Split(',').ToList()));
         }
 
         [Fact]
@@ -188,11 +188,11 @@
                           {
                               new KeyStringPair("A", "123"),
                               new KeyStringPair("B", "ignore"),
-                              new KeyStringPair("C", "left,right")
+                              new KeyStringPair("C", "XYZ")
                           };
 
-            const string expected = "123,\"left,right\"";
-            var actual = Csv.Line(obj, "A|C");
+            const string expected = "123\tXYZ";
+            var actual = Tsv.Line(obj, "A|C");
 
             Assert.Equal(expected, actual);
         }
@@ -200,19 +200,19 @@
         [Fact]
         public void op_Line_KeyStringDictionary_stringEmpty()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Csv.Line(new KeyStringDictionary(), string.Empty));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Tsv.Line(new KeyStringDictionary(), string.Empty));
         }
 
         [Fact]
         public void op_Line_KeyStringDictionary_stringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => Csv.Line(new KeyStringDictionary(), null as string));
+            Assert.Throws<ArgumentNullException>(() => Tsv.Line(new KeyStringDictionary(), null as string));
         }
 
         [Fact]
         public void op_Line_KeyStringDictionary_string_whenColumnsNotFound()
         {
-            Assert.Throws<KeyNotFoundException>(() => Csv.Line(new KeyStringDictionary(), "A"));
+            Assert.Throws<KeyNotFoundException>(() => Tsv.Line(new KeyStringDictionary(), "A"));
         }
 
         [Fact]
@@ -221,11 +221,11 @@
             var obj = new KeyStringDictionary
                           {
                               new KeyStringPair("A", string.Empty),
-                              new KeyStringPair("B", "left,right")
+                              new KeyStringPair("B", "XYZ")
                           };
 
-            const string expected = ",\"left,right\"";
-            var actual = Csv.Line(obj);
+            const string expected = "\tXYZ";
+            var actual = Tsv.Line(obj);
 
             Assert.Equal(expected, actual);
         }
@@ -240,9 +240,9 @@
 
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToFile("test.csv");
+                var file = temp.Info.ToFile("test.tsv");
 
-                Csv.Save(table, file, FileMode.Create);
+                Tsv.Save(table, file, FileMode.Create);
 
                 file.Refresh();
                 Assert.False(file.Exists);
@@ -259,7 +259,7 @@
 
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToFile("test.csv");
+                var file = temp.Info.ToFile("test.tsv");
 
                 Csv.Save(table, file);
 
@@ -328,11 +328,11 @@
 
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToFile("example.csv");
+                var file = temp.Info.ToFile("example.tsv");
 
-                Csv.Save(table, file, FileMode.Create);
+                Tsv.Save(table, file, FileMode.Create);
 
-                var expected = "A,B{0}1,2{0}".FormatWith(Environment.NewLine);
+                var expected = "A\tB{0}1\t2{0}".FormatWith(Environment.NewLine);
                 var actual = file.ReadToEnd();
 
                 Assert.Equal(expected, actual);
@@ -355,11 +355,11 @@
 
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToFile("example.csv").AppendLine("A,B");
+                var file = temp.Info.ToFile("example.tsv").AppendLine("A\tB");
 
-                Csv.Save(table, file);
+                Tsv.Save(table, file);
 
-                var expected = "A,B{0}1,2{0}".FormatWith(Environment.NewLine);
+                var expected = "A\tB{0}1\t2{0}".FormatWith(Environment.NewLine);
                 var actual = file.ReadToEnd();
 
                 Assert.Equal(expected, actual);
@@ -371,10 +371,10 @@
         {
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToFile("test.csv");
+                var file = temp.Info.ToFile("test.tsv");
                 file.CreateNew();
 
-                Csv.Save(new List<KeyStringDictionary>(), file);
+                Tsv.Save(new List<KeyStringDictionary>(), file);
 
                 file.Refresh();
                 Assert.False(file.Exists);
@@ -386,10 +386,10 @@
         {
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToFile("test.csv");
+                var file = temp.Info.ToFile("test.tsv");
                 file.CreateNew();
 
-                Csv.Save(new List<KeyStringDictionary>(), file, FileMode.Create);
+                Tsv.Save(new List<KeyStringDictionary>(), file, FileMode.Create);
 
                 file.Refresh();
                 Assert.False(file.Exists);
@@ -402,7 +402,7 @@
             using (var file = new TempFile())
             {
                 // ReSharper disable AccessToDisposedClosure
-                Assert.Throws<ArgumentNullException>(() => Csv.Save(null as IEnumerable<KeyStringDictionary>, file.Info));
+                Assert.Throws<ArgumentNullException>(() => Tsv.Save(null as IEnumerable<KeyStringDictionary>, file.Info));
                 // ReSharper restore AccessToDisposedClosure
             }
         }
@@ -413,7 +413,7 @@
             using (var file = new TempFile())
             {
                 // ReSharper disable AccessToDisposedClosure
-                Assert.Throws<ArgumentNullException>(() => Csv.Save(null as IEnumerable<KeyStringDictionary>, file.Info, FileMode.Append));
+                Assert.Throws<ArgumentNullException>(() => Tsv.Save(null as IEnumerable<KeyStringDictionary>, file.Info, FileMode.Append));
                 // ReSharper restore AccessToDisposedClosure
             }
         }
@@ -424,7 +424,7 @@
             using (var file = new TempFile())
             {
                 // ReSharper disable AccessToDisposedClosure
-                Assert.Throws<ArgumentNullException>(() => Csv.Save(null, new TestEntryFile(file.Info).GetFile));
+                Assert.Throws<ArgumentNullException>(() => Tsv.Save(null, new TestEntryFile(file.Info).GetFile));
                 // ReSharper restore AccessToDisposedClosure
             }
         }
@@ -434,7 +434,7 @@
         {
             var data = new List<KeyStringDictionary>();
 
-            Assert.Throws<ArgumentNullException>(() => Csv.Save(data, null as FileInfo));
+            Assert.Throws<ArgumentNullException>(() => Tsv.Save(data, null as FileInfo));
         }
 
         [Fact]
@@ -442,7 +442,7 @@
         {
             var data = new List<KeyStringDictionary>();
 
-            Assert.Throws<ArgumentNullException>(() => Csv.Save(data, null, FileMode.Append));
+            Assert.Throws<ArgumentNullException>(() => Tsv.Save(data, null, FileMode.Append));
         }
 
         [Fact]
@@ -459,10 +459,10 @@
 
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToDirectory("example").ToFile("test.csv");
-                Csv.Save(data, file, FileMode.Create);
+                var file = temp.Info.ToDirectory("example").ToFile("test.tsv");
+                Tsv.Save(data, file, FileMode.Create);
 
-                var expected = "A,B{0}1,2{0}".FormatWith(Environment.NewLine);
+                var expected = "A\tB{0}1\t2{0}".FormatWith(Environment.NewLine);
                 var actual = file.ReadToEnd();
 
                 Assert.Equal(expected, actual);
@@ -483,10 +483,10 @@
 
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToFile("test.csv").AppendLine("A,B");
-                Csv.Save(data, file);
+                var file = temp.Info.ToFile("test.tsv").AppendLine("A\tB");
+                Tsv.Save(data, file);
 
-                var expected = "A,B{0}1,2{0}".FormatWith(Environment.NewLine);
+                var expected = "A\tB{0}1\t2{0}".FormatWith(Environment.NewLine);
                 var actual = file.ReadToEnd();
 
                 Assert.Equal(expected, actual);
@@ -507,10 +507,10 @@
 
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToDirectory("example").ToFile("test.csv");
-                Csv.Save(data, file);
+                var file = temp.Info.ToDirectory("example").ToFile("test.tsv");
+                Tsv.Save(data, file);
 
-                var expected = "A,B{0}1,2{0}".FormatWith(Environment.NewLine);
+                var expected = "A\tB{0}1\t2{0}".FormatWith(Environment.NewLine);
                 var actual = file.ReadToEnd();
 
                 Assert.Equal(expected, actual);
@@ -531,10 +531,10 @@
 
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToDirectory("example").ToFile("test.csv");
-                Csv.Save(data, new TestEntryFile(file).GetFile);
+                var file = temp.Info.ToDirectory("example").ToFile("test.tsv");
+                Tsv.Save(data, new TestEntryFile(file).GetFile);
 
-                var expected = "A,B{0}1,2{0}".FormatWith(Environment.NewLine);
+                var expected = "A\tB{0}1\t2{0}".FormatWith(Environment.NewLine);
                 var actual = file.ReadToEnd();
 
                 Assert.Equal(expected, actual);
@@ -546,7 +546,7 @@
         {
             var data = new List<KeyStringDictionary>();
 
-            Assert.Throws<ArgumentNullException>(() => Csv.Save(data, null as Func<KeyStringDictionary, FileInfo>));
+            Assert.Throws<ArgumentNullException>(() => Tsv.Save(data, null as Func<KeyStringDictionary, FileInfo>));
         }
     }
 }

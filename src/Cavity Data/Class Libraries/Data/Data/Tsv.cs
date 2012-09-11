@@ -13,7 +13,7 @@
     using Cavity.Collections;
     using Cavity.IO;
 
-    public static class Csv
+    public static class Tsv
     {
         public static string Header(KeyStringDictionary data)
         {
@@ -103,14 +103,15 @@
             {
                 if (0 != i)
                 {
-                    buffer.Append(',');
+                    buffer.Append('\t');
                 }
 
-#if NET20
-                buffer.Append(CsvStringExtensionMethods.FormatCommaSeparatedValue(item));
-#else
-                buffer.Append(item.FormatCommaSeparatedValue());
-#endif
+                if (-1 != item.IndexOf('\t'))
+                {
+                    throw new FormatException("Tab separated values cannot contain tabs.");
+                }
+
+                buffer.Append(item);
                 i++;
             }
 
@@ -173,15 +174,16 @@
                         {
                             if (0 != index)
                             {
-                                buffer.Append(',');
+                                buffer.Append('\t');
                             }
 
+                            if (-1 != column.ColumnName.IndexOf('\t'))
+                            {
+                                throw new FormatException("Tab separated values cannot contain tabs.");
+                            }
+
+                            buffer.Append(column.ColumnName);
                             index++;
-#if NET20
-                            buffer.Append(CsvStringExtensionMethods.FormatCommaSeparatedValue(column.ColumnName));
-#else
-                            buffer.Append(column.ColumnName.FormatCommaSeparatedValue());
-#endif
                         }
                     }
 
@@ -202,15 +204,17 @@
                         {
                             if (0 != index)
                             {
-                                buffer.Append(',');
+                                buffer.Append('\t');
                             }
 
+                            var value = item.ToString();
+                            if (-1 != value.IndexOf('\t'))
+                            {
+                                throw new FormatException("Tab separated values cannot contain tabs.");
+                            }
+
+                            buffer.Append(value);
                             index++;
-#if NET20
-                            buffer.Append(CsvStringExtensionMethods.FormatCommaSeparatedValue(item.ToString()));
-#else
-                            buffer.Append(item.ToString().FormatCommaSeparatedValue());
-#endif
                         }
 
                         writer.WriteLine(buffer.ToString());
