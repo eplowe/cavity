@@ -1,12 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement", "Class Libraries\TaskManagement\TaskManagement.csproj", "{7D95675C-9277-4AA6-9A78-2F5522D78207}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Examples", "Class Libraries\TaskManagement.Examples\TaskManagement.Examples.csproj", "{18FCB723-73DA-4544-87A3-41F6A9EE70DC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Facts", "Class Libraries\TaskManagement.Facts\TaskManagement.Facts.csproj", "{08C8B40A-9858-424F-8468-9DFE1082EA79}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BA106F51-1640-47EE-B042-0703B6F956F0}"
 	ProjectSection(SolutionItems) = preProject
 		Cavity Task Management.bundle = Cavity Task Management.bundle
@@ -24,6 +18,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{E486BBCB
 	ProjectSection(SolutionItems) = preProject
 		.nuget\tools\Install.ps1 = .nuget\tools\Install.ps1
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement", "Class Libraries\TaskManagement\TaskManagement.csproj", "{7D95675C-9277-4AA6-9A78-2F5522D78207}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Examples", "Class Libraries\TaskManagement.Examples\TaskManagement.Examples.csproj", "{18FCB723-73DA-4544-87A3-41F6A9EE70DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Facts", "Class Libraries\TaskManagement.Facts\TaskManagement.Facts.csproj", "{08C8B40A-9858-424F-8468-9DFE1082EA79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

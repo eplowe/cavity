@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="Run"
+         ToolsVersion="4.0">
+  <ItemGroup>
+    <NuGetLibDir Include="$(MSBuildProjectDirectory)\.nuget\lib\net20" />
+    <NuGetLibDir Include="$(MSBuildProjectDirectory)\.nuget\lib\net35" />
+    <NuGetLibDir Include="$(MSBuildProjectDirectory)\.nuget\lib\net40" />
+  </ItemGroup>
+  <Target Name="Run">
+    <MakeDir Directories="%(NuGetLibDir.Identity)"
+             Condition="!Exists('%(NuGetLibDir.Identity)')"/>
+             
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data\bin\Release net20 AnyCPU\Cavity.Data.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\.nuget\lib\net20" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data\bin\Release net35 AnyCPU\Cavity.Data.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\.nuget\lib\net35" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data\bin\Release net40 AnyCPU\Cavity.Data.dll"
+          DestinationFolder="$(MSBuildProjectDirectory)\.nuget\lib\net40" />
+  </Target>
+</Project>

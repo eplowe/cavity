@@ -8,6 +8,7 @@
   	<Solutions Include="Cavity Commands (File System)" />
   	<Solutions Include="Cavity Configuration" />
   	<Solutions Include="Cavity Core" />
+  	<Solutions Include="Cavity Data" />
   	<Solutions Include="Cavity Data (ACE)" />
   	<Solutions Include="Cavity Data (CSV)" />
   	<Solutions Include="Cavity Data (HTML)" />

@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagnostics.Log4Net", "Class Libraries\Diagnostics.Log4Net\Diagnostics.Log4Net.csproj", "{5960B260-2521-4C8A-BF81-F5BDBADC065D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagnostics.Log4Net.Facts", "Class Libraries\Diagnostics.Log4Net.Facts\Diagnostics.Log4Net.Facts.csproj", "{EB10FF5C-DE8D-40B2-A7CB-9257DDC30507}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{705DB44D-41A0-4BF5-9A6A-55A1D16B208C}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\Cavity Diagnostics log4net for Console Applications.nuspec = .nuget\Cavity Diagnostics log4net for Console Applications.nuspec
@@ -36,6 +32,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", 
 	ProjectSection(SolutionItems) = preProject
 		.nuget\content\Properties\log4net.cs = .nuget\content\Properties\log4net.cs
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagnostics.Log4Net", "Class Libraries\Diagnostics.Log4Net\Diagnostics.Log4Net.csproj", "{5960B260-2521-4C8A-BF81-F5BDBADC065D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagnostics.Log4Net.Facts", "Class Libraries\Diagnostics.Log4Net.Facts\Diagnostics.Log4Net.Facts.csproj", "{EB10FF5C-DE8D-40B2-A7CB-9257DDC30507}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

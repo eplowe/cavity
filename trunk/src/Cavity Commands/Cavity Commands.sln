@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands", "Class Libraries\Commands\Commands.csproj", "{C5D47F15-C43B-4607-BC40-91206D4AD503}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands.Facts", "Class Libraries\Commands.Facts\Commands.Facts.csproj", "{620314D5-5A53-4EC1-88CD-C7BF5301D0F9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F65CFD4C-6A1B-48CD-A6E9-FBE0991D75D3}"
 	ProjectSection(SolutionItems) = preProject
 		Cavity Commands.bundle = Cavity Commands.bundle
@@ -12,6 +8,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F65CFD
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands", "Class Libraries\Commands\Commands.csproj", "{C5D47F15-C43B-4607-BC40-91206D4AD503}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands.Facts", "Class Libraries\Commands.Facts\Commands.Facts.csproj", "{620314D5-5A53-4EC1-88CD-C7BF5301D0F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

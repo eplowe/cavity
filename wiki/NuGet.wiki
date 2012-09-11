@@ -49,6 +49,9 @@
 *2.0.0.851* Cavity Commands
  * Cavity.Core
 
+*2.0.0.886* Cavity.Data
+ * Cavity.Core
+
 *2.0.0.848* Cavity.Data.Ace
  * Cavity.Core
 

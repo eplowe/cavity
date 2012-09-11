@@ -1,6 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5528924F-943A-4C67-81D2-767E555EF9FB}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TaskManagement.EventLog.Messages", "Static Libraries\TaskManagement.EventLog.Messages\TaskManagement.EventLog.Messages.vcxproj", "{0E9035BE-3C3D-4E7B-B955-EE9BC0C76A64}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Service", "Windows Services\TaskManagement.Service\TaskManagement.Service.csproj", "{6E1FEB48-28DE-49E6-83BD-08D272F8C43E}"
@@ -9,12 +15,6 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "TaskManagement.Setup", "Ins
 	ProjectSection(ProjectDependencies) = postProject
 		{6E1FEB48-28DE-49E6-83BD-08D272F8C43E} = {6E1FEB48-28DE-49E6-83BD-08D272F8C43E}
 		{0E9035BE-3C3D-4E7B-B955-EE9BC0C76A64} = {0E9035BE-3C3D-4E7B-B955-EE9BC0C76A64}
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5528924F-943A-4C67-81D2-767E555EF9FB}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Global
