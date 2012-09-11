@@ -6,7 +6,6 @@
     using System.IO;
     using System.Linq;
 
-    using Cavity;
     using Cavity.Collections;
     using Cavity.IO;
 
@@ -51,20 +50,15 @@
         [Fact]
         public void ctor_FileInfoNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new CsvDataSheet(null));
+            Assert.Throws<ArgumentNullException>(() => new CsvDataSheet(null as FileInfo));
         }
 
         [Fact]
-        public void op_AsOfT()
+        public void ctor_string()
         {
-            using (var file = new TempFile())
+            using (var temp = new TempFile())
             {
-                file.Info.AppendLine("name");
-                file.Info.AppendLine("Example");
-                foreach (var entry in new CsvDataSheet(file.Info).As<TestDataEntry>())
-                {
-                    Assert.Equal("Example", entry.Name);
-                }
+                Assert.NotNull(new CsvDataSheet(temp.Info.FullName));
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System.Collections.Generic;
+    using System.Data;
     using System.Diagnostics.CodeAnalysis;
 
     using Cavity.Collections;
@@ -10,5 +11,19 @@
     public interface IDataSheet : IEnumerable<KeyStringDictionary>
     {
         string Title { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "As", Justification = "This naming is intentional.")]
+        IEnumerable<T> As<T>()
+            where T : KeyStringDictionary, new();
+
+        IEnumerable<DataShard> Shard(IIdentifyShard identifier);
+
+        DataTable ToDataTable();
+
+        DataTable ToDataTable(string name);
+
+        IEnumerable<KeyStringDictionary> Transform(ITransformData transformer);
+
+        IEnumerable<T> Transform<T>(ITransformData<T> transformer);
     }
 }

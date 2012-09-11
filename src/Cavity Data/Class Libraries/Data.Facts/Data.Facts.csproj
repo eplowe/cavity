@@ -10,11 +10,19 @@
   <ItemGroup>
     <Compile Include="Data\DataFile.Derived.cs" />
     <Compile Include="Data\DataSheet.Derived.cs" />
+    <Compile Include="Data\TestAdditionTransformer.cs" />
+    <Compile Include="Data\TestConcatenationTransformer.cs" />
     <Compile Include="Data\TestDataEntry.cs" />
+    <Compile Include="Data\TestEntryFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Data\DataShard.Facts.cs" />
+    <Compile Include="Data\IIdentifyShard.Facts.cs" />
+    <Compile Include="Data\ITransformData`1.Facts.cs" />
+    <Compile Include="Data\ITransformData.Facts.cs" />
+    <Compile Include="Data\ShardByValue.Facts.cs" />
     <Compile Include="Data\Csv.Facts.cs" />
     <Compile Include="Data\Csv.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Data\CsvDataFile.Facts.cs" />

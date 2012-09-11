@@ -16,6 +16,15 @@
 
         public override IEnumerator<KeyStringDictionary> GetEnumerator()
         {
+            yield return new KeyStringDictionary
+                             {
+                                 { "one", "1" },
+                                 { "two", "2" }
+                             };
+        }
+
+        protected override IEnumerator<T> GetEnumerator<T>()
+        {
             yield break;
         }
     }

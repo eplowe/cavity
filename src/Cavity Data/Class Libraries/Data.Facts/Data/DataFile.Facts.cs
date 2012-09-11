@@ -7,6 +7,7 @@
     using Cavity.IO;
 
     using Xunit;
+    using Xunit.Extensions;
 
     public sealed class DataFileFacts
     {
@@ -74,6 +75,31 @@
                 var actual = new DerivedDataFile(expected).Info;
 
                 Assert.Same(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void prop_Title()
+        {
+            Assert.True(new PropertyExpectations<DataFile>(x => x.Title)
+                            .IsNotDecorated()
+                            .TypeIs<string>()
+                            .Result);
+        }
+
+        [Theory]
+        [InlineData("Data", "Data")]
+        [InlineData("Data", "Data.example")]
+        [InlineData("", ".example")]
+        public void prop_Title_get(string expected,
+                                   string fileName)
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile(fileName).AppendLine(string.Empty);
+                var actual = new DerivedDataFile(file).Title;
+
+                Assert.Equal(expected, actual);
             }
         }
     }
