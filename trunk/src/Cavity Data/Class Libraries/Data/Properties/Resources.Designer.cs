@@ -63,9 +63,9 @@ namespace Cavity.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The number of columns in the header do match match the number of columns in line {0}..
         /// </summary>
-        internal static string CsvStreamReader_ReadEntry_FormatException {
+        internal static string ReadEntry_FormatException {
             get {
-                return ResourceManager.GetString("CsvStreamReader_ReadEntry_FormatException", resourceCulture);
+                return ResourceManager.GetString("ReadEntry_FormatException", resourceCulture);
             }
         }
     }

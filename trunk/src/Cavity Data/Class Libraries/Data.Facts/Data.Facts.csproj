@@ -31,6 +31,10 @@
     <Compile Include="Data\DataFile.Facts.cs" />
     <Compile Include="Data\DataSheet.Facts.cs" />
     <Compile Include="Data\IDataSheet.Facts.cs" />
+    <Compile Include="Data\Tsv.Facts.cs" />
+    <Compile Include="Data\TsvDataFile.Facts.cs" />
+    <Compile Include="Data\TsvDataSheet.Facts.cs" />
+    <Compile Include="Data\TsvStreamReader.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
