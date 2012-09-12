@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Class Libraries", "Class Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Tsv", "Class Libraries\Data.Tsv\Data.Tsv.csproj", "{6EDCB5F6-CC78-478F-8100-9C9279691F41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Tsv.Facts", "Class Libraries\Data.Tsv.Facts\Data.Tsv.Facts.csproj", "{BA3B132B-63D0-4D2C-A915-94AEEC7919D2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,16 +24,11 @@ Global
 		{6EDCB5F6-CC78-478F-8100-9C9279691F41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EDCB5F6-CC78-478F-8100-9C9279691F41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EDCB5F6-CC78-478F-8100-9C9279691F41}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA3B132B-63D0-4D2C-A915-94AEEC7919D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA3B132B-63D0-4D2C-A915-94AEEC7919D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA3B132B-63D0-4D2C-A915-94AEEC7919D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA3B132B-63D0-4D2C-A915-94AEEC7919D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6EDCB5F6-CC78-478F-8100-9C9279691F41} = {8C61A485-1AEE-4D75-B6DB-6255A38B63EF}
-		{BA3B132B-63D0-4D2C-A915-94AEEC7919D2} = {8C61A485-1AEE-4D75-B6DB-6255A38B63EF}
 	EndGlobalSection
 EndGlobal

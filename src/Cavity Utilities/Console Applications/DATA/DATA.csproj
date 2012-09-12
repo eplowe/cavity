@@ -15,11 +15,8 @@
     <Reference Include="Cavity.Core">
       <HintPath>..\..\packages\Cavity.Core.2.0.0.848\lib\net40\Cavity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Cavity.Data.Csv">
-      <HintPath>..\..\packages\Cavity.Data.Csv.2.0.0.848\lib\net40\Cavity.Data.Csv.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.Data.Tsv">
-      <HintPath>..\..\packages\Cavity.Data.Tsv.2.0.0.885\lib\net40\Cavity.Data.Tsv.dll</HintPath>
+    <Reference Include="Cavity.Data">
+      <HintPath>..\..\packages\Cavity.Data.2.0.0.890\lib\net40\Cavity.Data.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Diagnostics.Log4Net">
       <HintPath>..\..\packages\Cavity.Diagnostics.Log4Net.Console.1.1.0.804\lib\net40\Cavity.Diagnostics.Log4Net.dll</HintPath>
@@ -38,9 +35,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arguments.cs" />
-    <Compile Include="Data\DataFile.cs" />
-    <Compile Include="Data\DataSheet.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="IO\FileExtensionMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\log4net.cs" />
@@ -52,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="log4net.config">
+    <None Include="log4net.data.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
@@ -66,6 +62,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\x86.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Code.project" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

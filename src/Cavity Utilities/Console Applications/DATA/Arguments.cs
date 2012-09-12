@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -53,11 +54,11 @@
                 }
                 else if (arg.StartsWithAny(StringComparison.OrdinalIgnoreCase, "/in:", "-in:"))
                 {
-                    result.Input = arg.Substring(4);
+                    result.Input = arg.Substring(4).Trim();
                 }
                 else if (arg.StartsWithAny(StringComparison.OrdinalIgnoreCase, "/out:", "-out:"))
                 {
-                    result.Output = arg.Substring(5);
+                    result.Output = arg.Substring(5).Trim();
                 }
                 else
                 {
@@ -84,7 +85,49 @@
 
             foreach (var file in Specs.SelectMany(spec => spec))
             {
-                DataFile.From(file, Input);
+                Process(file);
+            }
+        }
+
+        private void Process(FileInfo file)
+        {
+            var input = string.IsNullOrWhiteSpace(Input)
+                            ? file.Extension.Substring(1)
+                            : Input;
+            switch (input.ToUpperInvariant())
+            {
+                case "CSV":
+                    Process(new CsvDataSheet(file), file.ChangeExtension(".csv"));
+                    break;
+
+                case "TSV":
+                    Process(new TsvDataSheet(file), file.ChangeExtension(".tsv"));
+                    break;
+
+                default:
+                    throw new FormatException("{0} is not a supported input data format.".FormatWith(input));
+            }
+        }
+
+        private void Process(IEnumerable<KeyStringDictionary> sheet, FileInfo destination)
+        {
+            if (destination.Exists)
+            {
+                throw new InvalidOperationException("{0} already exists.".FormatWith(destination.FullName));
+            }
+            
+            switch (Output.ToUpperInvariant())
+            {
+                case "CSV":
+                    Csv.Save(sheet, destination);
+                    break;
+
+                case "TSV":
+                    Tsv.Save(sheet, destination);
+                    break;
+
+                default:
+                    throw new FormatException("{0} is not a supported output data format.".FormatWith(Output));
             }
         }
     }

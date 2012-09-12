@@ -17,6 +17,7 @@
 
     using Xunit.Extensions;
 
+    [Obsolete("CsvUriAttribute is now deprecated. Use CsvHttpAttribute instead.")]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public sealed class CsvUriAttribute : DataAttribute
     {
