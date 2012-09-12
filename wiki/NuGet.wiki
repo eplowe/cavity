@@ -53,7 +53,7 @@
  * Cavity.Core
 *2.0.0.890* Cavity.Data.Xunit
  * Cavity.Data
-  (Cavity.Core)
+   * Cavity.Core
 
 *2.0.0.848* Cavity.Data.Ace
  * Cavity.Core
@@ -62,13 +62,13 @@
  * Cavity.Core
 *2.0.0.890* Cavity.Data.Csv.Xunit
  * Cavity.Data.Csv
-  (Cavity.Core)
+   * Cavity.Core
 
 *2.0.0.883* Cavity.Data.Html
  * Cavity.Core
 *2.0.0.883* Cavity.Data.Html.Xunit
  * Cavity.Data.Html
-  (Cavity.Core)
+   * Cavity.Core
 
 *2.0.0.848* Cavity.Data.Json.Xunit
  * Cavity.Core
@@ -89,11 +89,11 @@
  * Cavity.Core
 
 *2.0.0.890* Cavity.Domain
- * Cavity.Data.Csv
+ * Cavity.Data
    * Cavity.Core
 
 *2.0.0.890* Cavity.Domain.RoyalMail
- * Cavity.Data.Csv
+ * Cavity.Data
    * Cavity.Core
 
 *2.0.0.848* Cavity Task Management
