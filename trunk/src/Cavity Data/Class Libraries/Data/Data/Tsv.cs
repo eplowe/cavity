@@ -36,28 +36,6 @@
         }
 
         public static string Line(KeyStringDictionary data,
-                                  string columns)
-        {
-            if (null == data)
-            {
-                throw new ArgumentNullException("data");
-            }
-
-            if (null == columns)
-            {
-                throw new ArgumentNullException("columns");
-            }
-
-            columns = columns.Normalize().Trim();
-            if (0 == columns.Length)
-            {
-                throw new ArgumentOutOfRangeException("columns");
-            }
-
-            return Line(data, columns.Split('|'));
-        }
-
-        public static string Line(KeyStringDictionary data,
                                   IList<string> columns)
         {
             if (null == data)

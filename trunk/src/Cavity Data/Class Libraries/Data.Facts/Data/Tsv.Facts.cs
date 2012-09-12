@@ -142,12 +142,6 @@
         }
 
         [Fact]
-        public void op_Line_KeyStringDictionaryNull_string()
-        {
-            Assert.Throws<ArgumentNullException>(() => Tsv.Line(null, "A\tC"));
-        }
-
-        [Fact]
         public void op_Line_KeyStringDictionary_IListOfString()
         {
             var obj = new KeyStringDictionary
@@ -179,40 +173,6 @@
         public void op_Line_KeyStringDictionary_IListOfString_whenColumnsNotFound()
         {
             Assert.Throws<KeyNotFoundException>(() => Tsv.Line(new KeyStringDictionary(), "A,B".Split(',').ToList()));
-        }
-
-        [Fact]
-        public void op_Line_KeyStringDictionary_string()
-        {
-            var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("A", "123"),
-                              new KeyStringPair("B", "ignore"),
-                              new KeyStringPair("C", "XYZ")
-                          };
-
-            const string expected = "123\tXYZ";
-            var actual = Tsv.Line(obj, "A|C");
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Line_KeyStringDictionary_stringEmpty()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Tsv.Line(new KeyStringDictionary(), string.Empty));
-        }
-
-        [Fact]
-        public void op_Line_KeyStringDictionary_stringNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => Tsv.Line(new KeyStringDictionary(), null as string));
-        }
-
-        [Fact]
-        public void op_Line_KeyStringDictionary_string_whenColumnsNotFound()
-        {
-            Assert.Throws<KeyNotFoundException>(() => Tsv.Line(new KeyStringDictionary(), "A"));
         }
 
         [Fact]

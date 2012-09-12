@@ -49,9 +49,9 @@
 *2.0.0.851* Cavity Commands
  * Cavity.Core
 
-*2.0.0.890* Cavity.Data
+*2.0.0.892* Cavity.Data
  * Cavity.Core
-*2.0.0.890* Cavity.Data.Xunit
+*2.0.0.892* Cavity.Data.Xunit
  * Cavity.Data
    * Cavity.Core
 
@@ -88,11 +88,11 @@
 *2.0.0.848* Cavity HTTP Generalizations
  * Cavity.Core
 
-*2.0.0.890* Cavity.Domain
+*2.0.0.892* Cavity.Domain
  * Cavity.Data
    * Cavity.Core
 
-*2.0.0.890* Cavity.Domain.RoyalMail
+*2.0.0.892* Cavity.Domain.RoyalMail
  * Cavity.Data
    * Cavity.Core
 
