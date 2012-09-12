@@ -188,7 +188,7 @@
         private static void Load(LexicalCollection lexicon, 
                                  FileInfo file)
         {
-            foreach (var data in new CsvFile(file))
+            foreach (var data in new CsvDataSheet(file))
             {
                 var canonical = data["CANONICAL"];
                 var item = lexicon[canonical] ?? lexicon.Add(canonical);

@@ -49,15 +49,18 @@
 *2.0.0.851* Cavity Commands
  * Cavity.Core
 
-*2.0.0.886* Cavity.Data
+*2.0.0.890* Cavity.Data
  * Cavity.Core
+*2.0.0.890* Cavity.Data.Xunit
+ * Cavity.Data
+  (Cavity.Core)
 
 *2.0.0.848* Cavity.Data.Ace
  * Cavity.Core
 
-*2.0.0.848* Cavity.Data.Csv
+*2.0.0.890* Cavity.Data.Csv
  * Cavity.Core
-*2.0.0.848* Cavity.Data.Csv.Xunit
+*2.0.0.890* Cavity.Data.Csv.Xunit
  * Cavity.Data.Csv
   (Cavity.Core)
 
@@ -70,7 +73,7 @@
 *2.0.0.848* Cavity.Data.Json.Xunit
  * Cavity.Core
 
-*2.0.0.885* Cavity.Data.Tsv
+*2.0.0.890* Cavity.Data.Tsv
  * Cavity.Core
 
 *2.0.0.848* Cavity.Data.Xml.Xunit
@@ -85,11 +88,11 @@
 *2.0.0.848* Cavity HTTP Generalizations
  * Cavity.Core
 
-*2.0.0.848* Cavity.Domain
+*2.0.0.890* Cavity.Domain
  * Cavity.Data.Csv
    * Cavity.Core
 
-*2.0.0.848* Cavity.Domain.RoyalMail
+*2.0.0.890* Cavity.Domain.RoyalMail
  * Cavity.Data.Csv
    * Cavity.Core
 
@@ -129,7 +132,7 @@
  * Cavity.ServiceLocation.CastleWindsor.Console
  * Cavity.TaskManagement
 
-*2.0.0.848* Cavity Utilities
+*2.0.0.890* Cavity Utilities
 
 *2.0.0.848* Cavity Visual Studio Templates
 

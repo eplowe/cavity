@@ -8,11 +8,7 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Data\Csv.String.ExtensionMethods.cs" />
     <Compile Include="Data\CsvFile.cs" />
-    <Compile Include="Data\CsvStreamReader.cs" />
-    <Compile Include="Data\Sharding\IIdentifyShard.cs" />
-    <Compile Include="Data\Sharding\ShardByValue.cs" />
     <Compile Include="Data\Transformation\ITransformCsv`1.cs" />
     <Compile Include="Data\Transformation\ITransformCsv.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -30,6 +26,9 @@
   <ItemGroup>
     <Reference Include="Cavity.Core">
       <HintPath>..\..\packages\Cavity.Core.2.0.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Cavity.Data">
+      <HintPath>..\..\packages\Cavity.Data.2.0.0.890\lib\$(TargetFrameworkVersionName)\Cavity.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

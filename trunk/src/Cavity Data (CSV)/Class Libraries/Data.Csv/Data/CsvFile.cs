@@ -13,10 +13,10 @@
     using System.Text;
 
     using Cavity.Collections;
-    using Cavity.Data.Sharding;
     using Cavity.Data.Transformation;
     using Cavity.IO;
 
+    [Obsolete("CsvFile is now deprecated. Use CsvDataFile or CsvDataSheet instead.")]
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't a collection.")]
     public class CsvFile : IEnumerable<KeyStringDictionary>
     {

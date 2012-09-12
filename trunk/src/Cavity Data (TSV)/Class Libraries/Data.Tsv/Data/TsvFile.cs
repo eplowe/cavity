@@ -15,6 +15,7 @@
     using Cavity.Collections;
     using Cavity.IO;
 
+    [Obsolete("TsvFile is now deprecated. Use TsvDataFile or TsvDataSheet instead.")]
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't a collection.")]
     public class TsvFile : IEnumerable<KeyStringDictionary>
     {

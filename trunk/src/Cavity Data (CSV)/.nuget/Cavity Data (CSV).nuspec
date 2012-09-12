@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Data.Csv</id>
-    <version>2.0.0.848</version>
+    <version>2.0.0.890</version>
     <title>Cavity Data (CSV)</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -20,7 +20,7 @@
       <frameworkAssembly assemblyName="System.Data" />
     </frameworkAssemblies>
     <dependencies>
-      <dependency id="Cavity.Core" version="2.0.0.848" />
+      <dependency id="Cavity.Data" version="2.0.0.890" />
     </dependencies>
   </metadata>
   <files>

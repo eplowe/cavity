@@ -14,6 +14,7 @@
 
     using Xunit.Extensions;
 
+    [Obsolete("CsvFileAttribute is now deprecated. Use CsvDataAttribute instead.")]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public sealed class CsvFileAttribute : DataAttribute
     {

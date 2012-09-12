@@ -131,7 +131,7 @@
             {
                 IStoreLexicon store = new CsvLexiconStorage(directory.Info.ToFile("example.csv"));
 
-                Assert.Empty(store.Load(NormalityComparer.Ordinal));
+                Assert.Throws<FileNotFoundException>(() => store.Load(NormalityComparer.Ordinal));
             }
         }
 
