@@ -12,7 +12,6 @@
     using Xunit;
 
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "DataSheet", Justification = "This is the correct casing.")]
-    [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This is not a collection.")]
     public sealed class CsvDataSheetFacts
     {
         [Fact]
@@ -75,6 +74,15 @@
                     Assert.Equal("Example", entry["name"]);
                 }
             }
+        }
+
+        [Fact]
+        public void prop_Info()
+        {
+            Assert.True(new PropertyExpectations<CsvDataSheet>(x => x.Info)
+                            .IsNotDecorated()
+                            .TypeIs<FileInfo>()
+                            .Result);
         }
     }
 }
