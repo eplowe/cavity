@@ -94,14 +94,15 @@
             var input = string.IsNullOrWhiteSpace(Input)
                             ? file.Extension.Substring(1)
                             : Input;
+            var destination = file.ChangeExtension(".{0}".FormatWith(Output));
             switch (input.ToUpperInvariant())
             {
                 case "CSV":
-                    Process(new CsvDataSheet(file), file.ChangeExtension(".csv"));
+                    Process(new CsvDataSheet(file), destination);
                     break;
 
                 case "TSV":
-                    Process(new TsvDataSheet(file), file.ChangeExtension(".tsv"));
+                    Process(new TsvDataSheet(file), destination);
                     break;
 
                 default:
