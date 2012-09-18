@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>TSV</AssemblyName>
+    <ProjectGuid>{E42C547C-A14F-4E83-8B68-22FD53AE3D98}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <PlatformTarget>x86</PlatformTarget>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\Char.ExtensionMethods.cs">
+      <Link>Char.ExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\Characters.cs">
+      <Link>Characters.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\Collections\KeyStringDictionary.cs">
+      <Link>Collections\KeyStringDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\CommentAttribute.cs">
+      <Link>CommentAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\Data\KeyStringPair.cs">
+      <Link>Data\KeyStringPair.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\Generic.ExtensionMethods.cs">
+      <Link>Generic.ExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\IO\FileSpec.cs">
+      <Link>IO\FileSpec.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\String.ExtensionMethods.cs">
+      <Link>String.ExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Data\Class Libraries\Data\Data\TsvDataSheet.cs">
+      <Link>Data\TsvDataSheet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Data\Class Libraries\Data\Data\TsvStreamReader.cs">
+      <Link>Data\TsvStreamReader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Data\Class Libraries\Data\Data\DataShard.cs">
+      <Link>Data\DataShard.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Data\Class Libraries\Data\Data\DataSheet.cs">
+      <Link>Data\DataSheet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Data\Class Libraries\Data\Data\IDataSheet.cs">
+      <Link>Data\IDataSheet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Data\Class Libraries\Data\Data\IIdentifyShard.cs">
+      <Link>Data\IIdentifyShard.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Data\Class Libraries\Data\Data\ITransformData.cs">
+      <Link>Data\ITransformData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Data\Class Libraries\Data\Data\ITransformData`1.cs">
+      <Link>Data\ITransformData`1.cs</Link>
+    </Compile>
+    <Compile Include="Arguments.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\CodeAnalysis.dictionary">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\x86.platform" />
+  <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Code.project" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

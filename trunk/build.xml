@@ -50,6 +50,8 @@
       <MsiFiles Include="$(MSBuildProjectDirectory)\src\Cavity MSBuild\Installation\Cavity MSBuild Setup\bin\Release NET40 x86\Cavity MSBuild Extensions.msi" />
       <MsiFiles Include="$(MSBuildProjectDirectory)\src\Cavity Task Management Service\Installation\TaskManagement.Setup\bin\Release NET40 x86\Cavity Task Management Service.msi" />
       <MsiFiles Include="$(MSBuildProjectDirectory)\src\Cavity Task Management Service\Installation\TaskManagement.Setup\bin\Release NET40 x64\Cavity Task Management Service (x64).msi" />
+      <MsiFiles Include="$(MSBuildProjectDirectory)\src\Cavity Utilities\Console Applications\CSV\bin\Release NET40 x86\CSV.exe" />
+      <MsiFiles Include="$(MSBuildProjectDirectory)\src\Cavity Utilities\Console Applications\TSV\bin\Release NET40 x86\TSV.exe" />
       <MsiFiles Include="$(MSBuildProjectDirectory)\src\Cavity Utilities\Installation\Cavity Utilities Setup\bin\Release NET40 x86\Cavity Utilities.msi" />
       <MsiFiles Include="$(MSBuildProjectDirectory)\src\Cavity Visual Studio Templates\Installation\Cavity Visual Studio Templates Setup\bin\Release NET40 x86\Cavity Visual Studio Templates.msi" />
     </ItemGroup>
