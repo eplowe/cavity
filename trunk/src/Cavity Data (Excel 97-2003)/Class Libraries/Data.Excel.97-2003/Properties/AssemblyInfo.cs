@@ -15,5 +15,3 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Excel 97-2003 Data Library (Release)")]
 
 #endif
-
-[assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Cavity")]

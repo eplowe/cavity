@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Linq;
     using System.Xml;
 
     using Microsoft.Office.Interop.Excel;
@@ -46,15 +47,24 @@
             {
                 instance = new Application();
                 var workbook = instance.Workbooks.Open(Info.FullName, 0, true, 5, string.Empty, string.Empty, true, XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+#if NET20
                 _Worksheet worksheet = null;
                 foreach (_Worksheet sheet in workbook.Sheets)
                 {
-                    if (string.Equals(sheet.Name, Title, StringComparison.Ordinal))
+                    if (!string.Equals(sheet.Name, Title, StringComparison.Ordinal))
                     {
-                        worksheet = sheet;
-                        break;
+                        continue;
                     }
+
+                    worksheet = sheet;
+                    break;
                 }
+#else
+                var worksheet = workbook
+                    .Sheets
+                    .Cast<_Worksheet>()
+                    .FirstOrDefault(sheet => string.Equals(sheet.Name, Title, StringComparison.Ordinal));
+#endif
 
                 if (null == worksheet)
                 {
@@ -65,10 +75,7 @@
                 var columns = new List<string>();
                 for (var i = 1; i < range.Columns.Count + 1; i++)
                 {
-                    var cell = (Range)range.Cells[1, i];
-                    columns.Add((string)cell.Text);
-                    
-                    //// columns.Add((string)range.Cells[1, i].Value);
+                    columns.Add(Cell(range, 1, i));
                 }
 
                 for (var i = 2; i < range.Rows.Count + 1; i++)
@@ -76,28 +83,7 @@
                     var entry = Activator.CreateInstance<T>();
                     for (var j = 0; j < columns.Count; j++)
                     {
-                        var cell = (Range)range.Cells[i, j + 1];
-                        if (cell.Value is bool)
-                        {
-                            entry.Add(columns[j], XmlConvert.ToString((bool)cell.Value));
-                        }
-                        else if (cell.Value is DateTime)
-                        {
-                            var value = XmlConvert.ToString((DateTime)cell.Value, XmlDateTimeSerializationMode.Utc);
-                            if (value.EndsWith("T00:00:00Z", StringComparison.Ordinal))
-                            {
-                                value = value.RemoveFromEnd("T00:00:00Z", StringComparison.Ordinal);
-                            }
-
-                            entry.Add(columns[j], value);
-                        }
-                        else
-                        {
-                            entry.Add(columns[j], (string)cell.Text);
-                        }
-
-                        ////var value = range.Cells[i, j + 1].Value ?? string.Empty;
-                        ////entry.Add(columns[j], value.ToString());
+                        entry.Add(columns[j], Cell(range, i, j + 1));
                     }
 
                     yield return entry;
@@ -110,6 +96,32 @@
                     instance.Quit();
                 }
             }
+        }
+
+        private static string Cell(Range range, int row, int column)
+        {
+            var cell = (Range)range.Cells[row, column];
+            if (cell.Value is bool)
+            {
+                return XmlConvert.ToString((bool)cell.Value);
+            }
+            
+            if (cell.Value is DateTime)
+            {
+                var value = XmlConvert.ToString((DateTime)cell.Value, XmlDateTimeSerializationMode.Utc);
+                if (value.EndsWith("T00:00:00Z", StringComparison.Ordinal))
+                {
+#if NET20
+                    value = StringExtensionMethods.RemoveFromEnd(value, "T00:00:00Z", StringComparison.Ordinal);
+#else
+                    value = value.RemoveFromEnd("T00:00:00Z", StringComparison.Ordinal);
+#endif
+                }
+
+                return value;
+            }
+
+            return (string)cell.Text;
         }
     }
 }
