@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using System.Data.OleDb;
@@ -12,58 +11,47 @@
     using System.Linq;
 #endif
 
-    using Cavity.Collections;
-
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't a collection.")]
-    public sealed class ExcelWorksheet : IEnumerable<KeyStringDictionary>
+    public sealed class ExcelWorksheet : DataSheet
     {
-        public ExcelWorksheet(FileInfo info, 
-                              string name)
+        public ExcelWorksheet(string path)
+            : this(new FileInfo(path))
+        {
+        }
+
+        public ExcelWorksheet(FileInfo info)
         {
             if (null == info)
             {
                 throw new ArgumentNullException("info");
             }
 
-            if (null == name)
+            if (!info.Exists)
             {
-                throw new ArgumentNullException("name");
-            }
-
-            if (0 == name.Length)
-            {
-                throw new ArgumentOutOfRangeException("name");
+                throw new FileNotFoundException(info.FullName);
             }
 
             Info = info;
-            Name = name;
         }
 
         public FileInfo Info { get; private set; }
 
-        public string Name { get; private set; }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        [SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "Can't parameterise the table name, so have quoted it.")]
-        public IEnumerator<KeyStringDictionary> GetEnumerator()
+        [SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "Input is quote encoded.")]
+        protected override IEnumerator<T> GetEnumerator<T>()
         {
             Info.Refresh();
             if (!Info.Exists)
             {
-                throw new FileNotFoundException(Info.FullName);
+                yield break;
             }
 
             using (var connection = new OleDbConnection(Excel.ConnectionString(Info)))
             {
                 connection.Open();
 #if NET20
-                var sql = StringExtensionMethods.FormatWith("SELECT * FROM {0}", new SqlCommandBuilder().QuoteIdentifier(Name));
+                var sql = StringExtensionMethods.FormatWith("SELECT * FROM {0}", new SqlCommandBuilder().QuoteIdentifier(Title));
 #else
-                var sql = "SELECT * FROM {0}".FormatWith(new SqlCommandBuilder().QuoteIdentifier(Name));
+                var sql = "SELECT * FROM {0}".FormatWith(new SqlCommandBuilder().QuoteIdentifier(Title));
 #endif
                 using (var command = new OleDbCommand(sql, connection))
                 {
@@ -93,7 +81,8 @@
 
                         while (reader.Read())
                         {
-                            var entry = new KeyStringDictionary();
+                            var entry = Activator.CreateInstance<T>();
+
                             foreach (var column in columns)
                             {
                                 entry[column] = reader[column].ToString();

@@ -55,12 +55,13 @@
  * Cavity.Data
    * Cavity.Core
 
-*2.0.0.848* Cavity.Data.Ace
- * Cavity.Core
+*2.0.0.896* Cavity.Data.Ace
+ * Cavity.Data
+   * Cavity.Core
 
-*2.0.0.890* Cavity.Data.Csv
+*2.0.0.896* Cavity.Data.Csv
  * Cavity.Core
-*2.0.0.890* Cavity.Data.Csv.Xunit
+*2.0.0.896* Cavity.Data.Csv.Xunit
  * Cavity.Data.Csv
    * Cavity.Core
 
@@ -73,7 +74,7 @@
 *2.0.0.848* Cavity.Data.Json.Xunit
  * Cavity.Core
 
-*2.0.0.890* Cavity.Data.Tsv
+*2.0.0.896* Cavity.Data.Tsv
  * Cavity.Core
 
 *2.0.0.848* Cavity.Data.Xml.Xunit
