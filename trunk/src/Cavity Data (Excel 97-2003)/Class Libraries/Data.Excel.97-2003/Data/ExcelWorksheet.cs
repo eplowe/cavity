@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Xml;
 
     using Microsoft.Office.Interop.Excel;
 
@@ -76,7 +77,24 @@
                     for (var j = 0; j < columns.Count; j++)
                     {
                         var cell = (Range)range.Cells[i, j + 1];
-                        entry.Add(columns[j], (string)cell.Text);
+                        if (cell.Value is bool)
+                        {
+                            entry.Add(columns[j], XmlConvert.ToString((bool)cell.Value));
+                        }
+                        else if (cell.Value is DateTime)
+                        {
+                            var value = XmlConvert.ToString((DateTime)cell.Value, XmlDateTimeSerializationMode.Utc);
+                            if (value.EndsWith("T00:00:00Z", StringComparison.Ordinal))
+                            {
+                                value = value.RemoveFromEnd("T00:00:00Z", StringComparison.Ordinal);
+                            }
+
+                            entry.Add(columns[j], value);
+                        }
+                        else
+                        {
+                            entry.Add(columns[j], (string)cell.Text);
+                        }
 
                         ////var value = range.Cells[i, j + 1].Value ?? string.Empty;
                         ////entry.Add(columns[j], value.ToString());

@@ -94,7 +94,9 @@
                 var data = sheet.ToList();
                 Assert.Equal(3, data.Count);
 
-                Assert.Equal("Top Left", data[0]["A"]);
+                Assert.Equal("Top Left,123,123.45,true", Csv.Line(data[0]));
+                Assert.Equal("1969-03-10,456%,£456.78,", Csv.Line(data[1]));
+                Assert.Equal("1969-03-10T01:02:03Z,,,false", Csv.Line(data[2]));
             }
         }
 
