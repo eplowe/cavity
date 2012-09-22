@@ -17,7 +17,7 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<ExcelWorksheet>()
-                            .DerivesFrom<object>()
+                            .DerivesFrom<DataSheet>()
                             .IsConcreteClass()
                             .IsSealed()
                             .NoDefaultConstructor()
@@ -27,29 +27,38 @@
         }
 
         [Fact]
-        public void ctor_FileInfoNull_string()
+        public void ctor_FileInfo()
         {
-            Assert.Throws<ArgumentNullException>(() => new ExcelWorksheet(null, "Sheet1$"));
+            using (var temp = new TempFile())
+            {
+                Assert.NotNull(new ExcelWorksheet(temp.Info));
+            }
         }
 
         [Fact]
-        public void ctor_FileInfo_string()
+        public void ctor_FileInfoMissing()
         {
-            var file = new DirectoryInfo(Environment.CurrentDirectory)
-                .ToDirectory("Spreadsheets")
-                .ToFile("Default.xlsx");
-
-            Assert.NotNull(new ExcelWorksheet(file, "Sheet1$"));
+            using (var temp = new TempDirectory())
+            {
+                // ReSharper disable AccessToDisposedClosure
+                Assert.Throws<FileNotFoundException>(() => new ExcelWorksheet(temp.Info.ToFile("missing.txt")));
+                // ReSharper restore AccessToDisposedClosure
+            }
         }
 
         [Fact]
-        public void ctor_FileInfo_stringNull()
+        public void ctor_FileInfoNull()
         {
-            var file = new DirectoryInfo(Environment.CurrentDirectory)
-                .ToDirectory("Spreadsheets")
-                .ToFile("Default.xlsx");
+            Assert.Throws<ArgumentNullException>(() => new ExcelWorksheet(null as FileInfo));
+        }
 
-            Assert.Throws<ArgumentNullException>(() => new ExcelWorksheet(file, null));
+        [Fact]
+        public void ctor_string()
+        {
+            using (var temp = new TempFile())
+            {
+                Assert.NotNull(new ExcelWorksheet(temp.Info.FullName));
+            }
         }
 
         [Fact]
@@ -59,7 +68,11 @@
                 .ToDirectory("Spreadsheets")
                 .ToFile("NameValue.xls");
 
-            foreach (var entry in new ExcelWorksheet(file, "Sheet1$"))
+            var sheet = new ExcelWorksheet(file)
+                            {
+                                Title = "Sheet1$"
+                            };
+            foreach (var entry in sheet)
             {
                 Assert.Equal("value", entry["name"]);
             }
@@ -72,7 +85,11 @@
                 .ToDirectory("Spreadsheets")
                 .ToFile("NameValue.xlsb");
 
-            foreach (var entry in new ExcelWorksheet(file, "Sheet1$"))
+            var sheet = new ExcelWorksheet(file)
+                            {
+                                Title = "Sheet1$"
+                            };
+            foreach (var entry in sheet)
             {
                 Assert.Equal("value", entry["name"]);
             }
@@ -85,7 +102,11 @@
                 .ToDirectory("Spreadsheets")
                 .ToFile("OneTwo.xlsx");
 
-            foreach (var entry in new ExcelWorksheet(file, "Sheet1$"))
+            var sheet = new ExcelWorksheet(file)
+                            {
+                                Title = "Sheet1$"
+                            };
+            foreach (var entry in sheet)
             {
                 Assert.Equal("1", entry["one"]);
                 Assert.Equal("2", entry["two"]);
@@ -99,7 +120,11 @@
                 .ToDirectory("Spreadsheets")
                 .ToFile("NameValue.xlsx");
 
-            foreach (var entry in new ExcelWorksheet(file, "Sheet1$"))
+            var sheet = new ExcelWorksheet(file)
+                            {
+                                Title = "Sheet1$"
+                            };
+            foreach (var entry in sheet)
             {
                 Assert.Equal("value", entry["name"]);
             }
@@ -112,7 +137,10 @@
                 .ToDirectory("Spreadsheets")
                 .ToFile("NameValue.xlsx");
 
-            IEnumerable enumerable = new ExcelWorksheet(file, "Sheet1$");
+            IEnumerable enumerable = new ExcelWorksheet(file)
+                                         {
+                                             Title = "Sheet1$"
+                                         };
             foreach (var entry in enumerable.Cast<KeyStringDictionary>())
             {
                 Assert.Equal("value", entry["name"]);
@@ -120,29 +148,10 @@
         }
 
         [Fact]
-        public void op_IEnumerable_GetEnumerator_whenFileMissing()
-        {
-            var file = new FileInfo("{0}.xlsx".FormatWith(Guid.NewGuid()));
-
-            IEnumerable enumerable = new ExcelWorksheet(file, "Sheet1$");
-
-            Assert.Throws<FileNotFoundException>(() => enumerable.Cast<KeyStringDictionary>().ToList());
-        }
-
-        [Fact]
         public void prop_Info()
         {
             Assert.True(new PropertyExpectations<ExcelWorksheet>(x => x.Info)
                             .TypeIs<FileInfo>()
-                            .IsNotDecorated()
-                            .Result);
-        }
-
-        [Fact]
-        public void prop_Name()
-        {
-            Assert.True(new PropertyExpectations<ExcelWorksheet>(x => x.Name)
-                            .TypeIs<string>()
                             .IsNotDecorated()
                             .Result);
         }
