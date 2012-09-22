@@ -62,32 +62,40 @@
         [Fact]
         public void op_GetEnumerator()
         {
-            var file = new DirectoryInfo(Environment.CurrentDirectory).ToFile("Default.xls");
-
-            for (var i = 1; i < 4; i++)
+            using (var temp = new TempDirectory())
             {
-                var sheet = new ExcelWorksheet(file)
-                                {
-                                    Title = "Sheet" + XmlConvert.ToString(i)
-                                };
-                Assert.Empty(sheet);
+                var file = temp.Info.ToFile("{0}.xls".FormatWith(AlphaDecimal.Random()));
+                new DirectoryInfo(Environment.CurrentDirectory).ToFile("Default.xls").CopyTo(file.FullName);
+
+                for (var i = 1; i < 4; i++)
+                {
+                    var sheet = new ExcelWorksheet(file)
+                    {
+                        Title = "Sheet" + XmlConvert.ToString(i)
+                    };
+                    Assert.Empty(sheet);
+                }
             }
         }
 
         [Fact]
         public void op_GetEnumerator_whenSheet1()
         {
-            var file = new DirectoryInfo(Environment.CurrentDirectory).ToFile("Example.xls");
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("{0}.xls".FormatWith(AlphaDecimal.Random()));
+                new DirectoryInfo(Environment.CurrentDirectory).ToFile("Example.xls").CopyTo(file.FullName);
 
-            var sheet = new ExcelWorksheet(file)
-                            {
-                                Title = "Sheet1"
-                            };
+                var sheet = new ExcelWorksheet(file)
+                {
+                    Title = "Sheet1"
+                };
 
-            var data = sheet.ToList();
-            Assert.Equal(3, data.Count);
+                var data = sheet.ToList();
+                Assert.Equal(3, data.Count);
 
-            Assert.Equal("Top Left", data[0]["A"]);
+                Assert.Equal("Top Left", data[0]["A"]);
+            }
         }
 
         [Fact]

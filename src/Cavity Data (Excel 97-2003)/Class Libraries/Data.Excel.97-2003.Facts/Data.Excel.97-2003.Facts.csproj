@@ -18,7 +18,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\ExcelWorksheet.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
