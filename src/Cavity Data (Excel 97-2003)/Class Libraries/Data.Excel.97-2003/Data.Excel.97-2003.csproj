@@ -8,7 +8,8 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Data\ExcelWorksheet.cs" />
+    <Compile Include="Data\ExcelDataFile.cs" />
+    <Compile Include="Data\ExcelDataSheet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
     <None Include="packages.config" />
