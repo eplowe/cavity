@@ -18,7 +18,7 @@
             Assert.True(new TypeExpectations<ExcelFile>()
                             .DerivesFrom<DataFile>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Result);

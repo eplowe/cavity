@@ -7,7 +7,7 @@
     using System.IO;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't a collection.")]
-    public sealed class ExcelFile : DataFile
+    public class ExcelFile : DataFile
     {
         public ExcelFile(FileInfo info)
             : base(info)

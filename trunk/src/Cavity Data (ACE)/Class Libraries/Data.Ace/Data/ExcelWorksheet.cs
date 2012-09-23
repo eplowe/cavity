@@ -12,7 +12,7 @@
 #endif
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't a collection.")]
-    public sealed class ExcelWorksheet : DataSheet
+    public class ExcelWorksheet : DataSheet
     {
         public ExcelWorksheet(string path)
             : this(new FileInfo(path))

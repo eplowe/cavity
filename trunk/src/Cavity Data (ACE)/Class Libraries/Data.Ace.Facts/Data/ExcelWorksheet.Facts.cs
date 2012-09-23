@@ -19,7 +19,7 @@
             Assert.True(new TypeExpectations<ExcelWorksheet>()
                             .DerivesFrom<DataSheet>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Implements<IEnumerable<KeyStringDictionary>>()

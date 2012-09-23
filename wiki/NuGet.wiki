@@ -55,7 +55,7 @@
  * Cavity.Data
    * Cavity.Core
 
-*2.0.0.898* Cavity.Data.Ace
+*2.0.0.904* Cavity.Data.Ace
  * Cavity.Data
    * Cavity.Core
 
@@ -63,6 +63,10 @@
  * Cavity.Core
 *2.0.0.898* Cavity.Data.Csv.Xunit
  * Cavity.Data.Csv
+   * Cavity.Core
+
+*2.0.0.904* Cavity.Data.Excel.97-2003
+ * Cavity.Data
    * Cavity.Core
 
 *2.0.0.883* Cavity.Data.Html

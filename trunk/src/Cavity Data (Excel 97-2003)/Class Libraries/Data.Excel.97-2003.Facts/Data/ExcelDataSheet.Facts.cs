@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Xml;
@@ -10,15 +11,16 @@
 
     using Xunit;
 
-    public sealed class ExcelWorksheetFacts
+    [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "DataSheet", Justification = "The casing is correct.")]
+    public sealed class ExcelDataSheetFacts
     {
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<ExcelWorksheet>()
+            Assert.True(new TypeExpectations<ExcelDataSheet>()
                             .DerivesFrom<DataSheet>()
                             .IsConcreteClass()
-                            .IsSealed()
+                            .IsUnsealed()
                             .NoDefaultConstructor()
                             .IsNotDecorated()
                             .Result);
@@ -29,7 +31,7 @@
         {
             using (var temp = new TempFile())
             {
-                Assert.NotNull(new ExcelWorksheet(temp.Info));
+                Assert.NotNull(new ExcelDataSheet(temp.Info));
             }
         }
 
@@ -39,7 +41,7 @@
             using (var temp = new TempDirectory())
             {
                 // ReSharper disable AccessToDisposedClosure
-                Assert.Throws<FileNotFoundException>(() => new ExcelWorksheet(temp.Info.ToFile("missing.txt")));
+                Assert.Throws<FileNotFoundException>(() => new ExcelDataSheet(temp.Info.ToFile("missing.xls")));
                 // ReSharper restore AccessToDisposedClosure
             }
         }
@@ -47,7 +49,7 @@
         [Fact]
         public void ctor_FileInfoNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new ExcelWorksheet(null as FileInfo));
+            Assert.Throws<ArgumentNullException>(() => new ExcelDataSheet(null as FileInfo));
         }
 
         [Fact]
@@ -55,7 +57,7 @@
         {
             using (var temp = new TempFile())
             {
-                Assert.NotNull(new ExcelWorksheet(temp.Info.FullName));
+                Assert.NotNull(new ExcelDataSheet(temp.Info.FullName));
             }
         }
 
@@ -69,7 +71,7 @@
 
                 for (var i = 1; i < 4; i++)
                 {
-                    var sheet = new ExcelWorksheet(file)
+                    var sheet = new ExcelDataSheet(file)
                     {
                         Title = "Sheet" + XmlConvert.ToString(i)
                     };
@@ -86,7 +88,7 @@
                 var file = temp.Info.ToFile("{0}.xls".FormatWith(AlphaDecimal.Random()));
                 new DirectoryInfo(Environment.CurrentDirectory).ToFile("Example.xls").CopyTo(file.FullName);
 
-                var sheet = new ExcelWorksheet(file)
+                var sheet = new ExcelDataSheet(file)
                 {
                     Title = "Sheet1"
                 };
@@ -103,7 +105,7 @@
         [Fact]
         public void prop_Info()
         {
-            Assert.True(new PropertyExpectations<ExcelWorksheet>(x => x.Info)
+            Assert.True(new PropertyExpectations<ExcelDataSheet>(x => x.Info)
                             .TypeIs<FileInfo>()
                             .IsNotDecorated()
                             .Result);
