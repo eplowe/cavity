@@ -2,15 +2,15 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Data.Xunit</id>
-    <version>2.0.0.892</version>
-    <title>Cavity Data xUnit Extensions</title>
+    <version>2.0.0.905</version>
+    <title>Cavity Data (CSV, TSV) xUnit Extensions</title>
     <authors>Alan Dean</authors>
     <owners />
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <projectUrl>http://code.google.com/p/cavity/</projectUrl>
     <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Provides xUnit extensions for data files.</description>
+    <description>Provides xUnit extensions for data files, including CSV (comma-separated) and TSV (tab-separated).</description>
     <summary />
     <copyright>Copyright © 2010 - 2012 Alan Dean</copyright>
     <language />
@@ -20,7 +20,7 @@
       <frameworkAssembly assemblyName="System.Data" />
     </frameworkAssemblies>
     <dependencies>
-      <dependency id="Cavity.Data" version="2.0.0.892" />
+      <dependency id="Cavity.Data" version="2.0.0.905" />
       <dependency id="xunit.extensions" version="1.9.0.1566" />
     </dependencies>
   </metadata>

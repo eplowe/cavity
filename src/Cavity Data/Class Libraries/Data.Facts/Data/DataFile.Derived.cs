@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
@@ -10,11 +11,14 @@
         public DerivedDataFile(FileInfo info)
             : base(info)
         {
+            Sheets = new Collection<IDataSheet>();
         }
+
+        public ICollection<IDataSheet> Sheets { get; private set; }
 
         public override IEnumerator<IDataSheet> GetEnumerator()
         {
-            yield break;
+            return Sheets.GetEnumerator();
         }
     }
 }

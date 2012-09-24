@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2A2A1D48-1B00-47E6-B6CD-AA2AF37546E3}"
+	ProjectSection(SolutionItems) = preProject
+		Cavity Data (Excel Open XML).bundle = Cavity Data (Excel Open XML).bundle
+		.nuget\Cavity Data (Excel Open XML).nuspec = .nuget\Cavity Data (Excel Open XML).nuspec
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Class Libraries", "Class Libraries", "{11C348B6-962C-493B-9496-9D4649E0ADAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Excel.OpenXML", "Class Libraries\Data.Excel.OpenXML\Data.Excel.OpenXML.csproj", "{EB681C82-8092-489D-8B6C-BDB9EA47C3F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Excel.OpenXML.Facts", "Class Libraries\Data.Excel.OpenXML.Facts\Data.Excel.OpenXML.Facts.csproj", "{7688A884-7A2B-4A20-B5D8-A369120A2DC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB681C82-8092-489D-8B6C-BDB9EA47C3F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB681C82-8092-489D-8B6C-BDB9EA47C3F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB681C82-8092-489D-8B6C-BDB9EA47C3F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB681C82-8092-489D-8B6C-BDB9EA47C3F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7688A884-7A2B-4A20-B5D8-A369120A2DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7688A884-7A2B-4A20-B5D8-A369120A2DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7688A884-7A2B-4A20-B5D8-A369120A2DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7688A884-7A2B-4A20-B5D8-A369120A2DC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EB681C82-8092-489D-8B6C-BDB9EA47C3F2} = {11C348B6-962C-493B-9496-9D4649E0ADAF}
+		{7688A884-7A2B-4A20-B5D8-A369120A2DC6} = {11C348B6-962C-493B-9496-9D4649E0ADAF}
+	EndGlobalSection
+EndGlobal
