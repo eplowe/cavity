@@ -7,9 +7,9 @@
     using Microsoft.Office.Interop.Excel;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This is not a collection.")]
-    public class ExcelDataFile : DataFile
+    public class ExcelWorkbook : DataFile
     {
-        public ExcelDataFile(FileInfo info)
+        public ExcelWorkbook(FileInfo info)
             : base(info)
         {
         }
@@ -29,7 +29,7 @@
                 var workbook = instance.Workbooks.Open(Info.FullName, 0, true, 5, string.Empty, string.Empty, true, XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
                 foreach (_Worksheet sheet in workbook.Sheets)
                 {
-                    yield return new ExcelDataSheet(Info, sheet);
+                    yield return new ExcelWorksheet(Info, sheet);
                 }
             }
             finally

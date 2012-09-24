@@ -13,16 +13,15 @@
 
     using Microsoft.Office.Interop.Excel;
 
-    [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "DataSheet", Justification = "The casing is correct.")]
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This is not a collection.")]
-    public class ExcelDataSheet : DataSheet
+    public class ExcelWorksheet : DataSheet
     {
-        public ExcelDataSheet(string path)
+        public ExcelWorksheet(string path)
             : this(new FileInfo(path))
         {
         }
 
-        public ExcelDataSheet(FileInfo info)
+        public ExcelWorksheet(FileInfo info)
         {
             if (null == info)
             {
@@ -37,7 +36,7 @@
             Info = info;
         }
 
-        internal ExcelDataSheet(FileInfo info, _Worksheet worksheet)
+        internal ExcelWorksheet(FileInfo info, _Worksheet worksheet)
             : this(info)
         {
             if (null == worksheet)

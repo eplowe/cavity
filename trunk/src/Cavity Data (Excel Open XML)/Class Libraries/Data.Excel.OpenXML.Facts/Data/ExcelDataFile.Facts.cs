@@ -38,7 +38,7 @@
             using (var temp = new TempDirectory())
             {
                 // ReSharper disable AccessToDisposedClosure
-                Assert.Throws<FileNotFoundException>(() => new ExcelDataFile(temp.Info.ToFile("missing.xls")));
+                Assert.Throws<FileNotFoundException>(() => new ExcelDataFile(temp.Info.ToFile("missing.xlsx")));
                 // ReSharper restore AccessToDisposedClosure
             }
         }
@@ -54,8 +54,8 @@
         {
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToFile("{0}.xls".FormatWith(AlphaDecimal.Random()));
-                new DirectoryInfo(Environment.CurrentDirectory).ToFile("Default.xls").CopyTo(file.FullName);
+                var file = temp.Info.ToFile("{0}.xlsx".FormatWith(AlphaDecimal.Random()));
+                new DirectoryInfo(Environment.CurrentDirectory).ToFile("Default.xlsx").CopyTo(file.FullName);
 
                 var i = 1;
                 foreach (var sheet in new ExcelDataFile(file))

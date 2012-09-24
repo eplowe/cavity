@@ -49,23 +49,21 @@
 *2.0.0.851* Cavity Commands
  * Cavity.Core
 
-*2.0.0.892* Cavity.Data
+*2.0.0.905* Cavity.Data
  * Cavity.Core
-*2.0.0.892* Cavity.Data.Xunit
+*2.0.0.905* Cavity.Data.Xunit
  * Cavity.Data
    * Cavity.Core
 
-*2.0.0.904* Cavity.Data.Ace
+*2.0.0.905* Cavity.Data.Ace
  * Cavity.Data
    * Cavity.Core
 
-*2.0.0.898* Cavity.Data.Csv
- * Cavity.Core
-*2.0.0.898* Cavity.Data.Csv.Xunit
- * Cavity.Data.Csv
+*2.0.0.905* Cavity.Data.Excel.97-2003
+ * Cavity.Data
    * Cavity.Core
 
-*2.0.0.904* Cavity.Data.Excel.97-2003
+*2.0.0.905* Cavity.Data.Excel.OpenXML
  * Cavity.Data
    * Cavity.Core
 
@@ -76,9 +74,6 @@
    * Cavity.Core
 
 *2.0.0.848* Cavity.Data.Json.Xunit
- * Cavity.Core
-
-*2.0.0.896* Cavity.Data.Tsv
  * Cavity.Core
 
 *2.0.0.848* Cavity.Data.Xml.Xunit
@@ -93,11 +88,11 @@
 *2.0.0.848* Cavity HTTP Generalizations
  * Cavity.Core
 
-*2.0.0.892* Cavity.Domain
+*2.0.0.905* Cavity.Domain
  * Cavity.Data
    * Cavity.Core
 
-*2.0.0.892* Cavity.Domain.RoyalMail
+*2.0.0.905* Cavity.Domain.RoyalMail
  * Cavity.Data
    * Cavity.Core
 
@@ -162,4 +157,15 @@
  * Cavity.Core
 
 *???* Cavity Version Control
+ * Cavity.Core
+
+== Unlisted ==
+
+*2.0.0.898* Cavity.Data.Csv
+ * Cavity.Core
+*2.0.0.898* Cavity.Data.Csv.Xunit
+ * Cavity.Data.Csv
+   * Cavity.Core
+
+*2.0.0.896* Cavity.Data.Tsv
  * Cavity.Core

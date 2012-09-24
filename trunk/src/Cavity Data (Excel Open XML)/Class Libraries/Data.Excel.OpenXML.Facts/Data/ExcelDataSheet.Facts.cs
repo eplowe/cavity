@@ -11,7 +11,7 @@
 
     using Xunit;
 
-    [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "DataSheet", Justification = "The casing is correct.")]
+    [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "DataSheet", Justification = "This casing is correct.")]
     public sealed class ExcelDataSheetFacts
     {
         [Fact]
@@ -41,7 +41,7 @@
             using (var temp = new TempDirectory())
             {
                 // ReSharper disable AccessToDisposedClosure
-                Assert.Throws<FileNotFoundException>(() => new ExcelDataSheet(temp.Info.ToFile("missing.xls")));
+                Assert.Throws<FileNotFoundException>(() => new ExcelDataSheet(temp.Info.ToFile("missing.xlsx")));
                 // ReSharper restore AccessToDisposedClosure
             }
         }
@@ -67,7 +67,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile("{0}.xls".FormatWith(AlphaDecimal.Random()));
-                new DirectoryInfo(Environment.CurrentDirectory).ToFile("Default.xls").CopyTo(file.FullName);
+                new DirectoryInfo(Environment.CurrentDirectory).ToFile("Default.xlsx").CopyTo(file.FullName);
 
                 for (var i = 1; i < 4; i++)
                 {
@@ -86,7 +86,7 @@
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile("{0}.xls".FormatWith(AlphaDecimal.Random()));
-                new DirectoryInfo(Environment.CurrentDirectory).ToFile("Example.xls").CopyTo(file.FullName);
+                new DirectoryInfo(Environment.CurrentDirectory).ToFile("Example.xlsx").CopyTo(file.FullName);
 
                 var sheet = new ExcelDataSheet(file)
                 {

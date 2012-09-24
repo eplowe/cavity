@@ -2,15 +2,15 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Data</id>
-    <version>2.0.0.892</version>
-    <title>Cavity Data</title>
+    <version>2.0.0.905</version>
+    <title>Cavity Data (CSV, TSV)</title>
     <authors>Alan Dean</authors>
     <owners />
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <projectUrl>http://code.google.com/p/cavity/</projectUrl>
     <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Provides data access types.</description>
+    <description>Provides data access types, including CSV (comma-separated) and TSV (tab-separated).</description>
     <summary />
     <copyright>Copyright © 2010 - 2012 Alan Dean</copyright>
     <language />
