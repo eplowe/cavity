@@ -28,7 +28,7 @@
 
         public Date(DateTime date)
         {
-            _date = date;
+            _date = new DateTime(date.Year, date.Month, date.Day);
         }
 
         private Date(SerializationInfo info, 

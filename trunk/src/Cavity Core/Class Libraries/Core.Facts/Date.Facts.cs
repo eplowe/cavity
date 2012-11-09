@@ -37,6 +37,16 @@
         }
 
         [Fact]
+        [Comment("Bug discovered where British Summer Time caused Date to misbehave.")]
+        public void ctor_DateTime_whenLocalTime()
+        {
+            Date expected = "2012-03-26";
+            var actual = (Date)new Date(new DateTime(2012, 03, 25, 2, 1, 0, DateTimeKind.Local)).ToDateTime().AddDays(1);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void ctor_SerializationInfo_StreamingContext()
         {
             var expected = new Date(1999, 12, 31);
