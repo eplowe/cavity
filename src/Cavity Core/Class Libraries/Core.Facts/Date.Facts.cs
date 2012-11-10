@@ -49,6 +49,12 @@
         }
 
         [Fact]
+        public void ctor_Month_int()
+        {
+            Assert.NotNull(new Date(new Month(1999, MonthOfYear.May), 31));
+        }
+
+        [Fact]
         public void ctor_SerializationInfo_StreamingContext()
         {
             var expected = new Date(1999, 12, 31);
@@ -63,6 +69,12 @@
             }
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ctor_int_MonthOfYear_int()
+        {
+            Assert.NotNull(new Date(1999, MonthOfYear.May, 31));
         }
 
         [Fact]

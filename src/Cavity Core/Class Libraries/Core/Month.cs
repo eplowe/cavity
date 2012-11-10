@@ -20,6 +20,12 @@
     {
         private DateTime _date;
 
+        public Month(int year,
+                     MonthOfYear month)
+            : this(new DateTime(year, (int)month, 1))
+        {
+        }
+
         public Month(int year, 
                      int month)
             : this(new DateTime(year, month, 1))

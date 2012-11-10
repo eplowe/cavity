@@ -62,6 +62,12 @@
         }
 
         [Fact]
+        public void ctor_int_MonthOfYear()
+        {
+            Assert.NotNull(new Month(1999, MonthOfYear.May));
+        }
+
+        [Fact]
         public void ctor_int_int()
         {
             Assert.NotNull(new Month(1999, 12));
