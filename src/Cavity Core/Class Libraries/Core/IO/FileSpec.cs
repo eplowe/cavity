@@ -27,6 +27,11 @@
 
         private string Value { get; set; }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
         public IEnumerator<FileInfo> GetEnumerator()
         {
             if (!Value.Contains("*"))
@@ -66,11 +71,6 @@
             {
                 yield return file;
             }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

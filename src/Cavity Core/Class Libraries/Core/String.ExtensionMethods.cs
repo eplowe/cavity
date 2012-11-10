@@ -379,7 +379,8 @@
         }
 
 #if !NET20
-        public static T DefaultOrFromString<T>(this string value, Func<string, T> fromString)
+        public static T DefaultOrFromString<T>(this string value, 
+                                               Func<string, T> fromString)
         {
             if (null == fromString)
             {
@@ -390,6 +391,7 @@
                        ? default(T)
                        : fromString(value);
         }
+
 #endif
 
 #if !NET20
@@ -1901,7 +1903,7 @@
         }
 
         [Comment("Drop 'B' if after 'M' and if it is at the end of the word.")]
-        public static void MetaphoneLetterB(int index,
+        public static void MetaphoneLetterB(int index, 
                                             StringBuilder buffer)
         {
             if (null == buffer)
@@ -1963,7 +1965,7 @@
         [Comment("'C' transforms to 'S' if followed by 'I', 'E', or 'Y'.")]
         [Comment("Otherwise, 'C' transforms to 'K'.")]
         [Comment("'CK' transforms to 'K'.")]
-        public static void MetaphoneLetterC(int index,
+        public static void MetaphoneLetterC(int index, 
                                             StringBuilder buffer)
         {
             if (null == buffer)
@@ -2057,7 +2059,7 @@
         [Comment("Drop 'G' if followed by 'N' or 'NED' and is at the end.")]
         [Comment("'G' transforms to 'J' if before 'I', 'E', or 'Y', and it is not in 'GG'.")]
         [Comment("Otherwise, 'G' transforms to 'K'.")]
-        public static void MetaphoneLetterG(int index,
+        public static void MetaphoneLetterG(int index, 
                                             StringBuilder buffer)
         {
             if (null == buffer)
@@ -2114,7 +2116,7 @@
 #if NET20
                         GenericExtensionMethods.In(buffer[next + 1], 'A', 'E', 'I', 'O', 'U'))
 #else
- buffer[next + 1].In('A', 'E', 'I', 'O', 'U'))
+                        buffer[next + 1].In('A', 'E', 'I', 'O', 'U'))
 #endif
                     {
                         buffer[index] = 'k';

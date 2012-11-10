@@ -75,7 +75,11 @@ namespace Cavity
         {
             return Properties
                 .Select(property => property.GetValue(this, null))
-                .Where(value => null != value)
+#if NET20
+                .Where(value => ObjectExtensionMethods.IsNotNull(value))
+#else
+                .Where(value => value.IsNotNull())
+#endif
                 .Aggregate(0, 
                            (x, 
                             value) => x ^ value.GetHashCode());
@@ -87,7 +91,11 @@ namespace Cavity
 
             foreach (var value in Properties
                 .Select(property => property.GetValue(this, null))
-                .Where(value => null != value))
+#if NET20
+                .Where(value => ObjectExtensionMethods.IsNotNull(value)))
+#else
+                .Where(value => value.IsNotNull()))
+#endif
             {
                 if (0 != buffer.Length)
                 {

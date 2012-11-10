@@ -1,0 +1,62 @@
+﻿namespace Cavity.Collections
+{
+    using System;
+    using System.Collections.Generic;
+
+    using Xunit;
+
+    public sealed class ICollectionExtensionMethodsFacts
+    {
+        [Fact]
+        public void a_definition()
+        {
+            Assert.True(typeof(ICollectionExtensionMethods).IsStatic());
+        }
+
+        [Fact]
+        public void op_Append_ICollectionOfTNull_paramsOfT()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as ICollection<string>).Append("a,b,c".Split(',')));
+        }
+
+        [Fact]
+        public void op_Append_ICollectionOfT_paramsOfT()
+        {
+            const string expected = "a,b,c";
+
+            var list = new List<string>();
+
+            list.Append(expected.Split(','));
+
+            var actual = list.Concat(',');
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Append_ICollectionOfT_paramsOfTEmpty()
+        {
+            var list = new List<string>();
+
+            list.Append(new List<string>().ToArray());
+
+            Assert.Empty(list);
+        }
+
+        [Fact]
+        public void op_Append_ICollectionOfT_paramsOfTMissing()
+        {
+            var list = new List<string>();
+
+            list.Append();
+
+            Assert.Empty(list);
+        }
+
+        [Fact]
+        public void op_Append_ICollectionOfT_paramsOfTNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new List<string>().Append(null));
+        }
+    }
+}

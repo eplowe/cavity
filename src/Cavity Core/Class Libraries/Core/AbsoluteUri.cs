@@ -29,10 +29,12 @@
         protected AbsoluteUri(SerializationInfo info, 
                               StreamingContext context)
         {
-            if (null != info)
+            if (null == info)
             {
-                _value = new Uri(info.GetString("_value"), UriKind.Absolute);
+                return;
             }
+
+            _value = new Uri(info.GetString("_value"), UriKind.Absolute);
         }
 
         protected Uri Value
@@ -74,22 +76,22 @@
 
         public static implicit operator string(AbsoluteUri uri)
         {
-            return (null == uri) ? null : uri.Value.AbsoluteUri;
+            return null == uri ? null : uri.Value.AbsoluteUri;
         }
 
         public static implicit operator AbsoluteUri(string value)
         {
-            return (null == value) ? null : new Uri(value, UriKind.Absolute);
+            return null == value ? null : new Uri(value, UriKind.Absolute);
         }
 
         public static implicit operator Uri(AbsoluteUri uri)
         {
-            return (null == uri) ? null : uri.Value;
+            return null == uri ? null : uri.Value;
         }
 
         public static implicit operator AbsoluteUri(Uri value)
         {
-            return (null == value) ? null : new AbsoluteUri(value);
+            return null == value ? null : new AbsoluteUri(value);
         }
 
         public static bool operator !=(AbsoluteUri obj, 

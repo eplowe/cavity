@@ -99,7 +99,7 @@
         }
 
         [Fact]
-        public void opGreater_MD5Hash_MD5Hash()
+        public void opGreaterThan_MD5Hash_MD5Hash()
         {
             MD5Hash jigsaw = Convert.FromBase64String(_jigsawHash);
             MD5Hash empty = Convert.FromBase64String(_emptyHash);
@@ -117,7 +117,7 @@
         }
 
         [Fact]
-        public void opLesser_MD5Hash_MD5Hash()
+        public void opLessThan_MD5Hash_MD5Hash()
         {
             MD5Hash jigsaw = Convert.FromBase64String(_jigsawHash);
             MD5Hash empty = Convert.FromBase64String(_emptyHash);

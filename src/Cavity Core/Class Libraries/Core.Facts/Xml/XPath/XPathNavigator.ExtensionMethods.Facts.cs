@@ -7,6 +7,7 @@
 
     using Xunit;
 
+    [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Justification = "Following the BCL naming style.")]
     public sealed class XPathNavigatorExtensionMethodsFacts
     {
         [Fact]

@@ -36,6 +36,12 @@
             Assert.Throws<ArgumentNullException>(() => (null as Assembly).Directory());
         }
 
+        [Fact]
+        public void op_ToDirectory_stringDirectoryRoot()
+        {
+            Assert.Throws<DirectoryNotFoundException>(() => AssemblyExtensionMethods.ToDirectory(@"C:\"));
+        }
+
         [Theory]
         [InlineData("")]
         [InlineData("   ")]
@@ -48,12 +54,6 @@
         public void op_ToDirectory_stringNull()
         {
             Assert.Throws<ArgumentNullException>(() => AssemblyExtensionMethods.ToDirectory(null));
-        }
-
-        [Fact]
-        public void op_ToDirectory_stringDirectoryRoot()
-        {
-            Assert.Throws<DirectoryNotFoundException>(() => AssemblyExtensionMethods.ToDirectory(@"C:\"));
         }
     }
 }

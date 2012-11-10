@@ -62,49 +62,47 @@
 #if NET20 || NET35
             foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
 #else
-            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories),
-                file =>
+            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories), 
+                             file =>
 #endif
-                {
-                    var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
-                    if (target.Exists)
-                    {
-                        if (replace)
-                        {
-                            target.Delete();
-                        }
-                        else
-                        {
+                                 {
+                                     var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
+                                     if (target.Exists)
+                                     {
+                                         if (replace)
+                                         {
+                                             target.Delete();
+                                         }
+                                         else
+                                         {
 #if NET20 || NET35
-                            continue;
+                                             continue;
 #else
-                            return;
+                                             return;
 #endif
-                        }
-                    }
-
-                    if (null != target.Directory &&
-                        !target.Directory.Exists)
-                    {
-                        target.Directory.Create();
-                    }
-
-                    file.CopyTo(target.FullName);
+                                         }
+                                     }
+#if NET20
+                                     Make(target.Directory);
+#else
+                                     target.Directory.Make();
+#endif
+                                     file.CopyTo(target.FullName);
 #if NET20 || NET35
                 }
 #else
-                });
+                                 });
 #endif
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
 #if NET20
-        public static int LineCount(DirectoryInfo directory,
-                                    string searchPattern,
+        public static int LineCount(DirectoryInfo directory, 
+                                    string searchPattern, 
                                     SearchOption searchOption)
 #else
-        public static int LineCount(this DirectoryInfo directory,
-                                    string searchPattern,
+        public static int LineCount(this DirectoryInfo directory, 
+                                    string searchPattern, 
                                     SearchOption searchOption)
 #endif
         {
@@ -113,7 +111,11 @@
                 throw new ArgumentNullException("directory");
             }
 
-            if (!directory.Exists)
+#if NET20
+            if (FileSystemInfoExtensionMethods.NotFound(directory))
+#else
+            if (directory.NotFound())
+#endif
             {
                 throw new DirectoryNotFoundException(directory.FullName);
             }
@@ -150,7 +152,11 @@
             }
 
             obj.Refresh();
-            if (!obj.Exists)
+#if NET20
+            if (FileSystemInfoExtensionMethods.NotFound(obj))
+#else
+            if (obj.NotFound())
+#endif
             {
                 obj.Create();
                 obj.Refresh();
@@ -205,42 +211,40 @@
             {
                 throw new ArgumentOutOfRangeException("pattern");
             }
-            
+
 #if NET20 || NET35
             foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
 #else
-            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories),
-                file =>
+            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories), 
+                             file =>
 #endif
-                {
-                    var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
-                    if (target.Exists)
-                    {
-                        if (replace)
-                        {
-                            target.Delete();
-                        }
-                        else
-                        {
+                                 {
+                                     var target = new FileInfo(file.FullName.Replace(source.FullName, destination.FullName));
+                                     if (target.Exists)
+                                     {
+                                         if (replace)
+                                         {
+                                             target.Delete();
+                                         }
+                                         else
+                                         {
 #if NET20 || NET35
                             continue;
 #else
-                            return;
+                                             return;
 #endif
-                        }
-                    }
-
-                    if (null != target.Directory &&
-                        !target.Directory.Exists)
-                    {
-                        target.Directory.Create();
-                    }
-
-                    file.MoveTo(target.FullName);
+                                         }
+                                     }
+#if NET20
+                                     Make(target.Directory);
+#else
+                                     target.Directory.Make();
+#endif
+                                     file.MoveTo(target.FullName);
 #if NET20 || NET35
                 }
 #else
-                });
+                                 });
 #endif
         }
 

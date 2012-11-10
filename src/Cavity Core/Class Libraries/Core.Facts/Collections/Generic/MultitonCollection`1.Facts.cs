@@ -36,7 +36,7 @@
                           {
                               {
                                   123, expected
-                                  }
+                              }
                           };
 
             var actual = obj[123];
@@ -65,7 +65,7 @@
                           {
                               {
                                   123, string.Empty
-                                  }
+                              }
                           };
 
             obj[123] = expected;
@@ -108,7 +108,7 @@
                           {
                               {
                                   123, DateTime.Today
-                                  }
+                              }
                           };
 
             Assert.True(obj.ContainsKey(123));

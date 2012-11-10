@@ -47,7 +47,11 @@
         {
             if (!Disposed && disposing)
             {
-                if (null != Info)
+#if NET20
+                if (ObjectExtensionMethods.IsNotNull(Info))
+#else
+                if (Info.IsNotNull())
+#endif
                 {
                     Info.Refresh();
                     if (Info.Exists)
@@ -73,12 +77,12 @@
                 subdirectory.Delete();
             }
 #else
-            Parallel.ForEach(directory.EnumerateDirectories(),
+            Parallel.ForEach(directory.EnumerateDirectories(), 
                              subdirectory =>
-                                                                   {
-                                                                       DeleteSubdirectories(subdirectory);
-                                                                       subdirectory.Delete();
-                                                                   });
+                                 {
+                                     DeleteSubdirectories(subdirectory);
+                                     subdirectory.Delete();
+                                 });
 #endif
         }
 

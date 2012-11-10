@@ -27,12 +27,14 @@
 
             using (var stream = obj.Open(FileMode.Append, FileAccess.Write, FileShare.Read))
             {
+                if (null == value)
+                {
+                    return obj;
+                }
+
                 using (var writer = new StreamWriter(stream))
                 {
-                    if (null != value)
-                    {
-                        writer.Write(value.ToString());
-                    }
+                    writer.Write(value.ToString());
                 }
             }
 
@@ -52,18 +54,60 @@
                 throw new ArgumentNullException("obj");
             }
 
+            if (null == value)
+            {
+                return obj;
+            }
+
             using (var stream = obj.Open(FileMode.Append, FileAccess.Write, FileShare.Read))
             {
                 using (var writer = new StreamWriter(stream))
                 {
-                    if (null != value)
-                    {
-                        writer.WriteLine(value.ToString());
-                    }
+                    writer.WriteLine(value.ToString());
                 }
             }
 
             return obj;
+        }
+
+#if NET20
+        public static FileInfo CopyTo(FileInfo obj, 
+                                      FileInfo destination)
+#else
+        public static FileInfo CopyTo(this FileInfo obj, 
+                                      FileInfo destination)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return CopyTo(obj, destination, false);
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want strong typing here.")]
+#if NET20
+        public static FileInfo CopyTo(FileInfo obj, 
+                                      FileInfo destination, 
+                                      bool overwrite)
+#else
+        public static FileInfo CopyTo(this FileInfo obj, 
+                                      FileInfo destination, 
+                                      bool overwrite)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (null == destination)
+            {
+                throw new ArgumentNullException("destination");
+            }
+
+            return obj.CopyTo(destination.FullName, overwrite);
         }
 
 #if NET20
@@ -83,7 +127,11 @@
             {
                 using (var writer = new StreamWriter(stream))
                 {
-                    if (null != value)
+#if NET20
+                    if (ObjectExtensionMethods.IsNotNull(value))
+#else
+                    if (value.IsNotNull())
+#endif
                     {
                         writer.Write(value);
                     }
@@ -142,12 +190,14 @@
 
             using (var stream = obj.Open(FileMode.CreateNew, FileAccess.Write, FileShare.Read))
             {
+                if (null == value)
+                {
+                    return obj;
+                }
+
                 using (var writer = new StreamWriter(stream))
                 {
-                    if (null != value)
-                    {
-                        writer.Write(value.ToString());
-                    }
+                    writer.Write(value.ToString());
                 }
             }
 
@@ -180,6 +230,7 @@
             {
                 lines.Add(line);
             }
+
 #endif
 
             var buffer = new StringBuilder();
@@ -207,7 +258,11 @@
                 throw new ArgumentNullException("file");
             }
 
-            if (!file.Exists)
+#if NET20
+            if (FileSystemInfoExtensionMethods.NotFound(file))
+#else
+            if (file.NotFound())
+#endif
             {
                 throw new FileNotFoundException(file.FullName);
             }
@@ -275,6 +330,7 @@
 
             return changed;
         }
+
 #if NET20
         [SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "line", Justification = "There is no other way to count the lines.")]
         public static int LineCount(FileInfo obj)
@@ -292,6 +348,7 @@
         {
             return obj.Lines().Count();
         }
+
 #endif
 
 #if NET20
@@ -319,6 +376,72 @@
         }
 
 #if NET20
+        public static FileInfo MoveTo(FileInfo obj, 
+                                      FileInfo destination)
+#else
+        public static FileInfo MoveTo(this FileInfo obj, 
+                                      FileInfo destination)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return MoveTo(obj, destination, false);
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want strong typing here.")]
+#if NET20
+        public static FileInfo MoveTo(FileInfo obj, 
+                                      FileInfo destination, 
+                                      bool overwrite)
+#else
+        public static FileInfo MoveTo(this FileInfo obj, 
+                                      FileInfo destination, 
+                                      bool overwrite)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (null == destination)
+            {
+                throw new ArgumentNullException("destination");
+            }
+
+            obj.Refresh();
+#if NET20
+            if (FileSystemInfoExtensionMethods.NotFound(obj))
+#else
+            if (obj.NotFound())
+#endif
+            {
+                throw new FileNotFoundException(obj.FullName);
+            }
+
+            if (!overwrite)
+            {
+                destination.Refresh();
+                if (destination.Exists)
+                {
+#if NET20
+                    throw new IOException(StringExtensionMethods.FormatWith("{0} already exists.", destination.FullName));
+#else
+                    throw new IOException("{0} already exists.".FormatWith(destination.FullName));
+#endif
+                }
+            }
+
+            obj.MoveTo(destination.FullName);
+            destination.Refresh();
+
+            return destination;
+        }
+
+#if NET20
         public static string ReadToEnd(FileInfo obj)
 #else
         public static string ReadToEnd(this FileInfo obj)
@@ -339,8 +462,51 @@
         }
 
 #if NET20
+        public static FileStream ToReadStream(FileInfo obj)
+#else
+        public static FileStream ToReadStream(this FileInfo obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return obj.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
+        }
+
+#if NET20
+        public static FileStream ToWriteStream(FileInfo obj, 
+                                               FileMode mode)
+#else
+        public static FileStream ToWriteStream(this FileInfo obj, 
+                                               FileMode mode)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+#if NET20
+            if (!GenericExtensionMethods.In(mode,
+#else
+            if (!mode.In(
+#endif
+                FileMode.Create,
+                FileMode.CreateNew,
+                FileMode.Append,
+                FileMode.Truncate))
+            {
+                throw new ArgumentOutOfRangeException("mode");
+            }
+
+            return obj.Open(mode, FileAccess.Write, FileShare.Read);
+        }
+
+#if NET20
         public static FileInfo Truncate(FileInfo obj, 
-                                    string value)
+                                        string value)
 #else
         public static FileInfo Truncate(this FileInfo obj, 
                                         string value)
@@ -355,7 +521,11 @@
             {
                 using (var writer = new StreamWriter(stream))
                 {
-                    if (null != value)
+#if NET20
+                    if (ObjectExtensionMethods.IsNotNull(value))
+#else
+                    if (value.IsNotNull())
+#endif
                     {
                         writer.Write(value);
                     }

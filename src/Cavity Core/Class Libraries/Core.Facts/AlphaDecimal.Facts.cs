@@ -98,7 +98,7 @@
         }
 
         [Fact]
-        public void opGreater_AlphaDecimal_AlphaDecimal()
+        public void opGreaterThan_AlphaDecimal_AlphaDecimal()
         {
             AlphaDecimal one = 1;
             AlphaDecimal two = 2;
@@ -229,7 +229,7 @@
         }
 
         [Fact]
-        public void opLesser_AlphaDecimal_AlphaDecimal()
+        public void opLessThan_AlphaDecimal_AlphaDecimal()
         {
             AlphaDecimal one = 1;
             AlphaDecimal two = 2;

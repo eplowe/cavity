@@ -16,7 +16,7 @@
         }
 
         public string Description { get; private set; }
-        
+
         public string Reference { get; set; }
     }
 }

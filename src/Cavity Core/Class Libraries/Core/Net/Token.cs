@@ -32,10 +32,12 @@
         protected Token(SerializationInfo info, 
                         StreamingContext context)
         {
-            if (null != info)
+            if (null == info)
             {
-                _value = info.GetString("_value");
+                return;
             }
+
+            _value = info.GetString("_value");
         }
 
         private Token()
@@ -76,6 +78,7 @@
                 {
                     throw new FormatException(Resources.Token_FormatException_Message);
                 }
+
 #endif
 
                 _value = value;

@@ -69,24 +69,6 @@
         }
 
         [Fact]
-        public void op_CopyTo_DirectoryInfo_DirectoryInfoNestedMissing_bool()
-        {
-            using (var temp = new TempDirectory())
-            {
-                const string expected = "copied";
-                var source = temp.Info.ToDirectory("source").ToDirectory("parent").ToDirectory("child", true);
-                source.ToFile("example.txt").Append(expected);
-                var destination = temp.Info.ToDirectory("destination").ToDirectory("parent").ToDirectory("child");
-
-                source.CopyTo(destination, false);
-
-                var actual = destination.ToFile("example.txt").ReadToEnd();
-
-                Assert.Equal(expected, actual);
-            }
-        }
-
-        [Fact]
         public void op_CopyTo_DirectoryInfo_DirectoryInfoMissing_bool_string()
         {
             using (var temp = new TempDirectory())
@@ -103,6 +85,24 @@
 
                 Assert.Equal(expected, actual);
                 Assert.False(destination.ToFile("example.ignore").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_DirectoryInfo_DirectoryInfoNestedMissing_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "copied";
+                var source = temp.Info.ToDirectory("source").ToDirectory("parent").ToDirectory("child", true);
+                source.ToFile("example.txt").Append(expected);
+                var destination = temp.Info.ToDirectory("destination").ToDirectory("parent").ToDirectory("child");
+
+                source.CopyTo(destination, false);
+
+                var actual = destination.ToFile("example.txt").ReadToEnd();
+
+                Assert.Equal(expected, actual);
             }
         }
 
@@ -239,9 +239,9 @@
         [InlineData(1, 1, 1, SearchOption.AllDirectories)]
         [InlineData(2, 2, 1, SearchOption.AllDirectories)]
         [InlineData(9, 3, 3, SearchOption.AllDirectories)]
-        public void op_LineCount_DirectoryInfo_string_SearchOption(int expected,
-                                                                   int files,
-                                                                   int lines,
+        public void op_LineCount_DirectoryInfo_string_SearchOption(int expected, 
+                                                                   int files, 
+                                                                   int lines, 
                                                                    SearchOption searchOption)
         {
             using (var temp = new TempDirectory())

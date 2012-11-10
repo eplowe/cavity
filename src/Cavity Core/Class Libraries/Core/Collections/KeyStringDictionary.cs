@@ -2,6 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+#if !NET20
+    using System.Linq;
+#endif
     using System.Runtime.Serialization;
 
     using Cavity.Data;
@@ -12,6 +15,12 @@
                                        IEnumerable<KeyStringPair>
     {
         public KeyStringDictionary()
+            : this(StringComparer.OrdinalIgnoreCase)
+        {
+        }
+
+        public KeyStringDictionary(IEqualityComparer<string> comparer)
+            : base(comparer)
         {
         }
 
@@ -54,9 +63,100 @@
             return (this as IDictionary<string, string>).Contains(new KeyValuePair<string, string>(item.Key, item.Value));
         }
 
+        public virtual bool Empty(params string[] keys)
+        {
+            if (null == keys)
+            {
+                throw new ArgumentNullException("keys");
+            }
+#if NET20
+            if (0 == keys.Length)
+            {
+                keys = ToKeyArray();
+            }
+
+            foreach (var key in keys)
+            {
+                if (string.IsNullOrEmpty(this[key]))
+                {
+                    continue;
+                }
+
+                return false;
+            }
+
+            return true;
+#else
+            return 0 == keys.Length
+                       ? Empty(Keys.ToArray())
+                       : keys.All(key => string.IsNullOrEmpty(this[key]));
+#endif
+        }
+
+        public virtual int Length(params string[] keys)
+        {
+            if (null == keys)
+            {
+                throw new ArgumentNullException("keys");
+            }
+#if NET20
+            if (0 == keys.Length)
+            {
+                keys = ToKeyArray();
+            }
+
+            var sum = 0;
+            foreach (var key in keys)
+            {
+                sum += this[key].Length;
+            }
+
+            return sum;
+#else
+            return 0 == keys.Length
+                       ? Length(Keys.ToArray())
+                       : keys.Sum(key => this[key].Length);
+#endif
+        }
+
+        public virtual void Move(string source, 
+                                 string destination)
+        {
+            this[destination] = this[source];
+            this[source] = string.Empty;
+        }
+
+        public virtual bool NotEmpty(params string[] keys)
+        {
+            return !Empty(keys);
+        }
+
         public virtual bool Remove(KeyStringPair item)
         {
             return (this as IDictionary<string, string>).Remove(new KeyValuePair<string, string>(item.Key, item.Value));
+        }
+
+        public virtual IEnumerable<string> Strings(params string[] keys)
+        {
+            if (null == keys)
+            {
+                throw new ArgumentNullException("keys");
+            }
+#if NET20
+            if (0 == keys.Length)
+            {
+                keys = ToKeyArray();
+            }
+
+            foreach (var key in keys)
+            {
+                yield return this[key];
+            }
+#else
+            return 0 == keys.Length
+                       ? Strings(Keys.ToArray())
+                       : keys.Select(key => this[key]);
+#endif
         }
 
         public virtual T TryValue<T>(int index)
@@ -68,6 +168,20 @@
 #endif
         }
 
+        public virtual T TryValue<T>(int index, 
+                                     T empty)
+        {
+            var value = this[index];
+
+#if NET20 || NET35
+            return StringExtensionMethods.IsNullOrWhiteSpace(value)
+#else
+            return string.IsNullOrWhiteSpace(value)
+#endif
+                       ? empty
+                       : TryValue<T>(index);
+        }
+
         public virtual T TryValue<T>(string key)
         {
 #if NET20
@@ -75,6 +189,20 @@
 #else
             return this[key].TryTo<T>();
 #endif
+        }
+
+        public virtual T TryValue<T>(string key, 
+                                     T empty)
+        {
+            var value = this[key];
+
+#if NET20 || NET35
+            return StringExtensionMethods.IsNullOrWhiteSpace(value)
+#else
+            return string.IsNullOrWhiteSpace(value)
+#endif
+                       ? empty
+                       : TryValue<T>(key);
         }
 
         public virtual T Value<T>(int index)
@@ -86,6 +214,20 @@
 #endif
         }
 
+        public virtual T Value<T>(int index, 
+                                  T empty)
+        {
+            var value = this[index];
+
+#if NET20 || NET35
+            return StringExtensionMethods.IsNullOrWhiteSpace(value)
+#else
+            return string.IsNullOrWhiteSpace(value)
+#endif
+                       ? empty
+                       : Value<T>(index);
+        }
+
         public virtual T Value<T>(string key)
         {
 #if NET20
@@ -93,6 +235,20 @@
 #else
             return this[key].To<T>();
 #endif
+        }
+
+        public virtual T Value<T>(string key, 
+                                  T empty)
+        {
+            var value = this[key];
+
+#if NET20 || NET35
+            return StringExtensionMethods.IsNullOrWhiteSpace(value)
+#else
+            return string.IsNullOrWhiteSpace(value)
+#endif
+                       ? empty
+                       : Value<T>(key);
         }
 
         public new IEnumerator<KeyStringPair> GetEnumerator()
@@ -103,5 +259,19 @@
                 yield return new KeyStringPair(e.Current.Key, e.Current.Value);
             }
         }
+
+#if NET20
+        private string[] ToKeyArray()
+        {
+            var keys = new string[Keys.Count];
+            var i = 0;
+            foreach (var key in Keys)
+            {
+                keys[i++] = key;
+            }
+
+            return keys;
+        }
+#endif
     }
 }

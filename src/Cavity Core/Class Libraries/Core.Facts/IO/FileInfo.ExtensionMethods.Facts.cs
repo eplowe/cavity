@@ -1,6 +1,7 @@
 ﻿namespace Cavity.IO
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Xml;
@@ -41,15 +42,12 @@
         [Fact]
         public void op_AppendLine_FileInfo_objectNull()
         {
-            var expected = string.Empty;
             using (var temp = new TempDirectory())
             {
                 var file = temp.Info.ToFile(Guid.NewGuid());
                 Assert.Same(file, file.AppendLine(null));
 
-                var actual = file.ReadToEnd();
-
-                Assert.Equal(expected, actual);
+                Assert.True(file.NotFound());
             }
         }
 
@@ -148,6 +146,122 @@
                 var actual = file.ReadToEnd();
 
                 Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_FileInfoNull_FileInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var destination = temp.Info.ToFile("destination.txt");
+
+                Assert.Throws<ArgumentNullException>(() => (null as FileInfo).CopyTo(destination));
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_FileInfoNull_FileInfo_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var destination = temp.Info.ToFile("destination.txt");
+
+                Assert.Throws<ArgumentNullException>(() => (null as FileInfo).CopyTo(destination, true));
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_FileInfo_FileInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew(string.Empty);
+                var destination = temp.Info.ToFile("destination.txt");
+
+                var copy = file.CopyTo(destination);
+                Assert.Equal(destination.FullName, copy.FullName);
+
+                Assert.True(destination.Exists);
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_FileInfo_FileInfoNull()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt");
+
+                // ReSharper disable AssignNullToNotNullAttribute
+                Assert.Throws<ArgumentNullException>(() => file.CopyTo(null));
+
+                // ReSharper restore AssignNullToNotNullAttribute
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_FileInfo_FileInfoNull_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt");
+
+                // ReSharper disable AssignNullToNotNullAttribute
+                Assert.Throws<ArgumentNullException>(() => file.CopyTo(null, true));
+
+                // ReSharper restore AssignNullToNotNullAttribute
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_FileInfo_FileInfo_boolTrue()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew(string.Empty);
+                var destination = temp.Info.ToFile("destination.txt");
+
+                var copy = file.CopyTo(destination, true);
+                Assert.Equal(destination.FullName, copy.FullName);
+
+                Assert.True(destination.Exists);
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_FileInfo_FileInfo_bool_whenDestinationExists()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew(string.Empty);
+                var destination = temp.Info.ToFile("destination.txt").CreateNew(string.Empty);
+
+                Assert.Throws<IOException>(() => file.CopyTo(destination, false));
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_FileInfo_FileInfo_bool_whenFileMissing()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt");
+                var destination = temp.Info.ToFile("destination.txt");
+
+                Assert.Throws<FileNotFoundException>(() => file.CopyTo(destination, false));
+            }
+        }
+
+        [Fact]
+        public void op_CopyTo_FileInfo_FileInfo_whenDestinationExists()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew(string.Empty);
+                var destination = temp.Info.ToFile("destination.txt").CreateNew(string.Empty);
+
+                Assert.Throws<IOException>(() => file.CopyTo(destination));
             }
         }
 
@@ -438,8 +552,8 @@
         [InlineData(true, "example\r\n", "example\n")]
         [InlineData(true, "\r\n\r\n", "\n\n")]
         [InlineData(true, "example\r\n\r\n", "example\n\n")]
-        public void op_FixNewLine_FileInfo(bool result,
-                                           string expected,
+        public void op_FixNewLine_FileInfo(bool result, 
+                                           string expected, 
                                            string value)
         {
             using (var temp = new TempDirectory())
@@ -569,6 +683,124 @@
         }
 
         [Fact]
+        public void op_MoveTo_FileInfoNull_FileInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var destination = temp.Info.ToFile("destination.txt");
+
+                Assert.Throws<ArgumentNullException>(() => (null as FileInfo).MoveTo(destination));
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_FileInfoNull_FileInfo_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var destination = temp.Info.ToFile("destination.txt");
+
+                Assert.Throws<ArgumentNullException>(() => (null as FileInfo).MoveTo(destination, true));
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_FileInfo_FileInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew(string.Empty);
+                var destination = temp.Info.ToFile("destination.txt");
+
+                var move = file.MoveTo(destination);
+                Assert.Equal(destination.FullName, move.FullName);
+
+                Assert.False(temp.Info.ToFile("example.txt").Exists);
+                Assert.True(destination.Exists);
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_FileInfo_FileInfoNull()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt");
+
+                // ReSharper disable AssignNullToNotNullAttribute
+                Assert.Throws<ArgumentNullException>(() => file.MoveTo(null));
+
+                // ReSharper restore AssignNullToNotNullAttribute
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_FileInfo_FileInfoNull_bool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt");
+
+                // ReSharper disable AssignNullToNotNullAttribute
+                Assert.Throws<ArgumentNullException>(() => file.MoveTo(null, true));
+
+                // ReSharper restore AssignNullToNotNullAttribute
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_FileInfo_FileInfo_boolTrue()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew(string.Empty);
+                var destination = temp.Info.ToFile("destination.txt");
+
+                var move = file.MoveTo(destination, true);
+                Assert.Equal(destination.FullName, move.FullName);
+
+                Assert.False(temp.Info.ToFile("example.txt").Exists);
+                Assert.True(destination.Exists);
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_FileInfo_FileInfo_bool_whenDestinationExists()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew(string.Empty);
+                var destination = temp.Info.ToFile("destination.txt").CreateNew(string.Empty);
+
+                Assert.Throws<IOException>(() => file.MoveTo(destination, false));
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_FileInfo_FileInfo_bool_whenFileMissing()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt");
+                var destination = temp.Info.ToFile("destination.txt");
+
+                Assert.Throws<FileNotFoundException>(() => file.MoveTo(destination, false));
+            }
+        }
+
+        [Fact]
+        public void op_MoveTo_FileInfo_FileInfo_whenDestinationExists()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew(string.Empty);
+                var destination = temp.Info.ToFile("destination.txt").CreateNew(string.Empty);
+
+                Assert.Throws<IOException>(() => file.MoveTo(destination));
+            }
+        }
+
+        [Fact]
         public void op_ReadToEnd_FileInfo()
         {
             const string expected = "example";
@@ -600,6 +832,157 @@
         }
 
         [Fact]
+        public void op_ToReadStream_FileInfo()
+        {
+            const string expected = "expected";
+
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew(expected);
+
+                using (var stream = file.ToReadStream())
+                {
+                    using (var reader = new StreamReader(stream))
+                    {
+                        var actual = reader.ReadToEnd();
+
+                        Assert.Equal(expected, actual);
+                    }
+                }
+            }
+        }
+
+        [Fact]
+        public void op_ToWriteStream_FileInfo_FileModeAppend()
+        {
+            const string expected = "append expected";
+
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew("append");
+
+                using (var stream = file.ToWriteStream(FileMode.Append))
+                {
+                    using (var reader = new StreamWriter(stream))
+                    {
+                        reader.Write(" expected");
+                    }
+                }
+
+                var actual = file.ReadToEnd();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_ToWriteStream_FileInfo_FileModeCreate()
+        {
+            const string expected = "created";
+
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew("deleted");
+
+                using (var stream = file.ToWriteStream(FileMode.Create))
+                {
+                    using (var reader = new StreamWriter(stream))
+                    {
+                        reader.Write(expected);
+                    }
+                }
+
+                var actual = file.ReadToEnd();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix", Justification = "This naming is intentional.")]
+        public void op_ToWriteStream_FileInfo_FileModeCreateNew()
+        {
+            const string expected = "created";
+
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt");
+
+                using (var stream = file.ToWriteStream(FileMode.CreateNew))
+                {
+                    using (var reader = new StreamWriter(stream))
+                    {
+                        reader.Write(expected);
+                    }
+                }
+
+                var actual = file.ReadToEnd();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_ToWriteStream_FileInfo_FileModeOpen()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt");
+
+                Assert.Throws<ArgumentOutOfRangeException>(() => file.ToWriteStream(FileMode.Open));
+            }
+        }
+
+        [Fact]
+        public void op_ToWriteStream_FileInfo_FileModeOpenOrCreate()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt");
+
+                Assert.Throws<ArgumentOutOfRangeException>(() => file.ToWriteStream(FileMode.OpenOrCreate));
+            }
+        }
+
+        [Fact]
+        public void op_ToWriteStream_FileInfo_FileModeTruncate()
+        {
+            const string expected = "expected";
+
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew("truncate");
+
+                using (var stream = file.ToWriteStream(FileMode.Truncate))
+                {
+                    using (var reader = new StreamWriter(stream))
+                    {
+                        reader.Write(expected);
+                    }
+                }
+
+                var actual = file.ReadToEnd();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_Truncate_FileInfoNull_IXPathNavigable()
+        {
+            var xml = new XmlDocument();
+            xml.LoadXml("<example />");
+
+            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).Truncate(xml));
+        }
+
+        [Fact]
+        public void op_Truncate_FileInfoNull_string()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).Truncate("example"));
+        }
+
+        [Fact]
         public void op_Truncate_FileInfo_IXPathNavigable()
         {
             const string expected = "<example />";
@@ -619,15 +1002,6 @@
         }
 
         [Fact]
-        public void op_Truncate_FileInfoNull_IXPathNavigable()
-        {
-            var xml = new XmlDocument();
-            xml.LoadXml("<example />");
-
-            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).Truncate(xml));
-        }
-
-        [Fact]
         public void op_Truncate_FileInfo_IXPathNavigableNull()
         {
             using (var temp = new TempDirectory())
@@ -636,12 +1010,6 @@
 
                 Assert.Throws<ArgumentNullException>(() => file.Truncate(null as IXPathNavigable));
             }
-        }
-
-        [Fact]
-        public void op_Truncate_FileInfoNull_string()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).Truncate("example"));
         }
 
         [Fact]
