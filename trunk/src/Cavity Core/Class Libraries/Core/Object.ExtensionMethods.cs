@@ -16,6 +16,15 @@ namespace Cavity
     public static class ObjectExtensionMethods
     {
 #if NET20
+        public static bool IsNotNull(object value)
+#else
+        public static bool IsNotNull(this object value)
+#endif
+        {
+            return !ReferenceEquals(null, value);
+        }
+
+#if NET20
         public static string NullOrToString(object value)
 #else
         public static string NullOrToString(this object value)
@@ -38,7 +47,11 @@ namespace Cavity
             }
 
             var s = value as string;
-            if (null != s)
+#if NET20
+            if (ObjectExtensionMethods.IsNotNull(s))
+#else
+            if (s.IsNotNull())
+#endif
             {
                 return s;
             }
@@ -106,7 +119,11 @@ namespace Cavity
             var buffer = new StringBuilder();
 
             var exception = value as Exception;
-            if (null != exception)
+#if NET20
+            if (ObjectExtensionMethods.IsNotNull(exception))
+#else
+            if (exception.IsNotNull())
+#endif
             {
                 using (var stream = new MemoryStream())
                 {

@@ -10,8 +10,17 @@
     <Compile Include="Collections\Generic\Matrix`1.cs" />
     <Compile Include="Collections\Generic\MultitonCollection`1.cs" />
     <Compile Include="Collections\Generic\Tree`1.cs" />
+    <Compile Include="Collections\Generic\XmlSerializableCollection.cs" />
+    <Compile Include="Collections\ICollection.ExtensionMethods.cs" />
     <Compile Include="Collections\KeyStringDictionary.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.cs" />
+    <Compile Include="IGetPreviousMonth.cs" />
+    <Compile Include="IGetNextMonth.cs" />
+    <Compile Include="IO\CurrentDirectory.cs" />
+    <Compile Include="Month.cs" />
+    <Compile Include="IGetPreviousDate.cs" />
+    <Compile Include="IGetNextDate.cs" />
+    <Compile Include="MonthOfYear.cs" />
     <Compile Include="UserStoryAttribute.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\KeyStringPair.cs" />
@@ -27,6 +36,7 @@
     <Compile Include="IO\EncodedStringWriter.cs" />
     <Compile Include="IO\FileInfo.ExtensionMethods.cs" />
     <Compile Include="IO\FileSpec.cs" />
+    <Compile Include="IO\FileSystemInfo.ExtensionMethods.cs" />
     <Compile Include="IO\FileWriter.cs" />
     <Compile Include="IO\StreamWriterDictionary.cs" />
     <Compile Include="IO\TempDirectory.cs" />
@@ -76,7 +86,6 @@
     <Compile Include="ValueObject`1.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
-    <Compile Include="IO\FileSystemInfo.ExtensionMethods.cs" />
     <Compile Include="Dynamic\DynamicData.cs" />
     <Compile Include="Threading\IThreadedObject.cs" />
     <Compile Include="Threading\ThreadedObject.cs" />

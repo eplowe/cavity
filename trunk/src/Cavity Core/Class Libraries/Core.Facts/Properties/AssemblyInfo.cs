@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 [assembly: CLSCompliant(false)]
@@ -14,3 +15,5 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : Core Facts Library (Release)")]
 
 #endif
+
+[assembly: SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Scope = "namespace", Target = "Cavity.Xml.XPath", Justification = "Following the BCL naming style.")]

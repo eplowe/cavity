@@ -119,7 +119,7 @@
         }
 
         [Fact]
-        public void opGreater_EntityTag_EntityTag()
+        public void opGreaterThan_EntityTag_EntityTag()
         {
             EntityTag jigsaw = _jigsawEtag;
             EntityTag empty = _emptyEtag;
@@ -146,7 +146,7 @@
         }
 
         [Fact]
-        public void opLesser_EntityTag_EntityTag()
+        public void opLessThan_EntityTag_EntityTag()
         {
             EntityTag jigsaw = _jigsawEtag;
             EntityTag empty = _emptyEtag;

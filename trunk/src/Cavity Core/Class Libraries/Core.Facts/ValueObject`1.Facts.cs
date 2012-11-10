@@ -68,7 +68,7 @@ namespace Cavity
         }
 
         [Fact]
-        public void opGreater_ValueObjectOfTNull_ValueObjectOfT()
+        public void opGreaterThan_ValueObjectOfTNull_ValueObjectOfT()
         {
             var operand2 = new ValueObjectDerived
                                {
@@ -79,7 +79,7 @@ namespace Cavity
         }
 
         [Fact]
-        public void opGreater_ValueObjectOfT_ValueObjectOfTNull()
+        public void opGreaterThan_ValueObjectOfT_ValueObjectOfTNull()
         {
             var operand1 = new ValueObjectDerived
                                {
@@ -90,7 +90,7 @@ namespace Cavity
         }
 
         [Fact]
-        public void opGreater_ValueObjectOfT_ValueObjectOfT_whenFalse()
+        public void opGreaterThan_ValueObjectOfT_ValueObjectOfT_whenFalse()
         {
             var operand1 = new ValueObjectDerived
                                {
@@ -105,7 +105,7 @@ namespace Cavity
         }
 
         [Fact]
-        public void opGreater_ValueObjectOfT_ValueObjectOfT_whenSame()
+        public void opGreaterThan_ValueObjectOfT_ValueObjectOfT_whenSame()
         {
             var operand1 = new ValueObjectDerived
                                {
@@ -117,7 +117,7 @@ namespace Cavity
         }
 
         [Fact]
-        public void opGreater_ValueObjectOfT_ValueObjectOfT_whenTrue()
+        public void opGreaterThan_ValueObjectOfT_ValueObjectOfT_whenTrue()
         {
             var operand1 = new ValueObjectDerived
                                {
@@ -187,7 +187,7 @@ namespace Cavity
         }
 
         [Fact]
-        public void opLesser_ValueObjectOfTNull_ValueObjectOfT()
+        public void opLessThan_ValueObjectOfTNull_ValueObjectOfT()
         {
             var operand2 = new ValueObjectDerived
                                {
@@ -198,7 +198,7 @@ namespace Cavity
         }
 
         [Fact]
-        public void opLesser_ValueObjectOfT_ValueObjectOfTNull()
+        public void opLessThan_ValueObjectOfT_ValueObjectOfTNull()
         {
             var operand1 = new ValueObjectDerived
                                {
@@ -209,7 +209,7 @@ namespace Cavity
         }
 
         [Fact]
-        public void opLesser_ValueObjectOfT_ValueObjectOfT_whenFalse()
+        public void opLessThan_ValueObjectOfT_ValueObjectOfT_whenFalse()
         {
             var operand1 = new ValueObjectDerived
                                {
@@ -224,7 +224,7 @@ namespace Cavity
         }
 
         [Fact]
-        public void opLesser_ValueObjectOfT_ValueObjectOfT_whenSame()
+        public void opLessThan_ValueObjectOfT_ValueObjectOfT_whenSame()
         {
             var operand1 = new ValueObjectDerived
                                {
@@ -236,7 +236,7 @@ namespace Cavity
         }
 
         [Fact]
-        public void opLesser_ValueObjectOfT_ValueObjectOfT_whenTrue()
+        public void opLessThan_ValueObjectOfT_ValueObjectOfT_whenTrue()
         {
             var operand1 = new ValueObjectDerived
                                {

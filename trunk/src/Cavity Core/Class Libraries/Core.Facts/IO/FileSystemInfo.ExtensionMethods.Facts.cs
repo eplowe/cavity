@@ -13,6 +13,7 @@
             Assert.True(typeof(FileSystemInfoExtensionMethods).IsStatic());
         }
 
+#if !NET20 && !NET35
         [Fact]
         public void op_CombineAsDirectory_FileSystemInfoNull_objects()
         {
@@ -116,6 +117,44 @@
             var actual = new DirectoryInfo(expected).Combine(null as object[]);
 
             Assert.Equal(expected, actual);
+        }
+
+#endif
+
+        [Fact]
+        public void op_NotFound_FileSystemInfo_whenDirectoryInfoExists()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.False(temp.Info.ToDirectory("example", true).NotFound());
+            }
+        }
+
+        [Fact]
+        public void op_NotFound_FileSystemInfo_whenDirectoryInfoMissing()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.True(temp.Info.ToDirectory("example").NotFound());
+            }
+        }
+
+        [Fact]
+        public void op_NotFound_FileSystemInfo_whenFileInfoExists()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.False(temp.Info.ToFile("example.txt").CreateNew(string.Empty).NotFound());
+            }
+        }
+
+        [Fact]
+        public void op_NotFound_FileSystemInfo_whenFileInfoMissing()
+        {
+            using (var temp = new TempDirectory())
+            {
+                Assert.True(temp.Info.ToFile("example.txt").NotFound());
+            }
         }
     }
 }

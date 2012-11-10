@@ -15,9 +15,15 @@ namespace Cavity
         }
 
         [Fact]
-        public void op_NullOrToString_objectNull()
+        public void op_IsNotNull_object_whenFalse()
         {
-            Assert.Null((null as object).NullOrToString());
+            Assert.False((null as string).IsNotNull());
+        }
+
+        [Fact]
+        public void op_IsNotNull_object_whenTrue()
+        {
+            Assert.True("123".IsNotNull());
         }
 
         [Fact]
@@ -27,6 +33,12 @@ namespace Cavity
             var actual = 123.NullOrToString();
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_NullOrToString_objectNull()
+        {
+            Assert.Null((null as object).NullOrToString());
         }
 
         [Fact]

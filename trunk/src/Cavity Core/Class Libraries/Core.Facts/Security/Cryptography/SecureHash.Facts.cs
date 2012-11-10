@@ -107,7 +107,7 @@ namespace Cavity.Security.Cryptography
         [Fact]
         public void opInequality_SecureHashNull_SecureHash()
         {
-            Assert.True(null != SecureHash.Encrypt("plaintext", new Salt()));
+            Assert.True(SecureHash.Encrypt("plaintext", new Salt()).IsNotNull());
         }
 
         [Fact]
@@ -124,7 +124,7 @@ namespace Cavity.Security.Cryptography
         [Fact]
         public void opInequality_SecureHash_SecureHashNull()
         {
-            Assert.True(SecureHash.Encrypt("plaintext", new Salt()) != null);
+            Assert.True(SecureHash.Encrypt("plaintext", new Salt()).IsNotNull());
         }
 
         [Fact]

@@ -16,9 +16,9 @@
         {
             return string.Format(
                 CultureInfo.InvariantCulture, 
-                "As a {0}, I want {1} so that {2}.",
-                AsA,
-                IWant,
+                "As a {0}, I want {1} so that {2}.", 
+                AsA, 
+                IWant, 
                 SoThat);
         }
     }

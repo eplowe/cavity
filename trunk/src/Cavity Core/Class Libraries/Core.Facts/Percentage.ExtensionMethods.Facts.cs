@@ -18,7 +18,9 @@
         [InlineData("150", "3", "2")]
         [InlineData("-50.0", "2", "-4")]
         [InlineData("33.333333333333333333333333330", "3", "9")]
-        public void op_Percent_decimal(string expected, string value, string total)
+        public void op_Percent_decimal(string expected, 
+                                       string value, 
+                                       string total)
         {
             Assert.Equal(expected.To<decimal>(), value.To<decimal>().Percent(total.To<decimal>()));
             Assert.Equal(expected.To<decimal>(), value.To<decimal>().Percent(total.To<double>()));
@@ -73,7 +75,9 @@
         [InlineData("50", "-100", "-50")]
         [InlineData("200", "-50", "50")]
         [InlineData("-200", "50", "-50")]
-        public void op_PercentageChange_decimal(string expected, string before, string after)
+        public void op_PercentageChange_decimal(string expected, 
+                                                string before, 
+                                                string after)
         {
             Assert.Equal(expected.To<decimal>(), before.To<decimal>().PercentageChange(after.To<decimal>()));
             Assert.Equal(expected.To<decimal>(), before.To<decimal>().PercentageChange(after.To<double>()));
@@ -127,7 +131,9 @@
         [InlineData("2.70", "30", "9")]
         [InlineData("-50", "-50", "100")]
         [InlineData("-50", "100", "-50")]
-        public void op_PercentageOf_decimal(string expected, string value, string total)
+        public void op_PercentageOf_decimal(string expected, 
+                                            string value, 
+                                            string total)
         {
             Assert.Equal(expected.To<decimal>(), value.To<decimal>().PercentageOf(total.To<decimal>()));
             Assert.Equal(expected.To<decimal>(), value.To<decimal>().PercentageOf(total.To<double>()));

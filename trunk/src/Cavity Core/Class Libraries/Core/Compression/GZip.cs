@@ -19,7 +19,11 @@
             }
 
             source.Refresh();
-            if (!source.Exists)
+#if NET20
+            if (FileSystemInfoExtensionMethods.NotFound(source))
+#else
+            if (source.NotFound())
+#endif
             {
                 throw new FileNotFoundException(source.FullName);
             }
@@ -29,7 +33,11 @@
                 throw new ArgumentNullException("destination");
             }
 
-            if (!destination.Exists)
+#if NET20
+            if (FileSystemInfoExtensionMethods.NotFound(destination))
+#else
+            if (destination.NotFound())
+#endif
             {
                 throw new DirectoryNotFoundException(destination.FullName);
             }

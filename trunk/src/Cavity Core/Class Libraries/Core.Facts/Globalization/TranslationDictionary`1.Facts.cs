@@ -32,18 +32,18 @@
         public void ctor_SerializationInfo_StreamingContext()
         {
             var expected = new TranslationDictionary<int>
-                          {
-                              new Translation<int>(123, "en")
-                          };
+                               {
+                                   new Translation<int>(123, "en")
+                               };
             TranslationDictionary<int> actual;
 
             using (Stream stream = new MemoryStream())
             {
                 var formatter = new BinaryFormatter();
                 var obj = new TranslationDictionary<int>
-                          {
-                              new Translation<int>(123, "en")
-                          };
+                              {
+                                  new Translation<int>(123, "en")
+                              };
                 formatter.Serialize(stream, obj);
                 stream.Position = 0;
                 actual = (TranslationDictionary<int>)formatter.Deserialize(stream);
@@ -114,30 +114,9 @@
         }
 
         [Fact]
-        public void prop_Current_whenFullTranslation()
+        public void prop_Current_whenExactTranslationMissing()
         {
-            var culture = Thread.CurrentThread.CurrentUICulture;
-            try
-            {
-                const string language = "fr-FR";
-
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
-
-                const int expected = 123;
-                var obj = new TranslationDictionary<int>
-                          {
-                              new Translation<int>(456, "fr"),
-                              new Translation<int>(expected, language)
-                          };
-
-                var actual = obj.Current;
-
-                Assert.Equal(expected, actual);
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentUICulture = culture;
-            }
+            Assert.Throws<TranslationException>(() => new TranslationDictionary<int>().Current);
         }
 
         [Fact]
@@ -150,10 +129,37 @@
 
                 const int expected = 123;
                 var obj = new TranslationDictionary<int>
-                          {
-                              new Translation<int>(expected, "fr"),
-                              new Translation<int>(456, "fr-CA")
-                          };
+                              {
+                                  new Translation<int>(expected, "fr"), 
+                                  new Translation<int>(456, "fr-CA")
+                              };
+
+                var actual = obj.Current;
+
+                Assert.Equal(expected, actual);
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentUICulture = culture;
+            }
+        }
+
+        [Fact]
+        public void prop_Current_whenFullTranslation()
+        {
+            var culture = Thread.CurrentThread.CurrentUICulture;
+            try
+            {
+                const string language = "fr-FR";
+
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+
+                const int expected = 123;
+                var obj = new TranslationDictionary<int>
+                              {
+                                  new Translation<int>(456, "fr"), 
+                                  new Translation<int>(expected, language)
+                              };
 
                 var actual = obj.Current;
 
@@ -175,10 +181,10 @@
 
                 const int expected = 123;
                 var obj = new TranslationDictionary<int>
-                          {
-                              new Translation<int>(expected, string.Empty),
-                              new Translation<int>(456, "fr-CA")
-                          };
+                              {
+                                  new Translation<int>(expected, string.Empty), 
+                                  new Translation<int>(456, "fr-CA")
+                              };
 
                 var actual = obj.Current;
 
@@ -188,12 +194,6 @@
             {
                 Thread.CurrentThread.CurrentUICulture = culture;
             }
-        }
-
-        [Fact]
-        public void prop_Current_whenExactTranslationMissing()
-        {
-            Assert.Throws<TranslationException>(() => new TranslationDictionary<int>().Current);
         }
     }
 }

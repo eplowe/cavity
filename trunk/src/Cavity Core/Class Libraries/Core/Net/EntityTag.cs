@@ -4,12 +4,13 @@
     using System.ComponentModel;
     using System.Globalization;
     using System.Runtime.Serialization;
-#if NET20 || NET35
-    using System.Security.Permissions;
-#endif
 
     using Cavity.Properties;
     using Cavity.Security.Cryptography;
+
+#if NET20 || NET35
+    using System.Security.Permissions;
+#endif
 
     /// <summary>
     /// Represents an entity tag.

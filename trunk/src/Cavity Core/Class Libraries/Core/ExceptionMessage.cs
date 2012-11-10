@@ -10,9 +10,9 @@
                                                    string value)
         {
             return string.Format(
-                CultureInfo.InvariantCulture,
-                Resources.ExceptionMessage_IndexAfterValueLength,
-                index,
+                CultureInfo.InvariantCulture, 
+                Resources.ExceptionMessage_IndexAfterValueLength, 
+                index, 
                 value);
         }
 
@@ -54,9 +54,9 @@
                                                         string value)
         {
             return string.Format(
-                CultureInfo.InvariantCulture,
-                Resources.ExceptionMessage_StartIndexAfterValueLength,
-                start,
+                CultureInfo.InvariantCulture, 
+                Resources.ExceptionMessage_StartIndexAfterValueLength, 
+                start, 
                 value);
         }
 
@@ -65,10 +65,10 @@
                                                                  string value)
         {
             return string.Format(
-                CultureInfo.InvariantCulture,
-                Resources.ExceptionMessage_StartIndexAndLengthAfterValueLength,
-                start,
-                length,
+                CultureInfo.InvariantCulture, 
+                Resources.ExceptionMessage_StartIndexAndLengthAfterValueLength, 
+                start, 
+                length, 
                 value);
         }
     }

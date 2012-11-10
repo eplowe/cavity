@@ -26,6 +26,7 @@
         {
             return Concat(source, separator.ToString(CultureInfo.InvariantCulture));
         }
+
 #endif
 
 #if NET20

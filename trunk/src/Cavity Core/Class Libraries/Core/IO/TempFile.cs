@@ -43,7 +43,11 @@
         {
             if (!Disposed && disposing)
             {
-                if (null != Info)
+#if NET20
+                if (ObjectExtensionMethods.IsNotNull(Info))
+#else
+                if (Info.IsNotNull())
+#endif
                 {
                     Info.Refresh();
                     if (Info.Exists)

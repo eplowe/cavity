@@ -11,7 +11,7 @@
     using System.Text;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
-    public class Matrix<T> : IEnumerable<T>,
+    public class Matrix<T> : IEnumerable<T>, 
                              IEquatable<Matrix<T>>
     {
         public Matrix()
@@ -19,7 +19,8 @@
         {
         }
 
-        public Matrix(int width, int height)
+        public Matrix(int width, 
+                      int height)
             : this(new Size(width, height))
         {
         }
@@ -92,7 +93,8 @@
         [SuppressMessage("Microsoft.Design", "CA1023:IndexersShouldNotBeMultidimensional", Justification = "This design is intentional.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x", Justification = "This name is correct.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y", Justification = "This name is correct.")]
-        public virtual T this[int x, int y]
+        public virtual T this[int x, 
+                              int y]
         {
             get
             {
@@ -116,8 +118,8 @@
                 }
 
                 return !Elements.ContainsKey(point)
-                    ? default(T)
-                    : Elements[point];
+                           ? default(T)
+                           : Elements[point];
             }
 
             set
@@ -131,7 +133,7 @@
             }
         }
 
-        public static bool operator ==(Matrix<T> obj,
+        public static bool operator ==(Matrix<T> obj, 
                                        Matrix<T> comparand)
         {
             return ReferenceEquals(null, obj)
@@ -139,7 +141,7 @@
                        : obj.Equals(comparand);
         }
 
-        public static bool operator !=(Matrix<T> obj,
+        public static bool operator !=(Matrix<T> obj, 
                                        Matrix<T> comparand)
         {
             return ReferenceEquals(null, obj)
@@ -187,23 +189,13 @@
             return ToString() == cast.ToString();
         }
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            for (var y = 0; y < Size.Height; y++)
-            {
-                foreach (var element in Row(y))
-                {
-                    yield return element;
-                }
-            }
-        }
-
         public override int GetHashCode()
         {
             return ToString().GetHashCode();
         }
 
-        public virtual void Resize(int width, int height)
+        public virtual void Resize(int width, 
+                                   int height)
         {
             Resize(new Size(width, height));
         }
@@ -253,16 +245,6 @@
             }
         }
 
-        public bool Equals(Matrix<T> other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
-
-            return ReferenceEquals(this, other) || ToString() == other.ToString();
-        }
-
         public override string ToString()
         {
             var lines = new List<MutableString>();
@@ -304,6 +286,7 @@
                 {
                     line.Append(new string(' ', max - line.Length));
                 }
+
 #endif
             }
 
@@ -319,6 +302,27 @@
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (var y = 0; y < Size.Height; y++)
+            {
+                foreach (var element in Row(y))
+                {
+                    yield return element;
+                }
+            }
+        }
+
+        public bool Equals(Matrix<T> other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            return ReferenceEquals(this, other) || ToString() == other.ToString();
         }
 
         private static bool IsValid(Size size)

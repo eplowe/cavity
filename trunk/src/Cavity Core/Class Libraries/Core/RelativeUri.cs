@@ -2,6 +2,7 @@
 {
     using System;
     using System.Runtime.Serialization;
+
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
@@ -27,10 +28,12 @@
         protected RelativeUri(SerializationInfo info, 
                               StreamingContext context)
         {
-            if (null != info)
+            if (null == info)
             {
-                _value = new Uri(info.GetString("_value"), UriKind.Relative);
+                return;
             }
+
+            _value = new Uri(info.GetString("_value"), UriKind.Relative);
         }
 
         public int Length

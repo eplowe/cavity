@@ -114,7 +114,7 @@
 #if NET20
                 foreach (var item in this)
 #else
-                foreach (var item in this.Where(x => null != x.Value))
+                foreach (var item in this.Where(x => x.Value.IsNotNull()))
 #endif
                 {
 #if NET20
@@ -147,7 +147,11 @@
                 var exists = file.Exists;
                 var writer = new StreamWriter(file.Open(mode, access, share), Encoding.UTF8);
                 Add(file.FullName, writer);
-                if (null != firstLine)
+#if NET20
+                if (ObjectExtensionMethods.IsNotNull(firstLine))
+#else
+                if (firstLine.IsNotNull())
+#endif
                 {
                     switch (mode)
                     {

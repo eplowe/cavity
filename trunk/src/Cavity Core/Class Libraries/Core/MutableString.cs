@@ -57,10 +57,12 @@
         private MutableString(SerializationInfo info, 
                               StreamingContext context)
         {
-            if (null != info)
+            if (null == info)
             {
-                _value = new StringBuilder(info.GetString("_value"));
+                return;
             }
+
+            _value = new StringBuilder(info.GetString("_value"));
         }
 
         public int Capacity

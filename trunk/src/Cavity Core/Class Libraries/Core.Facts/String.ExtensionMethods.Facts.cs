@@ -369,6 +369,7 @@
         {
             Assert.Throws<ArgumentNullException>(() => "123.45".DefaultOrFromString<decimal>(null));
         }
+
 #endif
 
         [Fact]
@@ -674,7 +675,8 @@
         [InlineData("tou2f", "tough")]
         [InlineData("enou2f", "enough")]
         [InlineData("2nocchi", "gnocchi")]
-        public void op_CaverphoneStart_stringMappings(string expected, string value)
+        public void op_CaverphoneStart_stringMappings(string expected, 
+                                                      string value)
         {
             var actual = StringExtensionMethods.CaverphoneStart(value);
 
@@ -686,7 +688,8 @@
         [InlineData("example", "example")]
         [InlineData("plum2", "plumb")]
         [InlineData("plums", "plums")]
-        public void op_CaverphoneEndings_StringBuilder(string expected, string value)
+        public void op_CaverphoneEndings_StringBuilder(string expected, 
+                                                       string value)
         {
             var buffer = new StringBuilder(value);
 
@@ -718,7 +721,8 @@
         [InlineData("Now", "KNow")]
         [InlineData("Neumatic", "PNeumatic")]
         [InlineData("Rong", "WRong")]
-        public void op_MetaphoneFirstLetters_StringBuilder(string expected, string value)
+        public void op_MetaphoneFirstLetters_StringBuilder(string expected, 
+                                                           string value)
         {
             var buffer = new StringBuilder(value);
 
@@ -740,7 +744,9 @@
         [InlineData("pluMBer", 4, "pluMBer")]
         [InlineData("boM E", 3, "boMBE")]
         [InlineData("cruMBs", 4, "cruMBs")]
-        public void op_MetaphoneLetterB_int_StringBuilder(string expected, int index, string value)
+        public void op_MetaphoneLetterB_int_StringBuilder(string expected, 
+                                                          int index, 
+                                                          string value)
         {
             var buffer = new StringBuilder(value);
 
@@ -771,7 +777,9 @@
 
         [Theory]
         [InlineData("Lanx  ", 3, "LanCIA")]
-        public void op_MetaphoneLetterC_int_StringBuilder(string expected, int index, string value)
+        public void op_MetaphoneLetterC_int_StringBuilder(string expected, 
+                                                          int index, 
+                                                          string value)
         {
             var buffer = new StringBuilder(value);
 
@@ -798,7 +806,9 @@
         [InlineData("dou Hnut", 3, "douGHnut")]
         [InlineData("ali N", 3, "aliGN")]
         [InlineData("ali NED", 3, "aliGNED")]
-        public void op_MetaphoneLetterG_int_StringBuilder(string expected, int index, string value)
+        public void op_MetaphoneLetterG_int_StringBuilder(string expected, 
+                                                          int index, 
+                                                          string value)
         {
             var buffer = new StringBuilder(value);
 
@@ -817,7 +827,8 @@
 
         [Theory]
         [InlineData("", "")]
-        public void op_MetaphoneEnd_StringBuilder(string expected, string value)
+        public void op_MetaphoneEnd_StringBuilder(string expected, 
+                                                  string value)
         {
             var buffer = new StringBuilder(value);
 

@@ -56,13 +56,13 @@
                           {
                               {
                                   "one", "1"
-                                  }, 
+                              }, 
                               {
                                   "two", "2"
-                                  }, 
+                              }, 
                               {
                                   "three", "3"
-                                  }
+                              }
                           };
 
             Assert.Equal("two", obj[1].Key);
@@ -82,10 +82,10 @@
                           {
                               {
                                   "one", "1"
-                                  }, 
+                              }, 
                               {
                                   "nine", "9"
-                                  }
+                              }
                           };
 
             obj[1] = new KeyStringPair("two", "2");
@@ -101,7 +101,7 @@
                           {
                               {
                                   "one", "1"
-                                  }
+                              }
                           };
 
             Assert.Throws<ArgumentOutOfRangeException>(() => obj[1] = new KeyStringPair("two", "2"));
@@ -116,13 +116,13 @@
                           {
                               {
                                   "one", "1"
-                                  }, 
+                              }, 
                               {
                                   "two", expected
-                                  }, 
+                              }, 
                               {
                                   "three", "3"
-                                  }
+                              }
                           };
 
             var actual = obj["two"];
@@ -139,13 +139,13 @@
                           {
                               {
                                   "name", "1"
-                                  }, 
+                              }, 
                               {
                                   "name", "2"
-                                  }, 
+                              }, 
                               {
                                   "name", "3"
-                                  }
+                              }
                           };
 
             var actual = obj["name"];
@@ -166,20 +166,20 @@
                                {
                                    {
                                        "one", "1"
-                                       }, 
+                                   }, 
                                    {
                                        "two", "2"
-                                       }
+                                   }
                                };
 
             var actual = new DataCollection
                              {
                                  {
                                      "one", "1"
-                                     }, 
+                                 }, 
                                  {
                                      "two", string.Empty
-                                     }
+                                 }
                              };
             actual["two"] = "2";
 
@@ -193,17 +193,17 @@
                                {
                                    {
                                        "one", "1"
-                                       }, 
+                                   }, 
                                    {
                                        "two", "2"
-                                       }
+                                   }
                                };
 
             var actual = new DataCollection
                              {
                                  {
                                      "one", "1"
-                                     }
+                                 }
                              };
             actual["two"] = "2";
 
@@ -217,17 +217,17 @@
                                {
                                    {
                                        "one", "1"
-                                       }, 
+                                   }, 
                                    {
                                        "two", null
-                                       }
+                                   }
                                };
 
             var actual = new DataCollection
                              {
                                  {
                                      "one", "1"
-                                     }
+                                 }
                              };
             actual["two"] = null;
 
@@ -273,7 +273,7 @@
                                {
                                    {
                                        "name", "value"
-                                       }
+                                   }
                                };
 
             Assert.False(operand1 == operand2);
@@ -323,7 +323,7 @@
                                {
                                    {
                                        "name", "value"
-                                       }
+                                   }
                                };
 
             Assert.True(operand1 != operand2);
@@ -383,7 +383,7 @@
                           {
                               {
                                   "name", "value"
-                                  }
+                              }
                           };
 
             Assert.Equal(1, obj.Count);
@@ -396,7 +396,7 @@
                           {
                               {
                                   "name", string.Empty
-                                  }
+                              }
                           };
 
             Assert.Equal(1, obj.Count);
@@ -409,7 +409,7 @@
                           {
                               {
                                   "name", "1,2,3"
-                                  }
+                              }
                           };
 
             Assert.Equal("name", obj[0].Key);
@@ -438,7 +438,7 @@
                           {
                               {
                                   "name", null
-                                  }
+                              }
                           };
 
             Assert.Equal(1, obj.Count);
@@ -451,7 +451,7 @@
                           {
                               {
                                   "name", "value"
-                                  }
+                              }
                           };
 
             Assert.True(obj.Contains("name"));
@@ -470,7 +470,7 @@
                           {
                               {
                                   "name", "value"
-                                  }
+                              }
                           };
 
             Assert.False(obj.Contains("???"));
@@ -489,10 +489,10 @@
                           {
                               {
                                   "name", string.Empty
-                                  }, 
+                              }, 
                               {
                                   "name", "value"
-                                  }
+                              }
                           };
 
             Assert.True(obj.Contains("name", "value"));
@@ -505,7 +505,7 @@
                           {
                               {
                                   "name", "value"
-                                  }
+                              }
                           };
 
             Assert.False(obj.Contains("name", "???"));
@@ -518,14 +518,14 @@
                           {
                               {
                                   "name", "value"
-                                  }
+                              }
                           };
 
             var comparand = new DataCollection
                                 {
                                     {
                                         "name", "value"
-                                        }
+                                    }
                                 };
 
             Assert.True(obj.Equals(comparand));
@@ -538,14 +538,14 @@
                           {
                               {
                                   "name", "value"
-                                  }
+                              }
                           };
 
             var comparand = new DataCollection
                                 {
                                     {
                                         "foo", "bar"
-                                        }
+                                    }
                                 };
 
             Assert.False(obj.Equals(comparand));
@@ -579,10 +579,10 @@
                            {
                                {
                                    "foo", "bar"
-                                   }, 
+                               }, 
                                {
                                    "checkbox", "first,second"
-                                   }
+                               }
                            };
 
             var obj = DataCollection.FromPostData(form);
@@ -595,26 +595,6 @@
         }
 
         [Fact]
-        public void op_FromPostData_NameValueCollection_whenContainsNullValue()
-        {
-            var form = new NameValueCollection
-                           {
-                               {
-                                   "foo", "bar"
-                                   }, 
-                               {
-                                   "example", null
-                                   }
-                           };
-
-            var obj = DataCollection.FromPostData(form);
-
-            Assert.Equal("bar", obj["foo"]);
-            Assert.Equal("example", obj[1].Key);
-            Assert.Null(obj[1].Value);
-        }
-
-        [Fact]
         public void op_FromPostData_NameValueCollectionEmpty()
         {
             Assert.Empty(DataCollection.FromPostData(new NameValueCollection()));
@@ -624,6 +604,26 @@
         public void op_FromPostData_NameValueCollectionNull()
         {
             Assert.Throws<ArgumentNullException>(() => DataCollection.FromPostData(null));
+        }
+
+        [Fact]
+        public void op_FromPostData_NameValueCollection_whenContainsNullValue()
+        {
+            var form = new NameValueCollection
+                           {
+                               {
+                                   "foo", "bar"
+                               }, 
+                               {
+                                   "example", null
+                               }
+                           };
+
+            var obj = DataCollection.FromPostData(form);
+
+            Assert.Equal("bar", obj["foo"]);
+            Assert.Equal("example", obj[1].Key);
+            Assert.Null(obj[1].Value);
         }
 
         [Fact]
@@ -656,10 +656,10 @@
                           {
                               {
                                   "name1", "value1"
-                                  }, 
+                              }, 
                               {
                                   "name2", "value2"
-                                  }
+                              }
                           };
 
             var expected = obj.XmlSerialize().CreateNavigator().OuterXml;
@@ -685,7 +685,7 @@
                           {
                               {
                                   "foo", "bar"
-                                  }
+                              }
                           };
 
             Assert.True(obj.XmlSerialize().CreateNavigator().Evaluate<bool>("1=count(/data/value[@name='foo'][text()='bar'])"));
