@@ -22,6 +22,19 @@
     {
         private DateTime _date;
 
+        public Date(int year,
+                    MonthOfYear month,
+                    int day)
+            : this(year, (int)month, day)
+        {
+        }
+
+        public Date(Month month,
+                    int day)
+            : this(month.Year, month.MonthOfYear, day)
+        {
+        }
+
         public Date(int year, 
                     int month, 
                     int day)
@@ -335,13 +348,13 @@
             return obj.Equals(comparand);
         }
 
-        public static bool operator >(Date operand1, 
+        public static bool operator >(Date operand1,
                                       Date operand2)
         {
             return operand1.ToDateTime() > operand2.ToDateTime();
         }
 
-        public static bool operator >=(Date operand1, 
+        public static bool operator >=(Date operand1,
                                        Date operand2)
         {
             if (operand1 == operand2)
@@ -352,7 +365,7 @@
             return operand1 > operand2;
         }
 
-        public static bool operator <=(Date operand1, 
+        public static bool operator <=(Date operand1,
                                        Date operand2)
         {
             if (operand1 == operand2)
@@ -389,7 +402,7 @@
             return !obj.Equals(comparand);
         }
 
-        public static bool operator <(Date operand1, 
+        public static bool operator <(Date operand1,
                                       Date operand2)
         {
             return operand1.ToDateTime() < operand2.ToDateTime();
