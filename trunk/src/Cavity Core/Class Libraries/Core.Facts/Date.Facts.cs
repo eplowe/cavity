@@ -267,6 +267,7 @@
         [InlineData("2012-04-02", "2012-03-26", 1)]
         [InlineData("2012-03-26", "2012-03-26", 0)]
         [InlineData("2012-03-19", "2012-03-26", -1)]
+        [InlineData("2012-03-12", "2012-03-26", -2)]
         public void op_AddWeeks_int(string expected, 
                                     string date, 
                                     int value)
@@ -1274,10 +1275,10 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.AddDays(6).ToDateTime(), 
+                                   Ending = date.AddDays(13).ToDateTime(), 
                                    Beginning = date.ToDateTime()
                                };
-            var actual = date.Period.Weeks(1);
+            var actual = date.Period.Weeks(2);
 
             Assert.Equal(expected, actual);
         }
@@ -1290,9 +1291,9 @@
             var expected = new DateTimePeriod
                                {
                                    Ending = date.ToDateTime(), 
-                                   Beginning = date.AddDays(-6).ToDateTime()
+                                   Beginning = date.AddDays(-13).ToDateTime()
                                };
-            var actual = date.Period.Weeks(-1);
+            var actual = date.Period.Weeks(-2);
 
             Assert.Equal(expected, actual);
         }
