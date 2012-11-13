@@ -10,6 +10,8 @@
     using System.Text;
     using System.Xml.XPath;
 
+    using Cavity.Security.Cryptography;
+
     public static class FileInfoExtensionMethods
     {
 #if NET20
@@ -71,6 +73,32 @@
         }
 
 #if NET20
+        public static FileInfo CopyIfDifferent(FileInfo obj, 
+                                               FileInfo destination)
+#else
+        public static FileInfo CopyIfDifferent(this FileInfo obj,
+                                               FileInfo destination)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (null == destination)
+            {
+                throw new ArgumentNullException("destination");
+            }
+
+            if (destination.Exists && MD5Hash.Same(obj, destination))
+            {
+                return destination;
+            }
+
+            return CopyTo(obj, destination, destination.Exists);
+        }
+
+#if NET20
         public static FileInfo CopyTo(FileInfo obj, 
                                       FileInfo destination)
 #else
@@ -107,7 +135,10 @@
                 throw new ArgumentNullException("destination");
             }
 
-            return obj.CopyTo(destination.FullName, overwrite);
+            var result = obj.CopyTo(destination.FullName, overwrite);
+            destination.Refresh();
+
+            return result;
         }
 
 #if NET20

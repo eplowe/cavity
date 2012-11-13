@@ -449,6 +449,42 @@
         }
 
         [Fact]
+        public void op_Differ_MD5HashJigsaw_MD5HashEmpty()
+        {
+            var jigsaw = new FileInfo(@"Security\Cryptography\jigsaw.html");
+            var empty = new FileInfo(@"Security\Cryptography\empty.html");
+
+            Assert.True(MD5Hash.Differ(jigsaw, empty));
+        }
+
+        [Fact]
+        public void op_Differ_MD5HashJigsaw_MD5HashJigsaw()
+        {
+            var one = new FileInfo(@"Security\Cryptography\jigsaw.html");
+            var two = new FileInfo(@"Security\Cryptography\jigsaw.html");
+
+            Assert.False(MD5Hash.Differ(one, two));
+        }
+
+        [Fact]
+        public void op_Same_MD5HashJigsaw_MD5HashEmpty()
+        {
+            var jigsaw = new FileInfo(@"Security\Cryptography\jigsaw.html");
+            var empty = new FileInfo(@"Security\Cryptography\empty.html");
+
+            Assert.False(MD5Hash.Same(jigsaw, empty));
+        }
+
+        [Fact]
+        public void op_Same_MD5HashJigsaw_MD5HashJigsaw()
+        {
+            var one = new FileInfo(@"Security\Cryptography\jigsaw.html");
+            var two = new FileInfo(@"Security\Cryptography\jigsaw.html");
+
+            Assert.True(MD5Hash.Same(one, two));
+        }
+
+        [Fact]
         public void op_ToString()
         {
             const string expected = _jigsawHash;
