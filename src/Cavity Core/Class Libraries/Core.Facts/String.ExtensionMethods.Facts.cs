@@ -345,6 +345,19 @@
             Assert.False("example".ContainsAny(StringComparison.Ordinal, null as string[]));
         }
 
+        [Theory]
+        [InlineData(false, null)]
+        [InlineData(false, "")]
+        [InlineData(false, "  ")]
+        [InlineData(true, "example")]
+        public void op_ContainsText_string(bool expected,
+                                           string value)
+        {
+            var actual = value.ContainsText();
+
+            Assert.Equal(expected, actual);
+        }
+
 #if !NET20
         [Fact]
         public void op_DefaultOrFromString_stringNull_Func()
