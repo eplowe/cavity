@@ -25,6 +25,17 @@
     </Content>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="TimeZones.Facts.cs" />
+    <Compile Include="ICalculateDateTimePeriod`1.Facts.cs" />
+    <Compile Include="IGetPreviousMonth.Facts.cs" />
+    <Compile Include="IGetNextMonth.Facts.cs" />
+    <Compile Include="IGetPreviousWeekday.Facts.cs" />
+    <Compile Include="IGetNextWeekday.Facts.cs" />
+    <Compile Include="ITimeZoneEurope.Facts.cs" />
+    <Compile Include="IChangeDate.Facts.cs" />
+    <Compile Include="IGetTimeZone`1.Facts.cs" />
+    <Compile Include="ITimeZoneNorthAmerica.Facts.cs" />
+    <Compile Include="DateTimePeriod.Facts.cs" />
     <Compile Include="IO\FileSystemInfo.ExtensionMethods.Facts.cs" />
     <Compile Include="IO\CurrentDirectory.Facts.cs" />
     <Compile Include="Collections\Generic\XmlSerializableCollection.Test.cs" />
@@ -32,8 +43,7 @@
     <Compile Include="Collections\Generic\XmlSerializableCollection`1.Facts.cs" />
     <Compile Include="Collections\ICollection.ExtensionMethods.Facts.cs" />
     <Compile Include="Month.Facts.cs" />
-    <Compile Include="IGetPreviousMonth.Facts.cs" />
-    <Compile Include="IGetNextMonth.Facts.cs" />
+    <Compile Include="IChangeMonth`1.Facts.cs" />
     <Compile Include="IGetPreviousDate.Facts.cs" />
     <Compile Include="IGetNextDate.Facts.cs" />
     <Compile Include="MonthOfYear.Facts.cs" />
@@ -96,6 +106,7 @@
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Dynamic\DynamicData.Derived.cs" />
     <Compile Include="Dynamic\DynamicData.Facts.cs" />
+    <Compile Include="Text\Html.Facts.cs" />
     <Compile Include="Threading\ThreadedObject.Derived.cs" />
     <Compile Include="Threading\IThreadedObject.Facts.cs" />
     <Compile Include="Threading\ThreadedObject.Facts.cs" />

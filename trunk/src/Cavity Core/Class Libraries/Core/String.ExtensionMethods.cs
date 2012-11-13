@@ -1025,15 +1025,16 @@
             }
 
             var buffer = new StringBuilder();
-            foreach (int c in obj)
+            foreach (var c in obj)
             {
-                if (32 > c)
+                var i = (int)c;
+                if (32 > i)
                 {
                     // Control characters
                     continue;
                 }
 
-                switch (c)
+                switch (i)
                 {
                     case 34: // "
                     case 42: // *
@@ -1048,7 +1049,7 @@
                         break;
 
                     default:
-                        buffer.Append((char)c);
+                        buffer.Append(c);
                         break;
                 }
             }

@@ -73,11 +73,7 @@ namespace Cavity
 
         public override int GetHashCode()
         {
-            var value = ToString();
-
-            return ReferenceEquals(null, value)
-                       ? 0
-                       : value.GetHashCode();
+            return ToString().GetHashCode();
         }
 
         public override string ToString()

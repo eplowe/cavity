@@ -10,26 +10,30 @@
     using System.Security.Permissions;
 #endif
 
-    [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Date", Justification = "This name is intentional.")]
     [ImmutableObject(true)]
     [Serializable]
+    [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Date", Justification = "This name is intentional.")]
     public struct Date : IComparable, 
                          IComparable<Date>, 
                          IEquatable<Date>, 
                          ISerializable, 
+                         ICalculateDateTimeCalendar, 
+                         ICalculateDateTimePeriod<Date>, 
+                         IChangeDate, 
                          IGetNextDate, 
-                         IGetPreviousDate
+                         IGetPreviousDate, 
+                         IGetTimeZone<Date>
     {
         private DateTime _date;
 
-        public Date(int year,
-                    MonthOfYear month,
+        public Date(int year, 
+                    MonthOfYear month, 
                     int day)
             : this(year, (int)month, day)
         {
         }
 
-        public Date(Month month,
+        public Date(Month month, 
                     int day)
             : this(month.Year, month.MonthOfYear, day)
         {
@@ -58,7 +62,7 @@
         {
             get
             {
-                return DateTime.MaxValue;
+                return new Date(DateTime.MaxValue);
             }
         }
 
@@ -66,31 +70,48 @@
         {
             get
             {
-                return DateTime.MinValue;
+                return new Date(DateTime.MinValue);
             }
         }
 
-        public static Date Today
+        public static IGetTimeZone<Date> Today
         {
             get
             {
-                return DateTime.Today;
+                return new Date(DateTime.Today);
             }
         }
 
-        public static Date Tomorrow
+        public static IGetTimeZone<Date> Tomorrow
         {
             get
             {
-                return DateTime.Today.AddDays(1);
+                return new Date(DateTime.Today.AddDays(1));
             }
         }
 
-        public static Date Yesterday
+        public static IGetTimeZone<Date> Yesterday
         {
             get
             {
-                return DateTime.Today.AddDays(-1);
+                var value = DateTime.Today.AddDays(-1);
+                return new Date(value);
+            }
+        }
+
+        public ICalculateDateTimeCalendar Calendar
+        {
+            get
+            {
+                return this;
+            }
+        }
+
+        public IChangeDate Change
+        {
+            get
+            {
+                return this;
             }
         }
 
@@ -131,6 +152,14 @@
             get
             {
                 return new Date(Year, Month, 1);
+            }
+        }
+
+        public ICalculateDateTimePeriod<Date> Period
+        {
+            get
+            {
+                return this;
             }
         }
 
@@ -198,59 +227,48 @@
             }
         }
 
+        DateTimePeriod ICalculateDateTimeCalendar.Month
+        {
+            get
+            {
+                return new DateTimePeriod(new Date(_date).FirstOfMonth.ToDateTime(),
+                                          new Date(_date).LastOfMonth.ToDateTime());
+            }
+        }
+
+        DateTimePeriod ICalculateDateTimeCalendar.Week
+        {
+            get
+            {
+                if (DayOfWeek.Monday == _date.DayOfWeek)
+                {
+                    return new DateTimePeriod(_date, new Date(_date).Next.Sunday.ToDateTime());
+                }
+
+                if (DayOfWeek.Sunday == _date.DayOfWeek)
+                {
+                    return new DateTimePeriod(new Date(_date).Previous.Monday.ToDateTime(), _date);
+                }
+
+                return new DateTimePeriod(new Date(_date).Previous.Monday.ToDateTime(),
+                                          new Date(_date).Next.Sunday.ToDateTime());
+            }
+        }
+
+        DateTimePeriod ICalculateDateTimeCalendar.Year
+        {
+            get
+            {
+                return new DateTimePeriod(new DateTime(_date.Year, 1, 1), 
+                                          new DateTime(_date.Year, 12, 31));
+            }
+        }
+
         Date IGetNextDate.Day
         {
             get
             {
                 return AddDays(1);
-            }
-        }
-
-        Date IGetNextDate.Friday
-        {
-            get
-            {
-                return ToNext(DayOfWeek.Friday);
-            }
-        }
-
-        Date IGetNextDate.Monday
-        {
-            get
-            {
-                return ToNext(DayOfWeek.Monday);
-            }
-        }
-
-        Date IGetNextDate.Saturday
-        {
-            get
-            {
-                return ToNext(DayOfWeek.Saturday);
-            }
-        }
-
-        Date IGetNextDate.Sunday
-        {
-            get
-            {
-                return ToNext(DayOfWeek.Sunday);
-            }
-        }
-
-        Date IGetNextDate.Thursday
-        {
-            get
-            {
-                return ToNext(DayOfWeek.Thursday);
-            }
-        }
-
-        Date IGetNextDate.Tuesday
-        {
-            get
-            {
-                return ToNext(DayOfWeek.Tuesday);
             }
         }
 
@@ -262,11 +280,171 @@
             }
         }
 
-        Date IGetNextDate.Wednesday
+        Date IGetNextDate.Month
+        {
+            get
+            {
+                return AddMonths(1);
+            }
+        }
+
+        Date IGetNextDate.Year
+        {
+            get
+            {
+                return AddYears(1);
+            }
+        }
+
+        Date IGetNextMonth.January
+        {
+            get
+            {
+                return ToNext(MonthOfYear.January);
+            }
+        }
+
+        Date IGetNextMonth.February
+        {
+            get
+            {
+                return ToNext(MonthOfYear.February);
+            }
+        }
+
+        Date IGetNextMonth.March
+        {
+            get
+            {
+                return ToNext(MonthOfYear.March);
+            }
+        }
+
+        Date IGetNextMonth.April
+        {
+            get
+            {
+                return ToNext(MonthOfYear.April);
+            }
+        }
+
+        Date IGetNextMonth.May
+        {
+            get
+            {
+                return ToNext(MonthOfYear.May);
+            }
+        }
+
+        Date IGetNextMonth.June
+        {
+            get
+            {
+                return ToNext(MonthOfYear.June);
+            }
+        }
+
+        Date IGetNextMonth.July
+        {
+            get
+            {
+                return ToNext(MonthOfYear.July);
+            }
+        }
+
+        Date IGetNextMonth.August
+        {
+            get
+            {
+                return ToNext(MonthOfYear.August);
+            }
+        }
+
+        Date IGetNextMonth.September
+        {
+            get
+            {
+                return ToNext(MonthOfYear.September);
+            }
+        }
+
+        Date IGetNextMonth.October
+        {
+            get
+            {
+                return ToNext(MonthOfYear.October);
+            }
+        }
+
+        Date IGetNextMonth.November
+        {
+            get
+            {
+                return ToNext(MonthOfYear.November);
+            }
+        }
+
+        Date IGetNextMonth.December
+        {
+            get
+            {
+                return ToNext(MonthOfYear.December);
+            }
+        }
+
+        Date IGetNextWeekday.Monday
+        {
+            get
+            {
+                return ToNext(DayOfWeek.Monday);
+            }
+        }
+
+        Date IGetNextWeekday.Tuesday
+        {
+            get
+            {
+                return ToNext(DayOfWeek.Tuesday);
+            }
+        }
+
+        Date IGetNextWeekday.Wednesday
         {
             get
             {
                 return ToNext(DayOfWeek.Wednesday);
+            }
+        }
+
+        Date IGetNextWeekday.Thursday
+        {
+            get
+            {
+                return ToNext(DayOfWeek.Thursday);
+            }
+        }
+
+        Date IGetNextWeekday.Friday
+        {
+            get
+            {
+                return ToNext(DayOfWeek.Friday);
+            }
+        }
+
+        Date IGetNextWeekday.Saturday
+        {
+            get
+            {
+                return ToNext(DayOfWeek.Saturday);
+            }
+        }
+
+        Date IGetNextWeekday.Sunday
+        {
+            get
+            {
+                return ToNext(DayOfWeek.Sunday);
             }
         }
 
@@ -278,54 +456,6 @@
             }
         }
 
-        Date IGetPreviousDate.Friday
-        {
-            get
-            {
-                return ToPrevious(DayOfWeek.Friday);
-            }
-        }
-
-        Date IGetPreviousDate.Monday
-        {
-            get
-            {
-                return ToPrevious(DayOfWeek.Monday);
-            }
-        }
-
-        Date IGetPreviousDate.Saturday
-        {
-            get
-            {
-                return ToPrevious(DayOfWeek.Saturday);
-            }
-        }
-
-        Date IGetPreviousDate.Sunday
-        {
-            get
-            {
-                return ToPrevious(DayOfWeek.Sunday);
-            }
-        }
-
-        Date IGetPreviousDate.Thursday
-        {
-            get
-            {
-                return ToPrevious(DayOfWeek.Thursday);
-            }
-        }
-
-        Date IGetPreviousDate.Tuesday
-        {
-            get
-            {
-                return ToPrevious(DayOfWeek.Tuesday);
-            }
-        }
-
         Date IGetPreviousDate.Week
         {
             get
@@ -334,11 +464,187 @@
             }
         }
 
-        Date IGetPreviousDate.Wednesday
+        Date IGetPreviousDate.Month
+        {
+            get
+            {
+                return AddMonths(-1);
+            }
+        }
+
+        Date IGetPreviousDate.Year
+        {
+            get
+            {
+                return AddYears(-1);
+            }
+        }
+
+        Date IGetPreviousMonth.January
+        {
+            get
+            {
+                return ToPrevious(MonthOfYear.January);
+            }
+        }
+
+        Date IGetPreviousMonth.February
+        {
+            get
+            {
+                return ToPrevious(MonthOfYear.February);
+            }
+        }
+
+        Date IGetPreviousMonth.March
+        {
+            get
+            {
+                return ToPrevious(MonthOfYear.March);
+            }
+        }
+
+        Date IGetPreviousMonth.April
+        {
+            get
+            {
+                return ToPrevious(MonthOfYear.April);
+            }
+        }
+
+        Date IGetPreviousMonth.May
+        {
+            get
+            {
+                return ToPrevious(MonthOfYear.May);
+            }
+        }
+
+        Date IGetPreviousMonth.June
+        {
+            get
+            {
+                return ToPrevious(MonthOfYear.June);
+            }
+        }
+
+        Date IGetPreviousMonth.July
+        {
+            get
+            {
+                return ToPrevious(MonthOfYear.July);
+            }
+        }
+
+        Date IGetPreviousMonth.August
+        {
+            get
+            {
+                return ToPrevious(MonthOfYear.August);
+            }
+        }
+
+        Date IGetPreviousMonth.September
+        {
+            get
+            {
+                return ToPrevious(MonthOfYear.September);
+            }
+        }
+
+        Date IGetPreviousMonth.October
+        {
+            get
+            {
+                return ToPrevious(MonthOfYear.October);
+            }
+        }
+
+        Date IGetPreviousMonth.November
+        {
+            get
+            {
+                return ToPrevious(MonthOfYear.November);
+            }
+        }
+
+        Date IGetPreviousMonth.December
+        {
+            get
+            {
+                return ToPrevious(MonthOfYear.December);
+            }
+        }
+
+        Date IGetPreviousWeekday.Monday
+        {
+            get
+            {
+                return ToPrevious(DayOfWeek.Monday);
+            }
+        }
+
+        Date IGetPreviousWeekday.Tuesday
+        {
+            get
+            {
+                return ToPrevious(DayOfWeek.Tuesday);
+            }
+        }
+
+        Date IGetPreviousWeekday.Wednesday
         {
             get
             {
                 return ToPrevious(DayOfWeek.Wednesday);
+            }
+        }
+
+        Date IGetPreviousWeekday.Thursday
+        {
+            get
+            {
+                return ToPrevious(DayOfWeek.Thursday);
+            }
+        }
+
+        Date IGetPreviousWeekday.Friday
+        {
+            get
+            {
+                return ToPrevious(DayOfWeek.Friday);
+            }
+        }
+
+        Date IGetPreviousWeekday.Saturday
+        {
+            get
+            {
+                return ToPrevious(DayOfWeek.Saturday);
+            }
+        }
+
+        Date IGetPreviousWeekday.Sunday
+        {
+            get
+            {
+                return ToPrevious(DayOfWeek.Sunday);
+            }
+        }
+
+        Date IGetTimeZone<Date>.LocalTime
+        {
+            get
+            {
+                return new Date(_date);
+            }
+        }
+
+        Date IGetTimeZone<Date>.UniversalTime
+        {
+            get
+            {
+                return new Date(_date.ToUniversalTime());
             }
         }
 
@@ -348,13 +654,13 @@
             return obj.Equals(comparand);
         }
 
-        public static bool operator >(Date operand1,
+        public static bool operator >(Date operand1, 
                                       Date operand2)
         {
             return operand1.ToDateTime() > operand2.ToDateTime();
         }
 
-        public static bool operator >=(Date operand1,
+        public static bool operator >=(Date operand1, 
                                        Date operand2)
         {
             if (operand1 == operand2)
@@ -365,7 +671,7 @@
             return operand1 > operand2;
         }
 
-        public static bool operator <=(Date operand1,
+        public static bool operator <=(Date operand1, 
                                        Date operand2)
         {
             if (operand1 == operand2)
@@ -374,16 +680,6 @@
             }
 
             return operand1 < operand2;
-        }
-
-        public static implicit operator DateTime(Date value)
-        {
-            return value.ToDateTime();
-        }
-
-        public static implicit operator Date(DateTime value)
-        {
-            return new Date(value);
         }
 
         public static implicit operator string(Date value)
@@ -396,13 +692,23 @@
             return FromString(value);
         }
 
+        public static Date operator ++(Date operand)
+        {
+            return operand.Increment();
+        }
+
+        public static Date operator --(Date operand)
+        {
+            return operand.Decrement();
+        }
+
         public static bool operator !=(Date obj, 
                                        Date comparand)
         {
             return !obj.Equals(comparand);
         }
 
-        public static bool operator <(Date operand1,
+        public static bool operator <(Date operand1, 
                                       Date operand2)
         {
             return operand1.ToDateTime() < operand2.ToDateTime();
@@ -432,12 +738,12 @@
 
         public Date AddDays(int value)
         {
-            return _date.AddDays(value);
+            return new Date(_date.AddDays(value));
         }
 
         public Date AddMonths(int value)
         {
-            return _date.AddMonths(value);
+            return new Date(_date.AddMonths(value));
         }
 
         public Date AddQuarters(int value)
@@ -457,12 +763,12 @@
                 throw new ArgumentOutOfRangeException("value");
             }
 
-            return _date.AddDays(value * 7);
+            return new Date(_date.AddDays(value * 7));
         }
 
         public Date AddYears(int value)
         {
-            return _date.AddYears(value);
+            return new Date(_date.AddYears(value));
         }
 
         public int CompareTo(object obj)
@@ -480,6 +786,18 @@
             return Compare(this, other);
         }
 
+        public int CompareTo(DateTime other)
+        {
+            return Equals(other)
+                       ? 0
+                       : ToDateTime().CompareTo(other.Date);
+        }
+
+        public Date Decrement()
+        {
+            return AddDays(-1);
+        }
+
         public override bool Equals(object obj)
         {
             return !ReferenceEquals(null, obj) && Equals((Date)obj);
@@ -490,14 +808,9 @@
             return ToDateTime().GetHashCode();
         }
 
-        public Date ToNext(DayOfWeek value)
+        public Date Increment()
         {
-            return To(value, 1);
-        }
-
-        public Date ToNext(MonthOfYear value)
-        {
-            return To(value, 1);
+            return AddDays(1);
         }
 
         public DateTime ToDateTime()
@@ -507,17 +820,7 @@
 
         public Month ToMonth()
         {
-            return _date.Date;
-        }
-
-        public Date ToPrevious(DayOfWeek value)
-        {
-            return To(value, -1);
-        }
-
-        public Date ToPrevious(MonthOfYear value)
-        {
-            return To(value, -1);
+            return new Month(_date.Date);
         }
 
         public override string ToString()
@@ -534,59 +837,93 @@
             return ToString() == other.ToString();
         }
 
-        Date IGetNextDate.Month()
+        public bool Equals(DateTime other)
         {
-            return AddMonths(1);
+            return ToDateTime() == other.Date;
         }
 
-        Date IGetNextDate.Month(int day)
+        DateTimePeriod ICalculateDateTimePeriod<Date>.Days(int value)
         {
-            return new Date(Year, Month, day).AddMonths(1);
+            return 0 == value
+                       ? new DateTimePeriod(_date, _date)
+                       : DateTimePeriod.Between(_date, _date.AddDays(value));
         }
 
-        Date IGetNextDate.Year()
+        DateTimePeriod ICalculateDateTimePeriod<Date>.Between(Date value)
         {
-            return AddYears(1);
+            return DateTimePeriod.Between(_date, value.ToDateTime());
         }
 
-        Date IGetNextDate.Year(MonthOfYear month, 
-                               int day)
+        DateTimePeriod ICalculateDateTimePeriod<Date>.Months(int value)
         {
-            return (this as IGetNextDate).Year((int)month, day);
+            return 0 == value
+                       ? new DateTimePeriod(_date, _date)
+                       : DateTimePeriod.Between(_date, _date.AddMonths(value).AddDays(value > 0 ? -1 : 1));
         }
 
-        Date IGetNextDate.Year(int month, 
-                               int day)
+        DateTimePeriod ICalculateDateTimePeriod<Date>.Since(Date value)
         {
-            return new Date(Year, month, day).AddYears(1);
+            var later = value.ToDateTime();
+            if (later > _date)
+            {
+                throw new ArgumentOutOfRangeException("value");
+            }
+
+            return DateTimePeriod.Between(_date, later);
         }
 
-        Date IGetPreviousDate.Month()
+        DateTimePeriod ICalculateDateTimePeriod<Date>.Until(Date value)
         {
-            return AddMonths(-1);
+            var later = value.ToDateTime();
+            if (later < _date)
+            {
+                throw new ArgumentOutOfRangeException("value");
+            }
+
+            return DateTimePeriod.Between(_date, later);
         }
 
-        Date IGetPreviousDate.Month(int day)
+        DateTimePeriod ICalculateDateTimePeriod<Date>.Weeks(int value)
         {
-            return new Date(Year, Month, day).AddMonths(-1);
+            return 0 == value
+                       ? new DateTimePeriod(_date, _date)
+                       : DateTimePeriod.Between(_date, AddWeeks(value).ToDateTime().AddDays(value > 0 ? -1 : 1));
         }
 
-        Date IGetPreviousDate.Year()
+        DateTimePeriod ICalculateDateTimePeriod<Date>.Years(int value)
         {
-            return AddYears(-1);
+            return 0 == value
+                       ? new DateTimePeriod(_date, _date)
+                       : DateTimePeriod.Between(_date, _date.AddYears(value).AddDays(value > 0 ? -1 : 1));
         }
 
-        Date IGetPreviousDate.Year(MonthOfYear month, 
-                                   int day)
+        Date IChangeDate.Day(int value)
         {
-            return (this as IGetPreviousDate).Year((int)month, day);
+            return new Date(Year, Month, value);
         }
 
-        Date IGetPreviousDate.Year(int month, 
-                                   int day)
+        Date IChangeMonth<Date>.Month(int value)
         {
-            return new Date(Year, month, day).AddYears(-1);
+            return new Date(Year, value, Day);
         }
+
+        Date IChangeMonth<Date>.To(MonthOfYear month)
+        {
+            return new Date(Year, month, Day);
+        }
+
+        Date IChangeMonth<Date>.Year(int value)
+        {
+            return new Date(value, Month, Day);
+        }
+
+#if !NET20
+        Date IGetTimeZone<Date>.For(TimeZoneInfo value)
+        {
+            return new Date(_date.ToLocalTime(value));
+        }
+
+#endif
 
 #if NET20 || NET35
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
@@ -603,26 +940,46 @@
             info.AddValue("_value", _date);
         }
 
+        private Date ToNext(DayOfWeek value)
+        {
+            return To(value, 1);
+        }
+
+        private Date ToNext(MonthOfYear value)
+        {
+            return To(value, 1);
+        }
+
+        private Date ToPrevious(DayOfWeek value)
+        {
+            return To(value, -1);
+        }
+
+        private Date ToPrevious(MonthOfYear value)
+        {
+            return To(value, -1);
+        }
+
         private Date To(DayOfWeek value, 
                         int day)
         {
 #if NET20
-            if (!GenericExtensionMethods.In(value,
+            if (!GenericExtensionMethods.In(value, 
 #else
             if (!value.In(
 #endif
-                DayOfWeek.Monday,
-                DayOfWeek.Tuesday,
-                DayOfWeek.Wednesday,
-                DayOfWeek.Thursday,
-                DayOfWeek.Friday,
-                DayOfWeek.Saturday,
-                DayOfWeek.Sunday))
+                     DayOfWeek.Monday, 
+                     DayOfWeek.Tuesday, 
+                     DayOfWeek.Wednesday, 
+                     DayOfWeek.Thursday, 
+                     DayOfWeek.Friday, 
+                     DayOfWeek.Saturday, 
+                     DayOfWeek.Sunday))
             {
                 throw new ArgumentOutOfRangeException("value");
             }
 
-            var date = _date;
+            var date = new Date(_date);
             while (true)
             {
                 date = date.AddDays(day);
@@ -637,27 +994,27 @@
                         int month)
         {
 #if NET20
-            if (!GenericExtensionMethods.In(value,
+            if (!GenericExtensionMethods.In(value, 
 #else
             if (!value.In(
 #endif
-                MonthOfYear.January,
-                MonthOfYear.February,
-                MonthOfYear.March,
-                MonthOfYear.April,
-                MonthOfYear.May,
-                MonthOfYear.June,
-                MonthOfYear.July,
-                MonthOfYear.August,
-                MonthOfYear.September,
-                MonthOfYear.October,
-                MonthOfYear.November,
-                MonthOfYear.December))
+                     MonthOfYear.January, 
+                     MonthOfYear.February, 
+                     MonthOfYear.March, 
+                     MonthOfYear.April, 
+                     MonthOfYear.May, 
+                     MonthOfYear.June, 
+                     MonthOfYear.July, 
+                     MonthOfYear.August, 
+                     MonthOfYear.September, 
+                     MonthOfYear.October, 
+                     MonthOfYear.November, 
+                     MonthOfYear.December))
             {
                 throw new ArgumentOutOfRangeException("value");
             }
 
-            var date = _date;
+            var date = new Date(_date);
             while (true)
             {
                 date = date.AddMonths(month);

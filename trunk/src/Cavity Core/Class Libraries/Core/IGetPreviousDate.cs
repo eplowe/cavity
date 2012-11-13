@@ -1,35 +1,14 @@
 ﻿namespace Cavity
 {
-    public interface IGetPreviousDate
+    public interface IGetPreviousDate : IGetPreviousMonth, 
+                                        IGetPreviousWeekday
     {
         Date Day { get; }
 
-        Date Friday { get; }
-
-        Date Monday { get; }
-
-        Date Saturday { get; }
-
-        Date Sunday { get; }
-
-        Date Thursday { get; }
-
-        Date Tuesday { get; }
-
-        Date Wednesday { get; }
+        Date Month { get; }
 
         Date Week { get; }
 
-        Date Month();
-
-        Date Month(int day);
-
-        Date Year();
-
-        Date Year(MonthOfYear month, 
-                  int day);
-
-        Date Year(int month, 
-                  int day);
+        Date Year { get; }
     }
 }

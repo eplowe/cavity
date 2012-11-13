@@ -2,12 +2,28 @@
 {
     public interface IGetPreviousMonth
     {
-        Month Month();
+        Date April { get; }
 
-        Month Year();
+        Date August { get; }
 
-        Month Year(MonthOfYear month);
+        Date December { get; }
 
-        Month Year(int month);
+        Date February { get; }
+
+        Date January { get; }
+
+        Date July { get; }
+
+        Date June { get; }
+
+        Date March { get; }
+
+        Date May { get; }
+
+        Date November { get; }
+
+        Date October { get; }
+
+        Date September { get; }
     }
 }

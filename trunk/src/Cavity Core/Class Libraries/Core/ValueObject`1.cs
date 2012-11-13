@@ -102,7 +102,7 @@ namespace Cavity
                     buffer.Append(Environment.NewLine);
                 }
 
-                buffer.Append(value.ToString());
+                buffer.Append(value);
             }
 
             return buffer.ToString();
