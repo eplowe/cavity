@@ -351,27 +351,6 @@
         }
 
         [Fact]
-        public void op_TryAdd_KeyStringPair_whenFalse()
-        {
-            var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", "value")
-                          };
-
-            Assert.False(obj.TryAdd(new KeyStringPair("key", "value")));
-            Assert.Equal(1, obj.Count);
-        }
-
-        [Fact]
-        public void op_TryAdd_KeyStringPair_whenTrue()
-        {
-            var obj = new KeyStringDictionary();
-
-            Assert.True(obj.TryAdd(new KeyStringPair("key", "value")));
-            Assert.Equal(1, obj.Count);
-        }
-
-        [Fact]
         public void op_TryAdd_string_string_whenFalse()
         {
             var obj = new KeyStringDictionary

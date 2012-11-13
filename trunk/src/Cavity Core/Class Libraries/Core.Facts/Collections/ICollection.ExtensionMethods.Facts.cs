@@ -79,7 +79,7 @@
         [Fact]
         public void op_TryAdd_ICollectionOfT_T_whenTrue()
         {
-            var list = new List<string>();
+            var list = new HashSet<string>();
 
             Assert.True(list.TryAdd("example"));
         }

@@ -42,6 +42,7 @@
     <Compile Include="Collections\Generic\XmlSerializableCollectionItem.Test.cs" />
     <Compile Include="Collections\Generic\XmlSerializableCollection`1.Facts.cs" />
     <Compile Include="Collections\ICollection.ExtensionMethods.Facts.cs" />
+    <Compile Include="Collections\IDictionary.ExtensionMethods.Facts.cs" />
     <Compile Include="Month.Facts.cs" />
     <Compile Include="IChangeMonth`1.Facts.cs" />
     <Compile Include="IGetPreviousDate.Facts.cs" />

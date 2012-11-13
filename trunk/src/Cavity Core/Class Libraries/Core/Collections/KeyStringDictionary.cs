@@ -159,22 +159,6 @@
 #endif
         }
 
-        public virtual bool TryAdd(string key, string value)
-        {
-            if (ContainsKey(key))
-            {
-                return false;
-            }
-
-            Add(key, value);
-            return true;
-        }
-
-        public virtual bool TryAdd(KeyStringPair item)
-        {
-            return TryAdd(item.Key, item.Value);
-        }
-
         public virtual T TryValue<T>(int index)
         {
 #if NET20

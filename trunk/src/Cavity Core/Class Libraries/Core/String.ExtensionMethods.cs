@@ -378,6 +378,15 @@
 #endif
         }
 
+#if NET20
+        public static bool ContainsText(string obj)
+#else
+        public static bool ContainsText(this string obj)
+#endif
+        {
+            return !IsNullOrWhiteSpace(obj);
+        }
+
 #if !NET20
         public static T DefaultOrFromString<T>(this string value, 
                                                Func<string, T> fromString)
