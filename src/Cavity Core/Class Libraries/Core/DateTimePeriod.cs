@@ -8,7 +8,7 @@
 
         private DateTime _ending;
 
-        public DateTimePeriod(Date beginning,
+        public DateTimePeriod(Date beginning, 
                               Date ending)
         {
             _ending = ending.ToDateTime();
@@ -76,33 +76,54 @@
             }
         }
 
-        public static bool operator ==(DateTimePeriod obj,
+        public static bool operator ==(DateTimePeriod obj, 
                                        DateTimePeriod comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator !=(DateTimePeriod obj,
+        public static bool operator !=(DateTimePeriod obj, 
                                        DateTimePeriod comparand)
         {
             return !obj.Equals(comparand);
         }
 
-        public static DateTimePeriod Between(DateTime one, DateTime two)
+        public static DateTimePeriod Between(DateTime one, 
+                                             DateTime two)
         {
             return one > two
-                ? new DateTimePeriod(two, one)
-                : new DateTimePeriod(one, two);
+                       ? new DateTimePeriod(two, one)
+                       : new DateTimePeriod(one, two);
         }
 
-        public override int GetHashCode()
+        public bool Contains(Date value)
         {
-            return Beginning.GetHashCode() ^ Ending.GetHashCode();
+            return Contains(value.ToDateTime());
+        }
+
+        public bool Contains(DateTime value)
+        {
+            if (value < Beginning)
+            {
+                return false;
+            }
+
+            return value <= Ending;
+        }
+
+        public bool Contains(Month value)
+        {
+            return Contains(value.ToDateTime());
         }
 
         public override bool Equals(object obj)
         {
             return !ReferenceEquals(null, obj) && Equals((DateTimePeriod)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Beginning.GetHashCode() ^ Ending.GetHashCode();
         }
 
         public bool Equals(DateTimePeriod other)
