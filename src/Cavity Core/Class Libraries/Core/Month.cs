@@ -14,13 +14,13 @@
     public struct Month : IComparable, 
                           IComparable<Month>, 
                           IEquatable<Month>, 
-                          ISerializable, 
-                          IGetNextMonth, 
-                          IGetPreviousMonth
+                          ISerializable,
+                          IChangeMonth<Month>,
+                          IGetTimeZone<Month>
     {
         private DateTime _date;
 
-        public Month(int year,
+        public Month(int year, 
                      MonthOfYear month)
             : this(new DateTime(year, (int)month, 1))
         {
@@ -49,19 +49,11 @@
             _date = info.GetDateTime("_value");
         }
 
-        public static Month Current
-        {
-            get
-            {
-                return DateTime.Today;
-            }
-        }
-
         public static Month MaxValue
         {
             get
             {
-                return DateTime.MaxValue;
+                return new Month(DateTime.MaxValue);
             }
         }
 
@@ -69,7 +61,15 @@
         {
             get
             {
-                return DateTime.MinValue;
+                return new Month(DateTime.MinValue);
+            }
+        }
+
+        public static IGetTimeZone<Month> Today
+        {
+            get
+            {
+                return new Month(DateTime.Today);
             }
         }
 
@@ -97,15 +97,7 @@
             }
         }
 
-        public IGetNextMonth Next
-        {
-            get
-            {
-                return this;
-            }
-        }
-
-        public IGetPreviousMonth Previous
+        public IChangeMonth<Month> Change
         {
             get
             {
@@ -118,6 +110,22 @@
             get
             {
                 return _date.Year;
+            }
+        }
+
+        Month IGetTimeZone<Month>.LocalTime
+        {
+            get
+            {
+                return new Month(DateTime.Today);
+            }
+        }
+
+        Month IGetTimeZone<Month>.UniversalTime
+        {
+            get
+            {
+                return new Month(DateTime.Today.ToUniversalTime());
             }
         }
 
@@ -155,21 +163,6 @@
             return operand1 < operand2;
         }
 
-        public static implicit operator DateTime(Month value)
-        {
-            return value.ToDateTime();
-        }
-
-        public static implicit operator Month(DateTime value)
-        {
-            return new Month(value);
-        }
-
-        public static implicit operator Month(Date value)
-        {
-            return new Month(value);
-        }
-
         public static implicit operator string(Month value)
         {
             return value.ToString();
@@ -178,6 +171,16 @@
         public static implicit operator Month(string value)
         {
             return FromString(value);
+        }
+
+        public static Month operator ++(Month operand)
+        {
+            return operand.Increment();
+        }
+
+        public static Month operator --(Month operand)
+        {
+            return operand.Decrement();
         }
 
         public static bool operator !=(Month obj, 
@@ -216,7 +219,7 @@
 
         public Month AddMonths(int value)
         {
-            return _date.AddMonths(value);
+            return new Month(_date.AddMonths(value));
         }
 
         public Month AddQuarters(int value)
@@ -231,7 +234,7 @@
 
         public Month AddYears(int value)
         {
-            return _date.AddYears(value);
+            return new Month(_date.AddYears(value));
         }
 
         public int CompareTo(object obj)
@@ -249,6 +252,11 @@
             return Compare(this, other);
         }
 
+        public Month Decrement()
+        {
+            return AddMonths(-1);
+        }
+
         public override bool Equals(object obj)
         {
             return !ReferenceEquals(null, obj) && Equals((Month)obj);
@@ -259,9 +267,19 @@
             return ToDateTime().GetHashCode();
         }
 
-        public Month ToNext(MonthOfYear value)
+        public Month Increment()
+        {
+            return AddMonths(1);
+        }
+
+        public Month Next(MonthOfYear value)
         {
             return To(value, 1);
+        }
+
+        public Month Previous(MonthOfYear value)
+        {
+            return To(value, -1);
         }
 
         public DateTime ToDateTime()
@@ -269,9 +287,9 @@
             return _date.Date;
         }
 
-        public Month ToPrevious(MonthOfYear value)
+        public Date ToDate()
         {
-            return To(value, -1);
+            return new Date(_date.Date);
         }
 
         public override string ToString()
@@ -288,45 +306,27 @@
             return ToString() == other.ToString();
         }
 
-        Month IGetNextMonth.Month()
+        Month IChangeMonth<Month>.Month(int value)
         {
-            return AddMonths(1);
+            return new Month(Year, value);
         }
 
-        Month IGetNextMonth.Year()
+        Month IChangeMonth<Month>.To(MonthOfYear month)
         {
-            return AddYears(1);
+            return new Month(Year, month);
         }
 
-        Month IGetNextMonth.Year(MonthOfYear month)
+        Month IChangeMonth<Month>.Year(int value)
         {
-            return (this as IGetNextMonth).Year((int)month);
+            return new Month(value, MonthOfYear);
         }
-
-        Month IGetNextMonth.Year(int month)
+        
+#if !NET20
+        Month IGetTimeZone<Month>.For(TimeZoneInfo value)
         {
-            return new Month(Year, month).AddYears(1);
+            return new Month(DateTime.Today.ToLocalTime(value));
         }
-
-        Month IGetPreviousMonth.Month()
-        {
-            return AddMonths(-1);
-        }
-
-        Month IGetPreviousMonth.Year()
-        {
-            return AddYears(-1);
-        }
-
-        Month IGetPreviousMonth.Year(MonthOfYear month)
-        {
-            return (this as IGetPreviousMonth).Year((int)month);
-        }
-
-        Month IGetPreviousMonth.Year(int month)
-        {
-            return new Month(Year, month).AddYears(-1);
-        }
+#endif
 
 #if NET20 || NET35
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
@@ -347,31 +347,31 @@
                          int month)
         {
 #if NET20
-            if (!GenericExtensionMethods.In(value,
+            if (!GenericExtensionMethods.In(value, 
 #else
             if (!value.In(
 #endif
-                MonthOfYear.January, 
-                MonthOfYear.February, 
-                MonthOfYear.March, 
-                MonthOfYear.April, 
-                MonthOfYear.May, 
-                MonthOfYear.June, 
-                MonthOfYear.July, 
-                MonthOfYear.August, 
-                MonthOfYear.September, 
-                MonthOfYear.October, 
-                MonthOfYear.November, 
-                MonthOfYear.December))
+                     MonthOfYear.January, 
+                     MonthOfYear.February, 
+                     MonthOfYear.March, 
+                     MonthOfYear.April, 
+                     MonthOfYear.May, 
+                     MonthOfYear.June, 
+                     MonthOfYear.July, 
+                     MonthOfYear.August, 
+                     MonthOfYear.September, 
+                     MonthOfYear.October, 
+                     MonthOfYear.November, 
+                     MonthOfYear.December))
             {
                 throw new ArgumentOutOfRangeException("value");
             }
 
-            var date = _date;
+            var date = new Month(_date);
             while (true)
             {
                 date = date.AddMonths(month);
-                if ((int)value == date.Month)
+                if (value == date.MonthOfYear)
                 {
                     return date;
                 }

@@ -14,13 +14,22 @@
     <Compile Include="Collections\ICollection.ExtensionMethods.cs" />
     <Compile Include="Collections\KeyStringDictionary.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.cs" />
+    <Compile Include="ICalculateDateTimeCalendar.cs" />
+    <Compile Include="IGetCalendarPeriod.cs" />
+    <Compile Include="ICalculateDateTimePeriod`1.cs" />
     <Compile Include="IGetPreviousMonth.cs" />
     <Compile Include="IGetNextMonth.cs" />
+    <Compile Include="IGetPreviousWeekday.cs" />
+    <Compile Include="IGetNextWeekday.cs" />
+    <Compile Include="IChangeDate.cs" />
+    <Compile Include="IChangeMonth`1.cs" />
+    <Compile Include="IGetTimeZone`1.cs" />
     <Compile Include="IO\CurrentDirectory.cs" />
     <Compile Include="Month.cs" />
     <Compile Include="IGetPreviousDate.cs" />
     <Compile Include="IGetNextDate.cs" />
     <Compile Include="MonthOfYear.cs" />
+    <Compile Include="DateTimePeriod.cs" />
     <Compile Include="UserStoryAttribute.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\KeyStringPair.cs" />
@@ -83,10 +92,14 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Compression\GZip.cs" />
+    <Compile Include="TimeZones.cs" />
     <Compile Include="ValueObject`1.cs" />
+    <Compile Include="ITimeZoneEurope.cs" />
+    <Compile Include="ITimeZoneNorthAmerica.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Dynamic\DynamicData.cs" />
+    <Compile Include="Text\Html.cs" />
     <Compile Include="Threading\IThreadedObject.cs" />
     <Compile Include="Threading\ThreadedObject.cs" />
   </ItemGroup>

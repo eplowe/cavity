@@ -13,6 +13,24 @@
         }
 
         [Fact]
+        public void op_ToDate_DateTime()
+        {
+            var expected = Date.Today;
+            var actual = DateTime.Today.ToDate();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToMonth_DateTime()
+        {
+            var expected = Date.Today.LocalTime.ToMonth();
+            var actual = DateTime.Today.ToMonth();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_ToFileName_DateTime()
         {
             var date = new DateTime(1999, 1, 31, 8, 1, 5, 123);

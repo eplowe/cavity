@@ -21,8 +21,8 @@
                             .IsDecoratedWith<ImmutableObjectAttribute>()
                             .Implements<IComparable>()
                             .Implements<IComparable<Month>>()
-                            .Implements<IGetNextMonth>()
-                            .Implements<IGetPreviousMonth>()
+                            .Implements<IEquatable<Month>>()
+                            .Implements<IChangeMonth<Month>>()
                             .Result);
         }
 
@@ -35,7 +35,7 @@
         [Fact]
         public void ctor_Date()
         {
-            Assert.NotNull(new Month(Date.Today));
+            Assert.NotNull(new Month(Date.Today.LocalTime));
         }
 
         [Fact]
@@ -86,6 +86,16 @@
         }
 
         [Fact]
+        public void opDecrement()
+        {
+            var expected = Month.Today.LocalTime.AddMonths(-1);
+            var actual = Month.Today.LocalTime;
+            actual--;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void opEquality_Month_Month()
         {
             var obj = new Month();
@@ -114,24 +124,6 @@
         }
 
         [Fact]
-        public void opImplicit_DateTime_Month()
-        {
-            var expected = Date.Today.FirstOfMonth.ToDateTime();
-            DateTime actual = new Month(DateTime.Now);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void opImplicit_Month_DateTime()
-        {
-            var expected = new Month(DateTime.Now);
-            Month actual = DateTime.Now;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void opImplicit_Month_string()
         {
             var expected = new Month(1999, 12);
@@ -145,6 +137,16 @@
         {
             const string expected = "1999-12";
             string actual = new Month(1999, 12);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void opIncrement()
+        {
+            var expected = Month.Today.LocalTime.AddMonths(1);
+            var actual = Month.Today.LocalTime;
+            actual++;
 
             Assert.Equal(expected, actual);
         }
@@ -195,7 +197,7 @@
         [InlineData(-2147483648)]
         public void op_AddMonths_int_whenArgumentOutOfRangeException(int value)
         {
-            var month = Month.Current;
+            var month = Month.Today.LocalTime;
 
             Assert.Throws<ArgumentOutOfRangeException>(() => month.AddMonths(value));
         }
@@ -218,7 +220,7 @@
         [InlineData(-2147483648)]
         public void op_AddQuarters_int_whenArgumentOutOfRangeException(int value)
         {
-            var month = Month.Current;
+            var month = Month.Today.LocalTime;
 
             Assert.Throws<ArgumentOutOfRangeException>(() => month.AddQuarters(value));
         }
@@ -234,6 +236,39 @@
             var actual = ((Month)month).AddYears(value);
 
             Assert.Equal((Month)expected, actual);
+        }
+
+        [Fact]
+        public void op_Change_Month_int()
+        {
+            Month value = "2012-11-09";
+
+            Month expected = "2012-06-09";
+            var actual = value.Change.Month(6);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Change_To_MonthOfYear()
+        {
+            Month value = "2012-11-09";
+
+            Month expected = "2012-05-09";
+            var actual = value.Change.To(MonthOfYear.May);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Change_Year_int()
+        {
+            Month value = "2012-11-09";
+
+            Month expected = "1999-11-09";
+            var actual = value.Change.Year(1999);
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -279,6 +314,15 @@
         {
             var expected = DateTime.Compare(new DateTime(1999, 12, 31), new DateTime(2000, 1, 1));
             var actual = Month.Compare("1999-12", "2000-01");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Decrement()
+        {
+            var expected = Month.Today.LocalTime.AddMonths(-1);
+            var actual = Month.Today.LocalTime.Decrement();
 
             Assert.Equal(expected, actual);
         }
@@ -350,7 +394,7 @@
         [Fact]
         public void op_GetHashCode()
         {
-            var expected = Date.Today.FirstOfMonth.GetHashCode();
+            var expected = Date.Today.LocalTime.FirstOfMonth.GetHashCode();
             var actual = new Month(DateTime.Now).GetHashCode();
 
             Assert.Equal(expected, actual);
@@ -387,107 +431,10 @@
         }
 
         [Fact]
-        public void op_Next_Month()
+        public void op_Increment()
         {
-            Month value = "2012-11";
-
-            Month expected = "2012-12";
-            var actual = value.Next.Month();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Next_Year()
-        {
-            Month value = "2012-11";
-
-            Month expected = "2013-11";
-            var actual = value.Next.Year();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Next_Year_MonthOfYear()
-        {
-            Month value = "2012-11";
-
-            Month expected = "2013-06";
-            var actual = value.Next.Year(MonthOfYear.June);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Next_Year_int()
-        {
-            Month value = "2012-11";
-
-            Month expected = "2013-06";
-            var actual = value.Next.Year(6);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Previous_Month()
-        {
-            Month value = "2012-11";
-
-            Month expected = "2012-10";
-            var actual = value.Previous.Month();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Previous_Year()
-        {
-            Month value = "2012-11";
-
-            Month expected = "2011-11";
-            var actual = value.Previous.Year();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Previous_Year_MonthOfYear()
-        {
-            Month value = "2012-11";
-
-            Month expected = "2011-06";
-            var actual = value.Previous.Year(MonthOfYear.June);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Previous_Year_int()
-        {
-            Month value = "2012-11";
-
-            Month expected = "2011-06";
-            var actual = value.Previous.Year(6);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_ToDateTime()
-        {
-            var expected = DateTime.MinValue.Date;
-            var actual = new Month().ToDateTime();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_ToDateTime_whenValue()
-        {
-            var expected = Date.Today.FirstOfMonth.ToDateTime();
-            var actual = new Month(DateTime.Now).ToDateTime();
+            var expected = Month.Today.LocalTime.AddMonths(1);
+            var actual = Month.Today.LocalTime.Increment();
 
             Assert.Equal(expected, actual);
         }
@@ -505,12 +452,12 @@
         [InlineData("2013-01", "2012-03", MonthOfYear.January)]
         [InlineData("2013-02", "2012-03", MonthOfYear.February)]
         [InlineData("2013-03", "2012-03", MonthOfYear.March)]
-        public void op_ToNext_MonthOfYear(string expected, 
-                                          string month, 
-                                          MonthOfYear value)
+        public void op_Next_MonthOfYear(string expected, 
+                                        string month, 
+                                        MonthOfYear value)
         {
             Month day = month;
-            var actual = day.ToNext(value);
+            var actual = day.Next(value);
 
             Assert.Equal((Month)expected, actual);
             Assert.Equal((Month)month, day);
@@ -518,9 +465,9 @@
 
         [Theory]
         [InlineData(999)]
-        public void op_ToNext_MonthOfYear_whenArgumentOutOfRangeException(int value)
+        public void op_Next_MonthOfYear_whenArgumentOutOfRangeException(int value)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Month.Current.ToNext((MonthOfYear)value));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Month.Today.LocalTime.Next((MonthOfYear)value));
         }
 
         [Theory]
@@ -536,12 +483,12 @@
         [InlineData("2011-12", "2012-03", MonthOfYear.December)]
         [InlineData("2012-01", "2012-03", MonthOfYear.January)]
         [InlineData("2012-02", "2012-03", MonthOfYear.February)]
-        public void op_ToPrevious_MonthOfYear(string expected, 
-                                              string month, 
-                                              MonthOfYear value)
+        public void op_Previous_MonthOfYear(string expected, 
+                                            string month, 
+                                            MonthOfYear value)
         {
             Month day = month;
-            var actual = day.ToPrevious(value);
+            var actual = day.Previous(value);
 
             Assert.Equal((Month)expected, actual);
             Assert.Equal((Month)month, day);
@@ -549,9 +496,36 @@
 
         [Theory]
         [InlineData(999)]
-        public void op_ToPrevious_MonthOfYear_whenArgumentOutOfRangeException(int value)
+        public void op_Previous_MonthOfYear_whenArgumentOutOfRangeException(int value)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Month.Current.ToPrevious((MonthOfYear)value));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Month.Today.LocalTime.Previous((MonthOfYear)value));
+        }
+
+        [Fact]
+        public void op_ToDate()
+        {
+            var expected = Date.MinValue;
+            var actual = new Month().ToDate();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToDateTime()
+        {
+            var expected = DateTime.MinValue.Date;
+            var actual = new Month().ToDateTime();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_ToDateTime_whenValue()
+        {
+            var expected = Date.Today.LocalTime.FirstOfMonth.ToDateTime();
+            var actual = new Month(DateTime.Now).ToDateTime();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -573,12 +547,13 @@
         }
 
         [Fact]
-        public void prop_Current_get()
+        public void prop_Change()
         {
-            var expected = new Month(DateTime.Today);
-            var actual = Month.Current;
-
-            Assert.Equal(expected, actual);
+            Assert.True(new PropertyExpectations<Month>(x => x.Change)
+                            .TypeIs<IChangeMonth<Month>>()
+                            .DefaultValueIsNotNull()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]
@@ -604,7 +579,7 @@
         [Fact]
         public void prop_MaxValue()
         {
-            Month expected = DateTime.MaxValue;
+            var expected = new Month(DateTime.MaxValue);
             var actual = Month.MaxValue;
 
             Assert.Equal(expected, actual);
@@ -613,7 +588,7 @@
         [Fact]
         public void prop_MinValue()
         {
-            Month expected = DateTime.MinValue;
+            var expected = new Month(DateTime.MinValue);
             var actual = Month.MinValue;
 
             Assert.Equal(expected, actual);
@@ -630,23 +605,21 @@
         }
 
         [Fact]
-        public void prop_Next()
+        public void prop_Today_LocalTime()
         {
-            Assert.True(new PropertyExpectations<Month>(x => x.Next)
-                            .TypeIs<IGetNextMonth>()
-                            .DefaultValueIsNotNull()
-                            .IsNotDecorated()
-                            .Result);
+            var expected = new Month(DateTime.Today);
+            var actual = Month.Today.LocalTime;
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void prop_Previous()
+        public void prop_Today_UniversalTime()
         {
-            Assert.True(new PropertyExpectations<Month>(x => x.Previous)
-                            .TypeIs<IGetPreviousMonth>()
-                            .DefaultValueIsNotNull()
-                            .IsNotDecorated()
-                            .Result);
+            var expected = new Month(DateTime.Today.ToUniversalTime());
+            var actual = Month.Today.UniversalTime;
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
