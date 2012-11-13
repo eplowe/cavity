@@ -24,6 +24,18 @@
         }
 
         [Fact]
+        public void ctor_DateTime_DateTime()
+        {
+            Assert.NotNull(new DateTimePeriod(DateTime.MinValue, DateTime.MaxValue));
+        }
+
+        [Fact]
+        public void ctor_DateTime_DateTime_whenArgumentOutOfRangeException()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new DateTimePeriod(DateTime.MaxValue, DateTime.MinValue));
+        }
+
+        [Fact]
         public void ctor_Date_Date()
         {
             Assert.NotNull(new DateTimePeriod(Date.MinValue, Date.MaxValue));
@@ -35,16 +47,50 @@
             Assert.Throws<ArgumentOutOfRangeException>(() => new DateTimePeriod(Date.MaxValue, Date.MinValue));
         }
 
-        [Fact]
-        public void ctor_DateTime_DateTime()
+        [Theory]
+        [InlineData(false, "2012-10-31")]
+        [InlineData(true, "2012-11-01")]
+        [InlineData(true, "2012-11-15")]
+        [InlineData(true, "2012-11-30")]
+        [InlineData(false, "2012-12-01")]
+        public void op_Contains_Date(bool expected, 
+                                     string value)
         {
-            Assert.NotNull(new DateTimePeriod(DateTime.MinValue, DateTime.MaxValue));
+            var period = new DateTimePeriod(XmlConvert.ToDateTime("2012-11-01T00:00:00Z", XmlDateTimeSerializationMode.Utc), 
+                                            XmlConvert.ToDateTime("2012-11-30T23:59:59Z", XmlDateTimeSerializationMode.Utc));
+            var actual = period.Contains(Date.FromString(value));
+
+            Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void ctor_DateTime_DateTime_whenArgumentOutOfRangeException()
+        [Theory]
+        [InlineData(false, "2012-10-31T23:59:59Z")]
+        [InlineData(true, "2012-11-01T00:00:00Z")]
+        [InlineData(true, "2012-11-15T12:11:10Z")]
+        [InlineData(true, "2012-11-30T23:59:59Z")]
+        [InlineData(false, "2012-12-01T00:00:00Z")]
+        public void op_Contains_DateTime(bool expected, 
+                                         string value)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new DateTimePeriod(DateTime.MaxValue, DateTime.MinValue));
+            var period = new DateTimePeriod(XmlConvert.ToDateTime("2012-11-01T00:00:00Z", XmlDateTimeSerializationMode.Utc), 
+                                            XmlConvert.ToDateTime("2012-11-30T23:59:59Z", XmlDateTimeSerializationMode.Utc));
+            var actual = period.Contains(XmlConvert.ToDateTime(value, XmlDateTimeSerializationMode.Utc));
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(false, "2012-10")]
+        [InlineData(true, "2012-11")]
+        [InlineData(false, "2012-12")]
+        public void op_Contains_Month(bool expected, 
+                                      string value)
+        {
+            var period = new DateTimePeriod(XmlConvert.ToDateTime("2012-11-01T00:00:00Z", XmlDateTimeSerializationMode.Utc), 
+                                            XmlConvert.ToDateTime("2012-11-30T23:59:59Z", XmlDateTimeSerializationMode.Utc));
+            var actual = period.Contains(Month.FromString(value));
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
