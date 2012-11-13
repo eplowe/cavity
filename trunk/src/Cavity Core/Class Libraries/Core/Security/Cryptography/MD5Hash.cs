@@ -173,6 +173,18 @@
             }
         }
 
+        public static bool Differ(FileSystemInfo operand1,
+                                     FileSystemInfo operand2)
+        {
+            return !Same(operand1, operand2);
+        }
+
+        public static bool Same(FileSystemInfo operand1,
+                                FileSystemInfo operand2)
+        {
+            return 0 == Compare(Compute(operand1), Compute(operand2));
+        }
+
         public override bool Equals(object obj)
         {
             return !ReferenceEquals(null, obj) && Equals((MD5Hash)obj);

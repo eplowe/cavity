@@ -150,6 +150,55 @@
         }
 
         [Fact]
+        public void op_CopyIfDifferent_FileInfo_FileInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew(string.Empty);
+                var destination = temp.Info.ToFile("destination.txt");
+
+                var copy = file.CopyIfDifferent(destination);
+                Assert.Equal(destination.FullName, copy.FullName);
+
+                Assert.True(destination.Exists);
+            }
+        }
+
+        [Fact]
+        public void op_CopyIfDifferent_FileInfo_FileInfo_whenDifferent()
+        {
+            using (var temp = new TempDirectory())
+            {
+                const string expected = "changed";
+
+                var file = temp.Info.ToFile("example.txt").CreateNew(expected);
+                var destination = temp.Info.ToFile("destination.txt").CreateNew(string.Empty);
+
+                var copy = file.CopyIfDifferent(destination);
+                Assert.Equal(destination.FullName, copy.FullName);
+
+                var actual = destination.ReadToEnd();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_CopyIfDifferent_FileInfo_FileInfo_whenSame()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example.txt").CreateNew(string.Empty);
+                var destination = temp.Info.ToFile("destination.txt").CreateNew(string.Empty);
+
+                var copy = file.CopyIfDifferent(destination);
+                Assert.Equal(destination.FullName, copy.FullName);
+
+                Assert.True(destination.Exists);
+            }
+        }
+
+        [Fact]
         public void op_CopyTo_FileInfoNull_FileInfo()
         {
             using (var temp = new TempDirectory())
