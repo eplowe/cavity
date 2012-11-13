@@ -24,6 +24,18 @@
         }
 
         [Fact]
+        public void ctor_Date_Date()
+        {
+            Assert.NotNull(new DateTimePeriod(Date.MinValue, Date.MaxValue));
+        }
+
+        [Fact]
+        public void ctor_Date_Date_whenArgumentOutOfRangeException()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new DateTimePeriod(Date.MaxValue, Date.MinValue));
+        }
+
+        [Fact]
         public void ctor_DateTime_DateTime()
         {
             Assert.NotNull(new DateTimePeriod(DateTime.MinValue, DateTime.MaxValue));

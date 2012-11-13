@@ -8,6 +8,18 @@
 
         private DateTime _ending;
 
+        public DateTimePeriod(Date beginning,
+                              Date ending)
+        {
+            _ending = ending.ToDateTime();
+            if (beginning > ending)
+            {
+                throw new ArgumentOutOfRangeException("beginning");
+            }
+
+            _beginning = beginning.ToDateTime();
+        }
+
         public DateTimePeriod(DateTime beginning, 
                               DateTime ending)
         {
