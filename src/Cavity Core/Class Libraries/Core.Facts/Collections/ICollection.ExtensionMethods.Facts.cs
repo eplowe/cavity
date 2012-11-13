@@ -58,5 +58,30 @@
         {
             Assert.Throws<ArgumentNullException>(() => new List<string>().Append(null));
         }
+
+        [Fact]
+        public void op_TryAdd_ICollectionOfTNull_paramsOfT()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as ICollection<string>).TryAdd("example"));
+        }
+
+        [Fact]
+        public void op_TryAdd_ICollectionOfT_T_whenFalse()
+        {
+            var list = new List<string>
+                           {
+                               "example"
+                           };
+
+            Assert.False(list.TryAdd("example"));
+        }
+
+        [Fact]
+        public void op_TryAdd_ICollectionOfT_T_whenTrue()
+        {
+            var list = new List<string>();
+
+            Assert.True(list.TryAdd("example"));
+        }
     }
 }

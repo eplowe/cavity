@@ -28,5 +28,27 @@
                 obj.Add(item);
             }
         }
+
+#if NET20
+        public static bool TryAdd<T>(ICollection<T> obj, 
+                                     T item)
+#else
+        public static bool TryAdd<T>(this ICollection<T> obj,
+                                     T item)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (obj.Contains(item))
+            {
+                return false;
+            }
+
+            obj.Add(item);
+            return true;
+        }
     }
 }
