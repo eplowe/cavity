@@ -125,5 +125,35 @@
         {
             Assert.True(2.IsBoundedBy(1, 2));
         }
+
+        [Fact]
+        public void op_IsNotBoundedBy_T_T_T_whenFalse()
+        {
+            Assert.True(3.IsNotBoundedBy(1, 2));
+        }
+
+        [Fact]
+        public void op_IsNotBoundedBy_T_T_T_whenLower()
+        {
+            Assert.False(1.IsNotBoundedBy(1, 2));
+        }
+
+        [Fact]
+        public void op_NotIn_charA_charsABC()
+        {
+            Assert.False('A'.NotIn('A', 'B', 'C'));
+        }
+
+        [Fact]
+        public void op_NotIn_charZ_charsABC()
+        {
+            Assert.True('Z'.NotIn('A', 'B', 'C'));
+        }
+
+        [Fact]
+        public void op_NotIn_charZ_charsNull()
+        {
+            Assert.True('Z'.NotIn());
+        }
     }
 }

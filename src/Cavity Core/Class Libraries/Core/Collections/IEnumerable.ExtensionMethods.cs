@@ -141,6 +141,15 @@
 #endif
 
 #if NET20
+        public static bool IsNotEmpty(IEnumerable obj)
+#else
+        public static bool IsNotEmpty(this IEnumerable obj)
+#endif
+        {
+            return !IsEmpty(obj);
+        }
+
+#if NET20
         public static T Last<T>(IEnumerable<T> items)
         {
             if (null == items)

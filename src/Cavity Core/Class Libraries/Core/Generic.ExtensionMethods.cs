@@ -104,5 +104,31 @@
 
             return -1 < obj.CompareTo(lower) && 1 > obj.CompareTo(upper);
         }
+
+#if NET20
+        public static bool IsNotBoundedBy<T>(T obj, 
+                                             T lower, 
+                                             T upper)
+#else
+
+        public static bool IsNotBoundedBy<T>(this T obj,
+                                             T lower,
+                                             T upper)
+#endif
+            where T : IComparable<T>
+        {
+            return !IsBoundedBy(obj, lower, upper);
+        }
+
+#if NET20
+        public static bool NotIn<T>(T value, 
+                                    params T[] args)
+#else
+        public static bool NotIn<T>(this T value,
+                                    params T[] args)
+#endif
+        {
+            return !In(value, args);
+        }
     }
 }
