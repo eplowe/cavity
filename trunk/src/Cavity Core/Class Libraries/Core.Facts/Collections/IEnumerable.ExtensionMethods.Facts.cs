@@ -138,6 +138,31 @@
         }
 
         [Fact]
+        public void op_IsNotEmpty_IEnumerable()
+        {
+            var obj = new List<string>
+                          {
+                              "item"
+                          };
+
+            Assert.True(obj.IsNotEmpty());
+        }
+
+        [Fact]
+        public void op_IsNotEmpty_IEnumerableEmpty()
+        {
+            var obj = new List<string>();
+
+            Assert.False(obj.IsNotEmpty());
+        }
+
+        [Fact]
+        public void op_IsNotEmpty_IEnumerableNull()
+        {
+            Assert.False((null as IEnumerable).IsNotEmpty());
+        }
+
+        [Fact]
         public void op_ToHashSet_IEnumerable()
         {
             var obj = "a,z".Split(',', StringSplitOptions.RemoveEmptyEntries);
