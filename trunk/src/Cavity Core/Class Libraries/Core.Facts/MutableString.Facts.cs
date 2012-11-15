@@ -847,6 +847,17 @@
         }
 
         [Theory]
+        [InlineData(false, "")]
+        [InlineData(true, "example")]
+        public void op_ContainsText(bool expected,
+                                    string value)
+        {
+            var actual = new MutableString(value).ContainsText();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData("Ex", "Example", 0, 2)]
         [InlineData("amp", "Example", 2, 3)]
         [InlineData("ample", "Example", 2, 5)]

@@ -32,6 +32,7 @@
     <Compile Include="IGetNextDate.cs" />
     <Compile Include="MonthOfYear.cs" />
     <Compile Include="DateTimePeriod.cs" />
+    <Compile Include="Text\StringBuilder.ExtensionMethods.cs" />
     <Compile Include="UserStoryAttribute.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\KeyStringPair.cs" />
