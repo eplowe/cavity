@@ -269,6 +269,22 @@
         }
 
 #if NET20
+        public static bool Contains(string obj,
+                                    char value)
+#else
+        public static bool Contains(this string obj,
+                                    char value)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return -1 != obj.IndexOf(value);
+        }
+
+#if NET20
         public static bool Contains(string obj, 
                                     string value, 
                                     StringComparison comparisonType)

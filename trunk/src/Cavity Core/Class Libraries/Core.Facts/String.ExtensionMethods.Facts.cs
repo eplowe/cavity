@@ -268,6 +268,24 @@
         }
 
         [Fact]
+        public void op_Contains_stringEmpty_char()
+        {
+            Assert.False(string.Empty.Contains('b'));
+        }
+
+        [Fact]
+        public void op_Contains_stringNull_char()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as string).Contains('b'));
+        }
+
+        [Fact]
+        public void op_Contains_string_char()
+        {
+            Assert.True("abc".Contains('b'));
+        }
+
+        [Fact]
         public void op_Contains_stringEmpty_string_StringComparison()
         {
             Assert.False(string.Empty.Contains("example", StringComparison.Ordinal));

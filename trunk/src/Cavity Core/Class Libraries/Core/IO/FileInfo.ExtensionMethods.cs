@@ -95,7 +95,11 @@
                 return destination;
             }
 
-            return CopyTo(obj, destination, destination.Exists);
+            var modified = obj.LastWriteTimeUtc;
+            var result = CopyTo(obj, destination, destination.Exists);
+            result.LastWriteTimeUtc = modified;
+
+            return result;
         }
 
 #if NET20
@@ -135,7 +139,10 @@
                 throw new ArgumentNullException("destination");
             }
 
+            var modified = obj.LastWriteTimeUtc;
             var result = obj.CopyTo(destination.FullName, overwrite);
+            result.LastWriteTimeUtc = modified;
+
             destination.Refresh();
 
             return result;
@@ -466,8 +473,11 @@
                 }
             }
 
+            var modified = obj.LastWriteTimeUtc;
             obj.MoveTo(destination.FullName);
+
             destination.Refresh();
+            destination.LastWriteTimeUtc = modified;
 
             return destination;
         }
