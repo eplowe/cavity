@@ -9,6 +9,8 @@
     using System.Xml.Schema;
     using System.Xml.Serialization;
 
+    using Cavity.Xml;
+
     public abstract class XmlSerializableCollection<T> : Collection<T>, 
                                                          IEquatable<XmlSerializableCollection<T>>, 
                                                          IXmlSerializable
@@ -98,9 +100,9 @@
                 while (XmlNodeType.Element == reader.NodeType)
                 {
 #if NET20
-                    Add(StringExtensionMethods.XmlDeserialize<T>(reader.ReadOuterXml()));
+                    Add(XmlReaderExtensionMethods.Deserialize<T>(reader));
 #else
-                    Add(reader.ReadOuterXml().XmlDeserialize<T>());
+                    Add(reader.Deserialize<T>());
 #endif
                 }
             }

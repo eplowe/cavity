@@ -1,6 +1,7 @@
 ﻿namespace Cavity.IO
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 #if !NET20
@@ -82,15 +83,13 @@
 #endif
                                          }
                                      }
-#if NET20
+#if NET20 || NET35
                                      Make(target.Directory);
+                                     FileInfoExtensionMethods.CopyTo(file, target);
+                                 }
 #else
                                      target.Directory.Make();
-#endif
-                                     file.CopyTo(target.FullName);
-#if NET20 || NET35
-                }
-#else
+                                     file.CopyTo(target);
                                  });
 #endif
         }
@@ -229,21 +228,19 @@
                                          else
                                          {
 #if NET20 || NET35
-                            continue;
+                                             continue;
 #else
                                              return;
 #endif
                                          }
                                      }
-#if NET20
+#if NET20 || NET35
                                      Make(target.Directory);
+                                     FileInfoExtensionMethods.MoveTo(file, target);
+                                 }
 #else
                                      target.Directory.Make();
-#endif
-                                     file.MoveTo(target.FullName);
-#if NET20 || NET35
-                }
-#else
+                                     file.MoveTo(target);
                                  });
 #endif
         }
@@ -258,6 +255,39 @@
 #endif
         {
             return ToDirectory(obj, name, false);
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static DirectoryInfo ToDirectory(DirectoryInfo obj,
+                                                IEnumerable<object> names)
+#else
+        public static DirectoryInfo ToDirectory(this DirectoryInfo obj,
+                                                IEnumerable<object> names)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            if (null == names)
+            {
+                throw new ArgumentNullException("names");
+            }
+
+            var result = new DirectoryInfo(obj.FullName);
+#if NET20
+            foreach (var name in names)
+            {
+                result = ToDirectory(result, name, true);
+            }
+
+            return result;
+#else
+            return names.Aggregate(result, (current,
+                                            name) => current.ToDirectory(name, true));
+#endif
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]

@@ -1,6 +1,7 @@
 ﻿namespace Cavity.IO
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
 
     using Xunit;
@@ -239,9 +240,9 @@
         [InlineData(1, 1, 1, SearchOption.AllDirectories)]
         [InlineData(2, 2, 1, SearchOption.AllDirectories)]
         [InlineData(9, 3, 3, SearchOption.AllDirectories)]
-        public void op_LineCount_DirectoryInfo_string_SearchOption(int expected, 
-                                                                   int files, 
-                                                                   int lines, 
+        public void op_LineCount_DirectoryInfo_string_SearchOption(int expected,
+                                                                   int files,
+                                                                   int lines,
                                                                    SearchOption searchOption)
         {
             using (var temp = new TempDirectory())
@@ -516,9 +517,46 @@
         }
 
         [Fact]
+        public void op_ToDirectory_DirectoryInfoNull_IEnumerableOfObject()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToDirectory(new List<object>()));
+        }
+
+        [Fact]
         public void op_ToDirectory_DirectoryInfoNull_object()
         {
             Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToDirectory("example"));
+        }
+
+        [Fact]
+        public void op_ToDirectory_DirectoryInfo_IEnumerableOfObject()
+        {
+            var list = "a,b,c".Split(',');
+
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info.FullName;
+                foreach (var item in list)
+                {
+                    expected = Path.Combine(expected, item);
+                }
+
+                var actual = temp.Info.ToDirectory(list);
+
+                Assert.True(actual.Exists);
+                Assert.Equal(expected, actual.FullName);
+            }
+        }
+
+        [Fact]
+        public void op_ToDirectory_DirectoryInfo_IEnumerableOfObjectNull()
+        {
+            using (var temp = new TempDirectory())
+            {
+                // ReSharper disable AccessToDisposedClosure
+                Assert.Throws<ArgumentNullException>(() => temp.Info.ToDirectory(null as IEnumerable<object>));
+                // ReSharper restore AccessToDisposedClosure
+            }
         }
 
         [Fact]
@@ -571,9 +609,9 @@
             using (var temp = new TempDirectory())
             {
                 foreach (var c in new[]
-                                      {
-                                          "\\", "/", ":", "*", "?", "\"", "<", ">", "|", "\n", "\t"
-                                      })
+                    {
+                        "\\", "/", ":", "*", "?", "\"", "<", ">", "|", "\n", "\t"
+                    })
                 {
                     var name = "invalid {0}example".FormatWith(c);
 
@@ -625,9 +663,9 @@
             using (var temp = new TempDirectory())
             {
                 foreach (var c in new[]
-                                      {
-                                          "\\", "/", ":", "*", "?", "\"", "<", ">", "|"
-                                      })
+                    {
+                        "\\", "/", ":", "*", "?", "\"", "<", ">", "|"
+                    })
                 {
                     var name = "invalid {0}example.txt".FormatWith(c);
 

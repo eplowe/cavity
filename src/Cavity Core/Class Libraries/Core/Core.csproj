@@ -74,6 +74,7 @@
     <Compile Include="Security\Cryptography\Salt.cs" />
     <Compile Include="Security\Cryptography\SecureHash.cs" />
     <Compile Include="Text\Encoding.ExtensionMethods.cs" />
+    <Compile Include="Xml\XmlReader.ExtensionMethods.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.cs" />
     <Compile Include="Xml\IXmlSerializerNamespaces.cs" />
     <Compile Include="Xml\XmlNamespace.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="ValueObject`1.cs" />
     <Compile Include="ITimeZoneEurope.cs" />
     <Compile Include="ITimeZoneNorthAmerica.cs" />
+    <Compile Include="Serial.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
     <Compile Include="Dynamic\DynamicData.cs" />
