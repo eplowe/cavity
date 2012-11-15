@@ -389,6 +389,11 @@
 #endif
         }
 
+        public bool ContainsText()
+        {
+            return 0 != Length;
+        }
+
         public MutableString Crop(int start, 
                                   int length)
         {
