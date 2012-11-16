@@ -19,8 +19,8 @@
                                   DirectoryInfo destination, 
                                   bool replace)
 #else
-        public static void CopyTo(this DirectoryInfo source, 
-                                  DirectoryInfo destination, 
+        public static void CopyTo(this DirectoryInfo source,
+                                  DirectoryInfo destination,
                                   bool replace)
 #endif
         {
@@ -34,9 +34,9 @@
                                   bool replace, 
                                   string pattern)
 #else
-        public static void CopyTo(this DirectoryInfo source, 
-                                  DirectoryInfo destination, 
-                                  bool replace, 
+        public static void CopyTo(this DirectoryInfo source,
+                                  DirectoryInfo destination,
+                                  bool replace,
                                   string pattern)
 #endif
         {
@@ -63,7 +63,7 @@
 #if NET20 || NET35
             foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
 #else
-            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories), 
+            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories),
                              file =>
 #endif
                                  {
@@ -94,14 +94,89 @@
 #endif
         }
 
+#if NET20 || NET35
+#else
+        public static IEnumerable<DirectoryInfo> EnumerateDirectories(this DirectoryInfo obj,
+                                                                      Func<DirectoryInfo, bool> predicate)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return obj.EnumerateDirectories().Where(predicate);
+        }
+
+        public static IEnumerable<DirectoryInfo> EnumerateDirectories(this DirectoryInfo obj,
+                                                                      SearchOption searchOption,
+                                                                      Func<DirectoryInfo, bool> predicate)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return obj.EnumerateDirectories("*", searchOption).Where(predicate);
+        }
+
+        public static IEnumerable<DirectoryInfo> EnumerateDirectories(this DirectoryInfo obj,
+                                                                      string searchPattern,
+                                                                      SearchOption searchOption,
+                                                                      Func<DirectoryInfo, bool> predicate)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return obj.EnumerateDirectories(searchPattern, searchOption).Where(predicate);
+        }
+
+        public static IEnumerable<FileInfo> EnumerateFiles(this DirectoryInfo obj,
+                                                           Func<FileInfo, bool> predicate)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return obj.EnumerateFiles().Where(predicate);
+        }
+
+        public static IEnumerable<FileInfo> EnumerateFiles(this DirectoryInfo obj,
+                                                           SearchOption searchOption,
+                                                           Func<FileInfo, bool> predicate)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return obj.EnumerateFiles("*", searchOption).Where(predicate);
+        }
+
+        public static IEnumerable<FileInfo> EnumerateFiles(this DirectoryInfo obj,
+                                                           string searchPattern,
+                                                           SearchOption searchOption,
+                                                           Func<FileInfo, bool> predicate)
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return obj.EnumerateFiles(searchPattern, searchOption).Where(predicate);
+        }
+#endif
+
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
 #if NET20
         public static int LineCount(DirectoryInfo directory, 
                                     string searchPattern, 
                                     SearchOption searchOption)
 #else
-        public static int LineCount(this DirectoryInfo directory, 
-                                    string searchPattern, 
+        public static int LineCount(this DirectoryInfo directory,
+                                    string searchPattern,
                                     SearchOption searchOption)
 #endif
         {
@@ -170,8 +245,8 @@
                                   DirectoryInfo destination, 
                                   bool replace)
 #else
-        public static void MoveTo(this DirectoryInfo source, 
-                                  DirectoryInfo destination, 
+        public static void MoveTo(this DirectoryInfo source,
+                                  DirectoryInfo destination,
                                   bool replace)
 #endif
         {
@@ -185,9 +260,9 @@
                                   bool replace, 
                                   string pattern)
 #else
-        public static void MoveTo(this DirectoryInfo source, 
-                                  DirectoryInfo destination, 
-                                  bool replace, 
+        public static void MoveTo(this DirectoryInfo source,
+                                  DirectoryInfo destination,
+                                  bool replace,
                                   string pattern)
 #endif
         {
@@ -214,7 +289,7 @@
 #if NET20 || NET35
             foreach (var file in source.GetFiles(pattern, SearchOption.AllDirectories))
 #else
-            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories), 
+            Parallel.ForEach(source.EnumerateFiles(pattern, SearchOption.AllDirectories),
                              file =>
 #endif
                                  {
@@ -250,7 +325,7 @@
         public static DirectoryInfo ToDirectory(DirectoryInfo obj, 
                                                 object name)
 #else
-        public static DirectoryInfo ToDirectory(this DirectoryInfo obj, 
+        public static DirectoryInfo ToDirectory(this DirectoryInfo obj,
                                                 object name)
 #endif
         {
@@ -296,8 +371,8 @@
                                                 object name, 
                                                 bool create)
 #else
-        public static DirectoryInfo ToDirectory(this DirectoryInfo obj, 
-                                                object name, 
+        public static DirectoryInfo ToDirectory(this DirectoryInfo obj,
+                                                object name,
                                                 bool create)
 #endif
         {
@@ -329,7 +404,7 @@
         public static FileInfo ToFile(DirectoryInfo obj, 
                                       object name)
 #else
-        public static FileInfo ToFile(this DirectoryInfo obj, 
+        public static FileInfo ToFile(this DirectoryInfo obj,
                                       object name)
 #endif
         {
@@ -348,6 +423,20 @@
 #else
             return obj.CombineAsFile(name);
 #endif
+        }
+
+#if NET20
+        public static DirectoryInfo ToParent(DirectoryInfo obj)
+#else
+        public static DirectoryInfo ToParent(this DirectoryInfo obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return obj.Parent;
         }
     }
 }

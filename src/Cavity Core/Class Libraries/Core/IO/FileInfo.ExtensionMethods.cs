@@ -72,6 +72,23 @@
             return obj;
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want strong typing here.")]
+#if NET20
+        public static FileInfo ChangeExtension(FileInfo obj,
+                                               string extension)
+#else
+        public static FileInfo ChangeExtension(this FileInfo obj,
+                                               string extension)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return new FileInfo(Path.ChangeExtension(obj.FullName, extension));
+        }
+
 #if NET20
         public static FileInfo CopyIfDifferent(FileInfo obj, 
                                                FileInfo destination)
@@ -500,6 +517,35 @@
                     return reader.ReadToEnd();
                 }
             }
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want strong typing here.")]
+#if NET20
+        public static FileInfo RemoveExtension(FileInfo obj)
+#else
+        public static FileInfo RemoveExtension(this FileInfo obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return new FileInfo(Path.ChangeExtension(obj.FullName, null));
+        }
+        
+#if NET20
+        public static DirectoryInfo ToParent(FileInfo obj)
+#else
+        public static DirectoryInfo ToParent(this FileInfo obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            return obj.Directory;
         }
 
 #if NET20
