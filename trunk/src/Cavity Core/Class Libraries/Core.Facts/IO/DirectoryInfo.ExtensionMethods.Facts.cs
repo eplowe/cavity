@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
 
     using Xunit;
     using Xunit.Extensions;
@@ -234,6 +235,133 @@
                 Assert.Throws<ArgumentNullException>(() => source.CopyTo(destination, true, null));
             }
         }
+
+#if NET20 || NET35
+#else
+        [Fact]
+        public void op_EnumerateDirectories_DirectoryInfoNull_FuncDirectoryInfoBool()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).EnumerateDirectories(x => x.Name == "b").First());
+        }
+
+        [Fact]
+        public void op_EnumerateDirectories_DirectoryInfoNull_SearchOption_FuncDirectoryInfoBool()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).EnumerateDirectories(SearchOption.TopDirectoryOnly, x => x.Name == "b").First());
+        }
+
+        [Fact]
+        public void op_EnumerateDirectories_DirectoryInfoNull_string_SearchOption_FuncDirectoryInfoBool()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).EnumerateDirectories("*", SearchOption.TopDirectoryOnly, x => x.Name == "b").First());
+        }
+
+        [Fact]
+        public void op_EnumerateDirectories_DirectoryInfo_FuncDirectoryInfoBool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                temp.Info.ToDirectory("a", true);
+                var expected = temp.Info.ToDirectory("b", true).FullName;
+                temp.Info.ToDirectory("c", true);
+
+                var actual = temp.Info.EnumerateDirectories(x => x.Name == "b").First().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_EnumerateDirectories_DirectoryInfo_SearchOption_FuncDirectoryInfoBool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info.ToDirectory("a").ToDirectory("b", true).FullName;
+                temp.Info.ToDirectory("c", true);
+
+                var actual = temp.Info.EnumerateDirectories(SearchOption.AllDirectories, x => x.Name == "b").First().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_EnumerateDirectories_DirectoryInfo_string_SearchOption_FuncDirectoryInfoBool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info.ToDirectory("a").ToDirectory("b", true).FullName;
+                temp.Info.ToDirectory("c", true);
+
+                var actual = temp.Info.EnumerateDirectories("*", SearchOption.AllDirectories, x => x.Name == "b").First().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_EnumerateFiles_DirectoryInfoNull_FuncFileInfoBool()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).EnumerateFiles(x => x.Name == "b").First());
+        }
+
+        [Fact]
+        public void op_EnumerateFiles_DirectoryInfoNull_SearchOption_FuncFileInfoBool()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).EnumerateFiles(SearchOption.TopDirectoryOnly, x => x.Name == "b").First());
+        }
+
+        [Fact]
+        public void op_EnumerateFiles_DirectoryInfoNull_string_SearchOption_FuncFileInfoBool()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).EnumerateFiles("*", SearchOption.TopDirectoryOnly, x => x.Name == "b").First());
+        }
+
+        [Fact]
+        public void op_EnumerateFiles_DirectoryInfo_FuncFileInfoBool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                temp.Info.ToDirectory("a", true);
+                var expected = temp.Info.ToFile("b").CreateNew(string.Empty).FullName;
+                temp.Info.ToDirectory("c", true);
+
+                var actual = temp.Info.EnumerateFiles(x => x.Name == "b").First().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_EnumerateFiles_DirectoryInfo_SearchOption_FuncFileInfoBool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info.ToDirectory("a", true).ToFile("abc.txt").CreateNew(string.Empty).FullName;
+                temp.Info.ToDirectory("a").ToFile("abcdef.txt").CreateNew(string.Empty);
+                temp.Info.ToDirectory("c", true);
+
+                var actual = temp.Info.EnumerateFiles(SearchOption.AllDirectories, x => x.Name.Length == 7).First().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_EnumerateFiles_DirectoryInfo_string_SearchOption_FuncFileInfoBool()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info.ToDirectory("a", true).ToFile("abc.txt").CreateNew(string.Empty).FullName;
+                temp.Info.ToDirectory("a").ToFile("abcdef.txt").CreateNew(string.Empty);
+                temp.Info.ToDirectory("c", true);
+
+                var actual = temp.Info.EnumerateFiles("*.txt", SearchOption.AllDirectories, x => x.Name.Length == 7).First().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+#endif
 
         [Theory]
         [InlineData(0, 0, 0, SearchOption.AllDirectories)]
@@ -554,7 +682,9 @@
             using (var temp = new TempDirectory())
             {
                 // ReSharper disable AccessToDisposedClosure
+                // ReSharper disable RedundantCast
                 Assert.Throws<ArgumentNullException>(() => temp.Info.ToDirectory(null as IEnumerable<object>));
+                // ReSharper restore RedundantCast
                 // ReSharper restore AccessToDisposedClosure
             }
         }
@@ -675,6 +805,24 @@
                     Assert.Equal(expected, actual);
                 }
             }
+        }
+
+        [Fact]
+        public void op_ToParent_DirectoryInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info.FullName;
+                var actual = temp.Info.ToDirectory("example").ToParent().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_ToParent_DirectoryInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToParent());
         }
     }
 }

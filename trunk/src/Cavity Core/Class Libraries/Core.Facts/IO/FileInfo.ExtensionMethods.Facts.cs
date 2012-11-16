@@ -150,6 +150,35 @@
         }
 
         [Fact]
+        public void op_ChangeExtension_FileInfoNull_string()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).ChangeExtension(".txt"));
+        }
+
+        [Theory]
+        [InlineData("example", "example", null)]
+        [InlineData("example.", "example", "")]
+        [InlineData("example.txt", "example", ".txt")]
+        [InlineData("example.txt", "example", "txt")]
+        [InlineData("example", "example.extension", null)]
+        [InlineData("example.", "example.extension", "")]
+        [InlineData("example.txt", "example.extension", ".txt")]
+        [InlineData("example.txt", "example.extension", "txt")]
+        public void op_ChangeExtension_FileInfo_string(string expected,
+                                                       string name,
+                                                       string extension)
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile(name);
+
+                var actual = file.ChangeExtension(extension).Name;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
         public void op_CopyIfDifferent_FileInfo_FileInfo()
         {
             using (var temp = new TempDirectory())
@@ -601,8 +630,8 @@
         [InlineData(true, "example\r\n", "example\n")]
         [InlineData(true, "\r\n\r\n", "\n\n")]
         [InlineData(true, "example\r\n\r\n", "example\n\n")]
-        public void op_FixNewLine_FileInfo(bool result, 
-                                           string expected, 
+        public void op_FixNewLine_FileInfo(bool result,
+                                           string expected,
                                            string value)
         {
             using (var temp = new TempDirectory())
@@ -878,6 +907,46 @@
         public void op_ReadToEnd_FileInfoNull()
         {
             Assert.Throws<ArgumentNullException>(() => (null as FileInfo).ReadToEnd());
+        }
+
+        [Theory]
+        [InlineData("example", "example")]
+        [InlineData("example", "example.txt")]
+        public void op_RemoveExtension_FileInfo(string expected,
+                                                string name)
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile(name);
+
+                var actual = file.RemoveExtension().Name;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_RemoveExtension_FileInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).RemoveExtension());
+        }
+
+        [Fact]
+        public void op_ToParent_FileInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info.FullName;
+                var actual = temp.Info.ToFile("example.txt").ToParent().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_ToParent_FileInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).ToParent());
         }
 
         [Fact]
