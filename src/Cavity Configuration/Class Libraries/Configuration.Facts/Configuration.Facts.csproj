@@ -19,6 +19,13 @@
     </None>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Collections\FileCollection.Facts.cs" />
+    <Compile Include="Collections\DirectoryCollection.Facts.cs" />
+    <Compile Include="Collections\DirectoryItem.Facts.cs" />
+    <Compile Include="Collections\FileItem.Facts.cs" />
+    <Compile Include="Collections\PathItem.Derived.cs" />
+    <Compile Include="Collections\PathItem.Facts.cs" />
+    <Compile Include="Configuration\Paths.Facts.cs" />
     <Compile Include="Collections\StringList.Facts.cs" />
     <Compile Include="Configuration\AddRemoveClearConfigurationElementCollection`1.Facts.cs" />
     <Compile Include="Configuration\Config.Facts.cs" />
@@ -36,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.2.0.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.2.0.0.921\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

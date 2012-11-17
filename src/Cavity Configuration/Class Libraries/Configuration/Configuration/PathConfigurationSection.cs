@@ -5,6 +5,9 @@
     using System.IO;
 #if !NET20
     using System.Linq;
+
+    using Cavity.Collections;
+
 #endif
 
     public class PathConfigurationSection : ConfigurationSection

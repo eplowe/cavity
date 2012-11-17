@@ -55,11 +55,14 @@
         public override string ToString()
         {
             var buffer = new StringBuilder();
+#if NET20 || NET35
             foreach (var item in this)
             {
                 buffer.AppendLine(item);
             }
-
+#else
+            Serial.ForEach(this, item => buffer.AppendLine(item));
+#endif
             return buffer.ToString();
         }
 
