@@ -327,11 +327,12 @@
             Assert.Throws<ArgumentNullException>(() => BritishPostcode.FromString(null));
         }
 
-        [Fact]
-        public void op_FromString_string_WhenInvalidArea()
+        [Theory]
+        [InlineData("0X 4XG")]
+        [InlineData("Ab Kettleby")]
+        public void op_FromString_string_WhenInvalidArea(string value)
         {
-            const string original = "0X 4XG";
-            var obj = BritishPostcode.FromString(original);
+            var obj = BritishPostcode.FromString(value);
 
             Assert.Null(obj.Area);
             Assert.Null(obj.District);
