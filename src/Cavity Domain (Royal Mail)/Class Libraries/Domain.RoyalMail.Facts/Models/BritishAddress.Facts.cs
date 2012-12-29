@@ -49,11 +49,11 @@
                               DoubleDependentLocality = "Local Village", 
                               DependentLocality = "Locality", 
                               PostTown = "Bigton", 
-                              Postcode = "AA1 2ZZ", 
+                              Postcode = "AB1 2ZZ", 
                               TraditionalCounty = "Countyshire"
                           };
 
-            var expected = "Flat A{0}Big House{0}PO Box 123{0}12 Little Close{0}High Street{0}Local Village{0}Locality{0}Bigton{0}AA1 2ZZ{0}Countyshire{0}".FormatWith(Environment.NewLine);
+            var expected = "Flat A{0}Big House{0}PO Box 123{0}12 Little Close{0}High Street{0}Local Village{0}Locality{0}Bigton{0}AB1 2ZZ{0}Countyshire{0}".FormatWith(Environment.NewLine);
             var actual = obj.ToString();
 
             Assert.Equal(expected, actual);
@@ -67,11 +67,11 @@
                               BuildingName = "Big House", 
                               MainStreet = "High Street", 
                               PostTown = "Bigton", 
-                              Postcode = "AA1 2ZZ", 
+                              Postcode = "AB1 2ZZ", 
                               TraditionalCounty = "Countyshire"
                           };
 
-            var expected = "Big House{0}High Street{0}Bigton{0}AA1 2ZZ{0}Countyshire{0}".FormatWith(Environment.NewLine);
+            var expected = "Big House{0}High Street{0}Bigton{0}AB1 2ZZ{0}Countyshire{0}".FormatWith(Environment.NewLine);
             var actual = obj.ToString();
 
             Assert.Equal(expected, actual);
@@ -86,11 +86,11 @@
                               BuildingNumber = "12", 
                               MainStreet = "High Street", 
                               PostTown = "Bigton", 
-                              Postcode = "AA1 2ZZ", 
+                              Postcode = "AB1 2ZZ", 
                               TraditionalCounty = "Countyshire"
                           };
 
-            var expected = "Big House{0}12 High Street{0}Bigton{0}AA1 2ZZ{0}Countyshire{0}".FormatWith(Environment.NewLine);
+            var expected = "Big House{0}12 High Street{0}Bigton{0}AB1 2ZZ{0}Countyshire{0}".FormatWith(Environment.NewLine);
             var actual = obj.ToString();
 
             Assert.Equal(expected, actual);
@@ -104,10 +104,10 @@
                               BuildingName = "Big House", 
                               MainStreet = "High Street", 
                               PostTown = "Bigton", 
-                              Postcode = "AA1 2ZZ"
+                              Postcode = "AB1 2ZZ"
                           };
 
-            var expected = "Big House{0}High Street{0}Bigton{0}AA1 2ZZ{0}".FormatWith(Environment.NewLine);
+            var expected = "Big House{0}High Street{0}Bigton{0}AB1 2ZZ{0}".FormatWith(Environment.NewLine);
             var actual = obj.ToString();
 
             Assert.Equal(expected, actual);

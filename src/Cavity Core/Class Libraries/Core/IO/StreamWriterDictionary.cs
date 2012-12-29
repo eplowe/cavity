@@ -16,6 +16,7 @@
                                           IDisposable
     {
         public StreamWriterDictionary()
+            : base(StringComparer.OrdinalIgnoreCase)
         {
             Access = FileAccess.Write;
             Mode = FileMode.OpenOrCreate;

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
     using System.Runtime.Serialization;
 
@@ -146,6 +147,26 @@
 
                 file.Info.Refresh();
                 Assert.True(file.Info.Exists);
+            }
+        }
+
+        [Fact]
+        public void op_Item_string_caseInsensitive()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var lower = temp.Info.ToFile("abc");
+                var upper = temp.Info.ToFile("ABC");
+                using (var obj = new StreamWriterDictionary())
+                {
+                    obj.Item(lower.FullName).Write("example");
+                    obj.Item(upper.FullName).Write("example");
+                }
+
+                const int expected = 1;
+                var actual = temp.Info.GetFiles().Length;
+
+                Assert.Equal(expected, actual);
             }
         }
 
