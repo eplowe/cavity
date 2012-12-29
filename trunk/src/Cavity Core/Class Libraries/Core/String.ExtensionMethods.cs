@@ -395,6 +395,32 @@
         }
 
 #if NET20
+        public static bool ContainsDigits(string value)
+#else
+        public static bool ContainsDigits(this string value)
+#endif
+        {
+#if NET20
+            if (null == value)
+            {
+                return false;
+            }
+
+            foreach (var c in value)
+            {
+                if (char.IsDigit(c))
+                {
+                    return true;
+                }
+            }
+            
+            return false;
+#else
+            return null != value && value.Where(char.IsDigit).Any();
+#endif
+        }
+
+#if NET20
         public static bool ContainsText(string obj)
 #else
         public static bool ContainsText(this string obj)

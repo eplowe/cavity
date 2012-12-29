@@ -236,7 +236,7 @@
                                         DoubleDependentLocality = "F", 
                                         DependentLocality = "G", 
                                         PostTown = "H", 
-                                        Postcode = "AA1 2ZZ"
+                                        Postcode = "AB1 2ZZ"
                                     }, 
                                 Organization =
                                     {
@@ -245,7 +245,7 @@
                                     }
                             };
 
-            const string expected = "A,B,C,D,E,F,G,H,AA1 2ZZ";
+            const string expected = "A,B,C,D,E,F,G,H,AB1 2ZZ";
             var actual = entry.ToString("SBN,BNA,NUM,DST,STM,DDL,DLO,PTN,PCD");
 
             Assert.Equal(expected, actual);

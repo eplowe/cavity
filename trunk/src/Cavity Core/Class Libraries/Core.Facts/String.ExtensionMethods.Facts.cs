@@ -366,6 +366,20 @@
         [Theory]
         [InlineData(false, null)]
         [InlineData(false, "")]
+        [InlineData(false, "example")]
+        [InlineData(true, "example 123")]
+        [InlineData(true, "123 example")]
+        public void op_ContainsDigits_string(bool expected,
+                                             string value)
+        {
+            var actual = value.ContainsDigits();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(false, null)]
+        [InlineData(false, "")]
         [InlineData(false, "  ")]
         [InlineData(true, "example")]
         public void op_ContainsText_string(bool expected,
