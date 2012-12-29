@@ -8,6 +8,7 @@
 #endif
     using System.Xml;
 
+    using Cavity.Collections;
     using Cavity.Diagnostics;
 
     public sealed class BritishPostcode : IComparable,
@@ -206,18 +207,28 @@
                 return new BritishPostcode();
             }
 
+            BritishPostcode result;
             switch (parts.Length)
             {
                 case 1:
-                    return new BritishPostcode(area, area == parts[0] ? null : parts[0]);
+                    result = new BritishPostcode(area, area == parts[0] ? null : parts[0]);
+                    break;
 
                 case 2:
                     var sector = string.Concat(parts[0], ' ', ToSector(parts[1]));
-                    return new BritishPostcode(area, parts[0], sector, value == sector ? null : value);
+                    result = new BritishPostcode(area, parts[0], sector, value == sector ? null : value);
+                    break;
 
                 default:
                     return new BritishPostcode();
             }
+
+            if (string.Equals(value.RemoveAny(' '), result.ToString().RemoveAny(' '), StringComparison.OrdinalIgnoreCase))
+            {
+                return result;
+            }
+
+            return new BritishPostcode();
         }
 
         public override bool Equals(object obj)
@@ -358,6 +369,11 @@
             }
 
             var number = District.Substring(Area.Length);
+            if (number.IsEmpty())
+            {
+                return;
+            }
+
             if (DistrictLetter.HasValue)
             {
                 number = number.Substring(0, number.Length - 1);
@@ -380,7 +396,11 @@
 
             Sector = sector;
 
-            var number = Sector.Substring(District.Length + 1);
+            var number = Sector.Substring(District.Length).Trim();
+            if (number.IsEmpty())
+            {
+                return;
+            }
 
             SectorNumber = XmlConvert.ToInt32(number);
         }
