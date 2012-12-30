@@ -8,7 +8,6 @@
 #endif
     using System.Xml;
 
-    using Cavity.Collections;
     using Cavity.Diagnostics;
 
     public sealed class BritishPostcode : IComparable,
@@ -17,22 +16,96 @@
     {
         private static readonly IList<string> _areas = "AB,AL,B,BA,BB,BD,BH,BL,BN,BR,BS,BT,CA,CB,CF,CH,CM,CO,CR,CT,CV,CW,DA,DD,DE,DG,DH,DL,DN,DT,DY,E,EC,EH,EN,EX,FK,FY,G,GIR,GL,GU,GY,HA,HD,HG,HP,HR,HS,HU,HX,IG,IM,IP,IV,JE,KA,KT,KW,KY,L,LA,LD,LE,LL,LN,LS,LU,M,ME,MK,ML,N,NE,NG,NN,NP,NR,NW,OL,OX,PA,PE,PH,PL,PO,PR,RG,RH,RM,S,SA,SE,SG,SK,SL,SM,SN,SO,SP,SR,SS,ST,SW,SY,TA,TD,TF,TN,TQ,TR,TS,TW,UB,W,WA,WC,WD,WF,WN,WR,WS,WV,YO,ZE".Split(',').ToList();
 
+        struct Parts
+        {
+            public string Area { get; set; }
+            
+            public int? DistrictNumber { get; set; }
+
+            public char? DistrictLetter { get; set; }
+
+            public int? Sector { get; set; }
+
+            public string Unit { get; set; }
+
+            public static int? Comparison(int? one,
+                                          int? two)
+            {
+                if (one.HasValue || two.HasValue)
+                {
+                    if (!one.HasValue)
+                    {
+                        return -1;
+                    }
+
+                    if (!two.HasValue)
+                    {
+                        return 1;
+                    }
+
+                    if (one.Value != two.Value)
+                    {
+                        return one.Value.CompareTo(two.Value) > 0 ? 1 : -1;
+                    }
+                }
+
+                return null;
+            }
+
+            public static int? Comparison(string one,
+                                          string two)
+            {
+                var comparison = string.Compare(one, two, StringComparison.OrdinalIgnoreCase);
+                if (0 == comparison)
+                {
+                    return null;
+                }
+
+                return comparison > 0 ? 1 : -1;
+            }
+        }
+
         private BritishPostcode()
         {
         }
 
-        private BritishPostcode(string area,
-                                string district,
-                                string sector = null,
-                                string unit = null)
+        private BritishPostcode(Parts parts)
         {
-            Area = area;
-            SetDistrict(district);
-            SetSector(sector);
-            SetUnit(unit);
+            Values = parts;
+            if (!parts.DistrictNumber.HasValue)
+            {
+                return;
+            }
+
+            parts.DistrictNumber = -1 == parts.DistrictNumber.Value ? null : parts.DistrictNumber;
+            District = Area.Append(parts.DistrictNumber.HasValue ? XmlConvert.ToString(parts.DistrictNumber.Value) : string.Empty)
+                           .Append(parts.DistrictLetter.HasValue ? XmlConvert.ToString(parts.DistrictLetter.Value) : string.Empty);
+            OutCode = District;
+
+            if (!parts.Sector.HasValue)
+            {
+                return;
+            }
+
+            Sector = "{0} {1}".FormatWith(District, parts.Sector.Value);
+            if (null == parts.Unit)
+            {
+                return;
+            }
+
+            Unit = Sector.Append(parts.Unit);
+            InCode = "{0}{1}".FormatWith(parts.Sector.Value, parts.Unit);
         }
 
-        public string Area { get; private set; }
+        private Parts Values { get; set; }
+
+        public string Area
+        {
+            get
+            {
+                return Values.Area;
+            }
+        }
 
         public string District { get; private set; }
 
@@ -43,14 +116,6 @@
         public string Sector { get; private set; }
 
         public string Unit { get; private set; }
-
-        private char? DistrictLetter { get; set; }
-
-        private int? DistrictNumber { get; set; }
-
-        private int? SectorNumber { get; set; }
-
-        private string UnitCode { get; set; }
 
         public static bool operator ==(BritishPostcode operand1,
                                        BritishPostcode operand2)
@@ -110,73 +175,52 @@
                 return 1;
             }
 
-            var comparison = string.Compare(comparand1.Area, comparand2.Area, StringComparison.OrdinalIgnoreCase);
-            if (0 != comparison)
+            var comparison = Parts.Comparison(comparand1.Values.Area, comparand2.Values.Area);
+            if (comparison.HasValue)
             {
-                return comparison > 0 ? 1 : -1;
+                return comparison.Value;
             }
 
-            if (comparand1.DistrictNumber.HasValue || comparand2.DistrictNumber.HasValue)
+            comparison = Parts.Comparison(comparand1.Values.DistrictNumber, comparand2.Values.DistrictNumber);
+            if (comparison.HasValue)
             {
-                if (!comparand1.DistrictNumber.HasValue)
-                {
-                    return -1;
-                }
-
-                if (!comparand2.DistrictNumber.HasValue)
-                {
-                    return 1;
-                }
-
-                if (comparand1.DistrictNumber.Value != comparand2.DistrictNumber.Value)
-                {
-                    return comparand1.DistrictNumber.Value.CompareTo(comparand2.DistrictNumber.Value);
-                }
+                return comparison.Value;
             }
 
-            if (comparand1.DistrictLetter.HasValue || comparand2.DistrictLetter.HasValue)
+            comparison = Parts.Comparison(comparand1.Values.DistrictLetter, comparand2.Values.DistrictLetter);
+            if (comparison.HasValue)
             {
-                if (!comparand1.DistrictLetter.HasValue)
-                {
-                    return -1;
-                }
-
-                if (!comparand2.DistrictLetter.HasValue)
-                {
-                    return 1;
-                }
-
-                if (comparand1.DistrictLetter.Value != comparand2.DistrictLetter.Value)
-                {
-                    return comparand1.DistrictLetter.Value.CompareTo(comparand2.DistrictLetter.Value) > 0 ? 1 : -1;
-                }
+                return comparison.Value;
             }
 
-            if (comparand1.SectorNumber.HasValue || comparand2.SectorNumber.HasValue)
+            ////if (comparand1._letter.HasValue || comparand2._letter.HasValue)
+            ////{
+            ////    if (!comparand1._letter.HasValue)
+            ////    {
+            ////        return -1;
+            ////    }
+
+            ////    if (!comparand2._letter.HasValue)
+            ////    {
+            ////        return 1;
+            ////    }
+
+            ////    if (comparand1._letter.Value != comparand2._letter.Value)
+            ////    {
+            ////        return comparand1._letter.Value.CompareTo(comparand2._letter.Value) > 0 ? 1 : -1;
+            ////    }
+            ////}
+
+            comparison = Parts.Comparison(comparand1.Values.Sector, comparand2.Values.Sector);
+            if (comparison.HasValue)
             {
-                if (!comparand1.SectorNumber.HasValue)
-                {
-                    return -1;
-                }
-
-                if (!comparand2.SectorNumber.HasValue)
-                {
-                    return 1;
-                }
-
-                if (comparand1.SectorNumber.Value != comparand2.SectorNumber.Value)
-                {
-                    return comparand1.SectorNumber.Value.CompareTo(comparand2.SectorNumber.Value);
-                }
+                return comparison.Value;
             }
 
-            comparison = string.Compare(comparand1.UnitCode, comparand2.UnitCode, StringComparison.OrdinalIgnoreCase);
-            if (0 == comparison)
-            {
-                return 0;
-            }
-
-            return comparison > 0 ? 1 : -1;
+            comparison = Parts.Comparison(comparand1.Values.Unit, comparand2.Values.Unit);
+            return comparison.HasValue
+                ? comparison.Value
+                : 0;
         }
 
         public static BritishPostcode FromString(string value)
@@ -200,35 +244,127 @@
                 return new BritishPostcode();
             }
 
-            var parts = value.Split(' ');
-            var area = ToArea(parts[0]);
-            if (!_areas.Contains(area))
+            return WholeUnit(value) ?? new BritishPostcode();
+        }
+
+        private static BritishPostcode WholeUnit(MutableString value)
+        {
+            if (8 < value.Length)
             {
-                return new BritishPostcode();
+                return null;
             }
 
-            BritishPostcode result;
-            switch (parts.Length)
+            if (!char.IsLetter(value[0]))
             {
-                case 1:
-                    result = new BritishPostcode(area, area == parts[0] ? null : parts[0]);
+                return null;
+            }
+
+            var parts = new Parts();
+
+            if (_areas.Contains(value))
+            {
+                parts.Area = value;
+                return new BritishPostcode(parts);
+            }
+
+            if (1 == value.Length)
+            {
+                return null;
+            }
+
+            var unit = value.Substring(value.Length - 2);
+            if (char.IsLetter(unit[0]) && char.IsLetter(unit[1]))
+            {
+                parts.Unit = unit;  
+                value.Truncate(value.Length - 2);
+            }
+
+            if (0 == value.Length)
+            {
+                return null;
+            }
+
+            var sector = value[value.Length - 1];
+            if (char.IsDigit(sector))
+            {
+                parts.Sector = XmlConvert.ToInt32("{0}".FormatWith(sector));
+                value.Truncate(value.Length - 1);
+            }
+
+            var space = false;
+            if (' ' == value[value.Length - 1])
+            {
+                space = true;
+                value.Truncate(value.Length - 1);
+            }
+
+            if ("GIR" == value)
+            {
+                parts.Area = "GIR";
+                parts.DistrictNumber = -1;
+                return new BritishPostcode(parts);
+            }
+
+            if (_areas.Contains(value))
+            {
+                parts.Area = value;
+                parts.DistrictNumber = parts.Sector;
+                parts.Sector = null;
+                return new BritishPostcode(parts);
+            }
+
+            if (char.IsLetter(value[value.Length - 1]))
+            {
+                parts.DistrictLetter = value[value.Length - 1];
+                value.Truncate(value.Length - 1);
+            }
+
+            var index = -1;
+            for (var i = 0; i < value.Length; i++)
+            {
+                if (char.IsDigit(value[i]))
+                {
+                    index = i;
                     break;
-
-                case 2:
-                    var sector = string.Concat(parts[0], ' ', ToSector(parts[1]));
-                    result = new BritishPostcode(area, parts[0], sector, value == sector ? null : value);
-                    break;
-
-                default:
-                    return new BritishPostcode();
+                }
             }
 
-            if (string.Equals(value.RemoveAny(' '), result.ToString().RemoveAny(' '), StringComparison.OrdinalIgnoreCase))
+            if (index.In(-1, 0))
             {
-                return result;
+                return null;
             }
 
-            return new BritishPostcode();
+            var number = value.Substring(index);
+            if (2 < number.Length)
+            {
+                return null;
+            }
+
+            foreach (var c in number)
+            {
+                if (char.IsLetter(c))
+                {
+                    return null;
+                }
+            }
+
+            if (!space && !parts.DistrictLetter.HasValue && parts.Sector.HasValue && number.Length.In(0, 1))
+            {
+                value.Append(XmlConvert.ToString(parts.Sector.Value));
+                number += parts.Sector.Value;
+                parts.Sector = null;
+            }
+
+            parts.DistrictNumber = XmlConvert.ToInt32(number);
+            value.Truncate(value.Length - number.Length);
+            if (!_areas.Contains(value))
+            {
+                return null;
+            }
+
+            parts.Area = value;
+
+            return new BritishPostcode(parts);
         }
 
         public override bool Equals(object obj)
@@ -259,11 +395,17 @@
 
         public override string ToString()
         {
-            return "{0}{1}{2} {3}{4}".FormatWith(Area,
-                                                 DistrictNumber.HasValue ? XmlConvert.ToString(DistrictNumber.Value) : string.Empty,
-                                                 DistrictLetter.HasValue ? XmlConvert.ToString(DistrictLetter.Value) : string.Empty,
-                                                 SectorNumber.HasValue ? XmlConvert.ToString(SectorNumber.Value) : string.Empty,
-                                                 UnitCode).Trim();
+            foreach (var value in new[] { Unit, Sector, District, Area })
+            {
+                if (null == value)
+                {
+                    continue;
+                }
+
+                return value;
+            }
+
+            return string.Empty;
         }
 
         public int CompareTo(object obj)
@@ -302,124 +444,6 @@
             }
 
             return ToString() == other.ToString();
-        }
-
-        private static string ToArea(IEnumerable<char> value)
-        {
-#if NET20
-            var result = string.Empty;
-            foreach (var c in value)
-            {
-                if (c >= 'A' && c <= 'Z')
-                {
-                    result += c;
-                }
-                else
-                {
-                    return result;
-                }
-            }
-
-            return result;
-#else
-            return value
-                .TakeWhile(c => c >= 'A' && c <= 'Z')
-                .Aggregate<char, string>(null,
-                                         (x,
-                                          c) => x + c);
-#endif
-        }
-
-        private static string ToSector(IEnumerable<char> value)
-        {
-#if NET20
-            var result = string.Empty;
-            foreach (var c in value)
-            {
-                if (c >= '0' && c <= '9')
-                {
-                    result += c;
-                }
-            }
-
-            return result;
-#else
-            return value
-                .Where(c => c >= '0' && c <= '9')
-                .Aggregate<char, string>(null,
-                                         (x,
-                                          c) => x + c);
-#endif
-        }
-
-        private void SetDistrict(string district)
-        {
-            if (null == district)
-            {
-                return;
-            }
-
-            District = district;
-            OutCode = district;
-
-            var letter = District.Last();
-            if (!char.IsDigit(letter))
-            {
-                DistrictLetter = letter;
-            }
-
-            var number = District.Substring(Area.Length);
-            if (number.IsEmpty())
-            {
-                return;
-            }
-
-            if (DistrictLetter.HasValue)
-            {
-                number = number.Substring(0, number.Length - 1);
-            }
-
-            DistrictNumber = XmlConvert.ToInt32(number);
-        }
-
-        private void SetSector(string sector)
-        {
-            if (null == District)
-            {
-                return;
-            }
-
-            if (null == sector)
-            {
-                return;
-            }
-
-            Sector = sector;
-
-            var number = Sector.Substring(District.Length).Trim();
-            if (number.IsEmpty())
-            {
-                return;
-            }
-
-            SectorNumber = XmlConvert.ToInt32(number);
-        }
-
-        private void SetUnit(string unit)
-        {
-            if (null == Sector)
-            {
-                return;
-            }
-
-            if (null == unit)
-            {
-                return;
-            }
-
-            Unit = unit;
-            UnitCode = Unit.Substring(Sector.Length);
-            InCode = Unit.RemoveFromStart(OutCode, StringComparison.Ordinal).Trim();
         }
     }
 }

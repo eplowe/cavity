@@ -92,7 +92,7 @@
  * Cavity.Data
    * Cavity.Core
 
-*2.0.0.923* Cavity.Domain.RoyalMail
+*2.0.0.925* Cavity.Domain.RoyalMail
  * Cavity.Data
    * Cavity.Core
 
