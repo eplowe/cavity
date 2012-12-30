@@ -35,7 +35,6 @@
         [InlineData(false, "GU21 4XG", "GU2")]
         [InlineData(false, "GU21 4XG", "GU21")]
         [InlineData(false, "GU21 4XG", "GU21 4")]
-        [InlineData(false, "GU21 4XG", "GU21 4X")]
         [InlineData(false, "GU21 4XG", "GU21 4XH")]
         public void opEquality_BritishPostcode_BritishPostcode(bool expected,
                                                                string comparand1,
@@ -61,7 +60,6 @@
         [InlineData(true, "GU21 4XG", "GU2")]
         [InlineData(true, "GU21 4XG", "GU21")]
         [InlineData(true, "GU21 4XG", "GU21 4")]
-        [InlineData(true, "GU21 4XG", "GU21 4X")]
         [InlineData(true, "GU21 4XG", "GU21 4XF")]
         [InlineData(false, "GU21 4XG", "GU21 4XG")]
         [InlineData(false, "GU21 4XG", "GU21 4XH")]
@@ -133,7 +131,6 @@
         [InlineData(true, "GU21 4XG", "GU2")]
         [InlineData(true, "GU21 4XG", "GU21")]
         [InlineData(true, "GU21 4XG", "GU21 4")]
-        [InlineData(true, "GU21 4XG", "GU21 4X")]
         [InlineData(true, "GU21 4XG", "GU21 4XH")]
         public void opInequality_BritishPostcode_BritishPostcode(bool expected,
                                                                  string comparand1,
@@ -159,7 +156,6 @@
         [InlineData(false, "GU21 4XG", "GU2")]
         [InlineData(false, "GU21 4XG", "GU21")]
         [InlineData(false, "GU21 4XG", "GU21 4")]
-        [InlineData(false, "GU21 4XG", "GU21 4X")]
         [InlineData(false, "GU21 4XG", "GU21 4XF")]
         [InlineData(false, "GU21 4XG", "GU21 4XG")]
         [InlineData(true, "GU21 4XG", "GU21 4XH")]
@@ -328,9 +324,13 @@
         }
 
         [Theory]
+        [InlineData("A")]
+        [InlineData("AX")]
         [InlineData("0X 4XG")]
         [InlineData("Ab Kettleby")]
-        public void op_FromString_string_WhenInvalidArea(string value)
+        [InlineData("WC1A 2H")]
+        [InlineData("GU21 4X")]
+        public void op_FromString_string_WhenInvalid(string value)
         {
             var obj = BritishPostcode.FromString(value);
 
@@ -457,18 +457,30 @@
         [InlineData("GU2")]
         [InlineData("GU21")]
         [InlineData("GU21 4")]
-        [InlineData("GU21 4X")]
         [InlineData("GU21 4XG")]
         [InlineData("W")]
         [InlineData("WC")]
         [InlineData("WC1")]
         [InlineData("WC1A")]
         [InlineData("WC1A 2")]
-        [InlineData("WC1A 2H")]
         [InlineData("WC1A 2HR")]
+        [InlineData("GIR 0AA")]
+        [InlineData("B10 9EL")]
         public void op_ToString(string expected)
         {
             var actual = BritishPostcode.FromString(expected).ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("GU21 4XG")]
+        [InlineData("WC1A 2HR")]
+        [InlineData("GIR 0AA")]
+        [InlineData("B10 9EL")]
+        public void op_FromString_string_whenNoSpaces(string expected)
+        {
+            var actual = BritishPostcode.FromString(expected.RemoveAny(' ')).ToString();
 
             Assert.Equal(expected, actual);
         }
