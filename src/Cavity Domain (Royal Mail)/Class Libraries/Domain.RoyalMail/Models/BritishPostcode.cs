@@ -30,7 +30,6 @@
             District = Area.Append(parts.DistrictNumber.HasValue ? XmlConvert.ToString(parts.DistrictNumber.Value) : string.Empty)
                            .Append(parts.DistrictLetter.HasValue ? XmlConvert.ToString(parts.DistrictLetter.Value) : string.Empty);
             OutCode = District;
-
             if (!parts.Sector.HasValue)
             {
                 return;
@@ -82,7 +81,9 @@
 
         public static implicit operator BritishPostcode(string value)
         {
-            return ReferenceEquals(null, value) ? null : FromString(value);
+            return ReferenceEquals(null, value)
+                       ? null
+                       : FromString(value);
         }
 
         public static implicit operator string(BritishPostcode value)
@@ -162,19 +163,18 @@
                 throw new ArgumentNullException("value");
             }
 
-            value = value
-                .NormalizeWhiteSpace()
-                .Trim()
-                .ToUpperInvariant()
-                .Where(c => ' '.Equals(c) || char.IsLetterOrDigit(c))
-                .Aggregate(string.Empty, (current,
-                                          c) => current + c);
+            value = value.NormalizeWhiteSpace()
+                         .Trim()
+                         .ToUpperInvariant()
+                         .Where(c => ' '.Equals(c) || char.IsLetterOrDigit(c))
+                         .Aggregate(string.Empty, (current,
+                                                   c) => current + c);
             if (0 == value.Length)
             {
                 return new BritishPostcode();
             }
 
-            return WholeUnit(value) ?? new BritishPostcode();
+            return PostalUnit(value) ?? new BritishPostcode();
         }
 
         public override bool Equals(object obj)
@@ -205,13 +205,8 @@
 
         public override string ToString()
         {
-            foreach (var value in new[] { Unit, Sector, District, Area })
+            foreach (var value in new[] { Unit, Sector, District, Area }.Where(value => null != value))
             {
-                if (null == value)
-                {
-                    continue;
-                }
-
                 return value;
             }
 
@@ -256,7 +251,106 @@
             return ToString() == other.ToString();
         }
 
-        private static BritishPostcode WholeUnit(MutableString value)
+        private static BritishPostcode PostalArea(MutableString value,
+                                                  Parts parts)
+        {
+            if (!_areas.Contains(value))
+            {
+                return null;
+            }
+
+            parts.Area = value;
+
+            return new BritishPostcode(parts);
+        }
+
+        private static BritishPostcode PostalDistrict(MutableString value,
+                                                      Parts parts,
+                                                      bool space)
+        {
+            if ("GIR" == value)
+            {
+                parts.Area = "GIR";
+                parts.DistrictNumber = -1;
+                return new BritishPostcode(parts);
+            }
+
+            if (_areas.Contains(value))
+            {
+                parts.Area = value;
+                parts.DistrictNumber = parts.Sector;
+                parts.Sector = null;
+                return new BritishPostcode(parts);
+            }
+
+            if (char.IsLetter(value[value.Length - 1]))
+            {
+                parts.DistrictLetter = value[value.Length - 1];
+                value.Truncate(value.Length - 1);
+            }
+
+            var index = -1;
+            for (var i = 0; i < value.Length; i++)
+            {
+                if (!char.IsDigit(value[i]))
+                {
+                    continue;
+                }
+
+                index = i;
+                break;
+            }
+
+            if (index.In(-1, 0))
+            {
+                return null;
+            }
+
+            var number = value.Substring(index);
+            if (2 < number.Length)
+            {
+                return null;
+            }
+
+            if (number.Any(char.IsLetter))
+            {
+                return null;
+            }
+
+            if (!space && !parts.DistrictLetter.HasValue && parts.Sector.HasValue && number.Length.In(0, 1))
+            {
+                value.Append(XmlConvert.ToString(parts.Sector.Value));
+                number += parts.Sector.Value;
+                parts.Sector = null;
+            }
+
+            parts.DistrictNumber = XmlConvert.ToInt32(number);
+            value.Truncate(value.Length - number.Length);
+
+            return PostalArea(value, parts);
+        }
+
+        private static BritishPostcode PostalSector(MutableString value,
+                                                    Parts parts)
+        {
+            var sector = value[value.Length - 1];
+            if (char.IsDigit(sector))
+            {
+                parts.Sector = XmlConvert.ToInt32("{0}".FormatWith(sector));
+                value.Truncate(value.Length - 1);
+            }
+
+            var space = false;
+            if (' ' == value[value.Length - 1])
+            {
+                space = true;
+                value.Truncate(value.Length - 1);
+            }
+
+            return PostalDistrict(value, parts, space);
+        }
+
+        private static BritishPostcode PostalUnit(MutableString value)
         {
             if (8 < value.Length)
             {
@@ -288,89 +382,9 @@
                 value.Truncate(value.Length - 2);
             }
 
-            if (0 == value.Length)
-            {
-                return null;
-            }
-
-            var sector = value[value.Length - 1];
-            if (char.IsDigit(sector))
-            {
-                parts.Sector = XmlConvert.ToInt32("{0}".FormatWith(sector));
-                value.Truncate(value.Length - 1);
-            }
-
-            var space = false;
-            if (' ' == value[value.Length - 1])
-            {
-                space = true;
-                value.Truncate(value.Length - 1);
-            }
-
-            if ("GIR" == value)
-            {
-                parts.Area = "GIR";
-                parts.DistrictNumber = -1;
-                return new BritishPostcode(parts);
-            }
-
-            if (_areas.Contains(value))
-            {
-                parts.Area = value;
-                parts.DistrictNumber = parts.Sector;
-                parts.Sector = null;
-                return new BritishPostcode(parts);
-            }
-
-            if (char.IsLetter(value[value.Length - 1]))
-            {
-                parts.DistrictLetter = value[value.Length - 1];
-                value.Truncate(value.Length - 1);
-            }
-
-            var index = -1;
-            for (var i = 0; i < value.Length; i++)
-            {
-                if (char.IsDigit(value[i]))
-                {
-                    index = i;
-                    break;
-                }
-            }
-
-            if (index.In(-1, 0))
-            {
-                return null;
-            }
-
-            var number = value.Substring(index);
-            if (2 < number.Length)
-            {
-                return null;
-            }
-
-            if (number.Any(char.IsLetter))
-            {
-                return null;
-            }
-
-            if (!space && !parts.DistrictLetter.HasValue && parts.Sector.HasValue && number.Length.In(0, 1))
-            {
-                value.Append(XmlConvert.ToString(parts.Sector.Value));
-                number += parts.Sector.Value;
-                parts.Sector = null;
-            }
-
-            parts.DistrictNumber = XmlConvert.ToInt32(number);
-            value.Truncate(value.Length - number.Length);
-            if (!_areas.Contains(value))
-            {
-                return null;
-            }
-
-            parts.Area = value;
-
-            return new BritishPostcode(parts);
+            return 0 == value.Length
+                       ? null
+                       : PostalSector(value, parts);
         }
 
         private struct Parts
