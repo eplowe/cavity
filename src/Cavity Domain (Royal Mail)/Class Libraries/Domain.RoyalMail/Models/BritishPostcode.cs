@@ -317,7 +317,11 @@
                 return null;
             }
 
-            if (!space && !parts.DistrictLetter.HasValue && parts.Sector.HasValue && number.Length.In(0, 1))
+            if (null == parts.Unit &&
+                !space &&
+                !parts.DistrictLetter.HasValue &&
+                parts.Sector.HasValue &&
+                number.Length.In(0, 1))
             {
                 value.Append(XmlConvert.ToString(parts.Sector.Value));
                 number += parts.Sector.Value;
