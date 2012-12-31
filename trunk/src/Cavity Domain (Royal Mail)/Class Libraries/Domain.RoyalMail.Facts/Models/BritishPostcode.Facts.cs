@@ -328,8 +328,10 @@
         [InlineData("AX")]
         [InlineData("0X 4XG")]
         [InlineData("Ab Kettleby")]
-        [InlineData("WC1A 2H")]
+        [InlineData("B1 1B")]
+        [InlineData("BB1 1A")]
         [InlineData("GU21 4X")]
+        [InlineData("WC1A 2H")]
         public void op_FromString_string_WhenInvalid(string value)
         {
             var obj = BritishPostcode.FromString(value);
@@ -465,6 +467,8 @@
         [InlineData("WC1A 2")]
         [InlineData("WC1A 2HR")]
         [InlineData("GIR 0AA")]
+        [InlineData("B1 1BA")]
+        [InlineData("BB1 1AB")]
         [InlineData("B10 9EL")]
         public void op_ToString(string expected)
         {
@@ -474,10 +478,12 @@
         }
 
         [Theory]
+        [InlineData("GIR 0AA")]
+        [InlineData("B1 1BA")]
+        [InlineData("BB1 1AB")]
+        [InlineData("B10 9EL")]
         [InlineData("GU21 4XG")]
         [InlineData("WC1A 2HR")]
-        [InlineData("GIR 0AA")]
-        [InlineData("B10 9EL")]
         public void op_FromString_string_whenNoSpaces(string expected)
         {
             var actual = BritishPostcode.FromString(expected.RemoveAny(' ')).ToString();
