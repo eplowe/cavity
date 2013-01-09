@@ -22,6 +22,8 @@
                             .IsUnsealed()
                             .HasDefaultConstructor()
                             .Serializable()
+                            .Implements<IEnumerable<KeyStringPair>>()
+                            .Implements<ICloneable>()
                             .Result);
         }
 
@@ -31,9 +33,9 @@
             const string expected = "value";
 
             var data = new KeyStringDictionary
-                           {
-                               { "NAME", expected }
-                           };
+                {
+                    { "NAME", expected }
+                };
 
             var actual = data["name"];
 
@@ -44,9 +46,9 @@
         public void ctor_IEqualityComparerOfString()
         {
             var data = new KeyStringDictionary(StringComparer.Ordinal)
-                           {
-                               { "NAME", "value" }
-                           };
+                {
+                    { "NAME", "value" }
+                };
 
             Assert.Throws<KeyNotFoundException>(() => data["name"]);
         }
@@ -55,18 +57,18 @@
         public void ctor_SerializationInfo_StreamingContext()
         {
             var expected = new KeyStringDictionary
-                               {
-                                   new KeyStringPair("key", "value")
-                               };
+                {
+                    new KeyStringPair("key", "value")
+                };
             KeyStringDictionary actual;
 
             using (Stream stream = new MemoryStream())
             {
                 var formatter = new BinaryFormatter();
                 var obj = new KeyStringDictionary
-                              {
-                                  new KeyStringPair("key", "value")
-                              };
+                    {
+                        new KeyStringPair("key", "value")
+                    };
                 formatter.Serialize(stream, obj);
                 stream.Position = 0;
                 actual = (KeyStringDictionary)formatter.Deserialize(stream);
@@ -79,10 +81,10 @@
         public void indexer_int()
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("zero", "0"), 
-                              new KeyStringPair("one", "1")
-                          };
+                {
+                    new KeyStringPair("zero", "0"),
+                    new KeyStringPair("one", "1")
+                };
 
             for (var i = 0; i < obj.Count; i++)
             {
@@ -100,20 +102,48 @@
         public void op_Add_KeyStringPair()
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", "value")
-                          };
+                {
+                    new KeyStringPair("key", "value")
+                };
 
             Assert.Equal(1, obj.Count);
+        }
+
+        [Fact]
+        public void op_Clone()
+        {
+            var obj = new KeyStringDictionary
+                {
+                    new KeyStringPair("key", "value")
+                };
+            var clone = obj.Clone() as KeyStringDictionary;
+
+            Assert.NotNull(clone);
+            Assert.True(obj.ContainsKey("key"));
+            Assert.False(obj.ContainsKey("example"));
+        }
+
+        [Fact]
+        public void op_CloneOfT_whenKeyStringDictionary()
+        {
+            var obj = new KeyStringDictionary
+                {
+                    new KeyStringPair("key", "value")
+                };
+            var clone = obj.Clone<KeyStringDictionary>();
+
+            Assert.NotNull(clone);
+            Assert.True(obj.ContainsKey("key"));
+            Assert.False(obj.ContainsKey("example"));
         }
 
         [Fact]
         public void op_ContainsKey_string()
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", "value")
-                          };
+                {
+                    new KeyStringPair("key", "value")
+                };
 
             Assert.True(obj.ContainsKey("key"));
             Assert.False(obj.ContainsKey("example"));
@@ -124,11 +154,31 @@
         {
             var item = new KeyStringPair("key", "value");
             var obj = new KeyStringDictionary
-                          {
-                              item
-                          };
+                {
+                    item
+                };
 
             Assert.True(obj.Contains(item));
+        }
+
+        [Fact]
+        public void op_CopyTo_KeyStringDictionary()
+        {
+            var obj = new KeyStringDictionary
+                {
+                    new KeyStringPair("key", "value")
+                };
+            var copy = new KeyStringDictionary();
+            obj.CopyTo(copy);
+
+            Assert.True(copy.ContainsKey("key"));
+            Assert.False(copy.ContainsKey("example"));
+        }
+
+        [Fact]
+        public void op_CopyTo_KeyStringDictionaryNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new KeyStringDictionary().CopyTo(null));
         }
 
         [Theory]
@@ -138,16 +188,16 @@
         [InlineData(false, "A,C")]
         [InlineData(true, "B")]
         [InlineData(true, "B,D")]
-        public void op_Empty_strings(bool expected, 
+        public void op_Empty_strings(bool expected,
                                      string keys)
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("A", "1"), 
-                              new KeyStringPair("B", string.Empty), 
-                              new KeyStringPair("C", "3"), 
-                              new KeyStringPair("D", string.Empty)
-                          };
+                {
+                    new KeyStringPair("A", "1"),
+                    new KeyStringPair("B", string.Empty),
+                    new KeyStringPair("C", "3"),
+                    new KeyStringPair("D", string.Empty)
+                };
 
             var actual = obj.Empty(keys.Split(',', StringSplitOptions.RemoveEmptyEntries));
 
@@ -157,13 +207,13 @@
         [Theory]
         [InlineData(false, "value")]
         [InlineData(true, "")]
-        public void op_Empty_stringsEmpty(bool expected, 
+        public void op_Empty_stringsEmpty(bool expected,
                                           string value)
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("A", value)
-                          };
+                {
+                    new KeyStringPair("A", value)
+                };
 
             var actual = obj.Empty();
 
@@ -180,9 +230,9 @@
         public void op_GetEnumerator()
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", "value")
-                          };
+                {
+                    new KeyStringPair("key", "value")
+                };
 
             foreach (var item in obj)
             {
@@ -198,16 +248,16 @@
         [InlineData(1, "A,B")]
         [InlineData(2, "A,B,C")]
         [InlineData(2, "A,B,C,D")]
-        public void op_Length_strings(int expected, 
+        public void op_Length_strings(int expected,
                                       string keys)
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("A", "1"), 
-                              new KeyStringPair("B", string.Empty), 
-                              new KeyStringPair("C", "3"), 
-                              new KeyStringPair("D", string.Empty)
-                          };
+                {
+                    new KeyStringPair("A", "1"),
+                    new KeyStringPair("B", string.Empty),
+                    new KeyStringPair("C", "3"),
+                    new KeyStringPair("D", string.Empty)
+                };
 
             var actual = obj.Length(keys.Split(',', StringSplitOptions.RemoveEmptyEntries));
 
@@ -217,13 +267,13 @@
         [Theory]
         [InlineData(0, "")]
         [InlineData(5, "value")]
-        public void op_Length_stringsEmpty(int expected, 
+        public void op_Length_stringsEmpty(int expected,
                                            string value)
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("A", value)
-                          };
+                {
+                    new KeyStringPair("A", value)
+                };
 
             var actual = obj.Length();
 
@@ -240,11 +290,11 @@
         public void op_Move_string_string()
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("A", "1"), 
-                              new KeyStringPair("B", string.Empty), 
-                              new KeyStringPair("C", "3")
-                          };
+                {
+                    new KeyStringPair("A", "1"),
+                    new KeyStringPair("B", string.Empty),
+                    new KeyStringPair("C", "3")
+                };
 
             obj.Move("C", "B");
 
@@ -261,16 +311,16 @@
         [InlineData(true, "A,C")]
         [InlineData(false, "B")]
         [InlineData(false, "B,D")]
-        public void op_NotEmpty_strings(bool expected, 
+        public void op_NotEmpty_strings(bool expected,
                                         string keys)
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("A", "1"), 
-                              new KeyStringPair("B", string.Empty), 
-                              new KeyStringPair("C", "3"), 
-                              new KeyStringPair("D", string.Empty)
-                          };
+                {
+                    new KeyStringPair("A", "1"),
+                    new KeyStringPair("B", string.Empty),
+                    new KeyStringPair("C", "3"),
+                    new KeyStringPair("D", string.Empty)
+                };
 
             var actual = obj.NotEmpty(keys.Split(',', StringSplitOptions.RemoveEmptyEntries));
 
@@ -280,13 +330,13 @@
         [Theory]
         [InlineData(true, "value")]
         [InlineData(false, "")]
-        public void op_NotEmpty_stringsEmpty(bool expected, 
+        public void op_NotEmpty_stringsEmpty(bool expected,
                                              string value)
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("A", value)
-                          };
+                {
+                    new KeyStringPair("A", value)
+                };
 
             var actual = obj.NotEmpty();
 
@@ -304,9 +354,9 @@
         {
             var item = new KeyStringPair("key", "value");
             var obj = new KeyStringDictionary
-                          {
-                              item
-                          };
+                {
+                    item
+                };
 
             Assert.True(obj.Remove(item));
             Assert.Equal(0, obj.Count);
@@ -316,11 +366,11 @@
         public void op_Strings_strings()
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("A", "1"), 
-                              new KeyStringPair("B", "2"), 
-                              new KeyStringPair("C", "3")
-                          };
+                {
+                    new KeyStringPair("A", "1"),
+                    new KeyStringPair("B", "2"),
+                    new KeyStringPair("C", "3")
+                };
 
             const string expected = "1,2,3";
             var actual = obj.Strings("A", "B", "C").Concat(",");
@@ -332,11 +382,11 @@
         public void op_Strings_stringsEmpty()
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("A", "1"), 
-                              new KeyStringPair("B", "2"), 
-                              new KeyStringPair("C", "3")
-                          };
+                {
+                    new KeyStringPair("A", "1"),
+                    new KeyStringPair("B", "2"),
+                    new KeyStringPair("C", "3")
+                };
 
             const string expected = "1,2,3";
             var actual = obj.Strings().Concat(",");
@@ -354,9 +404,9 @@
         public void op_TryAdd_string_string_whenFalse()
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", "value")
-                          };
+                {
+                    new KeyStringPair("key", "value")
+                };
 
             Assert.False(obj.TryAdd("key", "value"));
             Assert.Equal(1, obj.Count);
@@ -376,9 +426,9 @@
         {
             var expected = DateTime.UtcNow;
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", expected.ToXmlString())
-                          };
+                {
+                    new KeyStringPair("key", expected.ToXmlString())
+                };
 
             var actual = obj.TryValue<DateTime>(0);
 
@@ -390,9 +440,9 @@
         {
             var expected = DateTime.UtcNow;
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", expected.ToXmlString())
-                          };
+                {
+                    new KeyStringPair("key", expected.ToXmlString())
+                };
 
             var actual = obj.TryValue<DateTime>("key");
 
@@ -404,9 +454,9 @@
         {
             const int expected = 123;
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", XmlConvert.ToString(expected))
-                          };
+                {
+                    new KeyStringPair("key", XmlConvert.ToString(expected))
+                };
 
             var actual = obj.TryValue<int>(0);
 
@@ -416,14 +466,14 @@
         [Theory]
         [InlineData(123, "123", -1)]
         [InlineData(-1, "", -1)]
-        public void op_TryValueOfInt32_int_int(int expected, 
-                                               string value, 
+        public void op_TryValueOfInt32_int_int(int expected,
+                                               string value,
                                                int empty)
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", value)
-                          };
+                {
+                    new KeyStringPair("key", value)
+                };
 
             var actual = obj.TryValue(0, empty);
 
@@ -435,9 +485,9 @@
         {
             const int expected = 123;
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", XmlConvert.ToString(expected))
-                          };
+                {
+                    new KeyStringPair("key", XmlConvert.ToString(expected))
+                };
 
             var actual = obj.TryValue<int>("key");
 
@@ -449,9 +499,9 @@
         {
             const string expected = "value";
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", expected)
-                          };
+                {
+                    new KeyStringPair("key", expected)
+                };
 
             var actual = obj.TryValue<string>(0);
 
@@ -463,9 +513,9 @@
         {
             const string expected = "value";
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", expected)
-                          };
+                {
+                    new KeyStringPair("key", expected)
+                };
 
             var actual = obj.TryValue<string>("key");
 
@@ -475,14 +525,14 @@
         [Theory]
         [InlineData("example", "example", "empty")]
         [InlineData("empty", "", "empty")]
-        public void op_TryValueOfString_string_string(string expected, 
-                                                      string value, 
+        public void op_TryValueOfString_string_string(string expected,
+                                                      string value,
                                                       string empty)
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", expected)
-                          };
+                {
+                    new KeyStringPair("key", expected)
+                };
 
             var actual = obj.TryValue("key", empty);
 
@@ -494,9 +544,9 @@
         {
             var expected = DateTime.UtcNow;
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", expected.ToXmlString())
-                          };
+                {
+                    new KeyStringPair("key", expected.ToXmlString())
+                };
 
             var actual = obj.Value<DateTime>(0);
 
@@ -508,9 +558,9 @@
         {
             var expected = DateTime.UtcNow;
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", expected.ToXmlString())
-                          };
+                {
+                    new KeyStringPair("key", expected.ToXmlString())
+                };
 
             var actual = obj.Value<DateTime>("key");
 
@@ -522,9 +572,9 @@
         {
             const int expected = 123;
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", XmlConvert.ToString(expected))
-                          };
+                {
+                    new KeyStringPair("key", XmlConvert.ToString(expected))
+                };
 
             var actual = obj.Value<int>(0);
 
@@ -534,14 +584,14 @@
         [Theory]
         [InlineData(123, "123", -1)]
         [InlineData(-1, "", -1)]
-        public void op_ValueOfInt32_int_int(int expected, 
-                                            string value, 
+        public void op_ValueOfInt32_int_int(int expected,
+                                            string value,
                                             int empty)
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", value)
-                          };
+                {
+                    new KeyStringPair("key", value)
+                };
 
             var actual = obj.Value(0, empty);
 
@@ -553,9 +603,9 @@
         {
             const int expected = 123;
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", XmlConvert.ToString(expected))
-                          };
+                {
+                    new KeyStringPair("key", XmlConvert.ToString(expected))
+                };
 
             var actual = obj.Value<int>("key");
 
@@ -567,9 +617,9 @@
         {
             const string expected = "value";
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", expected)
-                          };
+                {
+                    new KeyStringPair("key", expected)
+                };
 
             var actual = obj.Value<string>(0);
 
@@ -581,9 +631,9 @@
         {
             const string expected = "value";
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", expected)
-                          };
+                {
+                    new KeyStringPair("key", expected)
+                };
 
             var actual = obj.Value<string>("key");
 
@@ -593,14 +643,14 @@
         [Theory]
         [InlineData("example", "example", "empty")]
         [InlineData("empty", "", "empty")]
-        public void op_ValueOfString_string_string(string expected, 
-                                                   string value, 
+        public void op_ValueOfString_string_string(string expected,
+                                                   string value,
                                                    string empty)
         {
             var obj = new KeyStringDictionary
-                          {
-                              new KeyStringPair("key", expected)
-                          };
+                {
+                    new KeyStringPair("key", expected)
+                };
 
             var actual = obj.Value("key", empty);
 
