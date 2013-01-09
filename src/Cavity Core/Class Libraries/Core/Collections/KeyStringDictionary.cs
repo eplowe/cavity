@@ -11,8 +11,9 @@
     using Cavity.Properties;
 
     [Serializable]
-    public class KeyStringDictionary : Dictionary<string, string>, 
-                                       IEnumerable<KeyStringPair>
+    public class KeyStringDictionary : Dictionary<string, string>,
+                                       IEnumerable<KeyStringPair>,
+                                       ICloneable
     {
         public KeyStringDictionary()
             : this(StringComparer.OrdinalIgnoreCase)
@@ -24,7 +25,7 @@
         {
         }
 
-        protected KeyStringDictionary(SerializationInfo info, 
+        protected KeyStringDictionary(SerializationInfo info,
                                       StreamingContext context)
             : base(info, context)
         {
@@ -58,9 +59,37 @@
             Add(item.Key, item.Value);
         }
 
+        public virtual object Clone()
+        {
+            return Clone<KeyStringDictionary>();
+        }
+
+        public virtual T Clone<T>()
+            where T : KeyStringDictionary, new()
+        {
+            var clone = Activator.CreateInstance<T>();
+
+            CopyTo(clone);
+
+            return clone;
+        }
+
         public virtual bool Contains(KeyStringPair item)
         {
             return (this as IDictionary<string, string>).Contains(new KeyValuePair<string, string>(item.Key, item.Value));
+        }
+
+        public virtual void CopyTo(KeyStringDictionary target)
+        {
+            if (null == target)
+            {
+                throw new ArgumentNullException("target");
+            }
+
+            foreach (var item in this)
+            {
+                target[item.Key] = item.Value;
+            }
         }
 
         public virtual bool Empty(params string[] keys)
@@ -119,7 +148,7 @@
 #endif
         }
 
-        public virtual void Move(string source, 
+        public virtual void Move(string source,
                                  string destination)
         {
             this[destination] = this[source];
@@ -168,7 +197,7 @@
 #endif
         }
 
-        public virtual T TryValue<T>(int index, 
+        public virtual T TryValue<T>(int index,
                                      T empty)
         {
             var value = this[index];
@@ -191,7 +220,7 @@
 #endif
         }
 
-        public virtual T TryValue<T>(string key, 
+        public virtual T TryValue<T>(string key,
                                      T empty)
         {
             var value = this[key];
@@ -214,7 +243,7 @@
 #endif
         }
 
-        public virtual T Value<T>(int index, 
+        public virtual T Value<T>(int index,
                                   T empty)
         {
             var value = this[index];
@@ -237,7 +266,7 @@
 #endif
         }
 
-        public virtual T Value<T>(string key, 
+        public virtual T Value<T>(string key,
                                   T empty)
         {
             var value = this[key];
