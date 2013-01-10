@@ -14,11 +14,10 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<Quality>()
-                            .IsValueType()
-                            .Implements<IEquatable<Quality>>()
-                            .Serializable()
-                            .Result);
+            Assert.True(new TypeExpectations<Quality>().IsValueType()
+                                                       .Implements<IEquatable<Quality>>()
+                                                       .Serializable()
+                                                       .Result);
         }
 
         [Fact]

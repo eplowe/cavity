@@ -7,13 +7,12 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<NullObject>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsSealed()
-                            .NoDefaultConstructor()
-                            .IsNotDecorated()
-                            .Result);
+            Assert.True(new TypeExpectations<NullObject>().DerivesFrom<object>()
+                                                          .IsConcreteClass()
+                                                          .IsSealed()
+                                                          .NoDefaultConstructor()
+                                                          .IsNotDecorated()
+                                                          .Result);
         }
 
         [Fact]

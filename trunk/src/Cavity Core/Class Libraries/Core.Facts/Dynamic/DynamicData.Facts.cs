@@ -10,13 +10,12 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<DynamicData>()
-                            .DerivesFrom<DynamicObject>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .HasDefaultConstructor()
-                            .IsNotDecorated()
-                            .Result);
+            Assert.True(new TypeExpectations<DynamicData>().DerivesFrom<DynamicObject>()
+                                                           .IsConcreteClass()
+                                                           .IsUnsealed()
+                                                           .HasDefaultConstructor()
+                                                           .IsNotDecorated()
+                                                           .Result);
         }
 
         [Fact]

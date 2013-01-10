@@ -12,10 +12,9 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<IGetTimeZone<Month>>()
-                .IsInterface()
-                .IsNotDecorated()
-                .Result);
+            Assert.True(new TypeExpectations<IGetTimeZone<Month>>().IsInterface()
+                                                                   .IsNotDecorated()
+                                                                   .Result);
         }
 
         [Fact]

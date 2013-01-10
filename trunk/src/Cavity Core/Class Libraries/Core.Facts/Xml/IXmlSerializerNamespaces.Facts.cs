@@ -11,10 +11,9 @@ namespace Cavity.Xml
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<IXmlSerializerNamespaces>()
-                            .IsInterface()
-                            .IsNotDecorated()
-                            .Result);
+            Assert.True(new TypeExpectations<IXmlSerializerNamespaces>().IsInterface()
+                                                                        .IsNotDecorated()
+                                                                        .Result);
         }
 
         [Fact]

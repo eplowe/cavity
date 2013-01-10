@@ -15,14 +15,13 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<StreamWriterDictionary>()
-                            .DerivesFrom<Dictionary<string, StreamWriter>>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .HasDefaultConstructor()
-                            .Serializable()
-                            .Implements<IDisposable>()
-                            .Result);
+            Assert.True(new TypeExpectations<StreamWriterDictionary>().DerivesFrom<Dictionary<string, StreamWriter>>()
+                                                                      .IsConcreteClass()
+                                                                      .IsUnsealed()
+                                                                      .HasDefaultConstructor()
+                                                                      .Serializable()
+                                                                      .Implements<IDisposable>()
+                                                                      .Result);
         }
 
         [Fact]

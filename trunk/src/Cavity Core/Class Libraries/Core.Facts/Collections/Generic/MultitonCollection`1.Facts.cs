@@ -11,14 +11,13 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<MultitonCollection<string, string>>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .HasDefaultConstructor()
-                            .IsNotDecorated()
-                            .Implements<IEnumerable>()
-                            .Result);
+            Assert.True(new TypeExpectations<MultitonCollection<string, string>>().DerivesFrom<object>()
+                                                                                  .IsConcreteClass()
+                                                                                  .IsUnsealed()
+                                                                                  .HasDefaultConstructor()
+                                                                                  .IsNotDecorated()
+                                                                                  .Implements<IEnumerable>()
+                                                                                  .Result);
         }
 
         [Fact]

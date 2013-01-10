@@ -10,13 +10,12 @@ namespace Cavity
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<ValueObject<ValueObjectDerived>>()
-                            .DerivesFrom<object>()
-                            .IsAbstractBaseClass()
-                            .IsNotDecorated()
-                            .Implements<IComparable>()
-                            .Implements<IEquatable<ValueObjectDerived>>()
-                            .Result);
+            Assert.True(new TypeExpectations<ValueObject<ValueObjectDerived>>().DerivesFrom<object>()
+                                                                               .IsAbstractBaseClass()
+                                                                               .IsNotDecorated()
+                                                                               .Implements<IComparable>()
+                                                                               .Implements<IEquatable<ValueObjectDerived>>()
+                                                                               .Result);
         }
 
         [Fact]

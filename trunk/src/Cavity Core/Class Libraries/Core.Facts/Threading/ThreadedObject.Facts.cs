@@ -9,11 +9,10 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<ThreadedObject>()
-                            .DerivesFrom<DisposableObject>()
-                            .IsAbstractBaseClass()
-                            .IsNotDecorated()
-                            .Result);
+            Assert.True(new TypeExpectations<ThreadedObject>().DerivesFrom<DisposableObject>()
+                                                              .IsAbstractBaseClass()
+                                                              .IsNotDecorated()
+                                                              .Result);
         }
 
         [Fact]

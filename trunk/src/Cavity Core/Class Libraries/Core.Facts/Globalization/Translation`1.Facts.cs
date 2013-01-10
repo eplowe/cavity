@@ -13,12 +13,11 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<Translation<int>>()
-                            .IsValueType()
-                            .Implements<IEquatable<Translation<int>>>()
-                            .Serializable()
-                            .IsDecoratedWith<ImmutableObjectAttribute>()
-                            .Result);
+            Assert.True(new TypeExpectations<Translation<int>>().IsValueType()
+                                                                .Implements<IEquatable<Translation<int>>>()
+                                                                .Serializable()
+                                                                .IsDecoratedWith<ImmutableObjectAttribute>()
+                                                                .Result);
         }
 
         [Fact]

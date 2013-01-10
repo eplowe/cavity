@@ -18,16 +18,15 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<AlphaDecimal>()
-                            .IsValueType()
-                            .IsDecoratedWith<ImmutableObjectAttribute>()
-                            .Implements<ISerializable>()
-                            .Implements<IConvertible>()
-                            .Implements<IComparable>()
-                            .Implements<IComparable<AlphaDecimal>>()
-                            .Implements<IEquatable<AlphaDecimal>>()
-                            .Serializable()
-                            .Result);
+            Assert.True(new TypeExpectations<AlphaDecimal>().IsValueType()
+                                                            .IsDecoratedWith<ImmutableObjectAttribute>()
+                                                            .Implements<ISerializable>()
+                                                            .Implements<IConvertible>()
+                                                            .Implements<IComparable>()
+                                                            .Implements<IComparable<AlphaDecimal>>()
+                                                            .Implements<IEquatable<AlphaDecimal>>()
+                                                            .Serializable()
+                                                            .Result);
         }
 
         [Fact]

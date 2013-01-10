@@ -9,13 +9,12 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<Tree<int>>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .HasDefaultConstructor()
-                            .IsNotDecorated()
-                            .Result);
+            Assert.True(new TypeExpectations<Tree<int>>().DerivesFrom<object>()
+                                                         .IsConcreteClass()
+                                                         .IsUnsealed()
+                                                         .HasDefaultConstructor()
+                                                         .IsNotDecorated()
+                                                         .Result);
         }
 
         [Fact]

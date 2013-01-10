@@ -15,17 +15,16 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<Token>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .NoDefaultConstructor()
-                            .Serializable()
-                            .IsDecoratedWith<ImmutableObjectAttribute>()
-                            .Implements<IComparable>()
-                            .Implements<IComparable<Token>>()
-                            .Implements<IEquatable<Token>>()
-                            .Result);
+            Assert.True(new TypeExpectations<Token>().DerivesFrom<object>()
+                                                     .IsConcreteClass()
+                                                     .IsUnsealed()
+                                                     .NoDefaultConstructor()
+                                                     .Serializable()
+                                                     .IsDecoratedWith<ImmutableObjectAttribute>()
+                                                     .Implements<IComparable>()
+                                                     .Implements<IComparable<Token>>()
+                                                     .Implements<IEquatable<Token>>()
+                                                     .Result);
         }
 
         [Fact]

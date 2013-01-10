@@ -13,14 +13,13 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<FileSpec>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .NoDefaultConstructor()
-                            .IsNotDecorated()
-                            .Implements<IEnumerable<FileInfo>>()
-                            .Result);
+            Assert.True(new TypeExpectations<FileSpec>().DerivesFrom<object>()
+                                                        .IsConcreteClass()
+                                                        .IsUnsealed()
+                                                        .NoDefaultConstructor()
+                                                        .IsNotDecorated()
+                                                        .Implements<IEnumerable<FileInfo>>()
+                                                        .Result);
         }
 
         [Theory]

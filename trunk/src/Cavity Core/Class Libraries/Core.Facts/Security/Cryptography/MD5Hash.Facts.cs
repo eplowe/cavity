@@ -35,15 +35,14 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<MD5Hash>()
-                            .IsValueType()
-                            .Serializable()
-                            .IsDecoratedWith<ImmutableObjectAttribute>()
-                            .Implements<ISerializable>()
-                            .Implements<IComparable>()
-                            .Implements<IComparable<MD5Hash>>()
-                            .Implements<IEquatable<MD5Hash>>()
-                            .Result);
+            Assert.True(new TypeExpectations<MD5Hash>().IsValueType()
+                                                       .Serializable()
+                                                       .IsDecoratedWith<ImmutableObjectAttribute>()
+                                                       .Implements<ISerializable>()
+                                                       .Implements<IComparable>()
+                                                       .Implements<IComparable<MD5Hash>>()
+                                                       .Implements<IEquatable<MD5Hash>>()
+                                                       .Result);
         }
 
         [Fact]

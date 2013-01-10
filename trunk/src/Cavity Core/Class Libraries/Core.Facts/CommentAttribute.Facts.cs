@@ -9,13 +9,12 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<CommentAttribute>()
-                            .DerivesFrom<Attribute>()
-                            .IsConcreteClass()
-                            .IsSealed()
-                            .NoDefaultConstructor()
-                            .AttributeUsage(AttributeTargets.All, true, true)
-                            .Result);
+            Assert.True(new TypeExpectations<CommentAttribute>().DerivesFrom<Attribute>()
+                                                                .IsConcreteClass()
+                                                                .IsSealed()
+                                                                .NoDefaultConstructor()
+                                                                .AttributeUsage(AttributeTargets.All, true, true)
+                                                                .Result);
         }
 
         [Fact]

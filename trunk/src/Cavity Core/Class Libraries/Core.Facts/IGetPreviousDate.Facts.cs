@@ -9,11 +9,10 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<IGetPreviousDate>()
-                            .IsInterface()
-                            .Implements<IGetPreviousMonth>()
-                            .Implements<IGetPreviousWeekday>()
-                            .Result);
+            Assert.True(new TypeExpectations<IGetPreviousDate>().IsInterface()
+                                                                .Implements<IGetPreviousMonth>()
+                                                                .Implements<IGetPreviousWeekday>()
+                                                                .Result);
         }
 
         [Fact]

@@ -14,15 +14,14 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<DataCollection>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .HasDefaultConstructor()
-                            .XmlRoot("data")
-                            .Implements<IEnumerable<KeyStringPair>>()
-                            .XmlSerializable()
-                            .Result);
+            Assert.True(new TypeExpectations<DataCollection>().DerivesFrom<object>()
+                                                              .IsConcreteClass()
+                                                              .IsUnsealed()
+                                                              .HasDefaultConstructor()
+                                                              .XmlRoot("data")
+                                                              .Implements<IEnumerable<KeyStringPair>>()
+                                                              .XmlSerializable()
+                                                              .Result);
         }
 
         [Fact]

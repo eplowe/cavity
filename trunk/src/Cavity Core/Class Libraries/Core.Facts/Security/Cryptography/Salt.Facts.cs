@@ -10,13 +10,12 @@ namespace Cavity.Security.Cryptography
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<Salt>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsSealed()
-                            .HasDefaultConstructor()
-                            .IsDecoratedWith<ImmutableObjectAttribute>()
-                            .Result);
+            Assert.True(new TypeExpectations<Salt>().DerivesFrom<object>()
+                                                    .IsConcreteClass()
+                                                    .IsSealed()
+                                                    .HasDefaultConstructor()
+                                                    .IsDecoratedWith<ImmutableObjectAttribute>()
+                                                    .Result);
         }
 
         [Fact]

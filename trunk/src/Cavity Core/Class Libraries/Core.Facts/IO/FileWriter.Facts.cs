@@ -10,13 +10,12 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<FileWriter>()
-                            .DerivesFrom<StreamWriter>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .NoDefaultConstructor()
-                            .IsNotDecorated()
-                            .Result);
+            Assert.True(new TypeExpectations<FileWriter>().DerivesFrom<StreamWriter>()
+                                                          .IsConcreteClass()
+                                                          .IsUnsealed()
+                                                          .NoDefaultConstructor()
+                                                          .IsNotDecorated()
+                                                          .Result);
         }
 
         [Fact]
