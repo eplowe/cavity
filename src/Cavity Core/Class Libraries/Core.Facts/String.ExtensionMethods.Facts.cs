@@ -477,6 +477,23 @@
             Assert.False("cat".EqualsAny(StringComparison.Ordinal, null as string[]));
         }
 
+        [Theory]
+        [InlineData(true, null, null)]
+        [InlineData(false, null, "")]
+        [InlineData(false, "", null)]
+        [InlineData(true, "", "")]
+        [InlineData(false, "", "  ")]
+        [InlineData(true, "example", "EXAMPLE")]
+        [InlineData(false, "example", " EXAMPLE ")]
+        public void op_EqualsOrdinalIgnoreCase_string_string(bool expected,
+                                                             string value,
+                                                             string comparand)
+        {
+            var actual = value.EqualsOrdinalIgnoreCase(comparand);
+
+            Assert.Equal(expected, actual);
+        }
+
         [Fact]
         public void op_FormatWith_stringEmpty_objects()
         {
@@ -516,52 +533,52 @@
             Assert.Throws<FormatException>(() => "a{0}c".FormatWith());
         }
 
-        [Fact]
-        public void op_IsNullOrEmpty_string()
+        [Theory]
+        [InlineData(false, null)]
+        [InlineData(false, "")]
+        [InlineData(true, "  ")]
+        [InlineData(true, "example")]
+        public void op_IsNotNullOrEmpty_string(bool expected, string value)
         {
-            Assert.False(" example ".IsNullOrEmpty());
+            var actual = value.IsNotNullOrEmpty();
+
+            Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void op_IsNullOrEmpty_stringEmpty()
+        [Theory]
+        [InlineData(false, null)]
+        [InlineData(false, "")]
+        [InlineData(false, "  ")]
+        [InlineData(true, "example")]
+        public void op_IsNotNullOrWhiteSpace_string(bool expected, string value)
         {
-            Assert.True(string.Empty.IsNullOrEmpty());
+            var actual = value.IsNotNullOrWhiteSpace();
+
+            Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void op_IsNullOrEmpty_stringNull()
+        [Theory]
+        [InlineData(true, null)]
+        [InlineData(true, "")]
+        [InlineData(false, "  ")]
+        [InlineData(false, "example")]
+        public void op_IsNullOrEmpty_string(bool expected, string value)
         {
-            Assert.True((null as string).IsNullOrEmpty());
+            var actual = value.IsNullOrEmpty();
+
+            Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void op_IsNullOrEmpty_stringWhiteSpace()
+        [Theory]
+        [InlineData(true, null)]
+        [InlineData(true, "")]
+        [InlineData(true, "  ")]
+        [InlineData(false, "example")]
+        public void op_IsNullOrWhiteSpace_string(bool expected, string value)
         {
-            Assert.False("     ".IsNullOrEmpty());
-        }
+            var actual = value.IsNullOrWhiteSpace();
 
-        [Fact]
-        public void op_IsNullOrWhiteSpace_string()
-        {
-            Assert.False(" example ".IsNullOrWhiteSpace());
-        }
-
-        [Fact]
-        public void op_IsNullOrWhiteSpace_stringEmpty()
-        {
-            Assert.True(string.Empty.IsNullOrWhiteSpace());
-        }
-
-        [Fact]
-        public void op_IsNullOrWhiteSpace_stringNull()
-        {
-            Assert.True((null as string).IsNullOrWhiteSpace());
-        }
-
-        [Fact]
-        public void op_IsNullOrWhiteSpace_stringWhiteSpace()
-        {
-            Assert.True("     ".IsNullOrWhiteSpace());
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -720,7 +737,7 @@
         [InlineData("tou2f", "tough")]
         [InlineData("enou2f", "enough")]
         [InlineData("2nocchi", "gnocchi")]
-        public void op_CaverphoneStart_stringMappings(string expected, 
+        public void op_CaverphoneStart_stringMappings(string expected,
                                                       string value)
         {
             var actual = StringExtensionMethods.CaverphoneStart(value);
@@ -733,7 +750,7 @@
         [InlineData("example", "example")]
         [InlineData("plum2", "plumb")]
         [InlineData("plums", "plums")]
-        public void op_CaverphoneEndings_StringBuilder(string expected, 
+        public void op_CaverphoneEndings_StringBuilder(string expected,
                                                        string value)
         {
             var buffer = new StringBuilder(value);
@@ -766,7 +783,7 @@
         [InlineData("Now", "KNow")]
         [InlineData("Neumatic", "PNeumatic")]
         [InlineData("Rong", "WRong")]
-        public void op_MetaphoneFirstLetters_StringBuilder(string expected, 
+        public void op_MetaphoneFirstLetters_StringBuilder(string expected,
                                                            string value)
         {
             var buffer = new StringBuilder(value);
@@ -789,8 +806,8 @@
         [InlineData("pluMBer", 4, "pluMBer")]
         [InlineData("boM E", 3, "boMBE")]
         [InlineData("cruMBs", 4, "cruMBs")]
-        public void op_MetaphoneLetterB_int_StringBuilder(string expected, 
-                                                          int index, 
+        public void op_MetaphoneLetterB_int_StringBuilder(string expected,
+                                                          int index,
                                                           string value)
         {
             var buffer = new StringBuilder(value);
@@ -822,8 +839,8 @@
 
         [Theory]
         [InlineData("Lanx  ", 3, "LanCIA")]
-        public void op_MetaphoneLetterC_int_StringBuilder(string expected, 
-                                                          int index, 
+        public void op_MetaphoneLetterC_int_StringBuilder(string expected,
+                                                          int index,
                                                           string value)
         {
             var buffer = new StringBuilder(value);
@@ -851,8 +868,8 @@
         [InlineData("dou Hnut", 3, "douGHnut")]
         [InlineData("ali N", 3, "aliGN")]
         [InlineData("ali NED", 3, "aliGNED")]
-        public void op_MetaphoneLetterG_int_StringBuilder(string expected, 
-                                                          int index, 
+        public void op_MetaphoneLetterG_int_StringBuilder(string expected,
+                                                          int index,
                                                           string value)
         {
             var buffer = new StringBuilder(value);
@@ -872,7 +889,7 @@
 
         [Theory]
         [InlineData("", "")]
-        public void op_MetaphoneEnd_StringBuilder(string expected, 
+        public void op_MetaphoneEnd_StringBuilder(string expected,
                                                   string value)
         {
             var buffer = new StringBuilder(value);
@@ -979,67 +996,67 @@
         {
             var expected = new string(' ', Characters.WhiteSpace.Count);
             var actual = string.Concat(
-                '\u0009', 
+                '\u0009',
                 // HT (Horizontal Tab)
-                '\u000A', 
+                '\u000A',
                 // LF (Line Feed)
-                '\u000B', 
+                '\u000B',
                 // VT (Vertical Tab)
-                '\u000C', 
+                '\u000C',
                 // FF (Form Feed)
-                '\u000D', 
+                '\u000D',
                 // CR (Carriage Return)
-                '\u0020', 
+                '\u0020',
                 // Space
-                '\u0085', 
+                '\u0085',
                 // NEL (control character next line)
-                '\u00A0', 
+                '\u00A0',
                 // No-Break Space
-                '\u1680', 
+                '\u1680',
                 // Ogham Space Mark
-                '\u180E', 
+                '\u180E',
                 // Mongolian Vowel Separator
-                '\u2000', 
+                '\u2000',
                 // En quad
-                '\u2001', 
+                '\u2001',
                 // Em quad
-                '\u2002', 
+                '\u2002',
                 // En Space
-                '\u2003', 
+                '\u2003',
                 // Em Space
-                '\u2004', 
+                '\u2004',
                 // Three-Per-Em Space
-                '\u2005', 
+                '\u2005',
                 // Four-Per-Em Space
-                '\u2006', 
+                '\u2006',
                 // Six-Per-Em Space
-                '\u2007', 
+                '\u2007',
                 // Figure Space
-                '\u2008', 
+                '\u2008',
                 // Punctuation Space
-                '\u2009', 
+                '\u2009',
                 // Thin Space
-                '\u200A', 
+                '\u200A',
                 // Hair Space
-                '\u200B', 
+                '\u200B',
                 // Zero Width Space
-                '\u200C', 
+                '\u200C',
                 // Zero Width Non Joiner
-                '\u200D', 
+                '\u200D',
                 // Zero Width Joiner
-                '\u2028', 
+                '\u2028',
                 // Line Separator
-                '\u2029', 
+                '\u2029',
                 // Paragraph Separator
-                '\u202F', 
+                '\u202F',
                 // Narrow No-Break Space
-                '\u205F', 
+                '\u205F',
                 // Medium Mathematical Space
-                '\u2060', 
+                '\u2060',
                 // Word Joiner
-                '\u3000', 
+                '\u3000',
                 // Ideographic Space
-                '\uFEFF', 
+                '\uFEFF',
                 //// Zero Width No-Break Space
                 '·').NormalizeWhiteSpace();
 
@@ -1234,65 +1251,65 @@
         {
             var expected = string.Empty;
             var actual = string.Concat(
-                '\u0009', 
+                '\u0009',
                 // HT (Horizontal Tab)
-                '\u000A', 
+                '\u000A',
                 // LF (Line Feed)
-                '\u000B', 
+                '\u000B',
                 // VT (Vertical Tab)
-                '\u000C', 
+                '\u000C',
                 // FF (Form Feed)
-                '\u000D', 
+                '\u000D',
                 // CR (Carriage Return)
-                '\u0020', 
+                '\u0020',
                 // Space
-                '\u0085', 
+                '\u0085',
                 // NEL (control character next line)
-                '\u00A0', 
+                '\u00A0',
                 // No-Break Space
-                '\u1680', 
+                '\u1680',
                 // Ogham Space Mark
-                '\u180E', 
+                '\u180E',
                 // Mongolian Vowel Separator
-                '\u2000', 
+                '\u2000',
                 // En quad
-                '\u2001', 
+                '\u2001',
                 // Em quad
-                '\u2002', 
+                '\u2002',
                 // En Space
-                '\u2003', 
+                '\u2003',
                 // Em Space
-                '\u2004', 
+                '\u2004',
                 // Three-Per-Em Space
-                '\u2005', 
+                '\u2005',
                 // Four-Per-Em Space
-                '\u2006', 
+                '\u2006',
                 // Six-Per-Em Space
-                '\u2007', 
+                '\u2007',
                 // Figure Space
-                '\u2008', 
+                '\u2008',
                 // Punctuation Space
-                '\u2009', 
+                '\u2009',
                 // Thin Space
-                '\u200A', 
+                '\u200A',
                 // Hair Space
-                '\u200B', 
+                '\u200B',
                 // Zero Width Space
-                '\u200C', 
+                '\u200C',
                 // Zero Width Non Joiner
-                '\u200D', 
+                '\u200D',
                 // Zero Width Joiner
-                '\u2028', 
+                '\u2028',
                 // Line Separator
-                '\u2029', 
+                '\u2029',
                 // Paragraph Separator
-                '\u202F', 
+                '\u202F',
                 // Narrow No-Break Space
-                '\u205F', 
+                '\u205F',
                 // Medium Mathematical Space
-                '\u2060', 
+                '\u2060',
                 // Word Joiner
-                '\u3000', 
+                '\u3000',
                 // Ideographic Space
                 '\uFEFF').RemoveAnyWhiteSpace();
 
@@ -1567,9 +1584,9 @@
         public void op_RemoveIllegalFileCharacters_string()
         {
             foreach (var c in new[]
-                                  {
-                                      '\\', '/', ':', '*', '?', '"', '<', '>', '|', (char)31
-                                  })
+                {
+                    '\\', '/', ':', '*', '?', '"', '<', '>', '|', (char)31
+                })
             {
                 const string expected = "example";
                 var actual = expected.Append(c).RemoveIllegalFileCharacters();
@@ -2968,8 +2985,8 @@
         {
             var expected = new DateTime(2009, 04, 25);
             var actual = string.Concat(
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>", 
-                Environment.NewLine, 
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
+                Environment.NewLine,
                 "<dateTime>2009-04-25T00:00:00</dateTime>").XmlDeserialize<DateTime>();
 
             Assert.Equal(expected, actual);
@@ -3034,8 +3051,8 @@
         {
             var expected = new DateTime(2009, 04, 25);
             var actual = (DateTime)string.Concat(
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>", 
-                Environment.NewLine, 
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
+                Environment.NewLine,
                 "<dateTime>2009-04-25T00:00:00</dateTime>").XmlDeserialize(typeof(DateTime));
 
             Assert.Equal(expected, actual);

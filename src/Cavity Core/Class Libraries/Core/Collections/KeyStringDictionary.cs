@@ -165,6 +165,29 @@
             return (this as IDictionary<string, string>).Remove(new KeyValuePair<string, string>(item.Key, item.Value));
         }
 
+        public virtual void RemoveAny(params string[] keys)
+        {
+            if (null == keys)
+            {
+                throw new ArgumentNullException("keys");
+            }
+
+            if (0 == keys.Length)
+            {
+                throw new ArgumentOutOfRangeException("keys");
+            }
+
+            foreach (var key in keys)
+            {
+                if (!ContainsKey(key))
+                {
+                    continue;
+                }
+
+                Remove(key);
+            }
+        }
+
         public virtual IEnumerable<string> Strings(params string[] keys)
         {
             if (null == keys)

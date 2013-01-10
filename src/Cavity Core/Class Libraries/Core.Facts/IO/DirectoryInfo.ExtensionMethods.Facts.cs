@@ -236,6 +236,51 @@
             }
         }
 
+        [Fact]
+        public void op_CsvFiles_DirectoryInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).CsvFiles().First());
+        }
+
+        [Fact]
+        public void op_CsvFiles_DirectoryInfoNull_SearchOption()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).CsvFiles(SearchOption.TopDirectoryOnly).First());
+        }
+
+        [Fact]
+        public void op_CsvFiles_DirectoryInfo_SearchOption()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info
+                                   .ToDirectory("a", true)
+                                   .ToFile("example.csv")
+                                   .Create(string.Empty)
+                                   .FullName;
+
+                var actual = temp.Info.CsvFiles(SearchOption.AllDirectories).First().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_CsvFiles_DirectoryInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info
+                                   .ToFile("example.csv")
+                                   .Create(string.Empty)
+                                   .FullName;
+
+                var actual = temp.Info.CsvFiles().First().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
 #if NET20 || NET35
 #else
         [Fact]
@@ -645,6 +690,51 @@
         }
 
         [Fact]
+        public void op_TextFiles_DirectoryInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).TextFiles().First());
+        }
+
+        [Fact]
+        public void op_TextFiles_DirectoryInfoNull_SearchOption()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).TextFiles(SearchOption.TopDirectoryOnly).First());
+        }
+
+        [Fact]
+        public void op_TextFiles_DirectoryInfo_SearchOption()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info
+                                   .ToDirectory("a", true)
+                                   .ToFile("example.txt")
+                                   .Create(string.Empty)
+                                   .FullName;
+
+                var actual = temp.Info.TextFiles(SearchOption.AllDirectories).First().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_TextFiles_DirectoryInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info
+                                   .ToFile("example.txt")
+                                   .Create(string.Empty)
+                                   .FullName;
+
+                var actual = temp.Info.TextFiles().First().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
         public void op_ToDirectory_DirectoryInfoNull_IEnumerableOfObject()
         {
             Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToDirectory(new List<object>()));
@@ -823,6 +913,51 @@
         public void op_ToParent_DirectoryInfoNull()
         {
             Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToParent());
+        }
+
+        [Fact]
+        public void op_XmlFiles_DirectoryInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).XmlFiles().First());
+        }
+
+        [Fact]
+        public void op_XmlFiles_DirectoryInfoNull_SearchOption()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).XmlFiles(SearchOption.TopDirectoryOnly).First());
+        }
+
+        [Fact]
+        public void op_XmlFiles_DirectoryInfo_SearchOption()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info
+                                   .ToDirectory("a", true)
+                                   .ToFile("example.xml")
+                                   .Create(string.Empty)
+                                   .FullName;
+
+                var actual = temp.Info.XmlFiles(SearchOption.AllDirectories).First().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_XmlFiles_DirectoryInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info
+                                   .ToFile("example.xml")
+                                   .Create(string.Empty)
+                                   .FullName;
+
+                var actual = temp.Info.XmlFiles().First().FullName;
+
+                Assert.Equal(expected, actual);
+            }
         }
     }
 }
