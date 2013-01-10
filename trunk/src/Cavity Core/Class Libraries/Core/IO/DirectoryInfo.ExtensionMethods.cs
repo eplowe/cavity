@@ -94,6 +94,28 @@
 #endif
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static IEnumerable<FileInfo> CsvFiles(DirectoryInfo directory)
+#else
+        public static IEnumerable<FileInfo> CsvFiles(this DirectoryInfo directory)
+#endif
+        {
+            return EnumerateFiles(directory, "*.csv");
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static IEnumerable<FileInfo> CsvFiles(DirectoryInfo directory, 
+                                                     SearchOption searchOption)
+#else
+        public static IEnumerable<FileInfo> CsvFiles(this DirectoryInfo directory,
+                                                     SearchOption searchOption)
+#endif
+        {
+            return EnumerateFiles(directory, "*.csv", searchOption);
+        }
+
 #if NET20 || NET35
 #else
         public static IEnumerable<DirectoryInfo> EnumerateDirectories(this DirectoryInfo obj,
@@ -322,6 +344,28 @@
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
 #if NET20
+        public static IEnumerable<FileInfo> TextFiles(DirectoryInfo directory)
+#else
+        public static IEnumerable<FileInfo> TextFiles(this DirectoryInfo directory)
+#endif
+        {
+            return EnumerateFiles(directory, "*.txt");
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static IEnumerable<FileInfo> TextFiles(DirectoryInfo directory, 
+                                                      SearchOption searchOption)
+#else
+        public static IEnumerable<FileInfo> TextFiles(this DirectoryInfo directory,
+                                                      SearchOption searchOption)
+#endif
+        {
+            return EnumerateFiles(directory, "*.txt", searchOption);
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
         public static DirectoryInfo ToDirectory(DirectoryInfo obj, 
                                                 object name)
 #else
@@ -437,6 +481,68 @@
             }
 
             return obj.Parent;
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static IEnumerable<FileInfo> XmlFiles(DirectoryInfo directory)
+#else
+        public static IEnumerable<FileInfo> XmlFiles(this DirectoryInfo directory)
+#endif
+        {
+            return EnumerateFiles(directory, "*.xml");
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]
+#if NET20
+        public static IEnumerable<FileInfo> XmlFiles(DirectoryInfo directory, 
+                                                      SearchOption searchOption)
+#else
+        public static IEnumerable<FileInfo> XmlFiles(this DirectoryInfo directory,
+                                                      SearchOption searchOption)
+#endif
+        {
+            return EnumerateFiles(directory, "*.xml", searchOption);
+        }
+
+#if NET20
+        private static IEnumerable<FileInfo> EnumerateFiles(DirectoryInfo directory,
+                                                            string pattern)
+        {
+            return EnumerateFiles(directory, pattern, SearchOption.TopDirectoryOnly);
+        }
+
+        private static IEnumerable<FileInfo> EnumerateFiles(DirectoryInfo directory,
+                                                            string pattern,
+                                                            SearchOption searchOption)
+#else
+        private static IEnumerable<FileInfo> EnumerateFiles(DirectoryInfo directory,
+                                                            string pattern,
+                                                            SearchOption searchOption = SearchOption.TopDirectoryOnly)
+#endif
+        {
+            if (null == directory)
+            {
+                throw new ArgumentNullException("directory");
+            }
+
+#if NET20
+            if (FileSystemInfoExtensionMethods.NotFound(directory))
+#else
+            if (directory.NotFound())
+#endif
+            {
+                throw new DirectoryNotFoundException(directory.FullName);
+            }
+
+#if NET20 || NET35
+            foreach (var file in directory.GetFiles(pattern, searchOption))
+            {
+                yield return file;
+            }
+#else
+            return directory.EnumerateFiles(pattern, searchOption);
+#endif
         }
     }
 }

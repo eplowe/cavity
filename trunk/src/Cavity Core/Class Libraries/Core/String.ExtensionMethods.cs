@@ -445,6 +445,24 @@
 
 #endif
 
+#if NET20
+        public static bool IsNotNullOrEmpty(string value)
+#else
+        public static bool IsNotNullOrEmpty(this string value)
+#endif
+        {
+            return !string.IsNullOrEmpty(value);
+        }
+
+#if NET20
+        public static bool IsNotNullOrWhiteSpace(string value)
+#else
+        public static bool IsNotNullOrWhiteSpace(this string value)
+#endif
+        {
+            return !IsNullOrWhiteSpace(value);
+        }
+
 #if !NET20
         public static bool IsNullOrEmpty(this string obj)
         {
@@ -582,6 +600,17 @@
                 .Where(arg => !string.IsNullOrEmpty(arg))
                 .Any(arg => obj.Equals(arg, comparison));
 #endif
+        }
+
+#if NET20
+        public static bool EqualsOrdinalIgnoreCase(string value,
+                                                   string comparand)
+#else
+        public static bool EqualsOrdinalIgnoreCase(this string value,
+                                                   string comparand)
+#endif
+        {
+            return string.Equals(value, comparand, StringComparison.OrdinalIgnoreCase);
         }
 
 #if NET20

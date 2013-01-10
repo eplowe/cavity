@@ -363,6 +363,20 @@
         }
 
         [Fact]
+        public void op_RemoveAny_strings()
+        {
+            var item = new KeyStringPair("key", "value");
+            var obj = new KeyStringDictionary
+                {
+                    item
+                };
+
+            obj.RemoveAny("example", "key");
+
+            Assert.Equal(0, obj.Count);
+        }
+
+        [Fact]
         public void op_Strings_strings()
         {
             var obj = new KeyStringDictionary

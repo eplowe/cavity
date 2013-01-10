@@ -25,6 +25,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Boolean.ExtensionMethods.Facts.cs" />
     <Compile Include="QuarterOfYear.Facts.cs" />
     <Compile Include="Quarter.Facts.cs" />
     <Compile Include="Text\StringBuilder.ExtensionMethods.Facts.cs" />
