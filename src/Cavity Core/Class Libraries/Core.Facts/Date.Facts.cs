@@ -15,18 +15,17 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<Date>()
-                            .IsValueType()
-                            .Serializable()
-                            .IsDecoratedWith<ImmutableObjectAttribute>()
-                            .Implements<IComparable>()
-                            .Implements<IComparable<Date>>()
-                            .Implements<IEquatable<Date>>()
-                            .Implements<IChangeDate>()
-                            .Implements<IGetNextDate>()
-                            .Implements<IGetPreviousDate>()
-                            .Implements<IGetTimeZone<Date>>()
-                            .Result);
+            Assert.True(new TypeExpectations<Date>().IsValueType()
+                                                    .Serializable()
+                                                    .IsDecoratedWith<ImmutableObjectAttribute>()
+                                                    .Implements<IComparable>()
+                                                    .Implements<IComparable<Date>>()
+                                                    .Implements<IEquatable<Date>>()
+                                                    .Implements<IChangeDate>()
+                                                    .Implements<IGetNextDate>()
+                                                    .Implements<IGetPreviousDate>()
+                                                    .Implements<IGetTimeZone<Date>>()
+                                                    .Result);
         }
 
         [Fact]

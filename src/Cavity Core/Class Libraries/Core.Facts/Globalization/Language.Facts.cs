@@ -14,12 +14,11 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<Language>()
-                            .IsValueType()
-                            .Serializable()
-                            .IsDecoratedWith<ImmutableObjectAttribute>()
-                            .Implements<IEquatable<Language>>()
-                            .Result);
+            Assert.True(new TypeExpectations<Language>().IsValueType()
+                                                        .Serializable()
+                                                        .IsDecoratedWith<ImmutableObjectAttribute>()
+                                                        .Implements<IEquatable<Language>>()
+                                                        .Result);
         }
 
         [Fact]

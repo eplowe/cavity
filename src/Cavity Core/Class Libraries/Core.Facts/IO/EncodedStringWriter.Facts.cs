@@ -12,13 +12,12 @@ namespace Cavity.IO
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<EncodedStringWriter>()
-                            .DerivesFrom<StringWriter>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .NoDefaultConstructor()
-                            .IsNotDecorated()
-                            .Result);
+            Assert.True(new TypeExpectations<EncodedStringWriter>().DerivesFrom<StringWriter>()
+                                                                   .IsConcreteClass()
+                                                                   .IsUnsealed()
+                                                                   .NoDefaultConstructor()
+                                                                   .IsNotDecorated()
+                                                                   .Result);
         }
 
         [SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", MessageId = "Cavity.IO.EncodedStringWriter.#ctor(System.Text.Encoding)", Justification = "Providing a mirror of all the StringWriter constructors.")]

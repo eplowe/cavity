@@ -10,14 +10,13 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<TempFile>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .HasDefaultConstructor()
-                            .IsNotDecorated()
-                            .Implements<IDisposable>()
-                            .Result);
+            Assert.True(new TypeExpectations<TempFile>().DerivesFrom<object>()
+                                                        .IsConcreteClass()
+                                                        .IsUnsealed()
+                                                        .HasDefaultConstructor()
+                                                        .IsNotDecorated()
+                                                        .Implements<IDisposable>()
+                                                        .Result);
         }
 
         [Fact]

@@ -9,9 +9,8 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<IGetPreviousWeekday>()
-                            .IsInterface()
-                            .Result);
+            Assert.True(new TypeExpectations<IGetPreviousWeekday>().IsInterface()
+                                                                   .Result);
         }
 
         [Fact]

@@ -12,16 +12,15 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<AbsoluteUri>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .NoDefaultConstructor()
-                            .Serializable()
-                            .Implements<IComparable>()
-                            .Implements<IComparable<AbsoluteUri>>()
-                            .Implements<IEquatable<AbsoluteUri>>()
-                            .Result);
+            Assert.True(new TypeExpectations<AbsoluteUri>().DerivesFrom<object>()
+                                                           .IsConcreteClass()
+                                                           .IsUnsealed()
+                                                           .NoDefaultConstructor()
+                                                           .Serializable()
+                                                           .Implements<IComparable>()
+                                                           .Implements<IComparable<AbsoluteUri>>()
+                                                           .Implements<IEquatable<AbsoluteUri>>()
+                                                           .Result);
         }
 
         [Fact]

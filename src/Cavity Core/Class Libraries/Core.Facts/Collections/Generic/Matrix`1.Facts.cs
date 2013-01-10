@@ -15,15 +15,14 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<Matrix<int>>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .HasDefaultConstructor()
-                            .IsNotDecorated()
-                            .Implements<IEnumerable<int>>()
-                            .Implements<IEquatable<Matrix<int>>>()
-                            .Result);
+            Assert.True(new TypeExpectations<Matrix<int>>().DerivesFrom<object>()
+                                                           .IsConcreteClass()
+                                                           .IsUnsealed()
+                                                           .HasDefaultConstructor()
+                                                           .IsNotDecorated()
+                                                           .Implements<IEnumerable<int>>()
+                                                           .Implements<IEquatable<Matrix<int>>>()
+                                                           .Result);
         }
 
         [Fact]

@@ -9,13 +9,12 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<TimeZones>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+            Assert.True(new TypeExpectations<TimeZones>().DerivesFrom<object>()
+                                                         .IsConcreteClass()
+                                                         .IsSealed()
+                                                         .HasDefaultConstructor()
+                                                         .IsNotDecorated()
+                                                         .Result);
         }
 
         [Fact]

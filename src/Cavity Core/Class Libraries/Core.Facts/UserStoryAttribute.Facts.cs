@@ -9,13 +9,12 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<UserStoryAttribute>()
-                            .DerivesFrom<Attribute>()
-                            .IsConcreteClass()
-                            .IsSealed()
-                            .NoDefaultConstructor()
-                            .AttributeUsage(AttributeTargets.Method, false, false)
-                            .Result);
+            Assert.True(new TypeExpectations<UserStoryAttribute>().DerivesFrom<Attribute>()
+                                                                  .IsConcreteClass()
+                                                                  .IsSealed()
+                                                                  .NoDefaultConstructor()
+                                                                  .AttributeUsage(AttributeTargets.Method, false, false)
+                                                                  .Result);
         }
 
         [Fact]

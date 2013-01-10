@@ -11,10 +11,9 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<ITimeZoneNorthAmerica>()
-                .IsInterface()
-                .IsNotDecorated()
-                .Result);
+            Assert.True(new TypeExpectations<ITimeZoneNorthAmerica>().IsInterface()
+                                                                     .IsNotDecorated()
+                                                                     .Result);
         }
 
         [Fact]

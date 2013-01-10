@@ -30,7 +30,7 @@
         [InlineData("z", "a")]
         [InlineData("", "z")]
         [InlineData("a", "")]
-        public void IComparableOfMutableString_op_CompareTo_MutableString(string comparand1, 
+        public void IComparableOfMutableString_op_CompareTo_MutableString(string comparand1,
                                                                           string comparand2)
         {
             IComparable<MutableString> obj = new MutableString(comparand1);
@@ -55,7 +55,7 @@
         [InlineData("z", "a")]
         [InlineData("", "z")]
         [InlineData("a", "")]
-        public void IComparable_op_CompareTo_object(string comparand1, 
+        public void IComparable_op_CompareTo_object(string comparand1,
                                                     string comparand2)
         {
             IComparable obj = new MutableString(comparand1);
@@ -80,17 +80,16 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<MutableString>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsSealed()
-                            .HasDefaultConstructor()
-                            .Serializable()
-                            .Implements<ICloneable>()
-                            .Implements<IComparable<MutableString>>()
-                            .Implements<IEnumerable<char>>()
-                            .Implements<IEquatable<MutableString>>()
-                            .Result);
+            Assert.True(new TypeExpectations<MutableString>().DerivesFrom<object>()
+                                                             .IsConcreteClass()
+                                                             .IsSealed()
+                                                             .HasDefaultConstructor()
+                                                             .Serializable()
+                                                             .Implements<ICloneable>()
+                                                             .Implements<IComparable<MutableString>>()
+                                                             .Implements<IEnumerable<char>>()
+                                                             .Implements<IEquatable<MutableString>>()
+                                                             .Result);
         }
 
         [Fact]
@@ -210,7 +209,7 @@
         [InlineData("One", null)]
         [InlineData("", "one")]
         [InlineData(null, "one")]
-        public void opEquality_MutableString_MutableString_whenFalse(string comparand1, 
+        public void opEquality_MutableString_MutableString_whenFalse(string comparand1,
                                                                      string comparand2)
         {
             Assert.False(new MutableString(comparand1) == new MutableString(comparand2));
@@ -228,7 +227,7 @@
         [Theory]
         [InlineData("", "")]
         [InlineData("One", "One")]
-        public void opEquality_MutableString_MutableString_whenTrue(string comparand1, 
+        public void opEquality_MutableString_MutableString_whenTrue(string comparand1,
                                                                     string comparand2)
         {
             Assert.True(new MutableString(comparand1) == new MutableString(comparand2));
@@ -273,7 +272,7 @@
         [Theory]
         [InlineData("a", "a")]
         [InlineData("", "a")]
-        public void opGreaterThan_MutableString_MutableString_whenFalse(string comparand1, 
+        public void opGreaterThan_MutableString_MutableString_whenFalse(string comparand1,
                                                                         string comparand2)
         {
             Assert.False(new MutableString(comparand1) > new MutableString(comparand2));
@@ -291,7 +290,7 @@
         [Theory]
         [InlineData("z", "a")]
         [InlineData("z", "")]
-        public void opGreaterThan_MutableString_MutableString_whenTrue(string comparand1, 
+        public void opGreaterThan_MutableString_MutableString_whenTrue(string comparand1,
                                                                        string comparand2)
         {
             Assert.True(new MutableString(comparand1) > new MutableString(comparand2));
@@ -365,8 +364,8 @@
         [Theory]
         [InlineData('E', "Example", 0)]
         [InlineData('e', "Example", 6)]
-        public void opIndexer_get_int(char expected, 
-                                      string text, 
+        public void opIndexer_get_int(char expected,
+                                      string text,
                                       int index)
         {
             Assert.Equal(expected, new MutableString(text)[index]);
@@ -376,7 +375,7 @@
         [InlineData("", -1)]
         [InlineData("", 0)]
         [InlineData("Example", 7)]
-        public void opIndexer_get_int_whenIndexOutOfRangeException(string text, 
+        public void opIndexer_get_int_whenIndexOutOfRangeException(string text,
                                                                    int index)
         {
             Assert.Throws<IndexOutOfRangeException>(() => new MutableString(text)[index]);
@@ -401,7 +400,7 @@
         [InlineData("", -1)]
         [InlineData("", 0)]
         [InlineData("Example", 7)]
-        public void opIndexer_set_int_whenIndexOutOfRangeException(string text, 
+        public void opIndexer_set_int_whenIndexOutOfRangeException(string text,
                                                                    int index)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text)[index] = ' ');
@@ -446,7 +445,7 @@
         [Theory]
         [InlineData("", "")]
         [InlineData("One", "One")]
-        public void opInequality_MutableString_MutableString_whenFalse(string comparand1, 
+        public void opInequality_MutableString_MutableString_whenFalse(string comparand1,
                                                                        string comparand2)
         {
             Assert.False(new MutableString(comparand1) != new MutableString(comparand2));
@@ -471,7 +470,7 @@
         [InlineData("One", null)]
         [InlineData("", "one")]
         [InlineData(null, "one")]
-        public void opInequality_MutableString_MutableString_whenTrue(string comparand1, 
+        public void opInequality_MutableString_MutableString_whenTrue(string comparand1,
                                                                       string comparand2)
         {
             Assert.True(new MutableString(comparand1) != new MutableString(comparand2));
@@ -516,7 +515,7 @@
         [Theory]
         [InlineData("a", "a")]
         [InlineData("a", "")]
-        public void opLessThan_MutableString_MutableString_whenFalse(string comparand1, 
+        public void opLessThan_MutableString_MutableString_whenFalse(string comparand1,
                                                                      string comparand2)
         {
             Assert.False(new MutableString(comparand1) < new MutableString(comparand2));
@@ -537,7 +536,7 @@
         [Theory]
         [InlineData("a", "z")]
         [InlineData("", "z")]
-        public void opLessThan_MutableString_MutableString_whenTrue(string comparand1, 
+        public void opLessThan_MutableString_MutableString_whenTrue(string comparand1,
                                                                     string comparand2)
         {
             Assert.True(new MutableString(comparand1) < new MutableString(comparand2));
@@ -580,9 +579,9 @@
         public void op_Append_IEnumerableOfString()
         {
             var values = new[]
-                             {
-                                 "One", "Two", "Three"
-                             };
+                {
+                    "One", "Two", "Three"
+                };
 
             var expected = new MutableString("OneTwoThree");
             var actual = new MutableString();
@@ -640,9 +639,9 @@
         public void op_Append_IEnumerableOfString_char()
         {
             var values = new[]
-                             {
-                                 "One", "Two", "Three"
-                             };
+                {
+                    "One", "Two", "Three"
+                };
 
             var expected = new MutableString("One.Two.Three");
             var actual = new MutableString();
@@ -727,7 +726,7 @@
         [InlineData(null, "")]
         [InlineData("", null)]
         [InlineData(null, null)]
-        public void op_Compare_MutableString_MutableString(string comparand1, 
+        public void op_Compare_MutableString_MutableString(string comparand1,
                                                            string comparand2)
         {
             var expected = string.CompareOrdinal(comparand1, comparand2);
@@ -746,9 +745,9 @@
         public void op_ContainsAny_chars_whenFalse()
         {
             var values = new[]
-                             {
-                                 'X', 'y', 'z'
-                             };
+                {
+                    'X', 'y', 'z'
+                };
 
             Assert.False(new MutableString().ContainsAny(values));
             Assert.False(new MutableString("Example").ContainsAny(values));
@@ -758,9 +757,9 @@
         public void op_ContainsAny_chars_whenTrue()
         {
             var values = new[]
-                             {
-                                 'a', 'e', 'x'
-                             };
+                {
+                    'a', 'e', 'x'
+                };
 
             Assert.True(new MutableString("Example").ContainsAny(values));
         }
@@ -775,9 +774,9 @@
         public void op_ContainsAny_strings_whenFalse()
         {
             var values = new[]
-                             {
-                                 string.Empty, null, "example", "solar system"
-                             };
+                {
+                    string.Empty, null, "example", "solar system"
+                };
 
             Assert.False(new MutableString().ContainsAny(values));
             Assert.False(new MutableString("Example").ContainsAny(values));
@@ -787,17 +786,28 @@
         public void op_ContainsAny_strings_whenTrue()
         {
             var values = new[]
-                             {
-                                 "example", "ex", "ample"
-                             };
+                {
+                    "example", "ex", "ample"
+                };
 
             Assert.True(new MutableString("Example").ContainsAny(values));
         }
 
         [Theory]
+        [InlineData(false, "")]
+        [InlineData(true, "example")]
+        public void op_ContainsText(bool expected,
+                                    string value)
+        {
+            var actual = new MutableString(value).ContainsText();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData("Example", 'X')]
         [InlineData("Example", 'z')]
-        public void op_Contains_char_whenFalse(string text, 
+        public void op_Contains_char_whenFalse(string text,
                                                char value)
         {
             Assert.False(new MutableString(text).Contains(value));
@@ -806,7 +816,7 @@
         [Theory]
         [InlineData("Example", 'x')]
         [InlineData("Example", 'e')]
-        public void op_Contains_char_whenTrue(string text, 
+        public void op_Contains_char_whenTrue(string text,
                                               char value)
         {
             Assert.True(new MutableString(text).Contains(value));
@@ -831,7 +841,7 @@
         [Theory]
         [InlineData("Example", "ex")]
         [InlineData("Example", "Missing")]
-        public void op_Contains_string_whenFalse(string text, 
+        public void op_Contains_string_whenFalse(string text,
                                                  string value)
         {
             Assert.False(new MutableString(text).Contains(value));
@@ -840,21 +850,10 @@
         [Theory]
         [InlineData("Example", "ample")]
         [InlineData("Example", "Ex")]
-        public void op_Contains_string_whenTrue(string text, 
+        public void op_Contains_string_whenTrue(string text,
                                                 string value)
         {
             Assert.True(new MutableString(text).Contains(value));
-        }
-
-        [Theory]
-        [InlineData(false, "")]
-        [InlineData(true, "example")]
-        public void op_ContainsText(bool expected,
-                                    string value)
-        {
-            var actual = new MutableString(value).ContainsText();
-
-            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -862,9 +861,9 @@
         [InlineData("amp", "Example", 2, 3)]
         [InlineData("ample", "Example", 2, 5)]
         [InlineData("", "Example", 0, 7)]
-        public void op_Crop_int_int(string expected, 
-                                    string text, 
-                                    int start, 
+        public void op_Crop_int_int(string expected,
+                                    string text,
+                                    int start,
                                     int length)
         {
             var actual = new MutableString(text);
@@ -878,8 +877,8 @@
         [InlineData("", -1, 1)]
         [InlineData("", 2, 1)]
         [InlineData("example", 1, 0)]
-        public void op_Crop_int_int_whenArgumentOutOfRangeException(string text, 
-                                                                    int start, 
+        public void op_Crop_int_int_whenArgumentOutOfRangeException(string text,
+                                                                    int start,
                                                                     int length)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).Crop(start, length));
@@ -889,7 +888,7 @@
         [InlineData("", "")]
         [InlineData("", "Example")]
         [InlineData("123", "1 Example 2. 3")]
-        public void op_Digits(string expected, 
+        public void op_Digits(string expected,
                               string text)
         {
             var actual = new MutableString(text).Digits().ToArray();
@@ -913,9 +912,9 @@
         public void op_EndsWithAny_strings_whenFalse()
         {
             var values = new[]
-                             {
-                                 "test", null, string.Empty
-                             };
+                {
+                    "test", null, string.Empty
+                };
 
             Assert.False(new MutableString().EndsWithAny(values));
             Assert.False(new MutableString("example").EndsWithAny(values));
@@ -925,9 +924,9 @@
         public void op_EndsWithAny_strings_whenTrue()
         {
             var values = new[]
-                             {
-                                 "test", "ample"
-                             };
+                {
+                    "test", "ample"
+                };
 
             Assert.True(new MutableString("example").EndsWithAny(values));
         }
@@ -935,7 +934,7 @@
         [Theory]
         [InlineData("example", 'x')]
         [InlineData("", 'e')]
-        public void op_EndsWith_char_whenFalse(string text, 
+        public void op_EndsWith_char_whenFalse(string text,
                                                char value)
         {
             Assert.False(new MutableString(text).EndsWith(value));
@@ -943,7 +942,7 @@
 
         [Theory]
         [InlineData("example", 'e')]
-        public void op_EndsWith_char_whenTrue(string text, 
+        public void op_EndsWith_char_whenTrue(string text,
                                               char value)
         {
             Assert.True(new MutableString(text).EndsWith(value));
@@ -963,7 +962,7 @@
         [InlineData("", "test")]
         [InlineData("ample", "example")]
         [InlineData("road", "test")]
-        public void op_EndsWith_string_whenFalse(string text, 
+        public void op_EndsWith_string_whenFalse(string text,
                                                  string value)
         {
             Assert.False(new MutableString(text).EndsWith(value));
@@ -972,7 +971,7 @@
         [Theory]
         [InlineData("example", "e")]
         [InlineData("example", "ample")]
-        public void op_EndsWith_string_whenTrue(string text, 
+        public void op_EndsWith_string_whenTrue(string text,
                                                 string value)
         {
             Assert.True(new MutableString(text).EndsWith(value));
@@ -994,9 +993,9 @@
         public void op_EqualsAny_strings_whenFalse()
         {
             var values = new[]
-                             {
-                                 "test", null, string.Empty
-                             };
+                {
+                    "test", null, string.Empty
+                };
 
             Assert.False(new MutableString().EqualsAny(values));
             Assert.False(new MutableString("example").EqualsAny(values));
@@ -1006,9 +1005,9 @@
         public void op_EqualsAny_strings_whenTrue()
         {
             var values = new[]
-                             {
-                                 "test", "example"
-                             };
+                {
+                    "test", "example"
+                };
 
             Assert.True(new MutableString("example").EqualsAny(values));
         }
@@ -1019,7 +1018,7 @@
         [InlineData("One", "Two")]
         [InlineData("1", "one")]
         [InlineData("1", "")]
-        public void op_Equals_MutableString_whenFalse(string comparand1, 
+        public void op_Equals_MutableString_whenFalse(string comparand1,
                                                       string comparand2)
         {
             Assert.False(new MutableString(comparand1).Equals(new MutableString(comparand2)));
@@ -1037,7 +1036,7 @@
         [Theory]
         [InlineData("", "")]
         [InlineData("One", "One")]
-        public void op_Equals_MutableString_whenTrue(string comparand1, 
+        public void op_Equals_MutableString_whenTrue(string comparand1,
                                                      string comparand2)
         {
             Assert.True(new MutableString(comparand1).Equals(new MutableString(comparand2)));
@@ -1065,7 +1064,7 @@
 
         [Theory]
         [InlineData("One", "Two")]
-        public void op_Equals_object_whenFalse(string comparand1, 
+        public void op_Equals_object_whenFalse(string comparand1,
                                                string comparand2)
         {
             Assert.False(new MutableString(comparand1).Equals(new MutableString(comparand2) as object));
@@ -1074,7 +1073,7 @@
         [Theory]
         [InlineData("", "")]
         [InlineData("One", "One")]
-        public void op_Equals_object_whenTrue(string comparand1, 
+        public void op_Equals_object_whenTrue(string comparand1,
                                               string comparand2)
         {
             Assert.True(new MutableString(comparand1).Equals(new MutableString(comparand2) as object));
@@ -1090,8 +1089,8 @@
         public void op_GetEnumerator()
         {
             const string expected = "Example";
-            var actual = new MutableString(expected).Aggregate(string.Empty, 
-                                                               (current, 
+            var actual = new MutableString(expected).Aggregate(string.Empty,
+                                                               (current,
                                                                 c) => current + c);
 
             Assert.Equal(expected, actual);
@@ -1143,8 +1142,8 @@
         [Theory]
         [InlineData(1, "Example", 'x')]
         [InlineData(6, "Example", 'e')]
-        public void op_IndexOf_char(int expected, 
-                                    string text, 
+        public void op_IndexOf_char(int expected,
+                                    string text,
                                     char value)
         {
             Assert.Equal(expected, new MutableString(text).IndexOf(value));
@@ -1153,9 +1152,9 @@
         [Theory]
         [InlineData(1, "Example", 'x', 1)]
         [InlineData(6, "example", 'e', 1)]
-        public void op_IndexOf_char_int(int expected, 
-                                        string text, 
-                                        char value, 
+        public void op_IndexOf_char_int(int expected,
+                                        string text,
+                                        char value,
                                         int start)
         {
             Assert.Equal(expected, new MutableString(text).IndexOf(value, start));
@@ -1176,10 +1175,10 @@
         [Theory]
         [InlineData(1, "Example", 'x', 1, 1)]
         [InlineData(6, "example", 'e', 1, 6)]
-        public void op_IndexOf_char_int_int(int expected, 
-                                            string text, 
-                                            char value, 
-                                            int start, 
+        public void op_IndexOf_char_int_int(int expected,
+                                            string text,
+                                            char value,
+                                            int start,
                                             int length)
         {
             Assert.Equal(expected, new MutableString(text).IndexOf(value, start, length));
@@ -1189,9 +1188,9 @@
         [InlineData("", ' ', 0, -1)]
         [InlineData("", ' ', 0, 2)]
         [InlineData("", ' ', 2, 1)]
-        public void op_IndexOf_char_int_int_throwsArgumentOutOfRangeException(string text, 
-                                                                              char value, 
-                                                                              int start, 
+        public void op_IndexOf_char_int_int_throwsArgumentOutOfRangeException(string text,
+                                                                              char value,
+                                                                              int start,
                                                                               int length)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).IndexOf(value, start, length));
@@ -1201,9 +1200,9 @@
         [InlineData("Example", 'X', 1, 1)]
         [InlineData("Example", 'z', 2, 5)]
         [InlineData("example", 'e', 1, 5)]
-        public void op_IndexOf_char_int_int_whenNotFound(string text, 
-                                                         char value, 
-                                                         int start, 
+        public void op_IndexOf_char_int_int_whenNotFound(string text,
+                                                         char value,
+                                                         int start,
                                                          int length)
         {
             Assert.Equal(-1, new MutableString(text).IndexOf(value, start, length));
@@ -1212,8 +1211,8 @@
         [Theory]
         [InlineData("Example", 'X', 1)]
         [InlineData("Example", 'z', 2)]
-        public void op_IndexOf_char_int_whenNotFound(string text, 
-                                                     char value, 
+        public void op_IndexOf_char_int_whenNotFound(string text,
+                                                     char value,
                                                      int start)
         {
             Assert.Equal(-1, new MutableString(text).IndexOf(value, start));
@@ -1224,7 +1223,7 @@
         [InlineData("", 'X')]
         [InlineData("Example", 'X')]
         [InlineData("Example", 'z')]
-        public void op_IndexOf_char_whenNotFound(string text, 
+        public void op_IndexOf_char_whenNotFound(string text,
                                                  char value)
         {
             Assert.Equal(-1, new MutableString(text).IndexOf(value));
@@ -1234,8 +1233,8 @@
         [InlineData(1, "example", "x")]
         [InlineData(6, "Example", "e")]
         [InlineData(2, "Example", "ample")]
-        public void op_IndexOf_string(int expected, 
-                                      string text, 
+        public void op_IndexOf_string(int expected,
+                                      string text,
                                       string value)
         {
             Assert.Equal(expected, new MutableString(text).IndexOf(value));
@@ -1252,9 +1251,9 @@
         [InlineData(6, "Example", "e", 6)]
         [InlineData(2, "Example", "ample", 1)]
         [InlineData(2, "Example", "ample", 2)]
-        public void op_IndexOf_string_int(int expected, 
-                                          string text, 
-                                          string value, 
+        public void op_IndexOf_string_int(int expected,
+                                          string text,
+                                          string value,
                                           int start)
         {
             Assert.Equal(expected, new MutableString(text).IndexOf(value, start));
@@ -1265,10 +1264,10 @@
         [InlineData(6, "Example", "e", 6, 1)]
         [InlineData(2, "Example", "ample", 1, 6)]
         [InlineData(2, "Example", "ample", 2, 5)]
-        public void op_IndexOf_string_int_int(int expected, 
-                                              string text, 
-                                              string value, 
-                                              int start, 
+        public void op_IndexOf_string_int_int(int expected,
+                                              string text,
+                                              string value,
+                                              int start,
                                               int length)
         {
             Assert.Equal(expected, new MutableString(text).IndexOf(value, start, length));
@@ -1280,9 +1279,9 @@
         [InlineData(" ", " ", 2, 1)]
         [InlineData("example", "ample", 6, 1)]
         [InlineData("", "example", 0, 6)]
-        public void op_IndexOf_string_int_int_throwsArgumentOutOfRangeException(string text, 
-                                                                                string value, 
-                                                                                int start, 
+        public void op_IndexOf_string_int_int_throwsArgumentOutOfRangeException(string text,
+                                                                                string value,
+                                                                                int start,
                                                                                 int length)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).IndexOf(value, start, length));
@@ -1294,9 +1293,9 @@
         [InlineData("example", "X", 1, 6)]
         [InlineData("example", "z", 6, 1)]
         [InlineData("Examine", "ample", 2, 5)]
-        public void op_IndexOf_string_int_int_whenNotFound(string text, 
-                                                           string value, 
-                                                           int start, 
+        public void op_IndexOf_string_int_int_whenNotFound(string text,
+                                                           string value,
+                                                           int start,
                                                            int length)
         {
             Assert.Equal(-1, new MutableString(text).IndexOf(value, start, length));
@@ -1305,8 +1304,8 @@
         [Theory]
         [InlineData("", " ", -1)]
         [InlineData("", " ", 1)]
-        public void op_IndexOf_string_int_throwsArgumentOutOfRangeException(string text, 
-                                                                            string value, 
+        public void op_IndexOf_string_int_throwsArgumentOutOfRangeException(string text,
+                                                                            string value,
                                                                             int start)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).IndexOf(value, start));
@@ -1316,8 +1315,8 @@
         [InlineData("example", "", 1)]
         [InlineData("example", "X", 1)]
         [InlineData("example", "z", 6)]
-        public void op_IndexOf_string_int_whenNotFound(string text, 
-                                                       string value, 
+        public void op_IndexOf_string_int_whenNotFound(string text,
+                                                       string value,
                                                        int start)
         {
             Assert.Equal(-1, new MutableString(text).IndexOf(value, start));
@@ -1329,7 +1328,7 @@
         [InlineData("example", "X")]
         [InlineData("example", "z")]
         [InlineData("Example", "amples")]
-        public void op_IndexOf_string_whenNotFound(string text, 
+        public void op_IndexOf_string_whenNotFound(string text,
                                                    string value)
         {
             Assert.Equal(-1, new MutableString(text).IndexOf(value));
@@ -1339,9 +1338,9 @@
         public void op_IndexesOf_char()
         {
             var expected = new[]
-                               {
-                                   0, 3, 11, 16
-                               };
+                {
+                    0, 3, 11, 16
+                };
 
             var actual = new MutableString(" an example test ").IndexesOf(' ').ToArray();
 
@@ -1351,7 +1350,7 @@
         [Theory]
         [InlineData("", ' ')]
         [InlineData("Example", ' ')]
-        public void op_IndexesOf_char_whenEmpty(string text, 
+        public void op_IndexesOf_char_whenEmpty(string text,
                                                 char value)
         {
             Assert.Empty(new MutableString(text).IndexesOf(value));
@@ -1360,8 +1359,8 @@
         [Theory]
         [InlineData("", -1, "example")]
         [InlineData("", 1, "example")]
-        public void op_Insert_intNegative_IEnumerableOfChar_throwsArgumentOutOfRangeException(string text, 
-                                                                                              int index, 
+        public void op_Insert_intNegative_IEnumerableOfChar_throwsArgumentOutOfRangeException(string text,
+                                                                                              int index,
                                                                                               string value)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).Insert(index, value.ToCharArray()));
@@ -1370,8 +1369,8 @@
         [Theory]
         [InlineData("", -1, "example")]
         [InlineData("", 1, "example")]
-        public void op_Insert_intNegative_string(string text, 
-                                                 int index, 
+        public void op_Insert_intNegative_string(string text,
+                                                 int index,
                                                  string value)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).Insert(index, value));
@@ -1379,9 +1378,9 @@
 
         [Theory]
         [InlineData("Example", "ample", 0, "Ex")]
-        public void op_Insert_int_IEnumerableOfChar(string expected, 
-                                                    string text, 
-                                                    int index, 
+        public void op_Insert_int_IEnumerableOfChar(string expected,
+                                                    string text,
+                                                    int index,
                                                     string value)
         {
             var actual = new MutableString(text);
@@ -1423,9 +1422,9 @@
 
         [Theory]
         [InlineData("Example", "ample", 0, "Ex")]
-        public void op_Insert_int_string(string expected, 
-                                         string text, 
-                                         int index, 
+        public void op_Insert_int_string(string expected,
+                                         string text,
+                                         int index,
                                          string value)
         {
             var actual = new MutableString(text);
@@ -1493,9 +1492,9 @@
         [InlineData("", " ", 0, -1)]
         [InlineData("", " ", 0, 2)]
         [InlineData("", "example", 0, 6)]
-        public void op_LastIndexOf_string_intNegative_int_throwsArgumentOutOfRangeException(string text, 
-                                                                                            string value, 
-                                                                                            int start, 
+        public void op_LastIndexOf_string_intNegative_int_throwsArgumentOutOfRangeException(string text,
+                                                                                            string value,
+                                                                                            int start,
                                                                                             int length)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).LastIndexOf(value, start, length));
@@ -1506,10 +1505,10 @@
         [InlineData(6, "Example", "e", 0, 1)]
         [InlineData(2, "Example", "ample", 1, 5)]
         [InlineData(2, "Example", "ample", 2, 5)]
-        public void op_LastIndexOf_string_int_int(int expected, 
-                                                  string text, 
-                                                  string value, 
-                                                  int start, 
+        public void op_LastIndexOf_string_int_int(int expected,
+                                                  string text,
+                                                  string value,
+                                                  int start,
                                                   int length)
         {
             Assert.Equal(expected, new MutableString(text).LastIndexOf(value, start, length));
@@ -1522,9 +1521,9 @@
         [InlineData("example", "X", 1, 6)]
         [InlineData("example", "z", 6, 1)]
         [InlineData("Examine", "ample", 2, 5)]
-        public void op_LastIndexOf_string_int_int_whenNotFound(string text, 
-                                                               string value, 
-                                                               int start, 
+        public void op_LastIndexOf_string_int_int_whenNotFound(string text,
+                                                               string value,
+                                                               int start,
                                                                int length)
         {
             Assert.Equal(-1, new MutableString(text).LastIndexOf(value, start, length));
@@ -1535,7 +1534,7 @@
         [InlineData("Élan", "Élan")]
         [InlineData("Example", "Example")]
         [InlineData("Example", "1 Example. ")]
-        public void op_Letters(string expected, 
+        public void op_Letters(string expected,
                                string text)
         {
             var actual = new MutableString(text).Letters().ToArray();
@@ -1548,7 +1547,7 @@
         [InlineData("Élan", "Élan")]
         [InlineData("Example", "Example")]
         [InlineData("1Example", "1 Example. ")]
-        public void op_LettersAndDigits(string expected, 
+        public void op_LettersAndDigits(string expected,
                                         string text)
         {
             var actual = new MutableString(text).LettersAndDigits().ToArray();
@@ -1560,7 +1559,7 @@
         [InlineData("", "")]
         [InlineData("Example 123", "Example 123")]
         [InlineData("Elan .", "Élan .")]
-        public void op_NormalizeToEnglishAlphabet(string expected, 
+        public void op_NormalizeToEnglishAlphabet(string expected,
                                                   string text)
         {
             var actual = new MutableString(text);
@@ -1589,7 +1588,7 @@
         [InlineData("", "en-GB")]
         [InlineData("Example", "en-US")]
         [InlineData("Élan", "fr-FR")]
-        public void op_NormalizeToLower_CultureInfo(string text, 
+        public void op_NormalizeToLower_CultureInfo(string text,
                                                     string language)
         {
             var culture = new CultureInfo(language);
@@ -1626,7 +1625,7 @@
         [InlineData("", "en-GB")]
         [InlineData("Example", "en-US")]
         [InlineData("Élan", "fr-FR")]
-        public void op_NormalizeToUpper_CultureInfo(string text, 
+        public void op_NormalizeToUpper_CultureInfo(string text,
                                                     string language)
         {
             var culture = new CultureInfo(language);
@@ -1649,8 +1648,8 @@
         public void op_NormalizeWhiteSpace()
         {
             var expected = new MutableString(' ', Characters.WhiteSpace.Count);
-            var value = Characters.WhiteSpace.Aggregate(string.Empty, 
-                                                        (current, 
+            var value = Characters.WhiteSpace.Aggregate(string.Empty,
+                                                        (current,
                                                          c) => current + c);
             var actual = new MutableString(value);
 
@@ -1665,7 +1664,7 @@
         [InlineData(".", 2)]
         [InlineData(".", 3)]
         [InlineData("Example", 7)]
-        public void op_PadLeft_int(string text, 
+        public void op_PadLeft_int(string text,
                                    int width)
         {
             var expected = new MutableString((text ?? string.Empty).PadLeft(width));
@@ -1694,8 +1693,8 @@
         [InlineData(".", 2, '_')]
         [InlineData(".", 3, '_')]
         [InlineData("Example", 7, '_')]
-        public void op_PadLeft_int_char(string text, 
-                                        int width, 
+        public void op_PadLeft_int_char(string text,
+                                        int width,
                                         char padding)
         {
             var expected = new MutableString((text ?? string.Empty).PadLeft(width, '_'));
@@ -1712,7 +1711,7 @@
         [InlineData(".", 2)]
         [InlineData(".", 3)]
         [InlineData("Example", 7)]
-        public void op_PadRight_int(string text, 
+        public void op_PadRight_int(string text,
                                     int width)
         {
             var expected = new MutableString((text ?? string.Empty).PadRight(width));
@@ -1741,8 +1740,8 @@
         [InlineData(".", 2, '_')]
         [InlineData(".", 3, '_')]
         [InlineData("Example", 7, '_')]
-        public void op_PadRight_int_char(string text, 
-                                         int width, 
+        public void op_PadRight_int_char(string text,
+                                         int width,
                                          char padding)
         {
             var expected = new MutableString((text ?? string.Empty).PadRight(width, '_'));
@@ -1757,8 +1756,8 @@
         [InlineData("", "Example", "")]
         [InlineData("", "Example", "test")]
         [InlineData("An ", "An Example", "Example")]
-        public void op_Prefix_string(string expected, 
-                                     string text, 
+        public void op_Prefix_string(string expected,
+                                     string text,
                                      string value)
         {
             Assert.Equal(expected, new MutableString(text).Prefix(value));
@@ -1784,9 +1783,9 @@
         [InlineData("", "Example", "", true)]
         [InlineData("", "Example", "test", true)]
         [InlineData("An", " An Example ", "Example", true)]
-        public void op_Prefix_string_bool(string expected, 
-                                          string text, 
-                                          string value, 
+        public void op_Prefix_string_bool(string expected,
+                                          string text,
+                                          string value,
                                           bool trim)
         {
             Assert.Equal(expected, new MutableString(text).Prefix(value, trim));
@@ -1794,7 +1793,7 @@
 
         [Theory]
         [InlineData("Example", "An Example")]
-        public void op_Prefix_string_bool_throwsArgumentOutOfRangeException(string text, 
+        public void op_Prefix_string_bool_throwsArgumentOutOfRangeException(string text,
                                                                             string value)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).Prefix(value, true));
@@ -1802,7 +1801,7 @@
 
         [Theory]
         [InlineData("Example", "An Example")]
-        public void op_Prefix_string_throwsArgumentOutOfRangeException(string text, 
+        public void op_Prefix_string_throwsArgumentOutOfRangeException(string text,
                                                                        string value)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).Prefix(value));
@@ -1811,8 +1810,8 @@
         [Theory]
         [InlineData(".", "", '.')]
         [InlineData(".example", "example", '.')]
-        public void op_Prepend_char(string expected, 
-                                    string text, 
+        public void op_Prepend_char(string expected,
+                                    string text,
                                     char value)
         {
             var actual = new MutableString(text);
@@ -1826,8 +1825,8 @@
         [InlineData("", "", "")]
         [InlineData("example", "", "example")]
         [InlineData("example", "ample", "ex")]
-        public void op_Prepend_string(string expected, 
-                                      string text, 
+        public void op_Prepend_string(string expected,
+                                      string text,
                                       string value)
         {
             var actual = new MutableString(text);
@@ -1849,7 +1848,7 @@
         [InlineData(" An Example ", " An Example ")]
         [InlineData(" An Example ", "  An  Example  ")]
         [InlineData(" An Example ", "  Ann  Example  ")]
-        public void op_RemoveAdjacentDuplicates(string expected, 
+        public void op_RemoveAdjacentDuplicates(string expected,
                                                 string text)
         {
             var actual = new MutableString(text);
@@ -1864,8 +1863,8 @@
         [InlineData("Example", "Example", ' ')]
         [InlineData(" An Example ", " An Example ", ' ')]
         [InlineData(" An Example ", "  An  Example  ", ' ')]
-        public void op_RemoveAdjacentDuplicates_char(string expected, 
-                                                     string text, 
+        public void op_RemoveAdjacentDuplicates_char(string expected,
+                                                     string text,
                                                      char value)
         {
             var actual = new MutableString(text);
@@ -1881,8 +1880,8 @@
         [InlineData("", "example", "123")]
         [InlineData("example", "example123", "example")]
         [InlineData("exe", "example", "ex")]
-        public void op_RemoveAllExcept_IEnumerableOfChar(string expected, 
-                                                         string text, 
+        public void op_RemoveAllExcept_IEnumerableOfChar(string expected,
+                                                         string text,
                                                          string value)
         {
             var actual = new MutableString(text);
@@ -1936,8 +1935,8 @@
         [InlineData("example", "example", "123")]
         [InlineData("", "example", "example123")]
         [InlineData("amp", "example", "exl")]
-        public void op_RemoveAny_IEnumerableOfChar(string expected, 
-                                                   string text, 
+        public void op_RemoveAny_IEnumerableOfChar(string expected,
+                                                   string text,
                                                    string value)
         {
             var actual = new MutableString(text);
@@ -1973,9 +1972,9 @@
         public void op_RemoveAny_strings_whenFalse()
         {
             var values = new[]
-                             {
-                                 "test", null, string.Empty
-                             };
+                {
+                    "test", null, string.Empty
+                };
 
             var expected = new MutableString("example");
             var actual = new MutableString("example");
@@ -1988,9 +1987,9 @@
         public void op_RemoveAny_strings_whenTrue()
         {
             var values = new[]
-                             {
-                                 "ample", "ex"
-                             };
+                {
+                    "ample", "ex"
+                };
 
             var expected = new MutableString();
             var actual = new MutableString("example");
@@ -2003,7 +2002,7 @@
         [InlineData("", "")]
         [InlineData("Example", "Example")]
         [InlineData(" Example. ", "1 Example. ")]
-        public void op_RemoveDigits(string expected, 
+        public void op_RemoveDigits(string expected,
                                     string text)
         {
             var actual = new MutableString(text);
@@ -2019,8 +2018,8 @@
         [InlineData("", "Example", "Example")]
         [InlineData("Ex", "Example", "ample")]
         [InlineData("Test", "Test", "example")]
-        public void op_RemoveFromEnd_string(string expected, 
-                                            string text, 
+        public void op_RemoveFromEnd_string(string expected,
+                                            string text,
                                             string value)
         {
             Assert.Equal(new MutableString(expected), new MutableString(text).RemoveFromEnd(value));
@@ -2044,8 +2043,8 @@
         [InlineData("", "Example", "Example")]
         [InlineData("ample", "Example", "Ex")]
         [InlineData("Test", "Test", "example")]
-        public void op_RemoveFromStart_string(string expected, 
-                                              string text, 
+        public void op_RemoveFromStart_string(string expected,
+                                              string text,
                                               string value)
         {
             Assert.Equal(new MutableString(expected), new MutableString(text).RemoveFromStart(value));
@@ -2068,7 +2067,7 @@
         [InlineData("", "Élan")]
         [InlineData("", "Example")]
         [InlineData("1 . ", "1 Example. ")]
-        public void op_RemoveLetters(string expected, 
+        public void op_RemoveLetters(string expected,
                                      string text)
         {
             var actual = new MutableString(text);
@@ -2083,7 +2082,7 @@
         [InlineData("", "Élan")]
         [InlineData("", "Example")]
         [InlineData(" . ", "1 Example. ")]
-        public void op_RemoveLettersAndDigits(string expected, 
+        public void op_RemoveLettersAndDigits(string expected,
                                               string text)
         {
             var actual = new MutableString(text);
@@ -2099,7 +2098,7 @@
         [InlineData("Élan", "Élan")]
         [InlineData("Example", "Example")]
         [InlineData("1Example.", "1 Example. ")]
-        public void op_RemoveWhiteSpace(string expected, 
+        public void op_RemoveWhiteSpace(string expected,
                                         string text)
         {
             var actual = new MutableString(text);
@@ -2113,8 +2112,8 @@
         [InlineData("", "", '.')]
         [InlineData("example", "example", '.')]
         [InlineData("example", ".ex.ample.", '.')]
-        public void op_Remove_char(string expected, 
-                                   string text, 
+        public void op_Remove_char(string expected,
+                                   string text,
                                    char value)
         {
             var actual = new MutableString(text);
@@ -2143,8 +2142,8 @@
         [InlineData("ex", "example", "ample")]
         [InlineData("example", "exampleexample", "example")]
         [InlineData("example", "exexampleample", "example")]
-        public void op_Remove_string(string expected, 
-                                     string text, 
+        public void op_Remove_string(string expected,
+                                     string text,
                                      string value)
         {
             var actual = new MutableString(text);
@@ -2164,9 +2163,9 @@
         [InlineData("test", "example", "example", "test")]
         [InlineData("example", "example", "foo", "bar")]
         [InlineData("exclude", "example", "ample", "clude")]
-        public void op_ReplaceEnd_string_string(string expected, 
-                                                string text, 
-                                                string value, 
+        public void op_ReplaceEnd_string_string(string expected,
+                                                string text,
+                                                string value,
                                                 string replacement)
         {
             var actual = new MutableString(text);
@@ -2179,7 +2178,7 @@
         [Theory]
         [InlineData(null, "example")]
         [InlineData("example", null)]
-        public void op_ReplaceEnd_string_string_ArgumentNullException(string value, 
+        public void op_ReplaceEnd_string_string_ArgumentNullException(string value,
                                                                       string replacement)
         {
             Assert.Throws<ArgumentNullException>(() => new MutableString().ReplaceEnd(value, replacement));
@@ -2188,7 +2187,7 @@
         [Theory]
         [InlineData("", "example")]
         [InlineData("example", "")]
-        public void op_ReplaceEnd_string_string_ArgumentOutOfRangeException(string value, 
+        public void op_ReplaceEnd_string_string_ArgumentOutOfRangeException(string value,
                                                                             string replacement)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString().ReplaceEnd(value, replacement));
@@ -2198,9 +2197,9 @@
         [InlineData("test", "example", "example", "test")]
         [InlineData("example", "example", "foo", "bar")]
         [InlineData("trample", "example", "ex", "tr")]
-        public void op_ReplaceStart_string_string(string expected, 
-                                                  string text, 
-                                                  string value, 
+        public void op_ReplaceStart_string_string(string expected,
+                                                  string text,
+                                                  string value,
                                                   string replacement)
         {
             var actual = new MutableString(text);
@@ -2213,7 +2212,7 @@
         [Theory]
         [InlineData(null, "example")]
         [InlineData("example", null)]
-        public void op_ReplaceStart_string_string_ArgumentNullException(string value, 
+        public void op_ReplaceStart_string_string_ArgumentNullException(string value,
                                                                         string replacement)
         {
             Assert.Throws<ArgumentNullException>(() => new MutableString().ReplaceStart(value, replacement));
@@ -2222,7 +2221,7 @@
         [Theory]
         [InlineData("", "example")]
         [InlineData("example", "")]
-        public void op_ReplaceStart_string_string_ArgumentOutOfRangeException(string value, 
+        public void op_ReplaceStart_string_string_ArgumentOutOfRangeException(string value,
                                                                               string replacement)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString().ReplaceStart(value, replacement));
@@ -2341,8 +2340,8 @@
         [InlineData("example", 'x', StringSplitOptions.RemoveEmptyEntries)]
         [InlineData(" an  example ", ' ', StringSplitOptions.None)]
         [InlineData(" an  example ", ' ', StringSplitOptions.RemoveEmptyEntries)]
-        public void op_Split_char_StringSplitOptions(string text, 
-                                                     char value, 
+        public void op_Split_char_StringSplitOptions(string text,
+                                                     char value,
                                                      StringSplitOptions options)
         {
             var expected = text.Split(value, options);
@@ -2367,9 +2366,9 @@
         public void op_StartsWithAny_strings_whenFalse()
         {
             var values = new[]
-                             {
-                                 "test", null, string.Empty
-                             };
+                {
+                    "test", null, string.Empty
+                };
 
             Assert.False(new MutableString().StartsWithAny(values));
             Assert.False(new MutableString("example").StartsWithAny(values));
@@ -2379,9 +2378,9 @@
         public void op_StartsWithAny_strings_whenTrue()
         {
             var values = new[]
-                             {
-                                 "test", "ex"
-                             };
+                {
+                    "test", "ex"
+                };
 
             Assert.True(new MutableString("example").StartsWithAny(values));
         }
@@ -2389,7 +2388,7 @@
         [Theory]
         [InlineData("example", 'x')]
         [InlineData("", 'e')]
-        public void op_StartsWith_char_whenFalse(string text, 
+        public void op_StartsWith_char_whenFalse(string text,
                                                  char value)
         {
             Assert.False(new MutableString(text).StartsWith(value));
@@ -2397,7 +2396,7 @@
 
         [Theory]
         [InlineData("example", 'e')]
-        public void op_StartsWith_char_whenTrue(string text, 
+        public void op_StartsWith_char_whenTrue(string text,
                                                 char value)
         {
             Assert.True(new MutableString(text).StartsWith(value));
@@ -2417,7 +2416,7 @@
         [InlineData("", "test")]
         [InlineData("ample", "example")]
         [InlineData("road", "test")]
-        public void op_StartsWith_string_whenFalse(string text, 
+        public void op_StartsWith_string_whenFalse(string text,
                                                    string value)
         {
             Assert.False(new MutableString(text).StartsWith(value));
@@ -2426,7 +2425,7 @@
         [Theory]
         [InlineData("example", "e")]
         [InlineData("example", "ex")]
-        public void op_StartsWith_string_whenTrue(string text, 
+        public void op_StartsWith_string_whenTrue(string text,
                                                   string value)
         {
             Assert.True(new MutableString(text).StartsWith(value));
@@ -2438,7 +2437,7 @@
         [InlineData("Example", 1)]
         [InlineData("Example", 6)]
         [InlineData("Example", 7)]
-        public void op_Substring_int(string text, 
+        public void op_Substring_int(string text,
                                      int start)
         {
             var expected = (text ?? string.Empty).Substring(start);
@@ -2455,8 +2454,8 @@
         [InlineData("Example", 0, 7)]
         [InlineData("Example", 6, 1)]
         [InlineData("Example", 7, 0)]
-        public void op_Substring_int_int(string text, 
-                                         int start, 
+        public void op_Substring_int_int(string text,
+                                         int start,
                                          int length)
         {
             var expected = (text ?? string.Empty).Substring(start, length);
@@ -2469,8 +2468,8 @@
         [InlineData("Example", 8, 1)]
         [InlineData("Example", -1, 7)]
         [InlineData("Example", 0, 8)]
-        public void op_Substring_int_int_throwsArgumentOutOfRangeException(string text, 
-                                                                           int start, 
+        public void op_Substring_int_int_throwsArgumentOutOfRangeException(string text,
+                                                                           int start,
                                                                            int length)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).Substring(start, length));
@@ -2479,7 +2478,7 @@
         [Theory]
         [InlineData("Example", 8)]
         [InlineData("Example", -1)]
-        public void op_Substring_int_throwsArgumentOutOfRangeException(string text, 
+        public void op_Substring_int_throwsArgumentOutOfRangeException(string text,
                                                                        int start)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).Substring(start));
@@ -2490,8 +2489,8 @@
         [InlineData("", "Example", "test")]
         [InlineData("", "An Example", "Example")]
         [InlineData(" Example", "An Example", "An")]
-        public void op_Suffix_string(string expected, 
-                                     string text, 
+        public void op_Suffix_string(string expected,
+                                     string text,
                                      string value)
         {
             Assert.Equal(expected, new MutableString(text).Suffix(value));
@@ -2519,9 +2518,9 @@
         [InlineData("", "Example", "test", true)]
         [InlineData("", "An Example", "Example", true)]
         [InlineData("Example", " An Example ", "An", true)]
-        public void op_Suffix_string_bool(string expected, 
-                                          string text, 
-                                          string value, 
+        public void op_Suffix_string_bool(string expected,
+                                          string text,
+                                          string value,
                                           bool trim)
         {
             Assert.Equal(expected, new MutableString(text).Suffix(value, trim));
@@ -2529,7 +2528,7 @@
 
         [Theory]
         [InlineData("Example", "An Example")]
-        public void op_Suffix_string_bool_throwsArgumentOutOfRangeException(string text, 
+        public void op_Suffix_string_bool_throwsArgumentOutOfRangeException(string text,
                                                                             string value)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).Suffix(value, true));
@@ -2537,7 +2536,7 @@
 
         [Theory]
         [InlineData("Example", "An Example")]
-        public void op_Suffix_string_throwsArgumentOutOfRangeException(string text, 
+        public void op_Suffix_string_throwsArgumentOutOfRangeException(string text,
                                                                        string value)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).Suffix(value));
@@ -2547,9 +2546,9 @@
         public void op_ToCharArray()
         {
             var expected = new[]
-                               {
-                                   'e', 'x', 'a', 'm', 'p', 'l', 'e'
-                               };
+                {
+                    'e', 'x', 'a', 'm', 'p', 'l', 'e'
+                };
             var actual = new MutableString("example").ToCharArray();
 
             Assert.Equal(expected, actual);
@@ -2559,8 +2558,8 @@
         [InlineData("Example", 0, "Example")]
         [InlineData("Example", 2, "ample")]
         [InlineData("Example", 7, "")]
-        public void op_ToCharArray_int(string text, 
-                                       int start, 
+        public void op_ToCharArray_int(string text,
+                                       int start,
                                        string result)
         {
             var expected = (result ?? string.Empty).ToCharArray();
@@ -2597,9 +2596,9 @@
         [InlineData("Example", 0, 7, "Example")]
         [InlineData("Example", 2, 3, "amp")]
         [InlineData("Example", 7, 0, "")]
-        public void op_ToCharArray_int_int(string text, 
-                                           int start, 
-                                           int length, 
+        public void op_ToCharArray_int_int(string text,
+                                           int start,
+                                           int length,
                                            string result)
         {
             var expected = (result ?? string.Empty).ToCharArray();
@@ -2646,7 +2645,7 @@
         [InlineData("Example", " Example")]
         [InlineData("Example", "  Example")]
         [InlineData(". Example", " . Example")]
-        public void op_Trim(string expected, 
+        public void op_Trim(string expected,
                             string text)
         {
             var actual = new MutableString(text);
@@ -2665,7 +2664,7 @@
         [InlineData("Example", "Example ")]
         [InlineData("Example", "Example  ")]
         [InlineData("Example .", "Example . ")]
-        public void op_TrimEnd(string expected, 
+        public void op_TrimEnd(string expected,
                                string text)
         {
             var actual = new MutableString(text);
@@ -2684,7 +2683,7 @@
         [InlineData("Example", " Example")]
         [InlineData("Example", "  Example")]
         [InlineData(". Example", " . Example")]
-        public void op_TrimStart(string expected, 
+        public void op_TrimStart(string expected,
                                  string text)
         {
             var actual = new MutableString(text);
@@ -2719,7 +2718,7 @@
         [Theory]
         [InlineData("", -1)]
         [InlineData("", 2)]
-        public void op_Truncate_int_whenArgumentOutOfRangeException(string text, 
+        public void op_Truncate_int_whenArgumentOutOfRangeException(string text,
                                                                     int start)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new MutableString(text).Truncate(start));

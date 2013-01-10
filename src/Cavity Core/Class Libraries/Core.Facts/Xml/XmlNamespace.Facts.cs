@@ -9,13 +9,12 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<XmlNamespace>()
-                            .DerivesFrom<ComparableObject>()
-                            .IsConcreteClass()
-                            .IsSealed()
-                            .NoDefaultConstructor()
-                            .IsNotDecorated()
-                            .Result);
+            Assert.True(new TypeExpectations<XmlNamespace>().DerivesFrom<ComparableObject>()
+                                                            .IsConcreteClass()
+                                                            .IsSealed()
+                                                            .NoDefaultConstructor()
+                                                            .IsNotDecorated()
+                                                            .Result);
         }
 
         [Fact]

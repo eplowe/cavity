@@ -13,13 +13,12 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<TranslationDictionary<int>>()
-                            .DerivesFrom<Dictionary<Language, int>>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .HasDefaultConstructor()
-                            .Serializable()
-                            .Result);
+            Assert.True(new TypeExpectations<TranslationDictionary<int>>().DerivesFrom<Dictionary<Language, int>>()
+                                                                          .IsConcreteClass()
+                                                                          .IsUnsealed()
+                                                                          .HasDefaultConstructor()
+                                                                          .Serializable()
+                                                                          .Result);
         }
 
         [Fact]

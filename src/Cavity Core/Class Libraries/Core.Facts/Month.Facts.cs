@@ -14,16 +14,15 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<Month>()
-                            .IsValueType()
-                            .Implements<IEquatable<Month>>()
-                            .Serializable()
-                            .IsDecoratedWith<ImmutableObjectAttribute>()
-                            .Implements<IComparable>()
-                            .Implements<IComparable<Month>>()
-                            .Implements<IEquatable<Month>>()
-                            .Implements<IChangeMonth<Month>>()
-                            .Result);
+            Assert.True(new TypeExpectations<Month>().IsValueType()
+                                                     .Implements<IEquatable<Month>>()
+                                                     .Serializable()
+                                                     .IsDecoratedWith<ImmutableObjectAttribute>()
+                                                     .Implements<IComparable>()
+                                                     .Implements<IComparable<Month>>()
+                                                     .Implements<IEquatable<Month>>()
+                                                     .Implements<IChangeMonth<Month>>()
+                                                     .Result);
         }
 
         [Fact]

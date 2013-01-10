@@ -9,12 +9,11 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<DisposableObject>()
-                            .DerivesFrom<object>()
-                            .IsAbstractBaseClass()
-                            .IsNotDecorated()
-                            .Implements<IDisposable>()
-                            .Result);
+            Assert.True(new TypeExpectations<DisposableObject>().DerivesFrom<object>()
+                                                                .IsAbstractBaseClass()
+                                                                .IsNotDecorated()
+                                                                .Implements<IDisposable>()
+                                                                .Result);
         }
 
         [Fact]

@@ -21,15 +21,14 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<EntityTag>()
-                            .IsValueType()
-                            .Implements<ISerializable>()
-                            .Implements<IComparable>()
-                            .Implements<IComparable<EntityTag>>()
-                            .Implements<IEquatable<EntityTag>>()
-                            .Serializable()
-                            .IsDecoratedWith<ImmutableObjectAttribute>()
-                            .Result);
+            Assert.True(new TypeExpectations<EntityTag>().IsValueType()
+                                                         .Implements<ISerializable>()
+                                                         .Implements<IComparable>()
+                                                         .Implements<IComparable<EntityTag>>()
+                                                         .Implements<IEquatable<EntityTag>>()
+                                                         .Serializable()
+                                                         .IsDecoratedWith<ImmutableObjectAttribute>()
+                                                         .Result);
         }
 
         [Fact]

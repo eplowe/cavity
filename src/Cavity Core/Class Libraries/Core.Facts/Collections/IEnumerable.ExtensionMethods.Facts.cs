@@ -161,6 +161,21 @@
         {
             Assert.False((null as IEnumerable).IsNotEmpty());
         }
+        
+#if NET20 || NET35
+#else
+        [Fact]
+        public void op_None_IEnumerableOfT_FuncOfT()
+        {
+            var obj = new List<string>
+                          {
+                              "example"
+                          };
+
+            Assert.False(obj.None(x => x == "example"));
+            Assert.True(obj.None(string.IsNullOrEmpty));
+        }
+#endif
 
         [Fact]
         public void op_ToHashSet_IEnumerable()

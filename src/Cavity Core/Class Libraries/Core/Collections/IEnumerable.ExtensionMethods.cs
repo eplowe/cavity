@@ -190,6 +190,16 @@
         }
 #endif
 
+#if NET20 || NET35
+#else
+        public static bool None<TSource>(this IEnumerable<TSource> source,
+                                         Func<TSource, bool> predicate)
+        {
+            return !source.Any(predicate);
+        }
+
+#endif
+
 #if NET20
         public static IEnumerable<T> Reverse<T>(IEnumerable<T> obj)
         {

@@ -12,12 +12,11 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<KeyStringPair>()
-                            .IsValueType()
-                            .Implements<ISerializable>()
-                            .Implements<IEquatable<KeyStringPair>>()
-                            .Serializable()
-                            .Result);
+            Assert.True(new TypeExpectations<KeyStringPair>().IsValueType()
+                                                             .Implements<ISerializable>()
+                                                             .Implements<IEquatable<KeyStringPair>>()
+                                                             .Serializable()
+                                                             .Result);
         }
 
         [Fact]

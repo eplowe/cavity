@@ -11,13 +11,12 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<TranslationException>()
-                            .DerivesFrom<Exception>()
-                            .IsConcreteClass()
-                            .IsSealed()
-                            .HasDefaultConstructor()
-                            .Serializable()
-                            .Result);
+            Assert.True(new TypeExpectations<TranslationException>().DerivesFrom<Exception>()
+                                                                    .IsConcreteClass()
+                                                                    .IsSealed()
+                                                                    .HasDefaultConstructor()
+                                                                    .Serializable()
+                                                                    .Result);
         }
 
         [Fact]
