@@ -60,6 +60,24 @@
         }
 
         [Fact]
+        public void op_NotContains_ICollectionOfTNull_T()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as ICollection<string>).NotContains("example"));
+        }
+
+        [Fact]
+        public void op_NotContains_ICollectionOfT_T()
+        {
+            var list = new List<string>
+                           {
+                               "example"
+                           };
+
+            Assert.False(list.NotContains("example"));
+            Assert.True(list.NotContains("test"));
+        }
+
+        [Fact]
         public void op_TryAdd_ICollectionOfTNull_paramsOfT()
         {
             Assert.Throws<ArgumentNullException>(() => (null as ICollection<string>).TryAdd("example"));

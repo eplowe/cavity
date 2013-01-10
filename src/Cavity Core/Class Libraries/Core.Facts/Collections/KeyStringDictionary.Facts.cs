@@ -16,15 +16,14 @@
         [Fact]
         public void a_definition()
         {
-            Assert.True(new TypeExpectations<KeyStringDictionary>()
-                            .DerivesFrom<Dictionary<string, string>>()
-                            .IsConcreteClass()
-                            .IsUnsealed()
-                            .HasDefaultConstructor()
-                            .Serializable()
-                            .Implements<IEnumerable<KeyStringPair>>()
-                            .Implements<ICloneable>()
-                            .Result);
+            Assert.True(new TypeExpectations<KeyStringDictionary>().DerivesFrom<Dictionary<string, string>>()
+                                                                   .IsConcreteClass()
+                                                                   .IsUnsealed()
+                                                                   .HasDefaultConstructor()
+                                                                   .Serializable()
+                                                                   .Implements<IEnumerable<KeyStringPair>>()
+                                                                   .Implements<ICloneable>()
+                                                                   .Result);
         }
 
         [Fact]
@@ -159,6 +158,18 @@
                 };
 
             Assert.True(obj.Contains(item));
+        }
+
+        [Fact]
+        public void op_NotContains_KeyStringPair()
+        {
+            var item = new KeyStringPair("key", "value");
+            var obj = new KeyStringDictionary
+                {
+                    item
+                };
+
+            Assert.False(obj.NotContains(item));
         }
 
         [Fact]
