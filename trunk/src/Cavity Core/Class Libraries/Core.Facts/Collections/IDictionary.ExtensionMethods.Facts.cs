@@ -15,6 +15,24 @@
         }
 
         [Fact]
+        public void op_NotContainsKey_IDictionaryOfTNull_string()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as IDictionary<string, object>).NotContainsKey("example"));
+        }
+
+        [Fact]
+        public void op_NotContainsKey_IDictionaryOfT_string()
+        {
+            var list = new Dictionary<string, int>
+                           {
+                               { "example", 123 }
+                           };
+
+            Assert.False(list.NotContainsKey("example"));
+            Assert.True(list.NotContainsKey("test"));
+        }
+
+        [Fact]
         public void op_TryAdd_IDictionaryOfTNull_KeyValuePair()
         {
             Assert.Throws<ArgumentNullException>(() => (null as IDictionary<string, object>).TryAdd(new KeyValuePair<string, object>("example", new object())));

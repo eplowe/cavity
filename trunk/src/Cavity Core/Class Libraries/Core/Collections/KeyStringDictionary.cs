@@ -155,6 +155,11 @@
             this[source] = string.Empty;
         }
 
+        public virtual bool NotContains(KeyStringPair item)
+        {
+            return !Contains(item);
+        }
+
         public virtual bool NotEmpty(params string[] keys)
         {
             return !Empty(keys);
