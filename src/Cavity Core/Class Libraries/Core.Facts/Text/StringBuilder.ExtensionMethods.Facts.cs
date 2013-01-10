@@ -4,6 +4,7 @@
     using System.Text;
 
     using Xunit;
+    using Xunit.Extensions;
 
     public sealed class StringBuilderExtensionMethodsFacts
     {
@@ -13,25 +14,55 @@
             Assert.True(typeof(StringBuilderExtensionMethods).IsStatic());
         }
 
+        [Theory]
+        [InlineData(false, "")]
+        [InlineData(true, "example")]
+        public void op_ContainsText_StringBuilder(bool expected,
+                                                  string value)
+        {
+            var actual = new StringBuilder(value).ContainsText();
+
+            Assert.Equal(expected, actual);
+        }
+
         [Fact]
         public void op_ContainsText_StringBuilderNull()
         {
             Assert.Throws<ArgumentNullException>(() => (null as StringBuilder).ContainsText());
         }
 
-        [Fact]
-        public void op_ContainsText_StringBuilder_whenFalse()
+        [Theory]
+        [InlineData(true, "")]
+        [InlineData(false, "example")]
+        public void op_IsEmpty_StringBuilder(bool expected,
+                                             string value)
         {
-            Assert.False(new StringBuilder().ContainsText());
+            var actual = new StringBuilder(value).IsEmpty();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void op_ContainsText_StringBuilder_whenTrue()
+        public void op_IsEmpty_StringBuilderNull()
         {
-            var obj = new StringBuilder();
-            obj.Append("example");
+            Assert.Throws<ArgumentNullException>(() => (null as StringBuilder).IsEmpty());
+        }
 
-            Assert.True(obj.ContainsText());
+        [Theory]
+        [InlineData(false, "")]
+        [InlineData(true, "example")]
+        public void op_IsNotEmpty_StringBuilder(bool expected,
+                                                string value)
+        {
+            var actual = new StringBuilder(value).IsNotEmpty();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_IsNotEmpty_StringBuilderNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as StringBuilder).IsNotEmpty());
         }
     }
 }

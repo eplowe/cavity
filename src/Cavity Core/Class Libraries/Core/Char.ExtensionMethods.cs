@@ -12,12 +12,39 @@
         }
 
 #if NET20
+        public static bool IsDigit(char value)
+#else
+        public static bool IsDigit(this char value)
+#endif
+        {
+            return char.IsDigit(value);
+        }
+
+#if NET20
         public static bool IsFractionSymbol(char value)
 #else
         public static bool IsFractionSymbol(this char value)
 #endif
         {
             return Characters.FractionSymbols.Contains(value);
+        }
+
+#if NET20
+        public static bool IsLetter(char value)
+#else
+        public static bool IsLetter(this char value)
+#endif
+        {
+            return char.IsLetter(value);
+        }
+
+#if NET20
+        public static bool IsLetterOrDigit(char value)
+#else
+        public static bool IsLetterOrDigit(this char value)
+#endif
+        {
+            return char.IsLetterOrDigit(value);
         }
 
 #if NET20
@@ -30,12 +57,39 @@
         }
 
 #if NET20
+        public static bool IsNumber(char value)
+#else
+        public static bool IsNumber(this char value)
+#endif
+        {
+            return char.IsNumber(value);
+        }
+
+#if NET20
         public static bool IsPunctuation(char value)
 #else
         public static bool IsPunctuation(this char value)
 #endif
         {
             return Characters.Punctuation.Contains(value);
+        }
+
+#if NET20
+        public static bool IsSeparator(char value)
+#else
+        public static bool IsSeparator(this char value)
+#endif
+        {
+            return char.IsSeparator(value);
+        }
+
+#if NET20
+        public static bool IsSymbol(char value)
+#else
+        public static bool IsSymbol(this char value)
+#endif
+        {
+            return char.IsSymbol(value);
         }
 
 #if NET20

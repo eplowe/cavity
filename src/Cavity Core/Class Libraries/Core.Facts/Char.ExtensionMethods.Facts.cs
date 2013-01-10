@@ -24,12 +24,45 @@
         }
 
         [Theory]
+        [InlineData("0123456789")]
+        public void op_IsDigit_char(string values)
+        {
+            foreach (var value in values ?? string.Empty)
+            {
+                Assert.True(value.IsDigit(), XmlConvert.ToString(value));
+            }
+        }
+
+        [Theory]
         [InlineData("½⅓¼⅕⅙⅛⅔⅖¾⅗⅜⅘⅚⅝⅞⁄")]
         public void op_IsFractionSymbol_char(string values)
         {
             foreach (var value in values ?? string.Empty)
             {
                 Assert.True(value.IsFractionSymbol(), XmlConvert.ToString(value));
+            }
+        }
+
+        [Theory]
+        [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
+        [InlineData("abcdefghijklmnopqrstuvwxyz")]
+        public void op_IsLetter_char(string values)
+        {
+            foreach (var value in values ?? string.Empty)
+            {
+                Assert.True(value.IsLetter(), XmlConvert.ToString(value));
+            }
+        }
+
+        [Theory]
+        [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
+        [InlineData("abcdefghijklmnopqrstuvwxyz")]
+        [InlineData("0123456789")]
+        public void op_IsLetterOrDigit_char(string values)
+        {
+            foreach (var value in values ?? string.Empty)
+            {
+                Assert.True(value.IsLetterOrDigit(), XmlConvert.ToString(value));
             }
         }
 
@@ -44,12 +77,43 @@
         }
 
         [Theory]
+        [InlineData("0123456789")]
+        [InlineData("½⅓¼⅕⅙⅛⅔⅖¾⅗⅜⅘⅚⅝⅞")]
+        public void op_IsNumber_char(string values)
+        {
+            foreach (var value in values ?? string.Empty)
+            {
+                Assert.True(value.IsNumber(), XmlConvert.ToString(value));
+            }
+        }
+
+        [Theory]
         [InlineData("„“”‘’'\"‐‒–—―…!?.:;,[](){}⟨⟩«»/⁄")]
         public void op_IsPunctuation_char(string values)
         {
             foreach (var value in values ?? string.Empty)
             {
                 Assert.True(value.IsPunctuation(), XmlConvert.ToString(value));
+            }
+        }
+
+        [Theory]
+        [InlineData(" ")]
+        public void op_IsSeparator_char(string values)
+        {
+            foreach (var value in values ?? string.Empty)
+            {
+                Assert.True(value.IsSeparator(), XmlConvert.ToString(value));
+            }
+        }
+
+        [Theory]
+        [InlineData("+™$£")]
+        public void op_IsSymbol_char(string values)
+        {
+            foreach (var value in values ?? string.Empty)
+            {
+                Assert.True(value.IsSymbol(), XmlConvert.ToString(value));
             }
         }
 

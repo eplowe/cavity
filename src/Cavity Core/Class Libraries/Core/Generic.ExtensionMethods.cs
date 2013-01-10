@@ -10,6 +10,17 @@
     public static class GenericExtensionMethods
     {
 #if NET20
+        public static bool EqualsNoneOf<T>(T obj, 
+                                           params T[] args)
+#else
+        public static bool EqualsNoneOf<T>(this T obj,
+                                           params T[] args)
+#endif
+        {
+            return !EqualsOneOf(obj, args);
+        }
+
+#if NET20
         public static bool EqualsOneOf<T>(T obj, 
                                           params T[] args)
 #else
@@ -50,29 +61,20 @@
                                  params T[] args)
 #endif
         {
+            return EqualsOneOf(value, args);
+        }
+
 #if NET20
-            if (null == args)
-            {
-                return false;
-            }
-
-            if (0 == args.Length)
-            {
-                return false;
-            }
-
-            foreach (var arg in args)
-            {
-                if (arg.Equals(value))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+        public static bool Is<T>(T value, 
+                                 T comparand)
 #else
-            return args.Contains(value);
+        public static bool Is<T>(this T value,
+                                 T comparand)
 #endif
+        {
+            return ReferenceEquals(null, value)
+                       ? ReferenceEquals(null, comparand)
+                       : value.Equals(comparand);
         }
 
 #if NET20
@@ -103,6 +105,41 @@
             }
 
             return -1 < obj.CompareTo(lower) && 1 > obj.CompareTo(upper);
+        }
+
+#if NET20
+        public static bool IsGreaterThan<T>(T value, 
+                                            T comparand)
+#else
+        public static bool IsGreaterThan<T>(this T value,
+                                            T comparand)
+#endif
+            where T : IComparable<T>
+        {
+            return value.CompareTo(comparand) > 0;
+        }
+
+#if NET20
+        public static bool IsLessThan<T>(T value, 
+                                         T comparand)
+#else
+        public static bool IsLessThan<T>(this T value,
+                                         T comparand)
+#endif
+            where T : IComparable<T>
+        {
+            return 0 > value.CompareTo(comparand);
+        }
+
+#if NET20
+        public static bool IsNot<T>(T value, 
+                                    T comparand)
+#else
+        public static bool IsNot<T>(this T value,
+                                    T comparand)
+#endif
+        {
+            return !Is(value, comparand);
         }
 
 #if NET20
