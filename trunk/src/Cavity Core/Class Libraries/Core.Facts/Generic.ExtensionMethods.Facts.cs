@@ -3,6 +3,7 @@
     using System;
 
     using Xunit;
+    using Xunit.Extensions;
 
     public sealed class GenericExtensionMethodsFacts
     {
@@ -10,6 +11,30 @@
         public void a_definition()
         {
             Assert.True(typeof(GenericExtensionMethods).IsStatic());
+        }
+
+        [Fact]
+        public void op_EqualsNoneOf_TNull_Ts()
+        {
+            Assert.True((null as string).EqualsNoneOf("xyz"));
+        }
+
+        [Fact]
+        public void op_EqualsNoneOf_T_TNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => "abc".EqualsNoneOf(null));
+        }
+
+        [Fact]
+        public void op_EqualsNoneOf_T_Ts()
+        {
+            Assert.False(123.EqualsNoneOf(123, 456));
+        }
+
+        [Fact]
+        public void op_EqualsNoneOf_T_Ts_whenTrue()
+        {
+            Assert.True(1.EqualsNoneOf(2, 3));
         }
 
         [Fact]
@@ -67,6 +92,62 @@
         }
 
         [Fact]
+        public void op_Is_T_T()
+        {
+            Assert.True(123.Is(123));
+            Assert.False(123.Is(456));
+        }
+
+        [Theory]
+        [InlineData(true, null, null)]
+        [InlineData(false, null, "example")]
+        [InlineData(false, "example", null)]
+        [InlineData(true, "example", "example")]
+        [InlineData(false, "example", "EXAMPLE")]
+        public void op_Is_T_T_whenString(bool expected, string value, string comparand)
+        {
+            var actual = value.Is(comparand);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_IsNot_T_T()
+        {
+            Assert.False(123.IsNot(123));
+            Assert.True(123.IsNot(456));
+        }
+
+        [Fact]
+        public void op_IsLessThan_T_T()
+        {
+            Assert.False(123.IsLessThan(0));
+            Assert.False(123.IsLessThan(123));
+            Assert.True(123.IsLessThan(456));
+        }
+
+        [Fact]
+        public void op_IsGreaterThan_T_T()
+        {
+            Assert.True(123.IsGreaterThan(0));
+            Assert.False(123.IsGreaterThan(123));
+            Assert.False(123.IsGreaterThan(456));
+        }
+
+        [Theory]
+        [InlineData(false, null, null)]
+        [InlineData(true, null, "example")]
+        [InlineData(true, "example", null)]
+        [InlineData(false, "example", "example")]
+        [InlineData(true, "example", "EXAMPLE")]
+        public void op_IsNot_T_T_whenString(bool expected, string value, string comparand)
+        {
+            var actual = value.IsNot(comparand);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void op_IsBoundedBy_TNull_T_T()
         {
             Assert.False((null as string).IsBoundedBy("a", "c"));
@@ -81,7 +162,9 @@
         [Fact]
         public void op_IsBoundedBy_T_T_T()
         {
+            Assert.True(1.IsBoundedBy(1, 3));
             Assert.True(2.IsBoundedBy(1, 3));
+            Assert.True(3.IsBoundedBy(1, 3));
         }
 
         [Fact]

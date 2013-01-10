@@ -17,6 +17,7 @@
     <Compile Include="Collections\IList.ExtensionMethods.cs" />
     <Compile Include="Collections\KeyStringDictionary.cs" />
     <Compile Include="Collections\IEnumerable.ExtensionMethods.cs" />
+    <Compile Include="Nullable`1.ExtensionMethods.cs" />
     <Compile Include="QuarterOfYear.cs" />
     <Compile Include="ICalculateDateTimeCalendar.cs" />
     <Compile Include="IGetCalendarPeriod.cs" />
