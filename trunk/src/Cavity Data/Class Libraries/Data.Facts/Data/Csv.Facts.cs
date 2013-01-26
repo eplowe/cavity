@@ -110,10 +110,11 @@
             var obj = new KeyStringDictionary
                           {
                               new KeyStringPair("A", "123"),
-                              new KeyStringPair("B", "left,right")
+                              new KeyStringPair("B", "left,right"),
+                              new KeyStringPair("C", "a \"b\" c"),
                           };
 
-            const string expected = "123,\"left,right\"";
+            const string expected = "123,\"left,right\",\"a \"\"b\"\" c\"";
             var actual = Csv.Line(obj);
 
             Assert.Equal(expected, actual);
@@ -166,7 +167,7 @@
         [Fact]
         public void op_Line_KeyStringDictionary_IListOfStringNull()
         {
-            Assert.Throws<ArgumentNullException>(() => Csv.Line(new KeyStringDictionary(), null as IList<string>));
+            Assert.Throws<ArgumentNullException>(() => Csv.Line(new KeyStringDictionary(), null));
         }
 
         [Fact]
