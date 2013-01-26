@@ -3,6 +3,7 @@
     using System;
 
     using Xunit;
+    using Xunit.Extensions;
 
     public sealed class CsvStringExtensionMethodsFacts
     {
@@ -72,11 +73,12 @@
             Assert.Null((null as string).FormatCommaSeparatedValue());
         }
 
-        [Fact]
-        public void op_FormatCommaSeparatedValue_stringQuote()
+        [Theory]
+        [InlineData("\"a \"\"b\"\" c\"", "a \"b\" c")]
+        [InlineData("\"a, \"\"b\"\", c\"", "a, \"b\", c")]
+        public void op_FormatCommaSeparatedValue_stringQuote(string expected, string value)
         {
-            const string expected = "\"a, \"\"b\"\", c\"";
-            var actual = "a, \"b\", c".FormatCommaSeparatedValue();
+            var actual = value.FormatCommaSeparatedValue();
 
             Assert.Equal(expected, actual);
         }
