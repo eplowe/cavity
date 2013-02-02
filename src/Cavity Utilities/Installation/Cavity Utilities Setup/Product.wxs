@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define UpgradeCode="{fdbbf990-3f9b-4851-bf48-ca10fa4cca7e}"?>
-  <Product Id="*" Name="Cavity Utilities" Language="1033" Version="2.0.0.895" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
+  <Product Id="*" Name="Cavity Utilities" Language="1033" Version="2.0.0.936" Manufacturer="Alan Dean" UpgradeCode="$(var.UpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" InstallPrivileges="elevated" Compressed="yes" Description="Installs the Cavity Utilities." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
