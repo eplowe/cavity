@@ -8,6 +8,7 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\PostalAddressFileKey.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
     <None Include="packages.config" />
