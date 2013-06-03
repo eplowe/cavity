@@ -88,11 +88,11 @@
 *2.0.0.848* Cavity HTTP Generalizations
  * Cavity.Core
 
-*2.0.0.905* Cavity.Domain
+*2.0.0.939* Cavity.Domain
  * Cavity.Data
    * Cavity.Core
 
-*2.0.0.937* Cavity.Domain.RoyalMail
+*2.0.0.939* Cavity.Domain.RoyalMail
  * Cavity.Data
    * Cavity.Core
 

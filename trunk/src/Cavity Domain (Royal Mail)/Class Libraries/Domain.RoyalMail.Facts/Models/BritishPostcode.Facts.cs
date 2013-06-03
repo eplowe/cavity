@@ -328,10 +328,10 @@
         [InlineData("AX")]
         [InlineData("0X 4XG")]
         [InlineData("Ab Kettleby")]
-        [InlineData("B1 1B")]
-        [InlineData("BB1 1A")]
-        [InlineData("GU21 4X")]
-        [InlineData("WC1A 2H")]
+        ////[InlineData("B1 1B")]
+        ////[InlineData("BB1 1A")]
+        ////[InlineData("GU21 4X")]
+        ////[InlineData("WC1A 2H")]
         public void op_FromString_string_WhenInvalid(string value)
         {
             var obj = BritishPostcode.FromString(value);
@@ -358,6 +358,48 @@
 
             Assert.Equal("WC1A", obj.OutCode);
             Assert.Equal("2HR", obj.InCode);
+        }
+
+        [Theory]
+        [InlineData("GIR 0AA")]
+        [InlineData("B1 1BA")]
+        [InlineData("BB1 1AB")]
+        [InlineData("B10 9EL")]
+        [InlineData("GU21 4XG")]
+        [InlineData("WC1A 2HR")]
+        public void op_FromString_string_whenNoSpaces(string expected)
+        {
+            var actual = BritishPostcode.FromString(expected.RemoveAny(' ')).ToString();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("GIR 0AA", "GIR  0AA")]
+        [InlineData("B1 1BA", "B1  1BA")]
+        [InlineData("BB1 1AB", "BB1  1AB")]
+        [InlineData("B10 9EL", "B10  9EL")]
+        [InlineData("GU21 4XG", "GU21  4XG")]
+        [InlineData("WC1A 2HR", "WC1A  2HR")]
+        public void op_FromString_string_whenDoubleSpaces(string expected, string value)
+        {
+            var actual = BritishPostcode.FromString(value).ToString();
+
+            Assert.Equal<BritishPostcode>(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("GIR 0", "GIR 0A")]
+        [InlineData("B1 1", "B1 1B")]
+        [InlineData("BB1 1", "BB1 1A")]
+        [InlineData("B10 9", "B10 9E")]
+        [InlineData("GU21 4", "GU21 4X")]
+        [InlineData("WC1A 2", "WC1A 2H")]
+        public void op_FromString_string_whenPartialUnit(string expected, string value)
+        {
+            var actual = BritishPostcode.FromString(value).ToString();
+
+            Assert.Equal<BritishPostcode>(expected, actual);
         }
 
         [Fact]
@@ -473,20 +515,6 @@
         public void op_ToString(string expected)
         {
             var actual = BritishPostcode.FromString(expected).ToString();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [InlineData("GIR 0AA")]
-        [InlineData("B1 1BA")]
-        [InlineData("BB1 1AB")]
-        [InlineData("B10 9EL")]
-        [InlineData("GU21 4XG")]
-        [InlineData("WC1A 2HR")]
-        public void op_FromString_string_whenNoSpaces(string expected)
-        {
-            var actual = BritishPostcode.FromString(expected.RemoveAny(' ')).ToString();
 
             Assert.Equal(expected, actual);
         }

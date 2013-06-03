@@ -159,12 +159,25 @@
             obj.Synonyms.Add("an example");
 
             var expected = new LexicalMatch(obj)
-                               {
-                                   Suffix = "test case"
-                               };
+                {
+                    Suffix = "test case"
+                };
             var actual = obj.MatchBeginning("an ex_ample test case");
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_MatchBeginning()
+        {
+            var lexicon = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
+                {
+                    "Blenheim Gate"
+                };
+
+            var actual = lexicon.MatchBeginning("Blenheim Gate 22-24");
+
+            Assert.NotNull(actual);
         }
 
         [Fact]

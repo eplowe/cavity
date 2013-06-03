@@ -134,9 +134,9 @@
             var substring = new MutableString(value);
             var clone = substring.Clone();
 #if NET20
-            foreach (var word in IEnumerableExtensionMethods.Reverse(substring.Words()))
+            foreach (var word in IEnumerableExtensionMethods.Reverse(substring.ToString().Split(' ')))
 #else
-            foreach (var word in substring.Words().Reverse())
+            foreach (var word in substring.ToString().Split(' ').Reverse())
 #endif
             {
                 if (0 == word.Length)
@@ -179,9 +179,9 @@
             var substring = new MutableString(value);
             var clone = substring.Clone();
 #if NET20
-            foreach (var word in IEnumerableExtensionMethods.ToList(substring.Words()))
+            foreach (var word in IEnumerableExtensionMethods.ToList(substring.ToString().Split(' ')))
 #else
-            foreach (var word in substring.Words().ToList())
+            foreach (var word in substring.ToString().Split(' ').ToList())
 #endif
             {
                 substring.RemoveFromStart(word).Trim();
@@ -224,9 +224,9 @@
 
             var mutable = new MutableString(value);
 #if NET20
-            foreach (var part in PartsWithin(IEnumerableExtensionMethods.ToList(mutable.Words())))
+            foreach (var part in PartsWithin(IEnumerableExtensionMethods.ToList(mutable.ToString().Split(' '))))
 #else
-            foreach (var part in PartsWithin(mutable.Words().ToList()))
+            foreach (var part in PartsWithin(mutable.ToString().Split(' ').ToList()))
 #endif
             {
                 result = Match(part);
