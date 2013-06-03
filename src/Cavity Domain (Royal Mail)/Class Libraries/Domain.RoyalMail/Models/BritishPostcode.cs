@@ -165,6 +165,7 @@
 
             value = value.NormalizeWhiteSpace()
                          .Trim()
+                         .Replace("  ", " ", StringComparison.Ordinal)
                          .ToUpperInvariant()
                          .Where(c => ' '.Equals(c) || char.IsLetterOrDigit(c))
                          .Aggregate(string.Empty, (current,
@@ -174,7 +175,18 @@
                 return new BritishPostcode();
             }
 
-            return PostalUnit(value) ?? new BritishPostcode();
+            var candidate1 = PostalUnit(value);
+            if (null != candidate1)
+            {
+                if (!string.IsNullOrEmpty(candidate1.Unit) ||
+                    -1 == value.IndexOf(' ') ||
+                    string.Equals(value, candidate1, StringComparison.OrdinalIgnoreCase))
+                {
+                    return candidate1;
+                }
+            }
+
+            return PostalUnit(value.Substring(0, value.Length - 1)) ?? new BritishPostcode();
         }
 
         public override bool Equals(object obj)
@@ -356,6 +368,11 @@
 
         private static BritishPostcode PostalUnit(MutableString value)
         {
+            if (0 == value.Length)
+            {
+                return null;
+            }
+
             if (8 < value.Length)
             {
                 return null;
