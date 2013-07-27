@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
+    using System.Reflection.Emit;
 #if !NET20
     using System.Linq;
 #endif
@@ -29,6 +31,26 @@
                                       StreamingContext context)
             : base(info, context)
         {
+        }
+
+        public new string this[string key]
+        {
+            get
+            {
+                try
+                {
+                    return base[key];
+                }
+                catch (KeyNotFoundException)
+                {
+                    throw new KeyNotFoundException(string.Format(CultureInfo.InvariantCulture, "The '{0}' key was not present in the dictionary.", key));
+                }
+            }
+            
+            set
+            {
+                base[key] = value;
+            }
         }
 
         public string this[int index]

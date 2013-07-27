@@ -22,7 +22,7 @@
   <?define ServiceGuid = "1d8762a5-3916-46a3-80b6-64f967525150" ?>
   <?define ServiceConfigGuid = "13dcbf4e-2f0f-41b6-be32-05f87ae1af0e" ?>
   <?endif ?>
-  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="2.0.0.890" Manufacturer="Alan Dean" UpgradeCode="$(var.ProductUpgradeCode)">
+  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="2.0.0.940" Manufacturer="Alan Dean" UpgradeCode="$(var.ProductUpgradeCode)">
     <Package InstallerVersion="200" InstallScope="perMachine" Compressed="yes" Description="Installs Cavity Task Management." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />
@@ -72,7 +72,7 @@
       </Directory>
     </Directory>
     <Feature Id="ProductFeature" Title="Task Management Service" Level="1">
-      <ComponentGroupRef Id="Product.Generated" />
+      <!-- ComponentGroupRef Id="Product.Generated" / -->
       <ComponentRef Id="EventLog" />
       <ComponentRef Id="PerformanceCounters" />
       <ComponentRef Id="Service" />

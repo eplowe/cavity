@@ -1782,18 +1782,21 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Aa", Justification = "This is spelling is intended.")]
         public void op_SameIndexesOfEach_stringAbba_charsAa()
         {
             Assert.True("Abba".SameIndexesOfEach('A', 'a'));
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Abc", Justification = "This is spelling is intended.")]
         public void op_SameIndexesOfEach_stringAbba_charsAbc()
         {
             Assert.False("Abba".SameIndexesOfEach('a', 'b', 'c'));
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Abc", Justification = "This is for testing purposes.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Xbz", Justification = "This is for testing purposes.")]
         public void op_SameIndexesOfEach_stringAbc_charsXbz()
         {
@@ -1801,6 +1804,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Abc", Justification = "This is spelling is intended.")]
         public void op_SameIndexesOfEach_stringAbc_charsXyz()
         {
             Assert.True("abc".SameIndexesOfEach('X', 'y', 'z'));
@@ -1865,6 +1869,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Az", Justification = "This is spelling is intended.")]
         public void op_StartsOrEndsWith_stringAbba_charsAz()
         {
             Assert.True("Abba".StartsOrEndsWith('A', 'z'));
@@ -1878,24 +1883,28 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Az", Justification = "This is spelling is intended.")]
         public void op_StartsOrEndsWith_stringEmpty_charsAz()
         {
             Assert.False(string.Empty.StartsOrEndsWith('A', 'z'));
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Az", Justification = "This is spelling is intended.")]
         public void op_StartsOrEndsWith_stringNull_charsAz()
         {
             Assert.False((null as string).StartsOrEndsWith('A', 'z'));
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Abc", Justification = "This is spelling is intended.")]
         public void op_StartsOrEndsWith_stringZulu_charsAbc()
         {
             Assert.False("Zulu".StartsOrEndsWith('a', 'b', 'c'));
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Az", Justification = "This is spelling is intended.")]
         public void op_StartsOrEndsWith_stringZulu_charsAz()
         {
             Assert.False("Zulu".StartsOrEndsWith('A', 'z'));

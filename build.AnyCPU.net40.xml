@@ -4,13 +4,13 @@
          ToolsVersion="4.0">
   <ItemGroup>
   	<Solutions Include="Cavity Commands Transactions" />
-  	<Solutions Include="Cavity Examples Website" />
+  	<!-- Solutions Include="Cavity Examples Website" / -->
   	<Solutions Include="Cavity MSBuild (Domain)" />
   	<Solutions Include="Cavity Task Management" />
   	<Solutions Include="Cavity Task Management Abstractions" />
   	<Solutions Include="Cavity Task Management Service" />
   	<Solutions Include="Cavity Test Controller Abstractions" />
-  	<Solutions Include="Cavity Test Controller" />
+  	<!-- Solutions Include="Cavity Test Controller" / -->
   	<Solutions Include="Cavity Web" />
   	<Solutions Include="Cavity Web (ASP.NET MVC3)" />
   </ItemGroup>

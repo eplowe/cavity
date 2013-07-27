@@ -1,6 +1,7 @@
 ﻿namespace Cavity.Testing
 {
     using System.ComponentModel.Composition;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
     using Cavity.IO;
@@ -9,6 +10,7 @@
 
     using Xunit;
 
+    [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "IRun", Justification = "This naming is intentional.")]
     public sealed class IRunTestFacts
     {
         [Fact]

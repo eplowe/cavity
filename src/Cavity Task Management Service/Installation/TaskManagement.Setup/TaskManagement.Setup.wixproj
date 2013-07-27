@@ -10,14 +10,6 @@
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Static Libraries\TaskManagement.EventLog.Messages\TaskManagement.EventLog.Messages.vcxproj">
-      <Name>TaskManagement.EventLog.Messages</Name>
-      <Project>{0e9035be-3c3d-4e7b-b955-ee9bc0c76a64}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
-    </ProjectReference>
     <ProjectReference Include="..\..\Windows Services\TaskManagement.Service\TaskManagement.Service.csproj">
       <Name>TaskManagement.Service</Name>
       <Project>{6e1feb48-28de-49e6-83bd-08d272f8c43e}</Project>
