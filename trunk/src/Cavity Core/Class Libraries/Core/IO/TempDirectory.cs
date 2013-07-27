@@ -13,17 +13,17 @@
         {
         }
 
-        public TempDirectory(DirectoryInfo dir)
+        public TempDirectory(DirectoryInfo directory)
         {
-            if (null == dir)
+            if (null == directory)
             {
-                throw new ArgumentNullException("dir");
+                throw new ArgumentNullException("directory");
             }
 
 #if NET20 || NET35
-            Info = new DirectoryInfo(Path.Combine(dir.FullName, Guid.NewGuid().ToString()));
+            Info = new DirectoryInfo(Path.Combine(directory.FullName, Guid.NewGuid().ToString()));
 #else
-            Info = dir.CombineAsDirectory(Guid.NewGuid());
+            Info = directory.CombineAsDirectory(Guid.NewGuid());
 #endif
             Info.Create();
         }

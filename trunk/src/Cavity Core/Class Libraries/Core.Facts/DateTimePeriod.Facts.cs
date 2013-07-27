@@ -1,6 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Xml;
 
     using Xunit;
@@ -143,6 +144,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "propEnding", Justification = "This is spelling is intended.")]
         public void prop_Ending()
         {
             Assert.True(new PropertyExpectations<DateTimePeriod>(x => x.Ending)
@@ -157,6 +159,7 @@
         [Theory]
         [InlineData("2011-12-31T12:00:00Z", "2012-01-01T12:00:00Z")]
         [InlineData("2012-01-01T12:00:00Z", "2012-01-01T12:00:00Z")]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "propEnding", Justification = "This is spelling is intended.")]
         public void prop_Ending_set(string beginning, 
                                     string ending)
         {
@@ -167,6 +170,7 @@
 
         [Theory]
         [InlineData("2012-01-01T12:00:00Z", "2011-12-31T12:00:00Z")]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "propEnding", Justification = "This is spelling is intended.")]
         public void prop_Ending_set_whenArgumentOutOfRangeException(string beginning, 
                                                                     string ending)
         {

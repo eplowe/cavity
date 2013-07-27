@@ -1,7 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
-
+    using System.Diagnostics.CodeAnalysis;
     using Xunit;
     using Xunit.Extensions;
 
@@ -14,6 +14,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ts", Justification = "This is spelling is intended.")]
         public void op_EqualsNoneOf_TNull_Ts()
         {
             Assert.True((null as string).EqualsNoneOf("xyz"));
@@ -26,18 +27,21 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ts", Justification = "This is spelling is intended.")]
         public void op_EqualsNoneOf_T_Ts()
         {
             Assert.False(123.EqualsNoneOf(123, 456));
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ts", Justification = "This is spelling is intended.")]
         public void op_EqualsNoneOf_T_Ts_whenTrue()
         {
             Assert.True(1.EqualsNoneOf(2, 3));
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ts", Justification = "This is spelling is intended.")]
         public void op_EqualsOneOf_TNull_Ts()
         {
             Assert.False((null as string).EqualsOneOf("xyz"));
@@ -50,24 +54,28 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ts", Justification = "This is spelling is intended.")]
         public void op_EqualsOneOf_T_Ts()
         {
             Assert.True(123.EqualsOneOf(123, 456));
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ts", Justification = "This is spelling is intended.")]
         public void op_EqualsOneOf_T_Ts_whenFalse()
         {
             Assert.False(1.EqualsOneOf(2, 3));
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ts", Justification = "This is spelling is intended.")]
         public void op_EqualsOneOf_T_Ts_whenStringFalse()
         {
             Assert.False("abc".EqualsOneOf("xyz"));
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ts", Justification = "This is spelling is intended.")]
         public void op_EqualsOneOf_T_Ts_whenStringTrue()
         {
             Assert.True("abc".EqualsOneOf("abc"));

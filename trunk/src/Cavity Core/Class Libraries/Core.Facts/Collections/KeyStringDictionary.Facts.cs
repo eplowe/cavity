@@ -98,6 +98,33 @@
         }
 
         [Fact]
+        public void indexer_string()
+        {
+            var obj = new KeyStringDictionary
+                {
+                    new KeyStringPair("A", "0"),
+                    new KeyStringPair("B", "1")
+                };
+
+            Assert.Equal("0", obj["A"]);
+            Assert.Equal("1", obj["B"]);
+        }
+
+        [Fact]
+        public void indexer_string_whenOutOfRange()
+        {
+            try
+            {
+                var value = new KeyStringDictionary()["A"];
+                Assert.True(false, value);
+            }
+            catch (KeyNotFoundException exception)
+            {
+                Assert.Equal("The 'A' key was not present in the dictionary.", exception.Message);
+            }
+        }
+
+        [Fact]
         public void op_Add_KeyStringPair()
         {
             var obj = new KeyStringDictionary
