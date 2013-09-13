@@ -44,6 +44,8 @@
     <Compile Include="IGetTimeZone`1.Facts.cs" />
     <Compile Include="ITimeZoneNorthAmerica.Facts.cs" />
     <Compile Include="DateTimePeriod.Facts.cs" />
+    <Compile Include="IO\CurrentTempDirectory.Facts.cs" />
+    <Compile Include="IO\IOrderedEnumerable`FileSystem.ExtensionMethods.Facts.cs" />
     <Compile Include="IO\FileSystemInfo.ExtensionMethods.Facts.cs" />
     <Compile Include="IO\CurrentDirectory.Facts.cs" />
     <Compile Include="Collections\Generic\XmlSerializableCollection.Test.cs" />
