@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.IO;
 #if !NET20
     using System.Linq;
@@ -340,6 +342,84 @@
                                      file.MoveTo(target);
                                  });
 #endif
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want strong typing here.")]
+        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "Code stack has been reviewed.")]
+#if NET20
+        public static void RobocopyTo(DirectoryInfo source,
+                                      DirectoryInfo destination)
+#else
+        public static void RobocopyTo(this DirectoryInfo source,
+                                      DirectoryInfo destination)
+#endif
+        {
+            RobocopyTo(source, destination, false);
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want strong typing here.")]
+        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "Code stack has been reviewed.")]
+#if NET20
+        public static void RobocopyTo(DirectoryInfo source,
+                                      DirectoryInfo destination,
+                                      bool move)
+#else
+        public static void RobocopyTo(this DirectoryInfo source,
+                                      DirectoryInfo destination,
+                                      bool move)
+#endif
+        {
+            if (null == source)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            if (!source.Exists)
+            {
+                throw new DirectoryNotFoundException(source.FullName);
+            }
+
+            if (null == destination)
+            {
+                throw new ArgumentNullException("destination");
+            }
+
+            if (!destination.Exists)
+            {
+                Make(destination);
+            }
+
+            Process.Start(new ProcessStartInfo("ROBOCOPY")
+            {
+                Arguments = string.Format(CultureInfo.InvariantCulture, "\"{0}\" \"{1}\" /S{2}", source.FullName, destination.FullName, move ? " /MOVE" : string.Empty),
+            }).WaitForExit();
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want strong typing here.")]
+#if NET20
+        public static void SetDate(DirectoryInfo directory,
+                                   DateTime date)
+#else
+        public static void SetDate(this DirectoryInfo directory,
+                                   DateTime date)
+#endif
+        {
+            if (null == directory)
+            {
+                throw new ArgumentNullException("directory");
+            }
+
+            directory.Refresh();
+            if (!directory.Exists)
+            {
+                throw new DirectoryNotFoundException(directory.FullName);
+            }
+
+            Directory.SetCreationTimeUtc(directory.FullName, date);
+            Directory.SetLastAccessTimeUtc(directory.FullName, date);
+            Directory.SetLastWriteTimeUtc(directory.FullName, date);
+
+            directory.Refresh();
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety here.")]

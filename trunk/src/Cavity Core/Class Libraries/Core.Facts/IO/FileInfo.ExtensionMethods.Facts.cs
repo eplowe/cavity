@@ -932,6 +932,40 @@
         }
 
         [Fact]
+        public void op_SetDate_FileInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).SetDate(DateTime.UtcNow));
+        }
+
+        [Fact]
+        public void op_SetDate_FileInfoNotFound()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example");
+
+                Assert.Throws<FileNotFoundException>(() => file.SetDate(DateTime.UtcNow));
+            }
+        }
+
+        [Fact]
+        public void op_SetDate_FileInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example").Create("test");
+
+                var expected = DateTime.UtcNow.AddYears(-1);
+
+                file.SetDate(expected);
+
+                Assert.Equal(expected, file.CreationTimeUtc);
+                Assert.Equal(expected, file.LastAccessTimeUtc);
+                Assert.Equal(expected, file.LastWriteTimeUtc);
+            }
+        }
+
+        [Fact]
         public void op_ToParent_FileInfo()
         {
             using (var temp = new TempDirectory())

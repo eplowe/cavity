@@ -1040,6 +1040,11 @@
             return this;
         }
 
+        public bool NotContainsText()
+        {
+            return 0 == Length;
+        }
+
         public MutableString PadLeft(int width)
         {
             return PadLeft(width, ' ');

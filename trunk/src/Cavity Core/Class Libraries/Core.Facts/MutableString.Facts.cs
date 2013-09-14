@@ -1659,6 +1659,17 @@
         }
 
         [Theory]
+        [InlineData(true, "")]
+        [InlineData(false, "example")]
+        public void op_NotContainsText(bool expected,
+                                       string value)
+        {
+            var actual = new MutableString(value).NotContainsText();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
         [InlineData("", 0)]
         [InlineData(" ", 1)]
         [InlineData(".", 2)]

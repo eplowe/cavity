@@ -1493,6 +1493,23 @@
             Assert.Null((null as string).RemoveDefiniteArticle());
         }
 
+        [Theory]
+        [InlineData("", "")]
+        [InlineData(" ", " ")]
+        [InlineData("  ", " ")]
+        [InlineData("   ", " ")]
+        [InlineData(" a ", " a ")]
+        [InlineData("  a  ", " a ")]
+        [InlineData(" a b ", " a b ")]
+        [InlineData(" a  b ", " a b ")]
+        [InlineData(" a   b ", " a b ")]
+        public void op_RemoveDoubleSpacing_string(string value, string expected)
+        {
+            var actual = value.RemoveDoubleSpacing();
+
+            Assert.Equal(expected, actual);
+        }
+
         [Fact]
         public void op_RemoveFromEnd_stringEmpty_string_StringComparison()
         {

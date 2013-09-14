@@ -1034,6 +1034,41 @@
         }
 
 #if NET20
+        public static string RemoveDoubleSpacing(string value)
+#else
+        public static string RemoveDoubleSpacing(this string value)
+#endif
+        {
+            if (null == value)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            var result = new MutableString();
+
+#if NET20
+            foreach (var c in value)
+            {
+                if (' ' == c &&
+                    result.ContainsText() &&
+                    ' ' == result[result.Length - 1])
+                {
+                    continue;
+                }
+
+                result.Append(c);
+            }
+#else
+            foreach (var c in value.Where(c => ' ' != c || result.NotContainsText() || ' ' != result[result.Length - 1]))
+            {
+                result.Append(c);
+            }
+#endif
+
+            return result;
+        }
+
+#if NET20
         public static string RemoveFromEnd(string obj, 
                                            string value, 
                                            StringComparison comparisonType)
