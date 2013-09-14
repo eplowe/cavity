@@ -25,6 +25,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="TimeSpan.ExtensionMethods.Facts.cs" />
     <Compile Include="Nullable`1.ExtensionMethods.Facts.cs" />
     <Compile Include="Boolean.ExtensionMethods.Facts.cs" />
     <Compile Include="QuarterOfYear.Facts.cs" />
@@ -34,15 +35,6 @@
     <Compile Include="Xml\XmlReader.ExtensionMethods.Facts.cs" />
     <Compile Include="Collections\IList.ExtensionMethods.Facts.cs" />
     <Compile Include="TimeZones.Facts.cs" />
-    <Compile Include="ICalculateDateTimePeriod`1.Facts.cs" />
-    <Compile Include="IGetPreviousMonth.Facts.cs" />
-    <Compile Include="IGetNextMonth.Facts.cs" />
-    <Compile Include="IGetPreviousWeekday.Facts.cs" />
-    <Compile Include="IGetNextWeekday.Facts.cs" />
-    <Compile Include="ITimeZoneEurope.Facts.cs" />
-    <Compile Include="IChangeDate.Facts.cs" />
-    <Compile Include="IGetTimeZone`1.Facts.cs" />
-    <Compile Include="ITimeZoneNorthAmerica.Facts.cs" />
     <Compile Include="DateTimePeriod.Facts.cs" />
     <Compile Include="IO\CurrentTempDirectory.Facts.cs" />
     <Compile Include="IO\IOrderedEnumerable`FileSystem.ExtensionMethods.Facts.cs" />
@@ -54,9 +46,6 @@
     <Compile Include="Collections\ICollection.ExtensionMethods.Facts.cs" />
     <Compile Include="Collections\IDictionary.ExtensionMethods.Facts.cs" />
     <Compile Include="Month.Facts.cs" />
-    <Compile Include="IChangeMonth`1.Facts.cs" />
-    <Compile Include="IGetPreviousDate.Facts.cs" />
-    <Compile Include="IGetNextDate.Facts.cs" />
     <Compile Include="MonthOfYear.Facts.cs" />
     <Compile Include="AbsoluteUri.Facts.cs" />
     <Compile Include="AlphaDecimal.Facts.cs" />
@@ -67,7 +56,6 @@
     <Compile Include="ComparableObject.Derived.cs" />
     <Compile Include="ComparableObject.Facts.cs" />
     <Compile Include="Collections\Generic\Tree`1.Facts.cs" />
-    <Compile Include="Collections\IEnumerable.ExtensionMethods.Facts.cs" />
     <Compile Include="Globalization\TranslationDictionary`1.Facts.cs" />
     <Compile Include="Globalization\TranslationException.Facts.cs" />
     <Compile Include="Compression\GZip.Facts.cs" />
@@ -97,7 +85,6 @@
     <Compile Include="ValueObject`1.Derived.cs" />
     <Compile Include="ValueObject`1.Facts.cs" />
     <Compile Include="Characters.Facts.cs" />
-    <Compile Include="Xml\IXmlSerializerNamespaces.Facts.cs" />
     <Compile Include="Xml\XmlNamespace.Facts.cs" />
     <Compile Include="Xml\XPath\XPathNavigator.ExtensionMethods.Facts.cs" />
     <Compile Include="Collections\KeyStringDictionary.Facts.cs" />
@@ -121,35 +108,48 @@
     <Compile Include="Threading\ThreadedObject.Derived.cs" />
     <Compile Include="Threading\IThreadedObject.Facts.cs" />
     <Compile Include="Threading\ThreadedObject.Facts.cs" />
+    <Compile Include="Collections\IEnumerable.ExtensionMethods.Facts.cs" />
+    <Compile Include="ICalculateDateTimePeriod`1.Facts.cs" />
+    <Compile Include="IChangeDate.Facts.cs" />
+    <Compile Include="IChangeMonth`1.Facts.cs" />
+    <Compile Include="IGetNextDate.Facts.cs" />
+    <Compile Include="IGetNextMonth.Facts.cs" />
+    <Compile Include="IGetPreviousMonth.Facts.cs" />
+    <Compile Include="IGetPreviousWeekday.Facts.cs" />
+    <Compile Include="IGetNextWeekday.Facts.cs" />
+    <Compile Include="IGetPreviousDate.Facts.cs" />
+    <Compile Include="IGetTimeZone`1.Facts.cs" />
+    <Compile Include="ITimeZoneEurope.Facts.cs" />
+    <Compile Include="ITimeZoneNorthAmerica.Facts.cs" />
+    <Compile Include="Xml\IXmlSerializerNamespaces.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml" />
-    <Reference Include="xunit, Version=1.9.1.1600, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\xunit.1.9.1\lib\net20\xunit.dll</HintPath>
+    <Reference Include="xunit">
+      <HintPath>..\..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.extensions, Version=1.9.1.1600, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\xunit.extensions.1.9.1\lib\net20\xunit.extensions.dll</HintPath>
+    <Reference Include="xunit.extensions">
+      <HintPath>..\..\packages\xunit.extensions.1.9.2\lib\net20\xunit.extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.2.0.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\..\packages\Moq.4.0.10827\lib\$(TargetFrameworkVersionName)\Moq.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '4.0' ">
-    <Reference Include="System.Numerics" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.1.1309.0919\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlXml" />
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

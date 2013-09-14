@@ -21,6 +21,15 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\Collections\IEnumerable.ExtensionMethods.cs">
+      <Link>Collections\IEnumerable.ExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\ExceptionMessage.cs">
+      <Link>ExceptionMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\MutableString.cs">
+      <Link>MutableString.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\Cavity Core\Class Libraries\Core\Char.ExtensionMethods.cs">
       <Link>Char.ExtensionMethods.cs</Link>
     </Compile>

@@ -39,6 +39,7 @@
     <Compile Include="DateTimePeriod.cs" />
     <Compile Include="Quarter.cs" />
     <Compile Include="Text\StringBuilder.ExtensionMethods.cs" />
+    <Compile Include="TimeSpan.ExtensionMethods.cs" />
     <Compile Include="UserStoryAttribute.cs" />
     <Compile Include="Data\DataCollection.cs" />
     <Compile Include="Data\KeyStringPair.cs" />

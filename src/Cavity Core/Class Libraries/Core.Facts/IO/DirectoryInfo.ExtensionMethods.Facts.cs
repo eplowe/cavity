@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -254,10 +253,10 @@
             using (var temp = new TempDirectory())
             {
                 var expected = temp.Info
-                                   .ToDirectory("a", true)
-                                   .ToFile("example.csv")
-                                   .Create(string.Empty)
-                                   .FullName;
+                    .ToDirectory("a", true)
+                    .ToFile("example.csv")
+                    .Create(string.Empty)
+                    .FullName;
 
                 var actual = temp.Info.CsvFiles(SearchOption.AllDirectories).First().FullName;
 
@@ -271,9 +270,9 @@
             using (var temp = new TempDirectory())
             {
                 var expected = temp.Info
-                                   .ToFile("example.csv")
-                                   .Create(string.Empty)
-                                   .FullName;
+                    .ToFile("example.csv")
+                    .Create(string.Empty)
+                    .FullName;
 
                 var actual = temp.Info.CsvFiles().First().FullName;
 
@@ -414,9 +413,9 @@
         [InlineData(2, 2, 1, SearchOption.AllDirectories)]
         [InlineData(9, 3, 3, SearchOption.AllDirectories)]
         public void op_LineCount_DirectoryInfo_string_SearchOption(int expected,
-                                                                   int files,
-                                                                   int lines,
-                                                                   SearchOption searchOption)
+            int files,
+            int lines,
+            SearchOption searchOption)
         {
             using (var temp = new TempDirectory())
             {
@@ -690,6 +689,244 @@
         }
 
         [Fact]
+        public void op_RobocopyTo_DirectoryInfoNull_DirectoryInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var destination = temp.Info.ToDirectory("destination").Make();
+
+                Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).RobocopyTo(destination));
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfoNotFound_DirectoryInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source");
+                var destination = temp.Info.ToDirectory("destination").Make();
+
+                Assert.Throws<DirectoryNotFoundException>(() => source.RobocopyTo(destination));
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfo_DirectoryInfoNull()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source").Make();
+
+                Assert.Throws<ArgumentNullException>(() => source.RobocopyTo(null));
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfo_DirectoryInfoNotFound()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source").Make();
+                source.ToFile("example").Create("test");
+
+                var destination = temp.Info.ToDirectory("destination");
+
+                source.RobocopyTo(destination);
+
+                Assert.True(source.ToFile("example").Exists);
+                Assert.True(destination.ToFile("example").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfo_DirectoryInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source").Make();
+                source.ToFile("example").Create("test");
+
+                var destination = temp.Info.ToDirectory("destination").Make();
+
+                source.RobocopyTo(destination);
+
+                Assert.True(source.ToFile("example").Exists);
+                Assert.True(destination.ToFile("example").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfoNull_DirectoryInfo_boolFalse()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var destination = temp.Info.ToDirectory("destination").Make();
+
+                Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).RobocopyTo(destination, false));
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfoNotFound_DirectoryInfo_boolFalse()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source");
+                var destination = temp.Info.ToDirectory("destination").Make();
+
+                Assert.Throws<DirectoryNotFoundException>(() => source.RobocopyTo(destination, false));
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfo_DirectoryInfoNull_boolFalse()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source").Make();
+
+                Assert.Throws<ArgumentNullException>(() => source.RobocopyTo(null, false));
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfo_DirectoryInfoNotFound_boolFalse()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source").Make();
+                source.ToFile("example").Create("test");
+
+                var destination = temp.Info.ToDirectory("destination");
+
+                source.RobocopyTo(destination, false);
+
+                Assert.True(source.ToFile("example").Exists);
+                Assert.True(destination.ToFile("example").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfo_DirectoryInfo_boolFalse()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source").Make();
+                source.ToFile("example").Create("test");
+
+                var destination = temp.Info.ToDirectory("destination").Make();
+
+                source.RobocopyTo(destination, false);
+
+                Assert.True(source.ToFile("example").Exists);
+                Assert.True(destination.ToFile("example").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfoNull_DirectoryInfo_boolTrue()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var destination = temp.Info.ToDirectory("destination").Make();
+
+                Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).RobocopyTo(destination, true));
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfoNotFound_DirectoryInfo_boolTrue()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source");
+                var destination = temp.Info.ToDirectory("destination").Make();
+
+                Assert.Throws<DirectoryNotFoundException>(() => source.RobocopyTo(destination, true));
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfo_DirectoryInfoNull_boolTrue()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source").Make();
+
+                Assert.Throws<ArgumentNullException>(() => source.RobocopyTo(null, true));
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfo_DirectoryInfoNotFound_boolTrue()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source").Make();
+                source.ToFile("example").Create("test");
+
+                var destination = temp.Info.ToDirectory("destination");
+
+                source.RobocopyTo(destination, true);
+
+                Assert.False(source.ToFile("example").Exists);
+                Assert.True(destination.ToFile("example").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_RobocopyTo_DirectoryInfo_DirectoryInfo_boolTrue()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var source = temp.Info.ToDirectory("source").Make();
+                source.ToFile("example").Create("test");
+
+                var destination = temp.Info.ToDirectory("destination").Make();
+
+                source.RobocopyTo(destination, true);
+
+                Assert.False(source.ToFile("example").Exists);
+                Assert.True(destination.ToFile("example").Exists);
+            }
+        }
+
+        [Fact]
+        public void op_SetDate_DirectoryInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).SetDate(DateTime.UtcNow));
+        }
+
+        [Fact]
+        public void op_SetDate_DirectoryInfoNotFound()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var directory = temp.Info.ToDirectory("example");
+
+                Assert.Throws<DirectoryNotFoundException>(() => directory.SetDate(DateTime.UtcNow));
+            }
+        }
+
+        [Fact]
+        public void op_SetDate_DirectoryInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var directory = temp.Info.ToDirectory("example").Make();
+
+                var expected = DateTime.UtcNow.AddYears(-1);
+
+                directory.SetDate(expected);
+
+                Assert.Equal(expected, directory.CreationTimeUtc);
+                Assert.Equal(expected, directory.LastAccessTimeUtc);
+                Assert.Equal(expected, directory.LastWriteTimeUtc);
+            }
+        }
+
+        [Fact]
         public void op_TextFiles_DirectoryInfoNull()
         {
             Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).TextFiles().First());
@@ -707,10 +944,10 @@
             using (var temp = new TempDirectory())
             {
                 var expected = temp.Info
-                                   .ToDirectory("a", true)
-                                   .ToFile("example.txt")
-                                   .Create(string.Empty)
-                                   .FullName;
+                    .ToDirectory("a", true)
+                    .ToFile("example.txt")
+                    .Create(string.Empty)
+                    .FullName;
 
                 var actual = temp.Info.TextFiles(SearchOption.AllDirectories).First().FullName;
 
@@ -724,9 +961,9 @@
             using (var temp = new TempDirectory())
             {
                 var expected = temp.Info
-                                   .ToFile("example.txt")
-                                   .Create(string.Empty)
-                                   .FullName;
+                    .ToFile("example.txt")
+                    .Create(string.Empty)
+                    .FullName;
 
                 var actual = temp.Info.TextFiles().First().FullName;
 
@@ -933,10 +1170,10 @@
             using (var temp = new TempDirectory())
             {
                 var expected = temp.Info
-                                   .ToDirectory("a", true)
-                                   .ToFile("example.xml")
-                                   .Create(string.Empty)
-                                   .FullName;
+                    .ToDirectory("a", true)
+                    .ToFile("example.xml")
+                    .Create(string.Empty)
+                    .FullName;
 
                 var actual = temp.Info.XmlFiles(SearchOption.AllDirectories).First().FullName;
 
@@ -950,9 +1187,9 @@
             using (var temp = new TempDirectory())
             {
                 var expected = temp.Info
-                                   .ToFile("example.xml")
-                                   .Create(string.Empty)
-                                   .FullName;
+                    .ToFile("example.xml")
+                    .Create(string.Empty)
+                    .FullName;
 
                 var actual = temp.Info.XmlFiles().First().FullName;
 

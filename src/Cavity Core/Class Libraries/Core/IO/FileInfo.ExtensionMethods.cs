@@ -533,7 +533,34 @@
 
             return new FileInfo(Path.ChangeExtension(obj.FullName, null));
         }
-        
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want strong typing here.")]
+#if NET20
+        public static void SetDate(FileInfo file,
+                                   DateTime date)
+#else
+        public static void SetDate(this FileInfo file,
+                                   DateTime date)
+#endif
+        {
+            if (null == file)
+            {
+                throw new ArgumentNullException("file");
+            }
+
+            file.Refresh();
+            if (!file.Exists)
+            {
+                throw new FileNotFoundException(file.FullName);
+            }
+
+            File.SetCreationTimeUtc(file.FullName, date);
+            File.SetLastAccessTimeUtc(file.FullName, date);
+            File.SetLastWriteTimeUtc(file.FullName, date);
+
+            file.Refresh();
+        }
+
 #if NET20
         public static DirectoryInfo ToParent(FileInfo obj)
 #else

@@ -8,6 +8,7 @@
       <Word>Levenshtein</Word>
       <Word>Metaphone</Word>
       <Word>Multiton</Word>
+      <Word>Robocopy</Word>
       <Word>Soundex</Word>
       <Word>xpath</Word>
     </Recognized>
