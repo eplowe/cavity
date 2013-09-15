@@ -33,7 +33,7 @@
     </Compile>
     <Content Include="Properties\CodeAnalysis.dictionary" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="IO\DataFileCreation.cs" />
     <Compile Include="IO\TempCsvFile.cs" />
   </ItemGroup>
