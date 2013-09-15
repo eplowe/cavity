@@ -49,7 +49,7 @@
 *2.0.0.851* Cavity Commands
  * Cavity.Core
 
-*2.0.0.935* Cavity.Data
+*2.0.0.944* Cavity.Data
  * Cavity.Core
 *2.0.0.905* Cavity.Data.Xunit
  * Cavity.Data

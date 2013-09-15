@@ -27,10 +27,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.2.0.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.2.0.0.942\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Data">
-      <HintPath>..\..\packages\Cavity.Data.2.0.0.905\lib\$(TargetFrameworkVersionName)\Cavity.Data.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Data.2.0.0.944\lib\$(TargetFrameworkVersionName)\Cavity.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
