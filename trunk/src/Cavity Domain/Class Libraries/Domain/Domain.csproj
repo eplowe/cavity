@@ -30,6 +30,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Models\BritishTelephone.cs" />
+    <Compile Include="Models\BritishTelephoneNumberLength.cs" />
+    <Compile Include="Models\BritishTelephoneNumberPlan.cs" />
+    <Compile Include="Models\BritishTelephoneNumberPlanItem.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Money.cs" />
   </ItemGroup>
