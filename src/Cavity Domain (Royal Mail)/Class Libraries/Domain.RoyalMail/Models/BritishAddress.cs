@@ -190,6 +190,77 @@
             }
         }
 
+        public static KeyStringDictionary ToMarketingFormat(KeyStringDictionary entry)
+        {
+            if (null == entry)
+            {
+                throw new ArgumentNullException("entry");
+            }
+
+            var clone = entry.Clone<KeyStringDictionary>();
+            var result = new KeyStringDictionary
+                {
+                    { "ADDRESS 1", string.Empty },
+                    { "ADDRESS 2", string.Empty },
+                    { "ADDRESS 3", string.Empty },
+                    { "ADDRESS 4", string.Empty },
+                    { "ADDRESS 5", string.Empty },
+                    { "ADDRESS 6", string.Empty },
+                    { "POSTCODE", clone["PCD"] },
+                };
+
+            if (clone["SBN"].ContainsText())
+            {
+                result["ADDRESS 1"] = clone["SBN"];
+            }
+
+            if (clone["BNA"].ContainsText())
+            {
+                foreach (var column in "ADDRESS 1,ADDRESS 2".Split(',')
+                                                            .Where(column => result[column].IsEmpty()))
+                {
+                    result[column] = clone["BNA"];
+                    break;
+                }
+            }
+
+            if (clone["NUM"].ContainsText())
+            {
+                foreach (var column in "ADDRESS 1,ADDRESS 2,ADDRESS 3".Split(',')
+                                                                      .Where(column => result[column].IsEmpty()))
+                {
+                    var value = clone["NUM"];
+                    if (clone["DST"].ContainsText())
+                    {
+                        value = "{0} {1}".FormatWith(value, clone["DST"]);
+                        clone["DST"] = string.Empty;
+                    }
+                    else if (clone["STM"].ContainsText())
+                    {
+                        value = "{0} {1}".FormatWith(value, clone["STM"]);
+                        clone["STM"] = string.Empty;
+                    }
+
+                    result[column] = value;
+                    break;
+                }
+            }
+
+            foreach (var source in "DST,STM,DDL,DLO,PTN".Split(',')
+                                                        .Where(source => clone[source].ContainsText()))
+            {
+                const string keys = "ADDRESS 1,ADDRESS 2,ADDRESS 3,ADDRESS 4,ADDRESS 5,ADDRESS 6";
+                foreach (var destination in keys.Split(',')
+                                                .Where(destination => result[destination].IsNullOrEmpty()))
+                {
+                    result[destination] = clone[source];
+                    break;
+                }
+            }
+
+            return result;
+        }
+
         public override string ToString()
         {
             var buffer = new StringBuilder();

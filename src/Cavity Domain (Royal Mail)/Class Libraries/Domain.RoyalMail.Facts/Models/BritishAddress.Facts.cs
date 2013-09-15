@@ -27,6 +27,255 @@
         }
 
         [Fact]
+        public void op_ToMarketingFormat_KeyStringDictionaryNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => BritishAddress.ToMarketingFormat(null));
+        }
+
+        [Fact]
+        public void op_ToMarketingFormat_KeyStringDictionary()
+        {
+            var entry = new KeyStringDictionary
+                {
+                    {"SBN", "Flat 1"},
+                    {"BNA", "Tall House"},
+                    {"NUM", "123"},
+                    {"DST", "Little Lane"},
+                    {"STM", "High Street"},
+                    {"DDL", "Local Wood"},
+                    {"DLO", "Wide Area"},
+                    {"PTN", "Postal Town"},
+                    {"PCD", "AA1 2ZZ"},
+                };
+
+            var obj = BritishAddress.ToMarketingFormat(entry);
+
+            Assert.Equal("Flat 1", obj["ADDRESS 1"]);
+            Assert.Equal("Tall House", obj["ADDRESS 2"]);
+            Assert.Equal("123 Little Lane", obj["ADDRESS 3"]);
+            Assert.Equal("High Street", obj["ADDRESS 4"]);
+            Assert.Equal("Local Wood", obj["ADDRESS 5"]);
+            Assert.Equal("Wide Area", obj["ADDRESS 6"]);
+            Assert.Equal("AA1 2ZZ", obj["POSTCODE"]);
+        }
+
+        [Fact]
+        public void op_ToMarketingFormat_KeyStringDictionary_emptySBN()
+        {
+            var entry = new KeyStringDictionary
+                {
+                    {"SBN", ""},
+                    {"BNA", "Tall House"},
+                    {"NUM", "123"},
+                    {"DST", "Little Lane"},
+                    {"STM", "High Street"},
+                    {"DDL", "Local Wood"},
+                    {"DLO", "Wide Area"},
+                    {"PTN", "Postal Town"},
+                    {"PCD", "AA1 2ZZ"},
+                };
+
+            var obj = BritishAddress.ToMarketingFormat(entry);
+
+            Assert.Equal("Tall House", obj["ADDRESS 1"]);
+            Assert.Equal("123 Little Lane", obj["ADDRESS 2"]);
+            Assert.Equal("High Street", obj["ADDRESS 3"]);
+            Assert.Equal("Local Wood", obj["ADDRESS 4"]);
+            Assert.Equal("Wide Area", obj["ADDRESS 5"]);
+            Assert.Equal("Postal Town", obj["ADDRESS 6"]);
+            Assert.Equal("AA1 2ZZ", obj["POSTCODE"]);
+        }
+
+        [Fact]
+        public void op_ToMarketingFormat_KeyStringDictionary_emptyBNA()
+        {
+            var entry = new KeyStringDictionary
+                {
+                    {"SBN", ""},
+                    {"BNA", ""},
+                    {"NUM", "123"},
+                    {"DST", "Little Lane"},
+                    {"STM", "High Street"},
+                    {"DDL", "Local Wood"},
+                    {"DLO", "Wide Area"},
+                    {"PTN", "Postal Town"},
+                    {"PCD", "AA1 2ZZ"},
+                };
+
+            var obj = BritishAddress.ToMarketingFormat(entry);
+
+            Assert.Equal("123 Little Lane", obj["ADDRESS 1"]);
+            Assert.Equal("High Street", obj["ADDRESS 2"]);
+            Assert.Equal("Local Wood", obj["ADDRESS 3"]);
+            Assert.Equal("Wide Area", obj["ADDRESS 4"]);
+            Assert.Equal("Postal Town", obj["ADDRESS 5"]);
+            Assert.Equal("", obj["ADDRESS 6"]);
+            Assert.Equal("AA1 2ZZ", obj["POSTCODE"]);
+        }
+
+        [Fact]
+        public void op_ToMarketingFormat_KeyStringDictionary_emptyDST()
+        {
+            var entry = new KeyStringDictionary
+                {
+                    {"SBN", ""},
+                    {"BNA", ""},
+                    {"NUM", "123"},
+                    {"DST", ""},
+                    {"STM", "High Street"},
+                    {"DDL", "Local Wood"},
+                    {"DLO", "Wide Area"},
+                    {"PTN", "Postal Town"},
+                    {"PCD", "AA1 2ZZ"},
+                };
+
+            var obj = BritishAddress.ToMarketingFormat(entry);
+
+            Assert.Equal("123 High Street", obj["ADDRESS 1"]);
+            Assert.Equal("Local Wood", obj["ADDRESS 2"]);
+            Assert.Equal("Wide Area", obj["ADDRESS 3"]);
+            Assert.Equal("Postal Town", obj["ADDRESS 4"]);
+            Assert.Equal("", obj["ADDRESS 5"]);
+            Assert.Equal("", obj["ADDRESS 6"]);
+            Assert.Equal("AA1 2ZZ", obj["POSTCODE"]);
+        }
+
+        [Fact]
+        public void op_ToMarketingFormat_KeyStringDictionary_emptyNUM()
+        {
+            var entry = new KeyStringDictionary
+                {
+                    {"SBN", ""},
+                    {"BNA", ""},
+                    {"NUM", ""},
+                    {"DST", ""},
+                    {"STM", "High Street"},
+                    {"DDL", "Local Wood"},
+                    {"DLO", "Wide Area"},
+                    {"PTN", "Postal Town"},
+                    {"PCD", "AA1 2ZZ"},
+                };
+
+            var obj = BritishAddress.ToMarketingFormat(entry);
+
+            Assert.Equal("High Street", obj["ADDRESS 1"]);
+            Assert.Equal("Local Wood", obj["ADDRESS 2"]);
+            Assert.Equal("Wide Area", obj["ADDRESS 3"]);
+            Assert.Equal("Postal Town", obj["ADDRESS 4"]);
+            Assert.Equal("", obj["ADDRESS 5"]);
+            Assert.Equal("", obj["ADDRESS 6"]);
+            Assert.Equal("AA1 2ZZ", obj["POSTCODE"]);
+        }
+
+        [Fact]
+        public void op_ToMarketingFormat_KeyStringDictionary_emptySTM()
+        {
+            var entry = new KeyStringDictionary
+                {
+                    {"SBN", ""},
+                    {"BNA", ""},
+                    {"NUM", ""},
+                    {"DST", ""},
+                    {"STM", ""},
+                    {"DDL", "Local Wood"},
+                    {"DLO", "Wide Area"},
+                    {"PTN", "Postal Town"},
+                    {"PCD", "AA1 2ZZ"},
+                };
+
+            var obj = BritishAddress.ToMarketingFormat(entry);
+
+            Assert.Equal("Local Wood", obj["ADDRESS 1"]);
+            Assert.Equal("Wide Area", obj["ADDRESS 2"]);
+            Assert.Equal("Postal Town", obj["ADDRESS 3"]);
+            Assert.Equal("", obj["ADDRESS 4"]);
+            Assert.Equal("", obj["ADDRESS 5"]);
+            Assert.Equal("", obj["ADDRESS 6"]);
+            Assert.Equal("AA1 2ZZ", obj["POSTCODE"]);
+        }
+
+        [Fact]
+        public void op_ToMarketingFormat_KeyStringDictionary_emptyDDL()
+        {
+            var entry = new KeyStringDictionary
+                {
+                    {"SBN", ""},
+                    {"BNA", ""},
+                    {"NUM", ""},
+                    {"DST", ""},
+                    {"STM", ""},
+                    {"DDL", ""},
+                    {"DLO", "Wide Area"},
+                    {"PTN", "Postal Town"},
+                    {"PCD", "AA1 2ZZ"},
+                };
+
+            var obj = BritishAddress.ToMarketingFormat(entry);
+
+            Assert.Equal("Wide Area", obj["ADDRESS 1"]);
+            Assert.Equal("Postal Town", obj["ADDRESS 2"]);
+            Assert.Equal("", obj["ADDRESS 3"]);
+            Assert.Equal("", obj["ADDRESS 4"]);
+            Assert.Equal("", obj["ADDRESS 5"]);
+            Assert.Equal("", obj["ADDRESS 6"]);
+            Assert.Equal("AA1 2ZZ", obj["POSTCODE"]);
+        }
+
+        [Fact]
+        public void op_ToMarketingFormat_KeyStringDictionary_emptyDLO()
+        {
+            var entry = new KeyStringDictionary
+                {
+                    {"SBN", ""},
+                    {"BNA", ""},
+                    {"NUM", ""},
+                    {"DST", ""},
+                    {"STM", ""},
+                    {"DDL", ""},
+                    {"DLO", ""},
+                    {"PTN", "Postal Town"},
+                    {"PCD", "AA1 2ZZ"},
+                };
+
+            var obj = BritishAddress.ToMarketingFormat(entry);
+
+            Assert.Equal("Postal Town", obj["ADDRESS 1"]);
+            Assert.Equal("", obj["ADDRESS 2"]);
+            Assert.Equal("", obj["ADDRESS 3"]);
+            Assert.Equal("", obj["ADDRESS 4"]);
+            Assert.Equal("", obj["ADDRESS 5"]);
+            Assert.Equal("", obj["ADDRESS 6"]);
+            Assert.Equal("AA1 2ZZ", obj["POSTCODE"]);
+        }
+
+        [Fact]
+        public void op_ToMarketingFormat_KeyStringDictionary_emptyPTN()
+        {
+            var entry = new KeyStringDictionary
+                {
+                    {"SBN", ""},
+                    {"BNA", ""},
+                    {"NUM", ""},
+                    {"DST", ""},
+                    {"STM", ""},
+                    {"DDL", ""},
+                    {"DLO", ""},
+                    {"PTN", ""},
+                    {"PCD", "AA1 2ZZ"},
+                };
+
+            var obj = BritishAddress.ToMarketingFormat(entry);
+
+            Assert.Equal("", obj["ADDRESS 1"]);
+            Assert.Equal("", obj["ADDRESS 2"]);
+            Assert.Equal("", obj["ADDRESS 3"]);
+            Assert.Equal("", obj["ADDRESS 4"]);
+            Assert.Equal("", obj["ADDRESS 5"]);
+            Assert.Equal("", obj["ADDRESS 6"]);
+            Assert.Equal("AA1 2ZZ", obj["POSTCODE"]);
+        }
+
+        [Fact]
         public void op_ToString()
         {
             var expected = string.Empty;

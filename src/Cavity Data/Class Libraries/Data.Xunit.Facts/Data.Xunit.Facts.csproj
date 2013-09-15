@@ -21,9 +21,6 @@
     <Reference Include="Cavity.Core">
       <HintPath>..\..\packages\Cavity.Core.2.0.0.942\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\..\packages\Moq.4.1.1309.0919\lib\$(TargetFrameworkVersionName)\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -37,6 +34,9 @@
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.2.0.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\..\packages\Moq.4.1.1309.0919\lib\$(TargetFrameworkVersionName)\Moq.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
   </ItemGroup>
