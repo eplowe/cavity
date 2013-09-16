@@ -2,15 +2,15 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <BundleFiles Include="$(MSBuildProjectDirectory)\**\*.bundle" />
-    <NuSpecFiles Include="$(MSBuildProjectDirectory)\**\*.nuspec" />
+    <NuSpecFiles Include="$(MSBuildProjectDirectory)\**\*.nubuild" />
   </ItemGroup>
   <PropertyGroup>
     <BundleDirectory>$(MSBuildProjectDirectory)\bundles</BundleDirectory>
   </PropertyGroup>
   <Target Name="Bundle">
     <CallTarget Targets="Bundle Files" />
-    <CallTarget Targets="Bundle Zip" />
-    <CallTarget Targets="Bundle NuGet" />
+    <!-- CallTarget Targets="Bundle Zip" />
+    <CallTarget Targets="Bundle NuGet" / -->
   </Target>
   <Target Name="Bundle Files">
     <MSBuild.ExtensionPack.Framework.MsBuildHelper TaskAction="GetItemCount"
