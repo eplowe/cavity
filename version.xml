@@ -4,8 +4,8 @@
     <MajorVersion>2</MajorVersion>
     <MinorVersion>0</MinorVersion>
     <BuildVersion>0</BuildVersion>
-    <Revision>947</Revision>
-    <FullVersion>2.0.0.947</FullVersion>
+    <Revision>948</Revision>
+    <FullVersion>2.0.0.948</FullVersion>
     <RevisionSource>Subversion</RevisionSource>
   </PropertyGroup>
 </Project>
