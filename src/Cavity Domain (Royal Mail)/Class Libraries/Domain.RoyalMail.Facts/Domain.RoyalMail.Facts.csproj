@@ -8,12 +8,13 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Models\PostalAddressFileKey.Facts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="Models\MarketingAddress.Facts.cs" />
+    <Compile Include="Models\PostalAddressFileKey.Facts.cs" />
     <Compile Include="Models\BritishPostcode.Facts.cs" />
     <Compile Include="Models\BritishAddress.Facts.cs" />
     <Compile Include="Models\Organization.Facts.cs" />
