@@ -190,7 +190,7 @@
             }
         }
 
-        public static KeyStringDictionary ToMarketingFormat(KeyStringDictionary entry)
+        public static MarketingAddress ToMarketingFormat(KeyStringDictionary entry)
         {
             if (null == entry)
             {
@@ -198,7 +198,7 @@
             }
 
             var clone = entry.Clone<KeyStringDictionary>();
-            var result = new KeyStringDictionary
+            var result = new MarketingAddress
                 {
                     { "ADDRESS 1", string.Empty },
                     { "ADDRESS 2", string.Empty },
