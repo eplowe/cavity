@@ -2,37 +2,26 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Cavity.Domain.RoyalMail</AssemblyName>
-    <ProjectGuid>{166775FD-D5EB-4233-88B8-4B14E9001252}</ProjectGuid>
+    <AssemblyName>Cavity.Ftp</AssemblyName>
+    <ProjectGuid>{E31CD420-F0A7-420A-8E98-5AC0D4EEC7C6}</ProjectGuid>
     <RestorePackages>true</RestorePackages>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Models\MarketingAddress.cs" />
-    <Compile Include="Models\PostalAddressFileKey.cs" />
+    <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
-    <Compile Include="Data\MarketingAddressTransformer.cs" />
-    <Compile Include="Diagnostics\Tracing.cs" />
-    <Compile Include="Models\BritishAddress.cs" />
-    <Compile Include="Models\BritishPostcode.cs" />
-    <Compile Include="Models\IUserCategory.cs" />
-    <Compile Include="Models\NonResidentialUserCategory.cs" />
-    <Compile Include="Models\ResidentialUserCategory.cs" />
-    <Compile Include="Models\LargeUserCategory.cs" />
-    <Compile Include="Models\Organization.cs" />
-    <Compile Include="Models\PostalAddressFileEntry.cs" />
-    <Compile Include="Models\UserCategory.cs" />
+  <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '3.5' ">
+    <Compile Include="Net\Ftp.cs" />
+    <Compile Include="Net\FtpDirectory.cs" />
+    <Compile Include="Net\FtpFile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cavity.Core">
+    <Reference Include="Cavity.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Cavity.Core.2.0.0.942\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Cavity.Data">
-      <HintPath>..\..\packages\Cavity.Data.2.0.0.944\lib\$(TargetFrameworkVersionName)\Cavity.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

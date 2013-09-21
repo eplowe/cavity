@@ -1,27 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>Cavity.Domain.RoyalMail</id>
+    <id>Cavity.Ftp</id>
     <version>2.0.0.951</version>
-    <title>Cavity Domain (Royal Mail)</title>
+    <title>Cavity FTP</title>
     <authors>Alan Dean</authors>
     <owners />
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <projectUrl>http://code.google.com/p/cavity/</projectUrl>
     <iconUrl>http://www.alan-dean.com/nuget.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Provides Royal Mail domain models.</description>
+    <description>Provides a wrapper around the standard FTP types.</description>
     <summary />
-    <copyright>Copyright © 2010 - 2012 Alan Dean</copyright>
+    <copyright>Copyright © 2010 - 2013 Alan Dean</copyright>
     <language />
     <tags>Domain</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Data" version="2.0.0.905" />
+      <dependency id="Cavity.Core" version="2.0.0.942" />
     </dependencies>
   </metadata>
   <files>
-    <file src="lib\net35\Cavity.Domain.RoyalMail.dll" target="lib\net35\Cavity.Domain.RoyalMail.dll" />
-    <file src="lib\net40\Cavity.Domain.RoyalMail.dll" target="lib\net40\Cavity.Domain.RoyalMail.dll" />
+    <file src="lib\net40\Cavity.Ftp.dll" target="lib\net40\Cavity.Ftp.dll" />
   </files>
 </package>

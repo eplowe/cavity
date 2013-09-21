@@ -85,6 +85,9 @@
 *2.0.0.848* Cavity Web (ASP.NET MVC3)
  * Cavity.Core
 
+*2.0.0.951* Cavity FTP
+ * Cavity.Core
+
 *2.0.0.848* Cavity HTTP Generalizations
  * Cavity.Core
 
@@ -92,7 +95,7 @@
  * Cavity.Data
    * Cavity.Core
 
-*2.0.0.950* Cavity.Domain.RoyalMail
+*2.0.0.951* Cavity.Domain.RoyalMail
  * Cavity.Data
    * Cavity.Core
 
