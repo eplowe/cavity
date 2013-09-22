@@ -79,5 +79,20 @@
 
             Assert.Throws<ArgumentNullException>(() => TempCsvFile.Create(data, null));
         }
+
+        [Fact]
+        public void op_Create_IEnumerableOfKeyStringDictionaryEmpty_FileInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var data = new List<KeyStringDictionary>();
+                var destination = temp.Info.ToFile("destination");
+
+                const int expected = 0;
+                var actual = TempCsvFile.Create(data, destination);
+
+                Assert.Equal(expected, actual);
+            }
+        }
     }
 }
