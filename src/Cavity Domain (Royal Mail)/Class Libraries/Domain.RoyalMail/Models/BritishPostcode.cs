@@ -27,6 +27,11 @@
             }
 
             parts.DistrictNumber = -1 == parts.DistrictNumber.Value ? null : parts.DistrictNumber;
+            if (parts.DistrictNumber.HasValue)
+            {
+                DistrictNumber = XmlConvert.ToString(parts.DistrictNumber.Value);
+            }
+
             District = Area.Append(parts.DistrictNumber.HasValue ? XmlConvert.ToString(parts.DistrictNumber.Value) : string.Empty)
                            .Append(parts.DistrictLetter.HasValue ? XmlConvert.ToString(parts.DistrictLetter.Value) : string.Empty);
             OutCode = District;
@@ -54,6 +59,8 @@
         }
 
         public string District { get; private set; }
+
+        public string DistrictNumber { get; private set; }
 
         public string InCode { get; private set; }
 
