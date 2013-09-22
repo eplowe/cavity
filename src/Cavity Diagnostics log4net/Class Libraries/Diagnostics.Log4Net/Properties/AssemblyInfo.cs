@@ -14,7 +14,3 @@ using System.Reflection;
 [assembly: AssemblyDescription("Cavity : log4net Diagnostics Library (Release)")]
 
 #endif
-
-#if !NET20
-[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
-#endif
