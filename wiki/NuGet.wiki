@@ -4,7 +4,7 @@
 
 *1.1.0.804* Cavity Test Controller Abstractions
 
-*1.1.0.804* Cavity Diagnostics log4net
+*1.1.0.952* Cavity Diagnostics log4net
 
 *1.1.0.822* Cavity.Caching.Abstractions
 
@@ -95,7 +95,7 @@
  * Cavity.Data
    * Cavity.Core
 
-*2.0.0.951* Cavity.Domain.RoyalMail
+*2.0.0.953* Cavity.Domain.RoyalMail
  * Cavity.Data
    * Cavity.Core
 

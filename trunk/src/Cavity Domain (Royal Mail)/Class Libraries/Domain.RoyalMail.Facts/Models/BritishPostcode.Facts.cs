@@ -289,18 +289,21 @@
             // ReSharper restore SuspiciousTypeConversion.Global
         }
 
-        [Fact]
-        public void op_FromString_string()
+        [Theory]
+        [InlineData("GU21 4XG", "GU", "GU21", "21", "GU21 4", "GU21 4XG")]
+        [InlineData("WC1A 2HR", "WC", "WC1A", "1", "WC1A 2", "WC1A 2HR")]
+        public void op_FromString_string(string value, string area, string district, string number, string sector, string unit)
         {
-            var obj = BritishPostcode.FromString("GU21 4XG");
+            var obj = BritishPostcode.FromString(value);
 
-            Assert.Equal("GU", obj.Area);
-            Assert.Equal("GU21", obj.District);
-            Assert.Equal("GU21 4", obj.Sector);
-            Assert.Equal("GU21 4XG", obj.Unit);
+            Assert.Equal(area, obj.Area);
+            Assert.Equal(district, obj.District);
+            Assert.Equal(number, obj.DistrictNumber);
+            Assert.Equal(sector, obj.Sector);
+            Assert.Equal(unit, obj.Unit);
 
-            Assert.Equal("GU21", obj.OutCode);
-            Assert.Equal("4XG", obj.InCode);
+            Assert.Equal(district, obj.OutCode);
+            Assert.Equal(unit.RemoveFromStart(district, StringComparison.OrdinalIgnoreCase).Trim(), obj.InCode);
         }
 
         [Fact]
@@ -328,10 +331,6 @@
         [InlineData("AX")]
         [InlineData("0X 4XG")]
         [InlineData("Ab Kettleby")]
-        ////[InlineData("B1 1B")]
-        ////[InlineData("BB1 1A")]
-        ////[InlineData("GU21 4X")]
-        ////[InlineData("WC1A 2H")]
         public void op_FromString_string_WhenInvalid(string value)
         {
             var obj = BritishPostcode.FromString(value);
@@ -532,6 +531,15 @@
         public void prop_District()
         {
             Assert.True(new PropertyExpectations<BritishPostcode>(p => p.District)
+                            .TypeIs<string>()
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_DistrictNumber()
+        {
+            Assert.True(new PropertyExpectations<BritishPostcode>(p => p.DistrictNumber)
                             .TypeIs<string>()
                             .IsNotDecorated()
                             .Result);
