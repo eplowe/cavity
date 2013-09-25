@@ -91,7 +91,7 @@
 *2.0.0.848* Cavity HTTP Generalizations
  * Cavity.Core
 
-*2.0.0.945* Cavity.Domain
+*2.0.0.956* Cavity.Domain
  * Cavity.Data
    * Cavity.Core
 
