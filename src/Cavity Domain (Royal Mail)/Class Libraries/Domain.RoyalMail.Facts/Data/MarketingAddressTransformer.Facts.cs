@@ -47,7 +47,7 @@
                 };
 
             const string expected = "Flat 1, Tall House, 123 Little Lane, High Street, Local Wood, Wide Area, AA1 2ZZ";
-            var actual = new MarketingAddressTransformer().Transform(data).First().ToString();
+            var actual = new MarketingAddressTransformer().Transform(data).First().FullAddress;
             
             Assert.Equal(expected, actual);
         }
