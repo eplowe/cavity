@@ -1,7 +1,9 @@
 ﻿namespace Cavity.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Runtime.Serialization;
     using Cavity.Collections;
 
@@ -9,6 +11,8 @@
     [Serializable]
     public class MarketingAddress : KeyStringDictionary
     {
+        private static readonly IList<string> _keys = "ADDRESS 1,ADDRESS 2,ADDRESS 3,ADDRESS 4,ADDRESS 5,ADDRESS 6,POSTCODE".Split(',');
+
         public MarketingAddress()
         {
         }
@@ -96,6 +100,31 @@
             }
         }
 
+        public virtual string FullAddress
+        {
+            get
+            {
+                var value = new MutableString();
+
+                foreach (var key in _keys.Where(ContainsKey))
+                {
+                    if (Empty(key))
+                    {
+                        continue;
+                    }
+
+                    if (value.ContainsText())
+                    {
+                        value.Append(", ");
+                    }
+
+                    value.Append(this[key]);
+                }
+
+                return value;
+            }
+        }
+
         public virtual BritishPostcode Postcode
         {
             get
@@ -107,28 +136,6 @@
             {
                 this["POSTCODE"] = value;
             }
-        }
-
-        public override string ToString()
-        {
-            var result = new MutableString();
-
-            foreach (var key in Keys)
-            {
-                if (Empty(key))
-                {
-                    continue;
-                }
-
-                if (result.ContainsText())
-                {
-                    result.Append(", ");
-                }
-
-                result.Append(this[key]);
-            }
-
-            return result;
         }
     }
 }

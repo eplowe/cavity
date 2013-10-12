@@ -43,15 +43,15 @@
                     Postcode = postcode
                 };
 
-            var actual = obj.ToString();
+            var actual = obj.FullAddress;
 
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void op_ToString_whenEmpty()
+        public void prop_FullAddress_whenEmpty()
         {
-            Assert.Empty(new MarketingAddress().ToString());
+            Assert.Empty(new MarketingAddress().FullAddress);
         }
 
         [Fact]
@@ -104,6 +104,15 @@
         {
             Assert.NotNull(new PropertyExpectations<MarketingAddress>(x => x.Address6)
                                .IsAutoProperty<string>()
+                               .IsNotDecorated()
+                               .Result);
+        }
+
+        [Fact]
+        public void prop_FullAddress()
+        {
+            Assert.NotNull(new PropertyExpectations<MarketingAddress>(x => x.FullAddress)
+                               .TypeIs<string>()
                                .IsNotDecorated()
                                .Result);
         }
