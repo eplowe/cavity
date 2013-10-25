@@ -52,6 +52,17 @@
             }
         }
 
+        public void Set(string key,
+                        string value)
+        {
+            if (!ContainsKey(key))
+            {
+                throw new KeyNotFoundException(string.Format(CultureInfo.InvariantCulture, "The '{0}' key was not present in the dictionary.", key));
+            }
+
+            this[key] = value;
+        }
+
         public string this[int index]
         {
             get
