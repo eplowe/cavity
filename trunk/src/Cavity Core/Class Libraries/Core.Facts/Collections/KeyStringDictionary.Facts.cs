@@ -415,6 +415,29 @@
         }
 
         [Fact]
+        public void op_Set_string_string()
+        {
+            const string expected = "test";
+
+            var obj = new KeyStringDictionary
+                {
+                    new KeyStringPair("Example", string.Empty)
+                };
+
+            obj.Set("Example", expected);
+
+            var actual = obj["Example"];
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Set_string_string_whenOutOfRange()
+        {
+            Assert.Throws<KeyNotFoundException>(() => new KeyStringDictionary().Set("Example", string.Empty));
+        }
+
+        [Fact]
         public void op_Strings_strings()
         {
             var obj = new KeyStringDictionary
