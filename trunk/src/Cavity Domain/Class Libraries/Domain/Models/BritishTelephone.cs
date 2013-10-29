@@ -70,8 +70,8 @@
         {
             get
             {
-                return ContainsKey("TELEPHONE DIALLING CODE")
-                    ? this["TELEPHONE DIALLING CODE"]
+                return ContainsKey("TELEPHONE DIALING CODE")
+                    ? this["TELEPHONE DIALING CODE"]
                     : null;
             }
 
@@ -82,13 +82,13 @@
                     throw new ArgumentNullException("value");
                 }
 
-                if (ContainsKey("TELEPHONE DIALLING CODE"))
+                if (ContainsKey("TELEPHONE DIALING CODE"))
                 {
-                    this["TELEPHONE DIALLING CODE"] = value;
+                    this["TELEPHONE DIALING CODE"] = value;
                 }
                 else
                 {
-                    Add("TELEPHONE DIALLING CODE", value);
+                    Add("TELEPHONE DIALING CODE", value);
                 }
             }
         }
