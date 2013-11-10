@@ -702,6 +702,12 @@
             return operand.Decrement();
         }
 
+        public static int operator -(Date operand1, 
+                                     Date operand2)
+        {
+            return Convert.ToInt32(Math.Round((operand1.ToDateTime() - operand2.ToDateTime()).TotalDays, 0, MidpointRounding.AwayFromZero));
+        }
+
         public static bool operator !=(Date obj, 
                                        Date comparand)
         {
@@ -821,6 +827,11 @@
         public Month ToMonth()
         {
             return new Month(_date.Date);
+        }
+
+        public int Subtract(Date other)
+        {
+            return this - other;
         }
 
         public override string ToString()

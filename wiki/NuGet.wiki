@@ -41,7 +41,7 @@
 
 *2.0.0.848* Cavity.Testing.Unit
 
-*2.0.0.959* Cavity.Core
+*2.0.0.961* Cavity.Core
 
 *2.0.0.922* Cavity Configuration
  * Cavity.Core

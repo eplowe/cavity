@@ -207,6 +207,32 @@
         [InlineData("2012-03-27", "2012-03-26", 1)]
         [InlineData("2012-03-26", "2012-03-26", 0)]
         [InlineData("2012-03-25", "2012-03-26", -1)]
+        public void opSubtraction_Date_Date(string operand1,
+                                            string operand2,
+                                            int expected)
+        {
+            var actual = Date.FromString(operand1) - Date.FromString(operand2);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("2012-03-27", "2012-03-26", 1)]
+        [InlineData("2012-03-26", "2012-03-26", 0)]
+        [InlineData("2012-03-25", "2012-03-26", -1)]
+        public void op_Subtract_Date_Date(string value,
+                                          string other,
+                                          int expected)
+        {
+            var actual = Date.FromString(value).Subtract(other);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("2012-03-27", "2012-03-26", 1)]
+        [InlineData("2012-03-26", "2012-03-26", 0)]
+        [InlineData("2012-03-25", "2012-03-26", -1)]
         public void op_AddDays_int(string expected, 
                                    string date, 
                                    int value)
