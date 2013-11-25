@@ -14,6 +14,8 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\MarketingAddressTransformer.Facts.cs" />
+    <Compile Include="IO\Directory.ExtensionMethods.Facts.cs" />
+    <Compile Include="IO\File.ExtensionMethods.Facts.cs" />
     <Compile Include="Models\MarketingAddress.Facts.cs" />
     <Compile Include="Models\PostalAddressFileKey.Facts.cs" />
     <Compile Include="Models\BritishPostcode.Facts.cs" />
@@ -64,6 +66,7 @@
       <Name>Domain.RoyalMail</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Tests.project" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

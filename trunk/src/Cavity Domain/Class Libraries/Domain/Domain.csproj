@@ -30,6 +30,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
+    <Compile Include="IO\Directory.ExtensionMethods.cs" />
+    <Compile Include="IO\File.ExtensionMethods.cs" />
     <Compile Include="Models\BritishTelephone.cs" />
     <Compile Include="Models\BritishTelephoneNumberLength.cs" />
     <Compile Include="Models\BritishTelephoneNumberPlan.cs" />
@@ -56,6 +58,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Numerics" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Code.project" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

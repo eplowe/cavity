@@ -23,6 +23,8 @@
     <Compile Include="Collections\CaverphoneComparer.Facts.cs" />
     <Compile Include="Collections\MetaphoneComparer.Facts.cs" />
     <Compile Include="Collections\SoundexComparer.Facts.cs" />
+    <Compile Include="IO\Directory.ExtensionMethods.Facts.cs" />
+    <Compile Include="IO\File.ExtensionMethods.Facts.cs" />
     <Compile Include="Models\LexicalItem.Facts.cs" />
     <Compile Include="Models\Lexicon.String.ExtensionMethods.Facts.cs" />
     <Compile Include="Models\Telephone.Facts.cs" />
@@ -83,6 +85,7 @@
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\AnyCPU.platform" />
   <Import Project="$(MSBuildExtensionsPath)\Cavity 2.0\Tests.project" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

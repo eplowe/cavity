@@ -4,7 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Xml;
     using Moq;
 
     using Xunit;
@@ -162,8 +162,7 @@
             Assert.False((null as IEnumerable).IsNotEmpty());
         }
         
-#if NET20 || NET35
-#else
+#if !NET20 && !NET35
         [Fact]
         public void op_None_IEnumerableOfT_FuncOfT()
         {
@@ -174,6 +173,43 @@
 
             Assert.False(obj.None(x => x == "example"));
             Assert.True(obj.None(string.IsNullOrEmpty));
+        }
+#endif
+
+#if !NET20 && !NET35
+        [Fact]
+        public void op_ToConcurrentDictionary_IEnumerable()
+        {
+            var source = new List<KeyStringDictionary>
+                {
+                    new KeyStringDictionary
+                        {
+                            {"KEY", "1"},
+                            {"VALUE", "A"},
+                        },
+                    new KeyStringDictionary
+                        {
+                            {"KEY", "2"},
+                            {"VALUE", "B"},
+                        },
+                };
+
+            var actual = source.ToConcurrentDictionary(entry => XmlConvert.ToInt32(entry["KEY"]), entry => entry["VALUE"]);
+
+            Assert.Equal("A", actual[1]);
+            Assert.Equal("B", actual[2]);
+        }
+
+        [Fact]
+        public void op_ToConcurrentDictionary_IEnumerableEmpty()
+        {
+            Assert.Empty(new List<KeyStringDictionary>().ToConcurrentDictionary(entry => XmlConvert.ToInt32(entry["KEY"]), entry => entry["VALUE"]));
+        }
+
+        [Fact]
+        public void op_ToConcurrentDictionary_IEnumerableNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as IEnumerable<KeyStringDictionary>).ToConcurrentDictionary(entry => XmlConvert.ToInt32(entry["KEY"]), entry => entry["VALUE"]));
         }
 #endif
 
