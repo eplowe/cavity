@@ -2,6 +2,9 @@
 {
     using System;
     using System.Collections;
+#if !NET20 && !NET35
+    using System.Collections.Concurrent;
+#endif
     using System.Collections.Generic;
 #if NET20
     using System.Diagnostics.CodeAnalysis;
@@ -190,8 +193,7 @@
         }
 #endif
 
-#if NET20 || NET35
-#else
+#if !NET20 && !NET35
         public static bool None<TSource>(this IEnumerable<TSource> source,
                                          Func<TSource, bool> predicate)
         {
@@ -216,6 +218,48 @@
 
             return list;
         }
+#endif
+
+#if !NET20 && !NET35
+        public static ConcurrentDictionary<TKey, TElement> ToConcurrentDictionary<TSource, TKey, TElement>(this IEnumerable<TSource> source,
+                                                                                                            Func<TSource, TKey> keySelector,
+                                                                                                            Func<TSource, TElement> elementSelector)
+        {
+            return ToConcurrentDictionary(source, keySelector, elementSelector, null);
+        }
+
+        public static ConcurrentDictionary<TKey, TElement> ToConcurrentDictionary<TSource, TKey, TElement>(this IEnumerable<TSource> source,
+                                                                                                            Func<TSource, TKey> keySelector,
+                                                                                                            Func<TSource, TElement> elementSelector,
+                                                                                                            IEqualityComparer<TKey> comparer)
+        {
+            if (null == source)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            if (null == keySelector)
+            {
+                throw new ArgumentNullException("keySelector");
+            }
+
+            if (null == elementSelector)
+            {
+                throw new ArgumentNullException("elementSelector");
+            }
+
+            var result = null == comparer
+                ? new ConcurrentDictionary<TKey, TElement>()
+                : new ConcurrentDictionary<TKey, TElement>(comparer);
+
+            foreach (var item in source)
+            {
+                result.TryAdd(keySelector(item), elementSelector(item));
+            }
+
+            return result;
+        }
+
 #endif
 
 #if !NET20

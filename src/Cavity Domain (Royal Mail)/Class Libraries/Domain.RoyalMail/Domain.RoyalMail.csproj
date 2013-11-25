@@ -17,6 +17,8 @@
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt; '2.0' ">
     <Compile Include="Data\MarketingAddressTransformer.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="IO\Directory.ExtensionMethods.cs" />
+    <Compile Include="IO\File.ExtensionMethods.cs" />
     <Compile Include="Models\BritishAddress.cs" />
     <Compile Include="Models\BritishPostcode.cs" />
     <Compile Include="Models\IUserCategory.cs" />
