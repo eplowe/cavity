@@ -22,6 +22,7 @@
     <Compile Include="Data\IIdentifyShard.Facts.cs" />
     <Compile Include="Data\ITransformData`1.Facts.cs" />
     <Compile Include="Data\ITransformData.Facts.cs" />
+    <Compile Include="Data\JaggedCsvReader.Facts.cs" />
     <Compile Include="Data\ShardByValue.Facts.cs" />
     <Compile Include="Data\Csv.Facts.cs" />
     <Compile Include="Data\Csv.String.ExtensionMethods.Facts.cs" />

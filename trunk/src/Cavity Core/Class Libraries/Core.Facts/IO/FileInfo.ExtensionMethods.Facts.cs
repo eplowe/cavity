@@ -878,6 +878,22 @@
             }
         }
 
+        [Theory]
+        [InlineData(true, "2013-12.txt")]
+        [InlineData(false, "example.txt")]
+        public void op_NameIsMonth_FileInfo(bool expected,
+                                            string name)
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile(name);
+
+                var actual = file.NameIsMonth();
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
         [Fact]
         public void op_ReadToEnd_FileInfo()
         {

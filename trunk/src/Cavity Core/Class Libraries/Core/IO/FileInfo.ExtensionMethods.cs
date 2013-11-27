@@ -500,6 +500,24 @@
         }
 
 #if NET20
+        public static bool NameIsMonth(FileInfo obj)
+#else
+        public static bool NameIsMonth(this FileInfo obj)
+#endif
+        {
+            if (null == obj)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+#if NET20
+            return StringExtensionMethods.IsMonth(RemoveExtension(obj).Name);
+#else
+            return obj.RemoveExtension().Name.IsMonth();
+#endif
+        }
+
+#if NET20
         public static string ReadToEnd(FileInfo obj)
 #else
         public static string ReadToEnd(this FileInfo obj)
