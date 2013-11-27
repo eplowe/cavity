@@ -536,6 +536,38 @@
         [Theory]
         [InlineData(false, null)]
         [InlineData(false, "")]
+        [InlineData(false, "example")]
+        [InlineData(false, "1999 12")]
+        [InlineData(false, "2010-00")]
+        [InlineData(true, "2010-01")]
+        [InlineData(true, "2010-02")]
+        [InlineData(true, "2010-03")]
+        [InlineData(true, "2010-04")]
+        [InlineData(true, "2010-05")]
+        [InlineData(true, "2010-06")]
+        [InlineData(true, "2010-07")]
+        [InlineData(true, "2010-08")]
+        [InlineData(true, "2010-09")]
+        [InlineData(true, "2010-10")]
+        [InlineData(true, "2010-11")]
+        [InlineData(true, "2010-12")]
+        [InlineData(false, "2010-13")]
+        [InlineData(false, "a010-11")]
+        [InlineData(false, "2a10-11")]
+        [InlineData(false, "20a0-11")]
+        [InlineData(false, "201a-11")]
+        [InlineData(false, "2010-a1")]
+        [InlineData(false, "2010-1a")]
+        public void op_IsMonth_string(bool expected, string value)
+        {
+            var actual = value.IsMonth();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(false, null)]
+        [InlineData(false, "")]
         [InlineData(true, "  ")]
         [InlineData(true, "example")]
         public void op_IsNotNullOrEmpty_string(bool expected, string value)
@@ -577,6 +609,18 @@
         public void op_IsNullOrWhiteSpace_string(bool expected, string value)
         {
             var actual = value.IsNullOrWhiteSpace();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(' ', null)]
+        [InlineData(' ', "")]
+        [InlineData(' ', "  ")]
+        [InlineData('e', "example")]
+        public void op_LastCharacter_string(char expected, string value)
+        {
+            var actual = value.LastCharacter();
 
             Assert.Equal(expected, actual);
         }
@@ -2989,6 +3033,7 @@
         public void op_XmlDeserialize_string()
         {
             const string expected = "<root />";
+            // ReSharper disable once PossibleNullReferenceException
             var actual = expected.XmlDeserialize().CreateNavigator().OuterXml;
 
             Assert.Equal(expected, actual);

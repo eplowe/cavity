@@ -12,7 +12,7 @@
   	<Solutions Include="Cavity Data (ACE)" />
   	<Solutions Include="Cavity Data (CSV)" />
   	<!-- Solutions Include="Cavity Data (Excel 97-2003)" / -->
-  	<Solutions Include="Cavity Data (HTML)" />
+  	<!-- Solutions Include="Cavity Data (HTML)" / -->
   	<Solutions Include="Cavity Data (JSON)" />
   	<Solutions Include="Cavity Data (TSV)" />
   	<Solutions Include="Cavity Data (XML)" />

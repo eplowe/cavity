@@ -23,6 +23,7 @@
     <Compile Include="Data\DataSheet.cs" />
     <Compile Include="Data\IDataSheet.cs" />
     <Compile Include="Data\ITransformData.cs" />
+    <Compile Include="Data\JaggedCsvReader.cs" />
     <Compile Include="Data\ShardByValue.cs" />
     <Compile Include="Data\TsvStreamReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

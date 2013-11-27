@@ -446,6 +446,43 @@
 #endif
 
 #if NET20
+        public static bool IsMonth(string value)
+#else
+        public static bool IsMonth(this string value)
+#endif
+        {
+            if (null == value)
+            {
+                return false;
+            }
+
+            if (7 != value.Length)
+            {
+                return false;
+            }
+
+            if ('-' != value[4])
+            {
+                return false;
+            }
+
+            foreach (var index in new[] { 0, 1, 2, 3, 5, 6 })
+            {
+                if (!char.IsLetterOrDigit(value[index]))
+                {
+                    return false;
+                }
+
+                if (char.IsLetter(value[index]))
+                {
+                    return false;
+                }
+            }
+
+            return EndsWithAny(value, StringComparison.Ordinal, "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+        }
+
+#if NET20
         public static bool IsNotNullOrEmpty(string value)
 #else
         public static bool IsNotNullOrEmpty(this string value)
@@ -496,6 +533,17 @@
             return string.IsNullOrEmpty(obj) || obj.All(c => ' '.Equals(c));
 
 #endif
+        }
+
+#if NET20
+        public static char LastCharacter(string value)
+#else
+        public static char LastCharacter(this string value)
+#endif
+        {
+            return string.IsNullOrEmpty(value)
+                       ? ' '
+                       : value[value.Length - 1];
         }
 
 #if NET20
