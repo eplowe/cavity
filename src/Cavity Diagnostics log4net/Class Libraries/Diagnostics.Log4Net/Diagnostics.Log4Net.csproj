@@ -17,7 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="log4net">
-      <HintPath>..\..\packages\log4net.2.0.1\lib\$(TargetFrameworkVersionName)-full\log4net.dll</HintPath>
+      <HintPath>..\..\packages\log4net.2.0.3\lib\$(TargetFrameworkVersionName)-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>

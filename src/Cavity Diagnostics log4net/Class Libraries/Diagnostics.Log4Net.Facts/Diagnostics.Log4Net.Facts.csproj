@@ -9,7 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\AssemblyInfo.log4net.cs" />
     <Content Include="Properties\CodeAnalysis.dictionary" />
     <None Include="app.config" />
     <None Include="packages.config" />
@@ -19,7 +18,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="log4net">
-      <HintPath>..\..\packages\log4net.2.0.1\lib\$(TargetFrameworkVersionName)-full\log4net.dll</HintPath>
+      <HintPath>..\..\packages\log4net.2.0.3\lib\$(TargetFrameworkVersionName)-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="xunit">
@@ -30,8 +29,9 @@
     <Reference Include="Cavity.Testing.Unit">
       <HintPath>..\..\packages\Cavity.Testing.Unit.2.0.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Testing.Unit.dll</HintPath>
     </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\..\packages\Moq.4.1.1309.1617\lib\$(TargetFrameworkVersionName)\Moq.dll</HintPath>
+    <Reference Include="Moq, Version=4.1.1311.615, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Moq.4.1.1311.0615\lib\$(TargetFrameworkVersionName)\Moq.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '3.5' ">
