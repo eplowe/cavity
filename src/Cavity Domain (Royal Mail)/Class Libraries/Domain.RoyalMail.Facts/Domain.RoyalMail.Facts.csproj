@@ -27,6 +27,7 @@
     <Compile Include="Models\NonResidentialUserCategory.Facts.cs" />
     <Compile Include="Models\ResidentialUserCategory.Facts.cs" />
     <Compile Include="Models\LargeUserCategory.Facts.cs" />
+    <Compile Include="String.ExtensionMethods.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">

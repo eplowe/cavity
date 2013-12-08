@@ -28,6 +28,7 @@
     <Compile Include="Models\Organization.cs" />
     <Compile Include="Models\PostalAddressFileEntry.cs" />
     <Compile Include="Models\UserCategory.cs" />
+    <Compile Include="String.ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">

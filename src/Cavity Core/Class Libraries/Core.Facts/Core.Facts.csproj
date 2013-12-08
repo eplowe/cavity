@@ -82,6 +82,7 @@
     <Compile Include="Percentage.ExtensionMethods.Facts.cs" />
     <Compile Include="RelativeUri.Facts.cs" />
     <Compile Include="String.ExtensionMethods.Facts.cs" />
+    <Compile Include="Temporal.ExtensionMethods.Facts.cs" />
     <Compile Include="ValueObject`1.Derived.cs" />
     <Compile Include="ValueObject`1.Facts.cs" />
     <Compile Include="Characters.Facts.cs" />

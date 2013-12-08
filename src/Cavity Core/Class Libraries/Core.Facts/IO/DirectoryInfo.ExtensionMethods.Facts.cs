@@ -283,6 +283,56 @@
 #if NET20 || NET35
 #else
         [Fact]
+        public void op_CsvFiles_DirectoryInfoNull_FuncSelector()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).CsvFiles(file => file.Name).First());
+        }
+
+        [Fact]
+        public void op_CsvFiles_DirectoryInfo_FuncSelector()
+        {
+            using (var temp = new TempDirectory())
+            {
+                temp.Info.ToFile("a.csv").Create(string.Empty);
+                var expected = temp.Info
+                    .ToFile("z.csv")
+                    .Create(string.Empty)
+                    .FullName;
+
+                var actual = temp.Info.CsvFiles(file => file.Name).Last().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_CsvFiles_DirectoryInfoNull_FuncSelector_SearchOption()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).CsvFiles(file => file.Name, SearchOption.TopDirectoryOnly).First());
+        }
+
+        [Fact]
+        public void op_CsvFiles_DirectoryInfo_FuncSelector_SearchOption()
+        {
+            using (var temp = new TempDirectory())
+            {
+                temp.Info.ToFile("x.csv").Create(string.Empty);
+                var expected = temp.Info
+                    .ToDirectory("example", true)
+                    .ToFile("z.csv")
+                    .Create(string.Empty)
+                    .FullName;
+
+                var actual = temp.Info.CsvFiles(file => file.Name, SearchOption.AllDirectories).Last().FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+#endif
+
+#if NET20 || NET35
+#else
+        [Fact]
         public void op_EnumerateDirectories_DirectoryInfoNull_FuncDirectoryInfoBool()
         {
             Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).EnumerateDirectories(x => x.Name == "b").First());
