@@ -32,6 +32,72 @@
 #endif
 
         [Fact]
+        public void op_ToCsvFile_DirectoryInfoNull_FileInfo()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToCsvFile(new FileInfo("example")));
+        }
+
+        [Fact]
+        public void op_ToCsvFile_DirectoryInfo_FileInfoNull()
+        {
+            using (var temp = new TempDirectory())
+            {
+                // ReSharper disable once AccessToDisposedClosure
+                Assert.Throws<ArgumentNullException>(() => temp.Info.ToCsvFile(null as FileInfo));
+            }
+        }
+
+        [Fact]
+        public void op_ToCsvFile_DirectoryInfo_FileInfo()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info.ToFile("example.csv").FullName;
+                var actual = temp.Info.ToCsvFile(temp.Info.ToFile("example.txt")).FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
+        public void op_ToCsvFile_DirectoryInfoNull_string()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToCsvFile("example"));
+        }
+
+        [Fact]
+        public void op_ToCsvFile_DirectoryInfo_stringEmpty()
+        {
+            using (var temp = new TempDirectory())
+            {
+                // ReSharper disable once AccessToDisposedClosure
+                Assert.Throws<ArgumentOutOfRangeException>(() => temp.Info.ToCsvFile(string.Empty));
+            }
+        }
+
+        [Fact]
+        public void op_ToCsvFile_DirectoryInfo_stringNull()
+        {
+            using (var temp = new TempDirectory())
+            {
+                // ReSharper disable once AccessToDisposedClosure
+                Assert.Throws<ArgumentNullException>(() => temp.Info.ToCsvFile(null as string));
+            }
+        }
+
+        [Fact]
+        public void op_ToCsvFile_DirectoryInfo_string()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = temp.Info.ToFile("example.csv").FullName;
+                var actual = temp.Info.ToCsvFile("example").FullName;
+
+                Assert.Equal(expected, actual);
+            }
+        }
+
+        [Fact]
         public void op_ToDate_DirectoryInfoNull()
         {
             Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToDate());

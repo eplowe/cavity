@@ -38,6 +38,7 @@
     <Compile Include="MonthOfYear.cs" />
     <Compile Include="DateTimePeriod.cs" />
     <Compile Include="Quarter.cs" />
+    <Compile Include="TemporalExtensionMethods.cs" />
     <Compile Include="Text\StringBuilder.ExtensionMethods.cs" />
     <Compile Include="TimeSpan.ExtensionMethods.cs" />
     <Compile Include="UserStoryAttribute.cs" />

@@ -41,7 +41,7 @@
 
 *2.0.0.848* Cavity.Testing.Unit
 
-*2.0.0.963* Cavity.Core
+*2.0.0.965* Cavity.Core
 
 *2.0.0.922* Cavity Configuration
  * Cavity.Core
@@ -91,11 +91,11 @@
 *2.0.0.848* Cavity HTTP Generalizations
  * Cavity.Core
 
-*2.0.0.962* Cavity.Domain
+*2.0.0.965* Cavity.Domain
  * Cavity.Data
    * Cavity.Core
 
-*2.0.0.962* Cavity.Domain.RoyalMail
+*2.0.0.965* Cavity.Domain.RoyalMail
  * Cavity.Data
    * Cavity.Core
 

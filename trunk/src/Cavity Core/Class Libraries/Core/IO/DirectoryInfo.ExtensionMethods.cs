@@ -120,6 +120,22 @@
 
 #if NET20 || NET35
 #else
+        public static IOrderedEnumerable<FileInfo> CsvFiles<TKey>(this DirectoryInfo directory,
+                                                                  Func<FileInfo, TKey> keySelector)
+        {
+            return CsvFiles(directory).OrderBy(keySelector);
+        }
+
+        public static IOrderedEnumerable<FileInfo> CsvFiles<TKey>(this DirectoryInfo directory,
+                                                                  Func<FileInfo, TKey> keySelector,
+                                                                  SearchOption searchOption)
+        {
+            return CsvFiles(directory, searchOption).OrderBy(keySelector);
+        }
+#endif
+
+#if NET20 || NET35
+#else
         public static IEnumerable<DirectoryInfo> EnumerateDirectories(this DirectoryInfo obj,
                                                                       Func<DirectoryInfo, bool> predicate)
         {
