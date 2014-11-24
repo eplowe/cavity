@@ -73,10 +73,10 @@
                                 var hint = reference.SelectSingleNode("b:HintPath", namespaces);
 
                                 yield return new Reference
-                                {
-                                    Include = include.Value,
-                                    Hint = null == hint ? null : hint.InnerText
-                                };
+                                                 {
+                                                     Include = include.Value,
+                                                     Hint = null == hint ? null : hint.InnerText
+                                                 };
                             }
                         }
                     }

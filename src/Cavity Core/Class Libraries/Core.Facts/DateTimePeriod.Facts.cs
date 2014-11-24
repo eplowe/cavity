@@ -3,7 +3,6 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Xml;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -53,10 +52,10 @@
         [InlineData(true, "2012-11-15")]
         [InlineData(true, "2012-11-30")]
         [InlineData(false, "2012-12-01")]
-        public void op_Contains_Date(bool expected, 
+        public void op_Contains_Date(bool expected,
                                      string value)
         {
-            var period = new DateTimePeriod(XmlConvert.ToDateTime("2012-11-01T00:00:00Z", XmlDateTimeSerializationMode.Utc), 
+            var period = new DateTimePeriod(XmlConvert.ToDateTime("2012-11-01T00:00:00Z", XmlDateTimeSerializationMode.Utc),
                                             XmlConvert.ToDateTime("2012-11-30T23:59:59Z", XmlDateTimeSerializationMode.Utc));
             var actual = period.Contains(Date.FromString(value));
 
@@ -69,10 +68,10 @@
         [InlineData(true, "2012-11-15T12:11:10Z")]
         [InlineData(true, "2012-11-30T23:59:59Z")]
         [InlineData(false, "2012-12-01T00:00:00Z")]
-        public void op_Contains_DateTime(bool expected, 
+        public void op_Contains_DateTime(bool expected,
                                          string value)
         {
-            var period = new DateTimePeriod(XmlConvert.ToDateTime("2012-11-01T00:00:00Z", XmlDateTimeSerializationMode.Utc), 
+            var period = new DateTimePeriod(XmlConvert.ToDateTime("2012-11-01T00:00:00Z", XmlDateTimeSerializationMode.Utc),
                                             XmlConvert.ToDateTime("2012-11-30T23:59:59Z", XmlDateTimeSerializationMode.Utc));
             var actual = period.Contains(XmlConvert.ToDateTime(value, XmlDateTimeSerializationMode.Utc));
 
@@ -83,10 +82,10 @@
         [InlineData(false, "2012-10")]
         [InlineData(true, "2012-11")]
         [InlineData(false, "2012-12")]
-        public void op_Contains_Month(bool expected, 
+        public void op_Contains_Month(bool expected,
                                       string value)
         {
-            var period = new DateTimePeriod(XmlConvert.ToDateTime("2012-11-01T00:00:00Z", XmlDateTimeSerializationMode.Utc), 
+            var period = new DateTimePeriod(XmlConvert.ToDateTime("2012-11-01T00:00:00Z", XmlDateTimeSerializationMode.Utc),
                                             XmlConvert.ToDateTime("2012-11-30T23:59:59Z", XmlDateTimeSerializationMode.Utc));
             var actual = period.Contains(Month.FromString(value));
 
@@ -106,7 +105,7 @@
         [Theory]
         [InlineData("2011-12-31T12:00:00Z", "2012-01-01T12:00:00Z")]
         [InlineData("2012-01-01T12:00:00Z", "2012-01-01T12:00:00Z")]
-        public void prop_Beginning_set(string beginning, 
+        public void prop_Beginning_set(string beginning,
                                        string ending)
         {
             var obj = new DateTimePeriod(DateTime.MinValue, XmlConvert.ToDateTime(ending, XmlDateTimeSerializationMode.Utc));
@@ -116,7 +115,7 @@
 
         [Theory]
         [InlineData("2012-01-01T12:00:00Z", "2011-12-31T12:00:00Z")]
-        public void prop_Beginning_set_whenArgumentOutOfRangeException(string beginning, 
+        public void prop_Beginning_set_whenArgumentOutOfRangeException(string beginning,
                                                                        string ending)
         {
             var obj = new DateTimePeriod(DateTime.MinValue, XmlConvert.ToDateTime(ending, XmlDateTimeSerializationMode.Utc));
@@ -160,7 +159,7 @@
         [InlineData("2011-12-31T12:00:00Z", "2012-01-01T12:00:00Z")]
         [InlineData("2012-01-01T12:00:00Z", "2012-01-01T12:00:00Z")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "propEnding", Justification = "This is spelling is intended.")]
-        public void prop_Ending_set(string beginning, 
+        public void prop_Ending_set(string beginning,
                                     string ending)
         {
             var obj = new DateTimePeriod(XmlConvert.ToDateTime(beginning, XmlDateTimeSerializationMode.Utc), DateTime.MaxValue);
@@ -171,7 +170,7 @@
         [Theory]
         [InlineData("2012-01-01T12:00:00Z", "2011-12-31T12:00:00Z")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "propEnding", Justification = "This is spelling is intended.")]
-        public void prop_Ending_set_whenArgumentOutOfRangeException(string beginning, 
+        public void prop_Ending_set_whenArgumentOutOfRangeException(string beginning,
                                                                     string ending)
         {
             var obj = new DateTimePeriod(XmlConvert.ToDateTime(beginning, XmlDateTimeSerializationMode.Utc), DateTime.MaxValue);

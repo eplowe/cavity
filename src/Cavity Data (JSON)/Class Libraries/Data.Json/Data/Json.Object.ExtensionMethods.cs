@@ -52,8 +52,8 @@
             }
         }
 
-        private static bool JsonSerializeBaseClassLibraryType(this JsonWriter writer, 
-                                                              string name, 
+        private static bool JsonSerializeBaseClassLibraryType(this JsonWriter writer,
+                                                              string name,
                                                               object value)
         {
             if (null == value)
@@ -177,8 +177,8 @@
             return false;
         }
 
-        private static bool JsonSerializeBuiltInType(this JsonWriter writer, 
-                                                     string name, 
+        private static bool JsonSerializeBuiltInType(this JsonWriter writer,
+                                                     string name,
                                                      object value)
         {
             if (writer.JsonSerializeIntegralType(name, value))
@@ -237,8 +237,8 @@
             return false;
         }
 
-        private static bool JsonSerializeFloatingPointType(this JsonWriter writer, 
-                                                           string name, 
+        private static bool JsonSerializeFloatingPointType(this JsonWriter writer,
+                                                           string name,
                                                            object value)
         {
             if (value is double)
@@ -272,8 +272,8 @@
             return false;
         }
 
-        private static bool JsonSerializeIntegralType(this JsonWriter writer, 
-                                                      string name, 
+        private static bool JsonSerializeIntegralType(this JsonWriter writer,
+                                                      string name,
                                                       object value)
         {
             if (value is byte)
@@ -349,7 +349,7 @@
             return false;
         }
 
-        private static void JsonSerializeList(this JsonWriter writer, 
+        private static void JsonSerializeList(this JsonWriter writer,
                                               IEnumerable list)
         {
             foreach (var item in list)
@@ -366,7 +366,7 @@
             writer.EndArray();
         }
 
-        private static void JsonSerializeObject(this JsonWriter writer, 
+        private static void JsonSerializeObject(this JsonWriter writer,
                                                 object obj)
         {
             if (null == obj)

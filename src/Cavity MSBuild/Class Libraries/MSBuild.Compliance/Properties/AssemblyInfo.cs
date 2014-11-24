@@ -17,5 +17,4 @@ using System.Reflection;
 #endif
 
 [assembly: SuppressMessage("Microsoft.Naming", "CA1701:ResourceStringCompoundWordsShouldBeCasedCorrectly", MessageId = "XPath", Scope = "resource", Target = "Cavity.Properties.Resources.resources", Justification = "This is the correct spelling.")]
-
 [assembly: SuppressMessage("Microsoft.Naming", "CA1703:ResourceStringsShouldBeSpelledCorrectly", MessageId = "csproj", Scope = "resource", Target = "Cavity.Properties.Resources.resources", Justification = "This is the correct spelling.")]

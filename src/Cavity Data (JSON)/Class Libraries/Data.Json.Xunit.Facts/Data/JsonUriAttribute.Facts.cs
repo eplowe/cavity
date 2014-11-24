@@ -5,12 +5,9 @@
     using System.IO;
     using System.Linq;
     using System.Net;
-
     using Cavity.IO;
-
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -125,7 +122,7 @@
 
         [Theory]
         [JsonUri("http://www.alan-dean.com/one.json", "http://www.alan-dean.com/two.json")]
-        public void usage_whenMultipleParameters(Example one, 
+        public void usage_whenMultipleParameters(Example one,
                                                  Example two)
         {
             Assert.Equal(1, one.Value);

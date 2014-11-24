@@ -2,8 +2,6 @@
 {
     using System;
     using System.Linq;
-
-    using Cavity;
     using Xunit;
 
     public sealed class WebCacheCollectionFacts

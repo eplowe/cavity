@@ -5,7 +5,6 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Web.Mvc;
-
     using Cavity.Globalization;
 
     public abstract class LanguageController : Controller
@@ -39,7 +38,7 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1061:DoNotHideBaseClassMethods", Justification = "The base method is not marked virtual.")]
-        public ViewResult View(CultureInfo language, 
+        public ViewResult View(CultureInfo language,
                                object model)
         {
             language.SetCurrentCulture();

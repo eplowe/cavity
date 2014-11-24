@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Configuration
 {
     using Cavity.Collections;
-
     using Xunit;
 
     public sealed class PathsFacts

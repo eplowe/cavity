@@ -7,7 +7,6 @@
 #endif
     using System.Xml;
     using System.Xml.XPath;
-
     using Cavity.Net;
     using Cavity.Security.Cryptography;
 
@@ -141,7 +140,7 @@
             return Repository.Select(key);
         }
 
-        bool IRepository<T>.Match(AbsoluteUri urn, 
+        bool IRepository<T>.Match(AbsoluteUri urn,
                                   EntityTag etag)
         {
             if (null == urn)
@@ -159,7 +158,7 @@
             return 0 != nodes.Count;
         }
 
-        bool IRepository<T>.Match(AlphaDecimal key, 
+        bool IRepository<T>.Match(AlphaDecimal key,
                                   EntityTag etag)
         {
             var xpath = "{0}[@etag='{1}']".FormatWith(FormatXPath(key), etag);
@@ -172,7 +171,7 @@
             return 0 != nodes.Count;
         }
 
-        bool IRepository<T>.ModifiedSince(AbsoluteUri urn, 
+        bool IRepository<T>.ModifiedSince(AbsoluteUri urn,
                                           DateTime value)
         {
             if (null == urn)
@@ -192,7 +191,7 @@
             return modified > value;
         }
 
-        bool IRepository<T>.ModifiedSince(AlphaDecimal key, 
+        bool IRepository<T>.ModifiedSince(AlphaDecimal key,
                                           DateTime value)
         {
             var node = Select(key);
@@ -414,14 +413,14 @@
 
             return new Record<T>
                        {
-                           Cacheability = node.Attributes["cacheability"].Value, 
-                           Created = XmlConvert.ToDateTime(node.Attributes["created"].Value, XmlDateTimeSerializationMode.Utc), 
-                           Etag = node.Attributes["etag"].Value, 
-                           Expiration = node.Attributes["expiration"].Value, 
-                           Key = AlphaDecimal.FromString(node.Attributes["key"].Value), 
-                           Modified = XmlConvert.ToDateTime(node.Attributes["modified"].Value, XmlDateTimeSerializationMode.Utc), 
-                           Status = XmlConvert.ToInt32(node.Attributes["status"].Value), 
-                           Urn = node.Attributes["urn"].Value, 
+                           Cacheability = node.Attributes["cacheability"].Value,
+                           Created = XmlConvert.ToDateTime(node.Attributes["created"].Value, XmlDateTimeSerializationMode.Utc),
+                           Etag = node.Attributes["etag"].Value,
+                           Expiration = node.Attributes["expiration"].Value,
+                           Key = AlphaDecimal.FromString(node.Attributes["key"].Value),
+                           Modified = XmlConvert.ToDateTime(node.Attributes["modified"].Value, XmlDateTimeSerializationMode.Utc),
+                           Status = XmlConvert.ToInt32(node.Attributes["status"].Value),
+                           Urn = node.Attributes["urn"].Value,
                            Value = node.InnerXml.XmlDeserialize<T>()
                        };
         }

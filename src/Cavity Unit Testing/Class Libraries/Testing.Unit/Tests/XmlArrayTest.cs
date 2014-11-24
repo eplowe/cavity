@@ -5,7 +5,6 @@ namespace Cavity.Tests
     using System.Linq;
     using System.Reflection;
     using System.Xml.Serialization;
-
     using Cavity.Properties;
 
     public sealed class XmlArrayTest : MemberTestBase

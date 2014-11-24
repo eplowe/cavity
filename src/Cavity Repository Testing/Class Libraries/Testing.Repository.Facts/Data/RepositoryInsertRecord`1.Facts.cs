@@ -1,9 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System;
-
     using Moq;
-
     using Xunit;
 
     public sealed class RepositoryInsertRecordOfTFacts
@@ -34,8 +32,8 @@
                           {
                               Record1 =
                                   {
-                                      Created = DateTime.UtcNow, 
-                                      Key = AlphaDecimal.Random(), 
+                                      Created = DateTime.UtcNow,
+                                      Key = AlphaDecimal.Random(),
                                       Modified = DateTime.UtcNow
                                   }
                           };
@@ -64,8 +62,8 @@
                           {
                               Record1 =
                                   {
-                                      Created = null, 
-                                      Key = AlphaDecimal.Random(), 
+                                      Created = null,
+                                      Key = AlphaDecimal.Random(),
                                       Modified = DateTime.UtcNow
                                   }
                           };
@@ -88,8 +86,8 @@
                           {
                               Record1 =
                                   {
-                                      Created = DateTime.UtcNow, 
-                                      Key = null, 
+                                      Created = DateTime.UtcNow,
+                                      Key = null,
                                       Modified = DateTime.UtcNow
                                   }
                           };
@@ -112,8 +110,8 @@
                           {
                               Record1 =
                                   {
-                                      Created = DateTime.UtcNow, 
-                                      Key = AlphaDecimal.Random(), 
+                                      Created = DateTime.UtcNow,
+                                      Key = AlphaDecimal.Random(),
                                       Modified = null
                                   }
                           };

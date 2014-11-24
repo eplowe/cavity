@@ -5,9 +5,7 @@
     using System.Data;
     using System.Linq;
     using System.Net;
-
     using Cavity.Collections;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -44,9 +42,12 @@
         }
 
         [Fact]
-        public void op_Download_AbsoluteUriNull()
+        public void op_Download_AbsoluteUri()
         {
-            Assert.Throws<ArgumentNullException>(() => CsvHttpAttribute.Download(null));
+            const string expected = "A1";
+            var actual = CsvHttpAttribute.Download("http://www.alan-dean.com/example.csv").First()["A"];
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -56,12 +57,9 @@
         }
 
         [Fact]
-        public void op_Download_AbsoluteUri()
+        public void op_Download_AbsoluteUriNull()
         {
-            const string expected = "A1";
-            var actual = CsvHttpAttribute.Download("http://www.alan-dean.com/example.csv").First()["A"];
-
-            Assert.Equal(expected, actual);
+            Assert.Throws<ArgumentNullException>(() => CsvHttpAttribute.Download(null));
         }
 
         [Fact]

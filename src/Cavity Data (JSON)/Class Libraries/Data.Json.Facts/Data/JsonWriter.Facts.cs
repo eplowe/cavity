@@ -3,9 +3,7 @@
     using System;
     using System.IO;
     using System.Xml;
-
     using Cavity.IO;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -92,7 +90,7 @@
         [InlineData(null, "{\"example\":[null]}")]
         [InlineData("123", "{\"example\":[123]}")]
         [InlineData(" 123 ", "{\"example\":[123]}")]
-        public void op_ArrayNumber_string(string value, 
+        public void op_ArrayNumber_string(string value,
                                           string expected)
         {
             using (var stream = new MemoryStream())
@@ -237,7 +235,7 @@
         [Theory]
         [InlineData(true, "{\"example\":[true]}")]
         [InlineData(false, "{\"example\":[false]}")]
-        public void op_ArrayValue_bool(bool value, 
+        public void op_ArrayValue_bool(bool value,
                                        string expected)
         {
             using (var stream = new MemoryStream())
@@ -406,7 +404,7 @@
         [InlineData(" ", "{\"example\":[\" \"]}")]
         [InlineData("value", "{\"example\":[\"value\"]}")]
         [InlineData("foo\"bar", "{\"example\":[\"foo\\\"bar\"]}")]
-        public void op_ArrayValue_string(string value, 
+        public void op_ArrayValue_string(string value,
                                          string expected)
         {
             using (var stream = new MemoryStream())
@@ -601,7 +599,7 @@
         [InlineData("123", "{\"example\":123}")]
         [InlineData("1.23", "{\"example\":1.23}")]
         [InlineData("1e3", "{\"example\":1e3}")]
-        public void op_NumberPair_string_string(string value, 
+        public void op_NumberPair_string_string(string value,
                                                 string expected)
         {
             using (var stream = new MemoryStream())
@@ -678,7 +676,7 @@
         [Theory]
         [InlineData("", 0)]
         [InlineData("{}", 1)]
-        public void op_Object(string expected, 
+        public void op_Object(string expected,
                               int count)
         {
             using (var stream = new MemoryStream())
@@ -814,7 +812,7 @@
         [Theory]
         [InlineData(true, "{\"example\":true}")]
         [InlineData(false, "{\"example\":false}")]
-        public void op_Pair_string_bool(bool value, 
+        public void op_Pair_string_bool(bool value,
                                         string expected)
         {
             using (var stream = new MemoryStream())
@@ -857,7 +855,7 @@
         [InlineData("0", "{\"example\":0}")]
         [InlineData("0.0", "{\"example\":0.0}")]
         [InlineData("1.2345", "{\"example\":1.2345}")]
-        public void op_Pair_string_decimal(string value, 
+        public void op_Pair_string_decimal(string value,
                                            string expected)
         {
             using (var stream = new MemoryStream())
@@ -883,7 +881,7 @@
         [InlineData(1.2345, "{\"example\":1.2345}")]
         [InlineData(1230000000000000000, "{\"example\":1.23E+18}")]
         [InlineData(0.00000000000000123, "{\"example\":1.23E-15}")]
-        public void op_Pair_string_double(double value, 
+        public void op_Pair_string_double(double value,
                                           string expected)
         {
             using (var stream = new MemoryStream())
@@ -906,7 +904,7 @@
 
         [Theory]
         [InlineData(12345, "{\"example\":12345}")]
-        public void op_Pair_string_int(int value, 
+        public void op_Pair_string_int(int value,
                                        string expected)
         {
             using (var stream = new MemoryStream())
@@ -929,7 +927,7 @@
 
         [Theory]
         [InlineData(12345, "{\"example\":12345}")]
-        public void op_Pair_string_long(long value, 
+        public void op_Pair_string_long(long value,
                                         string expected)
         {
             using (var stream = new MemoryStream())
@@ -954,7 +952,7 @@
         [InlineData(0f, "{\"example\":0}")]
         [InlineData(1.2f, "{\"example\":1.2000000476837158}")]
         [InlineData(123000000f, "{\"example\":123000000}")]
-        public void op_Pair_string_single(float value, 
+        public void op_Pair_string_single(float value,
                                           string expected)
         {
             using (var stream = new MemoryStream())
@@ -983,7 +981,7 @@
         [InlineData(" value ", "{\"example\":\" value \"}")]
         [InlineData("foo\"bar", "{\"example\":\"foo\\\"bar\"}")]
         [InlineData("and\\or", "{\"example\":\"and\\\\or\"}")]
-        public void op_StringPair_string_string(string value, 
+        public void op_StringPair_string_string(string value,
                                                 string expected)
         {
             using (var stream = new MemoryStream())
@@ -1038,6 +1036,16 @@
                     // ReSharper restore AccessToDisposedClosure
                 }
             }
+        }
+
+        [Fact]
+        public void prop_Settings()
+        {
+            Assert.True(new PropertyExpectations<JsonWriter>(x => x.Settings)
+                            .IsNotDecorated()
+                            .TypeIs<JsonWriterSettings>()
+                            .DefaultValueIsNotNull()
+                            .Result);
         }
 
         [Theory]
@@ -1304,16 +1312,5 @@
                 }
             }
         }
-
-        [Fact]
-        public void prop_Settings()
-        {
-            Assert.True(new PropertyExpectations<JsonWriter>(x => x.Settings)
-                            .IsNotDecorated()
-                            .TypeIs<JsonWriterSettings>()
-                            .DefaultValueIsNotNull()
-                            .Result);
-        }
-
     }
 }

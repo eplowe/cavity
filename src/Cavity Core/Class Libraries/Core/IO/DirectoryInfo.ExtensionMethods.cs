@@ -11,6 +11,7 @@
 #endif
 #if !NET20 && !NET35
     using System.Threading.Tasks;
+
 #endif
 
     public static class DirectoryInfoExtensionMethods
@@ -406,9 +407,9 @@
             }
 
             Process.Start(new ProcessStartInfo("ROBOCOPY")
-            {
-                Arguments = string.Format(CultureInfo.InvariantCulture, "\"{0}\" \"{1}\" /S{2}", source.FullName, destination.FullName, move ? " /MOVE" : string.Empty),
-            }).WaitForExit();
+                              {
+                                  Arguments = string.Format(CultureInfo.InvariantCulture, "\"{0}\" \"{1}\" /S{2}", source.FullName, destination.FullName, move ? " /MOVE" : string.Empty),
+                              }).WaitForExit();
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want strong typing here.")]
@@ -500,8 +501,7 @@
 
             return result;
 #else
-            return names.Aggregate(result, (current,
-                                            name) => current.ToDirectory(name, true));
+            return names.Aggregate(result, (current, name) => current.ToDirectory(name, true));
 #endif
         }
 
@@ -595,7 +595,7 @@
                                                       SearchOption searchOption)
 #else
         public static IEnumerable<FileInfo> XmlFiles(this DirectoryInfo directory,
-                                                      SearchOption searchOption)
+                                                     SearchOption searchOption)
 #endif
         {
             return EnumerateFiles(directory, "*.xml", searchOption);

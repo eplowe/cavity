@@ -11,7 +11,7 @@
     using System.Text;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
-    public class Matrix<T> : IEnumerable<T>, 
+    public class Matrix<T> : IEnumerable<T>,
                              IEquatable<Matrix<T>>
     {
         public Matrix()
@@ -19,7 +19,7 @@
         {
         }
 
-        public Matrix(int width, 
+        public Matrix(int width,
                       int height)
             : this(new Size(width, height))
         {
@@ -93,7 +93,7 @@
         [SuppressMessage("Microsoft.Design", "CA1023:IndexersShouldNotBeMultidimensional", Justification = "This design is intentional.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x", Justification = "This name is correct.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y", Justification = "This name is correct.")]
-        public virtual T this[int x, 
+        public virtual T this[int x,
                               int y]
         {
             get
@@ -133,7 +133,7 @@
             }
         }
 
-        public static bool operator ==(Matrix<T> obj, 
+        public static bool operator ==(Matrix<T> obj,
                                        Matrix<T> comparand)
         {
             return ReferenceEquals(null, obj)
@@ -141,7 +141,7 @@
                        : obj.Equals(comparand);
         }
 
-        public static bool operator !=(Matrix<T> obj, 
+        public static bool operator !=(Matrix<T> obj,
                                        Matrix<T> comparand)
         {
             return ReferenceEquals(null, obj)
@@ -194,7 +194,7 @@
             return ToString().GetHashCode();
         }
 
-        public virtual void Resize(int width, 
+        public virtual void Resize(int width,
                                    int height)
         {
             Resize(new Size(width, height));

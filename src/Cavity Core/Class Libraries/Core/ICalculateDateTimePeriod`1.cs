@@ -2,9 +2,9 @@
 {
     public interface ICalculateDateTimePeriod<in T>
     {
-        DateTimePeriod Days(int value);
-
         DateTimePeriod Between(T value);
+
+        DateTimePeriod Days(int value);
 
         DateTimePeriod Months(int value);
 

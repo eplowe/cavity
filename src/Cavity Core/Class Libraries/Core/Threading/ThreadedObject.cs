@@ -2,7 +2,7 @@
 {
     using System.Threading;
 
-    public abstract class ThreadedObject : DisposableObject, 
+    public abstract class ThreadedObject : DisposableObject,
                                            IThreadedObject
     {
         private CancellationToken _token;

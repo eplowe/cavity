@@ -43,8 +43,8 @@
             using (var file = new TempCsvFile(data))
             {
                 return file.Info.Exists
-                    ? new DataFileCreation(destination, modified).Create(new CsvDataSheet(file.Info))
-                    : 0;
+                           ? new DataFileCreation(destination, modified).Create(new CsvDataSheet(file.Info))
+                           : 0;
             }
         }
     }

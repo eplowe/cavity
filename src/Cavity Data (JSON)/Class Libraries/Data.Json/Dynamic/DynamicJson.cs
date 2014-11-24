@@ -22,13 +22,13 @@
         ////{
         ////    return base.TryInvoke(binder, args, out result);
         ////}
-        public void SetMember(string name, 
+        public void SetMember(string name,
                               object value)
         {
             Data[name] = value;
         }
 
-        public override bool TryGetMember(GetMemberBinder binder, 
+        public override bool TryGetMember(GetMemberBinder binder,
                                           out object result)
         {
             if (null == binder)
@@ -41,7 +41,7 @@
             return true;
         }
 
-        public override bool TrySetMember(SetMemberBinder binder, 
+        public override bool TrySetMember(SetMemberBinder binder,
                                           object value)
         {
             if (null == binder)

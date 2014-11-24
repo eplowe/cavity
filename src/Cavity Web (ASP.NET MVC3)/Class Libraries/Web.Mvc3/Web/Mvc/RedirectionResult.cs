@@ -31,7 +31,7 @@
 
         public abstract HttpStatusCode StatusCode { get; }
 
-        public static string Content(DateTime date, 
+        public static string Content(DateTime date,
                                      AbsoluteUri location)
         {
             if (null == location)

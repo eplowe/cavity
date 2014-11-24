@@ -10,7 +10,7 @@
 
     [ImmutableObject(true)]
     [Serializable]
-    public struct Translation<T> : ISerializable, 
+    public struct Translation<T> : ISerializable,
                                    IEquatable<Translation<T>>
     {
         public Translation(T value)
@@ -19,14 +19,14 @@
             Value = value;
         }
 
-        public Translation(T value, 
+        public Translation(T value,
                            Language language)
             : this(value)
         {
             Language = language;
         }
 
-        private Translation(SerializationInfo info, 
+        private Translation(SerializationInfo info,
                             StreamingContext context)
             : this()
         {
@@ -38,13 +38,13 @@
 
         public T Value { get; private set; }
 
-        public static bool operator ==(Translation<T> obj, 
+        public static bool operator ==(Translation<T> obj,
                                        Translation<T> comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator !=(Translation<T> obj, 
+        public static bool operator !=(Translation<T> obj,
                                        Translation<T> comparand)
         {
             return !obj.Equals(comparand);
@@ -85,7 +85,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        void ISerializable.GetObjectData(SerializationInfo info, 
+        void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {
             if (null == info)

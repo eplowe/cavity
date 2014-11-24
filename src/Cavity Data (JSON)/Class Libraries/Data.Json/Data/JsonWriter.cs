@@ -15,7 +15,7 @@
         {
         }
 
-        public JsonWriter(Stream stream, 
+        public JsonWriter(Stream stream,
                           JsonWriterSettings settings)
             : this()
         {
@@ -204,7 +204,7 @@
             Pair(name, "null", JsonNodeType.NullValue);
         }
 
-        public void NumberPair(string name, 
+        public void NumberPair(string name,
                                string value)
         {
             if (null == value)
@@ -282,13 +282,13 @@
             Nest(JsonNodeType.Object);
         }
 
-        public void Pair(string name, 
+        public void Pair(string name,
                          bool value)
         {
             Pair(name, XmlConvert.ToString(value), value ? JsonNodeType.TrueValue : JsonNodeType.FalseValue);
         }
 
-        public void Pair(string name, 
+        public void Pair(string name,
                          char value)
         {
             if ((char)0 == value)
@@ -300,49 +300,49 @@
             Pair(name, XmlConvert.ToString(value));
         }
 
-        public void Pair(string name, 
+        public void Pair(string name,
                          DateTime value)
         {
             Pair(name, XmlConvert.ToString(value, XmlDateTimeSerializationMode.Utc));
         }
 
-        public void Pair(string name, 
+        public void Pair(string name,
                          DateTimeOffset value)
         {
             Pair(name, XmlConvert.ToString(value));
         }
 
-        public void Pair(string name, 
+        public void Pair(string name,
                          decimal value)
         {
             NumberPair(name, XmlConvert.ToString(value));
         }
 
-        public void Pair(string name, 
+        public void Pair(string name,
                          double value)
         {
             NumberPair(name, XmlConvert.ToString(value));
         }
 
-        public void Pair(string name, 
+        public void Pair(string name,
                          Guid value)
         {
             Pair(name, XmlConvert.ToString(value));
         }
 
-        public void Pair(string name, 
+        public void Pair(string name,
                          long value)
         {
             NumberPair(name, XmlConvert.ToString(value));
         }
 
-        public void Pair(string name, 
+        public void Pair(string name,
                          TimeSpan value)
         {
             Pair(name, XmlConvert.ToString(value));
         }
 
-        public void Pair(string name, 
+        public void Pair(string name,
                          string value)
         {
             if (null == value)
@@ -354,7 +354,7 @@
             Pair(name, "\"{0}\"".FormatWith(Encode(value)), JsonNodeType.StringValue);
         }
 
-        public void Pair(string name, 
+        public void Pair(string name,
                          IJsonSerializable value)
         {
             if (null == value)
@@ -365,7 +365,7 @@
 
             _writer.Write("{0}\"{1}\":".FormatWith(Punctuation, name));
             Nesting.Peek().Previous = JsonNodeType.None;
-            
+
             Object();
             value.WriteJson(this);
             EndObject();
@@ -407,7 +407,7 @@
                 .Replace("\t", "\\t");
         }
 
-        private void Array(string value, 
+        private void Array(string value,
                            JsonNodeType type)
         {
             if (JsonNodeType.Array != Nesting.Peek().Parent)
@@ -419,7 +419,7 @@
             Nesting.Peek().Previous = type;
         }
 
-        private void End(char value, 
+        private void End(char value,
                          JsonNodeType previous)
         {
             Nesting.Pop();
@@ -441,8 +441,8 @@
             }
         }
 
-        private void Pair(string name, 
-                          string value, 
+        private void Pair(string name,
+                          string value,
                           JsonNodeType type)
         {
             if (null == name)

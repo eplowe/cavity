@@ -3,11 +3,8 @@
     using System.ComponentModel.Composition;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-
     using Cavity.IO;
-
     using Moq;
-
     using Xunit;
 
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "IRun", Justification = "This naming is intentional.")]

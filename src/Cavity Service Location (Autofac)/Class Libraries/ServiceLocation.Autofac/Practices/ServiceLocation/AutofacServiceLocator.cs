@@ -4,9 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-
     using Autofac;
-
     using Microsoft.Practices.ServiceLocation;
 
     public sealed class AutofacServiceLocator : ServiceLocatorImplBase
@@ -31,7 +29,7 @@
             return ((IEnumerable)instance).Cast<object>();
         }
 
-        protected override object DoGetInstance(Type serviceType, 
+        protected override object DoGetInstance(Type serviceType,
                                                 string key)
         {
             return null == key

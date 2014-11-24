@@ -4,13 +4,13 @@
     using System.Globalization;
     using System.IO;
     using System.Xml.Serialization;
-
     using Cavity.Fluent;
     using Cavity.Properties;
 
     public sealed class XmlSerializableTest : ITestExpectation
     {
-        public XmlSerializableTest(Type type, bool verifyDeserialization)
+        public XmlSerializableTest(Type type,
+                                   bool verifyDeserialization)
         {
             Type = type;
             VerifyDeserialization = verifyDeserialization;
@@ -45,7 +45,7 @@
             return CheckDeserialization(format, null == attribute ? Type.Name : attribute.ElementName);
         }
 
-        private bool CheckDeserialization(string format, 
+        private bool CheckDeserialization(string format,
                                           string name)
         {
             var xml = string.Format(CultureInfo.InvariantCulture, format, name);

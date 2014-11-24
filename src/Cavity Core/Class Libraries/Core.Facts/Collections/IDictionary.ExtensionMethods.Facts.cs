@@ -2,8 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-
-    using Cavity;
     using Xunit;
 
     public sealed class IDictionaryExtensionMethodsFacts
@@ -39,6 +37,12 @@
         }
 
         [Fact]
+        public void op_TryAdd_IDictionaryOfTNull_TKey_TValue()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as IDictionary<string, object>).TryAdd("example", new object()));
+        }
+
+        [Fact]
         public void op_TryAdd_IDictionaryOfT_KeyValuePair_whenFalse()
         {
             var list = new Dictionary<string, int>
@@ -55,12 +59,6 @@
             var list = new Dictionary<string, string>();
 
             Assert.True(list.TryAdd(new KeyValuePair<string, string>("example", string.Empty)));
-        }
-
-        [Fact]
-        public void op_TryAdd_IDictionaryOfTNull_TKey_TValue()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as IDictionary<string, object>).TryAdd("example", new object()));
         }
 
         [Fact]

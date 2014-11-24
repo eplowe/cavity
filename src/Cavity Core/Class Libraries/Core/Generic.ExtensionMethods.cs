@@ -4,7 +4,6 @@
 #if !NET20
     using System.Linq;
 #endif
-
     using Cavity.Properties;
 
     public static class GenericExtensionMethods
@@ -24,7 +23,7 @@
         public static bool EqualsOneOf<T>(T obj, 
                                           params T[] args)
 #else
-        public static bool EqualsOneOf<T>(this T obj, 
+        public static bool EqualsOneOf<T>(this T obj,
                                           params T[] args)
 #endif
         {
@@ -57,7 +56,7 @@
         public static bool In<T>(T value, 
                                  params T[] args)
 #else
-        public static bool In<T>(this T value, 
+        public static bool In<T>(this T value,
                                  params T[] args)
 #endif
         {
@@ -83,8 +82,8 @@
                                           T upper)
 #else
 
-        public static bool IsBoundedBy<T>(this T obj, 
-                                          T lower, 
+        public static bool IsBoundedBy<T>(this T obj,
+                                          T lower,
                                           T upper)
 #endif
             where T : IComparable<T>

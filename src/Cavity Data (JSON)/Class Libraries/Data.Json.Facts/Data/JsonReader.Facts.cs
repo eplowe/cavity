@@ -2,7 +2,6 @@
 {
     using System;
     using System.IO;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -325,7 +324,7 @@
         [InlineData("123,456,789", "{\"Numbers\" : [ 123,456,789 ]}")]
         [InlineData("123,456,789", "{\"Numbers\" : [ 123, 456, 789 ]}")]
         [InlineData("123,456,789", "{\"Numbers\" : [ 123 , 456 , 789 ]}")]
-        public void op_Read_whenPropertyArrayNumber(string values, 
+        public void op_Read_whenPropertyArrayNumber(string values,
                                                     string json)
         {
             using (var stream = new MemoryStream())
@@ -672,7 +671,7 @@
         [InlineData("a,b,c", "{\"Letters\" : [ \"a\",\"b\",\"c\" ]}")]
         [InlineData("a,b,c", "{\"Letters\" : [ \"a\", \"b\", \"c\" ]}")]
         [InlineData("a,b,c", "{\"Letters\" : [ \"a\" , \"b\" , \"c\" ]}")]
-        public void op_Read_whenPropertyArrayString(string values, 
+        public void op_Read_whenPropertyArrayString(string values,
                                                     string json)
         {
             using (var stream = new MemoryStream())
@@ -745,7 +744,7 @@
         [InlineData("\u0066", "{\"\\u0066\"}")]
         [InlineData("Example", "{\"Example\"}")]
         [InlineData("Foo Bar", "{\"Foo Bar\"}")]
-        public void op_Read_whenPropertyNameOnly(string name, 
+        public void op_Read_whenPropertyNameOnly(string name,
                                                  string json)
         {
             using (var stream = new MemoryStream())
@@ -875,7 +874,7 @@
         [InlineData("1E+3", "{\"Name\" : 1E+3}")]
         [InlineData("1e-3", "{\"Name\" : 1e-3}")]
         [InlineData("1E-3", "{\"Name\" : 1E-3}")]
-        public void op_Read_whenPropertyValueNumber(string value, 
+        public void op_Read_whenPropertyValueNumber(string value,
                                                     string json)
         {
             using (var stream = new MemoryStream())
@@ -984,7 +983,7 @@
         [Theory]
         [InlineData("value", "{\"Name\" : \"value\"}")]
         [InlineData("left right", "{\"Name\" : \"left right\"}")]
-        public void op_Read_whenPropertyValueString(string value, 
+        public void op_Read_whenPropertyValueString(string value,
                                                     string json)
         {
             using (var stream = new MemoryStream())

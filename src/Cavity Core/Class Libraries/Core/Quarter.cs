@@ -343,6 +343,23 @@
             info.AddValue("_value", _date);
         }
 
+        private static int ToMonth(QuarterOfYear value)
+        {
+            switch (value)
+            {
+                case QuarterOfYear.Q1:
+                    return 1;
+                case QuarterOfYear.Q2:
+                    return 4;
+                case QuarterOfYear.Q3:
+                    return 7;
+                case QuarterOfYear.Q4:
+                    return 10;
+                default:
+                    throw new ArgumentOutOfRangeException("value");
+            }
+        }
+
         private Quarter To(QuarterOfYear value,
                            int quarter)
         {
@@ -367,23 +384,6 @@
                 {
                     return date;
                 }
-            }
-        }
-
-        private static int ToMonth(QuarterOfYear value)
-        {
-            switch (value)
-            {
-                case QuarterOfYear.Q1:
-                    return 1;
-                case QuarterOfYear.Q2:
-                    return 4;
-                case QuarterOfYear.Q3:
-                    return 7;
-                case QuarterOfYear.Q4:
-                    return 10;
-                default:
-                    throw new ArgumentOutOfRangeException("value");
             }
         }
     }

@@ -2,7 +2,6 @@
 {
     using System.Configuration;
     using System.Diagnostics;
-
     using Cavity.Diagnostics;
 
     public sealed class RedirectionConfigurationElement<T> : ConfigurationElement
@@ -15,7 +14,7 @@
             Properties.Add(ConfigurationProperty<T>.Item("to"));
         }
 
-        public RedirectionConfigurationElement(T from, 
+        public RedirectionConfigurationElement(T from,
                                                T to)
             : this()
         {

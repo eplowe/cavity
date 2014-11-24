@@ -3,13 +3,12 @@
     using System;
     using System.IO;
     using System.Threading;
-
     using Cavity.Threading;
 
-    public sealed class DummyIProcessFile : ThreadedObject, 
+    public sealed class DummyIProcessFile : ThreadedObject,
                                             IProcessFile
     {
-        public void Process(FileInfo file, 
+        public void Process(FileInfo file,
                             dynamic data)
         {
             if (null == file)

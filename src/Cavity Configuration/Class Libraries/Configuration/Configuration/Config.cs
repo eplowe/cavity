@@ -11,8 +11,6 @@
     using System.Linq;
 #endif
     using System.Reflection;
-
-    using Cavity.Collections;
     using Cavity.Diagnostics;
 
     public static class Config
@@ -57,13 +55,13 @@
             }
 
             var fileMap = new ExeConfigurationFileMap
-                {
+                              {
 #if NET20
                     ExeConfigFilename = assembly.Location + ".config"
 #else
-                    ExeConfigFilename = assembly.Location.Append(".config")
+                                  ExeConfigFilename = assembly.Location.Append(".config")
 #endif
-                };
+                              };
 
             var config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
             var section = Section<T>(config.Sections);

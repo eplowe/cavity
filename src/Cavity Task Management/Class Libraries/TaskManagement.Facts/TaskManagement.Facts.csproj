@@ -22,7 +22,6 @@
     <Compile Include="Configuration\Timing.Facts.cs" />
     <Compile Include="Diagnostics\TaskCounter.Facts.cs" />
     <Compile Include="Diagnostics\TaskManagementEventLog.Facts.cs" />
-    <Compile Include="IO\FileReceiver`1.Facts.cs" />
     <Compile Include="IO\FileReceiverTask`1.Derived.cs" />
     <Compile Include="IO\FileReceiverTask`1.Facts.cs" />
     <Compile Include="IO\IReceiveFile.Facts.cs" />

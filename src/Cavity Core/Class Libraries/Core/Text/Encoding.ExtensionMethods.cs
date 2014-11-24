@@ -10,7 +10,7 @@
         public static ContentType ToContentType(Encoding encoding, 
                                                 string type)
 #else
-        public static ContentType ToContentType(this Encoding encoding, 
+        public static ContentType ToContentType(this Encoding encoding,
                                                 string type)
 #endif
         {

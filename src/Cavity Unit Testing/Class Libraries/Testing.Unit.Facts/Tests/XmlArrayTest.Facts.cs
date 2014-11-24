@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Tests
 {
     using Cavity.Types;
-
     using Xunit;
 
     public sealed class XmlArrayTestFacts
@@ -23,7 +22,7 @@
         {
             var obj = new XmlArrayTest(typeof(XmlDecorationClass1).GetProperty("Array1"))
                           {
-                              ArrayElementName = "array1", 
+                              ArrayElementName = "array1",
                               ArrayItemElementName = "xxx"
                           };
 
@@ -46,7 +45,7 @@
         {
             var obj = new XmlArrayTest(typeof(XmlDecorationClass1).GetProperty("Array1"))
                           {
-                              ArrayElementName = "array1", 
+                              ArrayElementName = "array1",
                               ArrayItemElementName = "item1"
                           };
 
@@ -58,7 +57,7 @@
         {
             var obj = new XmlArrayTest(typeof(XmlDecorationClass1).GetProperty("Array2"))
                           {
-                              ArrayElementName = "array2", 
+                              ArrayElementName = "array2",
                               ArrayItemElementName = "item2"
                           };
 

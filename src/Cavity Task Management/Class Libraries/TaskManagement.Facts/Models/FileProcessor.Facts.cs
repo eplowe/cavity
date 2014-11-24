@@ -1,10 +1,8 @@
 ﻿namespace Cavity.Models
 {
     using System.IO;
-
     using Cavity.Dynamic;
     using Cavity.Threading;
-
     using Xunit;
 
     public sealed class FileProcessorFacts

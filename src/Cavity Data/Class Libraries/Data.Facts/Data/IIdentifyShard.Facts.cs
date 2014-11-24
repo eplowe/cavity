@@ -1,9 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using Cavity.Collections;
-
     using Moq;
-
     using Xunit;
 
     public sealed class IIdentifyShardFacts

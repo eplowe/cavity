@@ -4,11 +4,8 @@
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
-
     using Cavity.Collections;
-
     using Moq;
-
     using Xunit;
 
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "DataSheet", Justification = "This is the correct casing.")]

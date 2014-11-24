@@ -3,11 +3,9 @@
     using System;
     using System.IO;
     using System.Linq;
-
     using Cavity.Collections;
     using Cavity.IO;
     using Cavity.Xml.XPath;
-
     using Xunit;
 
     public sealed class OperationFacts

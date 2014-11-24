@@ -10,8 +10,8 @@
 
         public override string ToString()
         {
-            return "{0}{1}{2}".FormatWith(Name, 
-                                          string.IsNullOrEmpty(Department) ? string.Empty : Environment.NewLine, 
+            return "{0}{1}{2}".FormatWith(Name,
+                                          string.IsNullOrEmpty(Department) ? string.Empty : Environment.NewLine,
                                           Department);
         }
     }

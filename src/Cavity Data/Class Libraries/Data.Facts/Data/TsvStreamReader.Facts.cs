@@ -3,9 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
-
     using Cavity.Collections;
-
     using Xunit;
 
     public sealed class TsvStreamReaderFacts

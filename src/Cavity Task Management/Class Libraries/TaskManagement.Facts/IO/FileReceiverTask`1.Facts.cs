@@ -2,10 +2,8 @@
 {
     using System;
     using System.IO;
-
     using Cavity.Models;
     using Cavity.Threading;
-
     using Xunit;
 
     public sealed class FileReceiverTaskOfTFacts

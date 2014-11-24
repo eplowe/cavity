@@ -2,10 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-
     using Cavity.Collections;
     using Cavity.Data;
-
     using Xunit;
 
     public sealed class PostalAddressFileEntryFacts
@@ -33,29 +31,29 @@
         {
             PostalAddressFileEntry actual = new KeyStringDictionary
                                                 {
-                                                    new KeyStringPair("ORD", "Department"), 
-                                                    new KeyStringPair("ORC", "Organisation"), 
-                                                    new KeyStringPair("SBN", "Flat A"), 
-                                                    new KeyStringPair("BNA", "Building"), 
-                                                    new KeyStringPair("POB", "PO Box 123"), 
-                                                    new KeyStringPair("NUM", "1"), 
-                                                    new KeyStringPair("DST", "Little Close"), 
-                                                    new KeyStringPair("STM", "High Street"), 
-                                                    new KeyStringPair("DDL", "Village"), 
-                                                    new KeyStringPair("DLO", "Locality"), 
-                                                    new KeyStringPair("PTN", "Town"), 
-                                                    new KeyStringPair("CTA", "Countyshire"), 
-                                                    new KeyStringPair("CTP", "Postalshire"), 
-                                                    new KeyStringPair("CTT", "Oldshire"), 
-                                                    new KeyStringPair("PCD", "AB10 1AA"), 
-                                                    new KeyStringPair("SCD", "12345"), 
-                                                    new KeyStringPair("CAT", "L"), 
-                                                    new KeyStringPair("NDP", "12"), 
-                                                    new KeyStringPair("DPX", "1A8"), 
-                                                    new KeyStringPair("URN", "123456789"), 
-                                                    new KeyStringPair("MOC", "9999"), 
-                                                    new KeyStringPair("MRC", "9876"), 
-                                                    new KeyStringPair("UMR", "987654321"), 
+                                                    new KeyStringPair("ORD", "Department"),
+                                                    new KeyStringPair("ORC", "Organisation"),
+                                                    new KeyStringPair("SBN", "Flat A"),
+                                                    new KeyStringPair("BNA", "Building"),
+                                                    new KeyStringPair("POB", "PO Box 123"),
+                                                    new KeyStringPair("NUM", "1"),
+                                                    new KeyStringPair("DST", "Little Close"),
+                                                    new KeyStringPair("STM", "High Street"),
+                                                    new KeyStringPair("DDL", "Village"),
+                                                    new KeyStringPair("DLO", "Locality"),
+                                                    new KeyStringPair("PTN", "Town"),
+                                                    new KeyStringPair("CTA", "Countyshire"),
+                                                    new KeyStringPair("CTP", "Postalshire"),
+                                                    new KeyStringPair("CTT", "Oldshire"),
+                                                    new KeyStringPair("PCD", "AB10 1AA"),
+                                                    new KeyStringPair("SCD", "12345"),
+                                                    new KeyStringPair("CAT", "L"),
+                                                    new KeyStringPair("NDP", "12"),
+                                                    new KeyStringPair("DPX", "1A8"),
+                                                    new KeyStringPair("URN", "123456789"),
+                                                    new KeyStringPair("MOC", "9999"),
+                                                    new KeyStringPair("MRC", "9876"),
+                                                    new KeyStringPair("UMR", "987654321"),
                                                     new KeyStringPair("DTO", "P")
                                                 };
 
@@ -121,29 +119,29 @@
         {
             PostalAddressFileEntry actual = new KeyStringDictionary
                                                 {
-                                                    new KeyStringPair("ORD", string.Empty), 
-                                                    new KeyStringPair("ORC", string.Empty), 
-                                                    new KeyStringPair("SBN", string.Empty), 
-                                                    new KeyStringPair("BNA", string.Empty), 
-                                                    new KeyStringPair("POB", string.Empty), 
-                                                    new KeyStringPair("NUM", string.Empty), 
-                                                    new KeyStringPair("DST", string.Empty), 
-                                                    new KeyStringPair("STM", string.Empty), 
-                                                    new KeyStringPair("DDL", string.Empty), 
-                                                    new KeyStringPair("DLO", string.Empty), 
-                                                    new KeyStringPair("PTN", string.Empty), 
-                                                    new KeyStringPair("CTA", string.Empty), 
-                                                    new KeyStringPair("CTP", string.Empty), 
-                                                    new KeyStringPair("CTT", string.Empty), 
-                                                    new KeyStringPair("PCD", string.Empty), 
-                                                    new KeyStringPair("SCD", string.Empty), 
-                                                    new KeyStringPair("CAT", string.Empty), 
-                                                    new KeyStringPair("NDP", string.Empty), 
-                                                    new KeyStringPair("DPX", string.Empty), 
-                                                    new KeyStringPair("URN", string.Empty), 
-                                                    new KeyStringPair("MOC", string.Empty), 
-                                                    new KeyStringPair("MRC", string.Empty), 
-                                                    new KeyStringPair("UMR", string.Empty), 
+                                                    new KeyStringPair("ORD", string.Empty),
+                                                    new KeyStringPair("ORC", string.Empty),
+                                                    new KeyStringPair("SBN", string.Empty),
+                                                    new KeyStringPair("BNA", string.Empty),
+                                                    new KeyStringPair("POB", string.Empty),
+                                                    new KeyStringPair("NUM", string.Empty),
+                                                    new KeyStringPair("DST", string.Empty),
+                                                    new KeyStringPair("STM", string.Empty),
+                                                    new KeyStringPair("DDL", string.Empty),
+                                                    new KeyStringPair("DLO", string.Empty),
+                                                    new KeyStringPair("PTN", string.Empty),
+                                                    new KeyStringPair("CTA", string.Empty),
+                                                    new KeyStringPair("CTP", string.Empty),
+                                                    new KeyStringPair("CTT", string.Empty),
+                                                    new KeyStringPair("PCD", string.Empty),
+                                                    new KeyStringPair("SCD", string.Empty),
+                                                    new KeyStringPair("CAT", string.Empty),
+                                                    new KeyStringPair("NDP", string.Empty),
+                                                    new KeyStringPair("DPX", string.Empty),
+                                                    new KeyStringPair("URN", string.Empty),
+                                                    new KeyStringPair("MOC", string.Empty),
+                                                    new KeyStringPair("MRC", string.Empty),
+                                                    new KeyStringPair("UMR", string.Empty),
                                                     new KeyStringPair("DTO", string.Empty)
                                                 };
 
@@ -178,9 +176,9 @@
         {
             PostalAddressFileEntry actual = null as KeyStringDictionary;
 
-// ReSharper disable ExpressionIsAlwaysNull
+            // ReSharper disable ExpressionIsAlwaysNull
             Assert.Null(actual);
-// ReSharper restore ExpressionIsAlwaysNull
+            // ReSharper restore ExpressionIsAlwaysNull
         }
 
         [Fact]
@@ -188,29 +186,29 @@
         {
             PostalAddressFileEntry entry = new KeyStringDictionary
                                                {
-                                                   new KeyStringPair("ORD", "A"), 
-                                                   new KeyStringPair("ORC", "B"), 
-                                                   new KeyStringPair("SBN", "C"), 
-                                                   new KeyStringPair("BNA", "D"), 
-                                                   new KeyStringPair("POB", "E"), 
-                                                   new KeyStringPair("NUM", "F"), 
-                                                   new KeyStringPair("DST", "G"), 
-                                                   new KeyStringPair("STM", "H"), 
-                                                   new KeyStringPair("DDL", "I"), 
-                                                   new KeyStringPair("DLO", "J"), 
-                                                   new KeyStringPair("PTN", "K"), 
-                                                   new KeyStringPair("PCD", "AB10 1AA"), 
-                                                   new KeyStringPair("CTA", "L"), 
-                                                   new KeyStringPair("CTP", "M"), 
-                                                   new KeyStringPair("CTT", "N"), 
-                                                   new KeyStringPair("SCD", "1"), 
-                                                   new KeyStringPair("CAT", "L"), 
-                                                   new KeyStringPair("NDP", "2"), 
-                                                   new KeyStringPair("DPX", "3"), 
-                                                   new KeyStringPair("URN", "4"), 
-                                                   new KeyStringPair("MOC", "5"), 
-                                                   new KeyStringPair("MRC", "6"), 
-                                                   new KeyStringPair("UMR", "7"), 
+                                                   new KeyStringPair("ORD", "A"),
+                                                   new KeyStringPair("ORC", "B"),
+                                                   new KeyStringPair("SBN", "C"),
+                                                   new KeyStringPair("BNA", "D"),
+                                                   new KeyStringPair("POB", "E"),
+                                                   new KeyStringPair("NUM", "F"),
+                                                   new KeyStringPair("DST", "G"),
+                                                   new KeyStringPair("STM", "H"),
+                                                   new KeyStringPair("DDL", "I"),
+                                                   new KeyStringPair("DLO", "J"),
+                                                   new KeyStringPair("PTN", "K"),
+                                                   new KeyStringPair("PCD", "AB10 1AA"),
+                                                   new KeyStringPair("CTA", "L"),
+                                                   new KeyStringPair("CTP", "M"),
+                                                   new KeyStringPair("CTT", "N"),
+                                                   new KeyStringPair("SCD", "1"),
+                                                   new KeyStringPair("CAT", "L"),
+                                                   new KeyStringPair("NDP", "2"),
+                                                   new KeyStringPair("DPX", "3"),
+                                                   new KeyStringPair("URN", "4"),
+                                                   new KeyStringPair("MOC", "5"),
+                                                   new KeyStringPair("MRC", "6"),
+                                                   new KeyStringPair("UMR", "7"),
                                                    new KeyStringPair("DTO", "P")
                                                };
 
@@ -227,20 +225,20 @@
                             {
                                 Address =
                                     {
-                                        SubBuildingName = "A", 
-                                        PostOfficeBox = string.Empty, 
-                                        BuildingName = "B", 
-                                        BuildingNumber = "C", 
-                                        DependentStreet = "D", 
-                                        MainStreet = "E", 
-                                        DoubleDependentLocality = "F", 
-                                        DependentLocality = "G", 
-                                        PostTown = "H", 
+                                        SubBuildingName = "A",
+                                        PostOfficeBox = string.Empty,
+                                        BuildingName = "B",
+                                        BuildingNumber = "C",
+                                        DependentStreet = "D",
+                                        MainStreet = "E",
+                                        DoubleDependentLocality = "F",
+                                        DependentLocality = "G",
+                                        PostTown = "H",
                                         Postcode = "AB1 2ZZ"
-                                    }, 
+                                    },
                                 Organization =
                                     {
-                                        Department = string.Empty, 
+                                        Department = string.Empty,
                                         Name = string.Empty
                                     }
                             };
@@ -285,29 +283,29 @@
         {
             PostalAddressFileEntry entry = new KeyStringDictionary
                                                {
-                                                   new KeyStringPair("ORD", string.Empty), 
-                                                   new KeyStringPair("ORC", string.Empty), 
-                                                   new KeyStringPair("SBN", string.Empty), 
-                                                   new KeyStringPair("BNA", string.Empty), 
-                                                   new KeyStringPair("POB", string.Empty), 
-                                                   new KeyStringPair("NUM", string.Empty), 
-                                                   new KeyStringPair("DST", string.Empty), 
-                                                   new KeyStringPair("STM", string.Empty), 
-                                                   new KeyStringPair("DDL", string.Empty), 
-                                                   new KeyStringPair("DLO", string.Empty), 
-                                                   new KeyStringPair("PTN", string.Empty), 
-                                                   new KeyStringPair("PCD", string.Empty), 
-                                                   new KeyStringPair("CTA", string.Empty), 
-                                                   new KeyStringPair("CTP", string.Empty), 
-                                                   new KeyStringPair("CTT", string.Empty), 
-                                                   new KeyStringPair("SCD", string.Empty), 
-                                                   new KeyStringPair("CAT", string.Empty), 
-                                                   new KeyStringPair("NDP", string.Empty), 
-                                                   new KeyStringPair("DPX", string.Empty), 
-                                                   new KeyStringPair("URN", string.Empty), 
-                                                   new KeyStringPair("MOC", string.Empty), 
-                                                   new KeyStringPair("MRC", string.Empty), 
-                                                   new KeyStringPair("UMR", string.Empty), 
+                                                   new KeyStringPair("ORD", string.Empty),
+                                                   new KeyStringPair("ORC", string.Empty),
+                                                   new KeyStringPair("SBN", string.Empty),
+                                                   new KeyStringPair("BNA", string.Empty),
+                                                   new KeyStringPair("POB", string.Empty),
+                                                   new KeyStringPair("NUM", string.Empty),
+                                                   new KeyStringPair("DST", string.Empty),
+                                                   new KeyStringPair("STM", string.Empty),
+                                                   new KeyStringPair("DDL", string.Empty),
+                                                   new KeyStringPair("DLO", string.Empty),
+                                                   new KeyStringPair("PTN", string.Empty),
+                                                   new KeyStringPair("PCD", string.Empty),
+                                                   new KeyStringPair("CTA", string.Empty),
+                                                   new KeyStringPair("CTP", string.Empty),
+                                                   new KeyStringPair("CTT", string.Empty),
+                                                   new KeyStringPair("SCD", string.Empty),
+                                                   new KeyStringPair("CAT", string.Empty),
+                                                   new KeyStringPair("NDP", string.Empty),
+                                                   new KeyStringPair("DPX", string.Empty),
+                                                   new KeyStringPair("URN", string.Empty),
+                                                   new KeyStringPair("MOC", string.Empty),
+                                                   new KeyStringPair("MRC", string.Empty),
+                                                   new KeyStringPair("UMR", string.Empty),
                                                    new KeyStringPair("DTO", string.Empty)
                                                };
 

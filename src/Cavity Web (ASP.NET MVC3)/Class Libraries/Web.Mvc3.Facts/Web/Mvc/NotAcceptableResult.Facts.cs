@@ -4,9 +4,7 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
-
     using Moq;
-
     using Xunit;
 
     public sealed class NotAcceptableResultFacts

@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-
     using Xunit;
 
     public sealed class HttpHeaderDictionaryFacts
@@ -114,7 +113,7 @@
                           {
                               {
                                   "name", "value"
-                                  }
+                              }
                           };
 
             foreach (var actual in obj)

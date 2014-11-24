@@ -59,7 +59,7 @@
 
             return line;
         }
-        
+
         protected string GetHeader(Token name)
         {
             return Headers.Contains(name)
@@ -67,7 +67,8 @@
                        : null;
         }
 
-        protected void SetHeader(Token name, string value)
+        protected void SetHeader(Token name,
+                                 string value)
         {
             if (Headers.Contains(name))
             {

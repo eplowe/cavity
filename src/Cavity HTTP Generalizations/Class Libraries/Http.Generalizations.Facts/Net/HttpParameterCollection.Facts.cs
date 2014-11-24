@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-
     using Xunit;
 
     public sealed class ParameterDictionaryFacts
@@ -49,7 +48,7 @@
         {
             var obj = new HttpParameterDictionary
                           {
-                              { "a", "1" }, 
+                              { "a", "1" },
                               { "b", "2" }
                           };
 

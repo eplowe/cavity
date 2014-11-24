@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Data
 {
     using System;
-
     using Xunit;
 
     public sealed class JsonWriterSettingsFacts

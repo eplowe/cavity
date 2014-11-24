@@ -3,10 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -100,7 +98,7 @@
 
         [Theory]
         [JsonData("{ \"Value\": 1 }", "{ \"Value\": 2 }")]
-        public void usage_whenMultipleParameters(Example one, 
+        public void usage_whenMultipleParameters(Example one,
                                                  Example two)
         {
             Assert.Equal(1, one.Value);

@@ -8,7 +8,7 @@
 
         private DateTime _ending;
 
-        public DateTimePeriod(Date beginning, 
+        public DateTimePeriod(Date beginning,
                               Date ending)
         {
             _ending = ending.ToDateTime();
@@ -20,7 +20,7 @@
             _beginning = beginning.ToDateTime();
         }
 
-        public DateTimePeriod(DateTime beginning, 
+        public DateTimePeriod(DateTime beginning,
                               DateTime ending)
         {
             _ending = ending;
@@ -76,19 +76,19 @@
             }
         }
 
-        public static bool operator ==(DateTimePeriod obj, 
+        public static bool operator ==(DateTimePeriod obj,
                                        DateTimePeriod comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator !=(DateTimePeriod obj, 
+        public static bool operator !=(DateTimePeriod obj,
                                        DateTimePeriod comparand)
         {
             return !obj.Equals(comparand);
         }
 
-        public static DateTimePeriod Between(DateTime one, 
+        public static DateTimePeriod Between(DateTime one,
                                              DateTime two)
         {
             return one > two

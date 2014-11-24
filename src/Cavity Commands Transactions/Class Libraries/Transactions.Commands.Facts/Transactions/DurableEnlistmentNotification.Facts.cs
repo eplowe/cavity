@@ -4,9 +4,7 @@
     using System.IO;
     using System.Threading;
     using System.Transactions;
-
     using Cavity.IO;
-
     using Xunit;
 
     public sealed class DurableEnlistmentNotificationFacts

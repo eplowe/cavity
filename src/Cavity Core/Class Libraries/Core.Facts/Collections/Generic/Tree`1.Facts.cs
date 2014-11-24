@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Collections.Generic
 {
     using System;
-
     using Xunit;
 
     public sealed class TreeOfTFacts

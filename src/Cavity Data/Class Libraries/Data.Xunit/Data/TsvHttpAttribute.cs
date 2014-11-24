@@ -10,11 +10,9 @@
 #endif
     using System.Net;
     using System.Reflection;
-
     using Cavity.Collections;
     using Cavity.IO;
     using Cavity.Properties;
-
     using Xunit.Extensions;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
@@ -94,9 +92,9 @@
             if (1 == parameterTypes.Length && parameterTypes[0] == typeof(DataSet))
             {
                 var data = new DataSet
-                {
-                    Locale = CultureInfo.InvariantCulture
-                };
+                               {
+                                   Locale = CultureInfo.InvariantCulture
+                               };
                 foreach (var location in Locations)
                 {
                     data.Tables.Add(Download(location).ToDataTable());

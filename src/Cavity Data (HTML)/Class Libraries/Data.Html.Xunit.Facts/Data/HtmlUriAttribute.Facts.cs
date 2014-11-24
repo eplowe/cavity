@@ -7,11 +7,8 @@
     using System.Net;
     using System.Xml;
     using System.Xml.XPath;
-
     using Cavity.Xml.XPath;
-
     using HtmlAgilityPack;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -135,7 +132,7 @@
 
         [Theory]
         [HtmlUri("http://www.alan-dean.com/one.html", "http://www.alan-dean.com/two.html")]
-        public void usage_whenMultipleParameters(HtmlDocument one, 
+        public void usage_whenMultipleParameters(HtmlDocument one,
                                                  HtmlDocument two)
         {
             // ReSharper disable PossibleNullReferenceException
@@ -154,7 +151,7 @@
         }
 
         [Theory]
-        [HtmlUri("http://developer.yahoo.com/yui/examples/datasource/datasource_table_to_array.html")]
+        [HtmlUri("https://yui.github.io/yui2/docs/yui_2.9.0_full/examples/datasource/datasource_table_to_array.html")]
         public void usage_whenYahooExample(DataSet data)
         {
             var table = data.Tables["accounts"];

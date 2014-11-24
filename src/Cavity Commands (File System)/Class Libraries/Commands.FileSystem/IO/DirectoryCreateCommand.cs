@@ -5,7 +5,6 @@
     using System.IO;
     using System.Xml;
     using System.Xml.Serialization;
-
     using Cavity.Diagnostics;
 
     [XmlRoot("directory.create")]
@@ -32,7 +31,7 @@
             Path = path;
         }
 
-        public DirectoryCreateCommand(string path, 
+        public DirectoryCreateCommand(string path,
                                       bool unidirectional)
             : base(unidirectional)
         {
@@ -50,7 +49,7 @@
 #endif
         }
 
-        public DirectoryCreateCommand(DirectoryInfo directory, 
+        public DirectoryCreateCommand(DirectoryInfo directory,
                                       bool unidirectional)
             : base(unidirectional)
         {

@@ -24,7 +24,7 @@
             return Concat(source, separator.ToString());
         }
 #else
-        public static string Concat(this IEnumerable<string> source, 
+        public static string Concat(this IEnumerable<string> source,
                                     char separator)
         {
             return Concat(source, separator.ToString(CultureInfo.InvariantCulture));
@@ -36,7 +36,7 @@
         public static string Concat(IEnumerable<string> source, 
                                     string separator)
 #else
-        public static string Concat(this IEnumerable<string> source, 
+        public static string Concat(this IEnumerable<string> source,
                                     string separator)
 #endif
         {
@@ -222,16 +222,16 @@
 
 #if !NET20 && !NET35
         public static ConcurrentDictionary<TKey, TElement> ToConcurrentDictionary<TSource, TKey, TElement>(this IEnumerable<TSource> source,
-                                                                                                            Func<TSource, TKey> keySelector,
-                                                                                                            Func<TSource, TElement> elementSelector)
+                                                                                                           Func<TSource, TKey> keySelector,
+                                                                                                           Func<TSource, TElement> elementSelector)
         {
             return ToConcurrentDictionary(source, keySelector, elementSelector, null);
         }
 
         public static ConcurrentDictionary<TKey, TElement> ToConcurrentDictionary<TSource, TKey, TElement>(this IEnumerable<TSource> source,
-                                                                                                            Func<TSource, TKey> keySelector,
-                                                                                                            Func<TSource, TElement> elementSelector,
-                                                                                                            IEqualityComparer<TKey> comparer)
+                                                                                                           Func<TSource, TKey> keySelector,
+                                                                                                           Func<TSource, TElement> elementSelector,
+                                                                                                           IEqualityComparer<TKey> comparer)
         {
             if (null == source)
             {
@@ -249,8 +249,8 @@
             }
 
             var result = null == comparer
-                ? new ConcurrentDictionary<TKey, TElement>()
-                : new ConcurrentDictionary<TKey, TElement>(comparer);
+                             ? new ConcurrentDictionary<TKey, TElement>()
+                             : new ConcurrentDictionary<TKey, TElement>(comparer);
 
             foreach (var item in source)
             {
@@ -280,7 +280,7 @@
             return result;
         }
 
-        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> obj, 
+        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> obj,
                                               IEqualityComparer<T> comparer)
         {
             if (null == obj)

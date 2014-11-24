@@ -2,9 +2,7 @@
 {
     using System;
     using System.Configuration;
-
     using Cavity.Net;
-
     using Xunit;
 
     public sealed class RedirectionConfigurationSectionFacts

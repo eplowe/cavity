@@ -9,7 +9,7 @@
 
         private JsonValue _value;
 
-        public JsonPair(string name, 
+        public JsonPair(string name,
                         bool value)
             : this(name)
         {
@@ -73,7 +73,7 @@
         {
         }
 
-        public JsonPair(string name, 
+        public JsonPair(string name,
                         JsonValue value)
             : this(name)
         {

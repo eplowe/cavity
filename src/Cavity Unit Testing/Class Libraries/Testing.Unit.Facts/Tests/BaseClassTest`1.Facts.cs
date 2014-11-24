@@ -1,10 +1,8 @@
 ﻿namespace Cavity.Tests
 {
     using System;
-
     using Cavity.Fluent;
     using Cavity.Types;
-
     using Xunit;
 
     public sealed class BaseClassTestOfTFacts

@@ -25,7 +25,7 @@
         [InlineData(10, MonthOfYear.October)]
         [InlineData(11, MonthOfYear.November)]
         [InlineData(12, MonthOfYear.December)]
-        public void values(int expected, 
+        public void values(int expected,
                            MonthOfYear month)
         {
             Assert.Equal(expected, (int)month);

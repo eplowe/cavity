@@ -11,7 +11,6 @@
     using System.Linq;
 #endif
     using System.Text;
-
     using Cavity.Collections;
     using Cavity.IO;
 
@@ -211,11 +210,11 @@
 
             var count = 0;
             using (var writers = new StreamWriterDictionary
-            {
-                Access = FileAccess.Write,
-                Mode = mode,
-                Share = FileShare.Read
-            })
+                                     {
+                                         Access = FileAccess.Write,
+                                         Mode = mode,
+                                         Share = FileShare.Read
+                                     })
             {
                 foreach (var item in data)
                 {
@@ -336,21 +335,6 @@
             }
         }
 
-        private static DataTable NewDataTable(string name,
-                                              Dictionary<string, string> entry)
-        {
-            var table = new DataTable(name)
-            {
-                Locale = CultureInfo.InvariantCulture
-            };
-            foreach (var key in entry.Keys)
-            {
-                table.Columns.Add(key);
-            }
-
-            return table;
-        }
-
         private static DataRow NewDataRow(DataTable table,
                                           Dictionary<string, string> entry)
         {
@@ -361,6 +345,21 @@
             }
 
             return row;
+        }
+
+        private static DataTable NewDataTable(string name,
+                                              Dictionary<string, string> entry)
+        {
+            var table = new DataTable(name)
+                            {
+                                Locale = CultureInfo.InvariantCulture
+                            };
+            foreach (var key in entry.Keys)
+            {
+                table.Columns.Add(key);
+            }
+
+            return table;
         }
     }
 }

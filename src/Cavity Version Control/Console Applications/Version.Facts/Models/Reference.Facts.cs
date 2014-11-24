@@ -1,7 +1,5 @@
 ﻿namespace Cavity.Models
 {
-    using System;
-    using Cavity;
     using Xunit;
 
     public sealed class ReferenceFacts
@@ -10,12 +8,12 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<Reference>()
-                .DerivesFrom<object>()
-                .IsConcreteClass()
-                .IsSealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Result);
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
         }
 
         [Fact]

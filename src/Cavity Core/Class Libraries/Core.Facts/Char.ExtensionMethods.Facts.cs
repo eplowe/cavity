@@ -1,7 +1,6 @@
 ﻿namespace Cavity
 {
     using System.Xml;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -46,23 +45,23 @@
         [Theory]
         [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
         [InlineData("abcdefghijklmnopqrstuvwxyz")]
-        public void op_IsLetter_char(string values)
-        {
-            foreach (var value in values ?? string.Empty)
-            {
-                Assert.True(value.IsLetter(), XmlConvert.ToString(value));
-            }
-        }
-
-        [Theory]
-        [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
-        [InlineData("abcdefghijklmnopqrstuvwxyz")]
         [InlineData("0123456789")]
         public void op_IsLetterOrDigit_char(string values)
         {
             foreach (var value in values ?? string.Empty)
             {
                 Assert.True(value.IsLetterOrDigit(), XmlConvert.ToString(value));
+            }
+        }
+
+        [Theory]
+        [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ")]
+        [InlineData("abcdefghijklmnopqrstuvwxyz")]
+        public void op_IsLetter_char(string values)
+        {
+            foreach (var value in values ?? string.Empty)
+            {
+                Assert.True(value.IsLetter(), XmlConvert.ToString(value));
             }
         }
 
@@ -148,7 +147,7 @@
         [InlineData('u', "ùûü")]
         [InlineData('Y', "Ÿ")]
         [InlineData('y', "ÿ")]
-        public void op_ToEnglishAlphabet_char(char expected, 
+        public void op_ToEnglishAlphabet_char(char expected,
                                               string values)
         {
             Assert.Equal(expected, expected.ToEnglishAlphabet());

@@ -68,32 +68,6 @@
             Objects.Add(item);
         }
 
-        public override string ToString()
-        {
-            using (var stream = new MemoryStream())
-            {
-                using (var writer = new JsonWriter(stream))
-                {
-                    WriteJson(writer);
-                }
-
-                using (var reader = new StreamReader(stream))
-                {
-                    return reader.ReadToEnd();
-                }
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        public IEnumerator<JsonObject> GetEnumerator()
-        {
-            return ((IEnumerable<JsonObject>)Objects).GetEnumerator();
-        }
-
         public void ReadJson(JsonReader reader)
         {
             if (null == reader)
@@ -116,6 +90,22 @@
                 var obj = new JsonObject();
                 obj.ReadJson(reader);
                 Add(obj);
+            }
+        }
+
+        public override string ToString()
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new JsonWriter(stream))
+                {
+                    WriteJson(writer);
+                }
+
+                using (var reader = new StreamReader(stream))
+                {
+                    return reader.ReadToEnd();
+                }
             }
         }
 
@@ -147,6 +137,16 @@
             {
                 writer.EndArray();
             }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public IEnumerator<JsonObject> GetEnumerator()
+        {
+            return ((IEnumerable<JsonObject>)Objects).GetEnumerator();
         }
     }
 }

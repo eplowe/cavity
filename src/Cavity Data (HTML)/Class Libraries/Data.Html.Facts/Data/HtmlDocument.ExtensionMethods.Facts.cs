@@ -3,9 +3,7 @@
     using System;
     using System.Data;
     using System.IO;
-
     using HtmlAgilityPack;
-
     using Xunit;
 
     public sealed class HtmlDocumentExtensionMethodsFacts
@@ -98,6 +96,20 @@
         }
 
         [Fact]
+        public void op_TabularData_HtmlDocument_whenHeadingColumnId()
+        {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular-heading-id.html").FullName);
+
+            var table = html.TabularData().Tables["heading-id"];
+
+            Assert.Equal(2, table.Rows.Count);
+
+            Assert.Equal("1A", table.Rows[0].Field<HtmlNode>(0).InnerText);
+            Assert.Equal("2A", table.Rows[1].Field<HtmlNode>("A").InnerText);
+        }
+
+        [Fact]
         public void op_TabularData_HtmlDocument_whenHeadingColumnSpanning()
         {
             var html = new HtmlDocument();
@@ -114,20 +126,6 @@
             Assert.Equal("2B", table.Rows[1].Field<HtmlNode>("Columns B, C (1)").InnerText);
             Assert.Equal("2C", table.Rows[1].Field<HtmlNode>("Columns B, C (2)").InnerText);
             Assert.Equal("2D", table.Rows[1].Field<HtmlNode>("Column D").InnerText);
-        }
-
-        [Fact]
-        public void op_TabularData_HtmlDocument_whenHeadingColumnId()
-        {
-            var html = new HtmlDocument();
-            html.Load(new FileInfo("tabular-heading-id.html").FullName);
-
-            var table = html.TabularData().Tables["heading-id"];
-
-            Assert.Equal(2, table.Rows.Count);
-
-            Assert.Equal("1A", table.Rows[0].Field<HtmlNode>(0).InnerText);
-            Assert.Equal("2A", table.Rows[1].Field<HtmlNode>("A").InnerText);
         }
 
         [Fact]
@@ -161,6 +159,19 @@
             Assert.Equal("40.5", table.Rows[1].Field<HtmlNode>("minimum-temperature").InnerText);
             Assert.Equal("52.8", table.Rows[1].Field<HtmlNode>("mean-temperature").InnerText);
             Assert.Equal("55.4", table.Rows[1].Field<HtmlNode>("maximum-temperature").InnerText);
+        }
+
+        [Fact]
+        public void op_TabularData_HtmlDocument_whenUnnamed()
+        {
+            var html = new HtmlDocument();
+            html.Load(new FileInfo("tabular-unnamed.html").FullName);
+
+            var table = html.TabularData().Tables[0];
+
+            Assert.Equal(1, table.Rows.Count);
+
+            Assert.Equal("_<em>_</em>_", table.Rows[0].Field<HtmlNode>(0).InnerHtml);
         }
 
         [Fact]
@@ -213,19 +224,6 @@
             Assert.Equal("2C", table.Rows[1].Field<HtmlNode>("Value B, C (2)").InnerText);
             Assert.Equal("1D", table.Rows[0].Field<HtmlNode>("Value D").InnerText);
             Assert.Equal("2D", table.Rows[1].Field<HtmlNode>("Value D").InnerText);
-        }
-
-        [Fact]
-        public void op_TabularData_HtmlDocument_whenUnnamed()
-        {
-            var html = new HtmlDocument();
-            html.Load(new FileInfo("tabular-unnamed.html").FullName);
-
-            var table = html.TabularData().Tables[0];
-
-            Assert.Equal(1, table.Rows.Count);
-
-            Assert.Equal("_<em>_</em>_", table.Rows[0].Field<HtmlNode>(0).InnerHtml);
         }
 
         [Fact]

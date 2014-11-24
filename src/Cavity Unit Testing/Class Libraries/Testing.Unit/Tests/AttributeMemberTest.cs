@@ -7,27 +7,26 @@
     using System.Linq;
 #endif
     using System.Reflection;
-
     using Cavity.Properties;
 
     public sealed class AttributeMemberTest : MemberTestBase
     {
         private static readonly IList<string> _ignore = new List<string>
-        {
-            "BrowsableAttribute",
-            "CategoryAttribute",
-            "CompilerGeneratedAttribute",
-            "DebuggerDisplayAttribute",
-            "DebuggerStepThroughAttribute",
-            "DefaultMemberAttribute",
-            "DescriptionAttribute",
-            "DynamicAttribute",
-            "EditorAttribute",
-            "ExcludeFromCodeCoverageAttribute",
-            "SuppressMessageAttribute"
-        };
+                                                            {
+                                                                "BrowsableAttribute",
+                                                                "CategoryAttribute",
+                                                                "CompilerGeneratedAttribute",
+                                                                "DebuggerDisplayAttribute",
+                                                                "DebuggerStepThroughAttribute",
+                                                                "DefaultMemberAttribute",
+                                                                "DescriptionAttribute",
+                                                                "DynamicAttribute",
+                                                                "EditorAttribute",
+                                                                "ExcludeFromCodeCoverageAttribute",
+                                                                "SuppressMessageAttribute"
+                                                            };
 
-        public AttributeMemberTest(MemberInfo member, 
+        public AttributeMemberTest(MemberInfo member,
                                    Type attribute)
             : base(member)
         {
@@ -41,8 +40,8 @@
             if (null == Attribute)
             {
                 if (0 != Member
-                    .GetCustomAttributes(false)
-                    .Count(x => !_ignore.Contains(x.GetType().Name)))
+                             .GetCustomAttributes(false)
+                             .Count(x => !_ignore.Contains(x.GetType().Name)))
                 {
                     throw new UnitTestException(string.Format(CultureInfo.InvariantCulture, Resources.DecorationTestException_UnexpectedMessage, Member.Name));
                 }

@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Data
 {
     using System;
-
     using Cavity.Properties;
 
     public sealed class RepositoryUpdateRecord<T> : VerifyRepositoryBase<T>

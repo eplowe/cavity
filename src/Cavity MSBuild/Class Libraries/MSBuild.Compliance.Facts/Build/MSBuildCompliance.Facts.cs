@@ -3,14 +3,10 @@
     using System.IO;
     using System.Reflection;
     using System.Xml;
-
     using Cavity.IO;
-
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
-
     using Moq;
-
     using Xunit;
 
     public sealed class MSBuildComplianceFacts
@@ -51,11 +47,11 @@
 
                 var obj = new MSBuildCompliance
                               {
-                                  BuildEngine = new Mock<IBuildEngine>().Object, 
+                                  BuildEngine = new Mock<IBuildEngine>().Object,
                                   Projects = new ITaskItem[]
                                                  {
                                                      new TaskItem(file.Info.FullName)
-                                                 }, 
+                                                 },
                                   XPath = "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])"
                               };
 
@@ -68,7 +64,7 @@
         {
             var obj = new MSBuildCompliance
                           {
-                              BuildEngine = new Mock<IBuildEngine>().Object, 
+                              BuildEngine = new Mock<IBuildEngine>().Object,
                               Projects = new ITaskItem[]
                                              {
                                              }
@@ -106,12 +102,12 @@
 
                 var obj = new MSBuildCompliance
                               {
-                                  BuildEngine = new Mock<IBuildEngine>().Object, 
+                                  BuildEngine = new Mock<IBuildEngine>().Object,
                                   Projects = new ITaskItem[]
                                                  {
-                                                     new TaskItem(file.Info.FullName), 
+                                                     new TaskItem(file.Info.FullName),
                                                      null
-                                                 }, 
+                                                 },
                                   XPath = "0=count(/b:Project/b:PropertyGroup[@Condition][not(b:WarningLevel[text()='4'])])"
                               };
 
@@ -148,7 +144,7 @@
 
                 var obj = new MSBuildCompliance
                               {
-                                  BuildEngine = new Mock<IBuildEngine>().Object, 
+                                  BuildEngine = new Mock<IBuildEngine>().Object,
                                   Projects = new ITaskItem[]
                                                  {
                                                      new TaskItem(file.Info.FullName)

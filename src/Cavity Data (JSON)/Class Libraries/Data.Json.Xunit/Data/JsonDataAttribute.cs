@@ -6,12 +6,9 @@
     using System.Linq;
 #endif
     using System.Reflection;
-
     using Cavity.Properties;
-
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-
     using Xunit.Extensions;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
@@ -39,7 +36,7 @@
 
         public IEnumerable<string> Values { get; private set; }
 
-        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest, 
+        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest,
                                                       Type[] parameterTypes)
         {
             if (null == methodUnderTest)

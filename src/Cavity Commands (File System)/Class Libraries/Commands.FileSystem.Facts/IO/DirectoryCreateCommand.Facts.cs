@@ -2,9 +2,7 @@
 {
     using System;
     using System.IO;
-
     using Cavity.Xml.XPath;
-
     using Xunit;
 
     public sealed class DirectoryCreateCommandFacts
@@ -114,7 +112,7 @@
             {
                 var obj = new DirectoryCreateCommand
                               {
-                                  Path = temp.Info.ToDirectory("example").FullName, 
+                                  Path = temp.Info.ToDirectory("example").FullName,
                                   Undo = true
                               };
 
@@ -131,7 +129,7 @@
             {
                 var obj = new DirectoryCreateCommand
                               {
-                                  Path = temp.Info.FullName, 
+                                  Path = temp.Info.FullName,
                                   Undo = true
                               };
 
@@ -160,7 +158,7 @@
             {
                 var obj = new DirectoryCreateCommand
                               {
-                                  Path = temp.Info.ToDirectory("example").FullName, 
+                                  Path = temp.Info.ToDirectory("example").FullName,
                                   Undo = true
                               };
 
@@ -177,7 +175,7 @@
             {
                 var obj = new DirectoryCreateCommand
                               {
-                                  Path = temp.Info.ToDirectory("example").FullName, 
+                                  Path = temp.Info.ToDirectory("example").FullName,
                                   Undo = true
                               };
 
@@ -196,7 +194,7 @@
             {
                 var obj = new DirectoryCreateCommand(true)
                               {
-                                  Path = temp.Info.ToDirectory("example").FullName, 
+                                  Path = temp.Info.ToDirectory("example").FullName,
                                   Undo = true
                               };
 
@@ -235,7 +233,7 @@
         {
             var obj = new DirectoryCreateCommand
                           {
-                              Path = @"C:\", 
+                              Path = @"C:\",
                               Undo = true
                           };
 

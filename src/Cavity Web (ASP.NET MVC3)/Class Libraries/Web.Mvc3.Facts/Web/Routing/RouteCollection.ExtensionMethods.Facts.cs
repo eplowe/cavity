@@ -2,9 +2,7 @@
 {
     using System;
     using System.Web.Routing;
-
     using Cavity.Web.Mvc;
-
     using Xunit;
 
     public sealed class RouteCollectionExtensionMethodsFacts

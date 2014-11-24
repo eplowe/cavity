@@ -3,12 +3,11 @@
     using System;
     using System.Net;
     using System.Web;
-
     using Cavity.Configuration;
 
     public sealed class RedirectionModule : IHttpModule
     {
-        public void OnBeginRequest(object sender, 
+        public void OnBeginRequest(object sender,
                                    EventArgs e)
         {
             if (null == sender)

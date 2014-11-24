@@ -1,7 +1,5 @@
 ﻿namespace Cavity.Net
 {
-    using System;
-    using Cavity;
     using Xunit;
 
     public sealed class HttpRequestHeadersFacts
@@ -10,15 +8,6 @@
         public void a_definition()
         {
             Assert.True(typeof(HttpRequestHeaders).IsStatic());
-        }
-
-        [Fact]
-        public void prop_Accept_get()
-        {
-            const string expected = "Accept";
-            var actual = HttpRequestHeaders.Accept;
-
-            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -44,6 +33,15 @@
         {
             const string expected = "Accept-Language";
             var actual = HttpRequestHeaders.AcceptLanguage;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void prop_Accept_get()
+        {
+            const string expected = "Accept";
+            var actual = HttpRequestHeaders.Accept;
 
             Assert.Equal(expected, actual);
         }

@@ -15,11 +15,11 @@
         public override string ToString()
         {
             return string.Format(
-                CultureInfo.InvariantCulture, 
-                "As a {0}, I want {1} so that {2}.", 
-                AsA, 
-                IWant, 
-                SoThat);
+                                 CultureInfo.InvariantCulture,
+                                 "As a {0}, I want {1} so that {2}.",
+                                 AsA,
+                                 IWant,
+                                 SoThat);
         }
     }
 }

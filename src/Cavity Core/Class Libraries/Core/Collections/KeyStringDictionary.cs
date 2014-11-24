@@ -7,7 +7,6 @@
     using System.Linq;
 #endif
     using System.Runtime.Serialization;
-
     using Cavity.Data;
     using Cavity.Properties;
 
@@ -32,37 +31,6 @@
         {
         }
 
-        public new string this[string key]
-        {
-            get
-            {
-                try
-                {
-                    return base[key];
-                }
-                catch (KeyNotFoundException)
-                {
-                    throw new KeyNotFoundException(string.Format(CultureInfo.InvariantCulture, "The '{0}' key was not present in the dictionary.", key));
-                }
-            }
-            
-            set
-            {
-                base[key] = value;
-            }
-        }
-
-        public void Set(string key,
-                        string value)
-        {
-            if (!ContainsKey(key))
-            {
-                throw new KeyNotFoundException(string.Format(CultureInfo.InvariantCulture, "The '{0}' key was not present in the dictionary.", key));
-            }
-
-            this[key] = value;
-        }
-
         public string this[int index]
         {
             get
@@ -84,6 +52,37 @@
 
                 throw new ArgumentOutOfRangeException("index", Resources.IndexOutOfRangeException_Message);
             }
+        }
+
+        public new string this[string key]
+        {
+            get
+            {
+                try
+                {
+                    return base[key];
+                }
+                catch (KeyNotFoundException)
+                {
+                    throw new KeyNotFoundException(string.Format(CultureInfo.InvariantCulture, "The '{0}' key was not present in the dictionary.", key));
+                }
+            }
+
+            set
+            {
+                base[key] = value;
+            }
+        }
+
+        public void Set(string key,
+                        string value)
+        {
+            if (!ContainsKey(key))
+            {
+                throw new KeyNotFoundException(string.Format(CultureInfo.InvariantCulture, "The '{0}' key was not present in the dictionary.", key));
+            }
+
+            this[key] = value;
         }
 
         public virtual void Add(KeyStringPair item)

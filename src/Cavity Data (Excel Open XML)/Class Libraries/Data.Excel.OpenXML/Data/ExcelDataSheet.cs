@@ -6,9 +6,7 @@
     using System.IO;
     using System.Linq;
     using System.Xml;
-
     using Cavity.Collections;
-
     using ClosedXML.Excel;
 
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "DataSheet", Justification = "This casing is correct.")]
@@ -35,7 +33,8 @@
             Info = info;
         }
 
-        internal ExcelDataSheet(FileInfo info, IXLWorksheet worksheet)
+        internal ExcelDataSheet(FileInfo info,
+                                IXLWorksheet worksheet)
             : this(info)
         {
             if (null == worksheet)
@@ -48,7 +47,7 @@
         }
 
         public FileInfo Info { get; private set; }
-        
+
         private IXLWorksheet Worksheet { get; set; }
 
         protected override IEnumerator<T> GetEnumerator<T>()
@@ -87,7 +86,9 @@
             }
         }
 
-        private static string Cell(IXLRange range, int row, int column)
+        private static string Cell(IXLRange range,
+                                   int row,
+                                   int column)
         {
             var cell = range.Cell(row, column);
             var value = cell.Value;

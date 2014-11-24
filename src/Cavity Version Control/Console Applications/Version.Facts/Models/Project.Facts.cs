@@ -5,11 +5,9 @@
     using System.IO;
     using System.Linq;
     using System.Xml.XPath;
-
     using Cavity.IO;
     using Cavity.Testing;
     using Cavity.Xml.XPath;
-
     using Xunit;
 
     public sealed class ProjectFacts
@@ -79,18 +77,13 @@
         }
 
         [Fact]
-        public void op_PackageReference_Package_whenFullyNamed()
+        public void op_PackageReference_PackageNull()
         {
             using (var temp = new TempDirectory())
             {
-                var reference = new Reference("Example, Version=1.2.3.4", @"..\..\packages\Example.1.2.3.4\net40\example.dll");
-                var obj = ProjectFile.Create(temp.Info.ToFile("example.csproj"), reference);
-                PackageFile.Create(obj);
+                var obj = ProjectFile.Create(temp.Info.ToFile("example.csproj"));
 
-                var actual = obj.PackageReference(new Package("example", "1.2.3.4"));
-
-                Assert.Equal("example", actual.Id);
-                Assert.Equal("1.2.3.4", actual.Version);
+                Assert.Throws<ArgumentNullException>(() => obj.PackageReference(null));
             }
         }
 
@@ -111,6 +104,22 @@
         }
 
         [Fact]
+        public void op_PackageReference_Package_whenFullyNamed()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var reference = new Reference("Example, Version=1.2.3.4", @"..\..\packages\Example.1.2.3.4\net40\example.dll");
+                var obj = ProjectFile.Create(temp.Info.ToFile("example.csproj"), reference);
+                PackageFile.Create(obj);
+
+                var actual = obj.PackageReference(new Package("example", "1.2.3.4"));
+
+                Assert.Equal("example", actual.Id);
+                Assert.Equal("1.2.3.4", actual.Version);
+            }
+        }
+
+        [Fact]
         public void op_PackageReference_Package_whenMissing()
         {
             using (var temp = new TempDirectory())
@@ -119,17 +128,6 @@
                 PackageFile.Create(obj);
 
                 Assert.Null(obj.PackageReference(new Package("example", "1.2.3.4")));
-            }
-        }
-
-        [Fact]
-        public void op_PackageReference_PackageNull()
-        {
-            using (var temp = new TempDirectory())
-            {
-                var obj = ProjectFile.Create(temp.Info.ToFile("example.csproj"));
-
-                Assert.Throws<ArgumentNullException>(() => obj.PackageReference(null));
             }
         }
 
@@ -158,6 +156,18 @@
         }
 
         [Fact]
+        public void prop_Packages_get_whenPackageAttributesMissing()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var obj = ProjectFile.Create(temp.Info.ToFile("example.csproj"));
+                obj.Location.Directory.ToFile("packages.config").Create("<packages><package/></packages>");
+
+                Assert.Empty(obj.Packages);
+            }
+        }
+
+        [Fact]
         public void prop_Packages_get_whenPackageConfig()
         {
             using (var temp = new TempDirectory())
@@ -172,18 +182,6 @@
                 Assert.Equal(1, actual.Count);
                 Assert.Equal(expected.Id, actual[0].Id);
                 Assert.Equal(expected.Version, actual[0].Version);
-            }
-        }
-
-        [Fact]
-        public void prop_Packages_get_whenPackageAttributesMissing()
-        {
-            using (var temp = new TempDirectory())
-            {
-                var obj = ProjectFile.Create(temp.Info.ToFile("example.csproj"));
-                obj.Location.Directory.ToFile("packages.config").Create("<packages><package/></packages>");
-
-                Assert.Empty(obj.Packages);
             }
         }
 
@@ -220,6 +218,23 @@
         }
 
         [Fact]
+        public void prop_References_get()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var expected = new Reference("example", @"..\..\packages\1.2.3.4\net40\example.dll");
+
+                var obj = ProjectFile.Create(temp.Info.ToFile("example.csproj"), expected);
+
+                var actual = obj.References.ToList();
+
+                Assert.Equal(1, actual.Count);
+                Assert.Equal(expected.Include, actual[0].Include);
+                Assert.Equal(expected.Hint, actual[0].Hint);
+            }
+        }
+
+        [Fact]
         public void prop_References_get_whenEmpty()
         {
             using (var temp = new TempDirectory())
@@ -244,23 +259,6 @@
                 Assert.Equal(1, actual.Count);
                 Assert.Equal(expected.Include, actual[0].Include);
                 Assert.Null(expected.Hint);
-            }
-        }
-
-        [Fact]
-        public void prop_References_get()
-        {
-            using (var temp = new TempDirectory())
-            {
-                var expected = new Reference("example", @"..\..\packages\1.2.3.4\net40\example.dll");
-
-                var obj = ProjectFile.Create(temp.Info.ToFile("example.csproj"), expected);
-
-                var actual = obj.References.ToList();
-
-                Assert.Equal(1, actual.Count);
-                Assert.Equal(expected.Include, actual[0].Include);
-                Assert.Equal(expected.Hint, actual[0].Hint);
             }
         }
 

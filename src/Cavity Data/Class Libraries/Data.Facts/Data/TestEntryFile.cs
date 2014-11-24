@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Data
 {
     using System.IO;
-
     using Cavity.Collections;
 
     public sealed class TestEntryFile

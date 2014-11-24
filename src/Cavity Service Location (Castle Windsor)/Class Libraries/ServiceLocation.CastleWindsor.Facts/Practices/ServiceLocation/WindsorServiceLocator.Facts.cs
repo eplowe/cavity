@@ -2,15 +2,10 @@
 {
     using System;
     using System.Linq;
-
     using Castle.Windsor;
-
     using Cavity.Examples;
-
     using Microsoft.Practices.ServiceLocation;
-
     using Moq;
-
     using Xunit;
 
     public sealed class WindsorServiceLocatorFacts

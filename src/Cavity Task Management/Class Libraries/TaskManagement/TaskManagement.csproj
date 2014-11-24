@@ -31,7 +31,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Diagnostics\Tracing.cs" />
-    <Compile Include="IO\FileReceiver`1.cs" />
     <Compile Include="IO\FileReceiverTask`1.cs" />
     <Compile Include="IO\IReceiveFile.cs" />
     <Compile Include="Models\FileProcessor.cs" />

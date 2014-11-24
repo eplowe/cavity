@@ -3,7 +3,6 @@
     using System;
     using System.Collections;
     using System.Linq;
-
     using Xunit;
 
     public sealed class MultitonCollectionOfTFacts

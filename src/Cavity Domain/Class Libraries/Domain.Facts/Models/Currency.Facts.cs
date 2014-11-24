@@ -2,9 +2,7 @@
 {
     using System;
     using System.Globalization;
-
     using Cavity.Xml.XPath;
-
     using Xunit;
 
     public sealed class CurrencyFacts
@@ -40,7 +38,7 @@
 
             var expected = new Money
                                {
-                                   Amount = -123456.78m, 
+                                   Amount = -123456.78m,
                                    Currency = obj
                                };
 
@@ -64,7 +62,7 @@
 
             var expected = new Money
                                {
-                                   Amount = -123456.78m, 
+                                   Amount = -123456.78m,
                                    Currency = obj
                                };
 
@@ -158,10 +156,10 @@
         {
             var expected = new Currency
                                {
-                                   Code = "EUR", 
-                                   Number = "978", 
-                                   Significance = 2, 
-                                   Symbol = "€", 
+                                   Code = "EUR",
+                                   Number = "978",
+                                   Significance = 2,
+                                   Symbol = "€",
                                    Title = "Euro"
                                };
 
@@ -184,10 +182,10 @@
         {
             var obj = new Currency
                           {
-                              Code = "EUR", 
-                              Number = "978", 
-                              Significance = 2, 
-                              Symbol = "€", 
+                              Code = "EUR",
+                              Number = "978",
+                              Significance = 2,
+                              Symbol = "€",
                               Title = "Euro"
                           };
 

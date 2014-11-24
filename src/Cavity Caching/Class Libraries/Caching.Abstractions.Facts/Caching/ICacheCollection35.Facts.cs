@@ -2,11 +2,7 @@
 {
     using System;
     using System.Net;
-
-    using Cavity;
-
     using Moq;
-
     using Xunit;
 
     public sealed class ICacheCollection35Facts
@@ -22,28 +18,14 @@
         }
 
         [Fact]
-        public void op_Get_string_FuncOfObject()
+        public void op_GetOfT_string_FuncOfICacheCollectionObject()
         {
             const string key = "example";
 
             var mock = new Mock<ICacheCollection35>();
             mock
-                .Setup(x => x.Get(key, () => Lazy()))
-                .Returns(null)
-                .Verifiable();
-
-            Assert.Null(mock.Object.Get(key, () => Lazy()));
-        }
-
-        [Fact]
-        public void op_Get_string_FuncOfICacheCollectionObject()
-        {
-            const string key = "example";
-
-            var mock = new Mock<ICacheCollection35>();
-            mock
-                .Setup(x => x.Get(key, () => Lazy(mock.Object)))
-                .Returns(null)
+                .Setup(x => x.Get(key, () => Lazy<NetworkCredential>(mock.Object)))
+                .Returns(default(NetworkCredential))
                 .Verifiable();
 
             Assert.Null(mock.Object.Get(key, () => Lazy(mock.Object)));
@@ -64,17 +46,31 @@
         }
 
         [Fact]
-        public void op_GetOfT_string_FuncOfICacheCollectionObject()
+        public void op_Get_string_FuncOfICacheCollectionObject()
         {
             const string key = "example";
 
             var mock = new Mock<ICacheCollection35>();
             mock
-                .Setup(x => x.Get(key, () => Lazy<NetworkCredential>(mock.Object)))
-                .Returns(default(NetworkCredential))
+                .Setup(x => x.Get(key, () => Lazy(mock.Object)))
+                .Returns(null)
                 .Verifiable();
 
             Assert.Null(mock.Object.Get(key, () => Lazy(mock.Object)));
+        }
+
+        [Fact]
+        public void op_Get_string_FuncOfObject()
+        {
+            const string key = "example";
+
+            var mock = new Mock<ICacheCollection35>();
+            mock
+                .Setup(x => x.Get(key, () => Lazy()))
+                .Returns(null)
+                .Verifiable();
+
+            Assert.Null(mock.Object.Get(key, () => Lazy()));
         }
 
         private static object Lazy()

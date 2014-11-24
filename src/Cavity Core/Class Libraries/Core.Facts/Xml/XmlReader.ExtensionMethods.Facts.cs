@@ -3,8 +3,6 @@
     using System;
     using System.IO;
     using System.Xml;
-
-    using Cavity;
     using Xunit;
 
     public sealed class XmlReaderExtensionMethodsFacts
@@ -13,6 +11,12 @@
         public void a_definition()
         {
             Assert.True(typeof(XmlReaderExtensionMethods).IsStatic());
+        }
+
+        [Fact]
+        public void op_Deserialize_XmlReaderNull_string()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as XmlReader).Deserialize<DateTime>());
         }
 
         [Fact]
@@ -40,9 +44,9 @@
         }
 
         [Fact]
-        public void op_Deserialize_XmlReaderNull_string()
+        public void op_IsEndElement_XmlReaderNull_string()
         {
-            Assert.Throws<ArgumentNullException>(() => (null as XmlReader).Deserialize<DateTime>());
+            Assert.Throws<ArgumentNullException>(() => (null as XmlReader).IsEndElement("example"));
         }
 
         [Fact]
@@ -66,12 +70,6 @@
                     }
                 }
             }
-        }
-
-        [Fact]
-        public void op_IsEndElement_XmlReaderNull_string()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as XmlReader).IsEndElement("example"));
         }
     }
 }

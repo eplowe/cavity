@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System;
-
     using Xunit;
     using Xunit.Extensions;
 

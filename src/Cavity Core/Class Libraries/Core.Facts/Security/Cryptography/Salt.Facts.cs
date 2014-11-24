@@ -2,7 +2,6 @@ namespace Cavity.Security.Cryptography
 {
     using System;
     using System.ComponentModel;
-
     using Xunit;
 
     public sealed class SaltFacts

@@ -2,14 +2,10 @@
 {
     using System;
     using System.Linq;
-
     using Cavity.Examples;
-
     using Microsoft.Practices.ServiceLocation;
     using Microsoft.Practices.Unity;
-
     using Moq;
-
     using Xunit;
 
     public sealed class UnityServiceLocatorFacts

@@ -6,7 +6,6 @@
     using System.Xml;
     using System.Xml.Schema;
     using System.Xml.Serialization;
-    using Cavity;
 
     [XmlRoot("ftp")]
     public sealed class Ftp : IXmlSerializable

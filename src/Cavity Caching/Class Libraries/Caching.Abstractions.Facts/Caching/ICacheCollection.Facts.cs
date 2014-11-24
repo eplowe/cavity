@@ -3,11 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Net;
-
-    using Cavity;
-
     using Moq;
-
     using Xunit;
 
     public sealed class ICacheCollectionFacts
@@ -20,24 +16,6 @@
                             .IsNotDecorated()
                             .Implements<IEnumerable<object>>()
                             .Result);
-        }
-
-        [Fact]
-        public void prop_Count_get()
-        {
-            const int expected = 123;
-
-            var mock = new Mock<ICacheCollection>();
-            mock
-                .SetupGet(x => x.Count)
-                .Returns(expected)
-                .Verifiable();
-
-            var actual = mock.Object.Count;
-
-            Assert.Equal(expected, actual);
-
-            mock.VerifyAll();
         }
 
         [Fact]
@@ -155,25 +133,6 @@
         }
 
         [Fact]
-        public void op_Get_string()
-        {
-            const string key = "example";
-            var expected = new object();
-
-            var mock = new Mock<ICacheCollection>();
-            mock
-                .Setup(x => x.Get(key))
-                .Returns(expected)
-                .Verifiable();
-
-            var actual = mock.Object.Get(key);
-
-            Assert.Equal(expected, actual);
-
-            mock.VerifyAll();
-        }
-
-        [Fact]
         public void op_GetOfT_string()
         {
             const string key = "example";
@@ -193,18 +152,18 @@
         }
 
         [Fact]
-        public void op_Remove_string()
+        public void op_Get_string()
         {
             const string key = "example";
             var expected = new object();
 
             var mock = new Mock<ICacheCollection>();
             mock
-                .Setup(x => x.Remove(key))
+                .Setup(x => x.Get(key))
                 .Returns(expected)
                 .Verifiable();
 
-            var actual = mock.Object.Remove(key);
+            var actual = mock.Object.Get(key);
 
             Assert.Equal(expected, actual);
 
@@ -224,6 +183,25 @@
                 .Verifiable();
 
             var actual = mock.Object.Remove<NetworkCredential>(key);
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Remove_string()
+        {
+            const string key = "example";
+            var expected = new object();
+
+            var mock = new Mock<ICacheCollection>();
+            mock
+                .Setup(x => x.Remove(key))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Remove(key);
 
             Assert.Equal(expected, actual);
 
@@ -276,6 +254,24 @@
                 .Verifiable();
 
             mock.Object.Set(key, value, slidingExpiration);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_Count_get()
+        {
+            const int expected = 123;
+
+            var mock = new Mock<ICacheCollection>();
+            mock
+                .SetupGet(x => x.Count)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Count;
+
+            Assert.Equal(expected, actual);
 
             mock.VerifyAll();
         }

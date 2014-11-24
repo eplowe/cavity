@@ -8,9 +8,7 @@
 #endif
     using System.Xml;
     using System.Xml.XPath;
-
     using Cavity.Properties;
-
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
 
@@ -93,7 +91,7 @@
         }
 
         private bool Execute(FileSystemInfo file,
-                             XPathNavigator navigator, 
+                             XPathNavigator navigator,
                              XmlNameTable nameTable)
         {
             var namespaces = new XmlNamespaceManager(nameTable);
@@ -104,7 +102,7 @@
         }
 
         private bool Execute(FileSystemInfo file,
-                             XPathNavigator navigator, 
+                             XPathNavigator navigator,
                              IXmlNamespaceResolver namespaces)
         {
             var o = navigator.Evaluate(XPath, namespaces);

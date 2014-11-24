@@ -11,8 +11,8 @@
 
         ITestType AttributeUsage(AttributeTargets validOn);
 
-        ITestType AttributeUsage(AttributeTargets validOn, 
-                                 bool allowMultiple, 
+        ITestType AttributeUsage(AttributeTargets validOn,
+                                 bool allowMultiple,
                                  bool inherited);
 
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
@@ -30,7 +30,7 @@
         ITestType XmlRoot(string elementName);
 
         [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "namespace", Justification = "This naming is intentional.")]
-        ITestType XmlRoot(string elementName, 
+        ITestType XmlRoot(string elementName,
                           string @namespace);
 
         ITestType XmlSerializable();

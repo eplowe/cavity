@@ -17,7 +17,7 @@ namespace Cavity
         /// implements the specified <paramref name="interface"/>.
         /// </returns>
         /// <seealso href="http://msdn.microsoft.com/library/87d83y5b">interface (C# Reference)</seealso>
-        public static bool Implements(this Type type, 
+        public static bool Implements(this Type type,
                                       Type @interface)
         {
             if (null == type)
@@ -31,7 +31,7 @@ namespace Cavity
             }
 
             return type.GetInterfaces()
-                .Any(item => null != item.FullName && item.FullName.Equals(@interface.FullName));
+                       .Any(item => null != item.FullName && item.FullName.Equals(@interface.FullName));
         }
 
         /// <summary>

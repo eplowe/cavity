@@ -3,7 +3,6 @@
     using System;
     using System.IO;
     using System.Runtime.Serialization.Formatters.Binary;
-
     using Xunit;
 
     public sealed class RepositoryTestExceptionFacts

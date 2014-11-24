@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Tests
 {
     using Cavity.Types;
-
     using Xunit;
 
     public sealed class XmlElementTestFacts
@@ -34,7 +33,7 @@
         {
             var obj = new XmlElementTest(typeof(XmlDecorationClass1).GetProperty("Element"))
                           {
-                              ElementName = "element", 
+                              ElementName = "element",
                               Namespace = "xxx"
                           };
 
@@ -46,7 +45,7 @@
         {
             var obj = new XmlElementTest(typeof(XmlDecorationClass1).GetProperty("NamespaceElement"))
                           {
-                              ElementName = "element", 
+                              ElementName = "element",
                               Namespace = "urn:example.org"
                           };
 

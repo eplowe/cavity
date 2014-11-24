@@ -5,9 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Reflection;
-
     using Cavity.IO;
-
     using Xunit.Extensions;
 
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "HttpRequest", Justification = "This naming is correct.")]
@@ -31,7 +29,7 @@
 
         public string File { get; private set; }
 
-        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest, 
+        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest,
                                                       Type[] parameterTypes)
         {
             if (null == methodUnderTest)

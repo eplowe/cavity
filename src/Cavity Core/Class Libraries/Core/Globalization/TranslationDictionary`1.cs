@@ -8,14 +8,14 @@
     using System.Threading;
 
     [Serializable]
-    public class TranslationDictionary<T> : Dictionary<Language, T>, 
+    public class TranslationDictionary<T> : Dictionary<Language, T>,
                                             IEnumerable<Translation<T>>
     {
         public TranslationDictionary()
         {
         }
 
-        protected TranslationDictionary(SerializationInfo info, 
+        protected TranslationDictionary(SerializationInfo info,
                                         StreamingContext context)
             : base(info, context)
         {

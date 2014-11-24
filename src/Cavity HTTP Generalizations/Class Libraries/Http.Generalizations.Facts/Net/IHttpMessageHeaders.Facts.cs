@@ -1,9 +1,7 @@
 ﻿namespace Cavity.Net
 {
     using System.Collections.Generic;
-
     using Moq;
-
     using Xunit;
 
     public sealed class IHttpMessageHeadersFacts

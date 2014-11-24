@@ -4,10 +4,8 @@
     using System.IO;
     using System.Text;
     using System.Xml.XPath;
-
     using Cavity.Collections;
     using Cavity.Data;
-
     using Xunit;
 
     public sealed class RecordFileFacts
@@ -48,14 +46,14 @@
             var key = AlphaDecimal.Random();
             var expected = new Record<int>
                                {
-                                   Cacheability = "public", 
-                                   Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
-                                   Etag = "\"xyz\"", 
-                                   Expiration = "P1D", 
-                                   Key = key, 
-                                   Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
-                                   Status = 200, 
-                                   Urn = "urn://example.com/abc", 
+                                   Cacheability = "public",
+                                   Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
+                                   Etag = "\"xyz\"",
+                                   Expiration = "P1D",
+                                   Key = key,
+                                   Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
+                                   Status = 200,
+                                   Urn = "urn://example.com/abc",
                                    Value = 123
                                };
 
@@ -95,14 +93,14 @@
         {
             var record = new Record<int>
                              {
-                                 Cacheability = "public", 
-                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
-                                 Etag = "\"xyz\"", 
-                                 Expiration = "P1D", 
-                                 Key = AlphaDecimal.Random(), 
-                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
-                                 Status = 200, 
-                                 Urn = "urn://example.com/abc", 
+                                 Cacheability = "public",
+                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
+                                 Etag = "\"xyz\"",
+                                 Expiration = "P1D",
+                                 Key = AlphaDecimal.Random(),
+                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
+                                 Status = 200,
+                                 Urn = "urn://example.com/abc",
                                  Value = 123
                              };
 
@@ -135,14 +133,14 @@
         {
             var record = new Record<int>
                              {
-                                 Cacheability = "public", 
-                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
-                                 Etag = "\"xyz\"", 
-                                 Expiration = "P1D", 
-                                 Key = AlphaDecimal.Random(), 
-                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
-                                 Status = 200, 
-                                 Urn = "urn://example.com/abc", 
+                                 Cacheability = "public",
+                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
+                                 Etag = "\"xyz\"",
+                                 Expiration = "P1D",
+                                 Key = AlphaDecimal.Random(),
+                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
+                                 Status = 200,
+                                 Urn = "urn://example.com/abc",
                                  Value = 123
                              };
 
@@ -154,14 +152,14 @@
         {
             var record = new Record<int>
                              {
-                                 Cacheability = "public", 
-                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
-                                 Etag = "\"xyz\"", 
-                                 Expiration = "P1D", 
-                                 Key = null, 
-                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
-                                 Status = 200, 
-                                 Urn = "urn://example.com/abc", 
+                                 Cacheability = "public",
+                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
+                                 Etag = "\"xyz\"",
+                                 Expiration = "P1D",
+                                 Key = null,
+                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
+                                 Status = 200,
+                                 Urn = "urn://example.com/abc",
                                  Value = 123
                              };
 
@@ -175,14 +173,14 @@
         {
             var record = new Record<int>
                              {
-                                 Cacheability = "public", 
-                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
-                                 Etag = "\"xyz\"", 
-                                 Expiration = "P1D", 
-                                 Key = AlphaDecimal.Random(), 
-                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
-                                 Status = 200, 
-                                 Urn = null, 
+                                 Cacheability = "public",
+                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
+                                 Etag = "\"xyz\"",
+                                 Expiration = "P1D",
+                                 Key = AlphaDecimal.Random(),
+                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
+                                 Status = 200,
+                                 Urn = null,
                                  Value = 123
                              };
 
@@ -196,14 +194,14 @@
         {
             var expected = new Record<int>
                                {
-                                   Cacheability = "public", 
-                                   Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
-                                   Etag = "\"xyz\"", 
-                                   Expiration = "P1D", 
-                                   Key = AlphaDecimal.Random(), 
-                                   Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
-                                   Status = 200, 
-                                   Urn = "urn://example.com/abc", 
+                                   Cacheability = "public",
+                                   Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
+                                   Etag = "\"xyz\"",
+                                   Expiration = "P1D",
+                                   Key = AlphaDecimal.Random(),
+                                   Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
+                                   Status = 200,
+                                   Urn = "urn://example.com/abc",
                                    Value = 123
                                };
 
@@ -270,14 +268,14 @@
             var key = AlphaDecimal.Random();
             var record = new Record<int>
                              {
-                                 Cacheability = "public", 
-                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
-                                 Etag = "\"xyz\"", 
-                                 Expiration = "P1D", 
-                                 Key = key, 
-                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
-                                 Status = 200, 
-                                 Urn = "urn://example.com/abc", 
+                                 Cacheability = "public",
+                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
+                                 Etag = "\"xyz\"",
+                                 Expiration = "P1D",
+                                 Key = key,
+                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
+                                 Status = 200,
+                                 Urn = "urn://example.com/abc",
                                  Value = 123
                              };
 
@@ -306,14 +304,14 @@
             var key = AlphaDecimal.Random();
             var record = new Record<string>
                              {
-                                 Cacheability = "public", 
-                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00), 
-                                 Etag = "\"xyz\"", 
-                                 Expiration = "P1D", 
-                                 Key = key, 
-                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00), 
-                                 Status = 200, 
-                                 Urn = "urn://example.com/abc", 
+                                 Cacheability = "public",
+                                 Created = new DateTime(1999, 12, 31, 01, 00, 00, 00),
+                                 Etag = "\"xyz\"",
+                                 Expiration = "P1D",
+                                 Key = key,
+                                 Modified = new DateTime(2001, 12, 31, 01, 00, 00, 00),
+                                 Status = 200,
+                                 Urn = "urn://example.com/abc",
                                  Value = null
                              };
 

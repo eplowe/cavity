@@ -8,9 +8,7 @@
     using System.Linq;
 #endif
     using System.Xml;
-
     using Cavity.Collections;
-
     using Microsoft.Office.Interop.Excel;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This is not a collection.")]
@@ -36,7 +34,8 @@
             Info = info;
         }
 
-        internal ExcelWorksheet(FileInfo info, _Worksheet worksheet)
+        internal ExcelWorksheet(FileInfo info,
+                                _Worksheet worksheet)
             : this(info)
         {
             if (null == worksheet)
@@ -113,14 +112,16 @@
             }
         }
 
-        private static string Cell(Range range, int row, int column)
+        private static string Cell(Range range,
+                                   int row,
+                                   int column)
         {
             var cell = (Range)range.Cells[row, column];
             if (cell.Value is bool)
             {
                 return XmlConvert.ToString((bool)cell.Value);
             }
-            
+
             if (cell.Value is DateTime)
             {
                 var value = XmlConvert.ToString((DateTime)cell.Value, XmlDateTimeSerializationMode.Utc);

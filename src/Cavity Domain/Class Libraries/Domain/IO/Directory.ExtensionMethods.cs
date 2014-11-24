@@ -4,11 +4,11 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
-    using Cavity.Collections;
 #if NET40
     using System.Numerics;
 #endif
     using System.Xml;
+    using Cavity.Collections;
 
     public static class DirectoryExtensionMethods
     {

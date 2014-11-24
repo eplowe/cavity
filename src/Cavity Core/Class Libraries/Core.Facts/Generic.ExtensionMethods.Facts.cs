@@ -100,62 +100,6 @@
         }
 
         [Fact]
-        public void op_Is_T_T()
-        {
-            Assert.True(123.Is(123));
-            Assert.False(123.Is(456));
-        }
-
-        [Theory]
-        [InlineData(true, null, null)]
-        [InlineData(false, null, "example")]
-        [InlineData(false, "example", null)]
-        [InlineData(true, "example", "example")]
-        [InlineData(false, "example", "EXAMPLE")]
-        public void op_Is_T_T_whenString(bool expected, string value, string comparand)
-        {
-            var actual = value.Is(comparand);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_IsNot_T_T()
-        {
-            Assert.False(123.IsNot(123));
-            Assert.True(123.IsNot(456));
-        }
-
-        [Fact]
-        public void op_IsLessThan_T_T()
-        {
-            Assert.False(123.IsLessThan(0));
-            Assert.False(123.IsLessThan(123));
-            Assert.True(123.IsLessThan(456));
-        }
-
-        [Fact]
-        public void op_IsGreaterThan_T_T()
-        {
-            Assert.True(123.IsGreaterThan(0));
-            Assert.False(123.IsGreaterThan(123));
-            Assert.False(123.IsGreaterThan(456));
-        }
-
-        [Theory]
-        [InlineData(false, null, null)]
-        [InlineData(true, null, "example")]
-        [InlineData(true, "example", null)]
-        [InlineData(false, "example", "example")]
-        [InlineData(true, "example", "EXAMPLE")]
-        public void op_IsNot_T_T_whenString(bool expected, string value, string comparand)
-        {
-            var actual = value.IsNot(comparand);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void op_IsBoundedBy_TNull_T_T()
         {
             Assert.False((null as string).IsBoundedBy("a", "c"));
@@ -218,6 +162,22 @@
         }
 
         [Fact]
+        public void op_IsGreaterThan_T_T()
+        {
+            Assert.True(123.IsGreaterThan(0));
+            Assert.False(123.IsGreaterThan(123));
+            Assert.False(123.IsGreaterThan(456));
+        }
+
+        [Fact]
+        public void op_IsLessThan_T_T()
+        {
+            Assert.False(123.IsLessThan(0));
+            Assert.False(123.IsLessThan(123));
+            Assert.True(123.IsLessThan(456));
+        }
+
+        [Fact]
         public void op_IsNotBoundedBy_T_T_T_whenFalse()
         {
             Assert.True(3.IsNotBoundedBy(1, 2));
@@ -227,6 +187,50 @@
         public void op_IsNotBoundedBy_T_T_T_whenLower()
         {
             Assert.False(1.IsNotBoundedBy(1, 2));
+        }
+
+        [Fact]
+        public void op_IsNot_T_T()
+        {
+            Assert.False(123.IsNot(123));
+            Assert.True(123.IsNot(456));
+        }
+
+        [Theory]
+        [InlineData(false, null, null)]
+        [InlineData(true, null, "example")]
+        [InlineData(true, "example", null)]
+        [InlineData(false, "example", "example")]
+        [InlineData(true, "example", "EXAMPLE")]
+        public void op_IsNot_T_T_whenString(bool expected,
+                                            string value,
+                                            string comparand)
+        {
+            var actual = value.IsNot(comparand);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Is_T_T()
+        {
+            Assert.True(123.Is(123));
+            Assert.False(123.Is(456));
+        }
+
+        [Theory]
+        [InlineData(true, null, null)]
+        [InlineData(false, null, "example")]
+        [InlineData(false, "example", null)]
+        [InlineData(true, "example", "example")]
+        [InlineData(false, "example", "EXAMPLE")]
+        public void op_Is_T_T_whenString(bool expected,
+                                         string value,
+                                         string comparand)
+        {
+            var actual = value.Is(comparand);
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]

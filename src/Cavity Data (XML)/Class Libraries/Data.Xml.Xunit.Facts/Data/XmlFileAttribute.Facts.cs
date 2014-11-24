@@ -7,7 +7,6 @@
     using System.Xml;
     using System.Xml.Linq;
     using System.Xml.XPath;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -110,7 +109,7 @@
 
         [Theory]
         [XmlFile("one.xml", "two.xml")]
-        public void usage_whenMultipleParameters(XmlDocument one, 
+        public void usage_whenMultipleParameters(XmlDocument one,
                                                  XmlDocument two)
         {
             Assert.Equal("<one />", one.OuterXml);

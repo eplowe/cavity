@@ -1,7 +1,5 @@
 ﻿namespace Cavity.Collections
 {
-    using System;
-    using Cavity;
     using Xunit;
 
     public sealed class PathItemFacts
@@ -14,6 +12,21 @@
                             .IsAbstractBaseClass()
                             .IsNotDecorated()
                             .Result);
+        }
+
+        [Fact]
+        public void op_ToString()
+        {
+            var obj = new DerivedPathItem
+                          {
+                              Name = "name",
+                              Value = "value"
+                          };
+
+            const string expected = "name: value";
+            var actual = obj.ToString();
+
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -32,21 +45,6 @@
                             .XmlAttribute("value")
                             .TypeIs<string>()
                             .Result);
-        }
-
-        [Fact]
-        public void op_ToString()
-        {
-            var obj = new DerivedPathItem
-                {
-                    Name = "name",
-                    Value = "value"
-                };
-
-            const string expected = "name: value";
-            var actual = obj.ToString();
-
-            Assert.Equal(expected, actual);
         }
     }
 }

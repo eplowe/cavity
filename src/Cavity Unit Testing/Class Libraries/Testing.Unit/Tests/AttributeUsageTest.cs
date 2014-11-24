@@ -3,14 +3,13 @@
     using System;
     using System.Globalization;
     using System.Reflection;
-
     using Cavity.Properties;
 
     public sealed class AttributeUsageTest : MemberTestBase
     {
-        public AttributeUsageTest(MemberInfo member, 
-                                  AttributeTargets validOn, 
-                                  bool allowMultiple, 
+        public AttributeUsageTest(MemberInfo member,
+                                  AttributeTargets validOn,
+                                  bool allowMultiple,
                                   bool inherited)
             : base(member)
         {

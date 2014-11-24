@@ -17,7 +17,8 @@
         {
         }
 
-        protected MarketingAddress(SerializationInfo info, StreamingContext context)
+        protected MarketingAddress(SerializationInfo info,
+                                   StreamingContext context)
             : base(info, context)
         {
         }

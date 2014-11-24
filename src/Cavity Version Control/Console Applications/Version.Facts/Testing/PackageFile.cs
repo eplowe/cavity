@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Xml;
     using System.Xml.XPath;
-
     using Cavity.IO;
     using Cavity.Models;
 
@@ -32,7 +31,7 @@
             Create(project, new List<Package>());
         }
 
-        public static void Create(Project project, 
+        public static void Create(Project project,
                                   Package package)
         {
             var packages = new List<Package>
@@ -42,7 +41,7 @@
             Create(project, packages);
         }
 
-        public static void Create(Project project, 
+        public static void Create(Project project,
                                   IEnumerable<Package> packages)
         {
             var xml = EmptyTemplate;

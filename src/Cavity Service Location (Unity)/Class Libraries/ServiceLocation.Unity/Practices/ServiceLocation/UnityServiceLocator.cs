@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-
     using Microsoft.Practices.ServiceLocation;
     using Microsoft.Practices.Unity;
 
@@ -25,7 +24,7 @@
             return _container.ResolveAll(serviceType);
         }
 
-        protected override object DoGetInstance(Type serviceType, 
+        protected override object DoGetInstance(Type serviceType,
                                                 string key)
         {
             return _container.Resolve(serviceType, key);

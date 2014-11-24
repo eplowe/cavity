@@ -1,7 +1,6 @@
 ﻿namespace Cavity
 {
     using System;
-
     using Xunit;
 
     public sealed class DateTimeExtensionMethodsFacts
@@ -17,15 +16,6 @@
         {
             var expected = Date.Today;
             var actual = DateTime.Today.ToDate();
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_ToMonth_DateTime()
-        {
-            var expected = Date.Today.LocalTime.ToMonth();
-            var actual = DateTime.Today.ToMonth();
 
             Assert.Equal(expected, actual);
         }
@@ -98,6 +88,15 @@
         public void op_ToLocalTime_DateTime_stringNull()
         {
             Assert.Throws<ArgumentNullException>(() => DateTime.UtcNow.ToLocalTime(null as string));
+        }
+
+        [Fact]
+        public void op_ToMonth_DateTime()
+        {
+            var expected = Date.Today.LocalTime.ToMonth();
+            var actual = DateTime.Today.ToMonth();
+
+            Assert.Equal(expected, actual);
         }
     }
 }

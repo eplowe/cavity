@@ -6,7 +6,6 @@
     using System.Drawing;
     using System.Linq;
     using System.Text;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -52,7 +51,7 @@
         [Theory]
         [InlineData(-1, 0)]
         [InlineData(0, -1)]
-        public void ctor_int_int_whenArgumentOutOfRangeException(int width, 
+        public void ctor_int_int_whenArgumentOutOfRangeException(int width,
                                                                  int height)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new Matrix<decimal>(width, height));
@@ -120,7 +119,7 @@
         [InlineData(2, 5)]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x", Justification = "This name is correct.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y", Justification = "This name is correct.")]
-        public void opIndexer_Point(int x, 
+        public void opIndexer_Point(int x,
                                     int y)
         {
             const string expected = "example";
@@ -140,7 +139,7 @@
         [InlineData(0, 1)]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x", Justification = "This name is correct.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y", Justification = "This name is correct.")]
-        public void opIndexer_Point_get_whenArgumentOutOfRangeException(int x, 
+        public void opIndexer_Point_get_whenArgumentOutOfRangeException(int x,
                                                                         int y)
         {
             var matrix = new Matrix<string>(1, 1);
@@ -171,7 +170,7 @@
         [InlineData(0, 1)]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x", Justification = "This name is correct.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y", Justification = "This name is correct.")]
-        public void opIndexer_Point_set_whenArgumentOutOfRangeException(int x, 
+        public void opIndexer_Point_set_whenArgumentOutOfRangeException(int x,
                                                                         int y)
         {
             var matrix = new Matrix<string>(1, 1);
@@ -198,7 +197,7 @@
         [InlineData(2, 5)]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x", Justification = "This name is correct.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y", Justification = "This name is correct.")]
-        public void opIndexer_int_int(int x, 
+        public void opIndexer_int_int(int x,
                                       int y)
         {
             const string expected = "example";
@@ -218,7 +217,7 @@
         [InlineData(0, 1)]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x", Justification = "This name is correct.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y", Justification = "This name is correct.")]
-        public void opIndexer_int_int_get_whenArgumentOutOfRangeException(int x, 
+        public void opIndexer_int_int_get_whenArgumentOutOfRangeException(int x,
                                                                           int y)
         {
             var matrix = new Matrix<string>(1, 1);
@@ -249,7 +248,7 @@
         [InlineData(0, 1)]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x", Justification = "This name is correct.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y", Justification = "This name is correct.")]
-        public void opIndexer_int_int_set_whenArgumentOutOfRangeException(int x, 
+        public void opIndexer_int_int_set_whenArgumentOutOfRangeException(int x,
                                                                           int y)
         {
             var matrix = new Matrix<string>(1, 1);
@@ -553,7 +552,7 @@
         [Theory]
         [InlineData(-1, 0)]
         [InlineData(0, -1)]
-        public void op_Resize_Size_whenArgumentOutOfRangeException(int width, 
+        public void op_Resize_Size_whenArgumentOutOfRangeException(int width,
                                                                    int height)
         {
             var matrix = new Matrix<string>(1, 1);
@@ -567,7 +566,7 @@
         [InlineData(3, 2)]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x", Justification = "This name is correct.")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y", Justification = "This name is correct.")]
-        public void op_Resize_Size_whenShrink(int x, 
+        public void op_Resize_Size_whenShrink(int x,
                                               int y)
         {
             var matrix = new Matrix<string>(3, 3);
@@ -602,7 +601,7 @@
         [Theory]
         [InlineData(-1, 0)]
         [InlineData(0, -1)]
-        public void op_Resize_int_int_whenArgumentOutOfRangeException(int width, 
+        public void op_Resize_int_int_whenArgumentOutOfRangeException(int width,
                                                                       int height)
         {
             var matrix = new Matrix<string>(1, 1);
@@ -720,8 +719,8 @@
         [InlineData(0, 1, 0)]
         [InlineData(1, 1, 1)]
         [InlineData(4, 2, 2)]
-        public void prop_Count_get(int expected, 
-                                   int height, 
+        public void prop_Count_get(int expected,
+                                   int height,
                                    int width)
         {
             var actual = new Matrix<decimal>(height, width).Count;
@@ -797,8 +796,8 @@
         [InlineData(true, 0, 1)]
         [InlineData(true, 1, 0)]
         [InlineData(false, 1, 1)]
-        public void prop_IsEmpty_get(bool expected, 
-                                     int height, 
+        public void prop_IsEmpty_get(bool expected,
+                                     int height,
                                      int width)
         {
             var actual = new Matrix<decimal>(height, width).IsEmpty;
@@ -823,8 +822,8 @@
         [InlineData(true, 1, 1)]
         [InlineData(false, 1, 2)]
         [InlineData(true, 2, 2)]
-        public void prop_IsSquare_get(bool expected, 
-                                      int height, 
+        public void prop_IsSquare_get(bool expected,
+                                      int height,
                                       int width)
         {
             var actual = new Matrix<decimal>(height, width).IsSquare;

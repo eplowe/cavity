@@ -13,34 +13,34 @@
     [ImmutableObject(true)]
     [Serializable]
     [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Date", Justification = "This name is intentional.")]
-    public struct Date : IComparable, 
-                         IComparable<Date>, 
-                         IEquatable<Date>, 
-                         ISerializable, 
-                         ICalculateDateTimeCalendar, 
-                         ICalculateDateTimePeriod<Date>, 
-                         IChangeDate, 
-                         IGetNextDate, 
-                         IGetPreviousDate, 
+    public struct Date : IComparable,
+                         IComparable<Date>,
+                         IEquatable<Date>,
+                         ISerializable,
+                         ICalculateDateTimeCalendar,
+                         ICalculateDateTimePeriod<Date>,
+                         IChangeDate,
+                         IGetNextDate,
+                         IGetPreviousDate,
                          IGetTimeZone<Date>
     {
         private DateTime _date;
 
-        public Date(int year, 
-                    MonthOfYear month, 
+        public Date(int year,
+                    MonthOfYear month,
                     int day)
             : this(year, (int)month, day)
         {
         }
 
-        public Date(Month month, 
+        public Date(Month month,
                     int day)
             : this(month.Year, month.MonthOfYear, day)
         {
         }
 
-        public Date(int year, 
-                    int month, 
+        public Date(int year,
+                    int month,
                     int day)
             : this(new DateTime(year, month, day))
         {
@@ -51,7 +51,7 @@
             _date = new DateTime(date.Year, date.Month, date.Day);
         }
 
-        private Date(SerializationInfo info, 
+        private Date(SerializationInfo info,
                      StreamingContext context)
             : this()
         {
@@ -259,7 +259,7 @@
         {
             get
             {
-                return new DateTimePeriod(new DateTime(_date.Year, 1, 1), 
+                return new DateTimePeriod(new DateTime(_date.Year, 1, 1),
                                           new DateTime(_date.Year, 12, 31));
             }
         }
@@ -648,19 +648,19 @@
             }
         }
 
-        public static bool operator ==(Date obj, 
+        public static bool operator ==(Date obj,
                                        Date comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator >(Date operand1, 
+        public static bool operator >(Date operand1,
                                       Date operand2)
         {
             return operand1.ToDateTime() > operand2.ToDateTime();
         }
 
-        public static bool operator >=(Date operand1, 
+        public static bool operator >=(Date operand1,
                                        Date operand2)
         {
             if (operand1 == operand2)
@@ -671,7 +671,7 @@
             return operand1 > operand2;
         }
 
-        public static bool operator <=(Date operand1, 
+        public static bool operator <=(Date operand1,
                                        Date operand2)
         {
             if (operand1 == operand2)
@@ -702,25 +702,25 @@
             return operand.Decrement();
         }
 
-        public static int operator -(Date operand1, 
+        public static int operator -(Date operand1,
                                      Date operand2)
         {
             return Convert.ToInt32(Math.Round((operand1.ToDateTime() - operand2.ToDateTime()).TotalDays, 0, MidpointRounding.AwayFromZero));
         }
 
-        public static bool operator !=(Date obj, 
+        public static bool operator !=(Date obj,
                                        Date comparand)
         {
             return !obj.Equals(comparand);
         }
 
-        public static bool operator <(Date operand1, 
+        public static bool operator <(Date operand1,
                                       Date operand2)
         {
             return operand1.ToDateTime() < operand2.ToDateTime();
         }
 
-        public static int Compare(Date operand1, 
+        public static int Compare(Date operand1,
                                   Date operand2)
         {
             return DateTime.Compare(operand1.ToDateTime(), operand2.ToDateTime());
@@ -940,7 +940,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        void ISerializable.GetObjectData(SerializationInfo info, 
+        void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {
             if (null == info)
@@ -971,7 +971,7 @@
             return To(value, -1);
         }
 
-        private Date To(DayOfWeek value, 
+        private Date To(DayOfWeek value,
                         int day)
         {
 #if NET20
@@ -979,12 +979,12 @@
 #else
             if (!value.In(
 #endif
-                     DayOfWeek.Monday, 
-                     DayOfWeek.Tuesday, 
-                     DayOfWeek.Wednesday, 
-                     DayOfWeek.Thursday, 
-                     DayOfWeek.Friday, 
-                     DayOfWeek.Saturday, 
+                     DayOfWeek.Monday,
+                     DayOfWeek.Tuesday,
+                     DayOfWeek.Wednesday,
+                     DayOfWeek.Thursday,
+                     DayOfWeek.Friday,
+                     DayOfWeek.Saturday,
                      DayOfWeek.Sunday))
             {
                 throw new ArgumentOutOfRangeException("value");
@@ -1001,7 +1001,7 @@
             }
         }
 
-        private Date To(MonthOfYear value, 
+        private Date To(MonthOfYear value,
                         int month)
         {
 #if NET20
@@ -1009,17 +1009,17 @@
 #else
             if (!value.In(
 #endif
-                     MonthOfYear.January, 
-                     MonthOfYear.February, 
-                     MonthOfYear.March, 
-                     MonthOfYear.April, 
-                     MonthOfYear.May, 
-                     MonthOfYear.June, 
-                     MonthOfYear.July, 
-                     MonthOfYear.August, 
-                     MonthOfYear.September, 
-                     MonthOfYear.October, 
-                     MonthOfYear.November, 
+                     MonthOfYear.January,
+                     MonthOfYear.February,
+                     MonthOfYear.March,
+                     MonthOfYear.April,
+                     MonthOfYear.May,
+                     MonthOfYear.June,
+                     MonthOfYear.July,
+                     MonthOfYear.August,
+                     MonthOfYear.September,
+                     MonthOfYear.October,
+                     MonthOfYear.November,
                      MonthOfYear.December))
             {
                 throw new ArgumentOutOfRangeException("value");

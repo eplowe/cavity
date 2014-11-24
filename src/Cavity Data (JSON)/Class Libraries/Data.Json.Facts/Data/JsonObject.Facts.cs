@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -462,21 +461,21 @@
         {
             var obj = new JsonObject
                           {
-                              new JsonPair("list", 
+                              new JsonPair("list",
                                            new JsonArray
                                                {
                                                    Values =
                                                        {
-                                                           new JsonTrue(), 
+                                                           new JsonTrue(),
                                                            new JsonArray
                                                                {
                                                                    Values =
                                                                        {
-                                                                           new JsonNumber("1"), 
-                                                                           new JsonNumber("2"), 
+                                                                           new JsonNumber("1"),
+                                                                           new JsonNumber("2"),
                                                                            new JsonNumber("3")
                                                                        }
-                                                               }, 
+                                                               },
                                                            new JsonFalse()
                                                        }
                                                })
@@ -493,22 +492,22 @@
         {
             var obj = new JsonObject
                           {
-                              new JsonPair("id", new JsonNumber("123")), 
-                              new JsonPair("title", new JsonString(string.Empty)), 
-                              new JsonPair("value", new JsonNull()), 
-                              new JsonPair("list", 
+                              new JsonPair("id", new JsonNumber("123")),
+                              new JsonPair("title", new JsonString(string.Empty)),
+                              new JsonPair("value", new JsonNull()),
+                              new JsonPair("list",
                                            new JsonArray
                                                {
                                                    Values =
                                                        {
-                                                           new JsonNumber("1"), 
-                                                           new JsonString(string.Empty), 
-                                                           new JsonNull(), 
-                                                           new JsonTrue(), 
+                                                           new JsonNumber("1"),
+                                                           new JsonString(string.Empty),
+                                                           new JsonNull(),
+                                                           new JsonTrue(),
                                                            new JsonFalse()
                                                        }
-                                               }), 
-                              new JsonPair("visible", new JsonTrue()), 
+                                               }),
+                              new JsonPair("visible", new JsonTrue()),
                               new JsonPair("enabled", new JsonFalse())
                           };
 
@@ -542,21 +541,21 @@
         {
             var obj = new JsonObject
                           {
-                              new JsonPair("list", 
+                              new JsonPair("list",
                                            new JsonArray
                                                {
                                                    Values =
                                                        {
-                                                           new JsonTrue(), 
+                                                           new JsonTrue(),
                                                            new JsonArray
                                                                {
                                                                    Values =
                                                                        {
-                                                                           new JsonNumber("1"), 
-                                                                           new JsonNumber("2"), 
+                                                                           new JsonNumber("1"),
+                                                                           new JsonNumber("2"),
                                                                            new JsonNumber("3")
                                                                        }
-                                                               }, 
+                                                               },
                                                            new JsonFalse()
                                                        }
                                                })

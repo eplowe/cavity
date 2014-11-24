@@ -4,7 +4,7 @@
 
     public sealed class DerivedFileProcessor : FileProcessor
     {
-        public override void Process(FileInfo file, 
+        public override void Process(FileInfo file,
                                      dynamic data)
         {
         }

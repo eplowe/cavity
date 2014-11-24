@@ -9,7 +9,7 @@
     public class DateRoute<T> : RouteBase
         where T : Controller
     {
-        public DateRoute(string extension, 
+        public DateRoute(string extension,
                          string action)
         {
             Extension = extension;
@@ -37,7 +37,7 @@
                        : route.GetRouteData(httpContext);
         }
 
-        public override VirtualPathData GetVirtualPath(RequestContext requestContext, 
+        public override VirtualPathData GetVirtualPath(RequestContext requestContext,
                                                        RouteValueDictionary values)
         {
             if (null == requestContext)
@@ -99,10 +99,10 @@
                        {
                            Defaults = new RouteValueDictionary(new
                                                                    {
-                                                                       controller = Controller, 
-                                                                       action = Action, 
+                                                                       controller = Controller,
+                                                                       action = Action,
                                                                        Date = date
-                                                                   }), 
+                                                                   }),
                            Constraints = new RouteValueDictionary()
                        };
         }

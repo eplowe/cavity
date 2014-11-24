@@ -21,7 +21,7 @@
 
         public int Threshold { get; private set; }
 
-        public override bool Equals(string x, 
+        public override bool Equals(string x,
                                     string y)
         {
             if (null == (x ?? y))

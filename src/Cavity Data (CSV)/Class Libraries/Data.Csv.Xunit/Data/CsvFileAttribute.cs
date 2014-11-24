@@ -8,10 +8,8 @@
     using System.Linq;
 #endif
     using System.Reflection;
-
     using Cavity.Collections;
     using Cavity.Properties;
-
     using Xunit.Extensions;
 
     [Obsolete("CsvFileAttribute is now deprecated. Use CsvDataAttribute instead.")]
@@ -40,7 +38,7 @@
 
         public IEnumerable<string> Files { get; private set; }
 
-        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest, 
+        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest,
                                                       Type[] parameterTypes)
         {
             if (null == methodUnderTest)

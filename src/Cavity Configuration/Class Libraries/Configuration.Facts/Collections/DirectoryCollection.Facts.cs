@@ -1,10 +1,8 @@
 ﻿namespace Cavity.Collections
 {
     using System.Collections.Generic;
-
     using Cavity.Collections.Generic;
     using Cavity.IO;
-
     using Xunit;
 
     public sealed class DirectoryCollectionFacts
@@ -36,13 +34,13 @@
                 var expected = temp.Info.FullName;
 
                 var obj = new DirectoryCollection
-                    {
-                        new DirectoryItem
-                            {
-                                Name = name,
-                                Value = temp.Info.FullName
-                            }
-                    };
+                              {
+                                  new DirectoryItem
+                                      {
+                                          Name = name,
+                                          Value = temp.Info.FullName
+                                      }
+                              };
 
                 var actual = obj[name].FullName;
 

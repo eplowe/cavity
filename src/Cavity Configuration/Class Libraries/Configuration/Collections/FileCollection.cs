@@ -6,7 +6,6 @@
     using System.Linq;
 #endif
     using System.Xml.Serialization;
-
     using Cavity.Collections.Generic;
 
     [XmlRoot("files")]

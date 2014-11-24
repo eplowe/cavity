@@ -2,9 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-
     using Moq;
-
     using Xunit;
 
     public sealed class RepositoryToKeyUrnNotFoundOfTFacts

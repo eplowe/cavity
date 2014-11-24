@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-
     using Cavity.Collections;
 
     [Obsolete("ITransformCsv is now deprecated. Use ITransformData instead.")]

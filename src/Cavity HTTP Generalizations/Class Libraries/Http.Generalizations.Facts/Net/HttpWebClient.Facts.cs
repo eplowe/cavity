@@ -1,9 +1,6 @@
 ﻿namespace Cavity.Net
 {
-    using System;
     using System.Net;
-
-    using Cavity;
     using Xunit;
 
     public sealed class HttpWebClientFacts
@@ -12,13 +9,13 @@
         public void a_definition()
         {
             Assert.True(new TypeExpectations<HttpWebClient>()
-                .DerivesFrom<DisposableObject>()
-                .IsConcreteClass()
-                .IsUnsealed()
-                .HasDefaultConstructor()
-                .IsNotDecorated()
-                .Implements<IHttpClient>()
-                .Result);
+                            .DerivesFrom<DisposableObject>()
+                            .IsConcreteClass()
+                            .IsUnsealed()
+                            .HasDefaultConstructor()
+                            .IsNotDecorated()
+                            .Implements<IHttpClient>()
+                            .Result);
         }
 
         [Fact]

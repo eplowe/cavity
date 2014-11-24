@@ -12,7 +12,7 @@
         public static T Evaluate<T>(XPathNavigator obj, 
                                     string xpath)
 #else
-        public static T Evaluate<T>(this XPathNavigator obj, 
+        public static T Evaluate<T>(this XPathNavigator obj,
                                     string xpath)
 #endif
         {
@@ -24,8 +24,8 @@
                                     string xpath, 
                                     IXmlNamespaceResolver namespaces)
 #else
-        public static T Evaluate<T>(this XPathNavigator obj, 
-                                    string xpath, 
+        public static T Evaluate<T>(this XPathNavigator obj,
+                                    string xpath,
                                     IXmlNamespaceResolver namespaces)
 #endif
         {

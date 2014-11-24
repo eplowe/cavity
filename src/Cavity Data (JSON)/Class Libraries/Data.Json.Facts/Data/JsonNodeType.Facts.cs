@@ -33,7 +33,7 @@
         [InlineData("EndObject", 9)]
         [InlineData("EndArray", 10)]
         [InlineData("11", 11)]
-        public void values(string expected, 
+        public void values(string expected,
                            int value)
         {
             var actual = ((JsonNodeType)value).ToString();

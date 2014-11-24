@@ -1,10 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
-    using Cavity;
-
     using Moq;
-
     using Xunit;
 
     public sealed class IGetTimeZoneOfTFacts
@@ -15,6 +12,25 @@
             Assert.True(new TypeExpectations<IGetTimeZone<Month>>().IsInterface()
                                                                    .IsNotDecorated()
                                                                    .Result);
+        }
+
+        [Fact]
+        public void op_For_TimeZoneInfo()
+        {
+            var expected = Month.Today.LocalTime;
+            var zone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
+
+            var mock = new Mock<IGetTimeZone<Month>>();
+            mock
+                .Setup(x => x.For(zone))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.For(zone);
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
         }
 
         [Fact]
@@ -47,25 +63,6 @@
                 .Verifiable();
 
             var actual = mock.Object.UniversalTime;
-
-            Assert.Equal(expected, actual);
-
-            mock.VerifyAll();
-        }
-
-        [Fact]
-        public void op_For_TimeZoneInfo()
-        {
-            var expected = Month.Today.LocalTime;
-            var zone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
-
-            var mock = new Mock<IGetTimeZone<Month>>();
-            mock
-                .Setup(x => x.For(zone))
-                .Returns(expected)
-                .Verifiable();
-
-            var actual = mock.Object.For(zone);
 
             Assert.Equal(expected, actual);
 

@@ -11,9 +11,7 @@
     using System.Xml.Linq;
 #endif
     using System.Xml.XPath;
-
     using Cavity.Properties;
-
     using Xunit.Extensions;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
@@ -41,7 +39,7 @@
 
         public IEnumerable<string> Values { get; private set; }
 
-        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest, 
+        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest,
                                                       Type[] parameterTypes)
         {
             if (null == methodUnderTest)
@@ -88,7 +86,7 @@
                     list.Add(xml.CreateNavigator());
                     continue;
                 }
-                
+
 #if !NET20
                 if (parameterTypes[index] == typeof(XDocument))
                 {

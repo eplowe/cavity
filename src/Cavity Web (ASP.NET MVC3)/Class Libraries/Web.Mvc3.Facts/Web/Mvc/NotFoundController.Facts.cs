@@ -5,11 +5,8 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
-
     using Cavity.Web.Routing;
-
     using Moq;
-
     using Xunit;
 
     public sealed class NotFoundControllerFacts

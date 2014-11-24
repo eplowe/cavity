@@ -6,7 +6,6 @@
 #if !NET20
     using System.Linq;
 #endif
-
     using Cavity.Models;
 
     public class LexicalCollection : IEnumerable<LexicalItem>
@@ -267,7 +266,7 @@
 
 #endif
 
-        public virtual void MoveTo(LexicalCollection destination, 
+        public virtual void MoveTo(LexicalCollection destination,
                                    LexicalItem item)
         {
             if (null == destination)

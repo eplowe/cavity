@@ -1,16 +1,14 @@
 ﻿namespace Cavity
 {
     using System;
-    using System.Globalization;
     using System.Net;
-
     using Cavity.Net;
 
     public class HttpExpectation : IHttpExpectation
     {
         public HttpExchange Exchange { get; set; }
 
-        public static HttpWebResponse GetResponse(HttpRequest request, 
+        public static HttpWebResponse GetResponse(HttpRequest request,
                                                   CookieContainer cookies)
         {
             try
@@ -55,9 +53,9 @@
                 if (Exchange.Response.Line.Code != (int)response.StatusCode ||
                     Exchange.Response.Line.Reason != response.StatusDescription)
                 {
-                    var message = "\"{0} {1}\" was expected, but \"{2} {3}\" was actually recieved.".FormatWith(Exchange.Response.Line.Code, 
-                                                                                                                Exchange.Response.Line.Reason, 
-                                                                                                                (int)response.StatusCode, 
+                    var message = "\"{0} {1}\" was expected, but \"{2} {3}\" was actually recieved.".FormatWith(Exchange.Response.Line.Code,
+                                                                                                                Exchange.Response.Line.Reason,
+                                                                                                                (int)response.StatusCode,
                                                                                                                 response.StatusDescription);
                     throw new HttpTestException(message);
                 }
@@ -70,8 +68,8 @@
                         continue;
                     }
 
-                    var message = "\"{0}\" was expected, but \"{1}: {2}\" was actually recieved.".FormatWith(header, 
-                                                                                                             header.Name, 
+                    var message = "\"{0}\" was expected, but \"{1}: {2}\" was actually recieved.".FormatWith(header,
+                                                                                                             header.Name,
                                                                                                              response.Headers[header.Name]);
                     throw new HttpTestException(message);
                 }

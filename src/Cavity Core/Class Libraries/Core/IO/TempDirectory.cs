@@ -4,6 +4,7 @@
     using System.IO;
 #if !NET20 && !NET35
     using System.Threading.Tasks;
+
 #endif
 
     public class TempDirectory : IDisposable
@@ -77,7 +78,7 @@
                 subdirectory.Delete();
             }
 #else
-            Parallel.ForEach(directory.EnumerateDirectories(), 
+            Parallel.ForEach(directory.EnumerateDirectories(),
                              subdirectory =>
                                  {
                                      DeleteSubdirectories(subdirectory);
@@ -94,7 +95,7 @@
                 file.Delete();
             }
 #else
-            Parallel.ForEach(Info.EnumerateFiles("*", SearchOption.AllDirectories), 
+            Parallel.ForEach(Info.EnumerateFiles("*", SearchOption.AllDirectories),
                              file => file.Delete());
 #endif
         }

@@ -26,9 +26,9 @@
         public void ctor()
         {
             var plan = new BritishTelephoneNumberPlan
-                {
-                    {"example", new BritishTelephoneNumberPlanItem()}
-                };
+                           {
+                               { "example", new BritishTelephoneNumberPlanItem() }
+                           };
 
             Assert.True(plan.ContainsKey("example"));
             Assert.False(plan.ContainsKey("Example"));
@@ -90,12 +90,12 @@
         public void op_Load_KeyStringDictionary_when3DigitAreaCode()
         {
             var entry = new KeyStringDictionary
-                {
-                    {"Code", "1999"},
-                    {"D/DE", string.Empty},
-                    {"Notes", "3 Digit Area Code"},
-                    {"Use", "Example"},
-                };
+                            {
+                                { "Code", "1999" },
+                                { "D/DE", string.Empty },
+                                { "Notes", "3 Digit Area Code" },
+                                { "Use", "Example" },
+                            };
             var actual = BritishTelephoneNumberPlan.Load(entry);
 
             Assert.Equal("199", actual.AreaCode);
@@ -107,12 +107,12 @@
         public void op_Load_KeyStringDictionary_when3DigitCodeArea()
         {
             var entry = new KeyStringDictionary
-                {
-                    {"Code", "1999"},
-                    {"D/DE", string.Empty},
-                    {"Notes", "3 Digit Code Area"},
-                    {"Use", "Example"},
-                };
+                            {
+                                { "Code", "1999" },
+                                { "D/DE", string.Empty },
+                                { "Notes", "3 Digit Code Area" },
+                                { "Use", "Example" },
+                            };
             var actual = BritishTelephoneNumberPlan.Load(entry);
 
             Assert.Equal("199", actual.AreaCode);
@@ -124,12 +124,12 @@
         public void op_Load_KeyStringDictionary_whenColchester()
         {
             var entry = new KeyStringDictionary
-                {
-                    {"Code", "1206"},
-                    {"D/DE", string.Empty},
-                    {"Notes", string.Empty},
-                    {"Use", "Colchester"},
-                };
+                            {
+                                { "Code", "1206" },
+                                { "D/DE", string.Empty },
+                                { "Notes", string.Empty },
+                                { "Use", "Colchester" },
+                            };
             var actual = BritishTelephoneNumberPlan.Load(entry);
 
             Assert.Equal("1206", actual.AreaCode);
@@ -141,12 +141,12 @@
         public void op_Load_KeyStringDictionary_whenGlasgow()
         {
             var entry = new KeyStringDictionary
-                {
-                    {"Code", "1412"},
-                    {"D/DE", string.Empty},
-                    {"Notes", "3 Digit Code Area"},
-                    {"Use", "Glasgow"},
-                };
+                            {
+                                { "Code", "1412" },
+                                { "D/DE", string.Empty },
+                                { "Notes", "3 Digit Code Area" },
+                                { "Use", "Glasgow" },
+                            };
             var actual = BritishTelephoneNumberPlan.Load(entry);
 
             Assert.Equal("141", actual.AreaCode);
@@ -158,12 +158,12 @@
         public void op_Load_KeyStringDictionary_whenHarrogate()
         {
             var entry = new KeyStringDictionary
-                {
-                    {"Code", "1423"},
-                    {"D/DE", "6"},
-                    {"Notes", "ELNS"},
-                    {"Use", "Harrogate"},
-                };
+                            {
+                                { "Code", "1423" },
+                                { "D/DE", "6" },
+                                { "Notes", "ELNS" },
+                                { "Use", "Harrogate" },
+                            };
             var actual = BritishTelephoneNumberPlan.Load(entry);
 
             Assert.Equal("14236", actual.AreaCode);
@@ -175,12 +175,12 @@
         public void op_Load_KeyStringDictionary_whenLancaster()
         {
             var entry = new KeyStringDictionary
-                {
-                    {"Code", "1524"},
-                    {"D/DE", "5"},
-                    {"Notes", "4 Digit Code Area"},
-                    {"Use", "Lancaster"},
-                };
+                            {
+                                { "Code", "1524" },
+                                { "D/DE", "5" },
+                                { "Notes", "4 Digit Code Area" },
+                                { "Use", "Lancaster" },
+                            };
             var actual = BritishTelephoneNumberPlan.Load(entry);
 
             Assert.Equal("1524", actual.AreaCode);
@@ -192,12 +192,12 @@
         public void op_Load_KeyStringDictionary_whenLeeds()
         {
             var entry = new KeyStringDictionary
-                {
-                    {"Code", "1132"},
-                    {"D/DE", string.Empty},
-                    {"Notes", "3 Digit Area Code"},
-                    {"Use", "Leeds"},
-                };
+                            {
+                                { "Code", "1132" },
+                                { "D/DE", string.Empty },
+                                { "Notes", "3 Digit Area Code" },
+                                { "Use", "Leeds" },
+                            };
             var actual = BritishTelephoneNumberPlan.Load(entry);
 
             Assert.Equal("113", actual.AreaCode);
@@ -209,12 +209,12 @@
         public void op_Load_KeyStringDictionary_whenLondon()
         {
             var entry = new KeyStringDictionary
-                {
-                    {"Code", "2071"},
-                    {"D/DE", string.Empty},
-                    {"Notes", string.Empty},
-                    {"Use", "London"},
-                };
+                            {
+                                { "Code", "2071" },
+                                { "D/DE", string.Empty },
+                                { "Notes", string.Empty },
+                                { "Use", "London" },
+                            };
             var actual = BritishTelephoneNumberPlan.Load(entry);
 
             Assert.Equal("20", actual.AreaCode);
@@ -226,12 +226,12 @@
         public void op_Load_KeyStringDictionary_whenNottingham()
         {
             var entry = new KeyStringDictionary
-                {
-                    {"Code", "1152"},
-                    {"D/DE", "0"},
-                    {"Notes", "3 Digit Area Code"},
-                    {"Use", "Nottingham"},
-                };
+                            {
+                                { "Code", "1152" },
+                                { "D/DE", "0" },
+                                { "Notes", "3 Digit Area Code" },
+                                { "Use", "Nottingham" },
+                            };
             var actual = BritishTelephoneNumberPlan.Load(entry);
 
             Assert.Equal("115", actual.AreaCode);
@@ -243,12 +243,12 @@
         public void op_Load_KeyStringDictionary_whenSedbergh()
         {
             var entry = new KeyStringDictionary
-                {
-                    {"Code", "1539"},
-                    {"D/DE", "6"},
-                    {"Notes", "5 Digit Code Area"},
-                    {"Use", "Sedbergh"},
-                };
+                            {
+                                { "Code", "1539" },
+                                { "D/DE", "6" },
+                                { "Notes", "5 Digit Code Area" },
+                                { "Use", "Sedbergh" },
+                            };
             var actual = BritishTelephoneNumberPlan.Load(entry);
 
             Assert.Equal("15396", actual.AreaCode);

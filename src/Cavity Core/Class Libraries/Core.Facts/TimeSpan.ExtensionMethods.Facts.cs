@@ -24,7 +24,10 @@
         [InlineData("65h 43m    ", 65, 43, 0)]
         [InlineData("65h        ", 65, 0, 0)]
         [InlineData("    43m    ", 0, 43, 0)]
-        public void op_PrettyPrint_TimeSpan(string expected, int hours, int minutes, int seconds)
+        public void op_PrettyPrint_TimeSpan(string expected,
+                                            int hours,
+                                            int minutes,
+                                            int seconds)
         {
             var actual = new TimeSpan(hours, minutes, seconds).PrettyPrint();
 

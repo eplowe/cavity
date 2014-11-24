@@ -9,6 +9,7 @@
     using System.IO;
 #if !NET20
     using System.Linq;
+
 #endif
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't a collection.")]

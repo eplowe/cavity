@@ -1,7 +1,5 @@
 ﻿namespace Cavity.Net
 {
-    using System;
-    using Cavity;
     using Xunit;
 
     public sealed class HttpEntityHeadersFacts

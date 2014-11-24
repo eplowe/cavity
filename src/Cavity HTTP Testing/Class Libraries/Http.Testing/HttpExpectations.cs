@@ -8,12 +8,11 @@
     using System.Linq;
     using System.Net;
     using System.Text;
-
     using Cavity.IO;
     using Cavity.Net;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This isn't fundamentally a collection.")]
-    public sealed class HttpExpectations : Collection<HttpExpectation>, 
+    public sealed class HttpExpectations : Collection<HttpExpectation>,
                                            IHttpExpectations
     {
         private static readonly string[] _request = new[]
@@ -98,7 +97,7 @@
                        {
                            Exchange = new HttpExchange
                                           {
-                                              Request = HttpRequest.FromString(request), 
+                                              Request = HttpRequest.FromString(request),
                                               Response = HttpResponse.FromString(response)
                                           }
                        };

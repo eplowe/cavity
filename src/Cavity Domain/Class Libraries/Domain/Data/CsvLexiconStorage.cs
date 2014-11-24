@@ -8,7 +8,6 @@
 #if !NET20
     using System.Linq;
 #endif
-
     using Cavity.Collections;
     using Cavity.Diagnostics;
     using Cavity.IO;
@@ -134,8 +133,8 @@
 
             using (var writers = new StreamWriterDictionary("CANONICAL,SYNONYMS")
                                      {
-                                         Access = FileAccess.Write, 
-                                         Mode = FileMode.Create, 
+                                         Access = FileAccess.Write,
+                                         Mode = FileMode.Create,
                                          Share = FileShare.None
                                      })
             {
@@ -177,15 +176,15 @@
                     writers
                         .Item(Location.FullName)
                         .WriteLine("{0},{1}".FormatWith(
-                            item.CanonicalForm.FormatCommaSeparatedValue(), 
-                            item.Synonyms.OrderBy(x => x).Concat(';').FormatCommaSeparatedValue()));
+                                                        item.CanonicalForm.FormatCommaSeparatedValue(),
+                                                        item.Synonyms.OrderBy(x => x).Concat(';').FormatCommaSeparatedValue()));
                 }
 
 #endif
             }
         }
 
-        private static void Load(LexicalCollection lexicon, 
+        private static void Load(LexicalCollection lexicon,
                                  FileInfo file)
         {
             foreach (var data in new CsvDataSheet(file))

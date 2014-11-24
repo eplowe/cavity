@@ -1,10 +1,8 @@
 ﻿namespace Cavity.Models
 {
     using System;
-    using System.Diagnostics;
     using Xunit;
     using Xunit.Extensions;
-    using Xunit.Sdk;
 
     public sealed class BritishTelephoneNumberLengthFacts
     {
@@ -12,20 +10,6 @@
         public void a_definition()
         {
             Assert.True(typeof(BritishTelephoneNumberLength).IsStatic());
-        }
-
-        [Fact]
-        public void op_Validate_TelephoneNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => BritishTelephoneNumberLength.Validate(null));
-        }
-
-        [Fact]
-        public void op_Validate_TelephoneEmpty()
-        {
-            Telephone telephone = string.Empty;
-
-            Assert.Throws<ArgumentNullException>(() => BritishTelephoneNumberLength.Validate(telephone));
         }
 
         [Theory]
@@ -46,11 +30,26 @@
         [InlineData("(01977) 123 45", false)]
         [InlineData("(01977) 123 456", true)]
         [InlineData("(0207) 1234 567", true)]
-        public void op_Validate_Telephone(string telephone, bool expected)
+        public void op_Validate_Telephone(string telephone,
+                                          bool expected)
         {
             var actual = BritishTelephoneNumberLength.Validate(telephone);
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Validate_TelephoneEmpty()
+        {
+            Telephone telephone = string.Empty;
+
+            Assert.Throws<ArgumentNullException>(() => BritishTelephoneNumberLength.Validate(telephone));
+        }
+
+        [Fact]
+        public void op_Validate_TelephoneNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => BritishTelephoneNumberLength.Validate(null));
         }
     }
 }

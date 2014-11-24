@@ -5,7 +5,6 @@
 #if !NET20
     using System.Linq;
 #endif
-
     using Cavity.Collections;
     using Cavity.Data;
 
@@ -15,7 +14,7 @@
 
         private INormalityComparer _comparer;
 
-        public LexicalItem(INormalityComparer comparer, 
+        public LexicalItem(INormalityComparer comparer,
                            string canonicalForm)
             : this()
         {

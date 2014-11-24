@@ -3,7 +3,6 @@
     using System;
     using System.Configuration;
     using System.Linq;
-
     using Xunit;
 
     public sealed class RedirectionConfigurationElementCollectionOfTFacts
@@ -51,7 +50,7 @@
                           {
                               {
                                   "http://example.com/", "http://example.net/"
-                                  }
+                              }
                           };
 
             Assert.Equal((AbsoluteUri)"http://example.com/", obj.First().From);
@@ -64,7 +63,7 @@
                           {
                               {
                                   "http://example.com/", "http://example.net/"
-                                  }
+                              }
                           };
 
             Assert.NotEmpty(obj);
@@ -90,7 +89,7 @@
             var expected = new RedirectionConfigurationElement<AbsoluteUri>("http://example.com/", "http://example.net/");
             var obj = new RedirectionConfigurationElementCollection<AbsoluteUri>
                           {
-                              expected, 
+                              expected,
                               new RedirectionConfigurationElement<AbsoluteUri>("http://example.org/", "http://example.co.uk/")
                           };
 
@@ -108,7 +107,7 @@
             var element = new RedirectionConfigurationElement<AbsoluteUri>("http://example.com/", "http://example.net/");
             var obj = new RedirectionConfigurationElementCollection<AbsoluteUri>
                           {
-                              new RedirectionConfigurationElement<AbsoluteUri>("http://example.org/", "http://example.co.uk/"), 
+                              new RedirectionConfigurationElement<AbsoluteUri>("http://example.org/", "http://example.co.uk/"),
                               element
                           };
 

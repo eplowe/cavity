@@ -4,11 +4,8 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Web;
-
     using Cavity.Globalization;
-
     using Moq;
-
     using Xunit;
 
     public sealed class AcceptLanguageFacts

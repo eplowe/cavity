@@ -2,10 +2,8 @@
 {
     using System;
     using System.IO;
-
     using Cavity.Data;
     using Cavity.IO;
-
     using Xunit;
 
     public sealed class ConfigXmlFacts
@@ -32,7 +30,7 @@
                                    {
                                        {
                                            "foo", "bar"
-                                           }
+                                       }
                                    };
 
                 file.Create(expected.XmlSerialize());
@@ -53,7 +51,7 @@
                                    {
                                        {
                                            "foo", "bar"
-                                           }
+                                       }
                                    };
 
                 ConfigXml.Load<DataCollection>(file);
@@ -71,7 +69,7 @@
                                    {
                                        {
                                            "foo", "bar"
-                                           }
+                                       }
                                    };
 
                 file.Create(expected.XmlSerialize());
@@ -92,7 +90,7 @@
                                    {
                                        {
                                            "foo", "bar"
-                                           }
+                                       }
                                    };
 
                 file.Create(expected.XmlSerialize());

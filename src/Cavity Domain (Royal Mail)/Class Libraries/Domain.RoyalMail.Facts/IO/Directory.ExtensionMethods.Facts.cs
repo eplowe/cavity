@@ -8,12 +8,6 @@
     public sealed class DirectoryExtensionMethodsFacts
     {
         [Fact]
-        public void op_ToPostcode_DirectoryInfoNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToPostcode());
-        }
-
-        [Fact]
         public void op_ToPostcode_DirectoryInfo()
         {
             using (var temp = new TempDirectory())
@@ -25,6 +19,12 @@
 
                 Assert.Equal(expected, actual);
             }
+        }
+
+        [Fact]
+        public void op_ToPostcode_DirectoryInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as DirectoryInfo).ToPostcode());
         }
     }
 }

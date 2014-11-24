@@ -10,12 +10,11 @@
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-
     using Cavity.Configuration;
     using Cavity.Diagnostics;
     using Cavity.Properties;
 
-    public class TaskManager : DisposableObject, 
+    public class TaskManager : DisposableObject,
                                IManageTasks
     {
         public TaskManager()
@@ -108,8 +107,7 @@
             var combo = string.Empty;
             if (null != args)
             {
-                combo = args.Aggregate(combo, (x, 
-                                               arg) => "{0}{1}\"{2}\"".FormatWith(x, null == x ? string.Empty : ", ", arg));
+                combo = args.Aggregate(combo, (x, arg) => "{0}{1}\"{2}\"".FormatWith(x, null == x ? string.Empty : ", ", arg));
             }
 
             Trace.WriteLineIf(Tracing.Is.TraceVerbose, "args={0}".FormatWith(combo));
@@ -163,9 +161,9 @@
                     }
 
                     Trace.WriteLineIf(Tracing.Is.TraceVerbose, Resources.TaskManager_TaskGetTypeFullName.FormatWith(task.GetType().FullName));
-                    var factory = new TaskFactory(Cancellation.Token, 
-                                                  task.CreationOptions, 
-                                                  task.ContinuationOptions, 
+                    var factory = new TaskFactory(Cancellation.Token,
+                                                  task.CreationOptions,
+                                                  task.ContinuationOptions,
                                                   TaskScheduler.Default);
                     factory.StartNew(() => task.Run(Cancellation.Token));
                     TaskCounter.Increment();

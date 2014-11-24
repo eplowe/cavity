@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3FF37491-EE7C-47E0-AB49-3C00BE934E1A}"
 	ProjectSection(SolutionItems) = preProject
 		Cavity FTP.bundle = Cavity FTP.bundle

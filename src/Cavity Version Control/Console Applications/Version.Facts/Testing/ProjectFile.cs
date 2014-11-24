@@ -5,7 +5,6 @@
     using System.IO;
     using System.Xml;
     using System.Xml.XPath;
-
     using Cavity.IO;
     using Cavity.Models;
 
@@ -41,9 +40,9 @@
                                      Reference reference)
         {
             var references = new List<Reference>
-                               {
-                                   reference
-                               };
+                                 {
+                                     reference
+                                 };
             return Create(location, references);
         }
 

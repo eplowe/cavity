@@ -23,7 +23,7 @@
         public static string Append(string obj, 
                                     params char[] args)
 #else
-        public static string Append(this string obj, 
+        public static string Append(this string obj,
                                     params char[] args)
 #endif
         {
@@ -74,7 +74,7 @@
         public static string Append(string obj, 
                                     params string[] args)
 #else
-        public static string Append(this string obj, 
+        public static string Append(this string obj,
                                     params string[] args)
 #endif
         {
@@ -289,8 +289,8 @@
                                     string value, 
                                     StringComparison comparisonType)
 #else
-        public static bool Contains(this string obj, 
-                                    string value, 
+        public static bool Contains(this string obj,
+                                    string value,
                                     StringComparison comparisonType)
 #endif
         {
@@ -306,7 +306,7 @@
         public static bool ContainsAny(string obj, 
                                        params char[] args)
 #else
-        public static bool ContainsAny(this string obj, 
+        public static bool ContainsAny(this string obj,
                                        params char[] args)
 #endif
         {
@@ -352,8 +352,8 @@
                                        StringComparison comparison, 
                                        params string[] args)
 #else
-        public static bool ContainsAny(this string obj, 
-                                       StringComparison comparison, 
+        public static bool ContainsAny(this string obj,
+                                       StringComparison comparison,
                                        params string[] args)
 #endif
         {
@@ -430,7 +430,7 @@
         }
 
 #if !NET20
-        public static T DefaultOrFromString<T>(this string value, 
+        public static T DefaultOrFromString<T>(this string value,
                                                Func<string, T> fromString)
         {
             if (null == fromString)
@@ -551,8 +551,8 @@
                                        StringComparison comparison, 
                                        params string[] args)
 #else
-        public static bool EndsWithAny(this string obj, 
-                                       StringComparison comparison, 
+        public static bool EndsWithAny(this string obj,
+                                       StringComparison comparison,
                                        params string[] args)
 #endif
         {
@@ -603,8 +603,8 @@
                                      StringComparison comparison, 
                                      params string[] args)
 #else
-        public static bool EqualsAny(this string obj, 
-                                     StringComparison comparison, 
+        public static bool EqualsAny(this string obj,
+                                     StringComparison comparison,
                                      params string[] args)
 #endif
         {
@@ -665,7 +665,7 @@
         public static string FormatWith(string obj, 
                                         params object[] args)
 #else
-        public static string FormatWith(this string obj, 
+        public static string FormatWith(this string obj,
                                         params object[] args)
 #endif
         {
@@ -677,7 +677,7 @@
         public static int LevenshteinDistance(string obj, 
                                               string comparand)
 #else
-        public static int LevenshteinDistance(this string obj, 
+        public static int LevenshteinDistance(this string obj,
                                               string comparand)
 #endif
         {
@@ -710,8 +710,8 @@
                     var cost = (comparand[j - 1] == obj[i - 1]) ? 0 : 1;
 
                     d[i, j] = Math.Min(
-                        Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1), 
-                        d[i - 1, j - 1] + cost);
+                                       Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
+                                       d[i - 1, j - 1] + cost);
                 }
             }
 
@@ -782,7 +782,7 @@
         public static string RemoveAny(string obj, 
                                        params char[] args)
 #else
-        public static string RemoveAny(this string obj, 
+        public static string RemoveAny(this string obj,
                                        params char[] args)
 #endif
         {
@@ -816,8 +816,8 @@
 #else
             return 0 == obj.Length
                        ? string.Empty
-                       : args.Aggregate(obj, 
-                                        (current, 
+                       : args.Aggregate(obj,
+                                        (current,
                                          arg) => current.Replace(arg.ToString(CultureInfo.InvariantCulture), string.Empty));
 #endif
         }
@@ -1121,8 +1121,8 @@
                                            string value, 
                                            StringComparison comparisonType)
 #else
-        public static string RemoveFromEnd(this string obj, 
-                                           string value, 
+        public static string RemoveFromEnd(this string obj,
+                                           string value,
                                            StringComparison comparisonType)
 #endif
         {
@@ -1151,8 +1151,8 @@
                                              string value, 
                                              StringComparison comparisonType)
 #else
-        public static string RemoveFromStart(this string obj, 
-                                             string value, 
+        public static string RemoveFromStart(this string obj,
+                                             string value,
                                              StringComparison comparisonType)
 #endif
         {
@@ -1226,9 +1226,9 @@
                                      string newValue, 
                                      StringComparison comparisonType)
 #else
-        public static string Replace(this string obj, 
-                                     string oldValue, 
-                                     string newValue, 
+        public static string Replace(this string obj,
+                                     string oldValue,
+                                     string newValue,
                                      StringComparison comparisonType)
 #endif
         {
@@ -1274,9 +1274,9 @@
                                             StringComparison comparisonType, 
                                             params string[] args)
 #else
-        public static string ReplaceAllWith(this string obj, 
-                                            string newValue, 
-                                            StringComparison comparisonType, 
+        public static string ReplaceAllWith(this string obj,
+                                            string newValue,
+                                            StringComparison comparisonType,
                                             params string[] args)
 #endif
         {
@@ -1303,8 +1303,8 @@
 
             return obj;
 #else
-            return args.Aggregate(obj, 
-                                  (x, 
+            return args.Aggregate(obj,
+                                  (x,
                                    arg) => x.Replace(arg, newValue, comparisonType));
 #endif
         }
@@ -1315,9 +1315,9 @@
                                               StringComparison comparisonType, 
                                               params string[] beginnings)
 #else
-        public static string ReplaceBeginning(this string obj, 
-                                              string newValue, 
-                                              StringComparison comparisonType, 
+        public static string ReplaceBeginning(this string obj,
+                                              string newValue,
+                                              StringComparison comparisonType,
                                               params string[] beginnings)
 #endif
         {
@@ -1366,9 +1366,9 @@
                                            StringComparison comparisonType, 
                                            params string[] endings)
 #else
-        public static string ReplaceEnding(this string obj, 
-                                           string newValue, 
-                                           StringComparison comparisonType, 
+        public static string ReplaceEnding(this string obj,
+                                           string newValue,
+                                           StringComparison comparisonType,
                                            params string[] endings)
 #endif
         {
@@ -1415,7 +1415,7 @@
         public static bool SameLengthAs(string obj, 
                                         string value)
 #else
-        public static bool SameLengthAs(this string obj, 
+        public static bool SameLengthAs(this string obj,
                                         string value)
 #endif
         {
@@ -1436,7 +1436,7 @@
         public static bool SameIndexesOfEach(string obj, 
                                              params char[] args)
 #else
-        public static bool SameIndexesOfEach(this string obj, 
+        public static bool SameIndexesOfEach(this string obj,
                                              params char[] args)
 #endif
         {
@@ -1575,8 +1575,8 @@
                                      char separator, 
                                      StringSplitOptions options)
 #else
-        public static string[] Split(this string obj, 
-                                     char separator, 
+        public static string[] Split(this string obj,
+                                     char separator,
                                      StringSplitOptions options)
 #endif
         {
@@ -1586,11 +1586,11 @@
             }
 
             return obj.Split(
-                new[]
-                    {
-                        separator
-                    }, 
-                options);
+                             new[]
+                                 {
+                                     separator
+                                 },
+                             options);
         }
 
 #if NET20
@@ -1598,8 +1598,8 @@
                                      string separator, 
                                      StringSplitOptions options)
 #else
-        public static string[] Split(this string obj, 
-                                     string separator, 
+        public static string[] Split(this string obj,
+                                     string separator,
                                      StringSplitOptions options)
 #endif
         {
@@ -1609,18 +1609,18 @@
             }
 
             return obj.Split(
-                new[]
-                    {
-                        separator
-                    }, 
-                options);
+                             new[]
+                                 {
+                                     separator
+                                 },
+                             options);
         }
 
 #if NET20
         public static bool StartsOrEndsWith(string obj, 
                                             params char[] args)
 #else
-        public static bool StartsOrEndsWith(this string obj, 
+        public static bool StartsOrEndsWith(this string obj,
                                             params char[] args)
 #endif
         {
@@ -1664,8 +1664,8 @@
                                          StringComparison comparison, 
                                          params string[] args)
 #else
-        public static bool StartsWithAny(this string obj, 
-                                         StringComparison comparison, 
+        public static bool StartsWithAny(this string obj,
+                                         StringComparison comparison,
                                          params string[] args)
 #endif
         {
@@ -1852,7 +1852,7 @@
                                             Type type)
 #else
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "This is an odd rule that seems to be impossible to actually pass.")]
-        public static object XmlDeserialize(this string xml, 
+        public static object XmlDeserialize(this string xml,
                                             Type type)
 #endif
         {
@@ -2067,7 +2067,7 @@
         }
 
         [Comment("Drop 'B' if after 'M' and if it is at the end of the word.")]
-        public static void MetaphoneLetterB(int index, 
+        public static void MetaphoneLetterB(int index,
                                             StringBuilder buffer)
         {
             if (null == buffer)
@@ -2129,7 +2129,7 @@
         [Comment("'C' transforms to 'S' if followed by 'I', 'E', or 'Y'.")]
         [Comment("Otherwise, 'C' transforms to 'K'.")]
         [Comment("'CK' transforms to 'K'.")]
-        public static void MetaphoneLetterC(int index, 
+        public static void MetaphoneLetterC(int index,
                                             StringBuilder buffer)
         {
             if (null == buffer)
@@ -2223,7 +2223,7 @@
         [Comment("Drop 'G' if followed by 'N' or 'NED' and is at the end.")]
         [Comment("'G' transforms to 'J' if before 'I', 'E', or 'Y', and it is not in 'GG'.")]
         [Comment("Otherwise, 'G' transforms to 'K'.")]
-        public static void MetaphoneLetterG(int index, 
+        public static void MetaphoneLetterG(int index,
                                             StringBuilder buffer)
         {
             if (null == buffer)
@@ -2319,7 +2319,7 @@
         }
 
         [Comment("Drop duplicate adjacent letters, except for C.")]
-        private static void MetaphoneDropDuplicates(int i, 
+        private static void MetaphoneDropDuplicates(int i,
                                                     StringBuilder buffer)
         {
             if ('C' == buffer[i])
@@ -2343,7 +2343,7 @@
         }
 
         [Comment("Drop all vowels unless it is the beginning.")]
-        private static void MetaphoneLetterVowel(int i, 
+        private static void MetaphoneLetterVowel(int i,
                                                  StringBuilder buffer)
         {
             if (0 == i)
@@ -2363,7 +2363,7 @@
 
         [Comment("'D' transforms to 'J' if followed by 'GE', 'GY', or 'GI'.")]
         [Comment("Otherwise, 'D' transforms to 'T'.")]
-        private static void MetaphoneLetterD(int i, 
+        private static void MetaphoneLetterD(int i,
                                              StringBuilder buffer)
         {
             if ('D' != buffer[i])
@@ -2395,7 +2395,7 @@
         }
 
         [Comment("Drop 'H' if after vowel and not before a vowel.")]
-        private static void MetaphoneLetterH(int i, 
+        private static void MetaphoneLetterH(int i,
                                              StringBuilder buffer)
         {
             if (0 == i)
@@ -2434,7 +2434,7 @@
         }
 
         [Comment("'S' transforms to 'X' if followed by 'H', 'IO', or 'IA'.")]
-        private static void MetaphoneLetterS(int i, 
+        private static void MetaphoneLetterS(int i,
                                              StringBuilder buffer)
         {
             if ('S' != buffer[i])
@@ -2483,7 +2483,7 @@
         [Comment("'T' transforms to 'X' if followed by 'IA' or 'IO'.")]
         [Comment("'TH' transforms to '0'")]
         [Comment("Drop 'T' if followed by 'CH'.")]
-        private static void MetaphoneLetterT(int i, 
+        private static void MetaphoneLetterT(int i,
                                              StringBuilder buffer)
         {
             if ('T' != buffer[i])
@@ -2539,7 +2539,7 @@
 
         [Comment("'WH' transforms to 'W' if at the beginning.")]
         [Comment("Drop 'W' if not followed by a vowel.")]
-        private static void MetaphoneLetterW(int i, 
+        private static void MetaphoneLetterW(int i,
                                              StringBuilder buffer)
         {
             if ('W' != buffer[i])
@@ -2573,7 +2573,7 @@
         }
 
         [Comment("Drop 'Y' if not followed by a vowel.")]
-        private static void MetaphoneLetterY(int i, 
+        private static void MetaphoneLetterY(int i,
                                              StringBuilder buffer)
         {
             if ('Y' != buffer[i])
@@ -2599,7 +2599,7 @@
 #if NET20
         private static T To<T>(Type type, string obj)
 #else
-        private static T To<T>(this Type type, 
+        private static T To<T>(this Type type,
                                string obj)
 #endif
         {
@@ -2688,7 +2688,7 @@
 #if NET20
         private static T TryTo<T>(Type type, string obj)
 #else
-        private static T TryTo<T>(this Type type, 
+        private static T TryTo<T>(this Type type,
                                   string obj)
 #endif
         {

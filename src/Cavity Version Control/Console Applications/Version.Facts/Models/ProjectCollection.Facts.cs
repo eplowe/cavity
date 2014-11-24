@@ -1,10 +1,8 @@
 ﻿namespace Cavity.Models
 {
     using System.Collections.ObjectModel;
-
     using Cavity.IO;
     using Cavity.Testing;
-
     using Xunit;
 
     public sealed class ProjectCollectionFacts

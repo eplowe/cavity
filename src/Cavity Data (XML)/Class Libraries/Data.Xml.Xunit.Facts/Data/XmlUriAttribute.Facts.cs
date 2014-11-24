@@ -9,9 +9,7 @@
     using System.Xml;
     using System.Xml.Linq;
     using System.Xml.XPath;
-
     using Cavity.IO;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -135,7 +133,7 @@
 
         [Theory]
         [XmlUri("http://www.alan-dean.com/one.xml", "http://www.alan-dean.com/two.xml")]
-        public void usage_whenMultipleParameters(XmlDocument one, 
+        public void usage_whenMultipleParameters(XmlDocument one,
                                                  XmlDocument two)
         {
             Assert.Equal("<one />", one.OuterXml);

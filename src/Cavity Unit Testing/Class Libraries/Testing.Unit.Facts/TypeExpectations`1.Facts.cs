@@ -3,11 +3,9 @@
     using System;
     using System.Diagnostics;
     using System.Xml.Serialization;
-
     using Cavity.Fluent;
     using Cavity.Tests;
     using Cavity.Types;
-
     using Xunit;
 
     public sealed class TypeExpectationsOfTFacts
@@ -203,6 +201,18 @@
         }
 
         [Fact]
+        public void prop_Result_whenConstructorClass()
+        {
+            Assert.True(new TypeExpectations<ConstructorClass1>()
+                            .DerivesFrom<object>()
+                            .IsConcreteClass()
+                            .IsSealed()
+                            .NoDefaultConstructor()
+                            .IsNotDecorated()
+                            .Result);
+        }
+
+        [Fact]
         public void prop_Result_whenDecoratedWithIgnoredAttributeTypes()
         {
             Assert.True(new TypeExpectations<IgnoreAttributeTest>()
@@ -223,18 +233,6 @@
                             .IsSealed()
                             .HasDefaultConstructor()
                             .IsDecoratedWith<DebuggerDisplayAttribute>()
-                            .Result);
-        }
-
-        [Fact]
-        public void prop_Result_whenConstructorClass()
-        {
-            Assert.True(new TypeExpectations<ConstructorClass1>()
-                            .DerivesFrom<object>()
-                            .IsConcreteClass()
-                            .IsSealed()
-                            .NoDefaultConstructor()
-                            .IsNotDecorated()
                             .Result);
         }
 

@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Collections
 {
     using System;
-
     using Xunit;
 
     public sealed class CaverphoneComparerFacts

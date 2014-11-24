@@ -2,7 +2,6 @@
 {
     using System;
     using System.Net;
-
     using Xunit;
 
     public sealed class HttpRequestExtensionMethodsFacts
@@ -18,7 +17,7 @@
         {
             var request = new HttpRequest
                               {
-                                  Line = new HttpRequestLine("GET", "http://example.com/"), 
+                                  Line = new HttpRequestLine("GET", "http://example.com/"),
                                   Headers = new HttpHeaderDictionary()
                               };
 
@@ -59,7 +58,7 @@
             var cookies = new CookieContainer();
             var request = new HttpRequest
                               {
-                                  Line = new HttpRequestLine("GET", "http://example.com/"), 
+                                  Line = new HttpRequestLine("GET", "http://example.com/"),
                                   Headers = new HttpHeaderDictionary()
                               };
 
@@ -163,7 +162,7 @@
             var cookies = new CookieContainer();
             var request = new HttpRequest
                               {
-                                  Line = new HttpRequestLine("TRACE", "http://example.com/"), 
+                                  Line = new HttpRequestLine("TRACE", "http://example.com/"),
                                   Headers = new HttpHeaderDictionary()
                               };
 

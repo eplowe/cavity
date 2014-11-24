@@ -13,7 +13,7 @@
         {
         }
 
-        public XmlSerializationResult(object model, 
+        public XmlSerializationResult(object model,
                                       string contentType)
         {
             if (null == model)

@@ -2,15 +2,10 @@
 {
     using System;
     using System.Linq;
-
     using Autofac;
-
     using Cavity.Examples;
-
     using Microsoft.Practices.ServiceLocation;
-
     using Moq;
-
     using Xunit;
 
     public sealed class AutofacServiceLocatorFacts

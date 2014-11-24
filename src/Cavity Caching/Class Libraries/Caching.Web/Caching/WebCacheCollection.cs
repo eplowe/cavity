@@ -43,21 +43,21 @@
             }
         }
 
-        public void Add(string key, 
+        public void Add(string key,
                         object value)
         {
             Cache.Add(key, value, null, Cache.NoAbsoluteExpiration, Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
         }
 
-        public void Add(string key, 
-                        object value, 
+        public void Add(string key,
+                        object value,
                         DateTime absoluteExpiration)
         {
             Cache.Add(key, value, null, absoluteExpiration, Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
         }
 
-        public void Add(string key, 
-                        object value, 
+        public void Add(string key,
+                        object value,
                         TimeSpan slidingExpiration)
         {
             Cache.Add(key, value, null, Cache.NoAbsoluteExpiration, slidingExpiration, CacheItemPriority.Default, null);
@@ -113,28 +113,28 @@
             return (T)Cache.Remove(key);
         }
 
-        public void Set(string key, 
+        public void Set(string key,
                         object value)
         {
             Cache.Insert(key, value, null, Cache.NoAbsoluteExpiration, Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
         }
 
-        public void Set(string key, 
-                        object value, 
+        public void Set(string key,
+                        object value,
                         DateTime absoluteExpiration)
         {
             Cache.Insert(key, value, null, absoluteExpiration, Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
         }
 
-        public void Set(string key, 
-                        object value, 
+        public void Set(string key,
+                        object value,
                         TimeSpan slidingExpiration)
         {
             Cache.Insert(key, value, null, Cache.NoAbsoluteExpiration, slidingExpiration, CacheItemPriority.Default, null);
         }
-        
+
 #if !NET20
-        public object Get(string key, 
+        public object Get(string key,
                           Func<object> add)
         {
             if (null == add)
@@ -153,7 +153,7 @@
             return value;
         }
 
-        public object Get(string key, 
+        public object Get(string key,
                           Func<ICacheCollection, object> add)
         {
             if (null == add)
@@ -162,11 +162,11 @@
             }
 
             return ContainsKey(key)
-                ? Cache.Get(key)
-                : add.Invoke(this);
+                       ? Cache.Get(key)
+                       : add.Invoke(this);
         }
 
-        public T Get<T>(string key, 
+        public T Get<T>(string key,
                         Func<T> add)
         {
             if (null == add)
@@ -185,7 +185,7 @@
             return value;
         }
 
-        public T Get<T>(string key, 
+        public T Get<T>(string key,
                         Func<ICacheCollection, T> add)
         {
             if (null == add)

@@ -2,10 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-
     using Cavity.IO;
     using Cavity.Testing;
-
     using Xunit;
 
     public sealed class ProgramFacts

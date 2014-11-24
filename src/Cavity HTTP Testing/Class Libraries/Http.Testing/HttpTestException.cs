@@ -15,13 +15,13 @@
         {
         }
 
-        public HttpTestException(string message, 
+        public HttpTestException(string message,
                                  Exception innerException)
             : base(message, innerException)
         {
         }
 
-        private HttpTestException(SerializationInfo info, 
+        private HttpTestException(SerializationInfo info,
                                   StreamingContext context)
             : base(info, context)
         {

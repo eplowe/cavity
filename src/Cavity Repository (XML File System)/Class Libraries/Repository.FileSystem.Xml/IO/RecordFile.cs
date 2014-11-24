@@ -5,7 +5,6 @@
     using System.Text;
     using System.Xml;
     using System.Xml.XPath;
-
     using Cavity.Collections;
     using Cavity.Data;
 
@@ -17,28 +16,28 @@
                           {
                               {
                                   "urn", string.Empty
-                                  }, 
+                              },
                               {
                                   "key", string.Empty
-                                  }, 
+                              },
                               {
                                   "etag", string.Empty
-                                  }, 
+                              },
                               {
                                   "created", string.Empty
-                                  }, 
+                              },
                               {
                                   "modified", string.Empty
-                                  }, 
+                              },
                               {
                                   "cacheability", string.Empty
-                                  }, 
+                              },
                               {
                                   "expiration", string.Empty
-                                  }, 
+                              },
                               {
                                   "status", string.Empty
-                                  }
+                              }
                           };
         }
 
@@ -128,8 +127,8 @@
 
             AbsoluteUri urn = Headers["urn"];
             var file = new FileInfo(Path.Combine(
-                urn.ToPath(root).FullName, 
-                "{0}.record".FormatWith(Headers["key"])));
+                                                 urn.ToPath(root).FullName,
+                                                 "{0}.record".FormatWith(Headers["key"])));
 
             if (null != file.Directory && !file.Directory.Exists)
             {
@@ -163,14 +162,14 @@
         {
             return new Record<T>
                        {
-                           Cacheability = Headers["cacheability"], 
-                           Created = XmlConvert.ToDateTime(Headers["created"], XmlDateTimeSerializationMode.Utc), 
-                           Etag = Headers["etag"], 
-                           Expiration = Headers["expiration"], 
-                           Key = AlphaDecimal.FromString(Headers["key"]), 
-                           Modified = XmlConvert.ToDateTime(Headers["modified"], XmlDateTimeSerializationMode.Utc), 
-                           Status = XmlConvert.ToInt32(Headers["status"]), 
-                           Urn = Headers["urn"], 
+                           Cacheability = Headers["cacheability"],
+                           Created = XmlConvert.ToDateTime(Headers["created"], XmlDateTimeSerializationMode.Utc),
+                           Etag = Headers["etag"],
+                           Expiration = Headers["expiration"],
+                           Key = AlphaDecimal.FromString(Headers["key"]),
+                           Modified = XmlConvert.ToDateTime(Headers["modified"], XmlDateTimeSerializationMode.Utc),
+                           Status = XmlConvert.ToInt32(Headers["status"]),
+                           Urn = Headers["urn"],
                            Value = Body.XmlDeserialize<T>()
                        };
         }

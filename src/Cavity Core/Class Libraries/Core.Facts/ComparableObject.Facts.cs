@@ -1,7 +1,6 @@
 namespace Cavity
 {
     using System;
-
     using Xunit;
 
     public sealed class ComparableObjectFacts

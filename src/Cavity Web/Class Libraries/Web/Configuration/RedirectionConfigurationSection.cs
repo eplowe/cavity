@@ -3,7 +3,6 @@
     using System;
     using System.Configuration;
     using System.Linq;
-
     using Cavity.Net;
 
     public class RedirectionConfigurationSection : ConfigurationSection

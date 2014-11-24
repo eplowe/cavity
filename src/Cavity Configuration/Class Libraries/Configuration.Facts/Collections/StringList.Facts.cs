@@ -3,11 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     using Cavity.Configuration;
     using Cavity.IO;
     using Cavity.Xml.XPath;
-
     using Xunit;
 
     public sealed class StringListFacts
@@ -163,7 +161,7 @@
 
             var obj = new StringList
                           {
-                              "123", 
+                              "123",
                               "456"
                           };
             var actual = obj.ToString();

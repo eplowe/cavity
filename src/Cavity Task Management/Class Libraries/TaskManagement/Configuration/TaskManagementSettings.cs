@@ -5,9 +5,9 @@
 
     public sealed class TaskManagementSettings : ConfigurationSection
     {
-        private static readonly ConfigurationProperty _refreshRate = new ConfigurationProperty("refreshRate", 
-                                                                                               typeof(TimeSpan), 
-                                                                                               TimeSpan.FromSeconds(1), 
+        private static readonly ConfigurationProperty _refreshRate = new ConfigurationProperty("refreshRate",
+                                                                                               typeof(TimeSpan),
+                                                                                               TimeSpan.FromSeconds(1),
                                                                                                ConfigurationPropertyOptions.IsRequired);
 
         public TaskManagementSettings()
