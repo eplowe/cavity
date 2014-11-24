@@ -1,10 +1,6 @@
 ﻿namespace Cavity
 {
-    using System;
-    using Cavity;
-
     using Moq;
-
     using Xunit;
 
     public sealed class ICalculateDateTimePeriodFacts
@@ -15,24 +11,6 @@
             Assert.True(new TypeExpectations<ICalculateDateTimePeriod<Date>>().IsInterface()
                                                                               .IsNotDecorated()
                                                                               .Result);
-        }
-
-        [Fact]
-        public void op_Days_int()
-        {
-            var expected = new DateTimePeriod();
-
-            var mock = new Mock<ICalculateDateTimePeriod<Date>>();
-            mock
-                .Setup(x => x.Days(1))
-                .Returns(expected)
-                .Verifiable();
-
-            var actual = mock.Object.Days(1);
-
-            Assert.Equal(expected, actual);
-
-            mock.VerifyAll();
         }
 
         [Fact]
@@ -48,6 +26,24 @@
                 .Verifiable();
 
             var actual = mock.Object.Between(value);
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void op_Days_int()
+        {
+            var expected = new DateTimePeriod();
+
+            var mock = new Mock<ICalculateDateTimePeriod<Date>>();
+            mock
+                .Setup(x => x.Days(1))
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.Days(1);
 
             Assert.Equal(expected, actual);
 

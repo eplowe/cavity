@@ -3,7 +3,6 @@
     using System;
     using System.Configuration;
     using System.Diagnostics;
-
     using Cavity.Diagnostics;
 
     public sealed class ConfigurationValidator<T> : ConfigurationValidatorBase

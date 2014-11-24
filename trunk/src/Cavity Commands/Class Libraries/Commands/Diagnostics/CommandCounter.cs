@@ -40,9 +40,9 @@
             if (_exists)
             {
                 using (var counter = new PerformanceCounter(_category, _counter, false)
-                {
-                    MachineName = "."
-                })
+                                         {
+                                             MachineName = "."
+                                         })
                 {
                     counter.Increment();
                 }

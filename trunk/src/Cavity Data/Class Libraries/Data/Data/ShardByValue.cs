@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Data
 {
     using System;
-
     using Cavity.Collections;
 
     public sealed class ShardByValue : IIdentifyShard

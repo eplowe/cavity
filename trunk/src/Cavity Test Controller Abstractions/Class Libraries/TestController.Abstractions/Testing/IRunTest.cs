@@ -10,7 +10,7 @@
 
         string Title { get; }
 
-        bool Run(DirectoryInfo directory, 
+        bool Run(DirectoryInfo directory,
                  TextWriter log);
     }
 }

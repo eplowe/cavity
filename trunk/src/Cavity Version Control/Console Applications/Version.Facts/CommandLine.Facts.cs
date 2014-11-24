@@ -1,7 +1,6 @@
 ﻿namespace Cavity
 {
     using System.Collections.Generic;
-
     using Xunit;
 
     public sealed class CommandLineFacts

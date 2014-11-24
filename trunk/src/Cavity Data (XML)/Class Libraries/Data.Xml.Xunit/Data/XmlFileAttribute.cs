@@ -13,10 +13,8 @@
     using System.Xml.Linq;
 #endif
     using System.Xml.XPath;
-
     using Cavity.IO;
     using Cavity.Properties;
-
     using Xunit.Extensions;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
@@ -44,7 +42,7 @@
 
         public IEnumerable<string> Files { get; private set; }
 
-        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest, 
+        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest,
                                                       Type[] parameterTypes)
         {
             if (null == methodUnderTest)
@@ -84,7 +82,7 @@
                     list.Add(data);
                     continue;
                 }
-                
+
                 if (parameterTypes[index] == typeof(XmlDocument) || parameterTypes[index] == typeof(IXPathNavigable))
                 {
                     var xml = new XmlDocument();
@@ -110,7 +108,7 @@
                     continue;
                 }
 #endif
-                
+
 #if NET20
                 list.Add(StringExtensionMethods.XmlDeserialize(FileInfoExtensionMethods.ReadToEnd(info), parameterTypes[index]));
 #else

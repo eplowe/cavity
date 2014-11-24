@@ -1,11 +1,8 @@
 ﻿namespace Cavity.Fluent
 {
     using System;
-
     using Cavity.Types;
-
     using Moq;
-
     using Xunit;
 
     public sealed class ITestTypeFacts

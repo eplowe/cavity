@@ -2,7 +2,6 @@
 {
     using System;
     using System.Web.Mvc;
-
     using Cavity.IO;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false, AllowMultiple = false)]

@@ -3,7 +3,6 @@
     using System;
     using System.Configuration;
     using System.IO;
-
     using Xunit;
 
     public sealed class PathConfigurationSectionFacts

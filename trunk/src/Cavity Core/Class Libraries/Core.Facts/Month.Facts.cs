@@ -5,7 +5,6 @@
     using System.IO;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -182,8 +181,8 @@
         [InlineData("2012-04", "2012-03", 1)]
         [InlineData("2012-03", "2012-03", 0)]
         [InlineData("2012-02", "2012-03", -1)]
-        public void op_AddMonths_int(string expected, 
-                                     string month, 
+        public void op_AddMonths_int(string expected,
+                                     string month,
                                      int value)
         {
             var actual = ((Month)month).AddMonths(value);
@@ -205,8 +204,8 @@
         [InlineData("2012-06", "2012-03", 1)]
         [InlineData("2012-03", "2012-03", 0)]
         [InlineData("2011-12", "2012-03", -1)]
-        public void op_AddQuarters_int(string expected, 
-                                       string month, 
+        public void op_AddQuarters_int(string expected,
+                                       string month,
                                        int value)
         {
             var actual = ((Month)month).AddQuarters(value);
@@ -228,8 +227,8 @@
         [InlineData("2013-03", "2012-03", 1)]
         [InlineData("2012-03", "2012-03", 0)]
         [InlineData("2011-03", "2012-03", -1)]
-        public void op_AddYears_int(string expected, 
-                                    string month, 
+        public void op_AddYears_int(string expected,
+                                    string month,
                                     int value)
         {
             var actual = ((Month)month).AddYears(value);
@@ -451,8 +450,8 @@
         [InlineData("2013-01", "2012-03", MonthOfYear.January)]
         [InlineData("2013-02", "2012-03", MonthOfYear.February)]
         [InlineData("2013-03", "2012-03", MonthOfYear.March)]
-        public void op_Next_MonthOfYear(string expected, 
-                                        string month, 
+        public void op_Next_MonthOfYear(string expected,
+                                        string month,
                                         MonthOfYear value)
         {
             Month day = month;
@@ -482,8 +481,8 @@
         [InlineData("2011-12", "2012-03", MonthOfYear.December)]
         [InlineData("2012-01", "2012-03", MonthOfYear.January)]
         [InlineData("2012-02", "2012-03", MonthOfYear.February)]
-        public void op_Previous_MonthOfYear(string expected, 
-                                            string month, 
+        public void op_Previous_MonthOfYear(string expected,
+                                            string month,
                                             MonthOfYear value)
         {
             Month day = month;

@@ -7,7 +7,6 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Xml;
-
     using Cavity.Globalization;
 
     public class AcceptLanguage
@@ -34,7 +33,7 @@
             return new AcceptLanguage(Split(string.IsNullOrEmpty(value) ? "*" : value));
         }
 
-        public ActionResult Negotiate(HttpRequestBase request, 
+        public ActionResult Negotiate(HttpRequestBase request,
                                       Type controller)
         {
             if (null == request)
@@ -99,7 +98,7 @@
                                     1m, 0.9m, 0.8m, 0.7m, 0.6m, 0.5m, 0.4m, 0.3m, 0.2m, 0.1m
                                 };
                 foreach (var language in ranks.SelectMany(item => languages.Where(x => item == x.Value)
-                                                                      .OrderByDescending(x => x.Key)))
+                                                                           .OrderByDescending(x => x.Key)))
                 {
                     yield return language.Key;
                 }

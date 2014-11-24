@@ -2,9 +2,7 @@
 {
     using System;
     using System.Linq;
-
     using Cavity.Collections;
-
     using Xunit;
 
     public sealed class LexicalItemFacts
@@ -57,7 +55,7 @@
                           {
                               Synonyms =
                                   {
-                                      "Foo", 
+                                      "Foo",
                                       "Bar"
                                   }
                           };
@@ -80,7 +78,7 @@
                           {
                               Synonyms =
                                   {
-                                      "Foo", 
+                                      "Foo",
                                       "Bar"
                                   }
                           };
@@ -95,7 +93,7 @@
                           {
                               Synonyms =
                                   {
-                                      "Foo", 
+                                      "Foo",
                                       "Bar"
                                   }
                           };
@@ -137,6 +135,19 @@
         }
 
         [Fact]
+        public void op_MatchBeginning()
+        {
+            var lexicon = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
+                              {
+                                  "Blenheim Gate"
+                              };
+
+            var actual = lexicon.MatchBeginning("Blenheim Gate 22-24");
+
+            Assert.NotNull(actual);
+        }
+
+        [Fact]
         public void op_MatchBeginning_stringEmpty()
         {
             var obj = new LexicalItem(NormalityComparer.Ordinal, "Example");
@@ -159,25 +170,12 @@
             obj.Synonyms.Add("an example");
 
             var expected = new LexicalMatch(obj)
-                {
-                    Suffix = "test case"
-                };
+                               {
+                                   Suffix = "test case"
+                               };
             var actual = obj.MatchBeginning("an ex_ample test case");
 
             Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_MatchBeginning()
-        {
-            var lexicon = new LexicalCollection(NormalityComparer.OrdinalIgnoreCase)
-                {
-                    "Blenheim Gate"
-                };
-
-            var actual = lexicon.MatchBeginning("Blenheim Gate 22-24");
-
-            Assert.NotNull(actual);
         }
 
         [Fact]
@@ -359,7 +357,7 @@
 
             var expected = new LexicalMatch(obj)
                                {
-                                   Prefix = "This is an", 
+                                   Prefix = "This is an",
                                    Suffix = "test case"
                                };
             var actual = obj.MatchWithin("This is an ex0ample test case");
@@ -410,7 +408,7 @@
 
             var expected = new LexicalMatch(obj)
                                {
-                                   Prefix = "This is an", 
+                                   Prefix = "This is an",
                                    Suffix = "test case"
                                };
             var actual = obj.MatchWithin("This is an example test case");
@@ -425,7 +423,7 @@
 
             var expected = new LexicalMatch(obj)
                                {
-                                   Prefix = "This is", 
+                                   Prefix = "This is",
                                    Suffix = "test case"
                                };
             var actual = obj.MatchWithin("This is an example test case");
@@ -441,7 +439,7 @@
 
             var expected = new LexicalMatch(obj)
                                {
-                                   Prefix = "This is an", 
+                                   Prefix = "This is an",
                                    Suffix = "test case"
                                };
 
@@ -503,7 +501,7 @@
                           {
                               Synonyms =
                                   {
-                                      "Foo", 
+                                      "Foo",
                                       "Bar"
                                   }
                           };
@@ -526,7 +524,7 @@
                           {
                               Synonyms =
                                   {
-                                      "Foo", 
+                                      "Foo",
                                       "Bar"
                                   }
                           };
@@ -541,7 +539,7 @@
                           {
                               Synonyms =
                                   {
-                                      "Foo", 
+                                      "Foo",
                                       "Bar"
                                   }
                           };
@@ -590,7 +588,7 @@
                           {
                               Synonyms =
                                   {
-                                      "b", 
+                                      "b",
                                       "c"
                                   }
                           };
@@ -598,8 +596,8 @@
             const string expected = "abc";
             var actual = obj
                 .Spellings
-                .Aggregate<string, string>(null, 
-                                           (x, 
+                .Aggregate<string, string>(null,
+                                           (x,
                                             spelling) => x + spelling);
 
             Assert.Equal(expected, actual);

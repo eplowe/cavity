@@ -12,7 +12,7 @@
 
         private string _mediaTypes;
 
-        public ContentNegotiationAttribute(string extension, 
+        public ContentNegotiationAttribute(string extension,
                                            string mediaTypes)
             : this()
         {

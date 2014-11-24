@@ -6,7 +6,6 @@
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Xml;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -220,21 +219,8 @@
         [InlineData("2012-03-27", "2012-03-26", 1)]
         [InlineData("2012-03-26", "2012-03-26", 0)]
         [InlineData("2012-03-25", "2012-03-26", -1)]
-        public void op_Subtract_Date_Date(string value,
-                                          string other,
-                                          int expected)
-        {
-            var actual = Date.FromString(value).Subtract(other);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [InlineData("2012-03-27", "2012-03-26", 1)]
-        [InlineData("2012-03-26", "2012-03-26", 0)]
-        [InlineData("2012-03-25", "2012-03-26", -1)]
-        public void op_AddDays_int(string expected, 
-                                   string date, 
+        public void op_AddDays_int(string expected,
+                                   string date,
                                    int value)
         {
             var actual = ((Date)date).AddDays(value);
@@ -246,8 +232,8 @@
         [InlineData("2012-04-26", "2012-03-26", 1)]
         [InlineData("2012-03-26", "2012-03-26", 0)]
         [InlineData("2012-02-26", "2012-03-26", -1)]
-        public void op_AddMonths_int(string expected, 
-                                     string date, 
+        public void op_AddMonths_int(string expected,
+                                     string date,
                                      int value)
         {
             var actual = ((Date)date).AddMonths(value);
@@ -269,8 +255,8 @@
         [InlineData("2012-06-26", "2012-03-26", 1)]
         [InlineData("2012-03-26", "2012-03-26", 0)]
         [InlineData("2011-12-26", "2012-03-26", -1)]
-        public void op_AddQuarters_int(string expected, 
-                                       string date, 
+        public void op_AddQuarters_int(string expected,
+                                       string date,
                                        int value)
         {
             var actual = ((Date)date).AddQuarters(value);
@@ -293,8 +279,8 @@
         [InlineData("2012-03-26", "2012-03-26", 0)]
         [InlineData("2012-03-19", "2012-03-26", -1)]
         [InlineData("2012-03-12", "2012-03-26", -2)]
-        public void op_AddWeeks_int(string expected, 
-                                    string date, 
+        public void op_AddWeeks_int(string expected,
+                                    string date,
                                     int value)
         {
             var actual = ((Date)date).AddWeeks(value);
@@ -316,8 +302,8 @@
         [InlineData("2013-03-26", "2012-03-26", 1)]
         [InlineData("2012-03-26", "2012-03-26", 0)]
         [InlineData("2011-03-26", "2012-03-26", -1)]
-        public void op_AddYears_int(string expected, 
-                                    string date, 
+        public void op_AddYears_int(string expected,
+                                    string date,
                                     int value)
         {
             var actual = ((Date)date).AddYears(value);
@@ -385,7 +371,7 @@
         [InlineData(1, "2012-05-10T14:30:00Z")]
         [InlineData(0, "2012-05-30T12:00:00Z")]
         [InlineData(-1, "2012-06-10T14:30:00Z")]
-        public void op_CompareTo_DateTime(int expected, 
+        public void op_CompareTo_DateTime(int expected,
                                           string date)
         {
             var obj = new Date(2012, 5, 30);
@@ -449,7 +435,7 @@
         [Theory]
         [InlineData(false, 29)]
         [InlineData(true, 30)]
-        public void op_Equals_DateTime(bool expected, 
+        public void op_Equals_DateTime(bool expected,
                                        int day)
         {
             var obj = new Date(2012, 5, 30);
@@ -562,6 +548,19 @@
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData("2012-03-27", "2012-03-26", 1)]
+        [InlineData("2012-03-26", "2012-03-26", 0)]
+        [InlineData("2012-03-25", "2012-03-26", -1)]
+        public void op_Subtract_Date_Date(string value,
+                                          string other,
+                                          int expected)
+        {
+            var actual = Date.FromString(value).Subtract(other);
+
+            Assert.Equal(expected, actual);
+        }
+
         [Fact]
         public void op_ToDateTime()
         {
@@ -614,7 +613,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = new DateTime(2012, 11, 30), 
+                                   Ending = new DateTime(2012, 11, 30),
                                    Beginning = new DateTime(2012, 11, 1)
                                };
             var actual = date.Calendar.Month;
@@ -629,7 +628,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = new DateTime(2012, 11, 11), 
+                                   Ending = new DateTime(2012, 11, 11),
                                    Beginning = new DateTime(2012, 11, 5)
                                };
             var actual = date.Calendar.Week;
@@ -644,7 +643,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = new DateTime(2012, 11, 18), 
+                                   Ending = new DateTime(2012, 11, 18),
                                    Beginning = new DateTime(2012, 11, 12)
                                };
             var actual = date.Calendar.Week;
@@ -659,7 +658,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = new DateTime(2012, 11, 4), 
+                                   Ending = new DateTime(2012, 11, 4),
                                    Beginning = new DateTime(2012, 10, 29)
                                };
             var actual = date.Calendar.Week;
@@ -674,7 +673,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = new DateTime(2012, 12, 31), 
+                                   Ending = new DateTime(2012, 12, 31),
                                    Beginning = new DateTime(2012, 1, 1)
                                };
             var actual = date.Calendar.Year;
@@ -1081,7 +1080,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = other.ToDateTime(), 
+                                   Ending = other.ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Between(other);
@@ -1097,7 +1096,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.ToDateTime(), 
+                                   Ending = date.ToDateTime(),
                                    Beginning = other.ToDateTime()
                                };
             var actual = date.Period.Between(other);
@@ -1113,7 +1112,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = other.ToDateTime(), 
+                                   Ending = other.ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Between(other);
@@ -1128,7 +1127,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.AddDays(1).ToDateTime(), 
+                                   Ending = date.AddDays(1).ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Days(1);
@@ -1143,7 +1142,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.ToDateTime(), 
+                                   Ending = date.ToDateTime(),
                                    Beginning = date.AddDays(-1).ToDateTime()
                                };
             var actual = date.Period.Days(-1);
@@ -1158,7 +1157,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.ToDateTime(), 
+                                   Ending = date.ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Days(0);
@@ -1173,7 +1172,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.AddMonths(1).AddDays(-1).ToDateTime(), 
+                                   Ending = date.AddMonths(1).AddDays(-1).ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Months(1);
@@ -1188,7 +1187,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.ToDateTime(), 
+                                   Ending = date.ToDateTime(),
                                    Beginning = date.AddMonths(-1).AddDays(1).ToDateTime()
                                };
             var actual = date.Period.Months(-1);
@@ -1203,7 +1202,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.ToDateTime(), 
+                                   Ending = date.ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Months(0);
@@ -1219,7 +1218,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.ToDateTime(), 
+                                   Ending = date.ToDateTime(),
                                    Beginning = since.ToDateTime()
                                };
             var actual = date.Period.Since(since);
@@ -1244,7 +1243,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = since.ToDateTime(), 
+                                   Ending = since.ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Since(since);
@@ -1260,7 +1259,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = until.ToDateTime(), 
+                                   Ending = until.ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Until(until);
@@ -1285,7 +1284,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = until.ToDateTime(), 
+                                   Ending = until.ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Until(until);
@@ -1300,7 +1299,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.AddDays(13).ToDateTime(), 
+                                   Ending = date.AddDays(13).ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Weeks(2);
@@ -1315,7 +1314,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.ToDateTime(), 
+                                   Ending = date.ToDateTime(),
                                    Beginning = date.AddDays(-13).ToDateTime()
                                };
             var actual = date.Period.Weeks(-2);
@@ -1330,7 +1329,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.ToDateTime(), 
+                                   Ending = date.ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Weeks(0);
@@ -1345,7 +1344,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.AddYears(1).AddDays(-1).ToDateTime(), 
+                                   Ending = date.AddYears(1).AddDays(-1).ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Years(1);
@@ -1360,7 +1359,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.ToDateTime(), 
+                                   Ending = date.ToDateTime(),
                                    Beginning = date.AddYears(-1).AddDays(1).ToDateTime()
                                };
             var actual = date.Period.Years(-1);
@@ -1375,7 +1374,7 @@
 
             var expected = new DateTimePeriod
                                {
-                                   Ending = date.ToDateTime(), 
+                                   Ending = date.ToDateTime(),
                                    Beginning = date.ToDateTime()
                                };
             var actual = date.Period.Years(0);

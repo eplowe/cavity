@@ -253,10 +253,10 @@
             using (var temp = new TempDirectory())
             {
                 var expected = temp.Info
-                    .ToDirectory("a", true)
-                    .ToFile("example.csv")
-                    .Create(string.Empty)
-                    .FullName;
+                                   .ToDirectory("a", true)
+                                   .ToFile("example.csv")
+                                   .Create(string.Empty)
+                                   .FullName;
 
                 var actual = temp.Info.CsvFiles(SearchOption.AllDirectories).First().FullName;
 
@@ -270,9 +270,9 @@
             using (var temp = new TempDirectory())
             {
                 var expected = temp.Info
-                    .ToFile("example.csv")
-                    .Create(string.Empty)
-                    .FullName;
+                                   .ToFile("example.csv")
+                                   .Create(string.Empty)
+                                   .FullName;
 
                 var actual = temp.Info.CsvFiles().First().FullName;
 
@@ -295,9 +295,9 @@
             {
                 temp.Info.ToFile("a.csv").Create(string.Empty);
                 var expected = temp.Info
-                    .ToFile("z.csv")
-                    .Create(string.Empty)
-                    .FullName;
+                                   .ToFile("z.csv")
+                                   .Create(string.Empty)
+                                   .FullName;
 
                 var actual = temp.Info.CsvFiles(file => file.Name).Last().FullName;
 
@@ -318,10 +318,10 @@
             {
                 temp.Info.ToFile("x.csv").Create(string.Empty);
                 var expected = temp.Info
-                    .ToDirectory("example", true)
-                    .ToFile("z.csv")
-                    .Create(string.Empty)
-                    .FullName;
+                                   .ToDirectory("example", true)
+                                   .ToFile("z.csv")
+                                   .Create(string.Empty)
+                                   .FullName;
 
                 var actual = temp.Info.CsvFiles(file => file.Name, SearchOption.AllDirectories).Last().FullName;
 
@@ -463,9 +463,9 @@
         [InlineData(2, 2, 1, SearchOption.AllDirectories)]
         [InlineData(9, 3, 3, SearchOption.AllDirectories)]
         public void op_LineCount_DirectoryInfo_string_SearchOption(int expected,
-            int files,
-            int lines,
-            SearchOption searchOption)
+                                                                   int files,
+                                                                   int lines,
+                                                                   SearchOption searchOption)
         {
             using (var temp = new TempDirectory())
             {
@@ -994,10 +994,10 @@
             using (var temp = new TempDirectory())
             {
                 var expected = temp.Info
-                    .ToDirectory("a", true)
-                    .ToFile("example.txt")
-                    .Create(string.Empty)
-                    .FullName;
+                                   .ToDirectory("a", true)
+                                   .ToFile("example.txt")
+                                   .Create(string.Empty)
+                                   .FullName;
 
                 var actual = temp.Info.TextFiles(SearchOption.AllDirectories).First().FullName;
 
@@ -1011,9 +1011,9 @@
             using (var temp = new TempDirectory())
             {
                 var expected = temp.Info
-                    .ToFile("example.txt")
-                    .Create(string.Empty)
-                    .FullName;
+                                   .ToFile("example.txt")
+                                   .Create(string.Empty)
+                                   .FullName;
 
                 var actual = temp.Info.TextFiles().First().FullName;
 
@@ -1116,9 +1116,9 @@
             using (var temp = new TempDirectory())
             {
                 foreach (var c in new[]
-                    {
-                        "\\", "/", ":", "*", "?", "\"", "<", ">", "|", "\n", "\t"
-                    })
+                                      {
+                                          "\\", "/", ":", "*", "?", "\"", "<", ">", "|", "\n", "\t"
+                                      })
                 {
                     var name = "invalid {0}example".FormatWith(c);
 
@@ -1170,9 +1170,9 @@
             using (var temp = new TempDirectory())
             {
                 foreach (var c in new[]
-                    {
-                        "\\", "/", ":", "*", "?", "\"", "<", ">", "|"
-                    })
+                                      {
+                                          "\\", "/", ":", "*", "?", "\"", "<", ">", "|"
+                                      })
                 {
                     var name = "invalid {0}example.txt".FormatWith(c);
 
@@ -1220,10 +1220,10 @@
             using (var temp = new TempDirectory())
             {
                 var expected = temp.Info
-                    .ToDirectory("a", true)
-                    .ToFile("example.xml")
-                    .Create(string.Empty)
-                    .FullName;
+                                   .ToDirectory("a", true)
+                                   .ToFile("example.xml")
+                                   .Create(string.Empty)
+                                   .FullName;
 
                 var actual = temp.Info.XmlFiles(SearchOption.AllDirectories).First().FullName;
 
@@ -1237,9 +1237,9 @@
             using (var temp = new TempDirectory())
             {
                 var expected = temp.Info
-                    .ToFile("example.xml")
-                    .Create(string.Empty)
-                    .FullName;
+                                   .ToFile("example.xml")
+                                   .Create(string.Empty)
+                                   .FullName;
 
                 var actual = temp.Info.XmlFiles().First().FullName;
 

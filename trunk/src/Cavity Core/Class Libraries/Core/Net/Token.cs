@@ -5,18 +5,17 @@
 #if !NET20
     using System.Linq;
 #endif
-    using System.Runtime.Serialization;
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
-
+    using System.Runtime.Serialization;
     using Cavity.Properties;
 
     [ImmutableObject(true)]
     [Serializable]
-    public class Token : IComparable, 
-                         IComparable<Token>, 
-                         IEquatable<Token>, 
+    public class Token : IComparable,
+                         IComparable<Token>,
+                         IEquatable<Token>,
                          ISerializable
     {
         private static readonly char[] _illegal = new[] { '"', '@', '(', ')', ',', '/', ':', ';', '<', '=', '>', '?', '[', '\\', ']', '{', '}' };
@@ -29,7 +28,7 @@
             Value = value;
         }
 
-        protected Token(SerializationInfo info, 
+        protected Token(SerializationInfo info,
                         StreamingContext context)
         {
             if (null == info)
@@ -85,7 +84,7 @@
             }
         }
 
-        public static bool operator ==(Token obj, 
+        public static bool operator ==(Token obj,
                                        Token comparand)
         {
             return ReferenceEquals(null, obj)
@@ -93,7 +92,7 @@
                        : obj.Equals(comparand, StringComparison.Ordinal);
         }
 
-        public static bool operator >(Token obj, 
+        public static bool operator >(Token obj,
                                       Token comparand)
         {
             return !ReferenceEquals(null, obj) && 0 < obj.CompareTo(comparand, StringComparison.Ordinal);
@@ -111,7 +110,7 @@
                        : new Token(value);
         }
 
-        public static bool operator !=(Token obj, 
+        public static bool operator !=(Token obj,
                                        Token comparand)
         {
             return ReferenceEquals(null, obj)
@@ -119,7 +118,7 @@
                        : !obj.Equals(comparand, StringComparison.Ordinal);
         }
 
-        public static bool operator <(Token obj, 
+        public static bool operator <(Token obj,
                                       Token comparand)
         {
             return ReferenceEquals(null, obj)
@@ -179,7 +178,7 @@
             return CompareTo(other, StringComparison.Ordinal);
         }
 
-        public virtual int CompareTo(Token other, 
+        public virtual int CompareTo(Token other,
                                      StringComparison comparison)
         {
             return null == other
@@ -192,7 +191,7 @@
             return Equals(other, StringComparison.Ordinal);
         }
 
-        public virtual bool Equals(Token other, 
+        public virtual bool Equals(Token other,
                                    StringComparison comparison)
         {
             if (ReferenceEquals(null, other))
@@ -207,7 +206,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        public virtual void GetObjectData(SerializationInfo info, 
+        public virtual void GetObjectData(SerializationInfo info,
                                           StreamingContext context)
         {
             if (null == info)

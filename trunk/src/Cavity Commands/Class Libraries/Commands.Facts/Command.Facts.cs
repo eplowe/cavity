@@ -2,9 +2,7 @@
 {
     using System;
     using System.Xml.Serialization;
-
     using Cavity.Xml.XPath;
-
     using Xunit;
 
     public sealed class CommandFacts

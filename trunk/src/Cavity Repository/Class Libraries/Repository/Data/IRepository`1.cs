@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Xml.XPath;
-
     using Cavity.Net;
 
     public interface IRepository<T>
@@ -19,16 +18,16 @@
 
         IRecord<T> Insert(IRecord<T> record);
 
-        bool Match(AbsoluteUri urn, 
+        bool Match(AbsoluteUri urn,
                    EntityTag etag);
 
-        bool Match(AlphaDecimal key, 
+        bool Match(AlphaDecimal key,
                    EntityTag etag);
 
-        bool ModifiedSince(AbsoluteUri urn, 
+        bool ModifiedSince(AbsoluteUri urn,
                            DateTime value);
 
-        bool ModifiedSince(AlphaDecimal key, 
+        bool ModifiedSince(AlphaDecimal key,
                            DateTime value);
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This design is intentional.")]

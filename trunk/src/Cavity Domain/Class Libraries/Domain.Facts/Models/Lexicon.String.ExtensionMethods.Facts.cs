@@ -1,9 +1,7 @@
 ﻿namespace Cavity.Models
 {
     using System;
-
     using Cavity.Collections;
-
     using Xunit;
 
     public sealed class LexiconStringExtensionMethodsFacts

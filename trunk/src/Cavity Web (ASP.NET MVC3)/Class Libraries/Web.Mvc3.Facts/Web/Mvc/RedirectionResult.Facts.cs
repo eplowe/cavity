@@ -5,11 +5,8 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Xml;
-
     using Cavity.Xml.XPath;
-
     using Moq;
-
     using Xunit;
 
     public sealed class RedirectionResultFacts

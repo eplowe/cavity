@@ -24,7 +24,7 @@
         }
 
 #if !NET20
-        public static DateTime ToLocalTime(this DateTime value, 
+        public static DateTime ToLocalTime(this DateTime value,
                                            string zone)
         {
             if (null == zone)
@@ -40,7 +40,7 @@
             return value.ToLocalTime(TimeZoneInfo.FindSystemTimeZoneById(zone));
         }
 
-        public static DateTime ToLocalTime(this DateTime value, 
+        public static DateTime ToLocalTime(this DateTime value,
                                            TimeZoneInfo zone)
         {
             if (null == zone)
@@ -61,6 +61,5 @@
         {
             return new Month(value);
         }
-
     }
 }

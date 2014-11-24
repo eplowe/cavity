@@ -40,7 +40,7 @@ namespace Cavity.Security.Cryptography
             _bytes = Convert.FromBase64String(value);
         }
 
-        public static bool operator ==(Salt obj, 
+        public static bool operator ==(Salt obj,
                                        Salt comparand)
         {
             return ReferenceEquals(null, obj)
@@ -58,7 +58,7 @@ namespace Cavity.Security.Cryptography
             return null == value ? null : new Salt(value);
         }
 
-        public static bool operator !=(Salt obj, 
+        public static bool operator !=(Salt obj,
                                        Salt comparand)
         {
             return ReferenceEquals(null, obj)

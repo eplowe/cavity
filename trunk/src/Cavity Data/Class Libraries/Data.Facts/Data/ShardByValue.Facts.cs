@@ -2,9 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-
     using Cavity.Collections;
-
     using Xunit;
     using Xunit.Extensions;
 

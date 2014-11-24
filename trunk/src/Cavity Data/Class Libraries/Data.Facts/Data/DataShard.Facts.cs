@@ -1,9 +1,7 @@
 ﻿namespace Cavity.Data
 {
     using System.Collections.Generic;
-
     using Cavity.Collections;
-
     using Xunit;
 
     public sealed class DataShardFacts

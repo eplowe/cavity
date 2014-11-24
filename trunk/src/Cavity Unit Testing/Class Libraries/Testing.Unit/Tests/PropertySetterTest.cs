@@ -3,12 +3,11 @@
     using System;
     using System.Globalization;
     using System.Reflection;
-
     using Cavity.Properties;
 
     public sealed class PropertySetterTest : PropertyTestBase
     {
-        public PropertySetterTest(PropertyInfo property, 
+        public PropertySetterTest(PropertyInfo property,
                                   object value)
             : base(property)
         {
@@ -37,8 +36,8 @@
                                          Value
                                      };
                 Property.GetSetMethod(true).Invoke(
-                    Activator.CreateInstance(type, true), 
-                    parameters);
+                                                   Activator.CreateInstance(type, true),
+                                                   parameters);
 
                 if (null != ExpectedException)
                 {

@@ -2,9 +2,7 @@
 {
     using System;
     using System.Reflection;
-
     using Cavity.Types;
-
     using Xunit;
 
     public sealed class MemberTestBaseFacts

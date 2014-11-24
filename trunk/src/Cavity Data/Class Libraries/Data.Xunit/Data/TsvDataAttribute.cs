@@ -8,10 +8,8 @@
     using System.Linq;
 #endif
     using System.Reflection;
-
     using Cavity.Collections;
     using Cavity.Properties;
-
     using Xunit.Extensions;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]

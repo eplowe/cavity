@@ -4,9 +4,7 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
-
     using Cavity.Collections;
-
     using Xunit;
     using Xunit.Extensions;
 

@@ -12,7 +12,7 @@
         {
         }
 
-        public HttpVersion(int major, 
+        public HttpVersion(int major,
                            int minor)
         {
             if (0 > major)

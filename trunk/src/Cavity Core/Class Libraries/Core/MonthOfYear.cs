@@ -2,29 +2,29 @@
 {
     public enum MonthOfYear
     {
-        None = 0, 
+        None = 0,
 
-        January = 1, 
+        January = 1,
 
-        February = 2, 
+        February = 2,
 
-        March = 3, 
+        March = 3,
 
-        April = 4, 
+        April = 4,
 
-        May = 5, 
+        May = 5,
 
-        June = 6, 
+        June = 6,
 
-        July = 7, 
+        July = 7,
 
-        August = 8, 
+        August = 8,
 
-        September = 9, 
+        September = 9,
 
-        October = 10, 
+        October = 10,
 
-        November = 11, 
+        November = 11,
 
         December = 12
     }

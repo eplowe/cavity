@@ -3,12 +3,9 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
-
     using Cavity.IO;
     using Cavity.Xml.XPath;
-
     using Moq;
-
     using Xunit;
 
     public sealed class CommandCollectionFacts

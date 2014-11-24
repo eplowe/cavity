@@ -7,7 +7,6 @@
     using System.Linq;
 #endif
     using System.Xml.Serialization;
-
     using Cavity.Collections;
     using Cavity.Diagnostics;
 

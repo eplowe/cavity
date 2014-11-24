@@ -10,11 +10,9 @@
 #endif
     using System.Net;
     using System.Reflection;
-
     using Cavity.Collections;
     using Cavity.IO;
     using Cavity.Properties;
-
     using Xunit.Extensions;
 
     [Obsolete("CsvUriAttribute is now deprecated. Use CsvHttpAttribute instead.")]
@@ -78,7 +76,7 @@
             return csv;
         }
 
-        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest, 
+        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest,
                                                       Type[] parameterTypes)
         {
             if (null == methodUnderTest)

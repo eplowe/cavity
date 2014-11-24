@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Web.Mvc
 {
     using System;
-
     using Xunit;
 
     public sealed class ContentNegotiationAttributeFacts

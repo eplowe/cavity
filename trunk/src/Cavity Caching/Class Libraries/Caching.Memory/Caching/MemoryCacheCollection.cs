@@ -38,21 +38,21 @@
             }
         }
 
-        public void Add(string key, 
+        public void Add(string key,
                         object value)
         {
             Cache.Add(key, value, null);
         }
 
-        public void Add(string key, 
-                        object value, 
+        public void Add(string key,
+                        object value,
                         DateTime absoluteExpiration)
         {
             Cache.Add(key, value, absoluteExpiration);
         }
 
-        public void Add(string key, 
-                        object value, 
+        public void Add(string key,
+                        object value,
                         TimeSpan slidingExpiration)
         {
             var policy = new CacheItemPolicy
@@ -104,21 +104,21 @@
             return (T)Cache.Remove(key);
         }
 
-        public void Set(string key, 
+        public void Set(string key,
                         object value)
         {
             Cache.Set(key, value, null);
         }
 
-        public void Set(string key, 
-                        object value, 
+        public void Set(string key,
+                        object value,
                         DateTime absoluteExpiration)
         {
             Cache.Set(key, value, absoluteExpiration);
         }
 
-        public void Set(string key, 
-                        object value, 
+        public void Set(string key,
+                        object value,
                         TimeSpan slidingExpiration)
         {
             var policy = new CacheItemPolicy
@@ -128,7 +128,7 @@
             Cache.Set(key, value, policy);
         }
 
-        public object Get(string key, 
+        public object Get(string key,
                           Func<object> add)
         {
             if (null == add)
@@ -147,7 +147,7 @@
             return value;
         }
 
-        public object Get(string key, 
+        public object Get(string key,
                           Func<ICacheCollection, object> add)
         {
             if (null == add)
@@ -156,11 +156,11 @@
             }
 
             return ContainsKey(key)
-                ? Cache.Get(key)
-                : add.Invoke(this);
+                       ? Cache.Get(key)
+                       : add.Invoke(this);
         }
 
-        public T Get<T>(string key, 
+        public T Get<T>(string key,
                         Func<T> add)
         {
             if (null == add)
@@ -179,7 +179,7 @@
             return value;
         }
 
-        public T Get<T>(string key, 
+        public T Get<T>(string key,
                         Func<ICacheCollection, T> add)
         {
             if (null == add)

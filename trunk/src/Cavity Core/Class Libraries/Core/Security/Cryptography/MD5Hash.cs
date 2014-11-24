@@ -21,9 +21,9 @@
     /// </remarks>
     [ImmutableObject(true)]
     [Serializable]
-    public struct MD5Hash : ISerializable, 
-                            IComparable, 
-                            IComparable<MD5Hash>, 
+    public struct MD5Hash : ISerializable,
+                            IComparable,
+                            IComparable<MD5Hash>,
                             IEquatable<MD5Hash>
     {
         public MD5Hash(byte[] value)
@@ -32,7 +32,7 @@
             Value = value;
         }
 
-        private MD5Hash(SerializationInfo info, 
+        private MD5Hash(SerializationInfo info,
                         StreamingContext context)
             : this()
         {
@@ -49,13 +49,13 @@
 
         private byte[] Value { get; set; }
 
-        public static bool operator ==(MD5Hash obj, 
+        public static bool operator ==(MD5Hash obj,
                                        MD5Hash comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator >(MD5Hash operand1, 
+        public static bool operator >(MD5Hash operand1,
                                       MD5Hash operand2)
         {
             return 0 < Compare(operand1, operand2);
@@ -71,19 +71,19 @@
             return new MD5Hash(value);
         }
 
-        public static bool operator !=(MD5Hash obj, 
+        public static bool operator !=(MD5Hash obj,
                                        MD5Hash comparand)
         {
             return !obj.Equals(comparand);
         }
 
-        public static bool operator <(MD5Hash operand1, 
+        public static bool operator <(MD5Hash operand1,
                                       MD5Hash operand2)
         {
             return 0 > Compare(operand1, operand2);
         }
 
-        public static int Compare(MD5Hash operand1, 
+        public static int Compare(MD5Hash operand1,
                                   MD5Hash operand2)
         {
             return string.CompareOrdinal(operand1, operand2);
@@ -100,7 +100,7 @@
             return Compute(content, Encoding.Default);
         }
 
-        public static MD5Hash Compute(string content, 
+        public static MD5Hash Compute(string content,
                                       Encoding encoding)
         {
             if (null == content)
@@ -174,7 +174,7 @@
         }
 
         public static bool Differ(FileSystemInfo operand1,
-                                     FileSystemInfo operand2)
+                                  FileSystemInfo operand2)
         {
             return !Same(operand1, operand2);
         }
@@ -228,7 +228,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        void ISerializable.GetObjectData(SerializationInfo info, 
+        void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {
             if (null == info)

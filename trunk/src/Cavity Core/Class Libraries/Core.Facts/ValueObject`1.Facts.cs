@@ -2,7 +2,6 @@ namespace Cavity
 {
     using System;
     using System.Xml;
-
     using Xunit;
 
     public sealed class ValueObjectOfTFacts
@@ -136,7 +135,7 @@ namespace Cavity
             var expected = "31/12/1999 00:00:00" + Environment.NewLine + "123";
             var actual = new ValueObjectDerived
                              {
-                                 DateTimeProperty = new DateTime(1999, 12, 31), 
+                                 DateTimeProperty = new DateTime(1999, 12, 31),
                                  Int32Property = 123
                              };
 
@@ -406,13 +405,13 @@ namespace Cavity
         {
             var obj = new ValueObjectDerived
                           {
-                              DateTimeProperty = new DateTime(1999, 12, 31), 
+                              DateTimeProperty = new DateTime(1999, 12, 31),
                               Int32Property = 123
                           };
 
             var comparand = new ValueObjectDerived
                                 {
-                                    DateTimeProperty = XmlConvert.ToDateTime(obj.DateTimeProperty.ToXmlString(), XmlDateTimeSerializationMode.Utc), 
+                                    DateTimeProperty = XmlConvert.ToDateTime(obj.DateTimeProperty.ToXmlString(), XmlDateTimeSerializationMode.Utc),
                                     Int32Property = 123
                                 };
 
@@ -517,8 +516,8 @@ namespace Cavity
         {
             var obj = new ValueObjectDerived
                           {
-                              DateTimeProperty = new DateTime(1999, 12, 31), 
-                              Int32Property = 123, 
+                              DateTimeProperty = new DateTime(1999, 12, 31),
+                              Int32Property = 123,
                               StringProperty = "test"
                           };
 

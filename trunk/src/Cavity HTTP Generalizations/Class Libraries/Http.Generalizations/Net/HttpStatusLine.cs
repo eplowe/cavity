@@ -7,7 +7,6 @@
 #endif
     using System.Net;
     using System.Xml;
-
     using Cavity.Collections;
 
     public class HttpStatusLine : ComparableObject
@@ -17,20 +16,20 @@
         {
         }
 
-        public HttpStatusLine(HttpVersion version, 
+        public HttpStatusLine(HttpVersion version,
                               HttpStatusCode code)
             : this(version, (int)code, ReasonPhase(code))
         {
         }
 
-        public HttpStatusLine(int code, 
+        public HttpStatusLine(int code,
                               string reason)
             : this(HttpVersion.Latest, code, reason)
         {
         }
 
-        public HttpStatusLine(HttpVersion version, 
-                              int code, 
+        public HttpStatusLine(HttpVersion version,
+                              int code,
                               string reason)
             : this()
         {

@@ -4,9 +4,9 @@
 
     public interface ITimeZoneEurope
     {
-        TimeZoneInfo CentralEuropeanTime { get; }
-
         TimeZoneInfo BritishTime { get; }
+
+        TimeZoneInfo CentralEuropeanTime { get; }
 
         TimeZoneInfo EasternEuropeanStandardTime { get; }
 

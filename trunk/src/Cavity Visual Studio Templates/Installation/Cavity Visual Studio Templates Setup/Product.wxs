@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="Cavity Visual Studio Templates" Language="1033" Version="2.0.0.948" Manufacturer="Alan Dean" UpgradeCode="186aa0a5-64b0-4867-a3de-019502de9336">
+  <Product Id="*" Name="Cavity Visual Studio Templates" Language="1033" Version="2.0.0.966" Manufacturer="Alan Dean" UpgradeCode="186aa0a5-64b0-4867-a3de-019502de9336">
     <Package InstallerVersion="300" InstallScope="perUser" Compressed="yes" Description="Installs the Cavity Visual Studio Templates." />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A more recent version of [ProductName] is already installed. Setup will now exit." />

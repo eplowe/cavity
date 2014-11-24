@@ -2,9 +2,7 @@
 {
     using System;
     using System.Linq;
-
     using Cavity.IO;
-
     using Xunit;
 
     public sealed class RecoveryFacts

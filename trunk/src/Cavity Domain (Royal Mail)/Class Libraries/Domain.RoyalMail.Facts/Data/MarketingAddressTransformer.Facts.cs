@@ -22,34 +22,34 @@
         }
 
         [Fact]
-        public void op_Transform_IEnumerableOfKeyStringDictionaryNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => new MarketingAddressTransformer().Transform(null));
-        }
-
-        [Fact]
         public void op_Transform_IEnumerableOfKeyStringDictionary()
         {
             var data = new List<KeyStringDictionary>
-                {
-                    new KeyStringDictionary
-                        {
-                            {"SBN", "Flat 1"},
-                            {"BNA", "Tall House"},
-                            {"NUM", "123"},
-                            {"DST", "Little Lane"},
-                            {"STM", "High Street"},
-                            {"DDL", "Local Wood"},
-                            {"DLO", "Wide Area"},
-                            {"PTN", "Postal Town"},
-                            {"PCD", "AA1 2ZZ"},
-                        }
-                };
+                           {
+                               new KeyStringDictionary
+                                   {
+                                       { "SBN", "Flat 1" },
+                                       { "BNA", "Tall House" },
+                                       { "NUM", "123" },
+                                       { "DST", "Little Lane" },
+                                       { "STM", "High Street" },
+                                       { "DDL", "Local Wood" },
+                                       { "DLO", "Wide Area" },
+                                       { "PTN", "Postal Town" },
+                                       { "PCD", "AA1 2ZZ" },
+                                   }
+                           };
 
             const string expected = "Flat 1, Tall House, 123 Little Lane, High Street, Local Wood, Wide Area, AA1 2ZZ";
             var actual = new MarketingAddressTransformer().Transform(data).First().FullAddress;
-            
+
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void op_Transform_IEnumerableOfKeyStringDictionaryNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new MarketingAddressTransformer().Transform(null));
         }
 
         [Fact]
@@ -58,23 +58,26 @@
             const string expected = "Test";
 
             var data = new List<KeyStringDictionary>
-                {
-                    new KeyStringDictionary
-                        {
-                            {"SBN", "Flat 1"},
-                            {"BNA", "Tall House"},
-                            {"NUM", "123"},
-                            {"DST", "Little Lane"},
-                            {"STM", "High Street"},
-                            {"DDL", "Local Wood"},
-                            {"DLO", "Wide Area"},
-                            {"PTN", "Postal Town"},
-                            {"PCD", "AA1 2ZZ"},
-                            {"EXAMPLE", expected},
-                        }
-                };
+                           {
+                               new KeyStringDictionary
+                                   {
+                                       { "SBN", "Flat 1" },
+                                       { "BNA", "Tall House" },
+                                       { "NUM", "123" },
+                                       { "DST", "Little Lane" },
+                                       { "STM", "High Street" },
+                                       { "DDL", "Local Wood" },
+                                       { "DLO", "Wide Area" },
+                                       { "PTN", "Postal Town" },
+                                       { "PCD", "AA1 2ZZ" },
+                                       { "EXAMPLE", expected },
+                                   }
+                           };
 
-            var first = new MarketingAddressTransformer(new List<string>{"EXAMPLE"}).Transform(data).First();
+            var first = new MarketingAddressTransformer(new List<string>
+                                                            {
+                                                                "EXAMPLE"
+                                                            }).Transform(data).First();
 
             var actual = first["EXAMPLE"];
 
@@ -87,26 +90,26 @@
             const string key = "3f·0";
             const string expected = "Test";
             var references = new Dictionary<PostalAddressFileKey, string>
-                {
-                    {key, expected},
-                };
+                                 {
+                                     { key, expected },
+                                 };
 
             var data = new List<KeyStringDictionary>
-                {
-                    new KeyStringDictionary
-                        {
-                            {"SBN", "Flat 1"},
-                            {"BNA", "Tall House"},
-                            {"NUM", "123"},
-                            {"DST", "Little Lane"},
-                            {"STM", "High Street"},
-                            {"DDL", "Local Wood"},
-                            {"DLO", "Wide Area"},
-                            {"PTN", "Postal Town"},
-                            {"PCD", "AA1 2ZZ"},
-                            {"KEY", key},
-                        }
-                };
+                           {
+                               new KeyStringDictionary
+                                   {
+                                       { "SBN", "Flat 1" },
+                                       { "BNA", "Tall House" },
+                                       { "NUM", "123" },
+                                       { "DST", "Little Lane" },
+                                       { "STM", "High Street" },
+                                       { "DDL", "Local Wood" },
+                                       { "DLO", "Wide Area" },
+                                       { "PTN", "Postal Town" },
+                                       { "PCD", "AA1 2ZZ" },
+                                       { "KEY", key },
+                                   }
+                           };
 
             var first = new MarketingAddressTransformer(null, references).Transform(data).First();
 

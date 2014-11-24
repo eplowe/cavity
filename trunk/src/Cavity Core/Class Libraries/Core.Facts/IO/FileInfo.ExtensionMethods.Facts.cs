@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Xml;
     using System.Xml.XPath;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -948,23 +947,6 @@
         }
 
         [Fact]
-        public void op_SetDate_FileInfoNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).SetDate(DateTime.UtcNow));
-        }
-
-        [Fact]
-        public void op_SetDate_FileInfoNotFound()
-        {
-            using (var temp = new TempDirectory())
-            {
-                var file = temp.Info.ToFile("example");
-
-                Assert.Throws<FileNotFoundException>(() => file.SetDate(DateTime.UtcNow));
-            }
-        }
-
-        [Fact]
         public void op_SetDate_FileInfo()
         {
             using (var temp = new TempDirectory())
@@ -979,6 +961,23 @@
                 Assert.Equal(expected, file.LastAccessTimeUtc);
                 Assert.Equal(expected, file.LastWriteTimeUtc);
             }
+        }
+
+        [Fact]
+        public void op_SetDate_FileInfoNotFound()
+        {
+            using (var temp = new TempDirectory())
+            {
+                var file = temp.Info.ToFile("example");
+
+                Assert.Throws<FileNotFoundException>(() => file.SetDate(DateTime.UtcNow));
+            }
+        }
+
+        [Fact]
+        public void op_SetDate_FileInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).SetDate(DateTime.UtcNow));
         }
 
         [Fact]

@@ -8,11 +8,10 @@
     using System.Xml;
     using System.Xml.Schema;
     using System.Xml.Serialization;
-
     using Cavity.Xml;
 
-    public abstract class XmlSerializableCollection<T> : Collection<T>, 
-                                                         IEquatable<XmlSerializableCollection<T>>, 
+    public abstract class XmlSerializableCollection<T> : Collection<T>,
+                                                         IEquatable<XmlSerializableCollection<T>>,
                                                          IXmlSerializable
         where T : IEquatable<T>, new()
     {

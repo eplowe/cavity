@@ -3,18 +3,17 @@
     using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
-
     using Cavity.Collections;
 
     [Serializable]
-    public class HttpHeaderDictionary : Dictionary<Token, string>, 
+    public class HttpHeaderDictionary : Dictionary<Token, string>,
                                         IHttpMessageHeaders
     {
         public HttpHeaderDictionary()
         {
         }
 
-        protected HttpHeaderDictionary(SerializationInfo info, 
+        protected HttpHeaderDictionary(SerializationInfo info,
                                        StreamingContext context)
             : base(info, context)
         {
@@ -52,6 +51,14 @@
             return result;
         }
 
+        IEnumerator<HttpHeader> IEnumerable<HttpHeader>.GetEnumerator()
+        {
+            foreach (var item in this)
+            {
+                yield return new HttpHeader(item.Key, item.Value);
+            }
+        }
+
         public void Add(HttpHeader header)
         {
             if (null == header)
@@ -70,14 +77,6 @@
             }
 
             return ContainsKey(name);
-        }
-
-        IEnumerator<HttpHeader> IEnumerable<HttpHeader>.GetEnumerator()
-        {
-            foreach (var item in this)
-            {
-                yield return new HttpHeader(item.Key, item.Value);
-            }
         }
     }
 }

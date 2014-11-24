@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Threading
 {
     using System.Threading;
-
     using Xunit;
 
     public sealed class ThreadedObjectFacts

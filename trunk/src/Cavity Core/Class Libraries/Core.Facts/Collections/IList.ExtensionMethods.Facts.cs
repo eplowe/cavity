@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -32,11 +31,11 @@
                                                int count)
         {
             var list = new List<string>
-                {
-                    "a",
-                    "b",
-                    "c"
-                };
+                           {
+                               "a",
+                               "b",
+                               "c"
+                           };
 
             var actual = list.RemoveLast(count);
             Assert.Equal(expected, actual.Count);

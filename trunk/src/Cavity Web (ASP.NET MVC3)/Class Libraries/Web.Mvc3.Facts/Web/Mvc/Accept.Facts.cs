@@ -4,9 +4,7 @@
     using System.Collections.ObjectModel;
     using System.Net.Mime;
     using System.Web;
-
     using Moq;
-
     using Xunit;
 
     public sealed class AcceptFacts

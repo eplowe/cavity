@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-
     using Cavity.Collections;
 
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "DataSheet", Justification = "This casing is correct.")]

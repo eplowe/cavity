@@ -2,9 +2,7 @@
 {
     using System;
     using System.Web;
-
     using Moq;
-
     using Xunit;
 
     public sealed class HttpRequestBaseExtensionMethodsFacts

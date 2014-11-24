@@ -3,10 +3,8 @@
     using System;
     using System.ComponentModel;
     using System.Xml.Serialization;
-
     using Cavity.Tests;
     using Cavity.Types;
-
     using Xunit;
 
     public sealed class PropertyExpectationsOfTFacts

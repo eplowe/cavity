@@ -50,7 +50,7 @@
 
         public StringComparison Comparison { get; set; }
 
-        public virtual bool Equals(string x, 
+        public virtual bool Equals(string x,
                                    string y)
         {
             return string.Equals(x, Normalize(y), Comparison);

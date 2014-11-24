@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Models
 {
     using System;
-
     using Xunit;
 
     public sealed class OrganizationFacts
@@ -66,7 +65,7 @@
         {
             var obj = new Organization
                           {
-                              Name = "Example", 
+                              Name = "Example",
                               Department = "Accounts"
                           };
 

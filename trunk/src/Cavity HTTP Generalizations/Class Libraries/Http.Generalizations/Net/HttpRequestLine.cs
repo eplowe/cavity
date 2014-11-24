@@ -4,14 +4,14 @@
 
     public class HttpRequestLine : ComparableObject
     {
-        public HttpRequestLine(Token method, 
+        public HttpRequestLine(Token method,
                                AbsoluteUri requestUri)
             : this(method, requestUri, HttpVersion.Latest)
         {
         }
 
-        public HttpRequestLine(Token method, 
-                               AbsoluteUri requestUri, 
+        public HttpRequestLine(Token method,
+                               AbsoluteUri requestUri,
                                HttpVersion version)
             : this()
         {

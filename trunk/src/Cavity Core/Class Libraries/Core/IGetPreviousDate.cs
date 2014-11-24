@@ -1,6 +1,6 @@
 ﻿namespace Cavity
 {
-    public interface IGetPreviousDate : IGetPreviousMonth, 
+    public interface IGetPreviousDate : IGetPreviousMonth,
                                         IGetPreviousWeekday
     {
         Date Day { get; }

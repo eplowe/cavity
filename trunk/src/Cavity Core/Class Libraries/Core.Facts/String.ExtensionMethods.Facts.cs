@@ -7,9 +7,7 @@
     using System.IO;
     using System.Text;
     using System.Xml;
-
     using Cavity.IO;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -558,7 +556,8 @@
         [InlineData(false, "201a-11")]
         [InlineData(false, "2010-a1")]
         [InlineData(false, "2010-1a")]
-        public void op_IsMonth_string(bool expected, string value)
+        public void op_IsMonth_string(bool expected,
+                                      string value)
         {
             var actual = value.IsMonth();
 
@@ -570,7 +569,8 @@
         [InlineData(false, "")]
         [InlineData(true, "  ")]
         [InlineData(true, "example")]
-        public void op_IsNotNullOrEmpty_string(bool expected, string value)
+        public void op_IsNotNullOrEmpty_string(bool expected,
+                                               string value)
         {
             var actual = value.IsNotNullOrEmpty();
 
@@ -582,7 +582,8 @@
         [InlineData(false, "")]
         [InlineData(false, "  ")]
         [InlineData(true, "example")]
-        public void op_IsNotNullOrWhiteSpace_string(bool expected, string value)
+        public void op_IsNotNullOrWhiteSpace_string(bool expected,
+                                                    string value)
         {
             var actual = value.IsNotNullOrWhiteSpace();
 
@@ -594,7 +595,8 @@
         [InlineData(true, "")]
         [InlineData(false, "  ")]
         [InlineData(false, "example")]
-        public void op_IsNullOrEmpty_string(bool expected, string value)
+        public void op_IsNullOrEmpty_string(bool expected,
+                                            string value)
         {
             var actual = value.IsNullOrEmpty();
 
@@ -606,7 +608,8 @@
         [InlineData(true, "")]
         [InlineData(true, "  ")]
         [InlineData(false, "example")]
-        public void op_IsNullOrWhiteSpace_string(bool expected, string value)
+        public void op_IsNullOrWhiteSpace_string(bool expected,
+                                                 string value)
         {
             var actual = value.IsNullOrWhiteSpace();
 
@@ -618,7 +621,8 @@
         [InlineData(' ', "")]
         [InlineData(' ', "  ")]
         [InlineData('e', "example")]
-        public void op_LastCharacter_string(char expected, string value)
+        public void op_LastCharacter_string(char expected,
+                                            string value)
         {
             var actual = value.LastCharacter();
 
@@ -840,6 +844,7 @@
         }
 
         [Fact]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "Bint", Justification = "The casing is correct.")]
         public void op_MetaphoneLetterB_int_StringBuilderNull()
         {
             Assert.Throws<ArgumentNullException>(() => StringExtensionMethods.MetaphoneLetterB(1, null));
@@ -850,6 +855,7 @@
         [InlineData("pluMBer", 4, "pluMBer")]
         [InlineData("boM E", 3, "boMBE")]
         [InlineData("cruMBs", 4, "cruMBs")]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "Bint", Justification = "The casing is correct.")]
         public void op_MetaphoneLetterB_int_StringBuilder(string expected,
                                                           int index,
                                                           string value)
@@ -1040,69 +1046,69 @@
         {
             var expected = new string(' ', Characters.WhiteSpace.Count);
             var actual = string.Concat(
-                '\u0009',
-                // HT (Horizontal Tab)
-                '\u000A',
-                // LF (Line Feed)
-                '\u000B',
-                // VT (Vertical Tab)
-                '\u000C',
-                // FF (Form Feed)
-                '\u000D',
-                // CR (Carriage Return)
-                '\u0020',
-                // Space
-                '\u0085',
-                // NEL (control character next line)
-                '\u00A0',
-                // No-Break Space
-                '\u1680',
-                // Ogham Space Mark
-                '\u180E',
-                // Mongolian Vowel Separator
-                '\u2000',
-                // En quad
-                '\u2001',
-                // Em quad
-                '\u2002',
-                // En Space
-                '\u2003',
-                // Em Space
-                '\u2004',
-                // Three-Per-Em Space
-                '\u2005',
-                // Four-Per-Em Space
-                '\u2006',
-                // Six-Per-Em Space
-                '\u2007',
-                // Figure Space
-                '\u2008',
-                // Punctuation Space
-                '\u2009',
-                // Thin Space
-                '\u200A',
-                // Hair Space
-                '\u200B',
-                // Zero Width Space
-                '\u200C',
-                // Zero Width Non Joiner
-                '\u200D',
-                // Zero Width Joiner
-                '\u2028',
-                // Line Separator
-                '\u2029',
-                // Paragraph Separator
-                '\u202F',
-                // Narrow No-Break Space
-                '\u205F',
-                // Medium Mathematical Space
-                '\u2060',
-                // Word Joiner
-                '\u3000',
-                // Ideographic Space
-                '\uFEFF',
-                //// Zero Width No-Break Space
-                '·').NormalizeWhiteSpace();
+                                       '\u0009',
+                                       // HT (Horizontal Tab)
+                                       '\u000A',
+                                       // LF (Line Feed)
+                                       '\u000B',
+                                       // VT (Vertical Tab)
+                                       '\u000C',
+                                       // FF (Form Feed)
+                                       '\u000D',
+                                       // CR (Carriage Return)
+                                       '\u0020',
+                                       // Space
+                                       '\u0085',
+                                       // NEL (control character next line)
+                                       '\u00A0',
+                                       // No-Break Space
+                                       '\u1680',
+                                       // Ogham Space Mark
+                                       '\u180E',
+                                       // Mongolian Vowel Separator
+                                       '\u2000',
+                                       // En quad
+                                       '\u2001',
+                                       // Em quad
+                                       '\u2002',
+                                       // En Space
+                                       '\u2003',
+                                       // Em Space
+                                       '\u2004',
+                                       // Three-Per-Em Space
+                                       '\u2005',
+                                       // Four-Per-Em Space
+                                       '\u2006',
+                                       // Six-Per-Em Space
+                                       '\u2007',
+                                       // Figure Space
+                                       '\u2008',
+                                       // Punctuation Space
+                                       '\u2009',
+                                       // Thin Space
+                                       '\u200A',
+                                       // Hair Space
+                                       '\u200B',
+                                       // Zero Width Space
+                                       '\u200C',
+                                       // Zero Width Non Joiner
+                                       '\u200D',
+                                       // Zero Width Joiner
+                                       '\u2028',
+                                       // Line Separator
+                                       '\u2029',
+                                       // Paragraph Separator
+                                       '\u202F',
+                                       // Narrow No-Break Space
+                                       '\u205F',
+                                       // Medium Mathematical Space
+                                       '\u2060',
+                                       // Word Joiner
+                                       '\u3000',
+                                       // Ideographic Space
+                                       '\uFEFF',
+                                       //// Zero Width No-Break Space
+                                       '·').NormalizeWhiteSpace();
 
             Assert.Equal(expected, actual);
         }
@@ -1295,67 +1301,67 @@
         {
             var expected = string.Empty;
             var actual = string.Concat(
-                '\u0009',
-                // HT (Horizontal Tab)
-                '\u000A',
-                // LF (Line Feed)
-                '\u000B',
-                // VT (Vertical Tab)
-                '\u000C',
-                // FF (Form Feed)
-                '\u000D',
-                // CR (Carriage Return)
-                '\u0020',
-                // Space
-                '\u0085',
-                // NEL (control character next line)
-                '\u00A0',
-                // No-Break Space
-                '\u1680',
-                // Ogham Space Mark
-                '\u180E',
-                // Mongolian Vowel Separator
-                '\u2000',
-                // En quad
-                '\u2001',
-                // Em quad
-                '\u2002',
-                // En Space
-                '\u2003',
-                // Em Space
-                '\u2004',
-                // Three-Per-Em Space
-                '\u2005',
-                // Four-Per-Em Space
-                '\u2006',
-                // Six-Per-Em Space
-                '\u2007',
-                // Figure Space
-                '\u2008',
-                // Punctuation Space
-                '\u2009',
-                // Thin Space
-                '\u200A',
-                // Hair Space
-                '\u200B',
-                // Zero Width Space
-                '\u200C',
-                // Zero Width Non Joiner
-                '\u200D',
-                // Zero Width Joiner
-                '\u2028',
-                // Line Separator
-                '\u2029',
-                // Paragraph Separator
-                '\u202F',
-                // Narrow No-Break Space
-                '\u205F',
-                // Medium Mathematical Space
-                '\u2060',
-                // Word Joiner
-                '\u3000',
-                // Ideographic Space
-                '\uFEFF').RemoveAnyWhiteSpace();
+                                       '\u0009',
+                                       // HT (Horizontal Tab)
+                                       '\u000A',
+                                       // LF (Line Feed)
+                                       '\u000B',
+                                       // VT (Vertical Tab)
+                                       '\u000C',
+                                       // FF (Form Feed)
+                                       '\u000D',
+                                       // CR (Carriage Return)
+                                       '\u0020',
+                                       // Space
+                                       '\u0085',
+                                       // NEL (control character next line)
+                                       '\u00A0',
+                                       // No-Break Space
+                                       '\u1680',
+                                       // Ogham Space Mark
+                                       '\u180E',
+                                       // Mongolian Vowel Separator
+                                       '\u2000',
+                                       // En quad
+                                       '\u2001',
+                                       // Em quad
+                                       '\u2002',
+                                       // En Space
+                                       '\u2003',
+                                       // Em Space
+                                       '\u2004',
+                                       // Three-Per-Em Space
+                                       '\u2005',
+                                       // Four-Per-Em Space
+                                       '\u2006',
+                                       // Six-Per-Em Space
+                                       '\u2007',
+                                       // Figure Space
+                                       '\u2008',
+                                       // Punctuation Space
+                                       '\u2009',
+                                       // Thin Space
+                                       '\u200A',
+                                       // Hair Space
+                                       '\u200B',
+                                       // Zero Width Space
+                                       '\u200C',
+                                       // Zero Width Non Joiner
+                                       '\u200D',
+                                       // Zero Width Joiner
+                                       '\u2028',
+                                       // Line Separator
+                                       '\u2029',
+                                       // Paragraph Separator
+                                       '\u202F',
+                                       // Narrow No-Break Space
+                                       '\u205F',
+                                       // Medium Mathematical Space
+                                       '\u2060',
+                                       // Word Joiner
+                                       '\u3000',
+                                       // Ideographic Space
+                                       '\uFEFF').RemoveAnyWhiteSpace();
 
             Assert.Equal(expected, actual);
         }
@@ -1547,7 +1553,8 @@
         [InlineData(" a b ", " a b ")]
         [InlineData(" a  b ", " a b ")]
         [InlineData(" a   b ", " a b ")]
-        public void op_RemoveDoubleSpacing_string(string value, string expected)
+        public void op_RemoveDoubleSpacing_string(string value,
+                                                  string expected)
         {
             var actual = value.RemoveDoubleSpacing();
 
@@ -1645,9 +1652,9 @@
         public void op_RemoveIllegalFileCharacters_string()
         {
             foreach (var c in new[]
-                {
-                    '\\', '/', ':', '*', '?', '"', '<', '>', '|', (char)31
-                })
+                                  {
+                                      '\\', '/', ':', '*', '?', '"', '<', '>', '|', (char)31
+                                  })
             {
                 const string expected = "example";
                 var actual = expected.Append(c).RemoveIllegalFileCharacters();
@@ -3056,9 +3063,9 @@
         {
             var expected = new DateTime(2009, 04, 25);
             var actual = string.Concat(
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
-                Environment.NewLine,
-                "<dateTime>2009-04-25T00:00:00</dateTime>").XmlDeserialize<DateTime>();
+                                       "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
+                                       Environment.NewLine,
+                                       "<dateTime>2009-04-25T00:00:00</dateTime>").XmlDeserialize<DateTime>();
 
             Assert.Equal(expected, actual);
         }
@@ -3122,9 +3129,9 @@
         {
             var expected = new DateTime(2009, 04, 25);
             var actual = (DateTime)string.Concat(
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
-                Environment.NewLine,
-                "<dateTime>2009-04-25T00:00:00</dateTime>").XmlDeserialize(typeof(DateTime));
+                                                 "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
+                                                 Environment.NewLine,
+                                                 "<dateTime>2009-04-25T00:00:00</dateTime>").XmlDeserialize(typeof(DateTime));
 
             Assert.Equal(expected, actual);
         }

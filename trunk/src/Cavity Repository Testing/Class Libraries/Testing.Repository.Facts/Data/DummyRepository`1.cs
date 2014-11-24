@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Xml.XPath;
-
     using Cavity.Net;
 
     public sealed class DummyRepository<T> : IRepository<T>
@@ -38,25 +37,25 @@
             throw new NotImplementedException();
         }
 
-        public bool Match(AbsoluteUri urn, 
+        public bool Match(AbsoluteUri urn,
                           EntityTag etag)
         {
             throw new NotImplementedException();
         }
 
-        public bool Match(AlphaDecimal key, 
+        public bool Match(AlphaDecimal key,
                           EntityTag etag)
         {
             throw new NotImplementedException();
         }
 
-        public bool ModifiedSince(AbsoluteUri urn, 
+        public bool ModifiedSince(AbsoluteUri urn,
                                   DateTime value)
         {
             throw new NotImplementedException();
         }
 
-        public bool ModifiedSince(AlphaDecimal key, 
+        public bool ModifiedSince(AlphaDecimal key,
                                   DateTime value)
         {
             throw new NotImplementedException();

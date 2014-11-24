@@ -21,14 +21,14 @@
                        : request.RawUrl.Substring(index);
         }
 
-        public static string RawQueryString(this HttpRequestBase request, 
+        public static string RawQueryString(this HttpRequestBase request,
                                             AlphaDecimal? token)
         {
             return request.RawQueryString(token, null);
         }
 
-        public static string RawQueryString(this HttpRequestBase request, 
-                                            AlphaDecimal? token, 
+        public static string RawQueryString(this HttpRequestBase request,
+                                            AlphaDecimal? token,
                                             string whence)
         {
             if (!string.IsNullOrEmpty(whence))

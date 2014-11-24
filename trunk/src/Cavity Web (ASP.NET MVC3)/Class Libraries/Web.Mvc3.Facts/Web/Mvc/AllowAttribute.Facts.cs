@@ -5,11 +5,8 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
-
     using Cavity.IO;
-
     using Moq;
-
     using Xunit;
 
     public sealed class AllowAttributeFacts

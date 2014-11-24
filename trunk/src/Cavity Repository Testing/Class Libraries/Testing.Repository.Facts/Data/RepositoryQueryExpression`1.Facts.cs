@@ -3,9 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Xml.XPath;
-
     using Moq;
-
     using Xunit;
 
     public sealed class RepositoryQueryExpressionOfTFacts
@@ -36,7 +34,7 @@
 
             var records = new[]
                               {
-                                  obj.Record1, 
+                                  obj.Record1,
                                   obj.Record2
                               };
 

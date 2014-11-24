@@ -2,7 +2,6 @@
 {
     using System.Globalization;
     using System.Reflection;
-
     using Cavity.Properties;
 
     public sealed class PropertyGetterTest<T> : PropertyTestBase

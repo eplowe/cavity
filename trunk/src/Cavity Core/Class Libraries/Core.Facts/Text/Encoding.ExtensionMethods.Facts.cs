@@ -3,7 +3,6 @@
     using System;
     using System.Net.Mime;
     using System.Text;
-
     using Xunit;
 
     public sealed class EncodingExtensionMethodsFacts

@@ -4,7 +4,6 @@
     using System.Configuration;
     using System.IO;
     using System.Linq;
-
     using Xunit;
 
     public sealed class AddRemoveClearConfigurationElementCollectionOfTFacts
@@ -52,7 +51,7 @@
                           {
                               {
                                   "C", new DirectoryInfo(@"C:\")
-                                  }
+                              }
                           };
 
             Assert.Equal("C", obj.First().Name);
@@ -89,7 +88,7 @@
             var expected = new NameValueConfigurationElement<DirectoryInfo>("C", new DirectoryInfo(@"C:\"));
             var obj = new AddRemoveClearConfigurationElementCollection<DirectoryInfo>
                           {
-                              expected, 
+                              expected,
                               new NameValueConfigurationElement<DirectoryInfo>("D", new DirectoryInfo(@"D:\"))
                           };
 
@@ -107,7 +106,7 @@
             var element = new NameValueConfigurationElement<DirectoryInfo>("C", new DirectoryInfo(@"C:\"));
             var obj = new AddRemoveClearConfigurationElementCollection<DirectoryInfo>
                           {
-                              new NameValueConfigurationElement<DirectoryInfo>("D", new DirectoryInfo(@"D:\")), 
+                              new NameValueConfigurationElement<DirectoryInfo>("D", new DirectoryInfo(@"D:\")),
                               element
                           };
 

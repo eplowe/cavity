@@ -1,9 +1,7 @@
 ﻿namespace Cavity.Testing
 {
     using System.Collections.Generic;
-
     using Moq;
-
     using Xunit;
 
     public sealed class IConfigureTestFacts

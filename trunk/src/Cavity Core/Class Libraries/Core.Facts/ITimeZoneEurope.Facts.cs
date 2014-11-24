@@ -1,10 +1,7 @@
 ﻿namespace Cavity
 {
     using System;
-    using Cavity;
-
     using Moq;
-
     using Xunit;
 
     public sealed class ITimeZoneEuropeFacts
@@ -15,24 +12,6 @@
             Assert.True(new TypeExpectations<ITimeZoneEurope>().IsInterface()
                                                                .IsNotDecorated()
                                                                .Result);
-        }
-
-        [Fact]
-        public void prop_CentralEuropeanTime_get()
-        {
-            var expected = TimeZoneInfo.CreateCustomTimeZone("example", TimeSpan.Zero, string.Empty, string.Empty);
-
-            var mock = new Mock<ITimeZoneEurope>();
-            mock
-                .SetupGet(x => x.CentralEuropeanTime)
-                .Returns(expected)
-                .Verifiable();
-
-            var actual = mock.Object.CentralEuropeanTime;
-
-            Assert.Equal(expected, actual);
-
-            mock.VerifyAll();
         }
 
         [Fact]
@@ -47,6 +26,24 @@
                 .Verifiable();
 
             var actual = mock.Object.BritishTime;
+
+            Assert.Equal(expected, actual);
+
+            mock.VerifyAll();
+        }
+
+        [Fact]
+        public void prop_CentralEuropeanTime_get()
+        {
+            var expected = TimeZoneInfo.CreateCustomTimeZone("example", TimeSpan.Zero, string.Empty, string.Empty);
+
+            var mock = new Mock<ITimeZoneEurope>();
+            mock
+                .SetupGet(x => x.CentralEuropeanTime)
+                .Returns(expected)
+                .Verifiable();
+
+            var actual = mock.Object.CentralEuropeanTime;
 
             Assert.Equal(expected, actual);
 

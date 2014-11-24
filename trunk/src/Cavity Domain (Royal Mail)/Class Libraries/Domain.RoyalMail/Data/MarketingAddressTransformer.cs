@@ -18,7 +18,7 @@
         }
 
         public MarketingAddressTransformer(IList<string> columns,
-                                    IDictionary<PostalAddressFileKey, string> references)
+                                           IDictionary<PostalAddressFileKey, string> references)
         {
             Columns = columns ?? new List<string>();
             References = references;
@@ -34,7 +34,7 @@
         }
 
         private MarketingAddress AddColumns(KeyStringDictionary source,
-                                          MarketingAddress destination)
+                                            MarketingAddress destination)
         {
             foreach (var column in Columns)
             {

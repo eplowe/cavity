@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Runtime.Serialization;
     using System.Xml.Serialization;
-
     using Cavity.Fluent;
     using Cavity.Properties;
     using Cavity.Tests;
@@ -21,9 +20,9 @@
     /// if any expectations are not met, a <see cref="T:Cavity.UnitTestException"/> is thrown.
     /// </remarks>
     /// <seealso href="http://code.google.com/p/cavity/wiki/TypeExpectations">Guide to asserting expectations about types.</seealso>
-    public sealed class TypeExpectations<T> : ITestClassStyle, 
-                                              ITestClassSealed, 
-                                              ITestClassConstruction, 
+    public sealed class TypeExpectations<T> : ITestClassStyle,
+                                              ITestClassSealed,
+                                              ITestClassConstruction,
                                               ITestType
     {
         /// <summary>
@@ -190,8 +189,8 @@
         /// <returns>The current instance.</returns>
         /// <seealso href="http://msdn.microsoft.com/library/system.attributeusageattribute">AttributeUsageAttribute Class</seealso>
         [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "Inference brings no benefit here.")]
-        ITestType ITestType.AttributeUsage(AttributeTargets validOn, 
-                                           bool allowMultiple, 
+        ITestType ITestType.AttributeUsage(AttributeTargets validOn,
+                                           bool allowMultiple,
                                            bool inherited)
         {
             (this as ITestType).Add(new AttributeUsageTest(typeof(T), validOn, allowMultiple, inherited));
@@ -297,7 +296,7 @@
         /// <param name="elementName">The expected <see cref="P:System.Xml.Serialization.XmlRootAttribute.ElementName"/> value.</param>
         /// <param name="namespace">The expected <see cref="P:System.Xml.Serialization.XmlRootAttribute.Namespace"/> value.</param>
         /// <returns>The current instance.</returns>
-        ITestType ITestType.XmlRoot(string elementName, 
+        ITestType ITestType.XmlRoot(string elementName,
                                     string @namespace)
         {
             (this as ITestType).Add(new XmlRootTest<T>(elementName, @namespace));

@@ -7,7 +7,6 @@
     using System.Linq;
 #endif
     using System.Xml.XPath;
-
     using Cavity.Configuration;
     using Cavity.IO;
     using Cavity.Net;
@@ -102,7 +101,7 @@
             return record;
         }
 
-        bool IRepository<T>.Match(AbsoluteUri urn, 
+        bool IRepository<T>.Match(AbsoluteUri urn,
                                   EntityTag etag)
         {
             var file = GetFile(urn);
@@ -110,7 +109,7 @@
                    string.Equals(etag, RecordFile.Load(file).ToRecord<T>().Etag, StringComparison.OrdinalIgnoreCase);
         }
 
-        bool IRepository<T>.Match(AlphaDecimal key, 
+        bool IRepository<T>.Match(AlphaDecimal key,
                                   EntityTag etag)
         {
             var file = GetFile(key);
@@ -118,7 +117,7 @@
                    string.Equals(etag, RecordFile.Load(file).ToRecord<T>().Etag, StringComparison.OrdinalIgnoreCase);
         }
 
-        bool IRepository<T>.ModifiedSince(AbsoluteUri urn, 
+        bool IRepository<T>.ModifiedSince(AbsoluteUri urn,
                                           DateTime value)
         {
             var record = Repository.Select(urn);
@@ -130,7 +129,7 @@
             return record.Modified.HasValue && record.Modified.Value > value;
         }
 
-        bool IRepository<T>.ModifiedSince(AlphaDecimal key, 
+        bool IRepository<T>.ModifiedSince(AlphaDecimal key,
                                           DateTime value)
         {
             var record = Repository.Select(key);
@@ -180,8 +179,9 @@
                     select RecordFile.Load(file)
                     into obj
                     where !string.IsNullOrEmpty(obj.Body)
-                    let selection = obj.ToXml().CreateNavigator().Select(expression.Expression)
-                    where 0 != selection.Count
+                    let navigator = obj.ToXml().CreateNavigator()
+                    let count = navigator.Select(expression.Expression).Count
+                    where 0 != count
                     select obj.ToRecord<T>()).ToList();
 #endif
         }

@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Configuration
 {
     using Moq;
-
     using Xunit;
 
     public sealed class ISetLocatorProviderFacts

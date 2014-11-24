@@ -15,13 +15,13 @@
 
         public Guid ResourceManager { get; private set; }
 
-        public static bool operator ==(EnlistmentIdentity operand1, 
+        public static bool operator ==(EnlistmentIdentity operand1,
                                        EnlistmentIdentity operand2)
         {
             return operand1.Equals(operand2);
         }
 
-        public static bool operator !=(EnlistmentIdentity operand1, 
+        public static bool operator !=(EnlistmentIdentity operand1,
                                        EnlistmentIdentity operand2)
         {
             return !operand1.Equals(operand2);

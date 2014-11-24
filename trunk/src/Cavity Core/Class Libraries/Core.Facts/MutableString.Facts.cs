@@ -9,7 +9,6 @@
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Text;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -579,9 +578,9 @@
         public void op_Append_IEnumerableOfString()
         {
             var values = new[]
-                {
-                    "One", "Two", "Three"
-                };
+                             {
+                                 "One", "Two", "Three"
+                             };
 
             var expected = new MutableString("OneTwoThree");
             var actual = new MutableString();
@@ -639,9 +638,9 @@
         public void op_Append_IEnumerableOfString_char()
         {
             var values = new[]
-                {
-                    "One", "Two", "Three"
-                };
+                             {
+                                 "One", "Two", "Three"
+                             };
 
             var expected = new MutableString("One.Two.Three");
             var actual = new MutableString();
@@ -745,9 +744,9 @@
         public void op_ContainsAny_chars_whenFalse()
         {
             var values = new[]
-                {
-                    'X', 'y', 'z'
-                };
+                             {
+                                 'X', 'y', 'z'
+                             };
 
             Assert.False(new MutableString().ContainsAny(values));
             Assert.False(new MutableString("Example").ContainsAny(values));
@@ -757,9 +756,9 @@
         public void op_ContainsAny_chars_whenTrue()
         {
             var values = new[]
-                {
-                    'a', 'e', 'x'
-                };
+                             {
+                                 'a', 'e', 'x'
+                             };
 
             Assert.True(new MutableString("Example").ContainsAny(values));
         }
@@ -774,9 +773,9 @@
         public void op_ContainsAny_strings_whenFalse()
         {
             var values = new[]
-                {
-                    string.Empty, null, "example", "solar system"
-                };
+                             {
+                                 string.Empty, null, "example", "solar system"
+                             };
 
             Assert.False(new MutableString().ContainsAny(values));
             Assert.False(new MutableString("Example").ContainsAny(values));
@@ -786,9 +785,9 @@
         public void op_ContainsAny_strings_whenTrue()
         {
             var values = new[]
-                {
-                    "example", "ex", "ample"
-                };
+                             {
+                                 "example", "ex", "ample"
+                             };
 
             Assert.True(new MutableString("Example").ContainsAny(values));
         }
@@ -912,9 +911,9 @@
         public void op_EndsWithAny_strings_whenFalse()
         {
             var values = new[]
-                {
-                    "test", null, string.Empty
-                };
+                             {
+                                 "test", null, string.Empty
+                             };
 
             Assert.False(new MutableString().EndsWithAny(values));
             Assert.False(new MutableString("example").EndsWithAny(values));
@@ -924,9 +923,9 @@
         public void op_EndsWithAny_strings_whenTrue()
         {
             var values = new[]
-                {
-                    "test", "ample"
-                };
+                             {
+                                 "test", "ample"
+                             };
 
             Assert.True(new MutableString("example").EndsWithAny(values));
         }
@@ -993,9 +992,9 @@
         public void op_EqualsAny_strings_whenFalse()
         {
             var values = new[]
-                {
-                    "test", null, string.Empty
-                };
+                             {
+                                 "test", null, string.Empty
+                             };
 
             Assert.False(new MutableString().EqualsAny(values));
             Assert.False(new MutableString("example").EqualsAny(values));
@@ -1005,9 +1004,9 @@
         public void op_EqualsAny_strings_whenTrue()
         {
             var values = new[]
-                {
-                    "test", "example"
-                };
+                             {
+                                 "test", "example"
+                             };
 
             Assert.True(new MutableString("example").EqualsAny(values));
         }
@@ -1338,9 +1337,9 @@
         public void op_IndexesOf_char()
         {
             var expected = new[]
-                {
-                    0, 3, 11, 16
-                };
+                               {
+                                   0, 3, 11, 16
+                               };
 
             var actual = new MutableString(" an example test ").IndexesOf(' ').ToArray();
 
@@ -1983,9 +1982,9 @@
         public void op_RemoveAny_strings_whenFalse()
         {
             var values = new[]
-                {
-                    "test", null, string.Empty
-                };
+                             {
+                                 "test", null, string.Empty
+                             };
 
             var expected = new MutableString("example");
             var actual = new MutableString("example");
@@ -1998,9 +1997,9 @@
         public void op_RemoveAny_strings_whenTrue()
         {
             var values = new[]
-                {
-                    "ample", "ex"
-                };
+                             {
+                                 "ample", "ex"
+                             };
 
             var expected = new MutableString();
             var actual = new MutableString("example");
@@ -2377,9 +2376,9 @@
         public void op_StartsWithAny_strings_whenFalse()
         {
             var values = new[]
-                {
-                    "test", null, string.Empty
-                };
+                             {
+                                 "test", null, string.Empty
+                             };
 
             Assert.False(new MutableString().StartsWithAny(values));
             Assert.False(new MutableString("example").StartsWithAny(values));
@@ -2389,9 +2388,9 @@
         public void op_StartsWithAny_strings_whenTrue()
         {
             var values = new[]
-                {
-                    "test", "ex"
-                };
+                             {
+                                 "test", "ex"
+                             };
 
             Assert.True(new MutableString("example").StartsWithAny(values));
         }
@@ -2557,9 +2556,9 @@
         public void op_ToCharArray()
         {
             var expected = new[]
-                {
-                    'e', 'x', 'a', 'm', 'p', 'l', 'e'
-                };
+                               {
+                                   'e', 'x', 'a', 'm', 'p', 'l', 'e'
+                               };
             var actual = new MutableString("example").ToCharArray();
 
             Assert.Equal(expected, actual);

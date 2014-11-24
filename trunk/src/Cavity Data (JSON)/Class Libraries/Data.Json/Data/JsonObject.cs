@@ -8,8 +8,8 @@
     using System.Linq;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
-    public class JsonObject : JsonValue, 
-                              IEnumerable<JsonPair>, 
+    public class JsonObject : JsonValue,
+                              IEnumerable<JsonPair>,
                               IJsonSerializable
     {
         public JsonObject()
@@ -49,7 +49,7 @@
             }
         }
 
-        public void Add(string name, 
+        public void Add(string name,
                         JsonValue value)
         {
             Add(new JsonPair(name, value));
@@ -328,8 +328,8 @@
             return array;
         }
 
-        private static void WriteJsonArray(JsonWriter writer, 
-                                           string name, 
+        private static void WriteJsonArray(JsonWriter writer,
+                                           string name,
                                            JsonArray value)
         {
             if (null == name)

@@ -4,7 +4,6 @@
     using System.Configuration;
     using System.IO;
     using System.Xml;
-
     using Cavity.Properties;
 
     public sealed class FileRepositoryConfiguration : IConfigurationSectionHandler
@@ -35,8 +34,8 @@
             return ConfigurationManager.GetSection(sectionName) as DirectoryInfo;
         }
 
-        public object Create(object parent, 
-                             object configContext, 
+        public object Create(object parent,
+                             object configContext,
                              XmlNode section)
         {
             try

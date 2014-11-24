@@ -2,9 +2,7 @@
 {
     using System;
     using System.Net;
-
     using Cavity.Net;
-
     using Xunit;
 
     public sealed class HttpExpectationFacts
@@ -76,10 +74,10 @@
                                                          Request = new HttpRequest
                                                                        {
                                                                            Line = new HttpRequestLine("GET", "http://www.alan-dean.com/")
-                                                                       }, 
+                                                                       },
                                                          Response = new HttpResponse
                                                                         {
-                                                                            Line = new HttpStatusLine(HttpStatusCode.SeeOther), 
+                                                                            Line = new HttpStatusLine(HttpStatusCode.SeeOther),
                                                                             Headers = new HttpHeaderDictionary
                                                                                           {
                                                                                               new HttpHeader("Location", "http://www.alan-dean.com/about")
@@ -114,10 +112,10 @@
                                                          Request = new HttpRequest
                                                                        {
                                                                            Line = new HttpRequestLine("GET", "http://www.alan-dean.com/")
-                                                                       }, 
+                                                                       },
                                                          Response = new HttpResponse
                                                                         {
-                                                                            Line = new HttpStatusLine(HttpStatusCode.SeeOther), 
+                                                                            Line = new HttpStatusLine(HttpStatusCode.SeeOther),
                                                                             Headers = new HttpHeaderDictionary
                                                                                           {
                                                                                               new HttpHeader("Location", "http://www.alan-dean.com/example")
@@ -140,7 +138,7 @@
                                                          Request = new HttpRequest
                                                                        {
                                                                            Line = new HttpRequestLine("GET", "http://www.alan-dean.com/")
-                                                                       }, 
+                                                                       },
                                                          Response = new HttpResponse
                                                                         {
                                                                             Line = new HttpStatusLine(HttpStatusCode.OK)

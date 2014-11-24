@@ -8,13 +8,10 @@
 #endif
     using System.Net;
     using System.Reflection;
-
     using Cavity.IO;
     using Cavity.Properties;
-
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-
     using Xunit.Extensions;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
@@ -75,7 +72,7 @@
             return file;
         }
 
-        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest, 
+        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest,
                                                       Type[] parameterTypes)
         {
             if (null == methodUnderTest)

@@ -1,7 +1,6 @@
 ﻿namespace Cavity
 {
     using System;
-
     using Xunit;
 
     public sealed class UserStoryAttributeFacts
@@ -28,8 +27,8 @@
         {
             var story = new UserStoryAttribute
                             {
-                                AsA = "tester", 
-                                IWant = "to add an attribute", 
+                                AsA = "tester",
+                                IWant = "to add an attribute",
                                 SoThat = "I can see the user story"
                             };
             const string expected = "As a tester, I want to add an attribute so that I can see the user story.";

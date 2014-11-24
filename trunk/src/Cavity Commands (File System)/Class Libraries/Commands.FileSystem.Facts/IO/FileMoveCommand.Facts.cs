@@ -2,9 +2,7 @@
 {
     using System;
     using System.IO;
-
     using Cavity.Xml.XPath;
-
     using Xunit;
 
     public sealed class FileMoveCommandFacts
@@ -258,8 +256,8 @@
         {
             var obj = new FileMoveCommand
                           {
-                              Source = @"C:\from.txt", 
-                              Destination = @"C:\to.txt", 
+                              Source = @"C:\from.txt",
+                              Destination = @"C:\to.txt",
                               Undo = true
                           };
 

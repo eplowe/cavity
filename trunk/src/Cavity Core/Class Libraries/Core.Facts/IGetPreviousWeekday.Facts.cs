@@ -1,7 +1,6 @@
 ﻿namespace Cavity
 {
     using Moq;
-
     using Xunit;
 
     public sealed class IGetPreviousWeekdayFacts

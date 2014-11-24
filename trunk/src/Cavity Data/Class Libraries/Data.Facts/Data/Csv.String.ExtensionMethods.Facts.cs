@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Data
 {
     using System;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -76,7 +75,8 @@
         [Theory]
         [InlineData("\"a \"\"b\"\" c\"", "a \"b\" c")]
         [InlineData("\"a, \"\"b\"\", c\"", "a, \"b\", c")]
-        public void op_FormatCommaSeparatedValue_stringQuote(string expected, string value)
+        public void op_FormatCommaSeparatedValue_stringQuote(string expected,
+                                                             string value)
         {
             var actual = value.FormatCommaSeparatedValue();
 

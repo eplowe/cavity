@@ -4,9 +4,7 @@
     using System.IO;
     using System.Text;
     using System.Web;
-
     using Moq;
-
     using Xunit;
 
     public sealed class WrappedStreamFacts
@@ -17,17 +15,17 @@
 
         //// http://jigsaw.w3.org/HTTP/h-content-md5.html
         private const string _jigsawHtml = "<HTML>\n"
-                                          + "<HEAD>\n  <!-- Created with 'cat' and 'vi'  -->\n"
-                                          + "<TITLE>Retry-After header</TITLE>\n"
-                                          + "</HEAD>\n"
-                                          + "<BODY>\n"
-                                          + "<P>\n"
-                                          + "<A HREF=\"..\"><IMG SRC=\"/icons/jigsaw\" ALT=\"Jigsaw\" BORDER=\"0\" WIDTH=\"212\"\n    HEIGHT=\"49\"></A>\n"
-                                          + "<H1>\nThe <I>Content-MD5</I> header\n</H1>\n"
-                                          + "<P>This pages is served along with its MD5 digest, you take\na look at the headers, as it is quite difficult to do an auto-referent\npage about its md5 signature :)\n"
-                                          + "</P>\n  <HR>\n<BR>\n"
-                                          + "<A HREF=\"mailto:jigsaw@w3.org\">jigsaw@w3.org</A>\n"
-                                          + "</BODY></HTML>\n \n";
+                                           + "<HEAD>\n  <!-- Created with 'cat' and 'vi'  -->\n"
+                                           + "<TITLE>Retry-After header</TITLE>\n"
+                                           + "</HEAD>\n"
+                                           + "<BODY>\n"
+                                           + "<P>\n"
+                                           + "<A HREF=\"..\"><IMG SRC=\"/icons/jigsaw\" ALT=\"Jigsaw\" BORDER=\"0\" WIDTH=\"212\"\n    HEIGHT=\"49\"></A>\n"
+                                           + "<H1>\nThe <I>Content-MD5</I> header\n</H1>\n"
+                                           + "<P>This pages is served along with its MD5 digest, you take\na look at the headers, as it is quite difficult to do an auto-referent\npage about its md5 signature :)\n"
+                                           + "</P>\n  <HR>\n<BR>\n"
+                                           + "<A HREF=\"mailto:jigsaw@w3.org\">jigsaw@w3.org</A>\n"
+                                           + "</BODY></HTML>\n \n";
 
         [Fact]
         public void a_definition()

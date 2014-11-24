@@ -5,7 +5,6 @@
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Web;
-
     using Cavity.Security.Cryptography;
 
     public sealed class WrappedStream : Stream
@@ -86,14 +85,14 @@
             Bytes = new List<byte>();
         }
 
-        public override int Read(byte[] buffer, 
-                                 int offset, 
+        public override int Read(byte[] buffer,
+                                 int offset,
                                  int count)
         {
             return UnderlyingStream.Read(buffer, offset, count);
         }
 
-        public override long Seek(long offset, 
+        public override long Seek(long offset,
                                   SeekOrigin origin)
         {
             return UnderlyingStream.Seek(offset, origin);
@@ -104,8 +103,8 @@
             UnderlyingStream.SetLength(value);
         }
 
-        public override void Write(byte[] buffer, 
-                                   int offset, 
+        public override void Write(byte[] buffer,
+                                   int offset,
                                    int count)
         {
             var context = Static<HttpContextBase>.Instance ?? new HttpContextWrapper(HttpContext.Current);

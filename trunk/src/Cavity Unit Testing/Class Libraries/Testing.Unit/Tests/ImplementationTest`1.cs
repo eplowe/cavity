@@ -2,7 +2,6 @@
 {
     using System;
     using System.Globalization;
-
     using Cavity.Fluent;
     using Cavity.Properties;
 

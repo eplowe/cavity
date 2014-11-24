@@ -11,7 +11,6 @@
     using System.Linq;
 #endif
     using System.Text;
-
     using Cavity.Collections;
     using Cavity.Data.Transformation;
     using Cavity.IO;
@@ -57,7 +56,7 @@
             return Line(data.Values);
         }
 
-        public static string Line(KeyStringDictionary data, 
+        public static string Line(KeyStringDictionary data,
                                   string columns)
         {
             if (null == data)
@@ -79,7 +78,7 @@
             return Line(data, columns.Split(','));
         }
 
-        public static string Line(KeyStringDictionary data, 
+        public static string Line(KeyStringDictionary data,
                                   IList<string> columns)
         {
             if (null == data)
@@ -214,7 +213,7 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This design is intentional.")]
-        public static void Save(FileMode mode, 
+        public static void Save(FileMode mode,
                                 IEnumerable<KeyValuePair<FileInfo, KeyStringDictionary>> data)
         {
             if (null == data)
@@ -225,8 +224,8 @@
             var count = 0;
             using (var writers = new StreamWriterDictionary
                                      {
-                                         Access = FileAccess.Write, 
-                                         Mode = mode, 
+                                         Access = FileAccess.Write,
+                                         Mode = mode,
                                          Share = FileShare.Read
                                      })
             {
@@ -253,7 +252,7 @@
             }
         }
 
-        public virtual void Save(FileMode mode, 
+        public virtual void Save(FileMode mode,
                                  IEnumerable<KeyStringDictionary> data)
         {
             if (null == data)
@@ -413,21 +412,6 @@
             }
         }
 
-        private static DataTable NewDataTable(string name,
-                                              Dictionary<string, string> entry)
-        {
-            var table = new DataTable(name)
-            {
-                Locale = CultureInfo.InvariantCulture
-            };
-            foreach (var key in entry.Keys)
-            {
-                table.Columns.Add(key);
-            }
-
-            return table;
-        }
-
         private static DataRow NewDataRow(DataTable table,
                                           Dictionary<string, string> entry)
         {
@@ -438,6 +422,21 @@
             }
 
             return row;
+        }
+
+        private static DataTable NewDataTable(string name,
+                                              Dictionary<string, string> entry)
+        {
+            var table = new DataTable(name)
+                            {
+                                Locale = CultureInfo.InvariantCulture
+                            };
+            foreach (var key in entry.Keys)
+            {
+                table.Columns.Add(key);
+            }
+
+            return table;
         }
     }
 }

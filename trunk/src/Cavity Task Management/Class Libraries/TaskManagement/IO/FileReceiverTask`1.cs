@@ -3,7 +3,6 @@
     using System;
     using System.IO;
     using System.Linq;
-
     using Cavity.Dynamic;
     using Cavity.Models;
     using Cavity.Threading;
@@ -21,8 +20,8 @@
         {
         }
 
-        protected FileReceiverTask(DirectoryInfo folder, 
-                                   string searchPattern, 
+        protected FileReceiverTask(DirectoryInfo folder,
+                                   string searchPattern,
                                    SearchOption searchOption)
         {
             Data = new DynamicData();

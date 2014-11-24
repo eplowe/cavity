@@ -6,7 +6,6 @@
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
-
     using Cavity.Collections;
 
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "DataSheet", Justification = "This is the correct casing.")]
@@ -14,6 +13,17 @@
     public abstract class DataSheet : IDataSheet
     {
         public string Title { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "As", Justification = "This naming is intentional.")]
+        public virtual IEnumerable<T> As<T>()
+            where T : KeyStringDictionary, new()
+        {
+            var enumerator = GetEnumerator<T>();
+            while (enumerator.MoveNext())
+            {
+                yield return enumerator.Current;
+            }
+        }
 
         public virtual IEnumerable<DataShard> Shard(IIdentifyShard identifier)
         {
@@ -54,17 +64,6 @@
             if (0 != shard.Entries.Count)
             {
                 yield return shard;
-            }
-        }
-
-        [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "As", Justification = "This naming is intentional.")]
-        public virtual IEnumerable<T> As<T>()
-            where T : KeyStringDictionary, new()
-        {
-            var enumerator = GetEnumerator<T>();
-            while (enumerator.MoveNext())
-            {
-                yield return enumerator.Current;
             }
         }
 

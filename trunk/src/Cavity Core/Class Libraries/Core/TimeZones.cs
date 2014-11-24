@@ -2,7 +2,7 @@
 {
     using System;
 
-    public sealed class TimeZones : ITimeZoneEurope, 
+    public sealed class TimeZones : ITimeZoneEurope,
                                     ITimeZoneNorthAmerica
     {
         public static ITimeZoneEurope Europe
@@ -18,54 +18,6 @@
             get
             {
                 return new TimeZones();
-            }
-        }
-
-        TimeZoneInfo ITimeZoneEurope.CentralEuropeanTime
-        {
-            get
-            {
-                return TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
-            }
-        }
-
-        TimeZoneInfo ITimeZoneEurope.BritishTime
-        {
-            get
-            {
-                return TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
-            }
-        }
-
-        TimeZoneInfo ITimeZoneEurope.EasternEuropeanStandardTime
-        {
-            get
-            {
-                return TimeZoneInfo.FindSystemTimeZoneById("E. Europe Standard Time");
-            }
-        }
-
-        TimeZoneInfo ITimeZoneEurope.GreenwichMeanTime
-        {
-            get
-            {
-                return TimeZoneInfo.FindSystemTimeZoneById("Greenwich Standard Time");
-            }
-        }
-
-        TimeZoneInfo ITimeZoneEurope.RussianStandardTime
-        {
-            get
-            {
-                return TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
-            }
-        }
-
-        TimeZoneInfo ITimeZoneEurope.WesternEuropeanStandardTime
-        {
-            get
-            {
-                return TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
             }
         }
 
@@ -85,11 +37,35 @@
             }
         }
 
+        TimeZoneInfo ITimeZoneEurope.BritishTime
+        {
+            get
+            {
+                return TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
+            }
+        }
+
+        TimeZoneInfo ITimeZoneEurope.CentralEuropeanTime
+        {
+            get
+            {
+                return TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
+            }
+        }
+
         TimeZoneInfo ITimeZoneNorthAmerica.CentralStandardTime
         {
             get
             {
                 return TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time");
+            }
+        }
+
+        TimeZoneInfo ITimeZoneEurope.EasternEuropeanStandardTime
+        {
+            get
+            {
+                return TimeZoneInfo.FindSystemTimeZoneById("E. Europe Standard Time");
             }
         }
 
@@ -106,6 +82,14 @@
             get
             {
                 return TimeZoneInfo.FindSystemTimeZoneById("Greenland Standard Time");
+            }
+        }
+
+        TimeZoneInfo ITimeZoneEurope.GreenwichMeanTime
+        {
+            get
+            {
+                return TimeZoneInfo.FindSystemTimeZoneById("Greenwich Standard Time");
             }
         }
 
@@ -138,6 +122,22 @@
             get
             {
                 return TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
+            }
+        }
+
+        TimeZoneInfo ITimeZoneEurope.RussianStandardTime
+        {
+            get
+            {
+                return TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
+            }
+        }
+
+        TimeZoneInfo ITimeZoneEurope.WesternEuropeanStandardTime
+        {
+            get
+            {
+                return TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
             }
         }
     }

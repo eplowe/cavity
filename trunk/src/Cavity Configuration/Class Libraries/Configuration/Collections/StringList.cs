@@ -14,7 +14,7 @@
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
     [XmlRoot("list")]
-    public class StringList : List<string>, 
+    public class StringList : List<string>,
                               IXmlSerializable
     {
         public override bool Equals(object obj)

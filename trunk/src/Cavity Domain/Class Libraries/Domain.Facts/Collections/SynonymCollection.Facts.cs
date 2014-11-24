@@ -2,9 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-
     using Moq;
-
     using Xunit;
 
     public sealed class SynonymCollectionFacts
@@ -49,7 +47,7 @@
             const string synonym = "Example";
             var obj = new SynonymCollection(NormalityComparer.OrdinalIgnoreCase)
                           {
-                              synonym, 
+                              synonym,
                               synonym
                           };
 

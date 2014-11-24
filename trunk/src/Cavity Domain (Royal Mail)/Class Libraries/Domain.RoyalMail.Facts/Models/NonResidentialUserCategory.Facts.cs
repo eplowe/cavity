@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Models
 {
     using System.Diagnostics.CodeAnalysis;
-
     using Xunit;
 
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "NonResidential", Justification = "This is not a single word.")]

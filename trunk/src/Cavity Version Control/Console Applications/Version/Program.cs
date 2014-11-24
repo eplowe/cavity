@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-
     using Cavity.Models;
     using Cavity.Properties;
 
@@ -13,7 +12,7 @@
             Process(CommandLine.Load(args), Environment.CurrentDirectory);
         }
 
-        public static void Process(CommandLine args, 
+        public static void Process(CommandLine args,
                                    string directory)
         {
             if (null == args)

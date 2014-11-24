@@ -8,7 +8,6 @@
 #if !NET20
     using System.Linq;
 #endif
-
     using Cavity.Collections;
     using Cavity.Properties;
 

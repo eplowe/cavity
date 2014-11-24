@@ -9,7 +9,6 @@
     using System.Linq;
 #endif
     using System.Text;
-
     using Cavity.Collections;
     using Cavity.IO;
 

@@ -17,8 +17,8 @@
             get
             {
                 return ContainsKey("TELEPHONE AREA")
-                    ? this["TELEPHONE AREA"]
-                    : null;
+                           ? this["TELEPHONE AREA"]
+                           : null;
             }
 
             set
@@ -44,8 +44,8 @@
             get
             {
                 return ContainsKey("TELEPHONE AREA CODE")
-                    ? this["TELEPHONE AREA CODE"]
-                    : null;
+                           ? this["TELEPHONE AREA CODE"]
+                           : null;
             }
 
             set
@@ -71,8 +71,8 @@
             get
             {
                 return ContainsKey("TELEPHONE DIALING CODE")
-                    ? this["TELEPHONE DIALING CODE"]
-                    : null;
+                           ? this["TELEPHONE DIALING CODE"]
+                           : null;
             }
 
             set
@@ -113,8 +113,8 @@
             get
             {
                 return ContainsKey("TELEPHONE LOCAL NUMBER")
-                    ? this["TELEPHONE LOCAL NUMBER"]
-                    : null;
+                           ? this["TELEPHONE LOCAL NUMBER"]
+                           : null;
             }
 
             set
@@ -140,8 +140,8 @@
             get
             {
                 return ContainsKey("TELEPHONE")
-                    ? this["TELEPHONE"]
-                    : null;
+                           ? this["TELEPHONE"]
+                           : null;
             }
 
             set
@@ -167,8 +167,8 @@
             get
             {
                 return ContainsKey("TELEPHONE NUMBER GROUPS")
-                    ? this["TELEPHONE NUMBER GROUPS"]
-                    : null;
+                           ? this["TELEPHONE NUMBER GROUPS"]
+                           : null;
             }
 
             set
@@ -194,8 +194,8 @@
             get
             {
                 return ContainsKey("TELEPHONE SERVICE TYPE")
-                    ? this["TELEPHONE SERVICE TYPE"]
-                    : null;
+                           ? this["TELEPHONE SERVICE TYPE"]
+                           : null;
             }
 
             set
@@ -216,7 +216,8 @@
             }
         }
 
-        public static BritishTelephone Load(BritishTelephoneNumberPlan plan, Telephone telephone)
+        public static BritishTelephone Load(BritishTelephoneNumberPlan plan,
+                                            Telephone telephone)
         {
             if (null == plan)
             {
@@ -229,15 +230,15 @@
             }
 
             var result = new BritishTelephone
-                {
-                    Number = telephone,
-                    AreaCode = string.Empty,
-                    Area = string.Empty,
-                    NumberGroups = string.Empty,
-                    DialingCode = string.Empty,
-                    LocalNumber = string.Empty,
-                    ServiceType = string.Empty,
-                };
+                             {
+                                 Number = telephone,
+                                 AreaCode = string.Empty,
+                                 Area = string.Empty,
+                                 NumberGroups = string.Empty,
+                                 DialingCode = string.Empty,
+                                 LocalNumber = string.Empty,
+                                 ServiceType = string.Empty,
+                             };
 
             var item = plan.Item(telephone);
             if (null == item)
@@ -259,7 +260,8 @@
             return result;
         }
 
-        public static string ToLocalNumber(string dialingCode, string telephone)
+        public static string ToLocalNumber(string dialingCode,
+                                           string telephone)
         {
             if (null == telephone)
             {
@@ -267,11 +269,12 @@
             }
 
             return dialingCode.IsNullOrEmpty() || telephone.IsEmpty()
-                ? string.Empty
-                : telephone.Substring(3).RemoveFromStart(dialingCode, StringComparison.Ordinal);
+                       ? string.Empty
+                       : telephone.Substring(3).RemoveFromStart(dialingCode, StringComparison.Ordinal);
         }
 
-        public static string ToNumberGroups(string areaCode, string telephone)
+        public static string ToNumberGroups(string areaCode,
+                                            string telephone)
         {
             if (null == telephone)
             {

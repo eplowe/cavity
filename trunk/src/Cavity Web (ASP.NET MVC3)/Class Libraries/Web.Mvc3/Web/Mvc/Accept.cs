@@ -27,7 +27,7 @@
             return Parse(Split(string.IsNullOrEmpty(value) ? "*/*" : value).ToList());
         }
 
-        public ActionResult Negotiate(HttpRequestBase request, 
+        public ActionResult Negotiate(HttpRequestBase request,
                                       Type controller)
         {
             if (null == request)

@@ -6,7 +6,6 @@
     using System.Xml;
     using System.Xml.Linq;
     using System.Xml.XPath;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -100,7 +99,7 @@
 
         [Theory]
         [XmlData("<one />", "<two />")]
-        public void usage_whenMultipleParameters(XmlDocument one, 
+        public void usage_whenMultipleParameters(XmlDocument one,
                                                  XmlDocument two)
         {
             Assert.Equal("<one />", one.OuterXml);
@@ -116,16 +115,16 @@
 
         [Theory]
         [XmlData("<example />")]
-        public void usage_whenXmlDeserialize(Example example)
+        public void usage_whenXPathNavigator(XPathNavigator navigator)
         {
-            Assert.NotNull(example);
+            Assert.Equal("<example />", navigator.OuterXml);
         }
 
         [Theory]
         [XmlData("<example />")]
-        public void usage_whenXPathNavigator(XPathNavigator navigator)
+        public void usage_whenXmlDeserialize(Example example)
         {
-            Assert.Equal("<example />", navigator.OuterXml);
+            Assert.NotNull(example);
         }
     }
 }

@@ -13,12 +13,10 @@
     using System.Net;
 #endif
     using System.Xml;
-
 #if NET20
     using Cavity.Collections;
 #endif
     using Cavity.Collections.Generic;
-
     using HtmlAgilityPack;
 
     public static class HtmlDocumentExtensionMethods
@@ -53,7 +51,7 @@
             return result;
         }
 
-        private static void AddDataTable(DataSet data, 
+        private static void AddDataTable(DataSet data,
                                          HtmlNode table)
         {
             var result = new DataTable
@@ -90,7 +88,7 @@
             data.Tables.Add(result);
         }
 
-        private static void AddNormalDataRows(DataTable obj, 
+        private static void AddNormalDataRows(DataTable obj,
                                               IEnumerable<HtmlNode> rows)
         {
             foreach (var row in rows)
@@ -99,7 +97,7 @@
             }
         }
 
-        private static void AddVerticalDataColumns(DataTable obj, 
+        private static void AddVerticalDataColumns(DataTable obj,
                                                    HtmlNode body)
         {
             var i = -1;
@@ -148,7 +146,7 @@
             }
         }
 
-        private static void AddVerticalDataRows(DataTable obj, 
+        private static void AddVerticalDataRows(DataTable obj,
                                                 HtmlNode body)
         {
 #if NET20
@@ -207,7 +205,7 @@
             }
         }
 
-        private static void FillDataTable(DataTable obj, 
+        private static void FillDataTable(DataTable obj,
                                           HtmlNode table)
         {
 #if NET20
@@ -236,15 +234,15 @@
 #else
                 var name = string.IsNullOrWhiteSpace(columns[i])
 #endif
-                    ? XmlConvert.ToString(i)
-                    : columns[i];
+                               ? XmlConvert.ToString(i)
+                               : columns[i];
                 obj.Columns.Add(name, typeof(HtmlNode));
             }
 
             AddNormalDataRows(obj, rows);
         }
 
-        private static DataRow FillNormalDataRow(DataRow obj, 
+        private static DataRow FillNormalDataRow(DataRow obj,
                                                  HtmlNode row)
         {
 #if NET20

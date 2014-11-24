@@ -1,14 +1,10 @@
 ﻿namespace Cavity.Data
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Xml;
-
-    using Cavity;
     using Cavity.IO;
-
     using Xunit;
 
     public sealed class ExcelWorksheetFacts
@@ -71,9 +67,9 @@
                 for (var i = 1; i < 4; i++)
                 {
                     var sheet = new ExcelWorksheet(file)
-                    {
-                        Title = "Sheet" + XmlConvert.ToString(i)
-                    };
+                                    {
+                                        Title = "Sheet" + XmlConvert.ToString(i)
+                                    };
                     Assert.Empty(sheet);
                 }
             }
@@ -88,9 +84,9 @@
                 new DirectoryInfo(Environment.CurrentDirectory).ToFile("Example.xls").CopyTo(file.FullName);
 
                 var sheet = new ExcelWorksheet(file)
-                {
-                    Title = "Sheet1"
-                };
+                                {
+                                    Title = "Sheet1"
+                                };
 
                 var data = sheet.ToList();
                 Assert.Equal(3, data.Count);

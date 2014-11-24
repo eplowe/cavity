@@ -69,11 +69,11 @@
             }
 
             return new BritishTelephoneNumberPlanItem
-            {
-                AreaCode = area,
-                DialingCode = dialing,
-                Use = entry["Use"],
-            };
+                       {
+                           AreaCode = area,
+                           DialingCode = dialing,
+                           Use = entry["Use"],
+                       };
         }
 
         public BritishTelephoneNumberPlanItem Item(string telephone)
@@ -98,8 +98,8 @@
                 if (BritishTelephoneNumberLength.Validate(telephone))
                 {
                     return new[] { 5, 4, 3 }.Select(length => telephone.Number.Substring(3, length))
-                                          .Where(ContainsKey).Select(prefix => this[prefix])
-                                          .FirstOrDefault();
+                                            .Where(ContainsKey).Select(prefix => this[prefix])
+                                            .FirstOrDefault();
                 }
             }
 
@@ -112,13 +112,12 @@
             {
                 var code = telephone.Number.Substring(3, 4);
                 return new BritishTelephoneNumberPlanItem
-                    {
-                        AreaCode = code,
-                        DialingCode = code,
-                        Use = string.Empty
-                    };
+                           {
+                               AreaCode = code,
+                               DialingCode = code,
+                               Use = string.Empty
+                           };
             }
-
 
             return null;
         }

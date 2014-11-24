@@ -7,12 +7,9 @@
     using System.Linq;
     using System.Xml;
     using System.Xml.XPath;
-
     using Cavity.IO;
     using Cavity.Xml.XPath;
-
     using HtmlAgilityPack;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -122,7 +119,7 @@
 
         [Theory]
         [HtmlFile("one.html", "two.html")]
-        public void usage_whenMultipleParameters(HtmlDocument one, 
+        public void usage_whenMultipleParameters(HtmlDocument one,
                                                  HtmlDocument two)
         {
             // ReSharper disable PossibleNullReferenceException

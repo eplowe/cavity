@@ -7,7 +7,6 @@
     using System.Linq.Expressions;
     using System.Reflection;
     using System.Xml.Serialization;
-
     using Cavity.Fluent;
     using Cavity.Properties;
     using Cavity.Tests;
@@ -156,7 +155,7 @@
         /// Thrown when the specified <paramref name="expectedException"/> type
         /// does not derive from <see cref="T:System.Exception"/>.
         /// </exception>
-        public PropertyExpectations<T> Exception(object value, 
+        public PropertyExpectations<T> Exception(object value,
                                                  Type expectedException)
         {
             if (null == expectedException)
@@ -328,12 +327,12 @@
         /// The expected <see cref="P:System.Xml.Serialization.XmlArrayItemAttribute.ElementName"/> value.
         /// </param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations<T> XmlArray(string arrayElementName, 
+        public PropertyExpectations<T> XmlArray(string arrayElementName,
                                                 string arrayItemElementName)
         {
             Items.Add(new XmlArrayTest(Property)
                           {
-                              ArrayElementName = arrayElementName, 
+                              ArrayElementName = arrayElementName,
                               ArrayItemElementName = arrayItemElementName
                           });
             return this;
@@ -369,12 +368,12 @@
         /// The expected <see cref="P:System.Xml.Serialization.XmlAttributeAttribute.Namespace"/> value.
         /// </param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations<T> XmlAttribute(string attributeName, 
+        public PropertyExpectations<T> XmlAttribute(string attributeName,
                                                     string @namespace)
         {
             Items.Add(new XmlAttributeTest(Property)
                           {
-                              AttributeName = attributeName, 
+                              AttributeName = attributeName,
                               Namespace = @namespace
                           });
             return this;
@@ -410,12 +409,12 @@
         /// The expected <see cref="P:System.Xml.Serialization.XmlElementAttribute.Namespace"/> value.
         /// </param>
         /// <returns>The current instance.</returns>
-        public PropertyExpectations<T> XmlElement(string elementName, 
+        public PropertyExpectations<T> XmlElement(string elementName,
                                                   string @namespace)
         {
             Items.Add(new XmlElementTest(Property)
                           {
-                              ElementName = elementName, 
+                              ElementName = elementName,
                               Namespace = @namespace
                           });
             return this;

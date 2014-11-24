@@ -13,13 +13,13 @@
         {
         }
 
+        public Collection<string> Columns { get; private set; }
+
         public int EntryNumber { get; private set; }
 
         public string Line { get; private set; }
 
         public int LineNumber { get; private set; }
-
-        public Collection<string> Columns { get; private set; }
 
         public IList<string> ReadEntry()
         {

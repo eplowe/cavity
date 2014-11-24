@@ -24,6 +24,12 @@
         }
 
         [Fact]
+        public void ctor_FileInfoNull_DateTime()
+        {
+            Assert.Throws<ArgumentNullException>(() => new DataFileCreation(null, DateTime.UtcNow));
+        }
+
+        [Fact]
         public void ctor_FileInfo_DateTime()
         {
             using (var temp = new TempDirectory())
@@ -39,12 +45,6 @@
         }
 
         [Fact]
-        public void ctor_FileInfoNull_DateTime()
-        {
-            Assert.Throws<ArgumentNullException>(() => new DataFileCreation(null, DateTime.UtcNow));
-        }
-
-        [Fact]
         public void op_Create_IEnumerableOfKeyStringDictionary()
         {
             using (var temp = new TempDirectory())
@@ -52,12 +52,12 @@
                 var destination = temp.Info.ToFile("destination");
                 var modified = DateTime.UtcNow;
                 var data = new List<KeyStringDictionary>
-                    {
-                        new KeyStringDictionary
-                            {
-                                {"VALUE", "123"}
-                            }
-                    };
+                               {
+                                   new KeyStringDictionary
+                                       {
+                                           { "VALUE", "123" }
+                                       }
+                               };
 
                 var obj = new DataFileCreation(destination, modified);
                 var count = obj.Create(data);

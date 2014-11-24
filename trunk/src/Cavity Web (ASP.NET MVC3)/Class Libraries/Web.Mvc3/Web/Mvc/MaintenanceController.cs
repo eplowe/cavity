@@ -5,11 +5,10 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
-
     using Cavity.Web.Routing;
 
     [InternalServerError]
-    public sealed class MaintenanceController : Controller, 
+    public sealed class MaintenanceController : Controller,
                                                 IRegisterRoutes
     {
         public ActionResult HtmlRepresentation()
@@ -28,13 +27,13 @@
             }
 
             routes.MapRoute(
-                "Maintenance", 
-                "{*url}", 
-                new
-                    {
-                        controller = "Maintenance", 
-                        action = "HtmlRepresentation"
-                    });
+                            "Maintenance",
+                            "{*url}",
+                            new
+                                {
+                                    controller = "Maintenance",
+                                    action = "HtmlRepresentation"
+                                });
         }
     }
 }

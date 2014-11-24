@@ -3,11 +3,8 @@
     using System;
     using System.Web;
     using System.Web.Routing;
-
     using Cavity.Web.Mvc;
-
     using Moq;
-
     using Xunit;
 
     public sealed class DateRouteOfTFacts
@@ -136,8 +133,8 @@
             var route = new DateRoute<DummyController>(string.Empty, "Representation");
 
             var actual = route.GetVirtualPath(
-                new RequestContext(context.Object, new RouteData()), 
-                new RouteValueDictionary());
+                                              new RequestContext(context.Object, new RouteData()),
+                                              new RouteValueDictionary());
 
             Assert.NotNull(actual);
 
@@ -162,8 +159,8 @@
             var route = new DateRoute<DummyController>(string.Empty, "Representation");
 
             var actual = route.GetVirtualPath(
-                new RequestContext(context.Object, new RouteData()), 
-                new RouteValueDictionary());
+                                              new RequestContext(context.Object, new RouteData()),
+                                              new RouteValueDictionary());
 
             Assert.Null(actual);
 

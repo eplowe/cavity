@@ -9,7 +9,7 @@
         public static void Append<T>(ICollection<T> obj, 
                                      params T[] items)
 #else
-        public static void Append<T>(this ICollection<T> obj, 
+        public static void Append<T>(this ICollection<T> obj,
                                      params T[] items)
 #endif
         {

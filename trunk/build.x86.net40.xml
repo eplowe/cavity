@@ -4,7 +4,7 @@
          ToolsVersion="4.0">
   <ItemGroup>
   	<Solutions Include="Cavity MSBuild" />
-  	<Solutions Include="Cavity Task Management Service" />
+  	<!-- Solutions Include="Cavity Task Management Service" / -->
   	<Solutions Include="Cavity Utilities" />
   	<Solutions Include="Cavity Visual Studio Templates" />
   </ItemGroup>

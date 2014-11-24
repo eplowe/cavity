@@ -3,7 +3,6 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-
     using Cavity.Properties;
 
     public static class Excel

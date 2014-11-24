@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Runtime.Serialization;
     using System.Text;
-
     using Cavity.Collections;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This naming is intentional.")]
@@ -16,7 +15,8 @@
         {
         }
 
-        protected BritishAddress(SerializationInfo info, StreamingContext context)
+        protected BritishAddress(SerializationInfo info,
+                                 StreamingContext context)
             : base(info, context)
         {
         }
@@ -199,15 +199,15 @@
 
             var clone = entry.Clone<KeyStringDictionary>();
             var result = new MarketingAddress
-                {
-                    { "ADDRESS 1", string.Empty },
-                    { "ADDRESS 2", string.Empty },
-                    { "ADDRESS 3", string.Empty },
-                    { "ADDRESS 4", string.Empty },
-                    { "ADDRESS 5", string.Empty },
-                    { "ADDRESS 6", string.Empty },
-                    { "POSTCODE", clone["PCD"] },
-                };
+                             {
+                                 { "ADDRESS 1", string.Empty },
+                                 { "ADDRESS 2", string.Empty },
+                                 { "ADDRESS 3", string.Empty },
+                                 { "ADDRESS 4", string.Empty },
+                                 { "ADDRESS 5", string.Empty },
+                                 { "ADDRESS 6", string.Empty },
+                                 { "POSTCODE", clone["PCD"] },
+                             };
 
             if (clone["SBN"].ContainsText())
             {

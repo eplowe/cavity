@@ -9,14 +9,11 @@
 #endif
     using System.Reflection;
     using System.Xml.XPath;
-
 #if NET20
     using Cavity.Collections;
 #endif
     using Cavity.Properties;
-
     using HtmlAgilityPack;
-
     using Xunit.Extensions;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
@@ -44,7 +41,7 @@
 
         public IEnumerable<string> Files { get; private set; }
 
-        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest, 
+        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest,
                                                       Type[] parameterTypes)
         {
             if (null == methodUnderTest)

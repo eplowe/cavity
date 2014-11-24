@@ -2,11 +2,7 @@
 {
     using System;
     using System.Net;
-
-    using Cavity;
-
     using Moq;
-
     using Xunit;
 
     public sealed class IHttpClientFacts

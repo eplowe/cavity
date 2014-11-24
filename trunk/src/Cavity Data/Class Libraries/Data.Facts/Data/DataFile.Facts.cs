@@ -3,9 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
-
     using Cavity.IO;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -159,7 +157,7 @@
         [InlineData("Data", "Data")]
         [InlineData("Data", "Data.example")]
         [InlineData("", ".example")]
-        public void prop_Title_get(string expected, 
+        public void prop_Title_get(string expected,
                                    string fileName)
         {
             using (var temp = new TempDirectory())

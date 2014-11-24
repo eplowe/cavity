@@ -9,9 +9,9 @@
 #endif
 
     [Serializable]
-    public class AbsoluteUri : IComparable, 
-                               IComparable<AbsoluteUri>, 
-                               IEquatable<AbsoluteUri>, 
+    public class AbsoluteUri : IComparable,
+                               IComparable<AbsoluteUri>,
+                               IEquatable<AbsoluteUri>,
                                ISerializable
     {
         private Uri _value;
@@ -26,7 +26,7 @@
             Value = value;
         }
 
-        protected AbsoluteUri(SerializationInfo info, 
+        protected AbsoluteUri(SerializationInfo info,
                               StreamingContext context)
         {
             if (null == info)
@@ -60,7 +60,7 @@
             }
         }
 
-        public static bool operator ==(AbsoluteUri obj, 
+        public static bool operator ==(AbsoluteUri obj,
                                        AbsoluteUri comparand)
         {
             return ReferenceEquals(null, obj)
@@ -68,7 +68,7 @@
                        : obj.Equals(comparand);
         }
 
-        public static bool operator >(AbsoluteUri obj, 
+        public static bool operator >(AbsoluteUri obj,
                                       AbsoluteUri comparand)
         {
             return !ReferenceEquals(null, obj) && 0 < obj.CompareTo(comparand);
@@ -94,7 +94,7 @@
             return null == value ? null : new AbsoluteUri(value);
         }
 
-        public static bool operator !=(AbsoluteUri obj, 
+        public static bool operator !=(AbsoluteUri obj,
                                        AbsoluteUri comparand)
         {
             return ReferenceEquals(null, obj)
@@ -102,7 +102,7 @@
                        : !obj.Equals(comparand);
         }
 
-        public static bool operator <(AbsoluteUri obj, 
+        public static bool operator <(AbsoluteUri obj,
                                       AbsoluteUri comparand)
         {
             return ReferenceEquals(null, obj)
@@ -212,7 +212,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        public virtual void GetObjectData(SerializationInfo info, 
+        public virtual void GetObjectData(SerializationInfo info,
                                           StreamingContext context)
         {
             if (null == info)

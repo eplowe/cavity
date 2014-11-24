@@ -5,7 +5,6 @@
     using System.Xml;
     using System.Xml.Schema;
     using System.Xml.Serialization;
-
     using Cavity.Collections;
     using Cavity.Xml;
 

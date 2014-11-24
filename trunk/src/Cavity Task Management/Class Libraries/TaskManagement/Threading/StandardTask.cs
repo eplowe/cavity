@@ -5,10 +5,9 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
-
     using Cavity.Diagnostics;
 
-    public abstract class StandardTask : DisposableObject, 
+    public abstract class StandardTask : DisposableObject,
                                          ITask
     {
         public CancellationToken CancellationToken { get; private set; }

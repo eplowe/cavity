@@ -1,4 +1,5 @@
 ﻿#if !NET20 && !NET35
+
 namespace Cavity.IO
 {
     using System;
@@ -104,4 +105,5 @@ namespace Cavity.IO
         }
     }
 }
+
 #endif

@@ -5,7 +5,6 @@
 #if !NET20
     using System.Linq;
 #endif
-
     using Cavity.Diagnostics;
 
     public sealed class Telephone : ComparableObject

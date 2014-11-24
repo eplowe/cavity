@@ -1,9 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using System;
-
     using Cavity.Fluent;
-
     using Xunit;
 
     public sealed class ValueTypeTestOfTFacts

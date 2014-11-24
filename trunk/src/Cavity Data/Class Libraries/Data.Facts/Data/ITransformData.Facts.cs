@@ -1,11 +1,8 @@
 ﻿namespace Cavity.Data
 {
     using System.Collections.Generic;
-
     using Cavity.Collections;
-
     using Moq;
-
     using Xunit;
 
     public sealed class ITransformDataFacts

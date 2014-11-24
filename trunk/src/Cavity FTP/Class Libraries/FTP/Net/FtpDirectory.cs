@@ -25,9 +25,9 @@ namespace Cavity.Net
         public bool Secure { get; set; }
 
         public static IEnumerable<FtpFile> Load(Uri location,
-            ICredentials credentials,
-            bool passive,
-            bool secure)
+                                                ICredentials credentials,
+                                                bool passive,
+                                                bool secure)
         {
             if (null == location)
             {
@@ -37,19 +37,19 @@ namespace Cavity.Net
             Trace.WriteLineIf(Tracing.Is.TraceVerbose, "[FTP] location={0}".FormatWith(location.AbsoluteUri));
 
             var result = new FtpDirectory
-                {
-                    Credentials = credentials,
-                    Location = location,
-                    Passive = passive,
-                    Secure = secure,
-                };
+                             {
+                                 Credentials = credentials,
+                                 Location = location,
+                                 Passive = passive,
+                                 Secure = secure,
+                             };
 
             return result.Load();
         }
 
         internal static FtpWebRequest ToFtpWebRequest(Uri location,
-            string name,
-            ICredentials credentials)
+                                                      string name,
+                                                      ICredentials credentials)
         {
             if (null == location)
             {
@@ -62,7 +62,7 @@ namespace Cavity.Net
         }
 
         internal static FtpWebRequest ToFtpWebRequest(Uri location,
-            ICredentials credentials)
+                                                      ICredentials credentials)
         {
             if (null == location)
             {
@@ -78,9 +78,9 @@ namespace Cavity.Net
         }
 
         private static bool CertificateValidation(object sender,
-            X509Certificate certificate,
-            X509Chain chain,
-            SslPolicyErrors sslPolicyErrors)
+                                                  X509Certificate certificate,
+                                                  X509Chain chain,
+                                                  SslPolicyErrors sslPolicyErrors)
         {
             if (SslPolicyErrors.RemoteCertificateChainErrors == (sslPolicyErrors & SslPolicyErrors.RemoteCertificateChainErrors))
             {

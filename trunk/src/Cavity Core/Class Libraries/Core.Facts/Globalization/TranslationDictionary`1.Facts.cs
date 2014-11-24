@@ -5,7 +5,6 @@
     using System.IO;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Threading;
-
     using Xunit;
 
     public sealed class TranslationDictionaryOfTFacts
@@ -129,7 +128,7 @@
                 const int expected = 123;
                 var obj = new TranslationDictionary<int>
                               {
-                                  new Translation<int>(expected, "fr"), 
+                                  new Translation<int>(expected, "fr"),
                                   new Translation<int>(456, "fr-CA")
                               };
 
@@ -156,7 +155,7 @@
                 const int expected = 123;
                 var obj = new TranslationDictionary<int>
                               {
-                                  new Translation<int>(456, "fr"), 
+                                  new Translation<int>(456, "fr"),
                                   new Translation<int>(expected, language)
                               };
 
@@ -181,7 +180,7 @@
                 const int expected = 123;
                 var obj = new TranslationDictionary<int>
                               {
-                                  new Translation<int>(expected, string.Empty), 
+                                  new Translation<int>(expected, string.Empty),
                                   new Translation<int>(456, "fr-CA")
                               };
 

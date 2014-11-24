@@ -13,16 +13,15 @@
     using System.Security.Permissions;
 #endif
     using System.Text;
-
     using Cavity.Collections;
 
     [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This is not a collection.")]
     [Serializable]
-    public sealed class MutableString : ICloneable, 
-                                        IComparable, 
-                                        IComparable<MutableString>, 
-                                        IEnumerable<char>, 
-                                        IEquatable<MutableString>, 
+    public sealed class MutableString : ICloneable,
+                                        IComparable,
+                                        IComparable<MutableString>,
+                                        IEnumerable<char>,
+                                        IEquatable<MutableString>,
                                         ISerializable
     {
         private readonly StringBuilder _value;
@@ -32,7 +31,7 @@
             _value = new StringBuilder();
         }
 
-        public MutableString(char seed, 
+        public MutableString(char seed,
                              int length)
         {
             _value = new StringBuilder(new string(seed, length));
@@ -54,7 +53,7 @@
             _value = new StringBuilder(value.ToString());
         }
 
-        private MutableString(SerializationInfo info, 
+        private MutableString(SerializationInfo info,
                               StreamingContext context)
         {
             if (null == info)
@@ -120,19 +119,19 @@
                        : value.ToString();
         }
 
-        public static bool operator >(MutableString obj, 
+        public static bool operator >(MutableString obj,
                                       MutableString comparand)
         {
             return 0 < string.CompareOrdinal(obj, comparand);
         }
 
-        public static bool operator <(MutableString obj, 
+        public static bool operator <(MutableString obj,
                                       MutableString comparand)
         {
             return 0 > string.CompareOrdinal(obj, comparand);
         }
 
-        public static bool operator ==(MutableString obj, 
+        public static bool operator ==(MutableString obj,
                                        MutableString comparand)
         {
             if (ReferenceEquals(null, obj))
@@ -143,7 +142,7 @@
             return obj.Equals(comparand);
         }
 
-        public static bool operator !=(MutableString obj, 
+        public static bool operator !=(MutableString obj,
                                        MutableString comparand)
         {
             if (ReferenceEquals(null, obj))
@@ -154,7 +153,7 @@
             return !obj.Equals(comparand);
         }
 
-        public static int Compare(MutableString comparand1, 
+        public static int Compare(MutableString comparand1,
                                   MutableString comparand2)
         {
             var x = ReferenceEquals(null, comparand1) ? null : comparand1;
@@ -223,7 +222,7 @@
             return this;
         }
 
-        public MutableString Append(IEnumerable<string> values, 
+        public MutableString Append(IEnumerable<string> values,
                                     char separator)
         {
             if (null == values)
@@ -394,7 +393,7 @@
             return 0 != Length;
         }
 
-        public MutableString Crop(int start, 
+        public MutableString Crop(int start,
                                   int length)
         {
             if (1 > length)
@@ -579,14 +578,14 @@
             return IndexOf(value, 0);
         }
 
-        public int IndexOf(char value, 
+        public int IndexOf(char value,
                            int start)
         {
             return IndexOf(value, start, _value.Length - start);
         }
 
-        public int IndexOf(char value, 
-                           int start, 
+        public int IndexOf(char value,
+                           int start,
                            int length)
         {
             if (0 > start)
@@ -631,14 +630,14 @@
             return IndexOf(value, 0);
         }
 
-        public int IndexOf(string value, 
+        public int IndexOf(string value,
                            int start)
         {
             return IndexOf(value, start, _value.Length - start);
         }
 
-        public int IndexOf(string value, 
-                           int start, 
+        public int IndexOf(string value,
+                           int start,
                            int length)
         {
             if (null == value)
@@ -730,7 +729,7 @@
             }
         }
 
-        public MutableString Insert(int index, 
+        public MutableString Insert(int index,
                                     char value)
         {
             _value.Insert(index, value);
@@ -738,7 +737,7 @@
             return this;
         }
 
-        public MutableString Insert(int index, 
+        public MutableString Insert(int index,
                                     string value)
         {
             if (null == value)
@@ -749,7 +748,7 @@
             return Insert(index, value.ToCharArray());
         }
 
-        public MutableString Insert(int index, 
+        public MutableString Insert(int index,
                                     IEnumerable<char> value)
         {
             if (0 > index)
@@ -775,8 +774,8 @@
             return this;
         }
 
-        public int LastIndexOf(string value, 
-                               int start, 
+        public int LastIndexOf(string value,
+                               int start,
                                int length)
         {
             if (null == value)
@@ -1050,7 +1049,7 @@
             return PadLeft(width, ' ');
         }
 
-        public MutableString PadLeft(int width, 
+        public MutableString PadLeft(int width,
                                      char padding)
         {
             if (0 > width)
@@ -1076,7 +1075,7 @@
             return PadRight(width, ' ');
         }
 
-        public MutableString PadRight(int width, 
+        public MutableString PadRight(int width,
                                       char padding)
         {
             if (0 > width)
@@ -1102,7 +1101,7 @@
             return Prefix(value, false);
         }
 
-        public string Prefix(string value, 
+        public string Prefix(string value,
                              bool trim)
         {
             if (null == value)
@@ -1181,7 +1180,7 @@
             return this;
         }
 
-        public MutableString Remove(int start, 
+        public MutableString Remove(int start,
                                     int length)
         {
             _value.Remove(start, length);
@@ -1494,7 +1493,7 @@
 #endif
         }
 
-        public MutableString Replace(char old, 
+        public MutableString Replace(char old,
                                      char replacement)
         {
             _value.Replace(old, replacement);
@@ -1502,16 +1501,16 @@
             return this;
         }
 
-        public MutableString Replace(char old, 
-                                     char replacement, 
+        public MutableString Replace(char old,
+                                     char replacement,
                                      int start)
         {
             return Replace(old, replacement, start, _value.Length - start);
         }
 
-        public MutableString Replace(char old, 
-                                     char replacement, 
-                                     int start, 
+        public MutableString Replace(char old,
+                                     char replacement,
+                                     int start,
                                      int count)
         {
             _value.Replace(old, replacement, start, count);
@@ -1519,7 +1518,7 @@
             return this;
         }
 
-        public MutableString Replace(string old, 
+        public MutableString Replace(string old,
                                      string replacement)
         {
             _value.Replace(old, replacement);
@@ -1527,16 +1526,16 @@
             return this;
         }
 
-        public MutableString Replace(string old, 
-                                     string replacement, 
+        public MutableString Replace(string old,
+                                     string replacement,
                                      int start)
         {
             return Replace(old, replacement, start, _value.Length - start);
         }
 
-        public MutableString Replace(string old, 
-                                     string replacement, 
-                                     int start, 
+        public MutableString Replace(string old,
+                                     string replacement,
+                                     int start,
                                      int count)
         {
             _value.Replace(old, replacement, start, count);
@@ -1544,7 +1543,7 @@
             return this;
         }
 
-        public MutableString ReplaceStart(string value, 
+        public MutableString ReplaceStart(string value,
                                           string replacement)
         {
             if (null == value)
@@ -1572,7 +1571,7 @@
                        : RemoveFromStart(value).Prepend(replacement);
         }
 
-        public MutableString ReplaceEnd(string value, 
+        public MutableString ReplaceEnd(string value,
                                         string replacement)
         {
             if (null == value)
@@ -1600,7 +1599,7 @@
                        : RemoveFromEnd(value).Append(replacement);
         }
 
-        public IEnumerable<string> Split(char value, 
+        public IEnumerable<string> Split(char value,
                                          StringSplitOptions options)
         {
             var buffer = new StringBuilder();
@@ -1714,7 +1713,7 @@
             return Substring(start, _value.Length - start);
         }
 
-        public string Substring(int start, 
+        public string Substring(int start,
                                 int length)
         {
             if (0 > start)
@@ -1752,7 +1751,7 @@
             return Suffix(value, false);
         }
 
-        public string Suffix(string value, 
+        public string Suffix(string value,
                              bool trim)
         {
             if (null == value)
@@ -1782,7 +1781,7 @@
             return ToCharArray(start, _value.Length - start);
         }
 
-        public char[] ToCharArray(int start, 
+        public char[] ToCharArray(int start,
                                   int length)
         {
             if (0 > start)
@@ -1945,7 +1944,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        void ISerializable.GetObjectData(SerializationInfo info, 
+        void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {
             if (null == info)

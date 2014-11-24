@@ -5,7 +5,6 @@
     using System.Diagnostics;
     using System.Linq;
     using System.Xml;
-
     using Cavity.Diagnostics;
 
     public sealed class BritishPostcode : IComparable,
@@ -175,8 +174,7 @@
                          .Replace("  ", " ", StringComparison.Ordinal)
                          .ToUpperInvariant()
                          .Where(c => ' '.Equals(c) || char.IsLetterOrDigit(c))
-                         .Aggregate(string.Empty, (current,
-                                                   c) => current + c);
+                         .Aggregate(string.Empty, (current, c) => current + c);
             if (0 == value.Length)
             {
                 return new BritishPostcode();

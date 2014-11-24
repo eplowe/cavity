@@ -13,7 +13,7 @@
             Id = id;
         }
 
-        public Package(string id, 
+        public Package(string id,
                        string version)
         {
             Id = id;

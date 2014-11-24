@@ -5,9 +5,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-
     using Cavity.IO;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -237,7 +235,7 @@
                                    new JsonObject
                                        {
                                            new JsonPair("one", new JsonNumber("1"))
-                                       }, 
+                                       },
                                    new JsonObject
                                        {
                                            new JsonPair("two", new JsonNumber("2"))
@@ -292,7 +290,7 @@
                                    new JsonObject
                                        {
                                            new JsonPair("one", new JsonNumber("1"))
-                                       }, 
+                                       },
                                    new JsonObject
                                        {
                                            new JsonPair("two", new JsonNumber("2"))
@@ -387,7 +385,7 @@
         [InlineData("facebook.json", "facebook.pretty.json")]
         [InlineData("flickr.json", "flickr.pretty.json")]
         [InlineData("yahoo pipes.json", "yahoo pipes.pretty.json")]
-        public void roundtrip_pretty(string source, 
+        public void roundtrip_pretty(string source,
                                      string destination)
         {
             var expected = new FileInfo(destination).ReadToEnd();

@@ -11,22 +11,22 @@
 
     [ImmutableObject(true)]
     [Serializable]
-    public struct Month : IComparable, 
-                          IComparable<Month>, 
-                          IEquatable<Month>, 
+    public struct Month : IComparable,
+                          IComparable<Month>,
+                          IEquatable<Month>,
                           ISerializable,
                           IChangeMonth<Month>,
                           IGetTimeZone<Month>
     {
         private DateTime _date;
 
-        public Month(int year, 
+        public Month(int year,
                      MonthOfYear month)
             : this(new DateTime(year, (int)month, 1))
         {
         }
 
-        public Month(int year, 
+        public Month(int year,
                      int month)
             : this(new DateTime(year, month, 1))
         {
@@ -42,7 +42,7 @@
             _date = new DateTime(date.Year, date.Month, 1);
         }
 
-        private Month(SerializationInfo info, 
+        private Month(SerializationInfo info,
                       StreamingContext context)
             : this()
         {
@@ -129,19 +129,19 @@
             }
         }
 
-        public static bool operator ==(Month obj, 
+        public static bool operator ==(Month obj,
                                        Month comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator >(Month operand1, 
+        public static bool operator >(Month operand1,
                                       Month operand2)
         {
             return operand1.ToDateTime() > operand2.ToDateTime();
         }
 
-        public static bool operator >=(Month operand1, 
+        public static bool operator >=(Month operand1,
                                        Month operand2)
         {
             if (operand1 == operand2)
@@ -152,7 +152,7 @@
             return operand1 > operand2;
         }
 
-        public static bool operator <=(Month operand1, 
+        public static bool operator <=(Month operand1,
                                        Month operand2)
         {
             if (operand1 == operand2)
@@ -183,19 +183,19 @@
             return operand.Decrement();
         }
 
-        public static bool operator !=(Month obj, 
+        public static bool operator !=(Month obj,
                                        Month comparand)
         {
             return !obj.Equals(comparand);
         }
 
-        public static bool operator <(Month operand1, 
+        public static bool operator <(Month operand1,
                                       Month operand2)
         {
             return operand1.ToDateTime() < operand2.ToDateTime();
         }
 
-        public static int Compare(Month operand1, 
+        public static int Compare(Month operand1,
                                   Month operand2)
         {
             return DateTime.Compare(operand1.ToDateTime(), operand2.ToDateTime());
@@ -320,7 +320,7 @@
         {
             return new Month(value, MonthOfYear);
         }
-        
+
 #if !NET20
         Month IGetTimeZone<Month>.For(TimeZoneInfo value)
         {
@@ -332,7 +332,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        void ISerializable.GetObjectData(SerializationInfo info, 
+        void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {
             if (null == info)
@@ -343,7 +343,7 @@
             info.AddValue("_value", _date);
         }
 
-        private Month To(MonthOfYear value, 
+        private Month To(MonthOfYear value,
                          int month)
         {
 #if NET20
@@ -351,17 +351,17 @@
 #else
             if (!value.In(
 #endif
-                     MonthOfYear.January, 
-                     MonthOfYear.February, 
-                     MonthOfYear.March, 
-                     MonthOfYear.April, 
-                     MonthOfYear.May, 
-                     MonthOfYear.June, 
-                     MonthOfYear.July, 
-                     MonthOfYear.August, 
-                     MonthOfYear.September, 
-                     MonthOfYear.October, 
-                     MonthOfYear.November, 
+                     MonthOfYear.January,
+                     MonthOfYear.February,
+                     MonthOfYear.March,
+                     MonthOfYear.April,
+                     MonthOfYear.May,
+                     MonthOfYear.June,
+                     MonthOfYear.July,
+                     MonthOfYear.August,
+                     MonthOfYear.September,
+                     MonthOfYear.October,
+                     MonthOfYear.November,
                      MonthOfYear.December))
             {
                 throw new ArgumentOutOfRangeException("value");

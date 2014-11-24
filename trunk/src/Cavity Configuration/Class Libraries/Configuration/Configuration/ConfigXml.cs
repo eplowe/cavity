@@ -5,7 +5,6 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Security.Permissions;
-
     using Cavity.Diagnostics;
     using Cavity.IO;
 
@@ -28,7 +27,7 @@
             Info = file;
             Watcher = new FileSystemWatcher(file.Directory.FullName, file.Name)
                           {
-                              EnableRaisingEvents = true, 
+                              EnableRaisingEvents = true,
                               NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName
                           };
             Watcher.Changed += OnChanged;
@@ -71,28 +70,28 @@
                        };
         }
 
-        protected virtual void OnChanged(object source, 
+        protected virtual void OnChanged(object source,
                                          FileSystemEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
 
-        protected virtual void OnCreated(object source, 
+        protected virtual void OnCreated(object source,
                                          FileSystemEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
 
-        protected virtual void OnDeleted(object source, 
+        protected virtual void OnDeleted(object source,
                                          FileSystemEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);
             Changed = true;
         }
 
-        protected virtual void OnRenamed(object source, 
+        protected virtual void OnRenamed(object source,
                                          RenamedEventArgs e)
         {
             Trace.WriteIf(Tracing.Is.TraceVerbose, string.Empty);

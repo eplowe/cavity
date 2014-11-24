@@ -9,7 +9,7 @@
 #endif
 
     [Serializable]
-    public struct Quality : ISerializable, 
+    public struct Quality : ISerializable,
                             IEquatable<Quality>
     {
         private float _value;
@@ -20,7 +20,7 @@
             Value = value;
         }
 
-        private Quality(SerializationInfo info, 
+        private Quality(SerializationInfo info,
                         StreamingContext context)
             : this()
         {
@@ -68,7 +68,7 @@
             }
         }
 
-        public static bool operator ==(Quality obj, 
+        public static bool operator ==(Quality obj,
                                        Quality comparand)
         {
             return obj.Equals(comparand);
@@ -94,7 +94,7 @@
             return FromString(value);
         }
 
-        public static bool operator !=(Quality obj, 
+        public static bool operator !=(Quality obj,
                                        Quality comparand)
         {
             return !obj.Equals(comparand);
@@ -140,7 +140,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        void ISerializable.GetObjectData(SerializationInfo info, 
+        void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {
             if (null == info)

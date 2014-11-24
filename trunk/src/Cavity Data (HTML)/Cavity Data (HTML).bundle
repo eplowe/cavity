@@ -15,7 +15,7 @@
     <NuPkgDirectory>$(MSBuildProjectDirectory)\.nuget\packages</NuPkgDirectory>
   </PropertyGroup>
   <Target Name="Run">
-    <!-- MakeDir Directories="%(NuGetLibDir.Identity)"
+    <MakeDir Directories="%(NuGetLibDir.Identity)"
              Condition="!Exists('%(NuGetLibDir.Identity)')"/>
              
     <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Html\bin\Release net20 AnyCPU\Cavity.Data.Html.dll"
@@ -30,7 +30,7 @@
           DestinationFolder="$(MSBuildProjectDirectory)\.nuget\lib\net35" />
     <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Html.Xunit\bin\Release net40 AnyCPU\Cavity.Data.Html.Xunit.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\.nuget\lib\net40" />
-    <CallTarget Targets="nuget pack" / -->
+    <CallTarget Targets="nuget pack" />
   </Target>
   <Target Name="nuget pack">
     <MSBuild.ExtensionPack.Framework.MsBuildHelper TaskAction="GetItemCount"

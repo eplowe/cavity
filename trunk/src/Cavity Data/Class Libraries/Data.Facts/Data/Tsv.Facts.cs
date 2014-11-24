@@ -6,10 +6,8 @@
     using System.Globalization;
     using System.IO;
     using System.Linq;
-
     using Cavity.Collections;
     using Cavity.IO;
-
     using Xunit;
 
     public sealed class TsvFacts

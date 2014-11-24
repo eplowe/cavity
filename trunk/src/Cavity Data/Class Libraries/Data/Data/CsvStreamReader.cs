@@ -6,7 +6,6 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Text;
-
     using Cavity.Collections;
     using Cavity.Properties;
 

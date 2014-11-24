@@ -5,24 +5,25 @@
     using System.IO;
 #if !NET20
     using System.Linq;
+
 #endif
 
     public static class FileSystemInfoExtensionMethods
     {
 #if !NET20 && !NET35
-        public static string Combine(this FileSystemInfo obj, 
+        public static string Combine(this FileSystemInfo obj,
                                      params object[] paths)
         {
             return Path.Combine(ToStringArray(obj, paths));
         }
 
-        public static DirectoryInfo CombineAsDirectory(this FileSystemInfo obj, 
+        public static DirectoryInfo CombineAsDirectory(this FileSystemInfo obj,
                                                        params object[] paths)
         {
             return new DirectoryInfo(Combine(obj, paths));
         }
 
-        public static FileInfo CombineAsFile(this FileSystemInfo obj, 
+        public static FileInfo CombineAsFile(this FileSystemInfo obj,
                                              params object[] paths)
         {
             return new FileInfo(Combine(obj, paths));
@@ -44,7 +45,7 @@
         }
 
 #if !NET20 && !NET35
-        private static string[] ToStringArray(FileSystemInfo obj, 
+        private static string[] ToStringArray(FileSystemInfo obj,
                                               IEnumerable<object> paths)
         {
             if (null == obj)

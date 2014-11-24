@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Xml;
     using Moq;
-
     using Xunit;
 
     public sealed class IEnumerableExtensionMethodsFacts
@@ -161,7 +160,7 @@
         {
             Assert.False((null as IEnumerable).IsNotEmpty());
         }
-        
+
 #if !NET20 && !NET35
         [Fact]
         public void op_None_IEnumerableOfT_FuncOfT()
@@ -181,18 +180,18 @@
         public void op_ToConcurrentDictionary_IEnumerable()
         {
             var source = new List<KeyStringDictionary>
-                {
-                    new KeyStringDictionary
-                        {
-                            {"KEY", "1"},
-                            {"VALUE", "A"},
-                        },
-                    new KeyStringDictionary
-                        {
-                            {"KEY", "2"},
-                            {"VALUE", "B"},
-                        },
-                };
+                             {
+                                 new KeyStringDictionary
+                                     {
+                                         { "KEY", "1" },
+                                         { "VALUE", "A" },
+                                     },
+                                 new KeyStringDictionary
+                                     {
+                                         { "KEY", "2" },
+                                         { "VALUE", "B" },
+                                     },
+                             };
 
             var actual = source.ToConcurrentDictionary(entry => XmlConvert.ToInt32(entry["KEY"]), entry => entry["VALUE"]);
 

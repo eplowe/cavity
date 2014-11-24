@@ -3,12 +3,12 @@
          DefaultTargets="Rebuild"
          ToolsVersion="4.0">
   <ItemGroup>
-  	<Solutions Include="Cavity Task Management Service" />
+  	<!-- Solutions Include="Cavity Task Management Service" / -->
   </ItemGroup>
   <Target Name="Rebuild">
-    <MSBuild Projects="$(MSBuildProjectDirectory)\src\%(Solutions.Identity)\%(Solutions.Identity).sln"
+    <!-- MSBuild Projects="$(MSBuildProjectDirectory)\src\%(Solutions.Identity)\%(Solutions.Identity).sln"
              Targets="Rebuild"
              Properties="$(MSBuildProperties);TargetFrameworkVersion=v4.0;Platform=x64"
-             BuildInParallel="true" />
+             BuildInParallel="true" / -->
   </Target>
 </Project>

@@ -1,13 +1,11 @@
 ﻿namespace Cavity.Collections
 {
-    using System;
     using System.Collections.Generic;
     using System.IO;
 #if !NET20
     using System.Linq;
 #endif
     using System.Xml.Serialization;
-
     using Cavity.Collections.Generic;
 
     [XmlRoot("directories")]

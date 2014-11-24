@@ -4,9 +4,7 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Xml.Serialization;
-
     using Cavity.Xml.XPath;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -35,14 +33,14 @@
                                                                int value)
         {
             var obj = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123)
-                };
+                          {
+                              new TestXmlSerializableCollectionItem(123)
+                          };
 
             var other = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(value)
-                };
+                            {
+                                new TestXmlSerializableCollectionItem(value)
+                            };
 
             var actual = obj.Equals(other);
 
@@ -53,10 +51,10 @@
         public void op_Equals_TestXmlSerializableCollectionOfTNull()
         {
             var obj = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123),
-                    new TestXmlSerializableCollectionItem(456)
-                };
+                          {
+                              new TestXmlSerializableCollectionItem(123),
+                              new TestXmlSerializableCollectionItem(456)
+                          };
 
             Assert.False(obj.Equals(null));
         }
@@ -65,15 +63,15 @@
         public void op_Equals_TestXmlSerializableCollectionOfT_whenCountsDiffer()
         {
             var obj = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123)
-                };
+                          {
+                              new TestXmlSerializableCollectionItem(123)
+                          };
 
             var other = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123),
-                    new TestXmlSerializableCollectionItem(456)
-                };
+                            {
+                                new TestXmlSerializableCollectionItem(123),
+                                new TestXmlSerializableCollectionItem(456)
+                            };
 
             Assert.False(obj.Equals(other));
         }
@@ -82,10 +80,10 @@
         public void op_Equals_TestXmlSerializableCollectionOfT_whenSame()
         {
             var obj = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123),
-                    new TestXmlSerializableCollectionItem(456)
-                };
+                          {
+                              new TestXmlSerializableCollectionItem(123),
+                              new TestXmlSerializableCollectionItem(456)
+                          };
 
             Assert.True(obj.Equals(obj));
         }
@@ -97,14 +95,14 @@
                                      int value)
         {
             var obj = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123)
-                };
+                          {
+                              new TestXmlSerializableCollectionItem(123)
+                          };
 
             object other = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(value)
-                };
+                               {
+                                   new TestXmlSerializableCollectionItem(value)
+                               };
 
             var actual = obj.Equals(other);
 
@@ -115,10 +113,10 @@
         public void op_Equals_objectNull()
         {
             var obj = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123),
-                    new TestXmlSerializableCollectionItem(456)
-                };
+                          {
+                              new TestXmlSerializableCollectionItem(123),
+                              new TestXmlSerializableCollectionItem(456)
+                          };
 
             object other = null;
 
@@ -132,15 +130,15 @@
         public void op_Equals_object_whenCountsDiffer()
         {
             var obj = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123)
-                };
+                          {
+                              new TestXmlSerializableCollectionItem(123)
+                          };
 
             var other = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123),
-                    new TestXmlSerializableCollectionItem(456)
-                };
+                            {
+                                new TestXmlSerializableCollectionItem(123),
+                                new TestXmlSerializableCollectionItem(456)
+                            };
 
             Assert.False(obj.Equals(other));
         }
@@ -159,9 +157,9 @@
         public void op_Equals_object_whenInvalidCast()
         {
             var obj = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123)
-                };
+                          {
+                              new TestXmlSerializableCollectionItem(123)
+                          };
 
             const int other = 123;
 
@@ -175,10 +173,10 @@
         public void op_Equals_object_whenSame()
         {
             object obj = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123),
-                    new TestXmlSerializableCollectionItem(456)
-                };
+                             {
+                                 new TestXmlSerializableCollectionItem(123),
+                                 new TestXmlSerializableCollectionItem(456)
+                             };
 
             // ReSharper disable EqualExpressionComparison
             Assert.True(obj.Equals(obj));
@@ -190,9 +188,9 @@
         public void op_GetHashCode()
         {
             var obj = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123)
-                };
+                          {
+                              new TestXmlSerializableCollectionItem(123)
+                          };
 
             var expected = obj.ToString().GetHashCode();
 
@@ -233,9 +231,9 @@
             var expected = "<collection>{0}  <item value=\"123\" />{0}</collection>".FormatWith(Environment.NewLine);
 
             var obj = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123)
-                };
+                          {
+                              new TestXmlSerializableCollectionItem(123)
+                          };
 
             var actual = obj.ToString();
 
@@ -268,10 +266,10 @@
         public void xml_serialize(string xpath)
         {
             var obj = new TestXmlSerializableCollection
-                {
-                    new TestXmlSerializableCollectionItem(123),
-                    new TestXmlSerializableCollectionItem(456)
-                };
+                          {
+                              new TestXmlSerializableCollectionItem(123),
+                              new TestXmlSerializableCollectionItem(456)
+                          };
 
             Assert.True(obj.XmlSerialize().CreateNavigator().Evaluate<bool>(xpath));
         }

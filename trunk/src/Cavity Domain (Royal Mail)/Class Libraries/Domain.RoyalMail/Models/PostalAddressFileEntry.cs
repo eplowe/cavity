@@ -6,7 +6,6 @@
     using System.Globalization;
     using System.Text;
     using System.Xml;
-
     using Cavity.Collections;
     using Cavity.Data;
 
@@ -62,34 +61,34 @@
                              {
                                  Address =
                                      {
-                                         SubBuildingName = TryString(data, "SBN"), 
-                                         PostOfficeBox = TryString(data, "POB"), 
-                                         BuildingName = TryString(data, "BNA"), 
-                                         BuildingNumber = TryString(data, "NUM"), 
-                                         DependentStreet = TryString(data, "DST"), 
-                                         MainStreet = TryString(data, "STM"), 
-                                         DoubleDependentLocality = TryString(data, "DDL"), 
-                                         DependentLocality = TryString(data, "DLO"), 
-                                         PostTown = TryString(data, "PTN"), 
-                                         AdministrativeCounty = TryString(data, "CTA"), 
-                                         FormerPostalCounty = TryString(data, "CTP"), 
-                                         TraditionalCounty = TryString(data, "CTT"), 
+                                         SubBuildingName = TryString(data, "SBN"),
+                                         PostOfficeBox = TryString(data, "POB"),
+                                         BuildingName = TryString(data, "BNA"),
+                                         BuildingNumber = TryString(data, "NUM"),
+                                         DependentStreet = TryString(data, "DST"),
+                                         MainStreet = TryString(data, "STM"),
+                                         DoubleDependentLocality = TryString(data, "DDL"),
+                                         DependentLocality = TryString(data, "DLO"),
+                                         PostTown = TryString(data, "PTN"),
+                                         AdministrativeCounty = TryString(data, "CTA"),
+                                         FormerPostalCounty = TryString(data, "CTP"),
+                                         TraditionalCounty = TryString(data, "CTT"),
                                          Postcode = TryString(data, "PCD")
-                                     }, 
+                                     },
                                  Organization =
                                      {
-                                         Department = TryString(data, "ORD"), 
+                                         Department = TryString(data, "ORD"),
                                          Name = TryString(data, "ORC")
-                                     }, 
-                                 Category = data.ContainsKey("CAT") && !string.IsNullOrEmpty(data["CAT"]) ? UserCategory.Resolve(data["CAT"][0]) : null, 
-                                 DeliveryPointSuffix = TryString(data, "DPX"), 
-                                 MultipleOccupancyCount = TryInt32(data, "MOC"), 
-                                 MultipleResidencyRecordCount = TryInt32(data, "MRC"), 
-                                 NumberOfDeliveryPoints = TryInt32(data, "NDP"), 
-                                 Origin = data.ContainsKey("DTO") && !string.IsNullOrEmpty(data["DTO"]) ? data["DTO"][0] : new char?(), 
-                                 SortCode = TryInt32(data, "SCD"), 
-                                 UniqueMultipleResidenceReferenceNumber = TryInt32(data, "UMR"), 
-                                 UniqueDeliveryPointReferenceNumber = TryInt32(data, "URN"), 
+                                     },
+                                 Category = data.ContainsKey("CAT") && !string.IsNullOrEmpty(data["CAT"]) ? UserCategory.Resolve(data["CAT"][0]) : null,
+                                 DeliveryPointSuffix = TryString(data, "DPX"),
+                                 MultipleOccupancyCount = TryInt32(data, "MOC"),
+                                 MultipleResidencyRecordCount = TryInt32(data, "MRC"),
+                                 NumberOfDeliveryPoints = TryInt32(data, "NDP"),
+                                 Origin = data.ContainsKey("DTO") && !string.IsNullOrEmpty(data["DTO"]) ? data["DTO"][0] : new char?(),
+                                 SortCode = TryInt32(data, "SCD"),
+                                 UniqueMultipleResidenceReferenceNumber = TryInt32(data, "UMR"),
+                                 UniqueDeliveryPointReferenceNumber = TryInt32(data, "URN"),
                              };
 
             return result;
@@ -232,7 +231,7 @@
             return XmlConvert.ToString(value.Value);
         }
 
-        private static int? TryInt32(KeyStringDictionary data, 
+        private static int? TryInt32(KeyStringDictionary data,
                                      string key)
         {
             if (!data.ContainsKey(key))
@@ -245,7 +244,7 @@
                        : data.TryValue<int>(key);
         }
 
-        private static string TryString(IDictionary<string, string> data, 
+        private static string TryString(IDictionary<string, string> data,
                                         string key)
         {
             return data.ContainsKey(key)

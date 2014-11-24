@@ -18,41 +18,6 @@
             return Validate(telephone.Number);
         }
 
-        private static bool Validate(string telephone)
-        {
-            if (null == telephone)
-            {
-                throw new ArgumentNullException("telephone");
-            }
-
-            if (telephone.Is("+448001111"))
-            {
-                return true;
-            }
-
-            if (telephone.Length.IsLessThan(12))
-            {
-                return false;
-            }
-
-            if (telephone.StartsWith("+44", StringComparison.Ordinal).IsFalse())
-            {
-                return false;
-            }
-
-            if (telephone.StartsWith("+44500", StringComparison.Ordinal) ||
-                telephone.StartsWith("+44800", StringComparison.Ordinal))
-            {
-                return telephone.Length.In(12, 13);
-            }
-
-            var prefix = telephone.Substring(0, 7);
-
-            return _twelves.Contains(prefix)
-                       ? telephone.Length.In(12, 13)
-                       : telephone.Length.Is(13);
-        }
-
         private static IEnumerable<string> Twelves()
         {
             yield return "+441204";
@@ -96,6 +61,41 @@
             yield return "+441949";
             yield return "+441963";
             yield return "+441995";
+        }
+
+        private static bool Validate(string telephone)
+        {
+            if (null == telephone)
+            {
+                throw new ArgumentNullException("telephone");
+            }
+
+            if (telephone.Is("+448001111"))
+            {
+                return true;
+            }
+
+            if (telephone.Length.IsLessThan(12))
+            {
+                return false;
+            }
+
+            if (telephone.StartsWith("+44", StringComparison.Ordinal).IsFalse())
+            {
+                return false;
+            }
+
+            if (telephone.StartsWith("+44500", StringComparison.Ordinal) ||
+                telephone.StartsWith("+44800", StringComparison.Ordinal))
+            {
+                return telephone.Length.In(12, 13);
+            }
+
+            var prefix = telephone.Substring(0, 7);
+
+            return _twelves.Contains(prefix)
+                       ? telephone.Length.In(12, 13)
+                       : telephone.Length.Is(13);
         }
     }
 }

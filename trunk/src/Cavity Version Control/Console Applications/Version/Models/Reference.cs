@@ -6,7 +6,8 @@
         {
         }
 
-        public Reference(string include, string hint)
+        public Reference(string include,
+                         string hint)
         {
             Include = include;
             Hint = hint;

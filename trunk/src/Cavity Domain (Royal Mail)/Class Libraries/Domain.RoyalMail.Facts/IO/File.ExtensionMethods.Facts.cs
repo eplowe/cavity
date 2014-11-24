@@ -8,12 +8,6 @@
     public sealed class FileExtensionMethodsFacts
     {
         [Fact]
-        public void op_ToPostcode_FileInfoNull()
-        {
-            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).ToPostcode());
-        }
-
-        [Fact]
         public void op_ToPostcode_FileInfo()
         {
             using (var temp = new TempDirectory())
@@ -25,6 +19,12 @@
 
                 Assert.Equal(expected, actual);
             }
+        }
+
+        [Fact]
+        public void op_ToPostcode_FileInfoNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => (null as FileInfo).ToPostcode());
         }
     }
 }

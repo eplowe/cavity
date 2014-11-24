@@ -4,7 +4,6 @@
     using System.ComponentModel;
     using System.Globalization;
     using System.Runtime.Serialization;
-
     using Cavity.Properties;
     using Cavity.Security.Cryptography;
 
@@ -20,9 +19,9 @@
     /// </remarks>
     [ImmutableObject(true)]
     [Serializable]
-    public struct EntityTag : ISerializable, 
-                              IComparable, 
-                              IComparable<EntityTag>, 
+    public struct EntityTag : ISerializable,
+                              IComparable,
+                              IComparable<EntityTag>,
                               IEquatable<EntityTag>
     {
         public EntityTag(string value)
@@ -58,7 +57,7 @@
             Value = value;
         }
 
-        private EntityTag(SerializationInfo info, 
+        private EntityTag(SerializationInfo info,
                           StreamingContext context)
             : this()
         {
@@ -75,13 +74,13 @@
 
         private string Value { get; set; }
 
-        public static bool operator ==(EntityTag obj, 
+        public static bool operator ==(EntityTag obj,
                                        EntityTag comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator >(EntityTag operand1, 
+        public static bool operator >(EntityTag operand1,
                                       EntityTag operand2)
         {
             return 0 < Compare(operand1, operand2);
@@ -102,19 +101,19 @@
             return new EntityTag(string.Format(CultureInfo.InvariantCulture, "\"{0}\"", value));
         }
 
-        public static bool operator !=(EntityTag obj, 
+        public static bool operator !=(EntityTag obj,
                                        EntityTag comparand)
         {
             return !obj.Equals(comparand);
         }
 
-        public static bool operator <(EntityTag operand1, 
+        public static bool operator <(EntityTag operand1,
                                       EntityTag operand2)
         {
             return 0 > Compare(operand1, operand2);
         }
 
-        public static int Compare(EntityTag operand1, 
+        public static int Compare(EntityTag operand1,
                                   EntityTag operand2)
         {
             return string.CompareOrdinal(operand1, operand2);
@@ -161,7 +160,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        void ISerializable.GetObjectData(SerializationInfo info, 
+        void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {
             if (null == info)

@@ -38,7 +38,9 @@
         [Theory]
         [InlineData("example.1.2.3.4", "example", "1.2.3.4")]
         [InlineData("example", "example", "")]
-        public void op_ToString(string expected, string id, string version)
+        public void op_ToString(string expected,
+                                string id,
+                                string version)
         {
             var actual = new Package(id, version).ToString();
 

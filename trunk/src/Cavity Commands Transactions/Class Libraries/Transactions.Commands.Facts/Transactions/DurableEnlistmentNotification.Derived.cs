@@ -5,7 +5,7 @@
 
     public sealed class DerivedDurableEnlistmentNotification : DurableEnlistmentNotification
     {
-        public DerivedDurableEnlistmentNotification(Guid identifier, 
+        public DerivedDurableEnlistmentNotification(Guid identifier,
                                                     EnlistmentOptions enlistmentOptions)
             : base(identifier, enlistmentOptions)
         {

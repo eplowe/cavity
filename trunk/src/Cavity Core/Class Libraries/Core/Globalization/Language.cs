@@ -11,7 +11,7 @@
 
     [ImmutableObject(true)]
     [Serializable]
-    public struct Language : ISerializable, 
+    public struct Language : ISerializable,
                              IEquatable<Language>
     {
         public Language(string value)
@@ -20,7 +20,7 @@
             Value = value;
         }
 
-        private Language(SerializationInfo info, 
+        private Language(SerializationInfo info,
                          StreamingContext context)
             : this()
         {
@@ -29,13 +29,13 @@
 
         private string Value { get; set; }
 
-        public static bool operator ==(Language obj, 
+        public static bool operator ==(Language obj,
                                        Language comparand)
         {
             return obj.Equals(comparand);
         }
 
-        public static bool operator !=(Language obj, 
+        public static bool operator !=(Language obj,
                                        Language comparand)
         {
             return !obj.Equals(comparand);
@@ -92,7 +92,7 @@
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
 #endif
 
-        void ISerializable.GetObjectData(SerializationInfo info, 
+        void ISerializable.GetObjectData(SerializationInfo info,
                                          StreamingContext context)
         {
             if (null == info)

@@ -12,8 +12,8 @@
         {
         }
 
-        protected HttpParameterDictionary(SerializationInfo info, 
-                                      StreamingContext context)
+        protected HttpParameterDictionary(SerializationInfo info,
+                                          StreamingContext context)
             : base(info, context)
         {
         }

@@ -1,7 +1,6 @@
 ﻿namespace Cavity.Net
 {
     using System.Diagnostics.CodeAnalysis;
-
     using Xunit;
     using Xunit.Extensions;
 

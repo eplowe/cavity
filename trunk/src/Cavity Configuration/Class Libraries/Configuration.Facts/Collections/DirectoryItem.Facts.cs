@@ -2,9 +2,7 @@
 {
     using System;
     using System.IO;
-
     using Cavity.IO;
-
     using Xunit;
 
     public sealed class DirectoryItemFacts
@@ -42,10 +40,10 @@
             using (var temp = new TempDirectory())
             {
                 var obj = new DirectoryItem
-                    {
-                        Name = temp.Info.Name,
-                        Value = temp.Info.FullName
-                    };
+                              {
+                                  Name = temp.Info.Name,
+                                  Value = temp.Info.FullName
+                              };
 
                 var other = new DirectoryItem();
 
@@ -59,16 +57,16 @@
             using (var temp = new TempDirectory())
             {
                 var obj = new DirectoryItem
-                {
-                    Name = temp.Info.Name,
-                    Value = temp.Info.FullName
-                };
+                              {
+                                  Name = temp.Info.Name,
+                                  Value = temp.Info.FullName
+                              };
 
                 var other = new DirectoryItem
-                {
-                    Name = temp.Info.Name,
-                    Value = temp.Info.FullName
-                };
+                                {
+                                    Name = temp.Info.Name,
+                                    Value = temp.Info.FullName
+                                };
 
                 Assert.True(obj.Equals(other));
             }
@@ -90,9 +88,9 @@
             {
                 var expected = temp.Info.FullName;
                 var obj = new DirectoryItem
-                    {
-                        Value = expected
-                    };
+                              {
+                                  Value = expected
+                              };
                 var actual = obj.Info.FullName;
 
                 Assert.Equal(expected, actual);

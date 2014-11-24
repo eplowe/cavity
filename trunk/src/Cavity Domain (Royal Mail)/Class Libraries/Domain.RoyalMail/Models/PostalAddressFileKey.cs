@@ -3,6 +3,7 @@
     using System;
     using System.ComponentModel;
     using System.Runtime.Serialization;
+
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif
@@ -112,10 +113,10 @@
             var urn = AlphaDecimal.FromString(parts[0]);
             var umr = 1 == parts.Length ? AlphaDecimal.Zero : AlphaDecimal.FromString(parts[1]);
             return new PostalAddressFileKey
-                {
-                    UniqueDeliveryPointReferenceNumber = urn,
-                    UniqueMultipleResidenceReferenceNumber = umr,
-                };
+                       {
+                           UniqueDeliveryPointReferenceNumber = urn,
+                           UniqueMultipleResidenceReferenceNumber = umr,
+                       };
         }
 
         public override bool Equals(object obj)

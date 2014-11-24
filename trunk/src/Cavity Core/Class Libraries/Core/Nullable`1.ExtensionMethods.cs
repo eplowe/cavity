@@ -7,7 +7,7 @@
 #else
         public static bool HasNoValue<T>(this T? obj)
 #endif
-            where T : struct 
+            where T : struct
         {
             return !obj.HasValue;
         }

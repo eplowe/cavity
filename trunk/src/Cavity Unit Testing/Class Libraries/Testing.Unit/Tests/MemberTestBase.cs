@@ -2,7 +2,6 @@ namespace Cavity.Tests
 {
     using System;
     using System.Reflection;
-
     using Cavity.Fluent;
 
     public abstract class MemberTestBase : ITestExpectation

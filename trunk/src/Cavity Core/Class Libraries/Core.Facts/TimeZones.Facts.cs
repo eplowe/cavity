@@ -1,7 +1,6 @@
 ﻿namespace Cavity
 {
     using System;
-
     using Xunit;
 
     public sealed class TimeZonesFacts
@@ -18,19 +17,19 @@
         }
 
         [Fact]
-        public void prop_Europe_CentralEuropeanTime_get()
+        public void prop_Europe_BritishTime_get()
         {
-            var expected = TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
-            var actual = TimeZones.Europe.CentralEuropeanTime;
+            var expected = TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
+            var actual = TimeZones.Europe.BritishTime;
 
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void prop_Europe_BritishTime_get()
+        public void prop_Europe_CentralEuropeanTime_get()
         {
-            var expected = TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
-            var actual = TimeZones.Europe.BritishTime;
+            var expected = TimeZoneInfo.FindSystemTimeZoneById("Central Europe Standard Time");
+            var actual = TimeZones.Europe.CentralEuropeanTime;
 
             Assert.Equal(expected, actual);
         }
@@ -67,6 +66,15 @@
         {
             var expected = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
             var actual = TimeZones.Europe.WesternEuropeanStandardTime;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void prop_Newfoundland_MountainStandardTime_get()
+        {
+            var expected = TimeZoneInfo.FindSystemTimeZoneById("Newfoundland Standard Time");
+            var actual = TimeZones.NorthAmerica.NewfoundlandStandardTime;
 
             Assert.Equal(expected, actual);
         }
@@ -130,15 +138,6 @@
         {
             var expected = TimeZoneInfo.FindSystemTimeZoneById("Mountain Standard Time");
             var actual = TimeZones.NorthAmerica.MountainStandardTime;
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void prop_Newfoundland_MountainStandardTime_get()
-        {
-            var expected = TimeZoneInfo.FindSystemTimeZoneById("Newfoundland Standard Time");
-            var actual = TimeZones.NorthAmerica.NewfoundlandStandardTime;
 
             Assert.Equal(expected, actual);
         }

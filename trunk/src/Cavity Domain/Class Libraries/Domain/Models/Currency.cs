@@ -16,7 +16,7 @@
             RegisterProperty(x => Symbol);
         }
 
-        public Currency(string symbol, 
+        public Currency(string symbol,
                         int significance)
             : this()
         {
@@ -39,7 +39,7 @@
         [XmlAttribute("title")]
         public string Title { get; set; }
 
-        public Money Parse(CultureInfo culture, 
+        public Money Parse(CultureInfo culture,
                            string value)
         {
             if (null == culture)
@@ -59,7 +59,7 @@
 
             return new Money
                        {
-                           Amount = (decimal)double.Parse(value, NumberStyles.Currency, ToNumberFormatInfo(culture)), 
+                           Amount = (decimal)double.Parse(value, NumberStyles.Currency, ToNumberFormatInfo(culture)),
                            Currency = this
                        };
         }

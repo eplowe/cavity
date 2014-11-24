@@ -21,7 +21,7 @@
     <CallTarget Targets="Build" />
     <CallTarget Targets="Test" />
     <CallTarget Targets="Bundle" />
-    <CallTarget Targets="Copy MSI" />
+    <!-- CallTarget Targets="Copy MSI" / -->
   </Target>
   <Target Name="Build">
     <MSBuild Projects="$(MSBuildProjectDirectory)\build.AnyCPU.xml"

@@ -7,9 +7,9 @@
   	<!-- Solutions Include="Cavity Examples Website" / -->
   	<Solutions Include="Cavity FTP" />
   	<Solutions Include="Cavity MSBuild (Domain)" />
-  	<Solutions Include="Cavity Task Management" />
+  	<!-- Solutions Include="Cavity Task Management" / -->
   	<Solutions Include="Cavity Task Management Abstractions" />
-  	<Solutions Include="Cavity Task Management Service" />
+  	<!-- Solutions Include="Cavity Task Management Service" / -->
   	<Solutions Include="Cavity Test Controller Abstractions" />
   	<!-- Solutions Include="Cavity Test Controller" / -->
   	<Solutions Include="Cavity Web" />

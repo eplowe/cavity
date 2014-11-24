@@ -10,15 +10,12 @@
     using System.Net;
     using System.Reflection;
     using System.Xml.XPath;
-
 #if NET20
     using Cavity.Collections;
 #endif
     using Cavity.IO;
     using Cavity.Properties;
-
     using HtmlAgilityPack;
-
     using Xunit.Extensions;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
@@ -82,7 +79,7 @@
             return html;
         }
 
-        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest, 
+        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest,
                                                       Type[] parameterTypes)
         {
             if (null == methodUnderTest)

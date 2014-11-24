@@ -6,8 +6,8 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Security;
-
     using Cavity.Properties;
+
 #if NET20 || NET35
     using System.Security.Permissions;
 #endif

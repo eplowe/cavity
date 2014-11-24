@@ -16,7 +16,7 @@
             instance.Register(routes);
         }
 
-        public static void Register(this RouteCollection routes, 
+        public static void Register(this RouteCollection routes,
                                     IEnumerable<Type> types)
         {
             if (null == types)
@@ -30,14 +30,14 @@
             }
         }
 
-        public static void Register(this RouteCollection routes, 
+        public static void Register(this RouteCollection routes,
                                     Type type)
         {
             routes.Register(type, false);
         }
 
-        public static void Register(this RouteCollection routes, 
-                                    Type type, 
+        public static void Register(this RouteCollection routes,
+                                    Type type,
                                     bool skipInterface)
         {
             if (null == type)

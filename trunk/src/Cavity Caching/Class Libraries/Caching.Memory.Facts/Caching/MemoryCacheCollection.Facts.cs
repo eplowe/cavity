@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-
     using Xunit;
 
     public sealed class MemoryCacheCollectionFacts

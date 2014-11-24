@@ -5,10 +5,8 @@
     using System.Collections.ObjectModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Xml;
-
     using Cavity.Testing;
     using Cavity.Xml;
-
     using Xunit;
     using Xunit.Extensions;
 
@@ -41,7 +39,7 @@
         {
             var obj = new List<object>
                           {
-                              null, 
+                              null,
                               null
                           };
             var actual = obj.ToArray().JsonSerialize();
@@ -55,7 +53,7 @@
         {
             var obj = new List<object>
                           {
-                              new object(), 
+                              new object(),
                               null
                           };
             var actual = obj.ToArray().JsonSerialize();
@@ -69,7 +67,7 @@
         {
             var obj = new List<object>
                           {
-                              new object(), 
+                              new object(),
                               new object()
                           };
             var actual = obj.ToArray().JsonSerialize();
@@ -96,7 +94,7 @@
         {
             var example = new AttributedType
                               {
-                                  Ignore = "ignore", 
+                                  Ignore = "ignore",
                                   Value = "value"
                               };
 
@@ -111,7 +109,7 @@
         {
             var obj = new Collection<bool>
                           {
-                              true, 
+                              true,
                               false
                           };
             var actual = obj.JsonSerialize();
@@ -125,7 +123,7 @@
         {
             var obj = new Collection<byte>
                           {
-                              1, 
+                              1,
                               255
                           };
             var actual = obj.JsonSerialize();
@@ -139,7 +137,7 @@
         {
             var obj = new Collection<char>
                           {
-                              'a', 
+                              'a',
                               'z'
                           };
             var actual = obj.JsonSerialize();
@@ -153,7 +151,7 @@
         {
             var obj = new Collection<DateTime>
                           {
-                              new DateTime(1999, 12, 31), 
+                              new DateTime(1999, 12, 31),
                               new DateTime(2000, 1, 1)
                           };
             var actual = obj.JsonSerialize();
@@ -167,7 +165,7 @@
         {
             var obj = new Collection<DateTimeOffset>
                           {
-                              new DateTime(1999, 12, 31), 
+                              new DateTime(1999, 12, 31),
                               new DateTime(2000, 1, 1)
                           };
             var actual = obj.JsonSerialize();
@@ -181,7 +179,7 @@
         {
             var obj = new Collection<decimal>
                           {
-                              1.23m, 
+                              1.23m,
                               4.56m
                           };
             var actual = obj.JsonSerialize();
@@ -195,7 +193,7 @@
         {
             var obj = new Collection<double>
                           {
-                              1.23d, 
+                              1.23d,
                               4.56d
                           };
             var actual = obj.JsonSerialize();
@@ -209,7 +207,7 @@
         {
             var obj = new Collection<DayOfWeek>
                           {
-                              DayOfWeek.Monday, 
+                              DayOfWeek.Monday,
                               DayOfWeek.Friday
                           };
             var actual = obj.JsonSerialize();
@@ -223,7 +221,7 @@
         {
             var obj = new Collection<Guid>
                           {
-                              XmlConvert.ToGuid("b75a9ea5-01ca-4a61-b299-8d0823a4a64a"), 
+                              XmlConvert.ToGuid("b75a9ea5-01ca-4a61-b299-8d0823a4a64a"),
                               XmlConvert.ToGuid("ce6a8e72-b5dc-4682-b9ce-23351d9d2f4a")
                           };
             var actual = obj.JsonSerialize();
@@ -237,7 +235,7 @@
         {
             var obj = new Collection<short>
                           {
-                              123, 
+                              123,
                               456
                           };
             var actual = obj.JsonSerialize();
@@ -251,7 +249,7 @@
         {
             var obj = new Collection<int>
                           {
-                              1234, 
+                              1234,
                               5678
                           };
             var actual = obj.JsonSerialize();
@@ -265,7 +263,7 @@
         {
             var obj = new Collection<long>
                           {
-                              12345, 
+                              12345,
                               67890
                           };
             var actual = obj.JsonSerialize();
@@ -279,7 +277,7 @@
         {
             var obj = new Collection<object>
                           {
-                              null, 
+                              null,
                               null
                           };
             var actual = obj.JsonSerialize();
@@ -293,7 +291,7 @@
         {
             var obj = new Collection<XmlNamespace>
                           {
-                              new XmlNamespace("com", "http://example.com"), 
+                              new XmlNamespace("com", "http://example.com"),
                               new XmlNamespace("net", "http://example.net")
                           };
             var actual = obj.JsonSerialize();
@@ -307,7 +305,7 @@
         {
             var obj = new Collection<object>
                           {
-                              new object(), 
+                              new object(),
                               new object()
                           };
             var actual = obj.JsonSerialize();
@@ -321,7 +319,7 @@
         {
             var obj = new Collection<float>
                           {
-                              1.23f, 
+                              1.23f,
                               4.56f
                           };
             var actual = obj.JsonSerialize();
@@ -335,7 +333,7 @@
         {
             var obj = new Collection<string>
                           {
-                              "abc", 
+                              "abc",
                               "xyz"
                           };
             var actual = obj.JsonSerialize();
@@ -349,7 +347,7 @@
         {
             var obj = new Collection<TimeSpan>
                           {
-                              new TimeSpan(1, 2, 3), 
+                              new TimeSpan(1, 2, 3),
                               new TimeSpan(4, 5, 6)
                           };
             var actual = obj.JsonSerialize();
@@ -363,7 +361,7 @@
         {
             var obj = new Collection<Uri>
                           {
-                              new Uri("http://example.com"), 
+                              new Uri("http://example.com"),
                               new Uri("/path", UriKind.Relative)
                           };
             var actual = obj.JsonSerialize();
@@ -377,7 +375,7 @@
         {
             var obj = new Collection<Date>
                           {
-                              new Date(1999, 12, 31), 
+                              new Date(1999, 12, 31),
                               new Date(2000, 1, 1)
                           };
             var actual = obj.JsonSerialize();
@@ -389,31 +387,31 @@
         [InlineData("{\"boolean\":true,\"byte\":123,\"character\":\"x\",\"date\":{\"day\":1,\"month\":1,\"year\":2000},\"day\":\"Monday\",\"decimal\":1.23,\"double\":1.23,\"duration\":\"PT1H2M3S\",\"int16\":123,\"int32\":123,\"int64\":123,\"offset\":\"1999-12-31T00:00:00Z\",\"single\":1,\"unique\":\"9ff20dc5-1a0e-47b2-a71c-43cbfa36201d\",\"value\":\"abc\",\"when\":\"2011-07-14T19:43:37Z\"}", true, 'x', 1.23d, "1.23", 123, "abc")]
         [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "boolean", Justification = "This is a test.")]
         [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "integer", Justification = "This is a test.")]
-        public void op_JsonSerialize_object_whenFundamentalTypes(string expected, 
-                                                                 bool boolean, 
-                                                                 char character, 
-                                                                 double number, 
-                                                                 string money, 
-                                                                 int integer, 
+        public void op_JsonSerialize_object_whenFundamentalTypes(string expected,
+                                                                 bool boolean,
+                                                                 char character,
+                                                                 double number,
+                                                                 string money,
+                                                                 int integer,
                                                                  string value)
         {
             var example = new FundamentalTypes
                               {
-                                  Boolean = boolean, 
-                                  Byte = (byte)integer, 
-                                  Character = character, 
-                                  Day = DayOfWeek.Monday, 
-                                  Date = new Date(2000, 1, 1), 
-                                  Decimal = XmlConvert.ToDecimal(money), 
-                                  Double = number, 
-                                  Duration = new TimeSpan(1, 2, 3), 
-                                  Single = (float)Math.Round(number, 0), 
-                                  Int16 = (short)integer, 
-                                  Int32 = integer, 
-                                  Int64 = integer, 
-                                  Unique = XmlConvert.ToGuid("9ff20dc5-1a0e-47b2-a71c-43cbfa36201d"), 
-                                  Value = value, 
-                                  When = XmlConvert.ToDateTime("2011-07-14T19:43:37Z", XmlDateTimeSerializationMode.Utc), 
+                                  Boolean = boolean,
+                                  Byte = (byte)integer,
+                                  Character = character,
+                                  Day = DayOfWeek.Monday,
+                                  Date = new Date(2000, 1, 1),
+                                  Decimal = XmlConvert.ToDecimal(money),
+                                  Double = number,
+                                  Duration = new TimeSpan(1, 2, 3),
+                                  Single = (float)Math.Round(number, 0),
+                                  Int16 = (short)integer,
+                                  Int32 = integer,
+                                  Int64 = integer,
+                                  Unique = XmlConvert.ToGuid("9ff20dc5-1a0e-47b2-a71c-43cbfa36201d"),
+                                  Value = value,
+                                  When = XmlConvert.ToDateTime("2011-07-14T19:43:37Z", XmlDateTimeSerializationMode.Utc),
                                   Offset = new DateTimeOffset(new DateTime(1999, 12, 31))
                               };
 
@@ -493,30 +491,30 @@
         [InlineData("{\"boolean\":true,\"byte\":123,\"character\":\"x\",\"date\":{\"day\":1,\"month\":1,\"year\":2000},\"day\":\"Monday\",\"decimal\":1.23,\"double\":1.23,\"duration\":\"PT1H2M3S\",\"int16\":123,\"int32\":123,\"int64\":123,\"offset\":\"1999-12-31T00:00:00Z\",\"single\":1,\"unique\":\"9ff20dc5-1a0e-47b2-a71c-43cbfa36201d\",\"when\":\"2011-07-14T19:43:37Z\"}", true, 'x', 1.23d, "1.23", 123, "abc")]
         [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "boolean", Justification = "This is a test.")]
         [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "integer", Justification = "This is a test.")]
-        public void op_JsonSerialize_object_whenNullableTypes(string expected, 
-                                                              bool boolean, 
-                                                              char character, 
-                                                              double number, 
-                                                              string money, 
-                                                              int integer, 
+        public void op_JsonSerialize_object_whenNullableTypes(string expected,
+                                                              bool boolean,
+                                                              char character,
+                                                              double number,
+                                                              string money,
+                                                              int integer,
                                                               string value)
         {
             var example = new NullableTypes
                               {
-                                  Boolean = boolean, 
-                                  Byte = (byte)integer, 
-                                  Character = character, 
-                                  Day = DayOfWeek.Monday, 
-                                  Date = new Date(2000, 1, 1), 
-                                  Decimal = XmlConvert.ToDecimal(money), 
-                                  Double = number, 
-                                  Duration = new TimeSpan(1, 2, 3), 
-                                  Single = (float)Math.Round(number, 0), 
-                                  Int16 = (short)integer, 
-                                  Int32 = integer, 
-                                  Int64 = integer, 
-                                  Unique = XmlConvert.ToGuid("9ff20dc5-1a0e-47b2-a71c-43cbfa36201d"), 
-                                  When = XmlConvert.ToDateTime("2011-07-14T19:43:37Z", XmlDateTimeSerializationMode.Utc), 
+                                  Boolean = boolean,
+                                  Byte = (byte)integer,
+                                  Character = character,
+                                  Day = DayOfWeek.Monday,
+                                  Date = new Date(2000, 1, 1),
+                                  Decimal = XmlConvert.ToDecimal(money),
+                                  Double = number,
+                                  Duration = new TimeSpan(1, 2, 3),
+                                  Single = (float)Math.Round(number, 0),
+                                  Int16 = (short)integer,
+                                  Int32 = integer,
+                                  Int64 = integer,
+                                  Unique = XmlConvert.ToGuid("9ff20dc5-1a0e-47b2-a71c-43cbfa36201d"),
+                                  When = XmlConvert.ToDateTime("2011-07-14T19:43:37Z", XmlDateTimeSerializationMode.Utc),
                                   Offset = new DateTimeOffset(new DateTime(1999, 12, 31))
                               };
 
@@ -578,7 +576,7 @@
         [InlineData("\"\"", "")]
         [InlineData("\" \"", " ")]
         [InlineData("\"abc\"", "abc")]
-        public void op_JsonSerialize_object_whenString(string expected, 
+        public void op_JsonSerialize_object_whenString(string expected,
                                                        string value)
         {
             var example = new FundamentalTypes

@@ -5,8 +5,6 @@
     using System.Net;
     using System.Xml;
 
-    using Cavity;
-
     public static class Html
     {
         private static readonly IDictionary<string, string> _entities = LoadEntities();

@@ -4,13 +4,12 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.IO.Compression;
-
     using Cavity.IO;
 
     public static class GZip
     {
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "I want type safety.")]
-        public static FileInfo Extract(FileInfo source, 
+        public static FileInfo Extract(FileInfo source,
                                        DirectoryInfo destination)
         {
             if (null == source)

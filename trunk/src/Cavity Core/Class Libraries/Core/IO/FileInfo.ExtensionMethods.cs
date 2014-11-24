@@ -9,7 +9,6 @@
 #endif
     using System.Text;
     using System.Xml.XPath;
-
     using Cavity.Security.Cryptography;
 
     public static class FileInfoExtensionMethods
@@ -18,7 +17,7 @@
         public static FileInfo Append(FileInfo obj, 
                                       object value)
 #else
-        public static FileInfo Append(this FileInfo obj, 
+        public static FileInfo Append(this FileInfo obj,
                                       object value)
 #endif
         {
@@ -47,7 +46,7 @@
         public static FileInfo AppendLine(FileInfo obj, 
                                           object value)
 #else
-        public static FileInfo AppendLine(this FileInfo obj, 
+        public static FileInfo AppendLine(this FileInfo obj,
                                           object value)
 #endif
         {
@@ -123,7 +122,7 @@
         public static FileInfo CopyTo(FileInfo obj, 
                                       FileInfo destination)
 #else
-        public static FileInfo CopyTo(this FileInfo obj, 
+        public static FileInfo CopyTo(this FileInfo obj,
                                       FileInfo destination)
 #endif
         {
@@ -141,8 +140,8 @@
                                       FileInfo destination, 
                                       bool overwrite)
 #else
-        public static FileInfo CopyTo(this FileInfo obj, 
-                                      FileInfo destination, 
+        public static FileInfo CopyTo(this FileInfo obj,
+                                      FileInfo destination,
                                       bool overwrite)
 #endif
         {
@@ -169,7 +168,7 @@
         public static FileInfo Create(FileInfo obj, 
                                   string value)
 #else
-        public static FileInfo Create(this FileInfo obj, 
+        public static FileInfo Create(this FileInfo obj,
                                       string value)
 #endif
         {
@@ -200,7 +199,7 @@
         public static FileInfo Create(FileInfo obj, 
                                   IXPathNavigable xml)
 #else
-        public static FileInfo Create(this FileInfo obj, 
+        public static FileInfo Create(this FileInfo obj,
                                       IXPathNavigable xml)
 #endif
         {
@@ -234,7 +233,7 @@
         public static FileInfo CreateNew(FileInfo obj, 
                                          object value)
 #else
-        public static FileInfo CreateNew(this FileInfo obj, 
+        public static FileInfo CreateNew(this FileInfo obj,
                                          object value)
 #endif
         {
@@ -434,7 +433,7 @@
         public static FileInfo MoveTo(FileInfo obj, 
                                       FileInfo destination)
 #else
-        public static FileInfo MoveTo(this FileInfo obj, 
+        public static FileInfo MoveTo(this FileInfo obj,
                                       FileInfo destination)
 #endif
         {
@@ -452,8 +451,8 @@
                                       FileInfo destination, 
                                       bool overwrite)
 #else
-        public static FileInfo MoveTo(this FileInfo obj, 
-                                      FileInfo destination, 
+        public static FileInfo MoveTo(this FileInfo obj,
+                                      FileInfo destination,
                                       bool overwrite)
 #endif
         {
@@ -611,7 +610,7 @@
         public static FileStream ToWriteStream(FileInfo obj, 
                                                FileMode mode)
 #else
-        public static FileStream ToWriteStream(this FileInfo obj, 
+        public static FileStream ToWriteStream(this FileInfo obj,
                                                FileMode mode)
 #endif
         {
@@ -625,10 +624,10 @@
 #else
             if (!mode.In(
 #endif
-                FileMode.Create,
-                FileMode.CreateNew,
-                FileMode.Append,
-                FileMode.Truncate))
+                     FileMode.Create,
+                     FileMode.CreateNew,
+                     FileMode.Append,
+                     FileMode.Truncate))
             {
                 throw new ArgumentOutOfRangeException("mode");
             }
@@ -640,7 +639,7 @@
         public static FileInfo Truncate(FileInfo obj, 
                                         string value)
 #else
-        public static FileInfo Truncate(this FileInfo obj, 
+        public static FileInfo Truncate(this FileInfo obj,
                                         string value)
 #endif
         {
@@ -671,7 +670,7 @@
         public static FileInfo Truncate(FileInfo obj, 
                                         IXPathNavigable xml)
 #else
-        public static FileInfo Truncate(this FileInfo obj, 
+        public static FileInfo Truncate(this FileInfo obj,
                                         IXPathNavigable xml)
 #endif
         {

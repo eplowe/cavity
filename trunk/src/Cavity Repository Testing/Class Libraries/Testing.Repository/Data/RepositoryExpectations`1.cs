@@ -44,8 +44,8 @@
             }
 #else
             foreach (var obj in assembly.GetTypes()
-                .Where(x => !x.IsAbstract && !x.IsInterface && null != x.GetInterface(typeof(IVerifyRepository<T>).Name))
-                .Select(type => Activator.CreateInstance(type.MakeGenericType(typeof(T)))).OfType<IVerifyRepository<T>>())
+                                        .Where(x => !x.IsAbstract && !x.IsInterface && null != x.GetInterface(typeof(IVerifyRepository<T>).Name))
+                                        .Select(type => Activator.CreateInstance(type.MakeGenericType(typeof(T)))).OfType<IVerifyRepository<T>>())
             {
                 obj.Verify(Activator.CreateInstance<TRepository>());
             }

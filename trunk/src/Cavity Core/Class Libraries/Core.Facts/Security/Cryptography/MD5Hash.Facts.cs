@@ -7,7 +7,6 @@
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Text;
-
     using Xunit;
 
     public sealed class MD5HashFacts
@@ -167,8 +166,8 @@
         {
             const long expected = 1;
             var actual = MD5Hash.Compare(
-                Convert.FromBase64String(_emptyHash), 
-                Convert.FromBase64String(_jigsawHash));
+                                         Convert.FromBase64String(_emptyHash),
+                                         Convert.FromBase64String(_jigsawHash));
 
             Assert.Equal(expected, actual);
         }
@@ -178,8 +177,8 @@
         {
             const long expected = -1;
             var actual = MD5Hash.Compare(
-                Convert.FromBase64String(_jigsawHash), 
-                Convert.FromBase64String(_emptyHash));
+                                         Convert.FromBase64String(_jigsawHash),
+                                         Convert.FromBase64String(_emptyHash));
 
             Assert.Equal(expected, actual);
         }
@@ -189,8 +188,8 @@
         {
             const long expected = 0;
             var actual = MD5Hash.Compare(
-                Convert.FromBase64String(_jigsawHash), 
-                Convert.FromBase64String(_jigsawHash));
+                                         Convert.FromBase64String(_jigsawHash),
+                                         Convert.FromBase64String(_jigsawHash));
 
             Assert.Equal(expected, actual);
         }
@@ -362,6 +361,24 @@
         }
 
         [Fact]
+        public void op_Differ_MD5HashJigsaw_MD5HashEmpty()
+        {
+            var jigsaw = new FileInfo(@"Security\Cryptography\jigsaw.html");
+            var empty = new FileInfo(@"Security\Cryptography\empty.html");
+
+            Assert.True(MD5Hash.Differ(jigsaw, empty));
+        }
+
+        [Fact]
+        public void op_Differ_MD5HashJigsaw_MD5HashJigsaw()
+        {
+            var one = new FileInfo(@"Security\Cryptography\jigsaw.html");
+            var two = new FileInfo(@"Security\Cryptography\jigsaw.html");
+
+            Assert.False(MD5Hash.Differ(one, two));
+        }
+
+        [Fact]
         public void op_Equals_MD5Hash()
         {
             MD5Hash obj = Convert.FromBase64String(_nullHash);
@@ -445,24 +462,6 @@
             var actual = info.GetString("_value");
 
             Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void op_Differ_MD5HashJigsaw_MD5HashEmpty()
-        {
-            var jigsaw = new FileInfo(@"Security\Cryptography\jigsaw.html");
-            var empty = new FileInfo(@"Security\Cryptography\empty.html");
-
-            Assert.True(MD5Hash.Differ(jigsaw, empty));
-        }
-
-        [Fact]
-        public void op_Differ_MD5HashJigsaw_MD5HashJigsaw()
-        {
-            var one = new FileInfo(@"Security\Cryptography\jigsaw.html");
-            var two = new FileInfo(@"Security\Cryptography\jigsaw.html");
-
-            Assert.False(MD5Hash.Differ(one, two));
         }
 
         [Fact]

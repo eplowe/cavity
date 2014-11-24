@@ -2,11 +2,9 @@
 {
     using System;
     using System.IO;
-
     using Cavity.IO;
     using Cavity.Reflection;
     using Cavity.Threading;
-
     using Xunit;
 
     public sealed class TimingFacts

@@ -1,12 +1,12 @@
 ﻿namespace Cavity.Net
 {
     using System;
-
     using Cavity.Properties;
 
     public class HttpParameter : ComparableObject
     {
-        public HttpParameter(Token name, string value)
+        public HttpParameter(Token name,
+                             string value)
             : this()
         {
             Name = name;

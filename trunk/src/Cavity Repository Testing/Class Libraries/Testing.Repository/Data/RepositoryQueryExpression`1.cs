@@ -5,7 +5,6 @@
     using System.Linq;
 #endif
     using System.Xml.XPath;
-
     using Cavity.Properties;
 
     public sealed class RepositoryQueryExpression<T> : VerifyRepositoryBase<T>

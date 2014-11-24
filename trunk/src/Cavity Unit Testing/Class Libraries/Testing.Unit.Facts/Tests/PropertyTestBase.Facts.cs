@@ -1,9 +1,7 @@
 ﻿namespace Cavity.Tests
 {
     using System;
-
     using Cavity.Types;
-
     using Xunit;
 
     public sealed class PropertyTestBaseFacts

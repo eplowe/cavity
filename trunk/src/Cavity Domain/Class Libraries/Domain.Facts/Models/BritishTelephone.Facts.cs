@@ -1,12 +1,8 @@
 ﻿namespace Cavity.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using Cavity.Collections;
-    using Cavity.Data;
-    using Cavity.IO;
     using Xunit;
     using Xunit.Extensions;
 
@@ -36,13 +32,13 @@
         [InlineData("+442079111222", true, "London", "20", "(020) 7911 1222", "2079", "111222", "LANDLINE")]
         [InlineData("+447960123123", true, "", "7960", "(07960) 123 123", "7960", "123123", "MOBILE")]
         public void op_Load_BritishTelephoneNumberPlan_Telephone(string number,
-            bool valid,
-            string area,
-            string areaCode,
-            string numberGroups,
-            string dialingCode,
-            string localNumber,
-            string serviceType)
+                                                                 bool valid,
+                                                                 string area,
+                                                                 string areaCode,
+                                                                 string numberGroups,
+                                                                 string dialingCode,
+                                                                 string localNumber,
+                                                                 string serviceType)
         {
             var plan = BritishTelephoneNumberPlan.Load(new FileInfo("sabc.csv"));
             Telephone telephone = number;
@@ -58,7 +54,7 @@
             Assert.Equal(telephone, actual.Number);
             Assert.Equal(valid, actual.IsValid);
         }
-        
+
         [Fact]
         public void op_Load_BritishTelephoneNumberPlan_TelephoneNull()
         {
@@ -127,8 +123,8 @@
         [InlineData("(01483) 999 999", "1483", "+441483999999")]
         [InlineData("(015396) 11111", "15396", "+441539611111")]
         public void op_ToNumberGroups_string_string(string expected,
-            string areaCode,
-            string telephone)
+                                                    string areaCode,
+                                                    string telephone)
         {
             var actual = BritishTelephone.ToNumberGroups(areaCode, telephone);
 
@@ -183,7 +179,7 @@
         [InlineData("FICTIONAL", "+44909879099")]
         [InlineData("PREMIUM", "+44999999999")]
         public void op_ToServiceType_string(string expected,
-            string telephone)
+                                            string telephone)
         {
             var actual = BritishTelephone.ToServiceType(telephone);
 
@@ -239,20 +235,20 @@
         }
 
         [Fact]
-        public void prop_IsValid()
-        {
-            Assert.True(new PropertyExpectations<BritishTelephone>(p => p.IsValid)
-                            .IsNotDecorated()
-                            .IsAutoProperty<bool>()
-                            .Result);
-        }
-
-        [Fact]
         public void prop_IsInvalid()
         {
             Assert.True(new PropertyExpectations<BritishTelephone>(p => p.IsInvalid)
                             .IsNotDecorated()
                             .IsAutoProperty(true)
+                            .Result);
+        }
+
+        [Fact]
+        public void prop_IsValid()
+        {
+            Assert.True(new PropertyExpectations<BritishTelephone>(p => p.IsValid)
+                            .IsNotDecorated()
+                            .IsAutoProperty<bool>()
                             .Result);
         }
 

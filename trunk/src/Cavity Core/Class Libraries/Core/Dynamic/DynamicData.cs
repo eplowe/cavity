@@ -18,7 +18,7 @@
             return Data.Keys;
         }
 
-        public override bool TryGetMember(GetMemberBinder binder, 
+        public override bool TryGetMember(GetMemberBinder binder,
                                           out object result)
         {
             if (null == binder)
@@ -31,7 +31,7 @@
             return true;
         }
 
-        public override bool TrySetMember(SetMemberBinder binder, 
+        public override bool TrySetMember(SetMemberBinder binder,
                                           object value)
         {
             if (null == binder)

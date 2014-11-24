@@ -2,9 +2,7 @@
 {
     using System;
     using System.IO;
-
     using Cavity.Xml.XPath;
-
     using Xunit;
 
     public sealed class FileCopyCommandFacts
@@ -248,8 +246,8 @@
         {
             var obj = new FileCopyCommand
                           {
-                              Source = @"C:\from.txt", 
-                              Destination = @"C:\to.txt", 
+                              Source = @"C:\from.txt",
+                              Destination = @"C:\to.txt",
                               Undo = true
                           };
 

@@ -15,13 +15,13 @@
         {
         }
 
-        public TranslationException(string message, 
+        public TranslationException(string message,
                                     Exception innerException)
             : base(message, innerException)
         {
         }
 
-        private TranslationException(SerializationInfo info, 
+        private TranslationException(SerializationInfo info,
                                      StreamingContext context)
             : base(info, context)
         {
