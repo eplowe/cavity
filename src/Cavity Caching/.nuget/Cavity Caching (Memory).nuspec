@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides a concrete implementation of the caching interface using the System.Runtime in-memory cache.</description>
     <summary />
-    <copyright>Copyright © 2010 - 2012 Alan Dean</copyright>
+    <copyright>Copyright © 2010 - 2015 Alan Dean</copyright>
     <language />
     <tags>Cache</tags>
     <releaseNotes />

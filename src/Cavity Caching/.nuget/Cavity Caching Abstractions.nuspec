@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides a shared interface for caching implementations which application and framework developers can reference. Using the library allows an application to indirectly access the capabilities without relying on hard references.</description>
     <summary />
-    <copyright>Copyright © 2010 - 2012 Alan Dean</copyright>
+    <copyright>Copyright © 2010 - 2015 Alan Dean</copyright>
     <language />
     <tags>Cache</tags>
     <releaseNotes />
