@@ -3,7 +3,6 @@
          DefaultTargets="Rebuild"
          ToolsVersion="4.0">
   <ItemGroup>
-  	<Solutions Include="Cavity Data (Excel Open XML)" />
   	<Solutions Include="Cavity Domain (Royal Mail)" />
   	<Solutions Include="Cavity Repository" />
   	<Solutions Include="Cavity Repository (XML File System)" />
