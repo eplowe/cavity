@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Data.Xunit</id>
-    <version>2.0.0.969</version>
+    <version>2.0.0.970</version>
     <title>Cavity Data (CSV, TSV) xUnit Extensions</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -20,8 +20,8 @@
       <frameworkAssembly assemblyName="System.Data" />
     </frameworkAssemblies>
     <dependencies>
-      <dependency id="Cavity.Data" version="2.0.0.905" />
-      <dependency id="xunit.extensions" version="1.9.0.1566" />
+      <dependency id="Cavity.Data" version="2.0.0.970" />
+      <dependency id="xunit.extensions" version="1.9.2" />
     </dependencies>
   </metadata>
   <files>

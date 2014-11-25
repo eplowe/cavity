@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Ftp</id>
-    <version>2.0.0.969</version>
+    <version>2.0.0.970</version>
     <title>Cavity FTP</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -17,7 +17,7 @@
     <tags>Domain</tags>
     <releaseNotes />
     <dependencies>
-      <dependency id="Cavity.Core" version="2.0.0.942" />
+      <dependency id="Cavity.Core" version="2.0.0.970" />
     </dependencies>
   </metadata>
   <files>
