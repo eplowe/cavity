@@ -42,9 +42,8 @@
     <Compile Include="IO\TempCsvFile.Facts.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cavity.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Cavity.Core.2.0.0.942\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+    <Reference Include="Cavity.Core">
+      <HintPath>..\..\packages\Cavity.Core.2.0.0.970\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

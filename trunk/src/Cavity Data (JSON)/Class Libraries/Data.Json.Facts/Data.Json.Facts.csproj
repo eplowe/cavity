@@ -15,7 +15,7 @@
     <Compile Include="Data\JsonIgnoreAttribute.Facts.cs" />
     <Compile Include="Data\JsonNameAttribute.Facts.cs" />
     <Compile Include="Testing\FundamentalTypes.cs" />
-    <Compile Include="Data\Json.Object.ExtensionMethods.Facts.cs" />
+    <!-- Compile Include="Data\Json.Object.ExtensionMethods.Facts.cs" / -->
     <Compile Include="Data\JsonWriterSettings.Facts.cs" />
     <Compile Include="Data\IJsonSerializable.Facts.cs" />
     <Compile Include="Data\JsonWriter.Facts.cs" />
@@ -41,7 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.2.0.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Cavity.Core.2.0.0.970\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />

@@ -13,7 +13,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.1.1.0.848\lib\net40\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.1.1.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Diagnostics.Log4Net">
       <HintPath>..\..\packages\Cavity.Diagnostics.Log4Net.Console.1.1.0.804\lib\net40\Cavity.Diagnostics.Log4Net.dll</HintPath>
