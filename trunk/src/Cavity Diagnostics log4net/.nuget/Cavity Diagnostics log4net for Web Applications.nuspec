@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A trace listener for log4net, allowing provider-agnostic tracing in web applications.</description>
     <summary />
-    <copyright>Copyright © 2010 - 2012 Alan Dean</copyright>
+    <copyright>Copyright © 2010 - 2015 Alan Dean</copyright>
     <language />
     <tags>Diagnostics</tags>
     <releaseNotes />

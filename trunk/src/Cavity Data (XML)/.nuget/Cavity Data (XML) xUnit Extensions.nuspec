@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides xUnit extensions for XML files or data.</description>
     <summary />
-    <copyright>Copyright © 2010 - 2012 Alan Dean</copyright>
+    <copyright>Copyright © 2010 - 2015 Alan Dean</copyright>
     <language />
     <tags>XML Data TDD xUnit</tags>
     <releaseNotes />
