@@ -24,10 +24,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.2.0.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.2.0.0.970\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Data">
-      <HintPath>..\..\packages\Cavity.Data.2.0.0.905\lib\$(TargetFrameworkVersionName)\Cavity.Data.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Data.2.0.0.970\lib\$(TargetFrameworkVersionName)\Cavity.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>

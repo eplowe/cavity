@@ -5,10 +5,11 @@
   <ItemGroup>
   	<Solutions Include="Cavity Commands Transactions" />
   	<!-- Solutions Include="Cavity Examples Website" / -->
+  	<Solutions Include="Cavity Data (Excel 97-2003)" />
   	<Solutions Include="Cavity Data (Excel Open XML)" />
   	<Solutions Include="Cavity FTP" />
   	<Solutions Include="Cavity MSBuild (Domain)" />
-  	<!-- Solutions Include="Cavity Task Management" / -->
+  	<Solutions Include="Cavity Task Management" />
   	<Solutions Include="Cavity Task Management Abstractions" />
   	<!-- Solutions Include="Cavity Task Management Service" / -->
   	<Solutions Include="Cavity Test Controller Abstractions" />

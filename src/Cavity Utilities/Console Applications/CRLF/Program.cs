@@ -10,6 +10,7 @@
         public static void Main(string[] args)
         {
             log4net.Config.XmlConfigurator.Configure();
+            log4net.Config.XmlConfigurator.Configure();
             try
             {
                 Arguments.Load(args).Process();
