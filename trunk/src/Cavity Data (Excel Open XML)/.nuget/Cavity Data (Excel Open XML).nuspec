@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Cavity.Data.Excel.OpenXML</id>
-    <version>2.0.0.967</version>
+    <version>2.0.0.969</version>
     <title>Cavity Data (Excel Open XML)</title>
     <authors>Alan Dean</authors>
     <owners />
@@ -18,16 +18,14 @@
     <releaseNotes />
     <dependencies>
       <dependency id="Cavity.Data" version="2.0.0.905" />
-      <dependency id="ClosedXML" version="0.67.2" />
+      <dependency id="ClosedXML" version="0.75.0" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Data" />
-      <frameworkAssembly assemblyName="System.Data.DataSetExtensions" targetFramework="net35" />
       <frameworkAssembly assemblyName="System.Data.DataSetExtensions" targetFramework="net40" />
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="lib\net35\Cavity.Data.Excel.OpenXML.dll" target="lib\net35\Cavity.Data.Excel.OpenXML.dll" />
     <file src="lib\net40\Cavity.Data.Excel.OpenXML.dll" target="lib\net40\Cavity.Data.Excel.OpenXML.dll" />
   </files>
 </package>

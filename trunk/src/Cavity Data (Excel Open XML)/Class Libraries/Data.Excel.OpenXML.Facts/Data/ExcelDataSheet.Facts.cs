@@ -63,7 +63,7 @@
         {
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToFile("{0}.xls".FormatWith(AlphaDecimal.Random()));
+                var file = temp.Info.ToFile("{0}.xlsx".FormatWith(AlphaDecimal.Random()));
                 new DirectoryInfo(Environment.CurrentDirectory).ToFile("Default.xlsx").CopyTo(file.FullName);
 
                 for (var i = 1; i < 4; i++)
@@ -82,7 +82,7 @@
         {
             using (var temp = new TempDirectory())
             {
-                var file = temp.Info.ToFile("{0}.xls".FormatWith(AlphaDecimal.Random()));
+                var file = temp.Info.ToFile("{0}.xlsx".FormatWith(AlphaDecimal.Random()));
                 new DirectoryInfo(Environment.CurrentDirectory).ToFile("Example.xlsx").CopyTo(file.FullName);
 
                 var sheet = new ExcelDataSheet(file)
