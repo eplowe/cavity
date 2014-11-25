@@ -32,10 +32,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.2.0.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.2.0.0.970\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Http.Generalizations">
-      <HintPath>..\..\packages\Cavity.Http.Generalizations.2.0.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Http.Generalizations.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Http.Generalizations.2.0.0.970\lib\$(TargetFrameworkVersionName)\Cavity.Http.Generalizations.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="xunit">

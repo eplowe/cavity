@@ -6,8 +6,6 @@
     <Import Project="$(MSBuildExtensionsPath)\ExtensionPack\4.0\MSBuild.ExtensionPack.tasks" />
   </ImportGroup>
   <ItemGroup>
-    <NuGetLibDir Include="$(MSBuildProjectDirectory)\.nuget\lib\net20" />
-    <NuGetLibDir Include="$(MSBuildProjectDirectory)\.nuget\lib\net35" />
     <NuGetLibDir Include="$(MSBuildProjectDirectory)\.nuget\lib\net40" />
     <NuSpecFiles Include="$(MSBuildProjectDirectory)\.nuget\*.nuspec" />
   </ItemGroup>
@@ -15,18 +13,12 @@
     <NuPkgDirectory>$(MSBuildProjectDirectory)\.nuget\packages</NuPkgDirectory>
   </PropertyGroup>
   <Target Name="Run">
-  	<!--
     <MakeDir Directories="%(NuGetLibDir.Identity)"
              Condition="!Exists('%(NuGetLibDir.Identity)')"/>
-             
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Excel.97-2003\bin\Release net20 AnyCPU\Cavity.Data.Excel.97-2003.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\.nuget\lib\net20" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Excel.97-2003\bin\Release net35 AnyCPU\Cavity.Data.Excel.97-2003.dll"
-          DestinationFolder="$(MSBuildProjectDirectory)\.nuget\lib\net35" />
+
     <Copy SourceFiles="$(MSBuildProjectDirectory)\Class Libraries\Data.Excel.97-2003\bin\Release net40 AnyCPU\Cavity.Data.Excel.97-2003.dll"
           DestinationFolder="$(MSBuildProjectDirectory)\.nuget\lib\net40" />
     <CallTarget Targets="nuget pack" />
-  	-->
   </Target>
   <Target Name="nuget pack">
     <MSBuild.ExtensionPack.Framework.MsBuildHelper TaskAction="GetItemCount"

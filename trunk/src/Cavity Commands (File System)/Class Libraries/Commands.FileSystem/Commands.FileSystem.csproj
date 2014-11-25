@@ -18,10 +18,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cavity.Commands">
-      <HintPath>..\..\packages\Cavity.Commands.2.0.0.851\lib\$(TargetFrameworkVersionName)\Cavity.Commands.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Commands.2.0.0.970\lib\$(TargetFrameworkVersionName)\Cavity.Commands.dll</HintPath>
     </Reference>
     <Reference Include="Cavity.Core">
-      <HintPath>..\..\packages\Cavity.Core.2.0.0.848\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Cavity.Core.2.0.0.970\lib\$(TargetFrameworkVersionName)\Cavity.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
